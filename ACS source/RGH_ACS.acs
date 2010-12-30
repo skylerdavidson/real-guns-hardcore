@@ -1,0 +1,4971 @@
+#library "RGH_ACS"
+#include "zcommon.acs"
+
+int KillersID;
+int KillersHealth;
+int KillersMaxHealth;
+str KillersGun;
+str ExperienceNeed[40];
+
+bool TacticalInsertion[32];
+
+
+//Server settings...
+script 505 OPEN
+{
+	if(GetCVAR("sv_nodrop") == 0)
+		ConsoleCommand("sv_nodrop 1");
+
+	if(GetCVAR("sv_doubleammo") == 0)
+		ConsoleCommand("sv_doubleammo 1");
+
+	if(GetCVAR("sv_respawnsuper") == 0)
+		ConsoleCommand("sv_respawnsuper 1");
+		
+	if(GetCVAR("alwaysapplydmflags") == 0)
+		ConsoleCommand("alwaysapplydmflags 1");
+		
+	if(GetCVAR("compat_soundslots") == 1)
+		ConsoleCommand("compat_soundslots 0");
+		
+	if(GetCVAR("compat_instantrespawn") == 1) 
+		ConsoleCommand("compat_instantrespawn 0");
+		
+	if(GetCVAR("sv_nocrouch") == 1)
+		ConsoleCommand("sv_nocrouch 0");
+
+	if(GetCVAR("compat_nocrosshair") == 0)
+		ConsoleCommand("compat_nocrosshair 1");
+
+	delay(35*5);
+	restart;
+}
+
+
+//KILL CAM script source.
+//Function: It changes view to killer's view, and displays killer's health.
+//------------------------------------------
+//------- Set ID, this will most likely break some wads.
+//------- Also change Special.
+script 500 ENTER 
+{
+	Thing_ChangeTID(0,PlayerNumber()+500);
+        SetThingSpecial(0,226,502,0,0,0,0);
+}
+
+script 501 RESPAWN
+{
+	Thing_ChangeTID(0,PlayerNumber()+500);
+        SetThingSpecial(0,226,502,0,0,0,0);
+
+	if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
+	{	
+		if(GetActorProperty(0,APROP_HEALTH) < 100)
+			ACS_ExecuteAlways(606,0,0,0,0);
+		if(GetActorProperty(0, APROP_Speed) != 1.15)
+			SetActorProperty(0, APROP_Speed, 1.15);
+		if(CheckInventory("Perk2_StoppingPower") == 1)
+			GiveInventory("Perk2_StoppingPowerEffect",1);
+		if(CheckInventory("Perk2_DangerClose") == 1)
+			GiveInventory("Perk2_DangerCloseEffect",1);
+		if(CheckInventory("Perk2_Juggernaut") == 1)
+			GiveInventory("Perk2_JuggernautEffect",1);
+		if(CheckInventory("Perk3_Commando") == 1)
+			GiveInventory("Perk3_CommandoEffect",1);
+		if(CheckInventory("Perk1_OneManArmy") == 1)
+			SetAmmoCapacity("MaxWeaponsFilled_ARSMG",4);
+			
+		int MaxGunCount = GameSkill();
+		If(CheckInventory("Perk1_OneManArmy_Pro") == 1){
+			MaxGunCount++;
+		}
+		SetAmmoCapacity("MaxWeaponsFilled",MaxGunCount);
+			
+		if(CheckInventory("Perk1_OneManArmy") == 1)
+			ACS_ExecuteAlways(629,0,0,0,0); // set ammo capacities
+		SetActorProperty(0,APROP_Invulnerable,0);
+		ACS_ExecuteAlways(631,0,0,0,0); // unmorph from last stand
+	}
+}
+
+//------------------------------------------
+//------- Set KillerID/KillerHealth to display/killcam --- RGA2: Play tango down sound
+script 502 (void)
+{
+	KillersID = ActivatorTID();
+	KillersHealth = GetActorProperty(ActivatorTID(),APROP_Health);
+	KillersMaxHealth = GetActorProperty(ActivatorTID(),APROP_SpawnHealth);
+
+	KillersGun = "";
+
+	Delay(20);
+	ACS_Execute(504,0,0,0,0);
+}
+
+//------------------------------------------
+//------- Player's death, shows killer health and cam after 1 second. Might not work properly.
+script 503 DEATH
+{		
+	//Preserve information just for this script; don't want it to view someone else's killer.
+	Delay(1);
+	int KillersHealths = KillersHealth;
+	int KillersMaxHealths = KillersMaxHealth;
+	int KillersIDs = KillersID;
+	str KillersGuns = KillersGun;
+	Delay(36);
+
+	if(KillersHealths > 0 && GetActorProperty(0,APROP_Health) < 1) //Don't view killers health or cam if he died at the same time you did. Or if you've respawned already.
+	{
+		SetFont("BIGFONT");
+		ChangeCamera(KillersIDs,0,1);
+		HudMessage(s:"\ccKiller's Health left:\cg ", i:KillersHealths, s:"\cc of \cg", i:KillersMaxHealths, s:" \cc" ;HUDMSG_FADEOUT,0,CR_Blue,0.5,0.6,3.0,2.0);
+	}
+}
+//------------------------------------------
+//------- Addition to KILLCAM, it makes the player call out "Tango down!" or something like that, dependent on team.
+script 504 (void)
+{
+	Delay(1);
+	if(GetActorProperty(0,APROP_Health) > 0 && (GameType() != GAME_NET_COOPERATIVE || GameType() != GAME_SINGLE_PLAYER))
+	{
+		if(PlayerTeam() == TEAM_RED)
+			ActivatorSound("russian/kill",127);
+		else if(PlayerTeam() == TEAM_BLUE)
+			ActivatorSound("us/kill",127);	
+		else if(PlayerTeam() == 2)
+			ActivatorSound("brazil/kill",127);
+		else if(PlayerTeam() == 3)
+			ActivatorSound("opfor/kill",127);
+	}
+}
+
+//------------------------------------------
+//------- Give stuff, fix minor bugs, and so on
+script 597 ENTER
+{
+	TakeInventory("ReadyRegen",1);
+
+	if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
+	{	
+		if(GetActorProperty(0,APROP_HEALTH) < 100)
+			ACS_ExecuteAlways(606,0,0,0,0);
+		if(GetActorProperty(0, APROP_Speed) != 1.15)
+			SetActorProperty(0, APROP_Speed, 1.15);
+		if(CheckInventory("Perk2_StoppingPower") == 1)
+			GiveInventory("Perk2_StoppingPowerEffect",1);
+		if(CheckInventory("Perk2_DangerClose") == 1)
+			GiveInventory("Perk2_DangerCloseEffect",1);
+		if(CheckInventory("Perk2_Juggernaut") == 1)
+			GiveInventory("Perk2_JuggernautEffect",1);
+		if(CheckInventory("Perk3_Commando") == 1)
+			GiveInventory("Perk3_CommandoEffect",1);
+		if(CheckInventory("Perk1_OneManArmy") == 1)
+			SetAmmoCapacity("MaxWeaponsFilled_ARSMG",4);
+		if(CheckInventory("Perk1_OneManArmy_Pro") == 1)
+			ACS_ExecuteAlways(629,0,0,0,0);
+			
+		int MaxGunCount = GameSkill();
+		If(CheckInventory("Perk1_OneManArmy_Pro") == 1){
+			MaxGunCount++;
+		}
+		SetAmmoCapacity("MaxWeaponsFilled",MaxGunCount);
+		
+		SetActorProperty(0,APROP_Invulnerable,0);
+		ACS_ExecuteAlways(631,0,0,0,0);  // unmorph from last stand
+		ACS_ExecuteAlways(634,0,0,0,0);
+	}
+
+	SetFont("BIGFONT");
+	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.0.3 \ch=="; HUDMSG_FADEOUT,0,CR_BLUE,0.5,0.6,1.0,2.0);
+	SetFont("DOOMFONT");
+	HudMessage(s:"\ccBy \cvVoltlocK\cj and \cvCommanderZ"; HUDMSG_FADEOUT,0,CR_YELLOW,0.5,0.7,1.0,2.0);
+}
+
+//------------------------------------------
+//------- Don't know what this is for.
+script 598 OPEN
+{
+}
+
+//Knife screen
+script 599 (int Strength, int Reverse) NET CLIENTSIDE
+{
+
+	if(CheckInventory("KnifeAttack") == 1)
+	{
+		Strength = 4000;
+		Reverse = 4000;
+	}
+	int Counter;
+	while(Counter < Strength)
+	{
+		SetActorAngle(0,GetActorAngle(0)-800);
+		SetActorPitch(0,GetActorPitch(0)-200);
+		Counter += 800;
+		Delay(1);
+	}
+	Counter = 0;
+	while(Counter < Reverse)
+	{
+		SetActorAngle(0,GetActorAngle(0)+800);
+		SetActorPitch(0,GetActorPitch(0)+200);
+		Counter += 800;
+		Delay(1);
+	}
+}
+
+//Kickback
+script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
+{
+	int Mode = -1;
+	int RecoilSpeed = 200;
+	bool EnableRandomization = false;
+
+	// Small handguns
+	if(CheckWeapon("USP .45") || CheckWeapon("USP .45 Ex Mags") || CheckWeapon("USP .45 Akimbo") || CheckWeapon("USP .45 Tac Knife") || CheckWeapon("M9") || CheckWeapon("M9 Ex Mags"))
+	{
+		Strength = 600;
+		Reverse = 600;
+		RecoilSpeed = 200;
+		//if(CheckInventory("Aiming") == 1 || CheckInventory("SteadyAim") == 1)
+		//	Strength = 600;
+	}
+
+	// Colt
+	if(CheckWeapon(".44 Magnum") || CheckWeapon(".44 Magnum Akimbo") || CheckWeapon(".44 Magnum Tac Knife"))
+	{
+		Strength = 800;
+		Reverse = 600;		
+		if(CheckInventory("Aiming") == 1)
+			Reverse = 800;
+		RecoilSpeed = 200;
+	}
+
+	// Deagle
+	if(CheckWeapon("Desert Eagle") || CheckWeapon("Deagle Special") || CheckWeapon("Desert Eagle Akimbo") || CheckWeapon("Desert Eagle Tac Knife"))
+	{
+		Strength = 2000;
+		Reverse = 1600;
+		if(CheckInventory("Aiming") == 1)
+			Reverse = 2000;
+		RecoilSpeed = 400;
+	}
+
+	// Fal
+	if(CheckWeapon("FAL") || CheckWeapon("FAL Ex Mags"))
+	{
+		Strength = 800;
+		Reverse = 800;
+		RecoilSpeed = 400;
+	}
+	
+	// Single-shot shotguns
+	if(
+		CheckWeapon("Ranger") || 
+		CheckWeapon("SPAS-12") || 
+		CheckWeapon("SPAS-12 Ex Mags") || 
+		CheckWeapon("SPAS-12 Grip") || 
+		CheckWeapon("Model 1887")
+	){
+		Strength = 3500;
+		Reverse = 3500;
+		
+		if(CheckInventory("Aiming")){
+			Strength = 1600;
+			Reverse = 1200;
+		}
+		
+		RecoilSpeed = 900;
+	}
+	
+	// Auto shotguns (except Striker), launchers
+	if(
+		// launchers
+		CheckWeapon("FAMAS M203") || 
+		CheckWeapon("Thumper") || 
+		CheckWeapon("AT4-HS") || 
+		CheckWeapon("RPG-7") || 
+		// shotties
+		CheckWeapon("M1014") ||
+		CheckWeapon("M1014 Ex Mags") ||
+		CheckWeapon("M1014 Grip") || 
+		CheckWeapon("AA-12") || 
+		CheckWeapon("AA-12 Ex Mags") || 
+		CheckWeapon("AA-12 Grip") 
+	)
+	{
+		Strength = 2400;
+		Reverse = 2000;
+		RecoilSpeed = 800;
+		
+		if(CheckInventory("Aiming") == 1)
+		{
+			Strength = 1800;
+			Reverse = 1200;
+			RecoilSpeed = 400;
+		}
+		
+	}
+
+	// Striker
+	if(
+		CheckWeapon("Striker Grip")|| 
+		CheckWeapon("Striker") || 
+		CheckWeapon("Striker Ex Mags")
+	)
+	{
+		Strength = 3000;
+		Reverse = 1500;
+		RecoilSpeed = 900;
+		if(CheckInventory("Aiming") == 1)
+		{
+			Strength = 2200;
+			Reverse = 1000;
+			RecoilSpeed = 500;
+		}
+	}
+
+	// Low recoil ARs and SMGs, AUG
+	if(
+		CheckWeapon("UMP45") || 
+		CheckWeapon("UMP45 Ex Mags") || 
+		CheckWeapon("FN P90") || 
+		CheckWeapon("FN P90 Ex Mags") || 
+		CheckWeapon("ACR") || 
+		CheckWeapon("ACR Ex Mags") || 
+		CheckWeapon("SCAR-H") || 
+		CheckWeapon("SCAR-H Ex Mags") || 
+		CheckWeapon("M4A1") || 
+		CheckWeapon("M4A1 Ex Mags") || 
+		CheckWeapon("MP5K") || 
+		CheckWeapon("MP5K Ex Mags") ||
+		CheckWeapon("PP2000") || 
+		CheckWeapon("PP2000 Ex Mags") || 
+		CheckWeapon("AUG HBAR") ||
+		CheckWeapon("AUG HBAR Ex Mags") ||
+		CheckWeapon("AUG HBAR Grip") ||
+		CheckWeapon("M16A4") || 
+		CheckWeapon("M16A4 Ex Mags")
+	)
+	{
+		Strength = 500;
+		Reverse = 350;
+		RecoilSpeed = 200;
+	}
+
+	// MG4, AK47
+	if(
+		CheckWeapon("MG4") || 
+		CheckWeapon("MG4 Ex Mags") ||
+		CheckWeapon("MG4 Grip") || 
+		CheckWeapon("AK-47") || 
+		CheckWeapon("AK-47 Ex Mags"))
+	{
+		Strength = 800;
+		Reverse = 300;
+		RecoilSpeed = 200;
+	}
+
+	// High recoil SMGS and ARs, L86 and M240
+	if(
+		CheckWeapon("L86") || 
+		CheckWeapon("L86 Ex Mags") ||
+		CheckWeapon("L86 Grip") ||
+		CheckWeapon("M240") || 
+		CheckWeapon("M240 Ex Mags") ||
+		CheckWeapon("M240 Grip")|| 
+		CheckWeapon("TDI Vector") || 
+		CheckWeapon("TDI Vector Ex Mags") || 
+		CheckWeapon("Mini-UZI") || 
+		CheckWeapon("Mini-UZI Ex Mags") || 
+		CheckWeapon("Mini-UZI Akimbo") || 
+		CheckWeapon("G18") || 
+		CheckWeapon("G18 Ex Mags") || 
+		CheckWeapon("F2000") || 
+		CheckWeapon("F2000 Ex Mags") || 
+		CheckWeapon("UMP45 Rapid Fire") || 
+		CheckWeapon("FN P90 Rapid Fire") || 
+		CheckWeapon("MP5K Rapid Fire") || 
+		CheckWeapon("M93 Raffica") || 
+		CheckWeapon("M93 Raffica Ex Mags") ||
+		CheckWeapon("FAMAS") || 
+		CheckWeapon("FAMAS Ex Mags")
+	)
+	{
+		Strength = 600;
+		Reverse = 350;
+		RecoilSpeed = 200;
+	}
+
+	// Sniper rifles
+
+	if(CheckWeapon("Intervention") || CheckWeapon("Intervention Thermal") || CheckWeapon("Intervention Ex Mags"))
+	{
+		Strength = 5000;
+		Reverse = 4000;
+		RecoilSpeed = 700;
+		if(CheckInventory("Aiming") == 1)
+		{
+			Strength = Strength/2;
+			Reverse = Strength/2;
+		}
+		EnableRandomization = true;
+	}
+
+	if(CheckWeapon("Barrett 50cal") || CheckWeapon("Barrett 50cal Thermal") || CheckWeapon("Barrett 50cal Ex Mags"))
+	{
+		Strength = 5000;
+		Reverse = 4000;
+		RecoilSpeed = 700;
+		if(CheckInventory("Aiming") == 1)
+		{
+			Strength = Strength/2;
+			Reverse = Strength/2;
+		}
+		EnableRandomization = true;
+	}
+
+	if(CheckWeapon("WA2000") || CheckWeapon("WA2000 Thermal") || CheckWeapon("WA2000 Ex Mags"))
+	{
+		Strength = 3200;
+		Reverse = 3200;
+		RecoilSpeed = 600;
+		if(CheckInventory("Aiming") == 1)
+		{
+			Strength = Strength/2;
+			Reverse = Strength/2;
+		}
+		EnableRandomization = true;
+	}
+
+	if(CheckWeapon("M14 EBR") || CheckWeapon("M14 EBR Thermal") || CheckWeapon("M14 EBR Ex Mags"))
+	{
+		Strength = 800;
+		Reverse = 800;
+		RecoilSpeed = 400;
+		EnableRandomization = true;
+	}
+
+	if(Hurt == 1)
+	{
+		Strength = 4000;
+		Reverse = 4000;
+		RecoilSpeed = 1200;
+	}
+	
+	// Handle grips en-masse (and do it for UZI akimbo to since it has double fire rate)
+	if(
+		// Shotguns
+		CheckWeapon("SPAS-12 Grip") || 
+		CheckWeapon("Striker Grip") || 
+		CheckWeapon("M1014 Grip") || 
+		CheckWeapon("AA-12 Grip") ||
+		CheckWeapon("L86 Grip") ||
+		CheckWeapon("MG4 Grip") ||
+		CheckWeapon("M240 Grip") ||
+		CheckWeapon("AUG HBAR Grip") ||
+		CheckWeapon("Mini-UZI Akimbo")
+	)
+	{
+		Strength = Strength / 2;
+		Reverse = Reverse / 2;
+	}
+	
+	//Strength = Strength * 2;
+	//Reverse = Reverse * 2;
+	
+	
+	
+	/*if(EnableRandomization){
+		print(s:"Rand");
+		int RandomOffset = Random(80, 120);
+		print(i:RandomOffset);
+		Reverse = Reverse * RandomOffset / 100;
+	}
+	else {
+		print(s:"NoRand");
+	}*/
+	
+	int ReturnAngleOffsetX = random(80, 120);
+	int ReturnAngleOffsetY = random(80, 120);
+
+	int Counter;
+		while(Counter < Strength)
+		{
+			SetActorAngle(0,GetActorAngle(0)-RecoilSpeed / 4 );
+			SetActorPitch(0,GetActorPitch(0)-RecoilSpeed);
+			Counter += RecoilSpeed;
+			Delay(1);
+		}
+		Counter = 0;
+		while(Counter < Reverse)
+		{
+			SetActorAngle(0,GetActorAngle(0)+RecoilSpeed/ 4 * ReturnAngleOffsetX / 100);
+			SetActorPitch(0,GetActorPitch(0)+RecoilSpeed * ReturnAngleOffsetY / 100);
+			Counter += RecoilSpeed;
+			Delay(1);
+		}
+	/*
+	if(Mode == 0)
+	{
+		while(Counter < Strength)
+		{
+			SetActorAngle(0,GetActorAngle(0)-50);
+			SetActorPitch(0,GetActorPitch(0)-200);
+			Counter += 200;
+			Delay(1);
+		}
+		Counter = 0;
+		while(Counter < Reverse)
+		{
+			SetActorAngle(0,GetActorAngle(0)+50);
+			SetActorPitch(0,GetActorPitch(0)+200);
+			Counter += 200;
+			Delay(1);
+		}
+	}
+	else if(Mode == 1)
+	{
+		while(Counter < Strength)
+		{
+			SetActorAngle(0,GetActorAngle(0)-100);
+			SetActorPitch(0,GetActorPitch(0)-400);
+			Counter += 400;
+			Delay(1);
+		}
+		Counter = 0;
+		while(Counter < Reverse)
+		{
+			SetActorAngle(0,GetActorAngle(0)+100 * ReturnAngleOffsetX / 100);
+			SetActorPitch(0,GetActorPitch(0)+400 * ReturnAngleOffsetY / 100);
+			Counter += 400;
+			Delay(1);
+		}
+	}
+	else if(Mode == 2)
+	{
+		while(Counter < Strength)
+		{
+			SetActorAngle(0,GetActorAngle(0)-50);
+			SetActorPitch(0,GetActorPitch(0)-200);
+			Counter += 200;
+			Delay(1);
+		}
+		Counter = 0;
+		while(Counter < Reverse)
+		{
+			SetActorAngle(0,GetActorAngle(0)+50);
+			SetActorPitch(0,GetActorPitch(0)+100);
+			Counter += 100;
+			Delay(1);
+		}
+	}
+	else if(Mode == 3)
+	{
+		while(Counter < Strength)
+		{
+			SetActorAngle(0,GetActorAngle(0)-200);
+			SetActorPitch(0,GetActorPitch(0)-400);
+			Counter += 400;
+			Delay(1);
+		}
+		Delay(10);
+		Counter = 0;
+		while(Counter < Reverse)
+		{
+			SetActorAngle(0,GetActorAngle(0)+200);
+			SetActorPitch(0,GetActorPitch(0)+400);
+			Counter += 400;
+			Delay(1);
+		}
+	}
+	else if(Mode == 4)
+	{
+		while(Counter < Strength)
+		{
+			SetActorAngle(0,GetActorAngle(0)-100);
+			SetActorPitch(0,GetActorPitch(0)-800);
+			Counter += 800;
+			Delay(1);
+		}
+		Counter = 0;
+		while(Counter < Reverse)
+		{
+			SetActorAngle(0,GetActorAngle(0)+100);
+			SetActorPitch(0,GetActorPitch(0)+800);
+			Counter += 800;
+			Delay(1);
+		}
+	}
+	else if(Mode == 5)
+	{
+		while(Counter < Strength)
+		{
+			SetActorAngle(0,GetActorAngle(0)+1200);
+			SetActorPitch(0,GetActorPitch(0)-2000);
+			Counter += 2000;
+			Delay(1);
+		}
+		Counter = 0;
+		while(Counter < Reverse)
+		{
+			SetActorAngle(0,GetActorAngle(0)-300);
+			SetActorPitch(0,GetActorPitch(0)+400);
+			Counter += 400;
+			Delay(1);
+		}
+	}*/
+}
+
+//Reload
+script 601 (void) NET
+{
+	//------------------------------------------
+	//------- Checks if weapon is true, or attachment-weapon is true, then checks if clip is not full, then checks if reserve is not 0.
+	if((((CheckWeapon("USP .45") == 1 || CheckWeapon("USP .45 Tac Knife") == 1) && CheckInventory("USP45Clip") < 12 && CheckInventory("USP45Ammo") != 0)  || (CheckWeapon("USP .45 Ex Mags") == 1 && CheckInventory("USP45Clip2") < 18 && CheckInventory("USP45Ammo") != 0) || (CheckWeapon("USP .45 Akimbo") == 1 && CheckInventory("USP45Clip3") < 24 && CheckInventory("USP45Ammo") != 0)
+		 || ((CheckWeapon(".44 Magnum") == 1 || CheckWeapon(".44 Magnum Tac Knife") == 1) && CheckInventory("44MagnumClip") < 6  && CheckInventory("44MagnumAmmo") != 0) || (CheckWeapon(".44 Magnum Akimbo") == 1 && CheckInventory("44MagnumClip2") < 12 && CheckInventory("44MagnumAmmo") != 0)
+		 || ((CheckWeapon("SPAS-12") == 1 || CheckWeapon("SPAS-12 Grip") == 1) && CheckInventory("SPASClip") < 8 && CheckInventory("SPAS12Ammo") != 0) || (CheckWeapon("SPAS-12 Ex Mags") == 1 && CheckInventory("SPASClip2") < 16 && CheckInventory("SPAS12Ammo") != 0) 
+		 || ((CheckWeapon("AA-12") == 1  || CheckWeapon("AA-12 Grip") == 1) && CheckInventory("AA12Clip") < 8 && CheckInventory("AA12Ammo") != 0) || (CheckWeapon("AA-12 Ex Mags") == 1 && CheckInventory("AA12Clip2") < 16 && CheckInventory("AA12Ammo") != 0)
+		 || ((CheckWeapon("UMP45") == 1 || CheckWeapon("UMP45 Rapid Fire") == 1) && CheckInventory("UMP45Clip") < 32 && CheckInventory("UMP45Ammo") != 0)  || (CheckWeapon("UMP45 Ex Mags") == 1 && CheckInventory("UMP45Clip2") < 48 && CheckInventory("UMP45Ammo") != 0) 
+		 || (CheckWeapon("TDI Vector") == 1 && CheckInventory("VectorClip") < 30 && CheckInventory("VectorAmmo") != 0) || (CheckWeapon("TDI Vector Ex Mags") == 1 && CheckInventory("VectorClip2") < 45 && CheckInventory("VectorAmmo") != 0)
+		 || (CheckWeapon("Mini-UZI") == 1 && CheckInventory("MiniUziClip") < 32 && CheckInventory("MiniUziAmmo") != 0) || (CheckWeapon("Mini-UZI Ex Mags") == 1 && CheckInventory("MiniUziClip2") < 48 && CheckInventory("MiniUziAmmo") != 0) || (CheckWeapon("Mini-UZI Akimbo") == 1 && CheckInventory("MiniUziClip3") < 64 && CheckInventory("MiniUziAmmo") != 0)
+		 || ((CheckWeapon("FN P90") == 1 || CheckWeapon("FN P90 Rapid Fire") == 1) && CheckInventory("P90Clip") < 50 && CheckInventory("P90Ammo") != 0) || (CheckWeapon("FN P90 Ex Mags") == 1 && CheckInventory("P90Clip2") < 75 && CheckInventory("P90Ammo") != 0)
+		 || (CheckWeapon("ACR") == 1 && CheckInventory("ACRClip") < 30 && CheckInventory("ACRAmmo") != 0) || (CheckWeapon("ACR Ex Mags") == 1 && CheckInventory("ACRClip2") < 45 && CheckInventory("ACRAmmo") != 0) 
+		 || ((CheckWeapon("Intervention") == 1 || CheckWeapon("Intervention Thermal") == 1) && CheckInventory("InterventionClip") < 5 && CheckInventory("InterventionAmmo") != 0) || (CheckWeapon("Intervention Ex Mags") == 1 && CheckInventory("InterventionClip2") < 10 && CheckInventory("InterventionAmmo") != 0) 
+		 || (CheckWeapon("Barrett 50cal Ex Mags") == 1 && CheckInventory("BarrettClip2") < 15 && CheckInventory("BarrettAmmo") != 0) || ((CheckWeapon("Barrett 50cal") == 1 || CheckWeapon("Barrett 50cal Thermal") == 1) && CheckInventory("BarrettClip") < 10 && CheckInventory("BarrettAmmo") != 0) 
+		 || ((CheckWeapon("MG4") == 1 || CheckWeapon("MG4 Grip") == 1) && CheckInventory("MG4Clip") < 100 && CheckInventory("MG4Ammo") != 0) || (CheckWeapon("MG4 Ex Mags") == 1 && CheckInventory("MG4Clip2") < 200 && CheckInventory("MG4Ammo") != 0)
+		 || (CheckWeapon("G18") == 1 && CheckInventory("G18Clip") < 33 && CheckInventory("G18Ammo") != 0)  || (CheckWeapon("G18 Ex Mags") == 1 && CheckInventory("G18Clip2") < 50 && CheckInventory("G18Ammo") != 0) || (CheckWeapon("G18 Akimbo") == 1 && CheckInventory("G18Clip3") < 66 && CheckInventory("G18Ammo") != 0) 
+		 || (CheckWeapon("PP2000") == 1 && CheckInventory("PP2000Clip") < 20 && CheckInventory("PP2000Ammo") != 0) || (CheckWeapon("PP2000 Ex Mags") == 1 && CheckInventory("PP2000Clip2") < 30 && CheckInventory("PP2000Ammo") != 0)
+		 || (CheckWeapon("SCAR-H") == 1 && CheckInventory("SCARHClip") < 20 && CheckInventory("SCARHAmmo") != 0)  || (CheckWeapon("SCAR-H Ex Mags") == 1 && CheckInventory("SCARHClip2") < 30 && CheckInventory("SCARHAmmo") != 0) 
+		 || (CheckWeapon("M4A1") == 1 && CheckInventory("M4A1Clip") < 30 && CheckInventory("M4A1Ammo") != 0) || (CheckWeapon("M4A1 Ex Mags") == 1 && CheckInventory("M4A1Clip2") < 45 && CheckInventory("M4A1Ammo") != 0)
+		 || (CheckWeapon("M93 Raffica") == 1 && CheckInventory("M93RClip") < 20 && CheckInventory("M93RAmmo") != 0) || (CheckWeapon("M93 Raffica Ex Mags") == 1 && CheckInventory("M93RClip2") < 30 && CheckInventory("M93RAmmo") != 0)
+		 || (CheckWeapon("M16A4") == 1 && CheckInventory("M16Clip") < 30 && CheckInventory("M16Ammo") != 0) || (CheckWeapon("M16A4 Ex Mags") == 1 && CheckInventory("M16Clip2") < 45 && CheckInventory("M16Ammo") != 0)
+		 || (CheckWeapon("AK-47") == 1 && CheckInventory("AK47Clip") < 30 && CheckInventory("AK47Ammo") != 0) || (CheckWeapon("AK-47 Ex Mags") == 1 && CheckInventory("AK47Clip2") < 45 && CheckInventory("AK47Ammo") != 0)
+		 || ((CheckWeapon("Striker") == 1 || CheckWeapon("Striker Grip") == 1) && CheckInventory("StrikerClip") < 12 && CheckInventory("StrikerAmmo") != 0) || (CheckWeapon("Striker Ex Mags") == 1 && CheckInventory("StrikerClip2") < 18 && CheckInventory("StrikerAmmo") != 0) 
+		 || ((CheckWeapon("AUG HBAR") == 1 || CheckWeapon("AUG HBAR Grip") == 1) && CheckInventory("AUGHBARClip") < 42 && CheckInventory("AUGHBARAmmo") != 0) || (CheckWeapon("AUG HBAR Ex Mags") == 1 && CheckInventory("AUGHBARClip2") < 63 && CheckInventory("AUGHBARAmmo") != 0) 
+		 || ((CheckWeapon("WA2000") == 1 || CheckWeapon("WA2000 Thermal") == 1) && CheckInventory("WA2000Clip") < 6 && CheckInventory("WA2000Ammo") != 0) || (CheckWeapon("WA2000 Ex Mags") == 1 && CheckInventory("WA2000Clip2") < 12 && CheckInventory("WA2000Ammo") != 0) 
+		 || ((CheckWeapon("Desert Eagle") == 1 || CheckWeapon("Desert Eagle Tac Knife") == 1) && CheckInventory("DeagleClip") < 7 && CheckInventory("DeagleAmmo") != 0) || ((CheckWeapon("Deagle Special") == 1 || CheckWeapon("Desert Eagle Akimbo") == 1) && CheckInventory("DeagleClip2") < 14 && CheckInventory("DeagleAmmo") != 0)
+		 || ((CheckWeapon("M9") == 1 || CheckWeapon("M9 Tac Knife") == 1) && CheckInventory("M9Clip") < 15 && CheckInventory("M9Ammo") != 0) || (CheckWeapon("M9 Ex Mags") == 1 && CheckInventory("M9Clip2") < 25 && CheckInventory("M9Ammo") != 0) || (CheckWeapon("M9 Akimbo") == 1 && CheckInventory("M9Clip3") < 30 && CheckInventory("M9Ammo") != 0) 
+		 || ((CheckWeapon("M1014") == 1 || CheckWeapon("M1014 Grip") == 1) && CheckInventory("M1014Clip") < 4 && CheckInventory("M1014Ammo") != 0) || (CheckWeapon("M1014 Ex Mags") == 1 && CheckInventory("M1014Clip2") < 6 && CheckInventory("M1014Ammo") != 0) 
+		 || ((CheckWeapon("M240") == 1 || CheckWeapon("M240 Grip") == 1) && CheckInventory("M240Clip") < 100 && CheckInventory("M240Ammo") != 0) || (CheckWeapon("M240 Ex Mags") == 1 && CheckInventory("M240Clip2") < 200 && CheckInventory("M240Ammo") != 0)
+		 || ((CheckWeapon("L86") == 1 || CheckWeapon("L86 Grip") == 1) && CheckInventory("L86Clip") < 100 && CheckInventory("L86Ammo") != 0) || (CheckWeapon("L86 Ex Mags") == 1 && CheckInventory("L86Clip2") < 200 && CheckInventory("L86Ammo") != 0)
+		 || (CheckWeapon("Ranger") == 1 && CheckInventory("RangerClip") < 2 && CheckInventory("RangerAmmo") != 0) 
+		 || (CheckWeapon("Model 1887") == 1 && CheckInventory("M1887Clip") < 7 && CheckInventory("M1887Ammo") != 0) 
+		 || (CheckWeapon("M14 EBR Ex Mags") == 1 && CheckInventory("M14Clip2") < 15 && CheckInventory("M14Ammo") != 0) || ((CheckWeapon("M14 EBR") == 1 || CheckWeapon("M14 EBR Thermal") == 1) && CheckInventory("M14Clip") < 10 && CheckInventory("M14Ammo") != 0) 
+		 || (CheckWeapon("Thumper") == 1 && CheckInventory("ThumperClip") < 1 && CheckInventory("ThumperAmmo") != 0)  || (CheckWeapon("AT4-HS") == 1 && CheckInventory("AT4Clip") < 1 && CheckInventory("AT4Ammo") != 0) 
+		 || (CheckWeapon("FAMAS M203") == 1 && CheckInventory("M203Clip") < 1 && CheckInventory("M203Ammo") != 0)  || (CheckWeapon("RPG-7") == 1 && CheckInventory("RPGClip") < 1 && CheckInventory("RPGAmmo") != 0) 
+		 || (CheckWeapon("F2000") == 1 && CheckInventory("F2000Clip") < 30 && CheckInventory("F2000Ammo") != 0) || (CheckWeapon("F2000 Ex Mags") == 1 && CheckInventory("F2000Clip2") < 45 && CheckInventory("F2000Ammo") != 0)
+		 || ((CheckWeapon("MP5K") == 1 || CheckWeapon("MP5K Rapid Fire") == 1) && CheckInventory("MP5Clip") < 30 && CheckInventory("MP5Ammo") != 0) || (CheckWeapon("MP5K Ex Mags") == 1 && CheckInventory("MP5Clip2") < 45 && CheckInventory("MP5Ammo") != 0)
+		 || (CheckWeapon("FAMAS") == 1 && CheckInventory("FamasClip") < 30  && CheckInventory("FamasAmmo") != 0) || (CheckWeapon("FAMAS Ex Mags") == 1 && CheckInventory("FamasClip2") < 45  && CheckInventory("FamasAmmo") != 0)
+		 || (CheckWeapon("FAL") == 1 && CheckInventory("FALClip") < 20 && CheckInventory("FALAmmo") != 0) || (CheckWeapon("FAL Ex Mags") == 1 && CheckInventory("FALClip2") < 30 && CheckInventory("FALAmmo") != 0)) && CheckInventory("Reloading") == 0)
+	{
+		GiveInventory("Reloading",1);
+
+		if(PlayerTeam() == TEAM_RED || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 1))
+			ActivatorSound("russian/reload",127);
+		else if(PlayerTeam() == TEAM_BLUE || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 0))
+			ActivatorSound("us/reload",127);	
+		else if(PlayerTeam() == 2 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 2))
+			ActivatorSound("brazil/reload",127);
+		else if(PlayerTeam() == 3 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 3))
+			ActivatorSound("opfor/reload",127);
+		else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 4)
+			ActivatorSound("seal/reload",127);
+		else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 5)
+			ActivatorSound("tf141/reload",127);
+	}
+}
+
+//------------------------------------------
+//------- Sets player speed, affected by "ExtremeConditioning pro" perk.
+script 602 (void)
+{
+	/*if(CheckInventory("Aiming") == 1)
+		SetActorProperty(0,APROP_Speed,0.35);
+	else if(CheckInventory("Aiming") == 0)
+		SetActorProperty(0,APROP_Speed,1.0);*/
+
+	//if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
+	//{
+		int MoveSpeed = 1.0;
+	
+	//if(CheckInventory("Aiming") == 1)
+		if(
+			CheckWeapon("USP .45") == 1 || CheckWeapon("USP .45 Tac Knife") == 1 || CheckWeapon("USP .45 Ex Mags") == 1 || CheckWeapon("USP .45 Akimbo") == 1 ||
+			CheckWeapon(".44 Magnum") == 1 || CheckWeapon(".44 Magnum Tac Knife") == 1 || CheckWeapon(".44 Magnum Akimbo") == 1 ||
+			CheckWeapon("G18") == 1 || CheckWeapon("G18 Ex Mags") == 1 || CheckWeapon("G18 Akimbo") == 1 ||
+			CheckWeapon("M93 Raffica") == 1 || CheckWeapon("M93 Raffica Ex Mags") == 1 ||
+			CheckWeapon("Desert Eagle") == 1 || CheckWeapon("Desert Eagle Tac Knife") == 1 || CheckWeapon("Deagle Special") == 1 || CheckWeapon("Desert Eagle Akimbo") == 1 ||
+			CheckWeapon("PP2000") == 1 || CheckWeapon("PP2000 Ex Mags") == 1 ||
+			CheckWeapon("M9") == 1 || CheckWeapon("M9 Tac Knife") == 1 || CheckWeapon("M9 Ex Mags") == 1 || CheckWeapon("M9 Akimbo") == 1
+		)
+		{
+			if(CheckInventory("Aiming") == 1)
+				MoveSpeed = 0.7;
+			else
+				MoveSpeed = 1.20;
+		}
+		else if(
+			CheckWeapon("SPAS-12") == 1 || CheckWeapon("SPAS-12 Grip") == 1 || CheckWeapon("SPAS-12 Ex Mags") == 1 ||
+			CheckWeapon("AA-12") == 1 || CheckWeapon("AA-12 Grip") == 1 || CheckWeapon("AA-12 Ex Mags") == 1 ||
+			CheckWeapon("M1014") == 1 || CheckWeapon("M1014 Grip") == 1 || CheckWeapon("M1014 Ex Mags") == 1 ||
+			CheckWeapon("Striker") == 1 || CheckWeapon("Striker Grip") == 1 || CheckWeapon("Striker Ex Mags") == 1 ||
+			CheckWeapon("Ranger") == 1 || 
+			CheckWeapon("Model 1887") == 1
+		)
+		{
+			if(CheckInventory("Aiming") == 1)
+				MoveSpeed = 0.5;
+			else
+				MoveSpeed = 1.00;
+		}
+		else if(
+			CheckWeapon("UMP45") == 1 || CheckWeapon("UMP45 Rapid Fire") == 1 || CheckWeapon("UMP45 Ex Mags") == 1 || 
+			CheckWeapon("TDI Vector") == 1 || CheckWeapon("TDI Vector Ex Mags") == 1 ||
+			CheckWeapon("FN P90") == 1 || CheckWeapon("FN P90 Rapid Fire") == 1 || CheckWeapon("FN P90 Ex Mags") == 1 ||
+			CheckWeapon("MP5K") == 1 || CheckWeapon("MP5K Rapid Fire") == 1 || CheckWeapon("MP5K Ex Mags") == 1 ||
+			CheckWeapon("Mini-UZI") == 1 || CheckWeapon("Mini-UZI Ex Mags") == 1 || CheckInventory("MiniUziClip2") || CheckWeapon("Mini-UZI Akimbo") == 1
+		)
+		{
+			if(CheckInventory("Aiming") == 1)
+				MoveSpeed = 0.5;
+			else
+				MoveSpeed = 1.00;
+		}
+		else if(
+			CheckWeapon("ACR") == 1 || CheckWeapon("ACR Ex Mags") == 1 ||
+			CheckWeapon("SCAR-H") == 1 || CheckWeapon("SCAR-H Ex Mags") == 1 ||
+			CheckWeapon("M4A1") == 1 || CheckWeapon("M4A1 Ex Mags") == 1 ||
+			CheckWeapon("M16A4") == 1 || CheckWeapon("M16A4 Ex Mags") == 1 ||
+			CheckWeapon("AK-47") == 1 || CheckWeapon("AK-47 Ex Mags") == 1 ||
+			CheckWeapon("FAMAS M203") == 1 ||
+			CheckWeapon("FAMAS") == 1 || CheckWeapon("FAMAS Ex Mags") == 1 ||
+			CheckWeapon("F2000") == 1 || CheckWeapon("F2000 Ex Mags") == 1 ||
+			CheckWeapon("FAL") == 1 || CheckWeapon("FAL Ex Mags") == 1 ||
+			CheckWeapon("Thumper") == 1 // thumper is considered to be an AR, because it is basically a FAMAS without the machinegun :)
+		)
+		{
+			if(CheckInventory("Aiming") == 1)
+				MoveSpeed = 0.3;
+			else
+				MoveSpeed = 0.8;		
+		}
+		else if(
+			CheckWeapon("MG4") == 1 || CheckWeapon("MG4 Grip") == 1 || CheckWeapon("MG4 Ex Mags") == 1 ||
+			CheckWeapon("AUG HBAR") == 1 || CheckWeapon("AUG HBAR Grip") == 1 || CheckWeapon("AUG HBAR Ex Mags") == 1 ||
+			CheckWeapon("M240") == 1 || CheckWeapon("M240 Grip") == 1 || CheckWeapon("M240 Ex Mags") == 1 ||
+			CheckWeapon("L86") == 1 || CheckWeapon("L86 Grip") == 1 || CheckWeapon("L86 Ex Mags") == 1
+		)
+		{
+			if(CheckInventory("Aiming") == 1)
+				MoveSpeed = 0.2;
+			else
+				MoveSpeed = 0.6;		
+		}
+		else if(
+			CheckWeapon("Intervention") == 1 || CheckWeapon("Intervention Thermal") == 1 || CheckWeapon("Intervention Ex Mags") ||
+			CheckWeapon("Barrett 50cal Ex Mags") == 1 || CheckWeapon("Barrett 50cal") == 1 || CheckWeapon("Barrett 50cal Thermal") == 1 ||
+			CheckWeapon("WA2000") == 1 || CheckWeapon("WA2000 Thermal") == 1 || CheckWeapon("WA2000 Ex Mags") == 1 ||
+			CheckWeapon("M14 EBR Ex Mags") == 1  || CheckWeapon("M14 EBR") == 1 || CheckWeapon("M14 EBR Thermal") == 1
+		)
+		{
+			if(CheckInventory("Aiming") == 1)
+				MoveSpeed = 0.1;
+			else
+				MoveSpeed = 0.6;		
+		}		
+		else if(
+			CheckWeapon("AT4-HS") ||
+			CheckWeapon("RPG-7")
+		)
+		{
+			if(CheckInventory("Aiming") == 1)
+				MoveSpeed = 0.1;
+			else
+				MoveSpeed = 0.6;		
+		}	
+		
+		
+		
+		if(CheckInventory("Perk1_ExtremeConditioning_Pro") == 1)
+		{
+			MoveSpeed = FixedMul(MoveSpeed, 1.15);
+		}
+			
+		//print(f:MoveSpeed);
+	//}
+	SetActorProperty(0,APROP_Speed,MoveSpeed);
+}
+
+//------------------------------------------
+//------- Throw grenade.
+script 603 (void) NET
+{
+	if(CheckInventory("FragGrenadeAmmo") != 0 && CheckInventory("ThrowingGrenade") == 0)
+	{
+		GiveInventory("ThrowingGrenade",1);
+		//if(CheckInventory("Reloading") == 1)
+			GiveInventory("KnifeAttack",1);
+
+
+		if(PlayerTeam() == TEAM_RED || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 1))
+			ActivatorSound("russian/grenade",127);
+		else if(PlayerTeam() == TEAM_BLUE || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 0))
+			ActivatorSound("us/grenade",127);	
+		else if(PlayerTeam() == 2 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 2))
+			ActivatorSound("brazil/grenade",127);
+		else if(PlayerTeam() == 3 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 3))
+			ActivatorSound("opfor/grenade",127);
+		else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 4)
+			ActivatorSound("seal/grenade",127);
+		else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 5)
+			ActivatorSound("tf141/grenade",127);
+	}
+	if(CheckWeapon("FAMAS") == 1 && CheckInventory("FragGrenadeAmmo") == 0 && (CheckInventory("M203Ammo") != 0 || CheckInventory("M203Clip") != 0))
+	{
+		GiveInventory("SwitchMode",1);
+	}
+}
+//------------------------------------------
+//------- Use Knife
+script 604 (void) NET
+{
+	GiveInventory("KnifeAttack",1); //Hack, refer to decorate coding.
+}
+
+//Draw XHairs since some weapons won't have an aim alt-fire
+script 605 (void) CLIENTSIDE
+{
+	if(CheckWeapon("FAMAS M203"))
+	{
+		//SetFont("TUBEXHAR");
+		//SetHudSize(800,600,1);
+		//HudMessage(s:"a"; HUDMSG_PLAIN, CR_UNTRANSLATED, 0, 400.0, 314.0, 0.1);
+		//delay(1);
+		//restart;
+	}
+}
+
+//Regeneration
+script 606 (void)
+{
+	if(CheckInventory("ReadyRegen") == 0)
+	{
+		GiveInventory("ReadyRegen",1);
+		While(GetActorProperty(0,APROP_Health) < 100 && GetActorProperty(0,APROP_Health) > 0)
+		{
+			if(CheckInventory("InCombat") > 0)
+			{
+				TakeInventory("InCombat",1);
+				
+				if(GetActorProperty(0,APROP_Health) < 60){
+					/*if(GetActorProperty(0,APROP_Health) > 80)
+						SetFont("DAMSCRN1");
+					else if(GetActorProperty(0,APROP_Health) > 60)
+						SetFont("DAMSCRN1");
+					else */if(GetActorProperty(0,APROP_Health) > 40)
+						SetFont("DAMSCRN1");
+					else if(GetActorProperty(0,APROP_Health) > 20)
+						SetFont("DAMSCRN2");
+					else
+						SetFont("DAMSCRN3");
+						
+					SetHudSize(1280,800,1);
+					HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.3, 1.0);
+				}
+
+				Delay(17);
+				
+				if(CheckInventory("Perk1_ExtremeConditioning") == 1 && CheckInventory("InCombat") == 2)
+				{
+					TakeInventory("InCombat",2);
+				}
+			}
+			else if(GetActorProperty(0,APROP_Health) < 100 && GetActorProperty(0,APROP_Health) > 0)
+			{
+				if(GetActorProperty(0,APROP_Health) < 60){
+					/*if(GetActorProperty(0,APROP_Health) > 80)
+						SetFont("DAMSCRN1");
+					else if(GetActorProperty(0,APROP_Health) > 60)
+						SetFont("DAMSCRN2");
+					else */if(GetActorProperty(0,APROP_Health) > 40)
+						SetFont("DAMSCRN1");
+					else if(GetActorProperty(0,APROP_Health) > 20)
+						SetFont("DAMSCRN2");
+					else
+						SetFont("DAMSCRN3");				
+
+					SetHudSize(1280,800,1);
+					HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.3, 1.0);
+				}
+
+				int MaxHealth;
+				if(GetActorProperty(0,APROP_Health) > GetActorProperty(0,APROP_SpawnHealth)){
+					MaxHealth = GetActorProperty(0,APROP_Health);
+				}
+				else{
+					MaxHealth = GetActorProperty(0,APROP_SpawnHealth);
+				}
+
+				if(GetActorProperty(0,APROP_SpawnHealth) == 1){
+					// don't regenerate in last stand
+				}
+				else if(CheckInventory("Perk1_ExtremeConditioning") == 1)
+					GiveInventory("Health",32);
+				else
+					GiveInventory("Health",16);
+				
+				// make sure we don't regenerate too much 
+				if(GetActorProperty(0,APROP_Health) > MaxHealth){
+					TakeInventory("Health", MaxHealth - GetActorProperty(0,APROP_Health));
+				}
+				
+				Delay(18);
+			}
+		}
+		TakeInventory("ReadyRegen",1);
+	}
+}
+
+//Hit Indicator
+script 607 (int Jugg)
+{
+	SetFont("HITINDIC");
+	if(Jugg == 1)
+		SetFont("HITINDI2");
+	SetHudSize(800,600,1);
+	HudMessage(s:"a"; HUDMSG_FADEOUT, CR_UNTRANSLATED, 0, 400.0, 300.0, 0.25, 0.25);
+	LocalAmbientSound("generic/fleshhit",127);
+	LocalAmbientSound("generic/fleshhit",127);
+}
+
+//Place TacticalInsertion
+script 608 (void)
+{
+	if(TacticalInsertion[PlayerNumber()+1] == False)
+	{
+		SpawnSpotFacing("TacticalInsertionPlaced",PlayerNumber()+500,PlayerNumber()+600);
+		TacticalInsertion[PlayerNumber()+1] = True;
+	}
+}
+//Spawn at TacticalInsertion
+script 609 RESPAWN
+{
+	if(TacticalInsertion[PlayerNumber()+1] == True)
+	{
+		Delay(1);
+		Teleport(PlayerNumber()+600);
+		Delay(1);
+		Thing_Remove(PlayerNumber()+600);
+		SetFont("BIGFONT");
+		if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
+			HudMessageBold(n:0,s:" \cdTactical Insertion!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
+		TacticalInsertion[PlayerNumber()+1] = False;
+	}
+}
+
+script 610 (void)
+{
+	SetResultValue(TacticalInsertion[PlayerNumber()+1]);
+}
+script 611 (void)
+{
+	SetFont("BIGFONT");
+	HudMessage(s:"\cfYou've already placed one!";HUDMSG_FADEOUT,0,CR_Blue,0.5,0.6,3.0,2.0);
+}
+
+//------------------------------------------
+//------- This is for the monsters wad, refer to MAPINFO
+script 612 (int Which)
+{
+	if(Which == 0 && (ThingCountName("Arachnotron_2", 0) == 0 && ThingCountName("SpectreArachnotron", 0) == 0 && ThingCountName("Arachnobaron", 0) == 0))
+	{
+		ConsoleCommand("nextmap");
+	}
+	else if(Which == 1 && (ThingCountName("Cyberdemon_2", 0) == 0 && ThingCountName("Annihilator", 0) == 0 && ThingCountName("Thamuz", 0) == 0 && ThingCountName("Cardinal", 0) == 0))
+	{
+		ConsoleCommand("nextmap");
+	}
+	else if(Which == 2 && (ThingCountName("SpiderMastermind_2", 0) == 0 && ThingCountName("CyberMastermind", 0) == 0 && ThingCountName("Demolisher", 0) == 0 && ThingCountName("Arachnophyte", 0) == 0))
+	{
+		ConsoleCommand("nextmap");
+	}
+}
+
+//------------------------------------------
+//------- Calls out Tango down, this is for killing monsters.
+script 613 (int XpAmount)
+{
+	if(CheckInventory("Rank") < 15) //Don't give XP at max level
+		GiveInventory("Experience",XpAmount / 5);
+
+	ACS_ExecuteAlways(616,0,0,0,0);
+	if(GetActorProperty(0,APROP_Health) > 0 && CheckInventory("Speaking") == 0)
+	{
+		GiveInventory("Speaking",1);
+		
+		delay(20);
+		if(PlayerTeam() == TEAM_RED || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 1))
+			ActivatorSound("russian/kill",127);
+		else if(PlayerTeam() == TEAM_BLUE || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 0))
+			ActivatorSound("us/kill",127);	
+		else if(PlayerTeam() == 2 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 2))
+			ActivatorSound("brazil/kill",127);
+		else if(PlayerTeam() == 3 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 3))
+			ActivatorSound("opfor/kill",127);
+		else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 4)
+			ActivatorSound("seal/kill",127);
+		else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 5)
+			ActivatorSound("tf141/kill",127);
+		
+		
+		Delay(5*35);
+		TakeInventory("Speaking",1);
+	}
+}
+
+//Display Experience
+Script 614 RESPAWN
+{
+	if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
+	{
+
+	while(CheckInventory("Health") > 0)
+	{
+		SETFONT("CONFONT");
+		if(CheckInventory("Rank") < 15) //Only display the "XP need" when rank is not max
+			HudMessage(s:"\cdExperience: \cf",d:CheckInventory("Experience"),s:"\cc/\cf",d:ExperienceNeed[PlayerNumber()+1], 
+			s:" XP     ", s:"\cdRank: \cf",d:CheckInventory("Rank"); 
+			HUDMSG_PLAIN, 1310+PlayerNumber(), CR_Green, 0.99, 0, 1.6);	
+		else //Instead we draw "Current XP/XXX"
+			HudMessage(s:"\cdRank: \cf",d:CheckInventory("Rank"); 
+			HUDMSG_PLAIN, 1310+PlayerNumber(), CR_Green, 0.16, 0.8, 1.6);	
+		Delay(25);
+	}
+	}
+}
+
+Script 615 ENTER
+{
+	if(ExperienceNeed[PlayerNumber()+1] < 500 && (GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER))
+	{
+		ExperienceNeed[PlayerNumber()+1] = 500;
+		ACS_ExecuteAlways(614,0,0,0,0);			
+		ACS_ExecuteAlways(616,0,0,0,0);			
+		ACS_ExecuteAlways(617,0,0,0,0);			
+	}
+}
+
+//------------------------------------------
+//------- Check if leveled up
+script 616 RESPAWN
+{
+	bool RankedUp;
+
+	if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
+	{
+
+	if(CheckInventory("Experience") >= 500 && CheckInventory("Rank") == 0)
+	{
+		ExperienceNeed[PlayerNumber()+1] = 1000;
+		LocalAmbientSound("game/rank",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"You have ranked up to level 1!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
+		HudMessageBold(n:0,s:" \cdranked up to level 1!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
+		RankedUp = True;
+		GiveInventory("Rank",1);
+		
+		ACS_ExecuteAlways(623,0,0,0,0);
+	}
+	if(CheckInventory("Experience") >= 1000 && CheckInventory("Rank") == 1)
+	{
+		ExperienceNeed[PlayerNumber()+1] = 1500;
+		LocalAmbientSound("game/rank",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"You have ranked up to level 2!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
+		HudMessageBold(n:0,s:" \cdranked up to level 2!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
+		RankedUp = True;
+		GiveInventory("Rank",1);
+		
+		ACS_ExecuteAlways(623,0,0,0,0);
+	}
+	if(CheckInventory("Experience") >= 1500 && CheckInventory("Rank") == 2)
+	{
+		ExperienceNeed[PlayerNumber()+1] = 2500;
+		LocalAmbientSound("game/rank",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"You have ranked up to level 3!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
+		HudMessageBold(n:0,s:" \cdranked up to level 3!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
+		RankedUp = True;
+		GiveInventory("Rank",1);
+
+		ACS_ExecuteAlways(623,0,0,0,0);
+	}
+	if(CheckInventory("Experience") >= 2500 && CheckInventory("Rank") == 3)
+	{
+		ExperienceNeed[PlayerNumber()+1] = 3500;
+		LocalAmbientSound("game/rank",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"You have ranked up to level 4!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
+		HudMessageBold(n:0,s:" \cdranked up to level 4!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
+		RankedUp = True;
+		GiveInventory("Rank",1);
+		
+		ACS_ExecuteAlways(623,0,0,0,0);
+	}
+	if(CheckInventory("Experience") >= 3500 && CheckInventory("Rank") == 4)
+	{
+		ExperienceNeed[PlayerNumber()+1] = 5000;
+		LocalAmbientSound("game/rank",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"You have ranked up to level 5!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
+		HudMessageBold(n:0,s:" \cdranked up to level 5!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
+		RankedUp = True;
+		GiveInventory("Rank",1);
+
+		ACS_ExecuteAlways(623,0,0,0,0);
+	}
+	if(CheckInventory("Experience") >= 5000 && CheckInventory("Rank") == 5)
+	{
+		ExperienceNeed[PlayerNumber()+1] = 6500;
+		LocalAmbientSound("game/rank",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"You have ranked up to level 6!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
+		HudMessageBold(n:0,s:" \cdranked up to level 6!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
+		RankedUp = True;
+		GiveInventory("Rank",1);
+		
+		ACS_ExecuteAlways(623,0,0,0,0);
+	}
+	if(CheckInventory("Experience") >= 6500 && CheckInventory("Rank") == 6)
+	{
+		ExperienceNeed[PlayerNumber()+1] = 8500;
+		LocalAmbientSound("game/rank",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"You have ranked up to level 7!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
+		HudMessageBold(n:0,s:" \cdranked up to level 7!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
+		RankedUp = True;
+		GiveInventory("Rank",1);
+
+		ACS_ExecuteAlways(623,0,0,0,0);
+	}
+	if(CheckInventory("Experience") >= 8500 && CheckInventory("Rank") == 7)
+	{
+		ExperienceNeed[PlayerNumber()+1] = 11000;
+		LocalAmbientSound("game/rank",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"You have ranked up to level 8!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessageBold(n:0,s:" \cdranked up to level 8!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
+		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
+		RankedUp = True;
+		GiveInventory("Rank",1);
+		
+		ACS_ExecuteAlways(623,0,0,0,0);
+	}
+	if(CheckInventory("Experience") >= 11000 && CheckInventory("Rank") == 8)
+	{
+		ExperienceNeed[PlayerNumber()+1] = 14000;
+		LocalAmbientSound("game/rank",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"You have ranked up to level 9!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessageBold(n:0,s:" \cdranked up to level 9!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
+		RankedUp = True;
+		GiveInventory("Rank",1);
+
+		ACS_ExecuteAlways(623,0,0,0,0);
+	}
+	if(CheckInventory("Experience") >= 14000 && CheckInventory("Rank") == 9)
+	{
+		ExperienceNeed[PlayerNumber()+1] = 18000;
+		LocalAmbientSound("game/rank",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"You have ranked up to level 10!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessageBold(n:0,s:" \cdranked up to level 10!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
+		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
+		RankedUp = True;
+		GiveInventory("Rank",1);
+		
+		ACS_ExecuteAlways(623,0,0,0,0);
+	}
+	if(CheckInventory("Experience") >= 18000 && CheckInventory("Rank") == 10)
+	{
+		ExperienceNeed[PlayerNumber()+1] = 22000;
+		LocalAmbientSound("game/rank",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"You have ranked up to level 11!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessageBold(n:0,s:" \cdranked up to level 11!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
+		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
+		RankedUp = True;
+		GiveInventory("Rank",1);
+		
+		ACS_ExecuteAlways(623,0,0,0,0);
+	}
+	if(CheckInventory("Experience") >= 22000 && CheckInventory("Rank") == 11)
+	{
+		ExperienceNeed[PlayerNumber()+1] = 26000;
+		LocalAmbientSound("game/rank",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"You have ranked up to level 12!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessageBold(n:0,s:" \cdranked up to level 12!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
+		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
+		RankedUp = True;
+		GiveInventory("Rank",1);
+		
+		ACS_ExecuteAlways(623,0,0,0,0);
+	}
+	if(CheckInventory("Experience") >= 26000 && CheckInventory("Rank") == 12)
+	{
+		ExperienceNeed[PlayerNumber()+1] = 31000;
+		LocalAmbientSound("game/rank",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"You have ranked up to level 13!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessageBold(n:0,s:" \cdranked up to level 13!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
+		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
+		RankedUp = True;
+		GiveInventory("Rank",1);
+		
+		ACS_ExecuteAlways(623,0,0,0,0);
+	}
+	if(CheckInventory("Experience") >= 31000 && CheckInventory("Rank") == 13)
+	{
+		ExperienceNeed[PlayerNumber()+1] = 36000;
+		LocalAmbientSound("game/rank",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"You have ranked up to level 14!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessageBold(n:0,s:" \cdranked up to level 14!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
+		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
+		RankedUp = True;
+		GiveInventory("Rank",1);
+		
+		ACS_ExecuteAlways(623,0,0,0,0);
+	}
+	if(CheckInventory("Experience") >= 36000 && CheckInventory("Rank") == 14)
+	{
+		ExperienceNeed[PlayerNumber()+1] = "xxx";
+		LocalAmbientSound("game/rank",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"You have ranked up to level 15!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessageBold(n:0,s:" \cdranked up to level 15!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
+		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
+		RankedUp = True;
+		GiveInventory("Rank",1);
+		
+		ACS_ExecuteAlways(623,0,0,0,0);
+	}
+				
+	//Check for RANK to give awards
+	if(RankedUp == True)
+		ACS_ExecuteAlways(617,0,0,0,0);			
+	}
+}
+
+//------------------------------------------
+//------- Level up
+script 617 RESPAWN 
+{
+	if(CheckInventory("Rank") == 0)
+	{
+		//SetActorProperty(0,APROP_Health,100);
+		//SetActorProperty(0,APROP_SpawnHealth,100);
+		ExperienceNeed[PlayerNumber()+1] = 500;		
+	}
+	if(CheckInventory("Rank") == 1)
+	{
+		//SetActorProperty(0,APROP_Health,108);
+		//SetActorProperty(0,APROP_SpawnHealth,108);
+		ExperienceNeed[PlayerNumber()+1] = 1000;		
+	}
+	if(CheckInventory("Rank") == 2)
+	{
+		//SetActorProperty(0,APROP_Health,116);
+		//SetActorProperty(0,APROP_SpawnHealth,116);
+		ExperienceNeed[PlayerNumber()+1] = 1500;		
+	}
+	if(CheckInventory("Rank") == 3)
+	{
+		//SetActorProperty(0,APROP_Health,124);
+		//SetActorProperty(0,APROP_SpawnHealth,124);
+		ExperienceNeed[PlayerNumber()+1] = 2500;		
+	}
+	if(CheckInventory("Rank") == 4)
+	{
+		//SetActorProperty(0,APROP_Health,132);
+		//SetActorProperty(0,APROP_SpawnHealth,132);
+		ExperienceNeed[PlayerNumber()+1] = 3500;		
+	}
+	if(CheckInventory("Rank") == 5)
+	{
+		//SetActorProperty(0,APROP_Health,140);
+		//SetActorProperty(0,APROP_SpawnHealth,140);
+		ExperienceNeed[PlayerNumber()+1] = 5000;		
+	}
+	if(CheckInventory("Rank") == 6)
+	{
+		//SetActorProperty(0,APROP_Health,148);
+		//SetActorProperty(0,APROP_SpawnHealth,148);
+		ExperienceNeed[PlayerNumber()+1] = 6500;		
+	}
+	if(CheckInventory("Rank") == 7)
+	{
+		//SetActorProperty(0,APROP_Health,156);
+		//SetActorProperty(0,APROP_SpawnHealth,156);
+		ExperienceNeed[PlayerNumber()+1] = 8500;		
+	}
+	if(CheckInventory("Rank") == 8)
+	{
+		//SetActorProperty(0,APROP_Health,164);
+		//SetActorProperty(0,APROP_SpawnHealth,164);
+		ExperienceNeed[PlayerNumber()+1] = 11000;		
+	}
+	if(CheckInventory("Rank") == 9)
+	{
+		//SetActorProperty(0,APROP_Health,172);
+		//SetActorProperty(0,APROP_SpawnHealth,172);
+		ExperienceNeed[PlayerNumber()+1] = 14000;		
+	}
+	if(CheckInventory("Rank") == 10)
+	{
+		//SetActorProperty(0,APROP_Health,180);
+		//SetActorProperty(0,APROP_SpawnHealth,180);
+		ExperienceNeed[PlayerNumber()+1] = 18000;		
+	}
+	if(CheckInventory("Rank") == 11)
+	{
+		//SetActorProperty(0,APROP_Health,188);
+		//SetActorProperty(0,APROP_SpawnHealth,188);
+		ExperienceNeed[PlayerNumber()+1] = 22000;		
+	}
+	if(CheckInventory("Rank") == 12)
+	{
+		//SetActorProperty(0,APROP_Health,196);
+		//SetActorProperty(0,APROP_SpawnHealth,196);
+		ExperienceNeed[PlayerNumber()+1] = 26000;		
+	}
+	if(CheckInventory("Rank") == 13)
+	{
+		//SetActorProperty(0,APROP_Health,204);
+		//SetActorProperty(0,APROP_SpawnHealth,204);
+		ExperienceNeed[PlayerNumber()+1] = 31000;		
+	}
+	if(CheckInventory("Rank") == 14)
+	{
+		//SetActorProperty(0,APROP_Health,212);
+		//SetActorProperty(0,APROP_SpawnHealth,212);
+		ExperienceNeed[PlayerNumber()+1] = 36000;		
+	}
+	if(CheckInventory("Rank") == 15)
+	{
+		//SetActorProperty(0,APROP_Health,220);
+		//SetActorProperty(0,APROP_SpawnHealth,220);
+		ExperienceNeed[PlayerNumber()+1] = "xxx";		
+	}
+}
+
+//------------------------------------------
+//------- This is for handling weapon pickups, refer to DECORATE. Usually "weaponnamePICKUP" at the bottom of the lump.
+script 618 (int Which)
+{
+	int Count = 0;
+
+	if((Which == 1) && CheckInventory("Intervention") == 0 && CheckInventory("Intervention Thermal") == 0 && CheckInventory("Intervention Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("InterventionThermal") == 1)
+			GiveInventory("Intervention Thermal",1);
+		else if(CheckInventory("InterventionExMags") == 1)
+			GiveInventory("Intervention Ex Mags",1);
+		else
+			GiveInventory("Intervention",1);
+
+		GiveInventory("MaxWeaponsFilled_LMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 2) && CheckInventory("Barrett 50cal") == 0 && CheckInventory("Barrett 50cal Thermal") == 0 && CheckInventory("Barrett 50cal Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("BarrettThermal") == 1)
+			GiveInventory("Barrett 50cal Thermal",1);
+		else if(CheckInventory("BarrettExMags") == 1)
+			GiveInventory("Barrett 50cal Ex Mags",1);
+		else
+			GiveInventory("Barrett 50cal",1);
+
+		GiveInventory("MaxWeaponsFilled_LMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 3) && CheckInventory("USP .45") == 0 && CheckInventory("USP .45 Ex Mags") == 0 && CheckInventory("USP .45 Akimbo") == 0 && CheckInventory("USP .45 Tac Knife") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("USP45ExMags") == 1)
+			GiveInventory("USP .45 Ex Mags",1);
+		else if(CheckInventory("USP45Akimbo") == 1)
+			GiveInventory("USP .45 Akimbo",1);
+		else if(CheckInventory("USP45Knife") == 1)
+			GiveInventory("USP .45 Tac Knife",1);
+		else
+			GiveInventory("USP .45",1);
+
+		GiveInventory("MaxWeaponsFilled_Handgun",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 4) && CheckInventory(".44 Magnum") == 0 && CheckInventory(".44 Magnum Akimbo") == 0 && CheckInventory(".44 Magnum Tac Knife") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("MagnumAkimbo") == 1)
+			GiveInventory(".44 Magnum Akimbo",1);
+		else if(CheckInventory("MagnumKnife") == 1)
+			GiveInventory(".44 Magnum Tac Knife",1);
+		else
+			GiveInventory(".44 Magnum",1);
+
+		GiveInventory("MaxWeaponsFilled_Handgun",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 5) && CheckInventory("FAMAS") == 0 && CheckInventory("FAMAS Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("FamasExMags") == 1)
+			GiveInventory("FAMAS Ex Mags",1);
+		else
+			GiveInventory("FAMAS",1);
+		GiveInventory("FAMAS M203",1);
+
+		GiveInventory("MaxWeaponsFilled_ARSMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 6) && CheckInventory("FAL") == 0 && CheckInventory("FAL Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("FALExMags") == 1)
+			GiveInventory("FAL Ex Mags",1);
+		else
+			GiveInventory("FAL",1);
+
+		GiveInventory("MaxWeaponsFilled_ARSMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 7) && CheckInventory("SPAS-12") == 0 && CheckInventory("SPAS-12 Grip") == 0 && CheckInventory("SPAS-12 Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("SPASGrip") == 1)
+			GiveInventory("SPAS-12 Grip",1);
+		else if(CheckInventory("SPASExMags") == 1)
+			GiveInventory("SPAS-12 Ex Mags",1);
+		else
+			GiveInventory("SPAS-12",1);
+
+		GiveInventory("MaxWeaponsFilled_Shotgun",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 8) && CheckInventory("AA-12") == 0 && CheckInventory("AA-12 Grip") == 0 && CheckInventory("AA-12 Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("AA12Grip") == 1)
+			GiveInventory("AA-12 Grip",1);
+		else if(CheckInventory("AA12ExMags") == 1)
+			GiveInventory("AA-12 Ex Mags",1);
+		else
+			GiveInventory("AA-12",1);
+
+		GiveInventory("MaxWeaponsFilled_Shotgun",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 9) && CheckInventory("UMP45") == 0 && CheckInventory("UMP45 Rapid Fire") == 0 && CheckInventory("UMP45 Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("UMP45RapidFire") == 1)
+			GiveInventory("UMP45 Rapid Fire",1);
+		else if(CheckInventory("UMP45ExMags") == 1)
+			GiveInventory("UMP45 Ex Mags",1);
+		else
+			GiveInventory("UMP45",1);
+
+		GiveInventory("MaxWeaponsFilled_ARSMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 10) && CheckInventory("TDI Vector") == 0 && CheckInventory("TDI Vector Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("VectorExMags") == 1)
+			GiveInventory("TDI Vector Ex Mags",1);
+		else
+			GiveInventory("TDI Vector",1);
+
+		GiveInventory("MaxWeaponsFilled_ARSMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 11) && CheckInventory("Mini-UZI") == 0 && CheckInventory("Mini-UZI Ex Mags") == 0 && CheckInventory("Mini-UZI Akimbo") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("MiniUziExMags") == 1)
+			GiveInventory("Mini-UZI Ex Mags",1);
+		else if(CheckInventory("MiniUziAkimbo") == 1)
+			GiveInventory("Mini-UZI Akimbo",1);
+		else
+			GiveInventory("Mini-UZI",1);
+
+		GiveInventory("MaxWeaponsFilled_ARSMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 12) && CheckInventory("FN P90") == 0 && CheckInventory("FN P90 Rapid Fire") == 0 && CheckInventory("FN P90 Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("P90RapidFire") == 1)
+			GiveInventory("FN P90 Rapid Fire",1);
+		else if(CheckInventory("P90ExMags") == 1)
+			GiveInventory("FN P90 Ex Mags",1);
+		else
+			GiveInventory("FN P90",1);
+
+		GiveInventory("MaxWeaponsFilled_ARSMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 13) && CheckInventory("ACR") == 0 && CheckInventory("ACR Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("ACRExMags") == 1)
+			GiveInventory("ACR Ex Mags",1);
+		else
+			GiveInventory("ACR",1);
+
+		GiveInventory("MaxWeaponsFilled_ARSMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 14) && CheckInventory("MG4") == 0 && CheckInventory("MG4 Grip") == 0 && CheckInventory("MG4 Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("MG4Grip") == 1)
+			GiveInventory("MG4 Grip",1);
+		else if(CheckInventory("MG4ExMags") == 1)
+			GiveInventory("MG4 Ex Mags",1);
+		else
+			GiveInventory("MG4",1);
+
+		GiveInventory("MaxWeaponsFilled_LMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 15) && CheckInventory("G18") == 0 && CheckInventory("G18 Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("G18ExMags") == 1)
+			GiveInventory("G18 Ex Mags",1);
+		else
+			GiveInventory("G18",1);
+
+		GiveInventory("MaxWeaponsFilled_Handgun",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 16) && CheckInventory("PP2000") == 0 && CheckInventory("PP2000 Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("PP2000ExMags") == 1)
+			GiveInventory("PP2000 Ex Mags",1);
+		else
+			GiveInventory("PP2000",1);
+
+		GiveInventory("MaxWeaponsFilled_Handgun",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 17) && CheckInventory("SCAR-H") == 0 && CheckInventory("SCAR-H Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("SCARHExMags") == 1)
+			GiveInventory("SCAR-H Ex Mags",1);
+		else
+			GiveInventory("SCAR-H",1);
+
+		GiveInventory("MaxWeaponsFilled_ARSMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 18) && CheckInventory("M4A1") == 0 && CheckInventory("M4A1 Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("M4A1ExMags") == 1)
+			GiveInventory("M4A1 Ex Mags",1);
+		else
+			GiveInventory("M4A1",1);
+
+		GiveInventory("MaxWeaponsFilled_ARSMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 19) && CheckInventory("Ranger") == 0)
+	{
+		SetResultValue(1);
+		GiveInventory("Ranger",1);
+
+		GiveInventory("MaxWeaponsFilled_Shotgun",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 20) && CheckInventory("F2000") == 0 && CheckInventory("F2000 Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("F2000ExMags") == 1)
+			GiveInventory("F2000 Ex Mags",1);
+		else
+			GiveInventory("F2000",1);
+
+		GiveInventory("MaxWeaponsFilled_ARSMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 21) && CheckInventory("MP5K") == 0 && CheckInventory("MP5K Rapid Fire") == 0 && CheckInventory("MP5K Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("MP5RapidFire") == 1)
+			GiveInventory("MP5K Rapid Fire",1);
+		else if(CheckInventory("MP5ExMags") == 1)
+			GiveInventory("MP5K Ex Mags",1);
+		else
+			GiveInventory("MP5K",1);
+
+		GiveInventory("MaxWeaponsFilled_ARSMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 22) && CheckInventory("M93 Raffica") == 0 && CheckInventory("M93 Raffica Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("M93RExMags") == 1)
+			GiveInventory("M93 Raffica Ex Mags",1);
+		else
+			GiveInventory("M93 Raffica",1);
+
+		GiveInventory("MaxWeaponsFilled_Handgun",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 23) && CheckInventory("Thumper") == 0)
+	{
+		SetResultValue(1);
+		GiveInventory("Thumper",1);
+
+		GiveInventory("MaxWeaponsFilled_Explosive",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 24) && CheckInventory("AT4-HS") == 0)
+	{
+		SetResultValue(1);
+		GiveInventory("AT4-HS",1);
+
+		GiveInventory("MaxWeaponsFilled_Explosive",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 25) && CheckInventory("M16A4") == 0 && CheckInventory("M16A4 Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("M16ExMags") == 1)
+			GiveInventory("M16A4 Ex Mags",1);
+		else
+			GiveInventory("M16A4",1);
+
+		GiveInventory("MaxWeaponsFilled_ARSMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 26) && CheckInventory("AK-47") == 0 && CheckInventory("AK-47 Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("AK47ExMags") == 1)
+			GiveInventory("AK-47 Ex Mags",1);
+		else
+			GiveInventory("AK-47",1);
+
+		GiveInventory("MaxWeaponsFilled_ARSMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 27) && CheckInventory("Striker") == 0 && CheckInventory("Striker Grip") == 0 && CheckInventory("Striker Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("StrikerGrip") == 1)
+			GiveInventory("Striker Grip",1);
+		else if(CheckInventory("StrikerExMags") == 1)
+			GiveInventory("Striker Ex Mags",1);
+		else
+			GiveInventory("Striker",1);
+
+		GiveInventory("MaxWeaponsFilled_Shotgun",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 28) && CheckInventory("AUG HBAR") == 0 && CheckInventory("AUG HBAR Grip") == 0 && CheckInventory("AUG HBAR Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("AUGHBARGrip") == 1)
+			GiveInventory("AUG HBAR Grip",1);
+		else if(CheckInventory("AUGHBARExMags") == 1)
+			GiveInventory("AUG HBAR Ex Mags",1);
+		else
+			GiveInventory("AUG HBAR",1);
+
+		GiveInventory("MaxWeaponsFilled_LMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 29) && CheckInventory("WA2000") == 0 && CheckInventory("WA2000 Thermal") == 0 && CheckInventory("WA2000 Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("WA2000Thermal") == 1)
+			GiveInventory("WA2000 Thermal",1);
+		else if(CheckInventory("WA2000ExMags") == 1)
+			GiveInventory("WA2000 Ex Mags",1);
+		else
+			GiveInventory("WA2000",1);
+
+		GiveInventory("MaxWeaponsFilled_LMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 30) && CheckInventory("Desert Eagle") == 0 && CheckInventory("Deagle Special") == 0 && CheckInventory("Desert Eagle Akimbo") == 0 && CheckInventory("Desert Eagle Tac Knife") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("DeagleExMags") == 1)
+			GiveInventory("Deagle Special",1);
+		else if(CheckInventory("DeagleAkimbo") == 1)
+			GiveInventory("Desert Eagle Akimbo",1);
+		else if(CheckInventory("DeagleKnife") == 1)
+			GiveInventory("Desert Eagle Tac Knife",1);
+		else
+			GiveInventory("Desert Eagle",1);
+
+		GiveInventory("MaxWeaponsFilled_Handgun",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 31) && CheckInventory("M9") == 0 && CheckInventory("M9 Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("M9ExMags") == 1)
+			GiveInventory("M9 Ex Mags",1);
+		else if(CheckInventory("M9Akimbo") == 1)
+			GiveInventory("M9 Akimbo",1);
+		else if(CheckInventory("M9Knife") == 1)
+			GiveInventory("M9 Tac Knife",1);
+		else
+			GiveInventory("M9",1);
+
+		GiveInventory("MaxWeaponsFilled_Handgun",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 32) && CheckInventory("M1014") == 0 && CheckInventory("M1014 Grip") == 0 && CheckInventory("M1014 Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("M1014Grip") == 1)
+			GiveInventory("M1014 Grip",1);
+		else if(CheckInventory("M1014ExMags") == 1)
+			GiveInventory("M1014 Ex Mags",1);
+		else
+			GiveInventory("M1014",1);
+
+		GiveInventory("MaxWeaponsFilled_Shotgun",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 33) && CheckInventory("M240") == 0 && CheckInventory("M240 Grip") == 0 && CheckInventory("M240 Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("M240Grip") == 1)
+			GiveInventory("M240 Grip",1);
+		else if(CheckInventory("M240ExMags") == 1)
+			GiveInventory("M240 Ex Mags",1);
+		else
+			GiveInventory("M240",1);
+
+		GiveInventory("MaxWeaponsFilled_LMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 34) && CheckInventory("L86") == 0 && CheckInventory("L86 Grip") == 0 && CheckInventory("L86 Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("L86Grip") == 1)
+			GiveInventory("L86 Grip",1);
+		else if(CheckInventory("L86ExMags") == 1)
+			GiveInventory("L86 Ex Mags",1);
+		else
+			GiveInventory("L86",1);
+
+		GiveInventory("MaxWeaponsFilled_LMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 35) && CheckInventory("RPG-7") == 0)
+	{
+		SetResultValue(1);
+		GiveInventory("RPG-7",1);
+
+		GiveInventory("MaxWeaponsFilled_Explosive",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 36) && CheckInventory("Model 1887") == 0)
+	{
+		SetResultValue(1);
+		GiveInventory("Model 1887",1);
+
+		GiveInventory("MaxWeaponsFilled_Shotgun",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else if((Which == 37) && CheckInventory("M14 EBR") == 0 && CheckInventory("M14 EBR Thermal") == 0 && CheckInventory("M14 EBR Ex Mags") == 0)
+	{
+		SetResultValue(1);
+		if(CheckInventory("M14Thermal") == 1)
+			GiveInventory("M14 EBR Thermal",1);
+		else if(CheckInventory("M14ExMags") == 1)
+			GiveInventory("M14 EBR Ex Mags",1);
+		else
+			GiveInventory("M14 EBR",1);
+
+		GiveInventory("MaxWeaponsFilled_LMG",1);
+		GiveInventory("MaxWeaponsFilled",1);
+	}
+	else
+		SetResultValue(0);
+		
+	ACS_ExecuteAlways(602,0,0,0,0);
+}
+
+//------------------------------------------
+//------- Attachments, refer to the decorate.
+script 619 (int Which)
+{
+	if(Which == 0) //Grip
+	{
+		if(CheckWeapon("AA-12") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("AA-12",1);
+			GiveInventory("AA-12 Grip",1);
+			GiveInventory("AA12Grip",1);
+			SetWeapon("AA-12 Grip");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Grip attached to AA-12!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("SPAS-12") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("SPAS-12",1);
+			GiveInventory("SPAS-12 Grip",1);
+			GiveInventory("SPASGrip",1);
+			SetWeapon("SPAS-12 Grip");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Grip attached to SPAS-12!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("MG4") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("MG4",1);
+			GiveInventory("MG4 Grip",1);
+			GiveInventory("MG4Grip",1);
+			SetWeapon("MG4 Grip");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Grip attached to MG4!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("Striker") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("Striker",1);
+			GiveInventory("Striker Grip",1);
+			GiveInventory("StrikerGrip",1);
+			SetWeapon("Striker Grip");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Grip attached to Striker!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("AUG HBAR") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("AUG HBAR",1);
+			GiveInventory("AUG HBAR Grip",1);
+			GiveInventory("AUGHBARGrip",1);
+			SetWeapon("AUG HBAR Grip");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Grip attached to AUG HBAR!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("M1014") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("M1014",1);
+			GiveInventory("M1014 Grip",1);
+			GiveInventory("M1014Grip",1);
+			SetWeapon("M1014 Grip");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Grip attached to M1014!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("M240") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("M240",1);
+			GiveInventory("M240 Grip",1);
+			GiveInventory("M240Grip",1);
+			SetWeapon("M240 Grip");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Grip attached to M240!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("L86") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("L86",1);
+			GiveInventory("L86 Grip",1);
+			GiveInventory("L86Grip",1);
+			SetWeapon("L86 Grip");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Grip attached to L86!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else
+		{
+			SetFont("BIGFONT");
+			HudMessage(s:"You can't attach Grip on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			GiveInventory("GripAttachment",1);
+		}
+	}
+	else if(Which == 1) //Rapid Fire
+	{
+		if(CheckWeapon("UMP45") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("UMP45",1);
+			GiveInventory("UMP45 Rapid Fire",1);
+			GiveInventory("UMP45RapidFire",1);
+			SetWeapon("UMP45 Rapid Fire");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Rapid Fire attached to UMP45!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("FN P90") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("FN P90",1);
+			GiveInventory("FN P90 Rapid Fire",1);
+			GiveInventory("P90RapidFire",1);
+			SetWeapon("FN P90 Rapid Fire");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Rapid Fire attached to P90!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("MP5K") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("MP5K",1);
+			GiveInventory("MP5K Rapid Fire",1);
+			GiveInventory("MP5RapidFire",1);
+			SetWeapon("MP5K Rapid Fire");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Rapid Fire attached to MP5K!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else
+		{
+			SetFont("BIGFONT");
+			HudMessage(s:"You can't attach Rapid Fire on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			GiveInventory("RapidFireAttachment",1);
+		}
+	}
+	else if(Which == 2) //Extended Mags
+	{
+		if(CheckWeapon("USP .45") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("USP .45",1);
+			GiveInventory("USP .45 Ex Mags",1);
+			GiveInventory("USP45ExMags",1);
+			SetWeapon("USP45 Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to USP .45!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("PP2000") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("PP2000",1);
+			GiveInventory("PP2000 Ex Mags",1);
+			GiveInventory("PP2000ExMags",1);
+			SetWeapon("PP2000 Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to PP2000!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("G18") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("G18",1);
+			GiveInventory("G18 Ex Mags",1);
+			GiveInventory("G18ExMags",1);
+			SetWeapon("G18 Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to G18!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("SPAS-12") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("SPAS-12",1);
+			GiveInventory("SPAS-12 Ex Mags",1);
+			GiveInventory("SPASExMags",1);
+			SetWeapon("SPAS-12 Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to SPAS-12!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("AA-12") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("AA-12",1);
+			GiveInventory("AA-12 Ex Mags",1);
+			GiveInventory("AA12ExMags",1);
+			SetWeapon("AA-12 Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to AA-12!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("UMP45") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("UMP45",1);
+			GiveInventory("UMP45 Ex Mags",1);
+			GiveInventory("UMP45ExMags",1);
+			SetWeapon("UMP45 Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to UMP45!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("TDI Vector") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("TDI Vector",1);
+			GiveInventory("TDI Vector Ex Mags",1);
+			GiveInventory("VectorExMags",1);
+			SetWeapon("TDI Vector Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to TDI Vector!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("Mini-UZI") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("Mini-UZI",1);
+			GiveInventory("Mini-UZI Ex Mags",1);
+			GiveInventory("MiniUziExMags",1);
+			SetWeapon("Mini-UZI Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to Mini-UZI!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("FN P90") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("FN P90",1);
+			GiveInventory("FN P90 Ex Mags",1);
+			GiveInventory("P90ExMags",1);
+			SetWeapon("FN P90 Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to FN P90!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("M4A1") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("M4A1",1);
+			GiveInventory("M4A1 Ex Mags",1);
+			GiveInventory("M4A1ExMags",1);
+			SetWeapon("M4A1 Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to M4A1!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("FAMAS") == 1 || CheckWeapon("FAMAS M203") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("FAMAS",1);
+			GiveInventory("FAMAS Ex Mags",1);
+			GiveInventory("FamasExMags",1);
+			SetWeapon("FAMAS Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to FAMAS!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("SCAR-H") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("SCAR-H",1);
+			GiveInventory("SCAR-H Ex Mags",1);
+			GiveInventory("SCARHExMags",1);
+			SetWeapon("SCAR-H Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to SCAR-H!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("FAL") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("FAL",1);
+			GiveInventory("FAL Ex Mags",1);
+			GiveInventory("FALExMags",1);
+			SetWeapon("FAL Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to FAL!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("ACR") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("ACR",1);
+			GiveInventory("ACR Ex Mags",1);
+			GiveInventory("ACRExMags",1);
+			SetWeapon("ACR Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to ACR!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("F2000") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("F2000",1);
+			GiveInventory("F2000 Ex Mags",1);
+			GiveInventory("F2000ExMags",1);
+			SetWeapon("F2000 Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to F2000!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("Intervention") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("Intervention",1);
+			GiveInventory("Intervention Ex Mags",1);
+			GiveInventory("InterventionExMags",1);
+			SetWeapon("Intervention Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to Intervention!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("Barrett 50cal") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("Barrett 50cal",1);
+			GiveInventory("Barrett 50cal Ex Mags",1);
+			GiveInventory("BarrettExMags",1);
+			SetWeapon("Barrett 50cal Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to Barrett 50cal!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("MG4") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("MG4",1);
+			GiveInventory("MG4 Ex Mags",1);
+			GiveInventory("MG4ExMags",1);
+			SetWeapon("MG4 Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to MG4!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("MP5K") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("MP5K",1);
+			GiveInventory("MP5K Ex Mags",1);
+			GiveInventory("MP5ExMags",1);
+			SetWeapon("MP5K Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to MP5K!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("M93 Raffica") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("M93 Raffica",1);
+			GiveInventory("M93 Raffica Ex Mags",1);
+			GiveInventory("M93RExMags",1);
+			SetWeapon("M93 Raffica Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to M93 Raffica!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("M16A4") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("M16A4",1);
+			GiveInventory("M16A4 Ex Mags",1);
+			GiveInventory("M16ExMags",1);
+			SetWeapon("M16A4 Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to M16A4!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("AK-47") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("AK-47",1);
+			GiveInventory("AK-47 Ex Mags",1);
+			GiveInventory("AK47ExMags",1);
+			SetWeapon("AK-47 Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to AK-47!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("Striker") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("Striker",1);
+			GiveInventory("Striker Ex Mags",1);
+			GiveInventory("StrikerExMags",1);
+			SetWeapon("Striker Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to Striker!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("AUG HBAR") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("AUG HBAR",1);
+			GiveInventory("AUG HBAR Ex Mags",1);
+			GiveInventory("AUGHBARExMags",1);
+			SetWeapon("AUG HBAR Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to AUG HBAR!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("WA2000") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("WA2000",1);
+			GiveInventory("WA2000 Ex Mags",1);
+			GiveInventory("WA2000ExMags",1);
+			SetWeapon("WA2000 Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to WA2000!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("M9") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("M9",1);
+			GiveInventory("M9 Ex Mags",1);
+			GiveInventory("M9ExMags",1);
+			SetWeapon("M9 Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to M9!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("M1014") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("M1014",1);
+			GiveInventory("M1014 Ex Mags",1);
+			GiveInventory("M1014ExMags",1);
+			SetWeapon("M1014 Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to M1014!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("M240") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("M240",1);
+			GiveInventory("M240 Ex Mags",1);
+			GiveInventory("M240ExMags",1);
+			SetWeapon("M240 Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to M240!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("Desert Eagle") == 1)
+		{
+			if(CheckInventory("Combo") == 6)
+			{
+				ACS_ExecuteAlways(622,0,0,0,0);
+			
+				TakeInventory("Desert Eagle",1);
+				GiveInventory("Deagle Special",1);
+				GiveInventory("DeagleExMags",1);
+				SetWeapon("Deagle Special");
+
+				SetFont("BIGFONT");
+				HudMessage(s:"Hidden Desert Eagle Special unlocked!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			}
+			else
+			{
+				GiveInventory("Combo",1);
+				SetFont("BIGFONT");
+				HudMessage(s:"You can't attach Extended Mags on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+				GiveInventory("ExtendedMagsAttachment",1);
+			}
+		}
+		else if(CheckWeapon("L86") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("L86",1);
+			GiveInventory("L86 Ex Mags",1);
+			GiveInventory("L86ExMags",1);
+			SetWeapon("L86 Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to L86!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("M14 EBR") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("M14 EBR",1);
+			GiveInventory("M14 EBR Ex Mags",1);
+			GiveInventory("M14ExMags",1);
+			SetWeapon("M14 EBR Ex Mags");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Extended Mags attached to M14 EBR!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else
+		{
+			SetFont("BIGFONT");
+			HudMessage(s:"You can't attach Extended Mags on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			GiveInventory("ExtendedMagsAttachment",1);
+		}
+	}
+	else if(Which == 3) //Thermal 
+	{
+		if(CheckWeapon("Intervention") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("Intervention",1);
+			GiveInventory("Intervention Thermal",1);
+			GiveInventory("InterventionThermal",1);
+			SetWeapon("Intervention Thermal");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Thermal Scope attached to Intervention!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("Barrett 50cal") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("Barrett 50cal",1);
+			GiveInventory("Barrett 50cal Thermal",1);
+			GiveInventory("BarrettThermal",1);
+			SetWeapon("Barrett 50cal Thermal");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Thermal Scope attached to Barrett 50cal!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("WA2000") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("WA2000",1);
+			GiveInventory("WA2000 Thermal",1);
+			GiveInventory("WA2000Thermal",1);
+			SetWeapon("WA2000 Thermal");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Thermal Scope attached to WA2000!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("M14 EBR") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("M14 EBR",1);
+			GiveInventory("M14 EBR Thermal",1);
+			GiveInventory("M14Thermal",1);
+			SetWeapon("M14 EBR Thermal");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Thermal Scope attached to M14 EBR!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else
+		{
+			SetFont("BIGFONT");
+			HudMessage(s:"You can't attach a Thermal Scope on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			GiveInventory("ThermalAttachment",1);
+		}
+	}
+	else if(Which == 4) //Akimbo 
+	{
+		if(CheckWeapon("USP .45") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("USP .45",1);
+			GiveInventory("USP .45 Akimbo",1);
+			GiveInventory("USP45Akimbo",1);
+			SetWeapon("USP .45 Akimbo");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Akimbo attached to USP .45!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("Desert Eagle") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("Desert Eagle",1);
+			GiveInventory("Desert Eagle Akimbo",1);
+			GiveInventory("DeagleAkimbo",1);
+			SetWeapon("Desert Eagle Akimbo");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Akimbo attached to Desert Eagle!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon(".44 Magnum") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory(".44 Magnum",1);
+			GiveInventory(".44 Magnum Akimbo",1);
+			GiveInventory("MagnumAkimbo",1);
+			SetWeapon(".44 Magnum Akimbo");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Akimbo attached to .44 Magnum!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("G18") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("G18",1);
+			GiveInventory("G18 Akimbo",1);
+			GiveInventory("G18Akimbo",1);
+			SetWeapon("G18 Akimbo");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Akimbo attached to G18!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("M9") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("M9",1);
+			GiveInventory("M9 Akimbo",1);
+			GiveInventory("M9Akimbo",1);
+			SetWeapon("M9 Akimbo");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Akimbo attached to M9!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("Mini-UZI") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("Mini-UZI",1);
+			GiveInventory("Mini-UZI Akimbo",1);
+			GiveInventory("MiniUziAkimbo",1);
+			SetWeapon("Mini-UZI Akimbo");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Akimbo attached to Mini-UZI!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else
+		{
+			SetFont("BIGFONT");
+			HudMessage(s:"You can't attach Akimbo on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			GiveInventory("AkimboAttachment",1);
+		}
+	}
+	else if(Which == 5) //Tac Knife 
+	{
+		if(CheckWeapon("USP .45") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("USP .45",1);
+			GiveInventory("USP .45 Tac Knife",1);
+			GiveInventory("USP45Knife",1);
+			SetWeapon("USP .45 Tac Knife");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Tactical Knife attached to USP .45!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("Desert Eagle") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("Desert Eagle",1);
+			GiveInventory("Desert Eagle Tac Knife",1);
+			GiveInventory("DeagleKnife",1);
+			SetWeapon("Desert Eagle Tac Knife");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Tactical Knife attached to Desert Eagle!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon(".44 Magnum") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory(".44 Magnum",1);
+			GiveInventory(".44 Magnum Tac Knife",1);
+			GiveInventory("MagnumKnife",1);
+			SetWeapon(".44 Magnum Tac Knife");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Tactical Knife attached to .44 Magnum!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else if(CheckWeapon("M9") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("M9",1);
+			GiveInventory("M9 Tac Knife",1);
+			GiveInventory("M9Knife",1);
+			SetWeapon("M9 Tac Knife");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Tactical Knife attached to M9!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
+		else
+		{
+			SetFont("BIGFONT");
+			HudMessage(s:"You can't attach a Tactical Knife on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			GiveInventory("KnifeAttachment",1);
+		}
+	}
+	
+	ACS_ExecuteAlways(602,0,0,0,0);
+}
+
+//------------------------------------------
+//------- Just tells the player that they can't pick up another of this type of weapon.
+script 620 (int Which)
+{
+	SetFont("CONFONT");
+	HudMessage(s:"All weapon slots are full!"; HUDMSG_FADEOUT, 200+PlayerNumber(), CR_Green, 0.5, 0.7, 0.5, 1.0);
+	
+	/*SetFont("CONFONT");
+	if(Which == 0)
+	{
+		if(CheckInventory("Perk1_OneManArmy") == 0)
+			HudMessage(s:"Max \cf2 AR/SMG weapons\cd. Define a button to \cgdrop"; HUDMSG_FADEOUT, 200+PlayerNumber(), CR_Green, 0.5, 0.7, 0.5, 1.0);
+		else
+			HudMessage(s:"Max \cf4 AR/SMG weapons\cd. Define a button to \cgdrop"; HUDMSG_FADEOUT, 200+PlayerNumber(), CR_Green, 0.5, 0.7, 0.5, 1.0);
+	}
+	else if(Which == 1)
+		HudMessage(s:"Max \cf1 Shotgun weapon\cd. Define a button to \cgdrop"; HUDMSG_FADEOUT, 200+PlayerNumber(), CR_Green, 0.5, 0.7, 0.5, 1.0);
+	else if(Which == 2)
+		HudMessage(s:"Max \cf1 Handgun weapon\cd. Define a button to \cgdrop"; HUDMSG_FADEOUT, 200+PlayerNumber(), CR_Green, 0.5, 0.7, 0.5, 1.0);
+	else if(Which == 3)
+		HudMessage(s:"Max \cf1 LMG/Sniper weapon\cd. Define a button to \cgdrop"; HUDMSG_FADEOUT, 200+PlayerNumber(), CR_Green, 0.5, 0.7, 0.5, 1.0);
+	else if(Which == 4)
+		HudMessage(s:"Max \cf1 Explosive weapon\cd. Define a button to \cgdrop"; HUDMSG_FADEOUT, 200+PlayerNumber(), CR_Green, 0.5, 0.7, 0.5, 1.0);
+
+	HudMessage(s:"\cdthe one in hand. \cc[Using 'drop' in console won't work]"; HUDMSG_FADEOUT, 220+PlayerNumber(), CR_Green, 0.5, 0.725, 0.5, 1.0);
+	
+	*/
+}
+
+//Drops (not destroys) current weapon.
+script 621 (void) NET
+{
+	if(CheckWeapon("USP .45") == 1 || CheckWeapon("USP .45 Ex Mags") == 1 || CheckWeapon("USP .45 Akimbo") == 1 || CheckWeapon("USP .45 Tac Knife") == 1)
+	{
+		TakeInventory("USP .45",1);
+		TakeInventory("USP .45 Ex Mags",1);
+		TakeInventory("USP .45 Akimbo",1);
+		TakeInventory("USP .45 Tac Knife",1);
+		TakeInventory("MaxWeaponsFilled_Handgun",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("USP45PickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon(".44 Magnum") == 1 || CheckWeapon(".44 Magnum Akimbo") == 1 || CheckWeapon(".44 Magnum Tac Knife") == 1)
+	{
+		TakeInventory(".44 Magnum",1);
+		TakeInventory(".44 Magnum Akimbo",1);
+		TakeInventory(".44 Magnum Tac Knife",1);
+		TakeInventory("MaxWeaponsFilled_Handgun",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("44MagnumPickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("FAMAS") == 1 || CheckWeapon("FAMAS M203") == 1 || CheckWeapon("FAMAS Ex Mags") == 1)
+	{
+		TakeInventory("FAMAS",1);
+		TakeInventory("FAMAS M203",1);
+		TakeInventory("FAMAS Ex Mags",1);
+		TakeInventory("MaxWeaponsFilled_ARSMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("FAMASPickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("FAL") == 1 || CheckWeapon("FAL Ex Mags") == 1)
+	{
+		TakeInventory("FAL",1);
+		TakeInventory("FAL Ex Mags",1);
+		TakeInventory("MaxWeaponsFilled_ARSMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("FALPickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("SPAS-12") == 1 || CheckWeapon("SPAS-12 Ex Mags") == 1 || CheckWeapon("SPAS-12 Grip") == 1)
+	{
+		TakeInventory("SPAS-12",1);
+		TakeInventory("SPAS-12 Ex Mags",1);
+		TakeInventory("SPAS-12 Grip",1);
+		TakeInventory("MaxWeaponsFilled_Shotgun",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("SPASPickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("AA-12") == 1 || CheckWeapon("AA-12 Ex Mags") == 1 || CheckWeapon("AA-12 Grip") == 1)
+	{
+		TakeInventory("AA-12",1);
+		TakeInventory("AA-12 Ex Mags",1);
+		TakeInventory("AA-12 Grip",1);
+		TakeInventory("MaxWeaponsFilled_Shotgun",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("AA12PickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("UMP45") == 1 || CheckWeapon("UMP45 Ex Mags") == 1 || CheckWeapon("UMP45 Rapid Fire") == 1)
+	{
+		TakeInventory("UMP45",1);
+		TakeInventory("UMP45 Ex Mags",1);
+		TakeInventory("UMP45 Rapid Fire",1);
+		TakeInventory("MaxWeaponsFilled_ARSMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("UMP45PickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("TDI Vector") == 1 || CheckWeapon("TDI Vector Ex Mags") == 1)
+	{
+		TakeInventory("TDI Vector",1);
+		TakeInventory("TDI Vector Ex Mags",1);
+		TakeInventory("MaxWeaponsFilled_ARSMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("VectorPickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("Mini-UZI") == 1 || CheckWeapon("Mini-UZI Ex Mags") == 1 || CheckWeapon("Mini-UZI Akimbo") == 1)
+	{
+		TakeInventory("Mini-UZI",1);
+		TakeInventory("Mini-UZI Akimbo",1);
+		TakeInventory("Mini-UZI Ex Mags",1);
+		TakeInventory("MaxWeaponsFilled_ARSMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("MiniUziPickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("FN P90") == 1 || CheckWeapon("FN P90 Ex Mags") == 1 || CheckWeapon("FN P90 Rapid Fire") == 1)
+	{
+		TakeInventory("FN P90",1);
+		TakeInventory("FN P90 Ex Mags",1);
+		TakeInventory("FN P90 Rapid Fire",1);
+		TakeInventory("MaxWeaponsFilled_ARSMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("P90PickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("Thumper") == 1)
+	{
+		TakeInventory("Thumper",1);
+		TakeInventory("MaxWeaponsFilled_Explosive",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("ThumperPickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("ACR") == 1 || CheckWeapon("ACR Ex Mags") == 1)
+	{
+		TakeInventory("ACR",1);
+		TakeInventory("ACR Ex Mags",1);
+		TakeInventory("MaxWeaponsFilled_ARSMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("ACRPickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("AT4-HS") == 1)
+	{
+		TakeInventory("AT4-HS",1);
+		TakeInventory("MaxWeaponsFilled_Explosive",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("AT4PickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("Intervention") == 1 || CheckWeapon("Intervention Thermal") == 1 || CheckWeapon("Intervention Ex Mags") == 1)
+	{
+		TakeInventory("Intervention Thermal",1);
+		TakeInventory("Intervention Ex Mags",1);
+		TakeInventory("Intervention",1);
+		TakeInventory("MaxWeaponsFilled_LMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("InterventionPickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("Barrett 50cal") == 1 || CheckWeapon("Barrett 50cal Thermal") == 1 || CheckWeapon("Barrett 50cal Ex Mags") == 1)
+	{
+		TakeInventory("Barrett 50cal Thermal",1);
+		TakeInventory("Barrett 50cal Ex Mags",1);
+		TakeInventory("Barrett 50cal",1);
+		TakeInventory("MaxWeaponsFilled_LMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("BarrettPickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("MG4") == 1 || CheckWeapon("MG4 Ex Mags") == 1 || CheckWeapon("MG4 Grip") == 1)
+	{
+		TakeInventory("MG4",1);
+		TakeInventory("MG4 Ex Mags",1);
+		TakeInventory("MG4 Grip",1);
+		TakeInventory("MaxWeaponsFilled_LMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("MG4PickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("G18") == 1 || CheckWeapon("G18 Ex Mags") == 1 || CheckWeapon("G18 Akimbo") == 1)
+	{
+		TakeInventory("G18",1);
+		TakeInventory("G18 Ex Mags",1);
+		TakeInventory("G18 Akimbo",1);
+		TakeInventory("MaxWeaponsFilled_Handgun",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("G18PickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("PP2000") == 1 || CheckWeapon("PP2000 Ex Mags") == 1)
+	{
+		TakeInventory("PP2000",1);
+		TakeInventory("PP2000 Ex Mags",1);
+		TakeInventory("MaxWeaponsFilled_Handgun",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("PP2000PickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("SCAR-H") == 1 || CheckWeapon("SCAR-H Ex Mags") == 1)
+	{
+		TakeInventory("SCAR-H",1);
+		TakeInventory("SCAR-H Ex Mags",1);
+		TakeInventory("MaxWeaponsFilled_ARSMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("SCARHPickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("M4A1") == 1 || CheckWeapon("M4A1 Ex Mags") == 1)
+	{
+		TakeInventory("M4A1",1);
+		TakeInventory("M4A1 Ex Mags",1);
+		TakeInventory("MaxWeaponsFilled_ARSMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("M4A1PickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("Ranger") == 1)
+	{
+		TakeInventory("Ranger",1);
+		TakeInventory("MaxWeaponsFilled_Shotgun",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("RangerPickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("F2000") == 1 || CheckWeapon("F2000 Ex Mags") == 1)
+	{
+		TakeInventory("F2000",1);
+		TakeInventory("F2000 Ex Mags",1);
+		TakeInventory("MaxWeaponsFilled_ARSMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("F2000PickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("MP5K") == 1 || CheckWeapon("MP5K Ex Mags") == 1 || CheckWeapon("MP5K Rapid Fire") == 1)
+	{
+		TakeInventory("MP5K",1);
+		TakeInventory("MP5K Ex Mags",1);
+		TakeInventory("MP5K Rapid Fire",1);
+		TakeInventory("MaxWeaponsFilled_ARSMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("MP5PickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("M93 Raffica") == 1 || CheckWeapon("M93 Raffica Ex Mags") == 1)
+	{
+		TakeInventory("M93 Raffica",1);
+		TakeInventory("M93 Raffica Ex Mags",1);
+		TakeInventory("MaxWeaponsFilled_Handgun",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("M93RPickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("M16A4") == 1 || CheckWeapon("M16A4 Ex Mags") == 1)
+	{
+		TakeInventory("M16A4",1);
+		TakeInventory("M16A4 Ex Mags",1);
+		TakeInventory("MaxWeaponsFilled_ARSMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("M16PickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("AK-47") == 1 || CheckWeapon("AK-47 Ex Mags") == 1)
+	{
+		TakeInventory("AK-47",1);
+		TakeInventory("AK-47 Ex Mags",1);
+		TakeInventory("MaxWeaponsFilled_ARSMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("AK47PickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("Striker") == 1 || CheckWeapon("Striker Ex Mags") == 1 || CheckWeapon("Striker Grip") == 1)
+	{
+		TakeInventory("Striker",1);
+		TakeInventory("Striker Ex Mags",1);
+		TakeInventory("Striker Grip",1);
+		TakeInventory("MaxWeaponsFilled_Shotgun",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("StrikerPickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("AUG HBAR") == 1 || CheckWeapon("AUG HBAR Ex Mags") == 1 || CheckWeapon("AUG HBAR Grip") == 1)
+	{
+		TakeInventory("AUG HBAR",1);
+		TakeInventory("AUG HBAR Ex Mags",1);
+		TakeInventory("AUG HBAR Grip",1);
+		TakeInventory("MaxWeaponsFilled_LMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("AUGHBARPickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("WA2000") == 1 || CheckWeapon("WA2000 Thermal") == 1 || CheckWeapon("WA2000 Ex Mags") == 1)
+	{
+		TakeInventory("WA2000 Thermal",1);
+		TakeInventory("WA2000 Ex Mags",1);
+		TakeInventory("WA2000",1);
+		TakeInventory("MaxWeaponsFilled_LMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("WA2000PickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("Desert Eagle") == 1 || CheckWeapon("Deagle Special") == 1 || CheckWeapon("Desert Eagle Akimbo") == 1 || CheckWeapon("Desert Eagle Tac Knife") == 1)
+	{
+		TakeInventory("Desert Eagle",1);
+		TakeInventory("Desert Eagle Akimbo",1);
+		TakeInventory("Desert Eagle Tac Knife",1);
+		TakeInventory("Deagle Special",1);
+		TakeInventory("MaxWeaponsFilled_Handgun",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("DeaglePickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("M9") == 1 || CheckWeapon("M9 Ex Mags") == 1 || CheckWeapon("M9 Tac Knife") == 1 || CheckWeapon("M9 Akimbo") == 1)
+	{
+		TakeInventory("M9",1);
+		TakeInventory("M9 Ex Mags",1);
+		TakeInventory("M9 Akimbo",1);
+		TakeInventory("M9 Tac Knife",1);
+		TakeInventory("MaxWeaponsFilled_Handgun",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("M9PickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("M1014") == 1 || CheckWeapon("M1014 Ex Mags") == 1 || CheckWeapon("M1014 Grip") == 1)
+	{
+		TakeInventory("M1014",1);
+		TakeInventory("M1014 Ex Mags",1);
+		TakeInventory("M1014 Grip",1);
+		TakeInventory("MaxWeaponsFilled_Shotgun",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("M1014PickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("M240") == 1 || CheckWeapon("M240 Ex Mags") == 1 || CheckWeapon("M240 Grip") == 1)
+	{
+		TakeInventory("M240",1);
+		TakeInventory("M240 Ex Mags",1);
+		TakeInventory("M240 Grip",1);
+		TakeInventory("MaxWeaponsFilled_LMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("M240PickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("L86") == 1 || CheckWeapon("L86 Ex Mags") == 1 || CheckWeapon("L86 Grip") == 1)
+	{
+		TakeInventory("L86",1);
+		TakeInventory("L86 Ex Mags",1);
+		TakeInventory("L86 Grip",1);
+		TakeInventory("MaxWeaponsFilled_LMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("L86PickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("RPG-7") == 1)
+	{
+		TakeInventory("RPG-7",1);
+		TakeInventory("MaxWeaponsFilled_Explosive",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("RPGPickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("Model 1887") == 1)
+	{
+		TakeInventory("Model 1887",1);
+		TakeInventory("MaxWeaponsFilled_Shotgun",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("M1887PickupSpawn",PlayerNumber()+500,0);
+	}
+	else if(CheckWeapon("M14 EBR") == 1 || CheckWeapon("M14 EBR Thermal") == 1 || CheckWeapon("M14 EBR Ex Mags") == 1)
+	{
+		TakeInventory("M14 EBR Thermal",1);
+		TakeInventory("M14 EBR Ex Mags",1);
+		TakeInventory("M14 EBR",1);
+		TakeInventory("MaxWeaponsFilled_LMG",1);
+		TakeInventory("MaxWeaponsFilled",1);
+		SpawnSpotFacing("M14PickupSpawn",PlayerNumber()+500,0);
+	}
+}
+
+//------------------------------------------
+//------- Is triggered when selecting an attachment or perk.
+//Removes awarded items, just makes it easier instead of C&P the same thing all the time.
+script 622 (void)
+{
+	TakeInventory("GripAttachment",1);
+	TakeInventory("RapidFireAttachment",1);
+	TakeInventory("ExtendedMagsAttachment",1);
+	TakeInventory("ThermalAttachment",1);
+	TakeInventory("AkimboAttachment",1);
+	TakeInventory("KnifeAttachment",1);
+	TakeInventory("Perk1_SOHAward",1);
+	TakeInventory("Perk1_SOH_ProAward",1);
+	TakeInventory("Perk1_ExtremeConditioningAward",1);
+	TakeInventory("Perk1_ExtremeConditioning_ProAward",1);
+	TakeInventory("Perk1_OMAAward",1);
+	TakeInventory("Perk1_OMA_ProAward",1);
+	TakeInventory("Perk2_StoppingPowerAward",1);
+	TakeInventory("Perk2_StoppingPower_ProAward",1);
+	TakeInventory("Perk2_DangerCloseAward",1);
+	TakeInventory("Perk2_DangerClose_ProAward",1);
+	TakeInventory("Perk2_JuggernautAward",1);
+	TakeInventory("Perk2_Juggernaut_ProAward",1);
+	TakeInventory("Perk3_SteadyAimAward",1);
+	TakeInventory("Perk3_SteadyAim_ProAward",1);
+	TakeInventory("Perk3_CommandoAward",1);
+	TakeInventory("Perk3_Commando_ProAward",1);
+	TakeInventory("Perk3_LastStandAward",1);
+	TakeInventory("Perk3_LastStand_ProAward",1);
+	TakeInventory("Combo",25);
+	LocalAmbientSound("game/challenge",255);
+}
+
+//------------------------------------------
+//------- Is triggered by rank up script.
+//Gives awarded items
+script 623 (void)
+{
+	GiveInventory("GripAttachment",1);
+	GiveInventory("RapidFireAttachment",1);
+	GiveInventory("ExtendedMagsAttachment",1);
+	GiveInventory("ThermalAttachment",1);
+	GiveInventory("AkimboAttachment",1);
+	GiveInventory("KnifeAttachment",1);
+	/*if(CheckInventory("Perk1_SOH") == 0)
+		GiveInventory("Perk1_SOHAward",1);*/
+	if(CheckInventory("Perk1_SOH") == 1 && CheckInventory("Perk1_SOH_Pro") == 0)
+		GiveInventory("Perk1_SOH_ProAward",1);
+	/*if(CheckInventory("Perk1_ExtremeConditioning") == 0)
+		GiveInventory("Perk1_ExtremeConditioningAward",1);*/
+	if(CheckInventory("Perk1_ExtremeConditioning") == 1 && CheckInventory("Perk1_ExtremeConditioning_Pro") == 0)
+		GiveInventory("Perk1_ExtremeConditioning_ProAward",1);
+	/*if(CheckInventory("Perk1_OneManArmy") == 0)
+		GiveInventory("Perk1_OMAAward",1);*/
+	if(CheckInventory("Perk1_OneManArmy") == 1 && CheckInventory("Perk1_OneManArmy_Pro") == 0)
+		GiveInventory("Perk1_OMA_ProAward",1);
+	/*if(CheckInventory("Perk2_StoppingPower") == 0)
+		GiveInventory("Perk2_StoppingPowerAward",1);*/
+	if(CheckInventory("Perk2_StoppingPower") == 1 && CheckInventory("Perk2_StoppingPower_Pro") == 0)
+		GiveInventory("Perk2_StoppingPower_ProAward",1);
+	/*if(CheckInventory("Perk2_DangerClose") == 0)
+		GiveInventory("Perk2_DangerCloseAward",1);*/
+	if(CheckInventory("Perk2_DangerClose") == 1 && CheckInventory("Perk2_DangerClose_Pro") == 0)
+		GiveInventory("Perk2_DangerClose_ProAward",1);
+	/*if(CheckInventory("Perk2_Juggernaut") == 0)
+		GiveInventory("Perk2_JuggernautAward",1);*/
+	if(CheckInventory("Perk2_Juggernaut") == 1 && CheckInventory("Perk2_Juggernaut_Pro") == 0)
+		GiveInventory("Perk2_Juggernaut_ProAward",1);
+	/*if(CheckInventory("Perk3_SteadyAim") == 0)
+		GiveInventory("Perk3_SteadyAimAward",1);*/
+	if(CheckInventory("Perk3_SteadyAim") == 1 && CheckInventory("Perk3_SteadyAim_Pro") == 0)
+		GiveInventory("Perk3_SteadyAim_ProAward",1);
+	/*if(CheckInventory("Perk3_Commando") == 0)
+		GiveInventory("Perk3_CommandoAward",1);*/
+	if(CheckInventory("Perk3_Commando") == 1 && CheckInventory("Perk3_Commando_Pro") == 0)
+		GiveInventory("Perk3_Commando_ProAward",1);
+	/*if(CheckInventory("Perk3_LastStand") == 0)
+		GiveInventory("Perk3_LastStandAward",1);*/
+	if(CheckInventory("Perk3_LastStand") == 1 && CheckInventory("Perk3_LastStand_Pro") == 0)
+		GiveInventory("Perk3_LastStand_ProAward",1);
+
+}
+
+//------------------------------------------
+//------- Select and give perk and it's abilities.
+//Apply a Perk
+script 624 (int Which)
+{
+	if(Which == 0) // SLEIGHT OF HAND
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk1_SOH",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cvSLEIGHT OF HAND"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Faster reloading!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+	}
+	if(Which == 1) // EXTREME CONDITIONING
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk1_ExtremeConditioning",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cvEXTREME CONDITIONING"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Regenerate 100% faster and 40% sooner!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+	}
+	if(Which == 2) // ONE MAN ARMY
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk1_OneManArmy",1);
+		//GiveInventory("Backpack",5);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cvONE MAN ARMY"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Carry extra ammo!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		ACS_ExecuteAlways(501,0,0,0,0);
+	}
+	if(Which == 3) // STOPPING POWER
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk2_StoppingPower",1);
+		GiveInventory("Perk2_StoppingPowerEffect",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cgSTOPPING POWER"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"+25% bullet damage!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+	}
+	if(Which == 4) // DANGER CLOSE
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk2_DangerClose",1);
+		GiveInventory("Perk2_DangerCloseEffect",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cgDANGER CLOSE"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"+100% explosive damage!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+	}
+	if(Which == 5) // JUGGERNAUT
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk2_Juggernaut",1);
+		GiveInventory("Perk2_JuggernautEffect",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cgJUGGERNAUT"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"40% damage resistance!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+	}
+	if(Which == 6) // STEADY AIM
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk3_SteadyAim",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdSTEADY AIM"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"+33% hip-fire accuracy!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+	}
+	if(Which == 7) // COMMANDO
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk3_Commando",1);
+		GiveInventory("Perk3_CommandoEffect",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdCOMMANDO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"+100% melee damage and range!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+	}
+	if(Which == 8) // LAST STAND
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk3_LastStand",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdLAST STAND"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Pull out your handgun before dying!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+	}
+	if(Which == 9) // SLEIGHT OF HAND PRO
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk1_SOH_Pro",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cvSLEIGHT OF HAND PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Faster grenade throwing and knife recovery!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+	}
+	if(Which == 10) // EXTREME CONDITIONING PRO
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk1_ExtremeConditioning_Pro",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cvEXTREME CONDITIONING PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"+15% running speed!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		ACS_ExecuteAlways(501,0,0,0,0);
+	}
+	if(Which == 11) // ONE MAN ARMY PRO
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk1_OneManArmy_Pro",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cvONE MAN ARMY PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Carry extra weapon!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		ACS_ExecuteAlways(501,0,0,0,0);
+	}
+	if(Which == 12) // STOPPING POWER PRO
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk2_StoppingPower_Pro",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cgSTOPPING POWER PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Sniper bullets penetrate enemies!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+	}
+	if(Which == 13) // DANGER CLOSE PRO
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk2_DangerClose_Pro",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cgDANGER CLOSE PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"+40% explosive blast radius!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+	}
+	if(Which == 14) // JUGGERNAUT PRO
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk2_Juggernaut_Pro",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cgJUGGERNAUT PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"+40% damage resistance!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+	}
+	if(Which == 15) // STEADY AIM PRO
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk3_SteadyAim_Pro",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdSTEADY AIM PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"No sniper accuracy penalty while moving!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+	}
+	if(Which == 17) // COMMANDO PRO
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk3_Commando_Pro",1);
+		//GiveInventory("Revival Kit",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdCOMMANDO PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Attacking doesn't block regeneration!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+	}
+	if(Which == 16) // LAST STAND PRO
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk3_LastStand_Pro",1);
+		GiveInventory("Revival Kit",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdLAST STAND PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"+ Use a Revival Kit to help out allied players!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+	}
+}
+//------------------------------------------
+//------- Last stand, for handling the last stand perk.
+//Last stand
+script 625 (void)
+{
+	int Survival = random(1,6);
+
+	Survival = 6;	
+
+	LocalAmbientSound("game/laststand",254);
+	LocalAmbientSound("game/laststand",254);
+	SetFont("BIGFONT");
+	HudMessage(s:"\cdLAST STAND"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.3, 2.0, 1.0);
+	ACS_ExecuteAlways(630,0,0,0,0);
+	delay(1);
+	SetActorProperty(0,APROP_Invulnerable,1);
+	delay(35*2);
+	ACS_ExecuteAlways(633,0,0,0,0);
+	SetActorProperty(0,APROP_Invulnerable,0);
+	delay(35*4);
+	ACS_ExecuteAlways(633,0,0,0,0);
+	delay(35*4);
+	if(GetActorProperty(0,APROP_Health) < 26 && Survival != 6 && GetActorProperty(0,APROP_Health) > 0)
+		Thing_Damage(0,75,18); //Bleed out
+	else if(GetActorProperty(0,APROP_Health) < 31 && Survival == 6 && GetActorProperty(0,APROP_Health) > 0)  //Survival rate: 1 in 6
+	{
+		ACS_ExecuteAlways(631,0,0,0,0);  // unmorph from last stand
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdYou survived!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.3, 2.0, 1.0);
+		LocalAmbientSound("game/challenge",255);
+		Delay(1);
+		SetActorProperty(0,APROP_Health,100);
+	}
+}
+
+//------------------------------------------
+//------- Change player's voice
+script 626 (void) NET
+{
+	if(CheckInventory("Voice") == 0)
+	{
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdVoice changed to Russian [Spetsnaz]"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		GiveInventory("Voice",1);
+	}
+	else if(CheckInventory("Voice") == 1)
+	{
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdVoice changed to Brazilian [Militia]"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		GiveInventory("Voice",1);
+	}
+	else if(CheckInventory("Voice") == 2)
+	{
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdVoice changed to Arabic [OpFor]"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		GiveInventory("Voice",1);
+	}
+	else if(CheckInventory("Voice") == 3)
+	{
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdVoice changed to American [Navy Seals]"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		GiveInventory("Voice",1);
+	}
+	else if(CheckInventory("Voice") == 4)
+	{
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdVoice changed to British English [TF141]"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		GiveInventory("Voice",1);
+	}
+	else if(CheckInventory("Voice") == 5)
+	{
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdVoice changed to American [US Rangers]"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		TakeInventory("Voice",10);
+	}
+}
+
+
+//------------------------------------------
+//------- I think this is for Cyberdemon/Spider, they give XP when put in the pain state.
+script 627 (int Amount)
+{
+	GiveInventory("Experience",Amount);
+	ACS_ExecuteAlways(616,0,0,0,0);
+}
+
+//Remove TacticalInsertion
+script 628 (void)
+{
+	if(TacticalInsertion[PlayerNumber()+1] == True)
+	{
+		Thing_Remove(PlayerNumber()+600);
+		TacticalInsertion[PlayerNumber()+1] = False;
+		SetFont("BIGFONT");
+		HudMessage(s:"\cfTactical Insertion Removed";HUDMSG_FADEOUT,0,CR_Blue,0.5,0.6,3.0,2.0);
+	}
+}
+
+//Set max ammo
+script 629 (void)
+{
+	SetAmmoCapacity("FamasAmmo",300);
+	SetAmmoCapacity("FALAmmo",200);
+	SetAmmoCapacity("ACRAmmo",300);
+	SetAmmoCapacity("P90Ammo",500);
+	SetAmmoCapacity("UMP45Ammo",320);
+	SetAmmoCapacity("MiniUziAmmo",320);
+	SetAmmoCapacity("VectorAmmo",300);
+	SetAmmoCapacity("InterventionAmmo",50);
+	SetAmmoCapacity("BarrettAmmo",80);
+	SetAmmoCapacity("M14Ammo",80);
+	SetAmmoCapacity("USP45Ammo",120);
+	SetAmmoCapacity("44MagnumAmmo",60);
+	SetAmmoCapacity("SPAS12Ammo",56);
+	SetAmmoCapacity("AA12Ammo",80);
+	SetAmmoCapacity("RangerAmmo",60);
+	SetAmmoCapacity("MG4Ammo",600);
+	SetAmmoCapacity("G18Ammo",231);
+	SetAmmoCapacity("PP2000Ammo",140);
+	SetAmmoCapacity("M93RAmmo",140);
+	SetAmmoCapacity("SCARHAmmo",200);
+	SetAmmoCapacity("M4A1Ammo",300);
+	SetAmmoCapacity("F2000Ammo",300);
+	SetAmmoCapacity("MP5Ammo",300);
+	SetAmmoCapacity("M16Ammo",300);
+	SetAmmoCapacity("AK47Ammo",300);
+	SetAmmoCapacity("M203Ammo",8);
+	SetAmmoCapacity("ThumperAmmo",8);
+	SetAmmoCapacity("AT4Ammo",3);
+	SetAmmoCapacity("StrikerAmmo",80);
+	SetAmmoCapacity("AUGHBARAmmo",420);
+	SetAmmoCapacity("WA2000Ammo",60);
+	SetAmmoCapacity("DeagleAmmo",70);
+	SetAmmoCapacity("M9Ammo",150);
+	SetAmmoCapacity("M1014Ammo",60);
+	SetAmmoCapacity("M240Ammo",600);
+	SetAmmoCapacity("L86Ammo",600);
+	SetAmmoCapacity("RPGAmmo",6);
+	SetAmmoCapacity("M1887Ammo",56);
+}
+
+//------------------------------------------
+//------- Since we have tons of different handguns, every one needs it's own last stand morph class.
+script 630 (void)
+{
+	if(CheckInventory("USP .45") == 1)
+	{
+		GiveInventory("USP45Ammo",12);
+		GiveInventory("USP45Clip2",18);
+		MorphActor(0,"RGULastStandPlayer_USP","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory("USP .45 Ex Mags") == 1)
+	{
+		GiveInventory("USP45Ammo",12);
+		GiveInventory("USP45Clip2",18);
+		MorphActor(0,"RGULastStandPlayer_USPEx","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory("USP .45 Akimbo") == 1)
+	{
+		GiveInventory("USP45Ammo",24);
+		GiveInventory("USP45Clip3",24);
+		MorphActor(0,"RGULastStandPlayer_USPAkimbo","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory("USP .45 Tac Knife") == 1)
+	{
+		GiveInventory("USP45Ammo",12);
+		GiveInventory("USP45Clip",12);
+		MorphActor(0,"RGULastStandPlayer_USPKnife","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory(".44 Magnum") == 1)
+	{
+		GiveInventory("44MagnumAmmo",6);
+		GiveInventory("44MagnumClip",6);
+		MorphActor(0,"RGULastStandPlayer_44Magnum","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory(".44 Magnum Akimbo") == 1)
+	{
+		GiveInventory("44MagnumAmmo",6);
+		GiveInventory("44MagnumClip",12);
+		MorphActor(0,"RGULastStandPlayer_44MagnumAkimbo","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory(".44 Magnum Tac Knife") == 1)
+	{
+		GiveInventory("44MagnumAmmo",6);
+		GiveInventory("44MagnumClip",6);
+		MorphActor(0,"RGULastStandPlayer_44MagnumKnife","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory("M9") == 1)
+	{
+		GiveInventory("M9Ammo",15);
+		GiveInventory("M9Clip",15);
+		MorphActor(0,"RGULastStandPlayer_M9","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory("M9 Ex Mags") == 1)
+	{
+		GiveInventory("M9Ammo",15);
+		GiveInventory("M9Clip2",25);
+		MorphActor(0,"RGULastStandPlayer_M9Ex","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory("M9 Tac Knife") == 1)
+	{
+		GiveInventory("M9Ammo",15);
+		GiveInventory("M9Clip",25);
+		MorphActor(0,"RGULastStandPlayer_M9Knife","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory("M9 Akimbo") == 1)
+	{
+		GiveInventory("M9Ammo",15);
+		GiveInventory("M9Clip3",30);
+		MorphActor(0,"RGULastStandPlayer_M9Akimbo","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory("Desert Eagle") == 1)
+	{
+		GiveInventory("DeagleAmmo",7);
+		GiveInventory("DeagleClip",7);
+		MorphActor(0,"RGULastStandPlayer_Deagle","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory("Deagle Special") == 1)
+	{
+		GiveInventory("DeagleAmmo",7);
+		GiveInventory("DeagleClip2",14);
+		MorphActor(0,"RGULastStandPlayer_DeagleEx","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory("Desert Eagle Akimbo") == 1)
+	{
+		GiveInventory("DeagleAmmo",7);
+		GiveInventory("DeagleClip2",14);
+		MorphActor(0,"RGULastStandPlayer_DeagleAkimbo","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory("Desert Eagle Tac Knife") == 1)
+	{
+		GiveInventory("DeagleAmmo",7);
+		GiveInventory("DeagleClip2",14);
+		MorphActor(0,"RGULastStandPlayer_DeagleKnife","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory("G18") == 1)
+	{
+		GiveInventory("G18Ammo",33);
+		GiveInventory("G18Clip",33);
+		MorphActor(0,"RGULastStandPlayer_G18","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory("G18 Ex Mags") == 1)
+	{
+		GiveInventory("G18Ammo",33);
+		GiveInventory("G18Clip2",50);
+		MorphActor(0,"RGULastStandPlayer_G18Ex","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory("G18 Akimbo") == 1)
+	{
+		GiveInventory("G18Ammo",33);
+		GiveInventory("G18Clip3",66);
+		MorphActor(0,"RGULastStandPlayer_G18Akimbo","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory("PP2000") == 1)
+	{
+		GiveInventory("PP2000Ammo",20);
+		GiveInventory("PP2000Clip",20);
+		MorphActor(0,"RGULastStandPlayer_PP2000","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory("PP2000 Ex Mags") == 1)
+	{
+		GiveInventory("PP2000Ammo",20);
+		GiveInventory("PP2000Clip2",30);
+		MorphActor(0,"RGULastStandPlayer_PP2000Ex","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory("M93 Raffica") == 1)
+	{
+		GiveInventory("M93RAmmo",20);
+		GiveInventory("M93RClip",20);
+		MorphActor(0,"RGULastStandPlayer_M93R","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory("M93 Raffica Ex Mags") == 1)
+	{
+		GiveInventory("M93RAmmo",20);
+		GiveInventory("M93RClip2",30);
+		MorphActor(0,"RGULastStandPlayer_M93REx","",99999,256,"NoFlash","NoFlash");
+	}
+	else
+	{
+		GiveInventory("USP45Ammo",12);
+		GiveInventory("USP45Clip",12);
+		MorphActor(0,"RGULastStandPlayer_Unspecified","",99999,256,"NoFlash","NoFlash");
+	}
+}
+
+//------------------------------------------
+//------- Unmorph actor and give back the handgun they lose while in Last stand.
+script 631 ENTER
+{
+	delay(5);
+	if(CheckInventory("Menu") == 1 || CheckInventory("RandomThing") == 1)
+		terminate;
+	if(CheckInventory("USP .45") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("USP .45",1);
+	}
+	if(CheckInventory("USP .45 Ex Mags") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("USP .45 Ex Mags",1);
+	}
+	else if(CheckInventory("USP .45 Akimbo") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("USP .45 Akimbo",1);
+	}
+	else if(CheckInventory("USP .45 Tac Knife") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("USP .45 Tac Knife",1);
+	}
+	else if(CheckInventory(".44 Magnum") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory(".44 Magnum",1);
+	}
+	else if(CheckInventory(".44 Magnum Akimbo") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory(".44 Magnum Akimbo",1);
+	}
+	else if(CheckInventory(".44 Magnum Tac Knife") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory(".44 Magnum Tac Knife",1);
+	}
+	else if(CheckInventory("M9") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("M9",1);
+	}
+	else if(CheckInventory("M9 Akimbo") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("M9 Akimbo",1);
+	}
+	else if(CheckInventory("M9 Tac Knife") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("M9 Tac Knife",1);
+	}
+	else if(CheckInventory("M9 Ex Mags") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("M9 Ex Mags",1);
+	}
+	else if(CheckInventory("Desert Eagle") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("Desert Eagle",1);
+	}
+	else if(CheckInventory("Deagle Special") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("Deagle Special",1);
+	}
+	else if(CheckInventory("Desert Eagle Akimbo") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("Desert Eagle Akimbo",1);
+	}
+	else if(CheckInventory("Desert Eagle Tac Knife") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("Desert Eagle Tac Knife",1);
+	}
+	else if(CheckInventory("G18") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("G18",1);
+	}
+	else if(CheckInventory("G18 Ex Mags") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("G18 Ex Mags",1);
+	}
+	else if(CheckInventory("G18 Akimbo") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("G18 Akimbo",1);
+	}
+	else if(CheckInventory("PP2000") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("PP2000",1);
+	}
+	else if(CheckInventory("PP2000 Ex Mags") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("PP2000 Ex Mags",1);
+	}
+	else if(CheckInventory("M93 Raffica") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("M93 Raffica",1);
+	}
+	else if(CheckInventory("M93 Raffica Ex Mags") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("M93 Raffica Ex Mags",1);
+	}
+	else //Just give a USP if none of the above are found.
+	{
+		UnMorphActor(0);
+	}
+}
+
+//------------------------------------------
+//------- Revival kit
+script 632 (void)
+{
+	int Survival = random(1,6);
+
+	SetFont("BIGFONT");
+	HudMessage(s:"\cdYou're being revived!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.3, 2.0, 1.0);
+	delay(35*3);
+	if(GetActorProperty(0,APROP_Health) < 26 && Survival == 6 && GetActorProperty(0,APROP_Health) > 0) //Bleed out, it's a 1 in 6 chance that you won't survive a revival
+		Thing_Damage(0,75,20); 
+	else if(GetActorProperty(0,APROP_Health) < 26 && Survival != 6 && GetActorProperty(0,APROP_Health) > 0)
+	{
+		ACS_ExecuteAlways(631,0,0,0,0);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdYou've been revived!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.3, 2.0, 1.0);
+		LocalAmbientSound("game/challenge",255);
+		Delay(1);
+		SetActorProperty(0,APROP_Health,100);
+	}
+}
+
+//------------------------------------------
+//------- Call out "I'm down!" when in last stand.
+script 633 (void)
+{
+	if(GetActorProperty(0,APROP_Health) < 26 && GetActorProperty(0,APROP_Health) > 0)
+	{
+		if(PlayerTeam() == TEAM_RED || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 1))
+			ActivatorSound("russian/down",127);
+		else if(PlayerTeam() == TEAM_BLUE || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 0))
+			ActivatorSound("us/down",127);	
+		else if(PlayerTeam() == 2 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 2))
+			ActivatorSound("brazil/down",127);
+		else if(PlayerTeam() == 3 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 3))
+			ActivatorSound("opfor/down",127);
+		else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 4)
+			ActivatorSound("seal/down",127);
+		else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 5)
+			ActivatorSound("tf141/down",127);
+	}
+}
+
+//------------------------------------------
+//------- Shows current perks
+script 634 RESPAWN NET
+{
+	Delay(5);
+	SetHudSize(640,480,1);
+	if(CheckInventory("Perk1_SOH") == 1)
+	{
+		if(CheckInventory("Perk1_SOH_PRO") == 1)	SetFont("P_SOHP");
+		else SetFont("P_SOH");
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 128.0, 96.0, 2.0, 1.0);		
+	}
+	if(CheckInventory("Perk1_ExtremeConditioning") == 1)
+	{
+		if(CheckInventory("Perk1_ExtremeConditioning_PRO") == 1)	SetFont("P_EXCONP");
+		else SetFont("P_EXCOND");
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 128.0, 128.0, 2.0, 1.0);		
+	}
+	if(CheckInventory("Perk1_OneManArmy") == 1)
+	{
+		if(CheckInventory("Perk1_OneManArmy_PRO") == 1)	SetFont("P_OMAP");
+		else SetFont("P_OMA");
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 128.0, 160.0, 2.0, 1.0);		
+	}
+	if(CheckInventory("Perk2_Juggernaut") == 1)
+	{
+		if(CheckInventory("Perk2_Juggernaut_PRO") == 1)	SetFont("P_JUGGEP");
+		else SetFont("P_JUGGER");
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 128.0, 192.0, 2.0, 1.0);		
+	}
+	if(CheckInventory("Perk2_StoppingPower") == 1)
+	{
+		if(CheckInventory("Perk2_StoppingPower_PRO") == 1)	SetFont("P_POWERP");
+		else SetFont("P_POWER");
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 128.0, 224.0, 2.0, 1.0);		
+	}
+	if(CheckInventory("Perk2_DangerClose") == 1)
+	{
+		if(CheckInventory("Perk2_DangerClose_PRO") == 1)	SetFont("P_DANGEP");
+		else SetFont("P_DANGER");
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 128.0, 256.0, 2.0, 1.0);		
+	}
+	if(CheckInventory("Perk3_SteadyAim") == 1)
+	{
+		if(CheckInventory("Perk3_SteadyAim_PRO") == 1)	SetFont("P_STEADP");
+		else SetFont("P_STEADY");
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 128.0, 288.0, 2.0, 1.0);		
+	}
+	if(CheckInventory("Perk3_Commando") == 1)
+	{
+		if(CheckInventory("Perk3_Commando_PRO") == 1)	SetFont("P_COMMP");
+		else SetFont("P_COMM");
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 128.0, 320.0, 2.0, 1.0);		
+	}
+	if(CheckInventory("Perk3_LastStand") == 1)
+	{
+		if(CheckInventory("Perk3_LastStand_PRO") == 1)	SetFont("P_LASTAP");
+		else SetFont("P_LASTAN");
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 128.0, 352.0, 2.0, 1.0);		
+	}
+}
+
+
+
+
+//Create a load out!
+script 635 (void)
+{
+	while(CheckWeapon("Menu") == 1)
+	{
+		TakeInventory("USP .45",1);
+		SetHudSize(800,600,1);
+		SetFont("CONFONT");
+		HudMessage(s:"Press \cffire \ccto scroll"; HUDMSG_PLAIN, 2050+PlayerNumber(), CR_WHITE, 100.1, 140.0, 2.0);	
+		HudMessage(s:"Press \cfalt-fire \ccto select"; HUDMSG_PLAIN, 2100+PlayerNumber(), CR_WHITE, 100.1, 150.0, 2.0);	
+		SetActorProperty(0,APROP_Invulnerable,1);
+		SetPlayerProperty(0,1,PROP_FROZEN);
+		delay(35);
+	}
+	SetPlayerProperty(0,0,PROP_FROZEN);
+	SetActorProperty(0,APROP_Invulnerable,0);
+}
+
+str Handgun[32];
+str HandgunAmmo[32];
+int HandgunAmmoAmount[32];
+str Primary[32];
+str Primary2[32];
+str PrimaryAmmo[32];
+str PrimaryAmmo2[32];
+str PrimaryType[32];
+int PrimaryAmmoAmount[32];
+str Perk1[32];
+str Perk2[32];
+str Perk3[32];
+str Attachment[32];
+bool GotClass[32];
+
+//Show menu
+script 636 (void)
+{
+	// force redraw of all menus
+	HudMessage(s:""; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 750+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 800+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 850+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 900+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	
+	//Choose to create your own or select a preset.
+	if(CheckWeapon("Menu") == 1 && CheckInventory("MenuPlace") == 0)
+	{
+		SetHudSize(800,600,1);
+		SetFont("CONFONT");
+		HudMessage(s:"Create your loadout"; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);	
+		HudMessage(s:"Presets or make your own"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 180.0, 1.0);	
+
+		//List menu
+		HudMessage(s:"Make your own!"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 1.0);	
+		HudMessage(s:"Assault:       M4A1 (+Extended Mags) and USP .45\n\n                + \cvOne Man Army PRO, \cgStopping Power, \cdCommando"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 260.0, 1.0);	
+		HudMessage(s:"Juggernaut:    M240 and Desert Eagle\n\n                + \cvExtreme Conditioning, \cgJuggernaut PRO, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 300.0, 1.0);	
+		HudMessage(s:"Sniper:        Intervention (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 340.0, 1.0);	
+		HudMessage(s:"Recon:         FN P90 (+Rapid Fire) and M9\n\n                + \cvExtreme Conditioning PRO, \cgJuggernaut, \cdCommando"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 100.1, 380.0, 1.0);		
+		HudMessage(s:"Demolitions:   RPG-7 and SPAS-12\n\n                + \cvSleight Of Hand, \cgDanger Close PRO, \cdSteady Aim"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 100.1, 420.0, 1.0);		
+	
+	
+		if(CheckInventory("MenuCursor") == 0){
+			HudMessage(s:"> Make your own!"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 100.1, 220.0, 1.0);	
+		}
+		else if(CheckInventory("MenuCursor") == 1){
+			HudMessage(s:"> Assault:       M4A1 (+Extended Mags) and USP .45\n\n                + \cvOne Man Army PRO, \cgStopping Power, \cdCommando"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 100.1, 260.0, 1.0);	
+			HudMessage(s:"\cvOne Man Army: Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon\n\n\cgStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies\n\n\cdCommando: +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
+		}
+		else if(CheckInventory("MenuCursor") == 2){
+			HudMessage(s:"> Juggernaut:    M240 and Desert Eagle\n\n                + \cvExtreme Conditioning, \cgJuggernaut PRO, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 100.1, 300.0, 1.0);	
+			HudMessage(s:"\cvExtreme Conditioning: Regenerate 100% faster and 40% sooner\n\n         \cjPRO\cv: +15% running speed\n\n\cgJuggernaut: +40% damage resistance\n\n         \cjPRO\cg: double bonuses from health/armor pickups\n\n\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Revival Kit"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
+		}
+		else if(CheckInventory("MenuCursor") == 3){
+			HudMessage(s:"> Sniper:        Sniper:        Intervention (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 100.1, 340.0, 1.0);	
+			HudMessage(s:"\cvOne Man Army: Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon\n\n\cgStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies\n\n\cdSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
+		}
+		else if(CheckInventory("MenuCursor") == 4){
+			HudMessage(s:"> Recon:         FN P90 (+Rapid Fire) and M9\n\n                + \cvExtreme Conditioning PRO, \cgJuggernaut, \cdCommando"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_YELLOW, 100.1, 380.0, 1.0);	
+			HudMessage(s:"\cvExtreme Conditioning: Regenerate 100% faster and 40% sooner\n\n         \cjPRO\cv: +15% running speed\n\n\cgJuggernaut: +40% damage resistance\n\n         \cjPRO\cg: double bonuses from health/armor pickups\n\n\cdCommando: +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
+		}
+		else if(CheckInventory("MenuCursor") == 5){
+			HudMessage(s:"> Demolitions:   RPG-7 and SPAS-12\n\n                + \cvSleight Of Hand, \cgDanger Close PRO, \cdSteady Aim"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_YELLOW, 100.1, 420.0, 1.0);
+			HudMessage(s:"\cvSleight of Hand: Faster Reloading\n\n         \cjPRO\cv: Faster knifing and grenade throwing\n\n\cgDanger Close: +100% explosive damage\n\n         \cjPRO\cg: +50% explosive blast radius\n\n\cdSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
+		}
+
+		if((GameType() != GAME_SINGLE_PLAYER || GameType() != GAME_NET_COOPERATIVE) && GotClass[PlayerNumber()+1] == TRUE)
+			ACS_ExecuteAlways(638,0,9,0,0);	
+
+		if(CheckInventory("MenuCursor") >= 6)
+			TakeInventory("MenuCursor",10);
+		delay(1);	
+		restart;
+	}
+
+	//Choose handgun
+	if(CheckWeapon("Menu") == 1 && CheckInventory("MenuPlace") == 1)
+	{
+		SetHudSize(800,600,1);
+		SetFont("CONFONT");
+		HudMessage(s:"Create your loadout"; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);	
+		HudMessage(s:"Choose a handgun"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 180.0, 1.0);	
+
+		//List menu
+		HudMessage(s:"USP .45: 12-round mag, semi-auto"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 1.0);	
+		HudMessage(s:"M9:      15-round mag, semi-auto, less damage"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 240.0, 1.0);	
+		HudMessage(s:"PP2000:  20-round mag, machine pistol"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 260.0, 1.0);	
+		HudMessage(s:"Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 440.0, 1.0);	
+	
+		if(CheckInventory("MenuCursor") == 0)
+			HudMessage(s:"> USP .45: 12-round mag, semi-auto"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 100.1, 220.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 1)
+			HudMessage(s:"> M9:      15-round mag, semi-auto, less damage"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 100.1, 240.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 2)
+			HudMessage(s:"> PP2000:  20-round mag, machine pistol"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 100.1, 260.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 3)
+			HudMessage(s:"> Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 100.1, 440.0, 1.0);	
+
+		if(CheckInventory("MenuCursor") >= 4)
+			TakeInventory("MenuCursor",10);
+		delay(1);	
+		restart;
+	}
+
+	//Choose primary weapon
+	if(CheckWeapon("Menu") == 1 && CheckInventory("MenuPlace") == 2)
+	{
+		SetHudSize(800,600,1);
+		SetFont("CONFONT");
+		HudMessage(s:"Create your loadout"; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);	
+		HudMessage(s:"Choose a primary weapon"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 180.0, 1.0);	
+
+		//List menu
+		HudMessage(s:"M4A1:     30-round mag, assault rifle, accurate"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 1.0);	
+		HudMessage(s:"FAMAS:    30-round mag, assault rifle, burst fire, M203 Grenadelauncher"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 240.0, 1.0);	
+		HudMessage(s:"SCAR-H:   20-round mag, assault rifle, high damage"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 260.0, 1.0);	
+		HudMessage(s:"FAL:      20-round mag, assault rifle, semi-auto high damage"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 280.0, 1.0);	
+		HudMessage(s:"SPAS-12:   8-round mag, shotgun, pump action"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 100.1, 300.0, 1.0);	
+		HudMessage(s:"Ranger:    Sawn-off shotgun, short range, high damage"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 100.1, 320.0, 1.0);	
+		HudMessage(s:"Striker:  12-round mag, shotgun, semi-auto"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 100.1, 340.0, 1.0);	
+		HudMessage(s:"MP5K:     30-round mag, SMG, accurate"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_WHITE, 100.1, 360.0, 1.0);	
+		HudMessage(s:"UMP45:    32-round mag, SMG, high damage"; HUDMSG_PLAIN, 800+PlayerNumber(), CR_WHITE, 100.1, 380.0, 1.0);	
+		HudMessage(s:"Vector:   30-round mag, SMG, high rate of fire"; HUDMSG_PLAIN, 850+PlayerNumber(), CR_WHITE, 100.1, 400.0, 1.0);	
+		HudMessage(s:"Intervention:   5-round mag, sniper rifle, bolt action"; HUDMSG_PLAIN, 900+PlayerNumber(), CR_WHITE, 100.1, 420.0, 1.0);	
+		HudMessage(s:"Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 440.0, 1.0);	
+	
+		if(CheckInventory("MenuCursor") == 0)
+			HudMessage(s:"> M4A1:     30-round mag, assault rifle, accurate"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 100.1, 220.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 1)
+			HudMessage(s:"> FAMAS:    30-round mag, assault rifle, burst fire, M203 Grenadelauncher"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 100.1, 240.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 2)
+			HudMessage(s:"> SCAR-H:   20-round mag, assault rifle, high damage"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 100.1, 260.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 3)
+			HudMessage(s:"> FAL:      20-round mag, assault rifle, semi-auto high damage"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 100.1, 280.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 4)
+			HudMessage(s:"> SPAS-12:   8-round mag, shotgun, pump action"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_YELLOW, 100.1, 300.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 5)
+			HudMessage(s:"> Ranger:    Sawn-off shotgun, short range, high damage"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_YELLOW, 100.1, 320.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 6)
+			HudMessage(s:"> Striker:  12-round mag, shotgun, semi-auto"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_YELLOW, 100.1, 340.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 7)
+			HudMessage(s:"> MP5K:     30-round mag, SMG, accurate"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_YELLOW, 100.1, 360.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 8)
+			HudMessage(s:"> UMP45:    32-round mag, SMG, high damage"; HUDMSG_PLAIN, 800+PlayerNumber(), CR_YELLOW, 100.1, 380.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 9)
+			HudMessage(s:"> Vector:   30-round mag, SMG, high rate of fire"; HUDMSG_PLAIN, 850+PlayerNumber(), CR_YELLOW, 100.1, 400.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 10)
+			HudMessage(s:"> Intervention:   5-round mag, sniper rifle, bolt action"; HUDMSG_PLAIN, 900+PlayerNumber(), CR_YELLOW, 100.1, 420.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 11)
+			HudMessage(s:"> Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 100.1, 440.0, 1.0);	
+
+		if(CheckInventory("MenuCursor") >= 12)
+			TakeInventory("MenuCursor",15);
+		delay(1);	
+		restart;
+	}
+
+	//Choose perk 1
+	if(CheckWeapon("Menu") == 1 && CheckInventory("MenuPlace") == 3)
+	{
+		SetHudSize(800,600,1);
+		SetFont("CONFONT");
+		HudMessage(s:"Create your loadout"; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);	
+		HudMessage(s:"Choose a Tier 1 perk"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 180.0, 1.0);	
+
+		//List menu
+		HudMessage(s:"\cvSleight of Hand:      Faster reloading\n\n         \cjPRO\cv: Faster knifing and grenade throwing"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 1.0);	
+		HudMessage(s:"\cvExtreme Conditioning: Regenerate 100% faster and 40% sooner\n\n         \cjPRO\cv: +15% running speed"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 260.0, 1.0);	
+		HudMessage(s:"\cvOne Man Army:         Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 300.0, 1.0);	
+		HudMessage(s:"Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 440.0, 1.0);	
+
+		if(CheckInventory("MenuCursor") == 0)
+			HudMessage(s:"> \ckSleight of Hand:      Faster reloading\n\n         \cjPRO\cv: Faster knifing and grenade throwing"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 100.1, 220.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 1)
+			HudMessage(s:"> \ckExtreme Conditioning: Regenerate 100% faster and 40% sooner\n\n         \cjPRO\cv: +15% running speed"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 100.1, 260.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 2)
+			HudMessage(s:"> \ckOne Man Army:         Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 100.1, 300.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 3)
+			HudMessage(s:"> Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 100.1, 500.0, 1.0);	
+	
+		if(CheckInventory("MenuCursor") >= 4)
+			TakeInventory("MenuCursor",10);
+		delay(1);	
+		restart;
+	}
+
+	//Choose perk 2
+	if(CheckWeapon("Menu") == 1 && CheckInventory("MenuPlace") == 4)
+	{
+		SetHudSize(800,600,1);
+		SetFont("CONFONT");
+		HudMessage(s:"Create your loadout"; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);	
+		HudMessage(s:"Choose a Tier 2 perk"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 180.0, 1.0);	
+
+		//List menu
+		HudMessage(s:"\cgStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 1.0);	
+		HudMessage(s:"\cgDanger Close:   +100% explosive damage\n\n         \cjPRO\cg: +50% explosive blast radius"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 260.0, 1.0);	
+		HudMessage(s:"\cgJuggernaut:     +40% damage resistance\n\n         \cjPRO\cg: Double bonuses from health/armor pickups"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 300.0, 1.0);	
+		HudMessage(s:"Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 500.0, 1.0);	
+
+		if(CheckInventory("MenuCursor") == 0)
+			HudMessage(s:"> \ckStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 100.1, 220.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 1)
+			HudMessage(s:"> \ckDanger Close:   +100% explosive damage\n\n         \cjPRO\cg: +50% explosive blast radius"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 100.1, 260.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 2)
+			HudMessage(s:"> \ckJuggernaut:     +40% damage resistance\n\n         \cjPRO\cg: Double bonuses from health/armor pickups"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 100.1, 300.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 3)
+			HudMessage(s:"> Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 100.1, 500.0, 1.0);	
+	
+		if(CheckInventory("MenuCursor") >= 4)
+			TakeInventory("MenuCursor",10);
+		delay(1);	
+		restart;
+	}
+
+	//Choose perk 3
+	if(CheckWeapon("Menu") == 1 && CheckInventory("MenuPlace") == 5)
+	{
+		SetHudSize(800,600,1);
+		SetFont("CONFONT");
+		HudMessage(s:"Create your loadout"; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);	
+		HudMessage(s:"Choose a Tier 3 perk"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 180.0, 1.0);	
+
+		//List menu
+		HudMessage(s:"\cdSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 1.0);	
+		HudMessage(s:"\cdCommando:   +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 260.0, 1.0);	
+		HudMessage(s:"\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Revival Kit"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 300.0, 1.0);	
+		HudMessage(s:"Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 440.0, 1.0);	
+
+		if(CheckInventory("MenuCursor") == 0)
+			HudMessage(s:"> \ckSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 100.1, 220.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 1)
+			HudMessage(s:"> \ckCommando:   +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 100.1, 260.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 2)
+			HudMessage(s:"> \ckLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Revival Kita"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 100.1, 300.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 3)
+			HudMessage(s:"> Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 100.1, 500.0, 1.0);	
+	
+		if(CheckInventory("MenuCursor") >= 4)
+			TakeInventory("MenuCursor",10);
+		delay(1);	
+		restart;
+	}
+
+	//Choose attachment
+	if(CheckWeapon("Menu") == 1 && CheckInventory("MenuPlace") == 6)
+	{
+		SetHudSize(800,600,1);
+		SetFont("CONFONT");
+		HudMessage(s:"Create your loadout - last menu"; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);	
+		HudMessage(s:"Choose an attachment - use before level up"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 180.0, 1.0);	
+
+		//List menu
+		HudMessage(s:"Akimbo:          Dual wield weapon (handguns, G18 and Mini-Uzi only for now)"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 1.0);	
+		HudMessage(s:"Tactical Knife:  Faster knifing for handguns"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 240.0, 1.0);	
+		HudMessage(s:"Extended Mags:   Increased magazine size (not for .44 Magnum, Deagle, Ranger or 1887)"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 260.0, 1.0);	
+		HudMessage(s:"Rapid Fire:      Increased rate of fire (MP5K, UMP45, P90 only)"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 280.0, 1.0);	
+		HudMessage(s:"Thermal Scope:   Snipers only"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 100.1, 300.0, 1.0);	
+		HudMessage(s:"Grip:            Increased accuracy and damage, shotguns or LMGs only (not for Ranger or 1887)"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 100.1, 320.0, 1.0);	
+		HudMessage(s:"Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 440.0, 1.0);	
+
+	
+		if(CheckInventory("MenuCursor") == 0)
+			HudMessage(s:"> Akimbo:          Dual wield weapon (handguns, G18 and Mini-Uzi only for now)"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 100.1, 220.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 1)
+			HudMessage(s:"> Tactical Knife:  Faster knifing for handguns"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 100.1, 240.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 2)
+			HudMessage(s:"> Extended Mags:   Increased magazine size (not for .44 Magnum, Deagle, Ranger or 1887)"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 100.1, 260.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 3)
+			HudMessage(s:"> Rapid Fire:      Increased rate of fire (MP5K, UMP45, P90 only)"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 100.1, 280.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 4)
+			HudMessage(s:"> Thermal Scope:   Snipers only"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_YELLOW, 100.1, 300.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 5)
+			HudMessage(s:"> Grip:            Increased accuracy and damage, shotguns or LMGs only (not for Ranger or 1887)"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_YELLOW, 100.1, 320.0, 1.0);	
+		else if(CheckInventory("MenuCursor") == 6)
+			HudMessage(s:"> Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 100.1, 440.0, 1.0);	
+	
+		if(CheckInventory("MenuCursor") >= 7)
+			TakeInventory("MenuCursor",10);
+		delay(1);	
+		restart;
+	}
+}
+
+//Make selection
+script 637 (void)
+{
+	//MenuPlace 0: We're in the presets menu.
+	if(CheckInventory("MenuPlace") == 0)
+	{
+		if(CheckInventory("MenuCursor") == 0)		//Go to next menu
+			GiveInventory("MenuPlace",1);
+		else if(CheckInventory("MenuCursor") == 1)	//Choose Assault class, close menu.
+			ACS_ExecuteAlways(638,0,0,0,0);
+		else if(CheckInventory("MenuCursor") == 2)	//Choose Juggernaut class, close menu.
+			ACS_ExecuteAlways(638,0,1,0,0);
+		else if(CheckInventory("MenuCursor") == 3) 	//Choose Sniper class, close menu.
+			ACS_ExecuteAlways(638,0,2,0,0);
+		else if(CheckInventory("MenuCursor") == 4)	//Choose Medic class, close menu.
+			ACS_ExecuteAlways(638,0,3,0,0);
+		else if(CheckInventory("MenuCursor") == 5)	//Choose Demolitions class, close menu.
+			ACS_ExecuteAlways(638,0,4,0,0);
+	}
+	//MenuPlace 1: We're in the handguns menu.
+	else if(CheckInventory("MenuPlace") == 1)
+	{
+		if(CheckInventory("MenuCursor") == 0)		//Set USP .45, go to next menu
+		{
+			GiveInventory("MenuPlace",1);
+			Handgun[PlayerNumber()+1] = "USP .45";
+			HandgunAmmo[PlayerNumber()+1] = "USP45Ammo";
+			HandgunAmmoAmount[PlayerNumber()+1] = 24;
+		}
+		else if(CheckInventory("MenuCursor") == 1)	//Set M9, go to next menu
+		{
+			GiveInventory("MenuPlace",1);
+			Handgun[PlayerNumber()+1] = "M9";
+			HandgunAmmo[PlayerNumber()+1] = "M9Ammo";
+			HandgunAmmoAmount[PlayerNumber()+1] = 30;
+		}
+		else if(CheckInventory("MenuCursor") == 2)	//Set PP2000, go to next menu
+		{
+			GiveInventory("MenuPlace",1);
+			Handgun[PlayerNumber()+1] = "PP2000";
+			HandgunAmmo[PlayerNumber()+1] = "PP2000Ammo";
+			HandgunAmmoAmount[PlayerNumber()+1] = 40;
+		}
+		else if(CheckInventory("MenuCursor") == 3)	//Go back
+			TakeInventory("MenuPlace",1);
+		TakeInventory("MenuCursor",15);
+	}
+	//MenuPlace 2: We're in the primary weapons menu.
+	else if(CheckInventory("MenuPlace") == 2)
+	{
+		if(CheckInventory("MenuCursor") == 0)			//M4A1
+		{
+			GiveInventory("MenuPlace",1);
+			Primary[PlayerNumber()+1] = "M4A1";
+			PrimaryAmmo[PlayerNumber()+1] = "M4A1Ammo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 120;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
+		}
+		else if(CheckInventory("MenuCursor") == 1)		//FAMAS
+		{
+			GiveInventory("MenuPlace",1);
+			Primary[PlayerNumber()+1] = "FAMAS";
+			Primary2[PlayerNumber()+1] = "FAMAS M203";
+			PrimaryAmmo[PlayerNumber()+1] = "FAMASAmmo";
+			PrimaryAmmo2[PlayerNumber()+1] = "M203Ammo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 120;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
+		}
+		else if(CheckInventory("MenuCursor") == 2)		//SCAR-H
+		{
+			GiveInventory("MenuPlace",1);
+			Primary[PlayerNumber()+1] = "SCAR-H";
+			PrimaryAmmo[PlayerNumber()+1] = "SCARHAmmo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 100;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
+		}
+		else if(CheckInventory("MenuCursor") == 3)		//FAL
+		{
+			GiveInventory("MenuPlace",1);
+			Primary[PlayerNumber()+1] = "FAL";
+			PrimaryAmmo[PlayerNumber()+1] = "FALAmmo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 100;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
+		}
+		else if(CheckInventory("MenuCursor") == 4)		//SPAS-12
+		{
+			GiveInventory("MenuPlace",1);
+			Primary[PlayerNumber()+1] = "SPAS-12";
+			PrimaryAmmo[PlayerNumber()+1] = "SPAS12Ammo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 32;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_Shotgun";
+		}
+		else if(CheckInventory("MenuCursor") == 5)		//Ranger
+		{
+			GiveInventory("MenuPlace",1);
+			Primary[PlayerNumber()+1] = "Ranger";
+			PrimaryAmmo[PlayerNumber()+1] = "RangerAmmo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 20;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_Shotgun";
+		}
+		else if(CheckInventory("MenuCursor") == 6)		//Striker
+		{
+			GiveInventory("MenuPlace",1);
+			Primary[PlayerNumber()+1] = "Striker";
+			PrimaryAmmo[PlayerNumber()+1] = "StrikerAmmo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 32;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_Shotgun";
+		}
+		else if(CheckInventory("MenuCursor") == 7)		//MP5K
+		{
+			GiveInventory("MenuPlace",1);
+			Primary[PlayerNumber()+1] = "MP5K";
+			PrimaryAmmo[PlayerNumber()+1] = "MP5Ammo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 120;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
+		}
+		else if(CheckInventory("MenuCursor") == 8)		//UMP45
+		{
+			GiveInventory("MenuPlace",1);
+			Primary[PlayerNumber()+1] = "UMP45";
+			PrimaryAmmo[PlayerNumber()+1] = "UMP45Ammo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 128;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
+		}
+		else if(CheckInventory("MenuCursor") == 9)		//Vector
+		{
+			GiveInventory("MenuPlace",1);
+			Primary[PlayerNumber()+1] = "TDI Vector";
+			PrimaryAmmo[PlayerNumber()+1] = "VectorAmmo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 120;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
+		}
+		else if(CheckInventory("MenuCursor") == 10)		//Intervention
+		{
+			GiveInventory("MenuPlace",1);
+			Primary[PlayerNumber()+1] = "Intervention";
+			PrimaryAmmo[PlayerNumber()+1] = "InterventionAmmo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 20;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_LMG";
+		}
+		else if(CheckInventory("MenuCursor") == 11)	//Go back
+			TakeInventory("MenuPlace",1);
+		TakeInventory("MenuCursor",15);
+	}
+	//MenuPlace 3: We're in the Tier 1 perks menu
+	else if(CheckInventory("MenuPlace") == 3)
+	{
+		if(CheckInventory("MenuCursor") == 0)			//Sleight of Hand
+		{
+			GiveInventory("MenuPlace",1);
+			Perk1[PlayerNumber()+1] = "Perk1_SOH";
+		}
+		else if(CheckInventory("MenuCursor") == 1)		//Extreme Conditioning
+		{
+			GiveInventory("MenuPlace",1);
+			Perk1[PlayerNumber()+1] = "Perk1_ExtremeConditioning";
+		}
+		else if(CheckInventory("MenuCursor") == 2)		//One Man Army
+		{
+			GiveInventory("MenuPlace",1);
+			Perk1[PlayerNumber()+1] = "Perk1_OneManArmy";
+		}
+		else if(CheckInventory("MenuCursor") == 3)	//Go back
+			TakeInventory("MenuPlace",1);
+		TakeInventory("MenuCursor",15);
+	}
+	//MenuPlace 4: We're in the Tier 2 perks menu
+	else if(CheckInventory("MenuPlace") == 4)
+	{
+		if(CheckInventory("MenuCursor") == 0)			//Stopping Power
+		{
+			GiveInventory("MenuPlace",1);
+			Perk2[PlayerNumber()+1] = "Perk2_StoppingPower";
+		}
+		else if(CheckInventory("MenuCursor") == 1)		//Danger Close
+		{
+			GiveInventory("MenuPlace",1);
+			Perk2[PlayerNumber()+1] = "Perk2_DangerClose";
+		}
+		else if(CheckInventory("MenuCursor") == 2)		//Juggernaut
+		{
+			GiveInventory("MenuPlace",1);
+			Perk2[PlayerNumber()+1] = "Perk2_Juggernaut";
+		}
+		else if(CheckInventory("MenuCursor") == 3)	//Go back
+			TakeInventory("MenuPlace",1);
+		TakeInventory("MenuCursor",15);
+	}
+	//MenuPlace 5: We're in the Tier 3 perks menu
+	else if(CheckInventory("MenuPlace") == 5)
+	{
+		if(CheckInventory("MenuCursor") == 0)			//Steady Aim
+		{
+			GiveInventory("MenuPlace",1);
+			Perk3[PlayerNumber()+1] = "Perk3_SteadyAim";
+		}
+		else if(CheckInventory("MenuCursor") == 1)		//Commando
+		{
+			GiveInventory("MenuPlace",1);
+			Perk3[PlayerNumber()+1] = "Perk3_Commando";
+		}
+		else if(CheckInventory("MenuCursor") == 2)		//Last Stand
+		{
+			GiveInventory("MenuPlace",1);
+			Perk3[PlayerNumber()+1] = "Perk3_LastStand";
+		}
+		else if(CheckInventory("MenuCursor") == 3)	//Go back
+			TakeInventory("MenuPlace",1);
+		TakeInventory("MenuCursor",15);
+	}
+	//MenuPlace 6: We're in the Attachments menu
+	else if(CheckInventory("MenuPlace") == 6)
+	{
+		if(CheckInventory("MenuCursor") == 0)			//Akimbo
+			Attachment[PlayerNumber()+1] = "AkimboAttachment";
+		else if(CheckInventory("MenuCursor") == 1)		//Knife
+			Attachment[PlayerNumber()+1] = "KnifeAttachment";
+		else if(CheckInventory("MenuCursor") == 2)		//Ex Mags
+			Attachment[PlayerNumber()+1] = "ExtendedMagsAttachment";
+		else if(CheckInventory("MenuCursor") == 3)		//Rapid Fire
+			Attachment[PlayerNumber()+1] = "RapidFireAttachment";
+		else if(CheckInventory("MenuCursor") == 4)		//Thermal
+			Attachment[PlayerNumber()+1] = "ThermalAttachment";
+		else if(CheckInventory("MenuCursor") == 5)		//Grip
+			Attachment[PlayerNumber()+1] = "GripAttachment";
+		else if(CheckInventory("MenuCursor") == 6)	//Go back
+			TakeInventory("MenuPlace",1);
+
+		if(CheckInventory("MenuCursor") != 6)
+			ACS_ExecuteAlways(638,0,9,0,0);
+	}
+}
+
+script 638 (int Which)
+{
+	If(Which == 0)
+	{
+		TakeInventory("Menu",1);
+		GiveInventory("USP .45",1);
+		GiveInventory("USP45Ammo",24);
+		GiveInventory("M4A1",1);
+		GiveInventory("M4A1Ammo",120);
+		GiveInventory("M4A1Clip2",45);
+		GiveInventory("MaxWeaponsFilled_Handgun",1);
+		GiveInventory("MaxWeaponsFilled_ARSMG",1);
+		GiveInventory("MaxWeaponsFilled",2);
+		GiveInventory("Perk1_OneManArmy",1);
+		GiveInventory("Perk1_OneManArmy_Pro",1);
+		GiveInventory("Perk2_StoppingPower",1);
+		GiveInventory("Perk2_StoppingPowerEffect",1);
+		GiveInventory("Perk3_Commando",1);
+		GiveInventory("Perk3_CommandoEffect",1);
+		ACS_ExecuteAlways(634,0,0,0,0);
+		LocalAmbientSound("game/challenge",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdYou are Assault!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		delay(1);
+		GiveInventory("SetPickupPickup",1);
+		GotClass[PlayerNumber()+1] = True;
+	}
+	else If(Which == 1)
+	{
+		TakeInventory("Menu",1);
+		GiveInventory("Desert Eagle",1);
+		GiveInventory("DeagleAmmo",14);
+		GiveInventory("M240",1);
+		GiveInventory("M240Ammo",200);
+		GiveInventory("MaxWeaponsFilled_Handgun",1);
+		GiveInventory("MaxWeaponsFilled_ARSMG",1);
+		GiveInventory("MaxWeaponsFilled",2);
+		GiveInventory("Perk1_ExtremeConditioning",1);
+		GiveInventory("Perk2_Juggernaut",1);
+		GiveInventory("Perk2_JuggernautEffect",1);
+		GiveInventory("Perk2_Juggernaut_Pro",1);
+		GiveInventory("Perk3_LastStand",1);
+		ACS_ExecuteAlways(634,0,0,0,0);
+		LocalAmbientSound("game/challenge",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdYou are Juggernaut!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		delay(1);
+		GiveInventory("SetPickupPickup",1);
+		GotClass[PlayerNumber()+1] = True;
+	}
+	else If(Which == 2)
+	{
+		TakeInventory("Menu",1);
+		GiveInventory("M93 Raffica",1);
+		GiveInventory("M93RAmmo",68);
+		GiveInventory("Intervention Thermal",1);
+		GiveInventory("InterventionAmmo",20);
+		GiveInventory("MaxWeaponsFilled_Handgun",1);
+		GiveInventory("MaxWeaponsFilled_LMG",1);
+		GiveInventory("MaxWeaponsFilled",2);
+		GiveInventory("Perk1_OneManArmy",1);
+		GiveInventory("Perk2_StoppingPower",1);
+		GiveInventory("Perk2_StoppingPowerEffect",1);
+		GiveInventory("Perk2_StoppingPower_Pro",1);
+		GiveInventory("Perk3_SteadyAim",1);
+		ACS_ExecuteAlways(634,0,0,0,0);
+		LocalAmbientSound("game/challenge",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdYou are Sniper!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		delay(1);
+		GiveInventory("SetPickupPickup",1);
+		GotClass[PlayerNumber()+1] = True;
+	}
+	else If(Which == 3)
+	{
+		TakeInventory("Menu",1);
+		GiveInventory("M9",1);
+		GiveInventory("M9Ammo",30);
+		GiveInventory("FN P90 Rapid Fire",1);
+		GiveInventory("P90Ammo",120);
+		GiveInventory("MaxWeaponsFilled_Handgun",1);
+		GiveInventory("MaxWeaponsFilled_ARSMG",1);
+		GiveInventory("MaxWeaponsFilled",2);		
+		GiveInventory("Perk1_ExtremeConditioning",1);
+		GiveInventory("Perk1_ExtremeConditioning_PRO",1);
+		GiveInventory("Perk2_Juggernaut",1);
+		GiveInventory("Perk2_JuggernautEffect",1);
+		GiveInventory("Perk3_Commando",1);
+		GiveInventory("Perk3_CommandoEffect",1);
+		ACS_ExecuteAlways(634,0,0,0,0);
+		LocalAmbientSound("game/challenge",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdYou are Recon!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		delay(1);
+		GiveInventory("SetPickupPickup",1);
+		GotClass[PlayerNumber()+1] = True;
+	}
+	else If(Which == 4)
+	{
+		TakeInventory("Menu",1);
+		GiveInventory("SPAS-12",1);
+		GiveInventory("SPAS12Ammo",32);
+		GiveInventory("RPG-7",1);
+		GiveInventory("RPGAmmo",4);
+		GiveInventory("MaxWeaponsFilled_Handgun",1);
+		GiveInventory("MaxWeaponsFilled_ARSMG",1);
+		GiveInventory("MaxWeaponsFilled",2);		
+		GiveInventory("Perk1_SOH",1);
+		GiveInventory("Perk2_DangerClose",1);
+		GiveInventory("Perk2_DangerCloseEffect",1);
+		GiveInventory("Perk2_DangerClose_Pro",1);
+		GiveInventory("Perk3_SteadyAim",1);
+		ACS_ExecuteAlways(634,0,0,0,0);
+		LocalAmbientSound("game/challenge",255);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdYou are Demolitions!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		delay(1);
+		GiveInventory("SetPickupPickup",1);
+		GotClass[PlayerNumber()+1] = True;
+	}
+	else if(Which == 9)
+	{
+		TakeInventory("Menu",1);
+		GiveInventory(Handgun[PlayerNumber()+1],1);
+		GiveInventory(HandgunAmmo[PlayerNumber()+1],HandgunAmmoAmount[PlayerNumber()+1]);
+		GiveInventory("MaxWeaponsFilled_Handgun",1);
+		GiveInventory(Primary[PlayerNumber()+1],1);
+		GiveInventory(PrimaryAmmo[PlayerNumber()+1],PrimaryAmmoAmount[PlayerNumber()+1]);
+		GiveInventory(PrimaryType[PlayerNumber()+1],1);
+		GiveInventory("MaxWeaponsFilled",2);
+		if(Primary[PlayerNumber()+1] == "FAMAS")
+		{
+			GiveInventory("FAMAS M203",1);
+			GiveInventory("M203Ammo",3);
+		}
+		GiveInventory(Perk1[PlayerNumber()+1],1);
+		/*if(Perk1[PlayerNumber()+1] == "Perk1_OneManArmy")
+			GiveInventory("Backpack",5);*/
+		GiveInventory(Perk2[PlayerNumber()+1],1);
+		If(Perk2[PlayerNumber()+1] == "Perk2_Juggernaut")
+		{
+			GiveInventory("Perk2_JuggernautEffect",1);
+		}
+		If(Perk2[PlayerNumber()+1] == "Perk2_DangerClose")
+		{
+			GiveInventory("Perk2_DangerCloseEffect",1);
+		}
+		If(Perk2[PlayerNumber()+1] == "Perk2_StoppingPower")
+		{
+			GiveInventory("Perk2_StoppingPowerEffect",1);
+		}
+		GiveInventory(Perk3[PlayerNumber()+1],1);
+		If(Perk3[PlayerNumber()+1] == "Perk3_Commando")
+		{
+			GiveInventory("Perk3_CommandoEffect",1);
+		}
+		GiveInventory(Attachment[PlayerNumber()+1],1);
+		ACS_ExecuteAlways(634,0,0,0,0);
+		LocalAmbientSound("game/challenge",255);
+		delay(1);
+		GiveInventory("SetPickupPickup",1);
+		GotClass[PlayerNumber()+1] = True;
+	}
+	
+	int MaxGunCount = GameSkill();
+	If(CheckInventory("Perk1_OneManArmy_Pro") == 1){
+		MaxGunCount++;
+	}
+	SetAmmoCapacity("MaxWeaponsFilled",MaxGunCount);
+}
+
+script 639 (void)
+{
+	int Randomiser;
+	
+	Delay(5);
+	TakeInventory("USP .45",1);
+
+	Randomiser = random(0,2);
+		if(Randomiser == 0)		//Set USP .45
+		{
+			Handgun[PlayerNumber()+1] = "USP .45";
+			HandgunAmmo[PlayerNumber()+1] = "USP45Ammo";
+			HandgunAmmoAmount[PlayerNumber()+1] = 24;
+		}
+		else if(Randomiser == 1)	//Set M9
+		{
+			Handgun[PlayerNumber()+1] = "M9";
+			HandgunAmmo[PlayerNumber()+1] = "M9Ammo";
+			HandgunAmmoAmount[PlayerNumber()+1] = 30;
+		}
+		else if(Randomiser == 2)	//Set PP2000
+		{
+			Handgun[PlayerNumber()+1] = "PP2000";
+			HandgunAmmo[PlayerNumber()+1] = "PP2000Ammo";
+			HandgunAmmoAmount[PlayerNumber()+1] = 40;
+		}
+
+	Randomiser = random(0,10);
+		if(Randomiser == 0)			//M4A1
+		{
+			Primary[PlayerNumber()+1] = "M4A1";
+			PrimaryAmmo[PlayerNumber()+1] = "M4A1Ammo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 120;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
+		}
+		else if(Randomiser == 1)		//FAMAS
+		{
+			Primary[PlayerNumber()+1] = "FAMAS";
+			Primary2[PlayerNumber()+1] = "FAMAS M203";
+			PrimaryAmmo[PlayerNumber()+1] = "FAMASAmmo";
+			PrimaryAmmo2[PlayerNumber()+1] = "M203Ammo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 120;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
+		}
+		else if(Randomiser == 2)		//SCAR-H
+		{
+			Primary[PlayerNumber()+1] = "SCAR-H";
+			PrimaryAmmo[PlayerNumber()+1] = "SCARHAmmo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 100;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
+		}
+		else if(Randomiser == 3)		//FAL
+		{
+			Primary[PlayerNumber()+1] = "FAL";
+			PrimaryAmmo[PlayerNumber()+1] = "FALAmmo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 100;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
+		}
+		else if(Randomiser == 4)		//SPAS-12
+		{
+			Primary[PlayerNumber()+1] = "SPAS-12";
+			PrimaryAmmo[PlayerNumber()+1] = "SPAS12Ammo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 32;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_Shotgun";
+		}
+		else if(Randomiser == 5)		//Ranger
+		{
+			Primary[PlayerNumber()+1] = "Ranger";
+			PrimaryAmmo[PlayerNumber()+1] = "RangerAmmo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 20;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_Shotgun";
+		}
+		else if(Randomiser == 6)		//Striker
+		{
+			Primary[PlayerNumber()+1] = "Striker";
+			PrimaryAmmo[PlayerNumber()+1] = "StrikerAmmo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 32;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_Shotgun";
+		}
+		else if(Randomiser == 7)		//MP5K
+		{
+			Primary[PlayerNumber()+1] = "MP5K";
+			PrimaryAmmo[PlayerNumber()+1] = "MP5Ammo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 120;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
+		}
+		else if(Randomiser == 8)		//UMP45
+		{
+			Primary[PlayerNumber()+1] = "UMP45";
+			PrimaryAmmo[PlayerNumber()+1] = "UMP45Ammo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 128;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
+		}
+		else if(Randomiser == 9)		//Vector
+		{
+			Primary[PlayerNumber()+1] = "TDI Vector";
+			PrimaryAmmo[PlayerNumber()+1] = "VectorAmmo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 120;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
+		}
+		else if(Randomiser == 10)		//Intervention
+		{
+			Primary[PlayerNumber()+1] = "Intervention";
+			PrimaryAmmo[PlayerNumber()+1] = "InterventionAmmo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 20;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_LMG";
+		}
+
+	Randomiser = random(0,2);
+		if(Randomiser == 0)			//Sleight of Hand
+			Perk1[PlayerNumber()+1] = "Perk1_SOH";
+		else if(Randomiser == 1)		//Extreme Conditioning
+			Perk1[PlayerNumber()+1] = "Perk1_ExtremeConditioning";
+		else if(Randomiser == 2)		//One Man Army
+			Perk1[PlayerNumber()+1] = "Perk1_OneManArmy";
+
+	Randomiser = random(0,2);
+		if(Randomiser == 0)			//Stopping Power
+			Perk2[PlayerNumber()+1] = "Perk2_StoppingPower";
+		else if(Randomiser == 1)		//Danger Close
+			Perk2[PlayerNumber()+1] = "Perk2_DangerClose";
+		else if(Randomiser == 2)		//Juggernaut
+			Perk2[PlayerNumber()+1] = "Perk2_Juggernaut";
+
+	Randomiser = random(0,2);
+		if(Randomiser == 0)			//Steady Aim
+			Perk3[PlayerNumber()+1] = "Perk3_SteadyAim";
+		else if(Randomiser == 1)		//Commando
+			Perk3[PlayerNumber()+1] = "Perk3_Commando";
+		else if(Randomiser == 2)		//Last Stand
+			Perk3[PlayerNumber()+1] = "Perk3_LastStand";
+		TakeInventory("MenuCursor",15);
+
+	Randomiser = random(0,5);
+		if(Randomiser == 0)			//Akimbo
+			Attachment[PlayerNumber()+1] = "AkimboAttachment";
+		else if(Randomiser == 1)		//Knife
+			Attachment[PlayerNumber()+1] = "KnifeAttachment";
+		else if(Randomiser == 2)		//Ex Mags
+			Attachment[PlayerNumber()+1] = "ExtendedMagsAttachment";
+		else if(Randomiser == 3)		//Rapid Fire
+			Attachment[PlayerNumber()+1] = "RapidFireAttachment";
+		else if(Randomiser == 4)		//Thermal
+			Attachment[PlayerNumber()+1] = "ThermalAttachment";
+		else if(Randomiser == 5)		//Grip
+			Attachment[PlayerNumber()+1] = "GripAttachment";
+
+
+	ACS_ExecuteAlways(638,0,9,0,0);
+}
+
+
+
+
+
+
+/*
+//Respawn/Enter, give equipment or give menu if not selected
+script 607 ENTER
+{
+	if(PrimaryWeapon[PlayerNumber()+1] == "Not Selected" && CheckInventory("GotSomething") == 0)
+		ACS_ExecuteAlways(613,0,0,0,0);
+	//else
+		//ACS_ExecuteAlways(608,0,0,0,0);
+}
+
+script 608 RESPAWN
+{
+	delay(1);
+	int ThePlayer = PlayerNumber()+1;
+
+	if(PrimaryWeapon[ThePlayer] == "Not Selected" && CheckInventory("GotSomething") == 0)
+	{
+		ACS_ExecuteAlways(613,0,0,0,0);
+		Terminate;
+	}
+
+	//PRIMARY WEAPON ATTACHMENT (Only attached weapons count, like FAMAS M203, not like Extended Mags)
+	if(PrimaryWeaponAtt[ThePlayer] != "Not Selected")
+	{
+		GiveInventory(PrimaryWeaponAtt[ThePlayer],1);
+		if(PrimaryAmmoAtt[ThePlayer] != "Not Selected")
+		{
+			GiveInventory(PrimaryAmmoAtt[ThePlayer],PrimaryClipAtt[ThePlayer]);
+			GiveInventory(PrimaryClipNameAtt[ThePlayer],PrimaryStartAtt[ThePlayer]);
+		}
+	}
+
+	//SECONDARY WEAPON
+	GiveInventory(SecondaryWeapon[ThePlayer],1);					//Name of weapon itself
+	GiveInventory(SecondaryAmmo[ThePlayer],SecondaryClip[ThePlayer]);		//Reserve amount, usually 2 reserve clips
+	GiveInventory(SecondaryClipName[ThePlayer],SecondaryStart[ThePlayer]);		//The ammo already inside the gun
+
+	//PRIMARY WEAPON
+	GiveInventory(PrimaryWeapon[ThePlayer],1);					//Name of weapon itself
+	GiveInventory(PrimaryAmmo[ThePlayer],PrimaryClip[ThePlayer]);		//Reserve amount, usually 2 reserve clips
+	GiveInventory(PrimaryClipName[ThePlayer],PrimaryStart[ThePlayer]);		//The ammo already inside the gun
+
+	//GRENADE
+	GiveInventory("FragGrenadeAmmo",4);
+	
+	//PERKS
+	GiveInventory(Perk1[ThePlayer],1);
+	SetHudSize(1024,768,1);
+	SetFont(Perk1Icon[ThePlayer]);
+	HudMessage(s:"a"; HUDMSG_FADEOUT, 100+PlayerNumber(), CR_UNTRANSLATED, 1000.0, 600.0, 4.0, 1.0);
+	GiveInventory(Perk2[ThePlayer],1);
+	SetFont(Perk2Icon[ThePlayer]);
+	HudMessage(s:"a"; HUDMSG_FADEOUT, 150+PlayerNumber(), CR_UNTRANSLATED, 1000.0, 655.0, 4.0, 1.0);
+	GiveInventory(Perk3[ThePlayer],1);
+	SetFont(Perk3Icon[ThePlayer]);
+	HudMessage(s:"a"; HUDMSG_FADEOUT, 200+PlayerNumber(), CR_UNTRANSLATED, 1000.0, 710.0, 4.0, 1.0);
+
+	if(Perk2[ThePlayer] == "Perk2_Juggernaut")
+		GiveInventory("Perk2_JuggernautBonus",1);
+	if(Perk2[ThePlayer] == "Perk2_StoppingPower")
+		GiveInventory("Perk2_StoppingPowerBonus",1);
+}
+
+// Test/Template thing
+script 609 (void)
+{
+	int ThePlayer = PlayerNumber()+1; //Makes it easier.
+
+
+	PrimaryWeapon[ThePlayer] = "Mini-UZI";
+	PrimaryAmmo[ThePlayer] = "PrimaryClip";
+	PrimaryClip[ThePlayer] = 64;
+	PrimaryClipName[ThePlayer] = "MiniUziClip";
+	PrimaryStart[ThePlayer] = 32;	
+	PrimaryWeaponAttDisp[ThePlayer] = "no attachment";	
+
+	SecondaryWeapon[ThePlayer] = "SPAS-12";
+	SecondaryAmmo[ThePlayer] = "SecondaryShell";
+	SecondaryClip[ThePlayer] = 16;
+	SecondaryClipName[ThePlayer] = "SPASClip";
+	SecondaryStart[ThePlayer] = 8;	
+	SecondaryWeaponAttDisp[ThePlayer] = "no attachment";	
+
+	Perk1[ThePlayer] = "Perk1_SOH";
+	Perk1Icon[ThePlayer] = "PERK1SOH";
+	Perk1Name[ThePlayer] = "Sleight of Hand";
+	Perk2[ThePlayer] = "Perk2_Juggernaut";
+	Perk2Icon[ThePlayer] = "PERK2JUG";
+	Perk2Name[ThePlayer] = "Juggernaut";
+	Perk3[ThePlayer] = "Perk3_SteadyAim";
+	Perk3Icon[ThePlayer] = "PERK3STD";
+	Perk3Name[ThePlayer] = "Steady Aim";
+
+	GiveInventory("GotSomething",1);
+}
+script 610 (void)
+{
+	int ThePlayer = PlayerNumber()+1; //Makes it easier.
+
+	SetHudSize(1024,768,1);
+	SetFont("DOOMFONT");
+	HudMessage(s:"Press \cffire \ccto scroll"; HUDMSG_PLAIN, 2050+PlayerNumber(), CR_WHITE, 100.1, 240.0, 1.0);	
+	HudMessage(s:"Press \cfalt-fire \ccto select"; HUDMSG_PLAIN, 2100+PlayerNumber(), CR_WHITE, 100.1, 250.0, 1.0);	
+
+	//Display main menu
+	if(MenuNumber[ThePlayer] == 0)
+	{
+		SetFont("BIGFONT");
+		HudMessage(s:"Choose your loadout"; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 100.1, 200.0, 1.0);	
+		HudMessage(s:"PRIMARY WEAPON"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 300.0, 1.0);	
+			HudMessage(s:PrimaryWeapon[ThePlayer]; HUDMSG_PLAIN, 500+PlayerNumber(), CR_GOLD, 500.1, 300.0, 1.0);	
+		if(PrimaryWeaponAttDisp[ThePlayer] != "")
+			HudMessage(s:"With ", s:PrimaryWeaponAttDisp[ThePlayer]; HUDMSG_PLAIN, 550+PlayerNumber(), CR_GOLD, 500.1, 320.0, 1.0);	
+	
+		HudMessage(s:"SECONDARY WEAPON"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 100.1, 350.0, 1.0);	
+			HudMessage(s:SecondaryWeapon[ThePlayer]; HUDMSG_PLAIN, 650+PlayerNumber(), CR_GOLD, 500.1, 350.0, 1.0);	
+		if(PrimaryWeaponAttDisp[ThePlayer] != "")
+			HudMessage(s:"With ", s:SecondaryWeaponAttDisp[ThePlayer]; HUDMSG_PLAIN, 700+PlayerNumber(), CR_GOLD, 500.1, 370.0, 1.0);	
+		
+		HudMessage(s:"PERK 1"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_WHITE, 200.1, 500.0, 1.0);	
+			HudMessage(s:Perk1Name[ThePlayer]; HUDMSG_PLAIN, 800+PlayerNumber(), CR_GOLD, 500.1, 500.0, 1.0);	
+		HudMessage(s:"PERK 2"; HUDMSG_PLAIN, 850+PlayerNumber(), CR_WHITE, 200.1, 520.0, 1.0);	
+			HudMessage(s:Perk2Name[ThePlayer]; HUDMSG_PLAIN, 900+PlayerNumber(), CR_GOLD, 500.1, 520.0, 1.0);	
+		HudMessage(s:"PERK 3"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 200.1, 540.0, 1.0);	
+			HudMessage(s:Perk3Name[ThePlayer]; HUDMSG_PLAIN, 1000+PlayerNumber(), CR_GOLD, 500.1, 540.0, 1.0);	
+
+		if(MenuPart[ThePlayer] == 0)
+			HudMessage(s:"PRIMARY WEAPON"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 200.1, 300.0, 1.0);	
+		else if(MenuPart[ThePlayer] == 1)
+			HudMessage(s:"SECONDARY WEAPON"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_YELLOW, 200.1, 350.0, 1.0);	
+		else if(MenuPart[ThePlayer] == 2)
+			HudMessage(s:"PERK 1"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
+		else if(MenuPart[ThePlayer] == 3)
+			HudMessage(s:"PERK 2"; HUDMSG_PLAIN, 850+PlayerNumber(), CR_YELLOW, 200.1, 520.0, 1.0);
+		else if(MenuPart[ThePlayer] == 4)
+			HudMessage(s:"PERK 3"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 200.1, 540.0, 1.0);
+	}
+	//List Primary Weapons
+	if(MenuNumber[ThePlayer] == 1)
+	{
+		SetFont("BIGFONT");
+		HudMessage(s:"Choose your PRIMARY WEAPON"; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 200.1, 200.0, 1.0);	
+		
+		//SMGs
+		HudMessage(s:"Sub Machine Guns"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_GOLD, 200.1, 300.0, 1.0);	
+		HudMessage(s:"UMP .45"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 200.1, 320.0, 1.0);	
+		HudMessage(s:"Vector"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 200.1, 340.0, 1.0);	
+		HudMessage(s:"FN P90"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 200.1, 360.0, 1.0);	
+		HudMessage(s:"Mini-UZI"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 200.1, 380.0, 1.0);	
+	
+		//Assault Rifles
+		HudMessage(s:"Assault Rifles"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_GOLD, 200.1, 420.0, 1.0);
+		HudMessage(s:"FAMAS"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 200.1, 440.0, 1.0);
+		HudMessage(s:"FAL"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 200.1, 460.0, 1.0);
+		HudMessage(s:"M4A1"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_BLACK, 200.1, 480.0, 1.0);
+		HudMessage(s:"SCAR-H"; HUDMSG_PLAIN, 800+PlayerNumber(), CR_BLACK, 200.1, 500.0, 1.0);
+		
+		//Sniper Rifles / LMGs
+		HudMessage(s:"Sniper Rifles / Light Machine Guns"; HUDMSG_PLAIN, 850+PlayerNumber(), CR_GOLD, 200.1, 540.0, 1.0);
+		HudMessage(s:"Intervention"; HUDMSG_PLAIN, 900+PlayerNumber(), CR_BLACK, 200.1, 560.0, 1.0);
+		HudMessage(s:"Dragonov"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_BLACK, 200.1, 580.0, 1.0);
+		HudMessage(s:"L86 LSW"; HUDMSG_PLAIN, 1000+PlayerNumber(), CR_BLACK, 200.1, 620.0, 1.0);
+		HudMessage(s:"AUG HBAR"; HUDMSG_PLAIN, 1050+PlayerNumber(), CR_BLACK, 200.1, 640.0, 1.0);
+
+		if(MenuPart[ThePlayer] == 0)
+		{
+			HudMessage(s:"UMP .45"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 200.1, 320.0, 1.0);	
+			SetFont("UMP45");
+				HudMessage(s:"a"; HUDMSG_PLAIN, 2000+PlayerNumber(), CR_YELLOW, 500.1, 400.0, 1.0);	
+		}
+		else if(MenuPart[ThePlayer] == 1)
+		{
+			HudMessage(s:"Vector"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 200.1, 340.0, 1.0);	
+			SetFont("VECTOR");
+				HudMessage(s:"a"; HUDMSG_PLAIN, 2000+PlayerNumber(), CR_YELLOW, 500.1, 400.0, 1.0);	
+		}
+		else if(MenuPart[ThePlayer] == 2)
+		{
+			HudMessage(s:"FN P90"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 200.1, 360.0, 1.0);	
+			SetFont("P90");
+				HudMessage(s:"a"; HUDMSG_PLAIN, 2000+PlayerNumber(), CR_YELLOW, 500.1, 400.0, 1.0);	
+		}
+		else if(MenuPart[ThePlayer] == 3)
+		{
+			HudMessage(s:"Mini-UZI"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 200.1, 380.0, 1.0);	
+			SetFont("MINIUZI");
+				HudMessage(s:"a"; HUDMSG_PLAIN, 2000+PlayerNumber(), CR_YELLOW, 500.1, 400.0, 1.0);	
+		}
+		else if(MenuPart[ThePlayer] == 4)
+		{
+			HudMessage(s:"FAMAS"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_YELLOW, 200.1, 440.0, 1.0);
+			SetFont("FAMAS_II");
+				HudMessage(s:"a"; HUDMSG_PLAIN, 2000+PlayerNumber(), CR_YELLOW, 500.1, 400.0, 1.0);	
+		}
+		else if(MenuPart[ThePlayer] == 5)
+		{
+			HudMessage(s:"FAL"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_YELLOW, 200.1, 460.0, 1.0);
+			SetFont("FAL_II");
+				HudMessage(s:"a"; HUDMSG_PLAIN, 2000+PlayerNumber(), CR_YELLOW, 500.1, 400.0, 1.0);	
+		}
+	}
+	//List Secondary Weapons
+	if(MenuNumber[ThePlayer] == 2)
+	{
+		SetFont("BIGFONT");
+		HudMessage(s:"Choose your SECONDARY WEAPON"; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 200.1, 200.0, 1.0);	
+		
+		//Handguns
+		HudMessage(s:"Handguns"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_GOLD, 200.1, 300.0, 1.0);	
+		HudMessage(s:"USP .45"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 200.1, 320.0, 1.0);	
+		HudMessage(s:".44 Magnum"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 200.1, 340.0, 1.0);	
+		HudMessage(s:"Desert Eagle"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_BLACK, 200.1, 360.0, 1.0);	
+
+		//Shotguns
+		HudMessage(s:"Shotguns"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_GOLD, 200.1, 400.0, 1.0);	
+		HudMessage(s:"SPAS-12"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 200.1, 420.0, 1.0);	
+		HudMessage(s:"AA-12"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 200.1, 440.0, 1.0);	
+
+		//Launchers
+		HudMessage(s:"Launchers"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_GOLD, 200.1, 480.0, 1.0);	
+		HudMessage(s:"Thumper"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_BLACK, 200.1, 500.0, 1.0);	
+		HudMessage(s:"AT4"; HUDMSG_PLAIN, 800+PlayerNumber(), CR_BLACK, 200.1, 520.0, 1.0);	
+
+		if(MenuPart[ThePlayer] == 0)
+		{
+			HudMessage(s:"USP .45"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 200.1, 320.0, 1.0);	
+			SetFont("USP");
+				HudMessage(s:"a"; HUDMSG_PLAIN, 2000+PlayerNumber(), CR_YELLOW, 500.1, 400.0, 1.0);	
+		}
+		else if(MenuPart[ThePlayer] == 1)
+		{
+			HudMessage(s:".44 Magnum"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 200.1, 340.0, 1.0);	
+			SetFont("MAGNUM");
+				HudMessage(s:"a"; HUDMSG_PLAIN, 2000+PlayerNumber(), CR_YELLOW, 500.1, 400.0, 1.0);	
+		}
+		else if(MenuPart[ThePlayer] == 2)
+		{
+			HudMessage(s:"SPAS-12"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_YELLOW, 200.1, 420.0, 1.0);	
+			SetFont("SPAS12");
+				HudMessage(s:"a"; HUDMSG_PLAIN, 2000+PlayerNumber(), CR_YELLOW, 500.1, 400.0, 1.0);	
+		}
+		else if(MenuPart[ThePlayer] == 3)
+		{
+			HudMessage(s:"AA-12"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_YELLOW, 200.1, 440.0, 1.0);	
+			SetFont("AA12");
+				HudMessage(s:"a"; HUDMSG_PLAIN, 2000+PlayerNumber(), CR_YELLOW, 500.1, 400.0, 1.0);	
+		}
+	}
+	//UMP .45 Attachments
+	if(MenuNumber[ThePlayer] == 100)
+	{
+		SetFont("BIGFONT");
+		HudMessage(s:"Choose your ATTACHMENT"; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 200.1, 200.0, 1.0);	
+		
+		//Attachments
+		HudMessage(s:"None"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 200.1, 300.0, 1.0);			
+		HudMessage(s:"Rapid Fire"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 200.1, 320.0, 1.0);			
+		HudMessage(s:"Silencer"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 200.1, 340.0, 1.0);			
+		HudMessage(s:"Extended Mags"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 200.1, 360.0, 1.0);		
+	
+		if(MenuPart[ThePlayer] == 0)
+		{
+			HudMessage(s:"None"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_YELLOW, 200.1, 300.0, 1.0);			
+			SetFont("UMP45");
+				HudMessage(s:"a"; HUDMSG_PLAIN, 2000+PlayerNumber(), CR_YELLOW, 500.1, 400.0, 1.0);	
+		}
+		else if(MenuPart[ThePlayer] == 1)
+		{
+			HudMessage(s:"Rapid Fire"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 200.1, 320.0, 1.0);			
+			SetFont("RAPID");
+				HudMessage(s:"a"; HUDMSG_PLAIN, 2000+PlayerNumber(), CR_YELLOW, 500.1, 400.0, 1.0);	
+		}
+		else if(MenuPart[ThePlayer] == 2)
+		{
+			HudMessage(s:"Silencer"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 200.1, 340.0, 1.0);			
+			SetFont("SILENCER");
+				HudMessage(s:"a"; HUDMSG_PLAIN, 2000+PlayerNumber(), CR_YELLOW, 500.1, 400.0, 1.0);	
+		}
+		else if(MenuPart[ThePlayer] == 3)
+		{
+			HudMessage(s:"Extended Mags"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 200.1, 360.0, 1.0);		
+			SetFont("EXMAGS");
+				HudMessage(s:"a"; HUDMSG_PLAIN, 2000+PlayerNumber(), CR_YELLOW, 500.1, 400.0, 1.0);	
+		}
+	}
+
+	SetPlayerProperty(0,1,PROP_FROZEN);
+	delay(25);
+	if(CheckWeapon("Menu") == 1)
+		restart;
+
+	SetPlayerProperty(0,0,PROP_FROZEN);	
+}
+script 611 (void)
+{
+	int ThePlayer = PlayerNumber()+1; //Makes it easier.
+
+	//SCROLL
+	//Display main menu
+	if(MenuNumber[ThePlayer] == 0)
+	{
+		MenuPart[ThePlayer]++;
+		if(MenuPart[ThePlayer] == 5)
+			MenuPart[ThePlayer] = 0;
+	}
+	//List Primary Weapons
+	if(MenuNumber[ThePlayer] == 1)
+	{
+		MenuPart[ThePlayer]++;
+		if(MenuPart[ThePlayer] == 6)
+			MenuPart[ThePlayer] = 0;
+	}
+	//List Secondary Weapons
+	if(MenuNumber[ThePlayer] == 2)
+	{
+		MenuPart[ThePlayer]++;
+		if(MenuPart[ThePlayer] == 4)
+			MenuPart[ThePlayer] = 0;
+	}
+
+
+
+	//UMP .45 Attachments
+	if(MenuNumber[ThePlayer] == 100 || MenuNumber[ThePlayer] == 100)
+	{
+		MenuPart[ThePlayer]++;
+		if(MenuPart[ThePlayer] == 4)
+			MenuPart[ThePlayer] = 0;
+	}
+}
+script 612 (void)
+{
+	int ThePlayer = PlayerNumber()+1; //Makes it easier.
+
+	//SELECT
+	//List Primary Weapons
+	if(MenuNumber[ThePlayer] == 0 && MenuPart[ThePlayer] == 0)
+	{
+		MenuNumber[ThePlayer] = 1;
+		MenuPart[ThePlayer] = 0;
+	}
+	//List Secondary Weapons
+	if(MenuNumber[ThePlayer] == 0 && MenuPart[ThePlayer] == 1)
+	{
+		MenuNumber[ThePlayer] = 2;
+		MenuPart[ThePlayer] = 0;
+	}
+
+
+
+	//UMP .45 Attachments
+	if(MenuNumber[ThePlayer] == 1 && MenuPart[ThePlayer] == 0)
+	{
+		MenuNumber[ThePlayer] = 100;
+		MenuPart[ThePlayer] = 0;
+	}
+	//UMP .45: Select None
+	if(MenuNumber[ThePlayer] == 100 && MenuPart[ThePlayer] == 0)
+	{
+		PrimaryWeapon[ThePlayer] = "UMP .45";
+		PrimaryAmmo[ThePlayer] = "PrimaryClip";
+		PrimaryClip[ThePlayer] = 64;
+		PrimaryClipName[ThePlayer] = "UMP45Clip";
+		PrimaryStart[ThePlayer] = 32;	
+		PrimaryWeaponAttDisp[ThePlayer] = "no attachment";
+		MenuNumber[ThePlayer] = 0;
+		MenuPart[ThePlayer] = 0;
+	}
+	//UMP .45: Select Rapid Fire
+	if(MenuNumber[ThePlayer] == 100 && MenuPart[ThePlayer] == 1)
+	{
+		PrimaryWeapon[ThePlayer] = "UMP .45 Rapid Fire";
+		PrimaryAmmo[ThePlayer] = "PrimaryClip";
+		PrimaryClip[ThePlayer] = 64;
+		PrimaryClipName[ThePlayer] = "UMP45Clip";
+		PrimaryStart[ThePlayer] = 32;	
+		PrimaryWeaponAttDisp[ThePlayer] = "";
+		MenuNumber[ThePlayer] = 0;
+		MenuPart[ThePlayer] = 0;
+	}
+	//UMP .45: Select Silencer
+	if(MenuNumber[ThePlayer] == 100 && MenuPart[ThePlayer] == 2)
+	{
+		PrimaryWeapon[ThePlayer] = "UMP .45 Silenced";
+		PrimaryAmmo[ThePlayer] = "PrimaryClip";
+		PrimaryClip[ThePlayer] = 64;
+		PrimaryClipName[ThePlayer] = "UMP45Clip";
+		PrimaryStart[ThePlayer] = 32;	
+		PrimaryWeaponAttDisp[ThePlayer] = "";
+		MenuNumber[ThePlayer] = 0;
+		MenuPart[ThePlayer] = 0;
+	}
+	//UMP .45: Select Extended Mags
+	if(MenuNumber[ThePlayer] == 100 && MenuPart[ThePlayer] == 3)
+	{
+		PrimaryWeapon[ThePlayer] = "UMP .45 Extended Mags";
+		PrimaryAmmo[ThePlayer] = "PrimaryClip";
+		PrimaryClip[ThePlayer] = 96;
+		PrimaryClipName[ThePlayer] = "UMP45ClipExt";
+		PrimaryStart[ThePlayer] = 48;	
+		PrimaryWeaponAttDisp[ThePlayer] = "";
+		MenuNumber[ThePlayer] = 0;
+		MenuPart[ThePlayer] = 0;
+	}
+}
+script 613 (void) NET
+{
+	//OPEN MENU
+	if(CheckInventory("Menu") == 0)
+	{
+		GiveInventory("Menu",1);
+		Delay(1);
+		SetWeapon("Menu");
+		Delay(35);
+		ACS_ExecuteAlways(610,0,0,0,0);
+	}
+	else if(CheckInventory("GotSomething") == 1)
+	{
+		TakeInventory("Menu",1);
+		Delay(35);
+		MenuNumber[PlayerNumber()+1] = 0;
+		MenuPart[PlayerNumber()+1] = 0;
+		if(CheckInventory("HasPrimary") == 0)
+			ACS_ExecuteAlways(608,0,0,0,0);
+	}
+}*/
