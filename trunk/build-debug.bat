@@ -17,7 +17,7 @@ cd ..
 cd ..\temp\acs
 ..\..\utility\7z a ..\..\temp\debug-acs.pk3 acs\RGH_ACS -mx0
 cd ..\..
-skulltag data/core/* temp/debug-acs.pk3 temp/debug-monsters.pk3
+skulltag data/core/*.wad temp/debug-acs.pk3 temp/debug-monsters.pk3
 exit
 
 :acserror
