@@ -11,7 +11,7 @@ move temp\acs\acs\RGH_ACS.o temp\acs\acs\RGH_ACS
 if exist "acs.err" goto acserror
 
 cd data\monsters
-..\..\utility\7z u ..\..\temp\debug-monsters.pk3 * -mx0
+..\..\utility\7z u ..\..\temp\debug-monsters.pk3 *.wad -mx0
 cd ..
 ..\utility\7z a ..\temp\debug-acs.pk3 LOADACS -mx0
 cd ..\temp\acs
