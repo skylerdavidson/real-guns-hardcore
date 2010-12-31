@@ -13,9 +13,9 @@ if exist "acs.err" goto acserror
 cd data
 ..\utility\7z a ..\output\RGH.pk3 credits.txt
 cd core
-..\..\utility\7z a ..\..\output\RGH.pk3 *
+..\..\utility\7z a ..\..\output\RGH.pk3 *.wad
 cd ..\monsters
-..\..\utility\7z a ..\..\output\RGH.pk3 *
+..\..\utility\7z a ..\..\output\RGH.pk3 *.wad
 cd ..
 ..\utility\7z a ..\output\RGH.pk3 LOADACS
 cd ..\temp\acs
