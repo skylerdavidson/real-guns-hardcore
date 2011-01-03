@@ -413,48 +413,54 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 
 	if(CheckWeapon("Intervention") || CheckWeapon("Intervention Thermal") || CheckWeapon("Intervention Ex Mags"))
 	{
-		Strength = 5000;
-		Reverse = 4000;
-		RecoilSpeed = 700;
+		Strength = 7000;
+		Reverse = 6000;
+		RecoilSpeed = 1600;
 		if(CheckInventory("Aiming") == 1)
 		{
-			Strength = Strength/2;
-			Reverse = Strength/2;
+			Strength = 2500;
+			Reverse = 2000;
 		}
 		EnableRandomization = true;
 	}
 
 	if(CheckWeapon("Barrett 50cal") || CheckWeapon("Barrett 50cal Thermal") || CheckWeapon("Barrett 50cal Ex Mags"))
 	{
-		Strength = 5000;
-		Reverse = 4000;
-		RecoilSpeed = 700;
+		Strength = 7000;
+		Reverse = 6000;
+		RecoilSpeed = 1600;
 		if(CheckInventory("Aiming") == 1)
 		{
-			Strength = Strength/2;
-			Reverse = Strength/2;
+			Strength = 2500;
+			Reverse = 2000;
 		}
 		EnableRandomization = true;
 	}
 
 	if(CheckWeapon("WA2000") || CheckWeapon("WA2000 Thermal") || CheckWeapon("WA2000 Ex Mags"))
 	{
-		Strength = 3200;
-		Reverse = 3200;
-		RecoilSpeed = 600;
+		Strength = 5000;
+		Reverse = 4000;
+		RecoilSpeed = 1200;
 		if(CheckInventory("Aiming") == 1)
 		{
-			Strength = Strength/2;
-			Reverse = Strength/2;
+			Strength = 1600;
+			Reverse = 1600;
 		}
 		EnableRandomization = true;
 	}
 
 	if(CheckWeapon("M14 EBR") || CheckWeapon("M14 EBR Thermal") || CheckWeapon("M14 EBR Ex Mags"))
 	{
-		Strength = 800;
-		Reverse = 800;
-		RecoilSpeed = 400;
+		Strength = 4000;
+		Reverse = 3000;
+		RecoilSpeed = 1000;
+		if(CheckInventory("Aiming") == 1)
+		{
+			Strength = 800;
+			Reverse = 750;
+			RecoilSpeed = 400;
+		}
 		EnableRandomization = true;
 	}
 
