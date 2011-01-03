@@ -4346,7 +4346,6 @@ script 638 (int Which)
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
 		GiveInventory("MaxWeaponsFilled",2);		
 		GiveInventory("Perk1_ExtremeConditioning",1);
-		GiveInventory("Perk1_ExtremeConditioning_PRO",1);
 		GiveInventory("Perk2_ColdBlooded",1);
 		GiveInventory("Perk2_ColdBlooded_Pro",1);
 		GiveInventory("Perk2_JuggernautEffect",1);
