@@ -857,7 +857,7 @@ script 605 (void) CLIENTSIDE
 //Regeneration
 script 606 (void)
 {
-	log(s:"StartRegen");
+	///log(s:"StartRegen");
 	if(CheckInventory("ReadyRegen") == 0)
 	{
 		GiveInventory("ReadyRegen",1);
@@ -865,7 +865,7 @@ script 606 (void)
 		{
 			if(CheckInventory("InCombatRegeneration") > 0)
 			{
-				log(i:CheckInventory("InCombatRegeneration"));
+				//log(i:CheckInventory("InCombatRegeneration"));
 
 				if(GetActorProperty(0,APROP_Health) < 60){
 					/*if(GetActorProperty(0,APROP_Health) > 80)
@@ -899,7 +899,7 @@ script 606 (void)
 				if(GetActorProperty(0,APROP_Health) < 100 && GetActorProperty(0,APROP_Health) > 0)
 				{
 				
-					log(s:"Regen");
+					//log(s:"Regen");
 				
 					if(GetActorProperty(0,APROP_Health) < 60){
 						/*if(GetActorProperty(0,APROP_Health) > 80)
