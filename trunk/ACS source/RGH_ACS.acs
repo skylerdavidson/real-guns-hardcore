@@ -3779,7 +3779,7 @@ script 636 (void)
 		HudMessage(s:"Assault:       M4A1 (+Extended Mags) and USP .45\n\n                + \cvOne Man Army PRO, \cgStopping Power, \cdCommando"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 260.0, 1.0);	
 		HudMessage(s:"Juggernaut:    M240 and Desert Eagle\n\n                + \cvExtreme Conditioning, \cgJuggernaut PRO, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 300.0, 1.0);	
 		HudMessage(s:"Sniper:        Intervention (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 340.0, 1.0);	
-		HudMessage(s:"Recon:         FN P90 (+Rapid Fire) and M9\n\n                + \cvExtreme Conditioning PRO, \cgCold Blooded, \cdCommando"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 100.1, 380.0, 1.0);		
+		HudMessage(s:"Recon:         FN P90 (+Rapid Fire) and M9\n\n                + \cvExtreme Conditioning, \cgCold Blooded PRO, \cdCommando"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 100.1, 380.0, 1.0);		
 		HudMessage(s:"Demolitions:   RPG-7 and SPAS-12\n\n                + \cvSleight Of Hand, \cgDanger Close PRO, \cdSteady Aim"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 100.1, 420.0, 1.0);		
 	
 	
@@ -3799,7 +3799,7 @@ script 636 (void)
 			HudMessage(s:"\cvOne Man Army: Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon\n\n\cgStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies\n\n\cdSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
 		}
 		else if(CheckInventory("MenuCursor") == 4){
-			HudMessage(s:"> Recon:         FN P90 (+Rapid Fire) and M9\n\n                + \cvExtreme Conditioning PRO, \cgCold Blooded, \cdCommando"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_YELLOW, 100.1, 380.0, 1.0);	
+			HudMessage(s:"> Recon:         FN P90 (+Rapid Fire) and M9\n\n                + \cvExtreme Conditioning, \cgCold Blooded PRO, \cdCommando"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_YELLOW, 100.1, 380.0, 1.0);	
 			HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner\n\n\cgCold Blooded: Invisible to seeker missiles\n\n         \cjPRO\cg: Partial invisibility while out of combat\n\n\cdCommando: +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
 		}
 		else if(CheckInventory("MenuCursor") == 5){
