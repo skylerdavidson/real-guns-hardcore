@@ -4338,9 +4338,9 @@ script 638 (int Which)
 	else If(Which == 3)
 	{
 		TakeInventory("Menu",1);
-		GiveInventory("M9",1);
+		GiveInventory("M9 Tac Knife",1);
 		GiveInventory("M9Ammo",30);
-		GiveInventory("FN P90 Rapid Fire",1);
+		GiveInventory("FN P90",1);
 		GiveInventory("P90Ammo",120);
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
