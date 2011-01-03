@@ -795,7 +795,7 @@ script 602 (void)
 		
 		
 		
-		if(CheckInventory("Perk1_ExtremeConditioning_Pro") == 1)
+		if(CheckInventory("Perk1_ExtremeConditioning") == 1)
 		{
 			MoveSpeed = FixedMul(MoveSpeed, 1.15);
 		}
@@ -885,7 +885,7 @@ script 606 (void)
 
 				Delay(25);
 				
-				if(CheckInventory("Perk1_ExtremeConditioning") == 1 && CheckInventory("InCombatRegeneration") == 2)
+				if(CheckInventory("Perk1_ExtremeConditioning_PRO") == 1 && CheckInventory("InCombatRegeneration") == 2)
 				{
 					print(s:"Extreme");
 					TakeInventory("InCombatRegeneration",2);
@@ -928,7 +928,7 @@ script 606 (void)
 					if(GetActorProperty(0,APROP_SpawnHealth) == 1){
 						// don't regenerate in last stand
 					}
-					else if(CheckInventory("Perk1_ExtremeConditioning") == 1)
+					else if(CheckInventory("Perk1_ExtremeConditioning_PRO") == 1)
 						GiveInventory("Health",32);
 					else
 						GiveInventory("Health",16);
@@ -3039,7 +3039,7 @@ script 624 (int Which)
 		GiveInventory("Perk1_ExtremeConditioning",1);
 		SetFont("BIGFONT");
 		HudMessage(s:"\cvEXTREME CONDITIONING"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"Regenerate 100% faster and 40% sooner!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"+15% movement speed!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 2) // ONE MAN ARMY
 	{
@@ -3117,7 +3117,7 @@ script 624 (int Which)
 		GiveInventory("Perk1_ExtremeConditioning_Pro",1);
 		SetFont("BIGFONT");
 		HudMessage(s:"\cvEXTREME CONDITIONING PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"+15% running speed!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"Regenerate 100% faster and 40% sooner!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 		ACS_ExecuteAlways(501,0,0,0,0);
 	}
 	if(Which == 11) // ONE MAN ARMY PRO
@@ -3788,7 +3788,7 @@ script 636 (void)
 		}
 		else if(CheckInventory("MenuCursor") == 2){
 			HudMessage(s:"> Juggernaut:    M240 and Desert Eagle\n\n                + \cvExtreme Conditioning, \cgJuggernaut PRO, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 100.1, 300.0, 1.0);	
-			HudMessage(s:"\cvExtreme Conditioning: Regenerate 100% faster and 40% sooner\n\n         \cjPRO\cv: +15% running speed\n\n\cgJuggernaut: +40% damage resistance\n\n         \cjPRO\cg: double bonuses from health/armor pickups\n\n\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Revival Kit"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
+			HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner\n\n\cgJuggernaut: +40% damage resistance\n\n         \cjPRO\cg: double bonuses from health/armor pickups\n\n\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Revival Kit"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
 		}
 		else if(CheckInventory("MenuCursor") == 3){
 			HudMessage(s:"> Sniper:        Sniper:        Intervention (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 100.1, 340.0, 1.0);	
@@ -3796,7 +3796,7 @@ script 636 (void)
 		}
 		else if(CheckInventory("MenuCursor") == 4){
 			HudMessage(s:"> Recon:         FN P90 (+Rapid Fire) and M9\n\n                + \cvExtreme Conditioning PRO, \cgCold Blooded, \cdCommando"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_YELLOW, 100.1, 380.0, 1.0);	
-			HudMessage(s:"\cvExtreme Conditioning: Regenerate 100% faster and 40% sooner\n\n         \cjPRO\cv: +15% running speed\n\n\cgCold Blooded: Invisible to seeker missiles\n\n         \cjPRO\cg: Partial invisibility while out of combat\n\n\cdCommando: +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
+			HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner\n\n\cgCold Blooded: Invisible to seeker missiles\n\n         \cjPRO\cg: Partial invisibility while out of combat\n\n\cdCommando: +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
 		}
 		else if(CheckInventory("MenuCursor") == 5){
 			HudMessage(s:"> Demolitions:   RPG-7 and SPAS-12\n\n                + \cvSleight Of Hand, \cgDanger Close PRO, \cdSteady Aim"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_YELLOW, 100.1, 420.0, 1.0);
@@ -3904,14 +3904,14 @@ script 636 (void)
 
 		//List menu
 		HudMessage(s:"\cvSleight of Hand:      Faster reloading\n\n         \cjPRO\cv: Faster knifing and grenade throwing"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 1.0);	
-		HudMessage(s:"\cvExtreme Conditioning: Regenerate 100% faster and 40% sooner\n\n         \cjPRO\cv: +15% running speed"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 260.0, 1.0);	
+		HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 260.0, 1.0);	
 		HudMessage(s:"\cvOne Man Army:         Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 300.0, 1.0);	
 		HudMessage(s:"Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 440.0, 1.0);	
 
 		if(CheckInventory("MenuCursor") == 0)
 			HudMessage(s:"> \ckSleight of Hand:      Faster reloading\n\n         \cjPRO\cv: Faster knifing and grenade throwing"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 100.1, 220.0, 1.0);	
 		else if(CheckInventory("MenuCursor") == 1)
-			HudMessage(s:"> \ckExtreme Conditioning: Regenerate 100% faster and 40% sooner\n\n         \cjPRO\cv: +15% running speed"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 100.1, 260.0, 1.0);	
+			HudMessage(s:"> \ckExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 100.1, 260.0, 1.0);	
 		else if(CheckInventory("MenuCursor") == 2)
 			HudMessage(s:"> \ckOne Man Army:         Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 100.1, 300.0, 1.0);	
 		else if(CheckInventory("MenuCursor") == 3)
