@@ -188,9 +188,9 @@ script 597 ENTER
 	ACS_ExecuteAlways(602,0,0,0,0); // adjust movement speed
 
 	SetFont("BIGFONT");
-	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.1 \ch=="; HUDMSG_FADEOUT,0,CR_BLUE,0.5,0.6,1.0,2.0);
+	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.1 \ch=="; HUDMSG_FADEOUT,0,CR_BLUE,0.5,0.6,2.0,0.5);
 	SetFont("DOOMFONT");
-	HudMessage(s:"\ccBy \cvVoltlocK\cj and \cvCommanderZ"; HUDMSG_FADEOUT,0,CR_YELLOW,0.5,0.7,1.0,2.0);
+	HudMessage(s:"\ccBy \cvVoltlocK\cj and \cvCommanderZ"; HUDMSG_FADEOUT,0,CR_YELLOW,0.5,0.7,2.0,0.5);
 }
 
 //------------------------------------------
@@ -3653,67 +3653,86 @@ script 633 (void)
 //------- Shows current perks
 script 634 RESPAWN NET
 {
-	Delay(5);
-	SetHudSize(640,480,1);
+	Delay(15);
+	
+	HudMessage(s:""; HUDMSG_PLAIN, 1001, CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1002, CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 750+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 800+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 850+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 900+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
+	
+	
+	SetHudSize(320,200,1);
 	if(CheckInventory("Perk1_SOH") == 1)
 	{
 		if(CheckInventory("Perk1_SOH_PRO") == 1)	SetFont("P_SOHP");
 		else SetFont("P_SOH");
-		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 128.0, 96.0, 2.0, 1.0);		
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 180.0, 215.0, 3.0, 1.0);		
 	}
 	if(CheckInventory("Perk1_ExtremeConditioning") == 1)
 	{
 		if(CheckInventory("Perk1_ExtremeConditioning_PRO") == 1)	SetFont("P_EXCONP");
 		else SetFont("P_EXCOND");
-		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 128.0, 128.0, 2.0, 1.0);		
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 180.0, 215.0, 3.0, 1.0);		
 	}
 	if(CheckInventory("Perk1_OneManArmy") == 1)
 	{
 		if(CheckInventory("Perk1_OneManArmy_PRO") == 1)	SetFont("P_OMAP");
 		else SetFont("P_OMA");
-		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 128.0, 160.0, 2.0, 1.0);		
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 180.0, 215.0, 3.0, 1.0);		
 	}
 	if(CheckInventory("Perk2_Juggernaut") == 1)
 	{
 		if(CheckInventory("Perk2_Juggernaut_PRO") == 1)	SetFont("P_JUGGEP");
 		else SetFont("P_JUGGER");
-		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 128.0, 192.0, 2.0, 1.0);		
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 215.0, 215.0, 3.0, 1.0);		
 	}
 	if(CheckInventory("Perk2_StoppingPower") == 1)
 	{
 		if(CheckInventory("Perk2_StoppingPower_PRO") == 1)	SetFont("P_POWERP");
 		else SetFont("P_POWER");
-		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 128.0, 224.0, 2.0, 1.0);		
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 215.0, 215.0, 3.0, 1.0);		
 	}
 	if(CheckInventory("Perk2_DangerClose") == 1)
 	{
 		if(CheckInventory("Perk2_DangerClose_PRO") == 1)	SetFont("P_DANGEP");
 		else SetFont("P_DANGER");
-		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 128.0, 256.0, 2.0, 1.0);		
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 215.0, 215.0, 3.0, 1.0);		
 	}
 	if(CheckInventory("Perk2_ColdBlooded") == 1)
 	{
 		if(CheckInventory("Perk2_ColdBlooded_PRO") == 1)	SetFont("P_COLDP");
 		else SetFont("P_COLD");
-		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 128.0, 256.0, 2.0, 1.0);		
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 215.0, 215.0, 3.0, 1.0);		
 	}
 	if(CheckInventory("Perk3_SteadyAim") == 1)
 	{
 		if(CheckInventory("Perk3_SteadyAim_PRO") == 1)	SetFont("P_STEADP");
 		else SetFont("P_STEADY");
-		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 128.0, 288.0, 2.0, 1.0);		
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 250.0, 215.0, 3.0, 1.0);		
 	}
 	if(CheckInventory("Perk3_Commando") == 1)
 	{
 		if(CheckInventory("Perk3_Commando_PRO") == 1)	SetFont("P_COMMP");
 		else SetFont("P_COMM");
-		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 128.0, 320.0, 2.0, 1.0);		
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 250.0, 215.0, 3.0, 1.0);		
 	}
 	if(CheckInventory("Perk3_LastStand") == 1)
 	{
 		if(CheckInventory("Perk3_LastStand_PRO") == 1)	SetFont("P_LASTAP");
 		else SetFont("P_LASTAN");
-		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 128.0, 352.0, 2.0, 1.0);		
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 250.0, 215.0, 3.0, 1.0);		
 	}
 }
 
@@ -4294,7 +4313,7 @@ script 638 (int Which)
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdYou are Assault!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"\cdYou are Assault!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
@@ -4317,7 +4336,7 @@ script 638 (int Which)
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdYou are Juggernaut!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"\cdYou are Juggernaut!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
@@ -4340,7 +4359,7 @@ script 638 (int Which)
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdYou are Sniper!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"\cdYou are Sniper!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
@@ -4364,7 +4383,7 @@ script 638 (int Which)
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdYou are Recon!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"\cdYou are Recon!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
@@ -4387,7 +4406,7 @@ script 638 (int Which)
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdYou are Demolitions!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"\cdYou are Demolitions!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
