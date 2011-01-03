@@ -887,7 +887,7 @@ script 606 (void)
 				
 				if(CheckInventory("Perk1_ExtremeConditioning_PRO") == 1 && CheckInventory("InCombatRegeneration") == 2)
 				{
-					print(s:"Extreme");
+					//print(s:"Extreme");
 					TakeInventory("InCombatRegeneration",2);
 				}
 				
@@ -4616,7 +4616,7 @@ script 640 (void)
 						}
 					//}
 				}
-				else print(s:"OFF");
+				//else print(s:"OFF");
 				
 				
 				//print(s:"sON");
