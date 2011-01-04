@@ -873,7 +873,7 @@ script 606 (void)
 		GiveInventory("ReadyRegen",1);
 		While(GetActorProperty(0,APROP_Health) < 100 && GetActorProperty(0,APROP_Health) > 0)
 		{
-			if(CheckInventory("InCombatRegeneration") > 0)
+			if(CheckInventory("InCombatRegeneration") > 0 || CheckInventory("InLastStand") > 0)
 			{
 				//log(i:CheckInventory("InCombatRegeneration"));
 
@@ -892,7 +892,6 @@ script 606 (void)
 					SetHudSize(1280,800,1);
 					HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.5, 1.0);
 				}
-
 				Delay(25);
 				
 				if(CheckInventory("Perk1_ExtremeConditioning_PRO") == 1 && CheckInventory("InCombatRegeneration") == 2)
@@ -910,6 +909,7 @@ script 606 (void)
 				{
 				
 					//log(s:"Regen");
+					print(i:CheckInventory("InLastStand"));
 				
 					if(GetActorProperty(0,APROP_Health) < 60){
 						/*if(GetActorProperty(0,APROP_Health) > 80)
@@ -927,26 +927,11 @@ script 606 (void)
 						HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.3, 1.0);
 					}
 	
-					int MaxHealth;
-					if(GetActorProperty(0,APROP_Health) > GetActorProperty(0,APROP_SpawnHealth)){
-						MaxHealth = GetActorProperty(0,APROP_Health);
-					}
-					else{
-						MaxHealth = GetActorProperty(0,APROP_SpawnHealth);
-					}
-	
-					if(GetActorProperty(0,APROP_SpawnHealth) == 1){
-						// don't regenerate in last stand
-					}
-					else if(CheckInventory("Perk1_ExtremeConditioning_PRO") == 1)
+					
+					if(CheckInventory("Perk1_ExtremeConditioning_PRO") == 1)
 						GiveInventory("Health",32);
 					else
 						GiveInventory("Health",16);
-					
-					// make sure we don't regenerate too much 
-					if(GetActorProperty(0,APROP_Health) > MaxHealth){
-						TakeInventory("Health", MaxHealth - GetActorProperty(0,APROP_Health));
-					}
 					
 					Delay(18);
 				}   
@@ -1025,7 +1010,7 @@ script 612 (int Which)
 //------- Calls out Tango down, this is for killing monsters.
 script 613 (int XpAmount)
 {   
-	// monster's don't level up nor the call tango down
+	// monster's don't level up nor they call tango down
 	if (!(ClassifyActor(0) & ACTOR_MONSTER)){
 		if(CheckInventory("Rank") < 15) //Don't give XP at max level
 			GiveInventory("Experience",XpAmount / 5);
@@ -3484,6 +3469,7 @@ script 630 (void)
 		GiveInventory("USP45Clip",12);
 		MorphActor(0,"RGULastStandPlayer_Unspecified","",99999,256,"NoFlash","NoFlash");
 	}
+	GiveInventory("InLastStand",1);
 }
 
 //------------------------------------------
@@ -3607,6 +3593,7 @@ script 631 ENTER
 	{
 		UnMorphActor(0);
 	}
+	TakeInventory("InLastStand", 1);
 }
 
 //------------------------------------------
