@@ -909,7 +909,7 @@ script 606 (void)
 				{
 				
 					//log(s:"Regen");
-					print(i:CheckInventory("InLastStand"));
+					//print(i:CheckInventory("InLastStand"));
 				
 					if(GetActorProperty(0,APROP_Health) < 60){
 						/*if(GetActorProperty(0,APROP_Health) > 80)
@@ -3202,9 +3202,10 @@ script 625 (void)
 	ACS_ExecuteAlways(630,0,0,0,0);
 	delay(1);
 	SetActorProperty(0,APROP_Invulnerable,1);
-	delay(35*2);
-	ACS_ExecuteAlways(633,0,0,0,0);
+	delay(10);
 	SetActorProperty(0,APROP_Invulnerable,0);
+	delay(35*2);
+	ACS_ExecuteAlways(633,0,0,0,0);	
 	delay(35*4);
 	ACS_ExecuteAlways(633,0,0,0,0);
 	delay(35*4);
