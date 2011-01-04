@@ -1012,7 +1012,7 @@ script 613 (int XpAmount)
 {   
 	// monster's don't level up nor they call tango down
 	if (!(ClassifyActor(0) & ACTOR_MONSTER)){
-		if(CheckInventory("Rank") < 15) //Don't give XP at max level
+		if(CheckInventory("Rank") < 15 && CheckInventory("InLastStand") == 0) //Don't give XP at max level and in last stand
 			GiveInventory("Experience",XpAmount / 5);
 	
 		ACS_ExecuteAlways(616,0,0,0,0);
