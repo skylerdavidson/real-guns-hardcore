@@ -1024,32 +1024,35 @@ script 612 (int Which)
 //------------------------------------------
 //------- Calls out Tango down, this is for killing monsters.
 script 613 (int XpAmount)
-{
-	if(CheckInventory("Rank") < 15) //Don't give XP at max level
-		GiveInventory("Experience",XpAmount / 5);
-
-	ACS_ExecuteAlways(616,0,0,0,0);
-	if(GetActorProperty(0,APROP_Health) > 0 && CheckInventory("Speaking") == 0)
-	{
-		GiveInventory("Speaking",1);
-		
-		delay(20);
-		if(PlayerTeam() == TEAM_RED || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 1))
-			ActivatorSound("russian/kill",127);
-		else if(PlayerTeam() == TEAM_BLUE || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 0))
-			ActivatorSound("us/kill",127);	
-		else if(PlayerTeam() == 2 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 2))
-			ActivatorSound("brazil/kill",127);
-		else if(PlayerTeam() == 3 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 3))
-			ActivatorSound("opfor/kill",127);
-		else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 4)
-			ActivatorSound("seal/kill",127);
-		else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 5)
-			ActivatorSound("tf141/kill",127);
-		
-		
-		Delay(5*35);
-		TakeInventory("Speaking",1);
+{   
+	// monster's don't level up nor the call tango down
+	if (!(ClassifyActor(0) & ACTOR_MONSTER)){
+		if(CheckInventory("Rank") < 15) //Don't give XP at max level
+			GiveInventory("Experience",XpAmount / 5);
+	
+		ACS_ExecuteAlways(616,0,0,0,0);
+		if(GetActorProperty(0,APROP_Health) > 0 && CheckInventory("Speaking") == 0)
+		{
+			GiveInventory("Speaking",1);
+			
+			delay(20);
+			if(PlayerTeam() == TEAM_RED || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 1))
+				ActivatorSound("russian/kill",127);
+			else if(PlayerTeam() == TEAM_BLUE || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 0))
+				ActivatorSound("us/kill",127);	
+			else if(PlayerTeam() == 2 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 2))
+				ActivatorSound("brazil/kill",127);
+			else if(PlayerTeam() == 3 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 3))
+				ActivatorSound("opfor/kill",127);
+			else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 4)
+				ActivatorSound("seal/kill",127);
+			else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 5)
+				ActivatorSound("tf141/kill",127);
+			
+			
+			Delay(5*35);
+			TakeInventory("Speaking",1);
+		}
 	}
 }
 
@@ -1058,7 +1061,7 @@ Script 614 RESPAWN
 {
 	if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
 	{
-
+    
 	while(CheckInventory("Health") > 0)
 	{
 		SETFONT("CONFONT");
