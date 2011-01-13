@@ -1,3 +1,6 @@
+
+@@@dfssdfsdf dsfsd s sd 
+
 @echo off
 del output\RGH.pk3
 mkdir temp
