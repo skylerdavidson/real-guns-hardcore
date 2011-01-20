@@ -871,71 +871,74 @@ script 606 (void)
 	if(CheckInventory("ReadyRegen") == 0)
 	{
 		GiveInventory("ReadyRegen",1);
-		While(GetActorProperty(0,APROP_Health) < 100 && GetActorProperty(0,APROP_Health) > 0)
-		{
-			if(CheckInventory("InCombatRegeneration") > 0 || CheckInventory("InLastStand") > 0)
+		while(true){
+			While(GetActorProperty(0,APROP_Health) < 100 && GetActorProperty(0,APROP_Health) > 0)
 			{
-				//log(i:CheckInventory("InCombatRegeneration"));
-
-				if(GetActorProperty(0,APROP_Health) < 60){
-					/*if(GetActorProperty(0,APROP_Health) > 80)
-						SetFont("DAMSCRN1");
-					else if(GetActorProperty(0,APROP_Health) > 60)
-						SetFont("DAMSCRN1");
-					else */if(GetActorProperty(0,APROP_Health) > 40)
-						SetFont("DAMSCRN1");
-					else if(GetActorProperty(0,APROP_Health) > 20)
-						SetFont("DAMSCRN2");
-					else
-						SetFont("DAMSCRN3");
-						
-					SetHudSize(1280,800,1);
-					HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.5, 1.0);
-				}
-				Delay(25);
-				
-				if(CheckInventory("Perk1_ExtremeConditioning_PRO") == 1 && CheckInventory("InCombatRegeneration") == 2)
+				if(CheckInventory("InCombatRegeneration") > 0 || CheckInventory("InLastStand") > 0)
 				{
-					//print(s:"Extreme");
-					TakeInventory("InCombatRegeneration",2);
-				}
-				
-				TakeInventory("InCombatRegeneration",1);
-				
-				
-			}
-			else {
-				if(GetActorProperty(0,APROP_Health) < 100 && GetActorProperty(0,APROP_Health) > 0)
-				{
-				
-					//log(s:"Regen");
-					//print(i:CheckInventory("InLastStand"));
-				
+					//log(i:CheckInventory("InCombatRegeneration"));
+	
 					if(GetActorProperty(0,APROP_Health) < 60){
 						/*if(GetActorProperty(0,APROP_Health) > 80)
 							SetFont("DAMSCRN1");
 						else if(GetActorProperty(0,APROP_Health) > 60)
-							SetFont("DAMSCRN2");
+							SetFont("DAMSCRN1");
 						else */if(GetActorProperty(0,APROP_Health) > 40)
 							SetFont("DAMSCRN1");
 						else if(GetActorProperty(0,APROP_Health) > 20)
 							SetFont("DAMSCRN2");
 						else
-							SetFont("DAMSCRN3");				
-	
+							SetFont("DAMSCRN3");
+							
 						SetHudSize(1280,800,1);
-						HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.3, 1.0);
+						HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.5, 1.0);
 					}
-	
+					Delay(25);
 					
-					if(CheckInventory("Perk1_ExtremeConditioning_PRO") == 1)
-						GiveInventory("Health",32);
-					else
-						GiveInventory("Health",16);
+					if(CheckInventory("Perk1_ExtremeConditioning_PRO") == 1 && CheckInventory("InCombatRegeneration") == 2)
+					{
+						//print(s:"Extreme");
+						TakeInventory("InCombatRegeneration",2);
+					}
 					
-					Delay(18);
-				}   
-			} 
+					TakeInventory("InCombatRegeneration",1);
+					
+					
+				}
+				else {
+					if(GetActorProperty(0,APROP_Health) < 100 && GetActorProperty(0,APROP_Health) > 0)
+					{
+					
+						//log(s:"Regen");
+						//print(i:CheckInventory("InLastStand"));
+					
+						if(GetActorProperty(0,APROP_Health) < 60){
+							/*if(GetActorProperty(0,APROP_Health) > 80)
+								SetFont("DAMSCRN1");
+							else if(GetActorProperty(0,APROP_Health) > 60)
+								SetFont("DAMSCRN2");
+							else */if(GetActorProperty(0,APROP_Health) > 40)
+								SetFont("DAMSCRN1");
+							else if(GetActorProperty(0,APROP_Health) > 20)
+								SetFont("DAMSCRN2");
+							else
+								SetFont("DAMSCRN3");				
+		
+							SetHudSize(1280,800,1);
+							HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.3, 1.0);
+						}
+		
+						
+						if(CheckInventory("Perk1_ExtremeConditioning_PRO") == 1)
+							GiveInventory("Health",32);
+						else
+							GiveInventory("Health",16);
+						
+						Delay(18);
+					}   
+				} 
+			}
+			Delay(2);
 		}
 		TakeInventory("ReadyRegen",1);
 	}
