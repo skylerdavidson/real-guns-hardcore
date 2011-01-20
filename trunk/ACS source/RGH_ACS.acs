@@ -3180,7 +3180,7 @@ script 624 (int Which)
 		HudMessage(s:"\cdLAST STAND PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
 		HudMessage(s:"+ Use a Revival Kit to help out allied players!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
-	if(Which == 17) // COLD BLOODED PRO
+	if(Which == 18) // COLD BLOODED PRO
 	{
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk2_ColdBlooded_Pro",1);
