@@ -3769,6 +3769,11 @@ bool GotClass[32];
 //Show menu
 script 636 (void)
 {
+	if(ClassifyActor(0) & ACTOR_BOT){
+		ACS_ExecuteAlways(639,0,0,0,0);
+		terminate;
+	}
+
 	// force redraw of all menus
 	HudMessage(s:""; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
 	HudMessage(s:""; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
