@@ -58,6 +58,8 @@ script 501 RESPAWN
 	Thing_ChangeTID(0,PlayerNumber()+500);
         SetThingSpecial(0,226,502,0,0,0,0);
 
+    TakeInventory("ReadyRegen",1);
+
 	if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
 	{	
 		if(GetActorProperty(0,APROP_HEALTH) < 100)
@@ -867,13 +869,25 @@ script 605 (void) CLIENTSIDE
 //Regeneration
 script 606 (void)
 {
-	///log(s:"StartRegen");
+	print(i:CheckInventory("ReadyRegen"));
 	if(CheckInventory("ReadyRegen") == 0)
 	{
 		GiveInventory("ReadyRegen",1);
 		while(true){
+			SetFont("DAMSCRN1");
+							
+			SetHudSize(1280,800,1);
+			HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.5, 1.0);
+			
+			print(s:"R");
 			While(GetActorProperty(0,APROP_Health) < 100 && GetActorProperty(0,APROP_Health) > 0)
 			{
+				print(s:"S");
+
+                SetFont("DAMSCRN1");
+			SetHudSize(1280,800,1);
+			HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.5, 1.0);
+			
 				if(CheckInventory("InCombatRegeneration") > 0 || CheckInventory("InLastStand") > 0)
 				{
 					//log(i:CheckInventory("InCombatRegeneration"));
@@ -883,7 +897,8 @@ script 606 (void)
 							SetFont("DAMSCRN1");
 						else if(GetActorProperty(0,APROP_Health) > 60)
 							SetFont("DAMSCRN1");
-						else */if(GetActorProperty(0,APROP_Health) > 40)
+						else */
+						/*if(GetActorProperty(0,APROP_Health) > 40)
 							SetFont("DAMSCRN1");
 						else if(GetActorProperty(0,APROP_Health) > 20)
 							SetFont("DAMSCRN2");
@@ -891,7 +906,7 @@ script 606 (void)
 							SetFont("DAMSCRN3");
 							
 						SetHudSize(1280,800,1);
-						HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.5, 1.0);
+						HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.5, 1.0); */
 					}
 					Delay(25);
 					
@@ -917,7 +932,7 @@ script 606 (void)
 								SetFont("DAMSCRN1");
 							else if(GetActorProperty(0,APROP_Health) > 60)
 								SetFont("DAMSCRN2");
-							else */if(GetActorProperty(0,APROP_Health) > 40)
+							else *//*if(GetActorProperty(0,APROP_Health) > 40)
 								SetFont("DAMSCRN1");
 							else if(GetActorProperty(0,APROP_Health) > 20)
 								SetFont("DAMSCRN2");
@@ -925,7 +940,7 @@ script 606 (void)
 								SetFont("DAMSCRN3");				
 		
 							SetHudSize(1280,800,1);
-							HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.3, 1.0);
+							HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.3, 1.0);  */
 						}
 		
 						
