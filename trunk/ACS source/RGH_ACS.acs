@@ -869,24 +869,24 @@ script 605 (void) CLIENTSIDE
 //Regeneration
 script 606 (void)
 {
-	print(i:CheckInventory("ReadyRegen"));
+	//print(i:CheckInventory("ReadyRegen"));
 	if(CheckInventory("ReadyRegen") == 0)
 	{
 		GiveInventory("ReadyRegen",1);
 		while(true){
-			SetFont("DAMSCRN1");
+			//SetFont("DAMSCRN1");
 							
-			SetHudSize(1280,800,1);
-			HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.5, 1.0);
+			//SetHudSize(1280,800,1);
+			//HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.5, 1.0);
 			
-			print(s:"R");
+			//print(s:"R");
 			While(GetActorProperty(0,APROP_Health) < 100 && GetActorProperty(0,APROP_Health) > 0)
 			{
-				print(s:"S");
+				//print(s:"S");
 
-                SetFont("DAMSCRN1");
-			SetHudSize(1280,800,1);
-			HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.5, 1.0);
+                //SetFont("DAMSCRN1");
+			//SetHudSize(1280,800,1);
+			//HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.5, 1.0);
 			
 				if(CheckInventory("InCombatRegeneration") > 0 || CheckInventory("InLastStand") > 0)
 				{
@@ -898,7 +898,7 @@ script 606 (void)
 						else if(GetActorProperty(0,APROP_Health) > 60)
 							SetFont("DAMSCRN1");
 						else */
-						/*if(GetActorProperty(0,APROP_Health) > 40)
+						if(GetActorProperty(0,APROP_Health) > 40)
 							SetFont("DAMSCRN1");
 						else if(GetActorProperty(0,APROP_Health) > 20)
 							SetFont("DAMSCRN2");
@@ -906,7 +906,7 @@ script 606 (void)
 							SetFont("DAMSCRN3");
 							
 						SetHudSize(1280,800,1);
-						HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.5, 1.0); */
+						HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.5, 1.0); 
 					}
 					Delay(25);
 					
@@ -932,7 +932,7 @@ script 606 (void)
 								SetFont("DAMSCRN1");
 							else if(GetActorProperty(0,APROP_Health) > 60)
 								SetFont("DAMSCRN2");
-							else *//*if(GetActorProperty(0,APROP_Health) > 40)
+							else */if(GetActorProperty(0,APROP_Health) > 40)
 								SetFont("DAMSCRN1");
 							else if(GetActorProperty(0,APROP_Health) > 20)
 								SetFont("DAMSCRN2");
@@ -940,7 +940,7 @@ script 606 (void)
 								SetFont("DAMSCRN3");				
 		
 							SetHudSize(1280,800,1);
-							HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.3, 1.0);  */
+							HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.3, 1.0);
 						}
 		
 						
@@ -3005,6 +3005,8 @@ script 623 (void)
 		GiveInventory("Perk1_OMAAward",1);*/
 	if(CheckInventory("Perk1_OneManArmy") == 1 && CheckInventory("Perk1_OneManArmy_Pro") == 0)
 		GiveInventory("Perk1_OMA_ProAward",1);
+	if(CheckInventory("Perk1_Scavenger") == 1 && CheckInventory("Perk1_Scavenger_Pro") == 0)
+		GiveInventory("Perk1_Scavenger_ProAward",1);
 	/*if(CheckInventory("Perk2_StoppingPower") == 0)
 		GiveInventory("Perk2_StoppingPowerAward",1);*/
 	if(CheckInventory("Perk2_StoppingPower") == 1 && CheckInventory("Perk2_StoppingPower_Pro") == 0)
@@ -3202,6 +3204,14 @@ script 624 (int Which)
 		SetFont("BIGFONT");
 		HudMessage(s:"\cgCOLD BLOODED PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
 		HudMessage(s:"Partial invisibility while out of combat!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+	}
+	if(Which == 20) // SCAVENGER PRO
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk1_Scavenger_Pro",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cgSCAVENGER PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"+100% powerup duration!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 }
 //------------------------------------------
@@ -3701,6 +3711,12 @@ script 634 RESPAWN NET
 		else SetFont("P_OMA");
 		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 180.0, 215.0, 3.0, 1.0);		
 	}
+	if(CheckInventory("Perk1_Scavenger") == 1)
+	{
+		if(CheckInventory("Perk1_Scavenger_PRO") == 1)	SetFont("P_SCAP");
+		else SetFont("P_SCA");
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 180.0, 215.0, 3.0, 1.0);		
+	}
 	if(CheckInventory("Perk2_Juggernaut") == 1)
 	{
 		if(CheckInventory("Perk2_Juggernaut_PRO") == 1)	SetFont("P_JUGGEP");
@@ -3815,23 +3831,23 @@ script 636 (void)
 
 		//List menu
 		HudMessage(s:"Make your own!"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 1.0);	
-		HudMessage(s:"Assault:       M4A1 (+Extended Mags) and USP .45\n\n                + \cvOne Man Army PRO, \cgStopping Power, \cdCommando"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 260.0, 1.0);	
-		HudMessage(s:"Juggernaut:    M240 and Desert Eagle\n\n                + \cvExtreme Conditioning, \cgJuggernaut PRO, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 300.0, 1.0);	
+		HudMessage(s:"Assault:       M4A1 (+Extended Mags) and USP .45\n\n                + \cvScavenger, \cgStopping Power, \cdCommando PRO"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 260.0, 1.0);	
+		HudMessage(s:"Juggernaut:    M240 and Desert Eagle\n\n                + \cvSleight of Hand, \cgJuggernaut PRO, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 300.0, 1.0);	
 		HudMessage(s:"Sniper:        Intervention (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 340.0, 1.0);	
 		HudMessage(s:"Recon:         FN P90 (+Rapid Fire) and M9\n\n                + \cvExtreme Conditioning, \cgCold Blooded PRO, \cdCommando"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 100.1, 380.0, 1.0);		
-		HudMessage(s:"Demolitions:   RPG-7 and SPAS-12\n\n                + \cvSleight Of Hand, \cgDanger Close PRO, \cdSteady Aim"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 100.1, 420.0, 1.0);		
+		HudMessage(s:"Demolitions:   RPG-7 and SPAS-12\n\n                + \cvScavenger, \cgDanger Close PRO, \cdSteady Aim"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 100.1, 420.0, 1.0);		
 	
 	
 		if(CheckInventory("MenuCursor") == 0){
 			HudMessage(s:"> Make your own!"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 100.1, 220.0, 1.0);	
 		}
 		else if(CheckInventory("MenuCursor") == 1){
-			HudMessage(s:"> Assault:       M4A1 (+Extended Mags) and USP .45\n\n                + \cvOne Man Army PRO, \cgStopping Power, \cdCommando"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 100.1, 260.0, 1.0);	
-			HudMessage(s:"\cvOne Man Army: Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon\n\n\cgStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies\n\n\cdCommando: +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
+			HudMessage(s:"> Assault:       M4A1 (+Extended Mags) and USP .45\n\n                + \cvScavenger, \cgStopping Power, \cdCommando PRO"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 100.1, 260.0, 1.0);	
+			HudMessage(s:"\cvScavenger: +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration\n\n\cgStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies\n\n\cdCommando: +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
 		}
 		else if(CheckInventory("MenuCursor") == 2){
-			HudMessage(s:"> Juggernaut:    M240 and Desert Eagle\n\n                + \cvExtreme Conditioning, \cgJuggernaut PRO, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 100.1, 300.0, 1.0);	
-			HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner\n\n\cgJuggernaut: +40% damage resistance\n\n         \cjPRO\cg: double bonuses from health/armor pickups\n\n\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Revival Kit"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
+			HudMessage(s:"> Juggernaut:    M240 and Desert Eagle\n\n                + \cvSleight of Hand, \cgJuggernaut PRO, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 100.1, 300.0, 1.0);	
+			HudMessage(s:"\cvSleight of Hand: faster reloading\n\n         \cjPRO\cv: faster knifing and grenade throwing\n\n\cgJuggernaut: +40% damage resistance\n\n         \cjPRO\cg: double bonuses from health/armor pickups\n\n\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Revival Kit"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
 		}
 		else if(CheckInventory("MenuCursor") == 3){
 			HudMessage(s:"> Sniper:        Sniper:        Intervention (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 100.1, 340.0, 1.0);	
@@ -3842,8 +3858,8 @@ script 636 (void)
 			HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner\n\n\cgCold Blooded: Invisible to seeker missiles\n\n         \cjPRO\cg: Partial invisibility while out of combat\n\n\cdCommando: +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
 		}
 		else if(CheckInventory("MenuCursor") == 5){
-			HudMessage(s:"> Demolitions:   RPG-7 and SPAS-12\n\n                + \cvSleight Of Hand, \cgDanger Close PRO, \cdSteady Aim"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_YELLOW, 100.1, 420.0, 1.0);
-			HudMessage(s:"\cvSleight of Hand: Faster Reloading\n\n         \cjPRO\cv: Faster knifing and grenade throwing\n\n\cgDanger Close: +100% explosive damage\n\n         \cjPRO\cg: +50% explosive blast radius\n\n\cdSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
+			HudMessage(s:"> Demolitions:   RPG-7 and SPAS-12\n\n                + \cvScavenger, \cgDanger Close PRO, \cdSteady Aim"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_YELLOW, 100.1, 420.0, 1.0);
+			HudMessage(s:"\cvScavenger: +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration\n\n\cgDanger Close: +100% explosive damage\n\n         \cjPRO\cg: +50% explosive blast radius\n\n\cdSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
 		}
 
 		if((GameType() != GAME_SINGLE_PLAYER || GameType() != GAME_NET_COOPERATIVE) && GotClass[PlayerNumber()+1] == TRUE)
@@ -3949,6 +3965,7 @@ script 636 (void)
 		HudMessage(s:"\cvSleight of Hand:      Faster reloading\n\n         \cjPRO\cv: Faster knifing and grenade throwing"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 1.0);	
 		HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 260.0, 1.0);	
 		HudMessage(s:"\cvOne Man Army:         Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 300.0, 1.0);	
+		HudMessage(s:"\cvScavenger:         +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 340.0, 1.0);
 		HudMessage(s:"Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 440.0, 1.0);	
 
 		if(CheckInventory("MenuCursor") == 0)
@@ -3958,9 +3975,11 @@ script 636 (void)
 		else if(CheckInventory("MenuCursor") == 2)
 			HudMessage(s:"> \ckOne Man Army:         Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 100.1, 300.0, 1.0);	
 		else if(CheckInventory("MenuCursor") == 3)
+			HudMessage(s:"> \ckScavenger:         +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 100.1, 340.0, 1.0);
+		else if(CheckInventory("MenuCursor") == 4)
 			HudMessage(s:"> Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 100.1, 500.0, 1.0);	
 	
-		if(CheckInventory("MenuCursor") >= 4)
+		if(CheckInventory("MenuCursor") >= 5)
 			TakeInventory("MenuCursor",10);
 		delay(1);	
 		restart;
@@ -4229,7 +4248,12 @@ script 637 (void)
 			GiveInventory("MenuPlace",1);
 			Perk1[PlayerNumber()+1] = "Perk1_OneManArmy";
 		}
-		else if(CheckInventory("MenuCursor") == 3)	//Go back
+		else if(CheckInventory("MenuCursor") == 3)		//One Man Army
+		{
+			GiveInventory("MenuPlace",1);
+			Perk1[PlayerNumber()+1] = "Perk1_Scavenger";
+		}
+		else if(CheckInventory("MenuCursor") == 4)	//Go back
 			TakeInventory("MenuPlace",1);
 		TakeInventory("MenuCursor",15);
 	}
@@ -4318,11 +4342,11 @@ script 638 (int Which)
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
 		GiveInventory("MaxWeaponsFilled",2);
-		GiveInventory("Perk1_OneManArmy",1);
-		GiveInventory("Perk1_OneManArmy_Pro",1);
+		GiveInventory("Perk1_Scavenger",1);		
 		GiveInventory("Perk2_StoppingPower",1);
 		GiveInventory("Perk2_StoppingPowerEffect",1);
 		GiveInventory("Perk3_Commando",1);
+		GiveInventory("Perk3_Commando_Pro",1);
 		GiveInventory("Perk3_CommandoEffect",1);
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
@@ -4342,7 +4366,7 @@ script 638 (int Which)
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
 		GiveInventory("MaxWeaponsFilled",2);
-		GiveInventory("Perk1_ExtremeConditioning",1);
+		GiveInventory("Perk1_SOH",1);
 		GiveInventory("Perk2_Juggernaut",1);
 		GiveInventory("Perk2_JuggernautEffect",1);
 		GiveInventory("Perk2_Juggernaut_Pro",1);
@@ -4412,7 +4436,7 @@ script 638 (int Which)
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
 		GiveInventory("MaxWeaponsFilled",2);		
-		GiveInventory("Perk1_SOH",1);
+		GiveInventory("Perk1_Scavenger",1);
 		GiveInventory("Perk2_DangerClose",1);
 		GiveInventory("Perk2_DangerCloseEffect",1);
 		GiveInventory("Perk2_DangerClose_Pro",1);
