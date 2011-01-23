@@ -420,6 +420,7 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 		RecoilSpeed = 1600;
 		if(CheckInventory("Aiming") == 1)
 		{
+			RecoilSpeed = 600;
 			Strength = 2500;
 			Reverse = 2000;
 		}
@@ -433,6 +434,7 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 		RecoilSpeed = 1600;
 		if(CheckInventory("Aiming") == 1)
 		{
+			RecoilSpeed = 600;
 			Strength = 2500;
 			Reverse = 2000;
 		}
@@ -446,6 +448,7 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 		RecoilSpeed = 1200;
 		if(CheckInventory("Aiming") == 1)
 		{
+			RecoilSpeed = 450;
 			Strength = 1600;
 			Reverse = 1600;
 		}
