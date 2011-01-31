@@ -78,13 +78,8 @@ script 501 RESPAWN
 			SetAmmoCapacity("MaxWeaponsFilled_ARSMG",4);
 		
 		TakeInventory("InvisibilityRunning", 1);
-		TakeInventory("InCombat", 5);
-			
-		int MaxGunCount = GameSkill();
-		If(CheckInventory("Perk1_OneManArmy_Pro") == 1){
-			MaxGunCount++;
-		}
-		SetAmmoCapacity("MaxWeaponsFilled",MaxGunCount);
+	
+
 			
 		if(CheckInventory("Perk1_OneManArmy") == 1)
 			ACS_ExecuteAlways(629,0,0,0,0); // set ammo capacities
@@ -92,6 +87,14 @@ script 501 RESPAWN
 		ACS_ExecuteAlways(631,0,0,0,0); // unmorph from last stand
 		
 	}
+
+	int MaxGunCount = GameSkill();
+	If(CheckInventory("Perk1_OneManArmy_Pro") == 1){
+		MaxGunCount++;
+	}			
+	SetAmmoCapacity("MaxWeaponsFilled",MaxGunCount);
+	
+	TakeInventory("InCombat", 5);
 	ACS_ExecuteAlways(602,0,0,0,0); // adjust movement speed
 }
 
@@ -178,7 +181,7 @@ script 597 ENTER
 		SetAmmoCapacity("MaxWeaponsFilled",MaxGunCount);
 		
 		TakeInventory("InvisibilityRunning", 1);
-		TakeInventory("InCombat", 5);
+		
 		
 		
 		SetActorProperty(0,APROP_Invulnerable,0);		
@@ -186,6 +189,8 @@ script 597 ENTER
 		ACS_ExecuteAlways(634,0,0,0,0);
 		ACS_ExecuteAlways(640,0,0,0,0);
 	}
+	
+	TakeInventory("InCombat", 5);
 	
 	ACS_ExecuteAlways(602,0,0,0,0); // adjust movement speed
 
@@ -3804,9 +3809,13 @@ bool GotClass[32];
 script 636 (void)
 {
 	if(ClassifyActor(0) & ACTOR_BOT){
-		ACS_ExecuteAlways(639,0,0,0,0);
+		ACS_ExecuteAlways(c,0,0,0,0);
 		terminate;
-	}
+	}	
+
+	//log(i:CheckWeapon("Menu"));
+	//log(i:CheckWeapon("MenuPlace"));
+	//log(s:"------------");
 
 	// force redraw of all menus
 	HudMessage(s:""; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
@@ -3865,8 +3874,8 @@ script 636 (void)
 			HudMessage(s:"\cvScavenger: +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration\n\n\cgDanger Close: +100% explosive damage\n\n         \cjPRO\cg: +50% explosive blast radius\n\n\cdSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 1.0);
 		}
 
-		if((GameType() != GAME_SINGLE_PLAYER || GameType() != GAME_NET_COOPERATIVE) && GotClass[PlayerNumber()+1] == TRUE)
-			ACS_ExecuteAlways(638,0,9,0,0);	
+		//if((GameType() != GAME_SINGLE_PLAYER || GameType() != GAME_NET_COOPERATIVE) && GotClass[PlayerNumber()+1] == TRUE)
+		//	ACS_ExecuteAlways(638,0,9,0,0);	
 
 		if(CheckInventory("MenuCursor") >= 6)
 			TakeInventory("MenuCursor",10);
@@ -3968,7 +3977,7 @@ script 636 (void)
 		HudMessage(s:"\cvSleight of Hand:      Faster reloading\n\n         \cjPRO\cv: Faster knifing and grenade throwing"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 1.0);	
 		HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 260.0, 1.0);	
 		HudMessage(s:"\cvOne Man Army:         Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 300.0, 1.0);	
-		HudMessage(s:"\cvScavenger:         +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 340.0, 1.0);
+		HudMessage(s:"\cvScavenger:         +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 340.0, 1.0);
 		HudMessage(s:"Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 440.0, 1.0);	
 
 		if(CheckInventory("MenuCursor") == 0)
@@ -3978,7 +3987,7 @@ script 636 (void)
 		else if(CheckInventory("MenuCursor") == 2)
 			HudMessage(s:"> \ckOne Man Army:         Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 100.1, 300.0, 1.0);	
 		else if(CheckInventory("MenuCursor") == 3)
-			HudMessage(s:"> \ckScavenger:         +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 100.1, 340.0, 1.0);
+			HudMessage(s:"> \ckScavenger:         +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 100.1, 340.0, 1.0);
 		else if(CheckInventory("MenuCursor") == 4)
 			HudMessage(s:"> Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 100.1, 500.0, 1.0);	
 	
@@ -4336,6 +4345,7 @@ script 638 (int Which)
 {
 	If(Which == 0)
 	{
+		//log(s:"Take0");
 		TakeInventory("Menu",1);
 		GiveInventory("USP .45",1);
 		GiveInventory("USP45Ammo",24);
@@ -4361,6 +4371,7 @@ script 638 (int Which)
 	}
 	else If(Which == 1)
 	{
+		//log(s:"Take1");
 		TakeInventory("Menu",1);
 		GiveInventory("Desert Eagle",1);
 		GiveInventory("DeagleAmmo",14);
@@ -4384,6 +4395,7 @@ script 638 (int Which)
 	}
 	else If(Which == 2)
 	{
+		//log(s:"Take2");
 		TakeInventory("Menu",1);
 		GiveInventory("M93 Raffica",1);
 		GiveInventory("M93RAmmo",68);
@@ -4407,6 +4419,7 @@ script 638 (int Which)
 	}
 	else If(Which == 3)
 	{
+		//log(s:"Take3");
 		TakeInventory("Menu",1);
 		GiveInventory("M9 Tac Knife",1);
 		GiveInventory("M9Ammo",30);
@@ -4431,6 +4444,7 @@ script 638 (int Which)
 	}
 	else If(Which == 4)
 	{
+		//log(s:"Take4");
 		TakeInventory("Menu",1);
 		GiveInventory("SPAS-12",1);
 		GiveInventory("SPAS12Ammo",32);
@@ -4454,6 +4468,7 @@ script 638 (int Which)
 	}
 	else if(Which == 9)
 	{
+		log(s:"Take9");
 		TakeInventory("Menu",1);
 		GiveInventory(Handgun[PlayerNumber()+1],1);
 		GiveInventory(HandgunAmmo[PlayerNumber()+1],HandgunAmmoAmount[PlayerNumber()+1]);
