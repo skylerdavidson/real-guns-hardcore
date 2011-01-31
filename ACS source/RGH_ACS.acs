@@ -669,7 +669,7 @@ script 601 (void) NET
 		 || (CheckWeapon("Barrett 50cal Ex Mags") == 1 && CheckInventory("BarrettClip2") < 15 && CheckInventory("BarrettAmmo") != 0) || ((CheckWeapon("Barrett 50cal") == 1 || CheckWeapon("Barrett 50cal Thermal") == 1) && CheckInventory("BarrettClip") < 10 && CheckInventory("BarrettAmmo") != 0) 
 		 || ((CheckWeapon("MG4") == 1 || CheckWeapon("MG4 Grip") == 1) && CheckInventory("MG4Clip") < 100 && CheckInventory("MG4Ammo") != 0) || (CheckWeapon("MG4 Ex Mags") == 1 && CheckInventory("MG4Clip2") < 200 && CheckInventory("MG4Ammo") != 0)
 		 || (CheckWeapon("G18") == 1 && CheckInventory("G18Clip") < 33 && CheckInventory("G18Ammo") != 0)  || (CheckWeapon("G18 Ex Mags") == 1 && CheckInventory("G18Clip2") < 50 && CheckInventory("G18Ammo") != 0) || (CheckWeapon("G18 Akimbo") == 1 && CheckInventory("G18Clip3") < 66 && CheckInventory("G18Ammo") != 0) 
-		 || (CheckWeapon("PP2000") == 1 && CheckInventory("PP2000Clip") < 20 && CheckInventory("PP2000Ammo") != 0) || (CheckWeapon("PP2000 Ex Mags") == 1 && CheckInventory("PP2000Clip2") < 30 && CheckInventory("PP2000Ammo") != 0)
+		 || (CheckWeapon("PP2000") == 1 && CheckInventory("PP2000Clip") < 20 && CheckInventory("PP2000Ammo") != 0) || (CheckWeapon("PP2000 Ex Mags") == 1 && CheckInventory("PP2000Clip2") < 30 && CheckInventory("PP2000Ammo") != 0 ) || (CheckWeapon("PP2000 Akimbo") == 1 && CheckInventory("PP2200Clip") < 30 && CheckInventory("PP2000Ammo") != 0 )
 		 || (CheckWeapon("SCAR-H") == 1 && CheckInventory("SCARHClip") < 20 && CheckInventory("SCARHAmmo") != 0)  || (CheckWeapon("SCAR-H Ex Mags") == 1 && CheckInventory("SCARHClip2") < 30 && CheckInventory("SCARHAmmo") != 0) 
 		 || (CheckWeapon("M4A1") == 1 && CheckInventory("M4A1Clip") < 30 && CheckInventory("M4A1Ammo") != 0) || (CheckWeapon("M4A1 Ex Mags") == 1 && CheckInventory("M4A1Clip2") < 45 && CheckInventory("M4A1Ammo") != 0)
 		 || (CheckWeapon("M93 Raffica") == 1 && CheckInventory("M93RClip") < 20 && CheckInventory("M93RAmmo") != 0) || (CheckWeapon("M93 Raffica Ex Mags") == 1 && CheckInventory("M93RClip2") < 30 && CheckInventory("M93RAmmo") != 0)
@@ -730,7 +730,7 @@ script 602 (void)
 			CheckWeapon("G18") == 1 || CheckWeapon("G18 Ex Mags") == 1 || CheckWeapon("G18 Akimbo") == 1 ||
 			CheckWeapon("M93 Raffica") == 1 || CheckWeapon("M93 Raffica Ex Mags") == 1 ||
 			CheckWeapon("Desert Eagle") == 1 || CheckWeapon("Desert Eagle Tac Knife") == 1 || CheckWeapon("Deagle Special") == 1 || CheckWeapon("Desert Eagle Akimbo") == 1 ||
-			CheckWeapon("PP2000") == 1 || CheckWeapon("PP2000 Ex Mags") == 1 ||
+			CheckWeapon("PP2000") == 1 || CheckWeapon("PP2000 Ex Mags") == 1 || CheckWeapon("PP2000 Akimbo") == 1 ||
 			CheckWeapon("M9") == 1 || CheckWeapon("M9 Tac Knife") == 1 || CheckWeapon("M9 Ex Mags") == 1 || CheckWeapon("M9 Akimbo") == 1
 		)
 		{
@@ -2520,6 +2520,18 @@ script 619 (int Which)
 			SetFont("BIGFONT");
 			HudMessage(s:"Akimbo attached to G18!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
+		else if(CheckWeapon("PP2000") == 1)
+		{
+			ACS_ExecuteAlways(622,0,0,0,0);
+			
+			TakeInventory("PP2000",1);
+			GiveInventory("PP2000 Akimbo",1);
+			GiveInventory("PP2000Akimbo",1);
+			SetWeapon("PP2000 Akimbo");
+
+			SetFont("BIGFONT");
+			HudMessage(s:"Akimbo attached to PP2000!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+		}
 		else if(CheckWeapon("M9") == 1)
 		{
 			ACS_ExecuteAlways(622,0,0,0,0);
@@ -2791,10 +2803,11 @@ script 621 (void) NET
 		TakeInventory("MaxWeaponsFilled",1);
 		SpawnSpotFacing("G18PickupSpawn",PlayerNumber()+500,0);
 	}
-	else if(CheckWeapon("PP2000") == 1 || CheckWeapon("PP2000 Ex Mags") == 1)
+	else if(CheckWeapon("PP2000") == 1 || CheckWeapon("PP2000 Ex Mags") == 1 || CheckWeapon("PP2000 Akimbo") == 1)
 	{
 		TakeInventory("PP2000",1);
 		TakeInventory("PP2000 Ex Mags",1);
+		TakeInventory("PP2000 Akimbo",1);
 		TakeInventory("MaxWeaponsFilled_Handgun",1);
 		TakeInventory("MaxWeaponsFilled",1);
 		SpawnSpotFacing("PP2000PickupSpawn",PlayerNumber()+500,0);
@@ -3398,17 +3411,17 @@ script 630 (void)
 		GiveInventory("USP45Clip",12);
 		MorphActor(0,"RGULastStandPlayer_USPKnife","",99999,256,"NoFlash","NoFlash");
 	}
-	else if(CheckInventory(".44 Magnum") == 1)
-	{
-		GiveInventory("44MagnumAmmo",6);
-		GiveInventory("44MagnumClip",6);
-		MorphActor(0,"RGULastStandPlayer_44Magnum","",99999,256,"NoFlash","NoFlash");
-	}
 	else if(CheckInventory(".44 Magnum Akimbo") == 1)
 	{
 		GiveInventory("44MagnumAmmo",6);
 		GiveInventory("44MagnumClip",12);
 		MorphActor(0,"RGULastStandPlayer_44MagnumAkimbo","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory(".44 Magnum") == 1)
+	{
+		GiveInventory("44MagnumAmmo",6);
+		GiveInventory("44MagnumClip",6);
+		MorphActor(0,"RGULastStandPlayer_44Magnum","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory(".44 Magnum Tac Knife") == 1)
 	{
@@ -3440,6 +3453,12 @@ script 630 (void)
 		GiveInventory("M9Clip3",30);
 		MorphActor(0,"RGULastStandPlayer_M9Akimbo","",99999,256,"NoFlash","NoFlash");
 	}
+	else if(CheckInventory("Desert Eagle Akimbo") == 1)
+	{
+		GiveInventory("DeagleAmmo",7);
+		GiveInventory("DeagleClip2",14);
+		MorphActor(0,"RGULastStandPlayer_DeagleAkimbo","",99999,256,"NoFlash","NoFlash");
+	}
 	else if(CheckInventory("Desert Eagle") == 1)
 	{
 		GiveInventory("DeagleAmmo",7);
@@ -3452,17 +3471,17 @@ script 630 (void)
 		GiveInventory("DeagleClip2",14);
 		MorphActor(0,"RGULastStandPlayer_DeagleEx","",99999,256,"NoFlash","NoFlash");
 	}
-	else if(CheckInventory("Desert Eagle Akimbo") == 1)
-	{
-		GiveInventory("DeagleAmmo",7);
-		GiveInventory("DeagleClip2",14);
-		MorphActor(0,"RGULastStandPlayer_DeagleAkimbo","",99999,256,"NoFlash","NoFlash");
-	}
 	else if(CheckInventory("Desert Eagle Tac Knife") == 1)
 	{
 		GiveInventory("DeagleAmmo",7);
 		GiveInventory("DeagleClip2",14);
 		MorphActor(0,"RGULastStandPlayer_DeagleKnife","",99999,256,"NoFlash","NoFlash");
+	}
+	else if(CheckInventory("G18 Akimbo") == 1)
+	{
+		GiveInventory("G18Ammo",33);
+		GiveInventory("G18Clip3",66);
+		MorphActor(0,"RGULastStandPlayer_G18Akimbo","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("G18") == 1)
 	{
@@ -3476,11 +3495,11 @@ script 630 (void)
 		GiveInventory("G18Clip2",50);
 		MorphActor(0,"RGULastStandPlayer_G18Ex","",99999,256,"NoFlash","NoFlash");
 	}
-	else if(CheckInventory("G18 Akimbo") == 1)
+	else if(CheckInventory("PP2000 Akimbo") == 1)
 	{
-		GiveInventory("G18Ammo",33);
-		GiveInventory("G18Clip3",66);
-		MorphActor(0,"RGULastStandPlayer_G18Akimbo","",99999,256,"NoFlash","NoFlash");
+		GiveInventory("PP2000Ammo",20);
+		GiveInventory("PP2200Clip",30);
+		MorphActor(0,"RGULastStandPlayer_PP2000Ak","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("PP2000") == 1)
 	{
@@ -3621,6 +3640,11 @@ script 631 ENTER
 	{
 		UnMorphActor(0);
 		GiveInventory("PP2000 Ex Mags",1);
+	}
+	else if(CheckInventory("PP2000 Akimbo") == 1)
+	{
+		UnMorphActor(0);
+		GiveInventory("PP2000 Akimbo",1);
 	}
 	else if(CheckInventory("M93 Raffica") == 1)
 	{
