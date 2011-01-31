@@ -89,6 +89,9 @@ script 501 RESPAWN
 	}
 
 	int MaxGunCount = GameSkill();
+	if(GameType() == GAME_NET_DEATHMATCH){
+		MaxGunCount = 2;
+	}
 	If(CheckInventory("Perk1_OneManArmy_Pro") == 1){
 		MaxGunCount++;
 	}			
@@ -173,12 +176,6 @@ script 597 ENTER
 			SetAmmoCapacity("MaxWeaponsFilled_ARSMG",4);
 		if(CheckInventory("Perk1_OneManArmy_Pro") == 1)
 			ACS_ExecuteAlways(629,0,0,0,0);
-			
-		int MaxGunCount = GameSkill();
-		If(CheckInventory("Perk1_OneManArmy_Pro") == 1){
-			MaxGunCount++;
-		}
-		SetAmmoCapacity("MaxWeaponsFilled",MaxGunCount);
 		
 		TakeInventory("InvisibilityRunning", 1);
 		
@@ -189,6 +186,15 @@ script 597 ENTER
 		ACS_ExecuteAlways(634,0,0,0,0);
 		ACS_ExecuteAlways(640,0,0,0,0);
 	}
+	
+	int MaxGunCount = GameSkill();
+	if(GameType() == GAME_NET_DEATHMATCH){
+		MaxGunCount = 2;
+	}
+	If(CheckInventory("Perk1_OneManArmy_Pro") == 1){
+		MaxGunCount++;
+	}
+	SetAmmoCapacity("MaxWeaponsFilled",MaxGunCount);
 	
 	TakeInventory("InCombat", 5);
 	
@@ -3809,7 +3815,7 @@ bool GotClass[32];
 script 636 (void)
 {
 	if(ClassifyActor(0) & ACTOR_BOT){
-		ACS_ExecuteAlways(c,0,0,0,0);
+		ACS_ExecuteAlways(639,0,0,0,0);
 		terminate;
 	}	
 
