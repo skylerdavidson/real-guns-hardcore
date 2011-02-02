@@ -4002,7 +4002,7 @@ script 636 (void)
 			HudMessage(s:"> Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 100.1, 440.0, 0.0);	
 
 		if(CheckInventory("MenuCursor") >= 12){
-			TakeInventory("MenuCursor",10);
+			TakeInventory("MenuCursor",15);
 			ACS_ExecuteAlways(636,0,0,0,0); // redraw the menu
 		}
 		//delay(1);	
@@ -4117,7 +4117,7 @@ script 636 (void)
 		HudMessage(s:"Choose an attachment - use before level up"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 180.0, 0.0);	
 
 		//List menu
-		HudMessage(s:"  Akimbo:          Dual wield weapon (handguns, G18, PP2000 and Mini-Uzi only)"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 0.0);	
+		HudMessage(s:"  Akimbo:          Dual wield weapon (handguns, G18, PP2000 and Mini-Uzi only for now)"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 0.0);	
 		HudMessage(s:"  Tactical Knife:  Faster knifing for handguns"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 240.0, 0.0);	
 		HudMessage(s:"  Extended Mags:   +50% increased magazine size (not for .44 Magnum, Deagle, Ranger or 1887)"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 260.0, 0.0);	
 		HudMessage(s:"  Rapid Fire:      Increased rate of fire (MP5K, UMP45, P90 only)"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 280.0, 0.0);	
