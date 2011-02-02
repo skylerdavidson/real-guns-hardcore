@@ -4498,7 +4498,7 @@ script 638 (int Which)
 	}
 	else if(Which == 9)
 	{
-		log(s:"Take9");
+		//log(s:"Take9");
 		TakeInventory("Menu",1);
 		GiveInventory(Handgun[PlayerNumber()+1],1);
 		GiveInventory(HandgunAmmo[PlayerNumber()+1],HandgunAmmoAmount[PlayerNumber()+1]);
