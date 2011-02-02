@@ -3880,12 +3880,12 @@ script 636 (void)
 		HudMessage(s:"Presets or make your own"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 180.0, 0.0);	
 
 		//List menu
-		HudMessage(s:"Make your own!"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 0.0);	
-		HudMessage(s:"Assault:       M4A1 (+Extended Mags) and USP .45\n\n                + \cvScavenger, \cgStopping Power, \cdCommando PRO"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 260.0, 0.0);	
-		HudMessage(s:"Juggernaut:    M240 and Desert Eagle\n\n                + \cvSleight of Hand, \cgJuggernaut PRO, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 300.0, 0.0);	
-		HudMessage(s:"Sniper:        Intervention (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 340.0, 0.0);	
-		HudMessage(s:"Recon:         FN P90 (+Rapid Fire) and M9\n\n                + \cvExtreme Conditioning, \cgCold Blooded PRO, \cdCommando"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 100.1, 380.0, 0.0);		
-		HudMessage(s:"Demolitions:   RPG-7 and SPAS-12\n\n                + \cvScavenger, \cgDanger Close PRO, \cdSteady Aim"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 100.1, 420.0, 0.0);		
+		HudMessage(s:"  Make your own!"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 0.0);	
+		HudMessage(s:"  Assault:       M4A1 (+Extended Mags) and USP .45\n\n                + \cvScavenger, \cgStopping Power, \cdCommando PRO"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 260.0, 0.0);	
+		HudMessage(s:"  Juggernaut:    M240 and Desert Eagle\n\n                + \cvSleight of Hand, \cgJuggernaut PRO, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 300.0, 0.0);	
+		HudMessage(s:"  Sniper:        Intervention (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 340.0, 0.0);	
+		HudMessage(s:"  Recon:         FN P90 (+Rapid Fire) and M9\n\n                + \cvExtreme Conditioning, \cgCold Blooded PRO, \cdCommando"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 100.1, 380.0, 0.0);		
+		HudMessage(s:"  Demolitions:   RPG-7 and SPAS-12\n\n                + \cvScavenger, \cgDanger Close PRO, \cdSteady Aim"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 100.1, 420.0, 0.0);		
 	
 	
 		if(CheckInventory("MenuCursor") == 0){
@@ -3900,7 +3900,7 @@ script 636 (void)
 			HudMessage(s:"\cvSleight of Hand: faster reloading\n\n         \cjPRO\cv: faster knifing and grenade throwing\n\n\cgJuggernaut: +40% damage resistance\n\n         \cjPRO\cg: double bonuses from health/armor pickups\n\n\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Revival Kit"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 0.0);
 		}
 		else if(CheckInventory("MenuCursor") == 3){
-			HudMessage(s:"> Sniper:        Sniper:        Intervention (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 100.1, 340.0, 0.0);	
+			HudMessage(s:"> Sniper:        Intervention (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 100.1, 340.0, 0.0);	
 			HudMessage(s:"\cvOne Man Army: Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon\n\n\cgStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies\n\n\cdSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 200.1, 500.0, 0.0);
 		}
 		else if(CheckInventory("MenuCursor") == 4){
@@ -3932,10 +3932,10 @@ script 636 (void)
 		HudMessage(s:"Choose a handgun"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 180.0, 0.0);	
 
 		//List menu
-		HudMessage(s:"USP .45: 12-round mag, semi-auto"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 0.0);	
-		HudMessage(s:"M9:      15-round mag, semi-auto, less damage"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 240.0, 0.0);	
-		HudMessage(s:"PP2000:  20-round mag, machine pistol"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 260.0, 0.0);	
-		HudMessage(s:"Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 440.0, 0.0);	
+		HudMessage(s:"  USP .45: 12-round mag, semi-auto"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 0.0);	
+		HudMessage(s:"  M9:      15-round mag, semi-auto, less damage"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 240.0, 0.0);	
+		HudMessage(s:"  PP2000:  20-round mag, machine pistol"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 260.0, 0.0);	
+		HudMessage(s:"  Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 440.0, 0.0);	
 	
 		if(CheckInventory("MenuCursor") == 0)
 			HudMessage(s:"> USP .45: 12-round mag, semi-auto"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 100.1, 220.0, 0.0);	
@@ -3963,18 +3963,18 @@ script 636 (void)
 		HudMessage(s:"Choose a primary weapon"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 180.0, 0.0);	
 
 		//List menu
-		HudMessage(s:"M4A1:     30-round mag, assault rifle, accurate"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 0.0);	
-		HudMessage(s:"FAMAS:    30-round mag, assault rifle, burst fire, M203 Grenadelauncher"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 240.0, 0.0);	
-		HudMessage(s:"SCAR-H:   20-round mag, assault rifle, high damage"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 260.0, 0.0);	
-		HudMessage(s:"FAL:      20-round mag, assault rifle, semi-auto high damage"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 280.0, 0.0);	
-		HudMessage(s:"SPAS-12:   8-round mag, shotgun, pump action"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 100.1, 300.0, 0.0);	
-		HudMessage(s:"Ranger:    Sawn-off shotgun, short range, high damage"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 100.1, 320.0, 0.0);	
-		HudMessage(s:"Striker:  12-round mag, shotgun, semi-auto"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 100.1, 340.0, 0.0);	
-		HudMessage(s:"MP5K:     30-round mag, SMG, accurate"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_WHITE, 100.1, 360.0, 0.0);	
-		HudMessage(s:"UMP45:    32-round mag, SMG, high damage"; HUDMSG_PLAIN, 800+PlayerNumber(), CR_WHITE, 100.1, 380.0, 0.0);	
-		HudMessage(s:"Vector:   30-round mag, SMG, high rate of fire"; HUDMSG_PLAIN, 850+PlayerNumber(), CR_WHITE, 100.1, 400.0, 0.0);	
-		HudMessage(s:"Intervention:   5-round mag, sniper rifle, bolt action"; HUDMSG_PLAIN, 900+PlayerNumber(), CR_WHITE, 100.1, 420.0, 0.0);	
-		HudMessage(s:"Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 440.0, 0.0);	
+		HudMessage(s:"  M4A1:     30-round mag, assault rifle, accurate"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 0.0);	
+		HudMessage(s:"  FAMAS:    30-round mag, assault rifle, burst fire, M203 Grenadelauncher"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 240.0, 0.0);	
+		HudMessage(s:"  SCAR-H:   20-round mag, assault rifle, high damage"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 260.0, 0.0);	
+		HudMessage(s:"  FAL:      20-round mag, assault rifle, semi-auto high damage"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 280.0, 0.0);	
+		HudMessage(s:"  SPAS-12:   8-round mag, shotgun, pump action"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 100.1, 300.0, 0.0);	
+		HudMessage(s:"  Ranger:    Sawn-off shotgun, short range, high damage"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 100.1, 320.0, 0.0);	
+		HudMessage(s:"  Striker:  12-round mag, shotgun, semi-auto"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 100.1, 340.0, 0.0);	
+		HudMessage(s:"  MP5K:     30-round mag, SMG, accurate"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_WHITE, 100.1, 360.0, 0.0);	
+		HudMessage(s:"  UMP45:    32-round mag, SMG, high damage"; HUDMSG_PLAIN, 800+PlayerNumber(), CR_WHITE, 100.1, 380.0, 0.0);	
+		HudMessage(s:"  Vector:   30-round mag, SMG, high rate of fire"; HUDMSG_PLAIN, 850+PlayerNumber(), CR_WHITE, 100.1, 400.0, 0.0);	
+		HudMessage(s:"  Intervention:   5-round mag, sniper rifle, bolt action"; HUDMSG_PLAIN, 900+PlayerNumber(), CR_WHITE, 100.1, 420.0, 0.0);	
+		HudMessage(s:"  Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 440.0, 0.0);	
 	
 		if(CheckInventory("MenuCursor") == 0)
 			HudMessage(s:"> M4A1:     30-round mag, assault rifle, accurate"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 100.1, 220.0, 0.0);	
@@ -4018,11 +4018,11 @@ script 636 (void)
 		HudMessage(s:"Choose a Tier 1 perk"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 180.0, 0.0);	
 
 		//List menu
-		HudMessage(s:"\cvSleight of Hand:      Faster reloading\n\n         \cjPRO\cv: Faster knifing and grenade throwing"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 0.0);	
-		HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 260.0, 0.0);	
-		HudMessage(s:"\cvOne Man Army:         Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 300.0, 0.0);	
-		HudMessage(s:"\cvScavenger:         +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 340.0, 0.0);
-		HudMessage(s:"Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 440.0, 0.0);	
+		HudMessage(s:"  \cvSleight of Hand:      Faster reloading\n\n         \cjPRO\cv: Faster knifing and grenade throwing"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 0.0);	
+		HudMessage(s:"  \cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 260.0, 0.0);	
+		HudMessage(s:"  \cvOne Man Army:         Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 300.0, 0.0);	
+		HudMessage(s:"  \cvScavenger:         +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 340.0, 0.0);
+		HudMessage(s:"  Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 440.0, 0.0);	
 
 		if(CheckInventory("MenuCursor") == 0)
 			HudMessage(s:"> \ckSleight of Hand:      Faster reloading\n\n         \cjPRO\cv: Faster knifing and grenade throwing"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 100.1, 220.0, 0.0);	
@@ -4033,7 +4033,7 @@ script 636 (void)
 		else if(CheckInventory("MenuCursor") == 3)
 			HudMessage(s:"> \ckScavenger:         +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 100.1, 340.0, 0.0);
 		else if(CheckInventory("MenuCursor") == 4)
-			HudMessage(s:"> Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 100.1, 500.0, 0.0);	
+			HudMessage(s:"> Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 100.1, 440.0, 0.0);	
 	
 		if(CheckInventory("MenuCursor") >= 5){
 			TakeInventory("MenuCursor",10);
@@ -4052,11 +4052,11 @@ script 636 (void)
 		HudMessage(s:"Choose a Tier 2 perk"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 180.0, 0.0);	
 
 		//List menu
-		HudMessage(s:"\cgStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 0.0);	
-		HudMessage(s:"\cgDanger Close:   +100% explosive damage\n\n         \cjPRO\cg: +50% explosive blast radius"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 260.0, 0.0);	
-		HudMessage(s:"\cgJuggernaut:     +40% damage resistance\n\n         \cjPRO\cg: Double bonuses from health/armor pickups"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 300.0, 0.0);	
-		HudMessage(s:"\cgCold Blooded:   Invisible to seeker missiles\n\n         \cjPRO\cg: Partial invisibility while out of combat"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 340.0, 0.0);
-		HudMessage(s:"Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 500.0, 0.0);	
+		HudMessage(s:"  \cgStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 0.0);	
+		HudMessage(s:"  \cgDanger Close:   +100% explosive damage\n\n         \cjPRO\cg: +50% explosive blast radius"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 260.0, 0.0);	
+		HudMessage(s:"  \cgJuggernaut:     +40% damage resistance\n\n         \cjPRO\cg: Double bonuses from health/armor pickups"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 300.0, 0.0);	
+		HudMessage(s:"  \cgCold Blooded:   Invisible to seeker missiles\n\n         \cjPRO\cg: Partial invisibility while out of combat"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 340.0, 0.0);
+		HudMessage(s:"  Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 440.0, 0.0);	
 
 		if(CheckInventory("MenuCursor") == 0)
 			HudMessage(s:"> \ckStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 100.1, 220.0, 0.0);	
@@ -4067,7 +4067,7 @@ script 636 (void)
 		else if(CheckInventory("MenuCursor") == 3)
 			HudMessage(s:"> \ckCold Blooded:   Invisible to seeker missiles\n\n         \cjPRO\cg: Partial invisibility while out of combat"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 100.1, 340.0, 0.0);
 		else if(CheckInventory("MenuCursor") == 4) 
-			HudMessage(s:"> Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 100.1, 500.0, 0.0);	
+			HudMessage(s:"> Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 100.1, 440.0, 0.0);	
 	
 		if(CheckInventory("MenuCursor") >= 5){
 			TakeInventory("MenuCursor",10);
@@ -4086,10 +4086,10 @@ script 636 (void)
 		HudMessage(s:"Choose a Tier 3 perk"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 180.0, 0.0);	
 
 		//List menu
-		HudMessage(s:"\cdSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 0.0);	
-		HudMessage(s:"\cdCommando:   +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 260.0, 0.0);	
-		HudMessage(s:"\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Revival Kit"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 300.0, 0.0);	
-		HudMessage(s:"Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 440.0, 0.0);	
+		HudMessage(s:"  \cdSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 0.0);	
+		HudMessage(s:"  \cdCommando:   +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 260.0, 0.0);	
+		HudMessage(s:"  \cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Revival Kit"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 300.0, 0.0);	
+		HudMessage(s:"  Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 440.0, 0.0);	
 
 		if(CheckInventory("MenuCursor") == 0)
 			HudMessage(s:"> \ckSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 100.1, 220.0, 0.0);	
@@ -4098,7 +4098,7 @@ script 636 (void)
 		else if(CheckInventory("MenuCursor") == 2)
 			HudMessage(s:"> \ckLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Revival Kita"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 100.1, 300.0, 0.0);	
 		else if(CheckInventory("MenuCursor") == 3)
-			HudMessage(s:"> Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 100.1, 500.0, 0.0);	
+			HudMessage(s:"> Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 100.1, 440.0, 0.0);	
 	
 		if(CheckInventory("MenuCursor") >= 4){
 			TakeInventory("MenuCursor",10);
@@ -4117,13 +4117,13 @@ script 636 (void)
 		HudMessage(s:"Choose an attachment - use before level up"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 180.0, 0.0);	
 
 		//List menu
-		HudMessage(s:"Akimbo:          Dual wield weapon (handguns, G18 and Mini-Uzi only)"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 0.0);	
-		HudMessage(s:"Tactical Knife:  Faster knifing for handguns"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 240.0, 0.0);	
-		HudMessage(s:"Extended Mags:   +50% increased magazine size (not for .44 Magnum, Deagle, Ranger or 1887)"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 260.0, 0.0);	
-		HudMessage(s:"Rapid Fire:      Increased rate of fire (MP5K, UMP45, P90 only)"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 280.0, 0.0);	
-		HudMessage(s:"Thermal Scope:   See through scope in darkness (snipers only)"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 100.1, 300.0, 0.0);	
-		HudMessage(s:"Grip:            -50% vertical recoil, shotguns or LMGs only (not for Ranger or 1887)"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 100.1, 320.0, 0.0);	
-		HudMessage(s:"Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 440.0, 0.0);	
+		HudMessage(s:"  Akimbo:          Dual wield weapon (handguns, G18 and Mini-Uzi only)"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 220.0, 0.0);	
+		HudMessage(s:"  Tactical Knife:  Faster knifing for handguns"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 240.0, 0.0);	
+		HudMessage(s:"  Extended Mags:   +50% increased magazine size (not for .44 Magnum, Deagle, Ranger or 1887)"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 260.0, 0.0);	
+		HudMessage(s:"  Rapid Fire:      Increased rate of fire (MP5K, UMP45, P90 only)"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 280.0, 0.0);	
+		HudMessage(s:"  Thermal Scope:   See through scope in darkness (snipers only)"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 100.1, 300.0, 0.0);	
+		HudMessage(s:"  Grip:            -50% vertical recoil, shotguns or LMGs only (not for Ranger or 1887)"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 100.1, 320.0, 0.0);	
+		HudMessage(s:"  Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 440.0, 0.0);	
 
 	
 		if(CheckInventory("MenuCursor") == 0)
