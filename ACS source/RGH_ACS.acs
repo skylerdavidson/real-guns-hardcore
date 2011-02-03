@@ -4785,3 +4785,10 @@ script 640 (void)
 		}
 	}
 }
+
+// Infinite ammo for bots
+script 641 (void) {
+	if(ClassifyActor(0) & ACTOR_BOT){
+		GiveInventory("Backpack", 1);		
+	}
+}
