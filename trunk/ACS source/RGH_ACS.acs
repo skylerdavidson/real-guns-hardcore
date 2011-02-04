@@ -109,6 +109,9 @@ script 502 (void)
 	KillersHealth = GetActorProperty(ActivatorTID(),APROP_Health);
 	KillersMaxHealth = GetActorProperty(ActivatorTID(),APROP_SpawnHealth);
 
+	// GetActorProperty always returns 0 for players
+	if(KillersMaxHealth == 0) KillersMaxHealth = 100;
+
 	KillersGun = "";
 
 	Delay(20);
