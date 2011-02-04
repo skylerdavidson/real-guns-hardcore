@@ -3874,7 +3874,7 @@ script 636 (void)
 	HudMessage(s:""; HUDMSG_PLAIN, 490+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0); // perk table
 	
 	
-	//Choose to create your own or select a preset.
+	//Choose to create your own or select a preset.       Menu
 	if(CheckWeapon("Menu") == 1 && CheckInventory("MenuPlace") == 0)
 	{
 		SetHudSize(800,600,1);
@@ -4155,7 +4155,7 @@ script 636 (void)
 
 //Make selection
 script 637 (void)
-{
+{	
 	//MenuPlace 0: We're in the presets menu.
 	if(CheckInventory("MenuPlace") == 0)
 	{
@@ -4402,6 +4402,16 @@ script 637 (void)
 
 script 638 (int Which)
 {
+	TakeInventory("MenuChoice1",1);
+	TakeInventory("MenuChoice2",1);
+	TakeInventory("MenuChoice3",1);
+	TakeInventory("MenuChoice4",1);
+	TakeInventory("MenuChoice5",1);
+	TakeInventory("MenuChoice6",1);
+	TakeInventory("MenuChoice7",1);
+	TakeInventory("MenuChoice8",1);
+	TakeInventory("MenuChoice9",1);
+	TakeInventory("MenuChoice10",1);
 	If(Which == 0)
 	{
 		//log(s:"Take0");
