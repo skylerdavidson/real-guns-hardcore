@@ -3819,7 +3819,7 @@ script 635 (void)
 		TakeInventory("USP .45",1);
 		SetHudSize(800,600,1);
 		SetFont("CONFONT");
-		HudMessage(s:"Press \cffire \ccto scroll      Press \cfalt-fire \ccto select"; HUDMSG_PLAIN, 2050+PlayerNumber(), CR_WHITE, 400.0, 50.0, 2.0);	
+		HudMessage(s:"Press \cffire \ccto scroll      Press \cfalt-fire \ccto select"; HUDMSG_PLAIN, 2050+PlayerNumber(), CR_WHITE, 400.0, 60.0, 2.0);	
 		HudMessage(s:""; HUDMSG_PLAIN, 2100+PlayerNumber(), CR_WHITE, 400.1, 50.0, 2.0);	
 		SetActorProperty(0,APROP_Invulnerable,1);
 		SetPlayerProperty(0,1,PROP_FROZEN);
