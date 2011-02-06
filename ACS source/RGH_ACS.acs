@@ -4635,6 +4635,10 @@ script 638 (int Which)
 		GotClass[PlayerNumber()+1] = True;
 	}
 	
+	if(GameType() == GAME_NET_DEATHMATCH){
+		HudMessage(s:"PERKS ARE CURRENTLY NOT SUPPORTED IN DEATHMATCH!"; HUDMSG_FADEOUT, 0, CR_RED, 0.5, 0.79, 2.0, 1.0);
+	}
+	
 	GiveInventory("Backpack", 1);
 	
 	int MaxGunCount = GameSkill();
