@@ -4438,14 +4438,16 @@ script 638 (int Which)
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
 		GiveInventory("MaxWeaponsFilled",2);
-		GiveInventory("Perk1_Scavenger",1);		
-		GiveInventory("Perk2_StoppingPower",1);
-		GiveInventory("Perk2_StoppingPowerEffect",1);
-		GiveInventory("Perk3_Commando",1);
-		GiveInventory("Perk3_Commando_Pro",1);
-		GiveInventory("Perk3_CommandoEffect",1);
+		if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER){
+			GiveInventory("Perk1_Scavenger",1);		
+			GiveInventory("Perk2_StoppingPower",1);
+			GiveInventory("Perk2_StoppingPowerEffect",1);
+			GiveInventory("Perk3_Commando",1);
+			GiveInventory("Perk3_Commando_Pro",1);
+			GiveInventory("Perk3_CommandoEffect",1);
+		}
 		ACS_ExecuteAlways(634,0,0,0,0);
-		LocalAmbientSound("game/challenge",255);
+		LocalAmbientSound("game/challenge",255);                                   
 		SetFont("BIGFONT");
 		HudMessage(s:"\cdYou are Assault!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
@@ -4463,11 +4465,13 @@ script 638 (int Which)
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
 		GiveInventory("MaxWeaponsFilled",2);
-		GiveInventory("Perk1_SOH",1);
-		GiveInventory("Perk2_Juggernaut",1);
-		GiveInventory("Perk2_JuggernautEffect",1);
-		GiveInventory("Perk2_Juggernaut_Pro",1);
-		GiveInventory("Perk3_LastStand",1);
+		if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER){
+			GiveInventory("Perk1_SOH",1);
+			GiveInventory("Perk2_Juggernaut",1);
+			GiveInventory("Perk2_JuggernautEffect",1);
+			GiveInventory("Perk2_Juggernaut_Pro",1);
+			GiveInventory("Perk3_LastStand",1);
+		}
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
 		SetFont("BIGFONT");
@@ -4487,11 +4491,13 @@ script 638 (int Which)
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_LMG",1);
 		GiveInventory("MaxWeaponsFilled",2);
-		GiveInventory("Perk1_OneManArmy",1);
-		GiveInventory("Perk2_StoppingPower",1);
-		GiveInventory("Perk2_StoppingPowerEffect",1);
-		GiveInventory("Perk2_StoppingPower_Pro",1);
-		GiveInventory("Perk3_SteadyAim",1);
+		if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER){
+			GiveInventory("Perk1_OneManArmy",1);
+			GiveInventory("Perk2_StoppingPower",1);
+			GiveInventory("Perk2_StoppingPowerEffect",1);
+			GiveInventory("Perk2_StoppingPower_Pro",1);
+			GiveInventory("Perk3_SteadyAim",1);
+		}
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
 		SetFont("BIGFONT");
@@ -4510,13 +4516,15 @@ script 638 (int Which)
 		GiveInventory("P90Ammo",60);
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
-		GiveInventory("MaxWeaponsFilled",2);		
-		GiveInventory("Perk1_ExtremeConditioning",1);
-		GiveInventory("Perk2_ColdBlooded",1);
-		GiveInventory("Perk2_ColdBlooded_Pro",1);
-		GiveInventory("Perk2_JuggernautEffect",1);
-		GiveInventory("Perk3_Commando",1);
-		GiveInventory("Perk3_CommandoEffect",1);
+		GiveInventory("MaxWeaponsFilled",2);
+		if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER){		
+			GiveInventory("Perk1_ExtremeConditioning",1);
+			GiveInventory("Perk2_ColdBlooded",1);
+			GiveInventory("Perk2_ColdBlooded_Pro",1);
+			GiveInventory("Perk2_JuggernautEffect",1);
+			GiveInventory("Perk3_Commando",1);
+			GiveInventory("Perk3_CommandoEffect",1);
+		}
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
 		SetFont("BIGFONT");
@@ -4536,11 +4544,13 @@ script 638 (int Which)
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
 		GiveInventory("MaxWeaponsFilled",2);		
-		GiveInventory("Perk1_Scavenger",1);
-		GiveInventory("Perk2_DangerClose",1);
-		GiveInventory("Perk2_DangerCloseEffect",1);
-		GiveInventory("Perk2_DangerClose_Pro",1);
-		GiveInventory("Perk3_SteadyAim",1);
+		if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER){
+			GiveInventory("Perk1_Scavenger",1);
+			GiveInventory("Perk2_DangerClose",1);
+			GiveInventory("Perk2_DangerCloseEffect",1);
+			GiveInventory("Perk2_DangerClose_Pro",1);
+			GiveInventory("Perk3_SteadyAim",1);
+		}
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
 		SetFont("BIGFONT");
@@ -4562,12 +4572,14 @@ script 638 (int Which)
 		GiveInventory("M203Ammo",1);
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
-		GiveInventory("MaxWeaponsFilled",2);		
-		GiveInventory("Perk1_ExtremeConditioning",1);
-		GiveInventory("Perk1_ExtremeConditioning_Pro",1);
-		GiveInventory("Perk2_DangerClose",1);
-		GiveInventory("Perk2_DangerCloseEffect",1);
-		GiveInventory("Perk3_LastStand",1);
+		GiveInventory("MaxWeaponsFilled",2);
+		if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER){		
+			GiveInventory("Perk1_ExtremeConditioning",1);
+			GiveInventory("Perk1_ExtremeConditioning_Pro",1);
+			GiveInventory("Perk2_DangerClose",1);
+			GiveInventory("Perk2_DangerCloseEffect",1);
+			GiveInventory("Perk3_LastStand",1);
+		}
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
 		SetFont("BIGFONT");
@@ -4592,26 +4604,28 @@ script 638 (int Which)
 			GiveInventory("FAMAS M203",1);
 			GiveInventory("M203Ammo",1);
 		}
-		GiveInventory(Perk1[PlayerNumber()+1],1);
-		/*if(Perk1[PlayerNumber()+1] == "Perk1_OneManArmy")
-			GiveInventory("Backpack",5);*/
-		GiveInventory(Perk2[PlayerNumber()+1],1);
-		If(Perk2[PlayerNumber()+1] == "Perk2_Juggernaut")
-		{
-			GiveInventory("Perk2_JuggernautEffect",1);
-		}
-		If(Perk2[PlayerNumber()+1] == "Perk2_DangerClose")
-		{
-			GiveInventory("Perk2_DangerCloseEffect",1);
-		}
-		If(Perk2[PlayerNumber()+1] == "Perk2_StoppingPower")
-		{
-			GiveInventory("Perk2_StoppingPowerEffect",1);
-		}
-		GiveInventory(Perk3[PlayerNumber()+1],1);
-		If(Perk3[PlayerNumber()+1] == "Perk3_Commando")
-		{
-			GiveInventory("Perk3_CommandoEffect",1);
+		if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER){
+			GiveInventory(Perk1[PlayerNumber()+1],1);
+			/*if(Perk1[PlayerNumber()+1] == "Perk1_OneManArmy")
+				GiveInventory("Backpack",5);*/
+			GiveInventory(Perk2[PlayerNumber()+1],1);
+			If(Perk2[PlayerNumber()+1] == "Perk2_Juggernaut")
+			{
+				GiveInventory("Perk2_JuggernautEffect",1);
+			}
+			If(Perk2[PlayerNumber()+1] == "Perk2_DangerClose")
+			{
+				GiveInventory("Perk2_DangerCloseEffect",1);
+			}
+			If(Perk2[PlayerNumber()+1] == "Perk2_StoppingPower")
+			{
+				GiveInventory("Perk2_StoppingPowerEffect",1);
+			}
+			GiveInventory(Perk3[PlayerNumber()+1],1);
+			If(Perk3[PlayerNumber()+1] == "Perk3_Commando")
+			{
+				GiveInventory("Perk3_CommandoEffect",1);
+			}
 		}
 		GiveInventory(Attachment[PlayerNumber()+1],1);
 		ACS_ExecuteAlways(634,0,0,0,0);
