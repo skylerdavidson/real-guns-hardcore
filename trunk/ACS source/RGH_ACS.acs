@@ -4564,7 +4564,7 @@ script 638 (int Which)
 		//log(s:"Take4");
 		TakeInventory("Menu",1);
 		GiveInventory("G18 Akimbo",1);
-		GiveInventory("G18Ammo",32);
+		GiveInventory("G18Ammo",66);
 		GiveInventory("G18Clip3",66);
 		GiveInventory("FAMAS",1);
 		GiveInventory("FAMASAmmo",2);
