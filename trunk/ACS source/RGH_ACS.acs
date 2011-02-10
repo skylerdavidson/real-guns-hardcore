@@ -64,8 +64,8 @@ script 501 RESPAWN
 	{	
 		if(GetActorProperty(0,APROP_HEALTH) < 100)
 			ACS_ExecuteAlways(606,0,0,0,0);
-		if(GetActorProperty(0, APROP_Speed) != 1.15)
-			SetActorProperty(0, APROP_Speed, 1.15);
+		//if(GetActorProperty(0, APROP_Speed) != 1.15)
+		//	SetActorProperty(0, APROP_Speed, 1.15);
 		if(CheckInventory("Perk2_StoppingPower") == 1)
 			GiveInventory("Perk2_StoppingPowerEffect",1);
 		if(CheckInventory("Perk2_DangerClose") == 1)
@@ -165,8 +165,8 @@ script 597 ENTER
 	{	
 		if(GetActorProperty(0,APROP_HEALTH) < 100)
 			ACS_ExecuteAlways(606,0,0,0,0);
-		if(GetActorProperty(0, APROP_Speed) != 1.15)
-			SetActorProperty(0, APROP_Speed, 1.15);
+		//if(GetActorProperty(0, APROP_Speed) != 1.15)
+		//	SetActorProperty(0, APROP_Speed, 1.15);
 		if(CheckInventory("Perk2_StoppingPower") == 1)
 			GiveInventory("Perk2_StoppingPowerEffect",1);
 		if(CheckInventory("Perk2_DangerClose") == 1)
