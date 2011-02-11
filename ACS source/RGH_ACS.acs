@@ -724,7 +724,7 @@ script 602 (void)
 
 	//if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
 	//{
-		int MoveSpeed = 1.0;
+		int MoveSpeed = 1.5;
 	
 	//if(CheckInventory("Aiming") == 1)
 		if(
