@@ -2636,7 +2636,8 @@ script 619 (int Which)
 script 620 (int Which)
 {
 	SetFont("CONFONT");
-	HudMessage(s:"All weapon slots are full!"; HUDMSG_FADEOUT, 200+PlayerNumber(), CR_Green, 0.5, 0.7, 0.5, 1.0);
+	HudMessage(s:"All weapon slots are full!\n\n"; HUDMSG_FADEOUT, 200+PlayerNumber(), CR_Green, 0.5, 0.7, 0.5, 1.0);
+	HudMessage(s:"\ccPress \cf", k:"dropcurrent", s:"\cc to drop current weapon"; HUDMSG_FADEOUT, 100+PlayerNumber(), CR_Green, 0.5, 0.75, 0.5, 1.0);
 	
 	/*SetFont("CONFONT");
 	if(Which == 0)
