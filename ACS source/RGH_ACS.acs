@@ -738,9 +738,9 @@ script 602 (void)
 		)
 		{
 			if(CheckInventory("Aiming") == 1)
-				MoveSpeed = 0.7;
+				MoveSpeed = 1.2;
 			else
-				MoveSpeed = 1.20;
+				MoveSpeed = 1.50;
 		}
 		else if(
 			CheckWeapon("SPAS-12") == 1 || CheckWeapon("SPAS-12 Grip") == 1 || CheckWeapon("SPAS-12 Ex Mags") == 1 ||
@@ -752,9 +752,9 @@ script 602 (void)
 		)
 		{
 			if(CheckInventory("Aiming") == 1)
-				MoveSpeed = 0.5;
+				MoveSpeed = 1.1;
 			else
-				MoveSpeed = 1.00;
+				MoveSpeed = 1.25;
 		}
 		else if(
 			CheckWeapon("UMP45") == 1 || CheckWeapon("UMP45 Rapid Fire") == 1 || CheckWeapon("UMP45 Ex Mags") == 1 || 
@@ -765,9 +765,9 @@ script 602 (void)
 		)
 		{
 			if(CheckInventory("Aiming") == 1)
-				MoveSpeed = 0.5;
+				MoveSpeed = 1.1;
 			else
-				MoveSpeed = 1.00;
+				MoveSpeed = 1.25;
 		}
 		else if(
 			CheckWeapon("ACR") == 1 || CheckWeapon("ACR Ex Mags") == 1 ||
@@ -783,9 +783,9 @@ script 602 (void)
 		)
 		{
 			if(CheckInventory("Aiming") == 1)
-				MoveSpeed = 0.3;
+				MoveSpeed = 0.7;
 			else
-				MoveSpeed = 0.8;		
+				MoveSpeed = 1.0;		
 		}
 		else if(
 			CheckWeapon("MG4") == 1 || CheckWeapon("MG4 Grip") == 1 || CheckWeapon("MG4 Ex Mags") == 1 ||
@@ -3891,7 +3891,7 @@ script 636 (void)
 		HudMessage(s:"2)    Assault:       M4A1 (+Extended Mags) and USP .45\n\n                + \cvScavenger, \cgStopping Power, \cdCommando PRO"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);	
 		HudMessage(s:"3)    Juggernaut:    M240 and Desert Eagle\n\n                + \cvSleight of Hand, \cgJuggernaut PRO, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 180.0, 0.0);	
 		HudMessage(s:"4)    Sniper:        Intervention (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 60.1, 220.0, 0.0);	
-		HudMessage(s:"5)    Recon:         FN P90 (+Rapid Fire) and M9\n\n                + \cvExtreme Conditioning, \cgCold Blooded PRO, \cdCommando"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 60.1, 260.0, 0.0);		
+		HudMessage(s:"5)    Recon:         FN P90  and M9 (+Tac Knife)\n\n                + \cvExtreme Conditioning, \cgCold Blooded PRO, \cdCommando"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 60.1, 260.0, 0.0);		
 		HudMessage(s:"6)    Demolitions:   RPG-7 and SPAS-12\n\n                + \cvScavenger, \cgDanger Close PRO, \cdSteady Aim"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 60.1, 300.0, 0.0);		
 		HudMessage(s:"7)    Grenadier:   FAMAS (+M203) and G18 (+Akimbo)\n\n                + \cvExtreme Conditioning PRO, \cgDanger Close, \cdLast Stand"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_WHITE, 60.1, 340.0, 0.0);
 	    //HudMessage(s:"  Recon:         FN P90 (+Rapid Fire) and M9\n\n                + \cvExtreme Conditioning, \cgCold Blooded PRO, \cdCommando"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 100.1, 380.0, 0.0);
@@ -3912,7 +3912,7 @@ script 636 (void)
 			HudMessage(s:"\cvOne Man Army: Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon\n\n\cgStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies\n\n\cdSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 160.1, 460.0, 0.0);
 		}
 		else if(CheckInventory("MenuCursor") == 4){
-			HudMessage(s:"5)  > Recon:         FN P90 (+Rapid Fire) and M9\n\n                + \cvExtreme Conditioning, \cgCold Blooded PRO, \cdCommando"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_YELLOW, 60.1, 260.0, 0.0);	
+			HudMessage(s:"5)  > Recon:         FN P90 and M9 (+Tac Knife)\n\n                + \cvExtreme Conditioning, \cgCold Blooded PRO, \cdCommando"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_YELLOW, 60.1, 260.0, 0.0);	
 			HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner\n\n\cgCold Blooded: Invisible to seeker missiles\n\n         \cjPRO\cg: Partial invisibility while out of combat\n\n\cdCommando: +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 160.1, 460.0, 0.0);
 		}
 		else if(CheckInventory("MenuCursor") == 5){
