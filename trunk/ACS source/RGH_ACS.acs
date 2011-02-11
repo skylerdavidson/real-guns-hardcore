@@ -4432,7 +4432,7 @@ script 638 (int Which)
 		TakeInventory("Menu",1);
 		GiveInventory("USP .45",1);
 		GiveInventory("USP45Ammo",24);
-		GiveInventory("M4A1",1);
+		GiveInventory("M4A1 Ex Mags",1);
 		GiveInventory("M4A1Ammo",60);
 		GiveInventory("M4A1Clip2",45);
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
