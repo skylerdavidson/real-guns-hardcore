@@ -1608,6 +1608,8 @@ script 618 (int Which)
 		SetResultValue(1);
 		if(CheckInventory("G18ExMags") == 1)
 			GiveInventory("G18 Ex Mags",1);
+		if(CheckInventory("G18Akimbo") == 1)
+			GiveInventory("G18 Akimbo",1);
 		else
 			GiveInventory("G18",1);
 
@@ -1619,6 +1621,8 @@ script 618 (int Which)
 		SetResultValue(1);
 		if(CheckInventory("PP2000ExMags") == 1)
 			GiveInventory("PP2000 Ex Mags",1);
+		if(CheckInventory("PP2000Akimbo") == 1)
+			GiveInventory("PP2000 Akimbo",1);
 		else
 			GiveInventory("PP2000",1);
 
@@ -4433,6 +4437,7 @@ script 638 (int Which)
 		GiveInventory("USP .45",1);
 		GiveInventory("USP45Ammo",24);
 		GiveInventory("M4A1 Ex Mags",1);
+		GiveInventory("M4A1ExMags", 1);
 		GiveInventory("M4A1Ammo",60);
 		GiveInventory("M4A1Clip2",45);
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
@@ -4487,6 +4492,7 @@ script 638 (int Which)
 		GiveInventory("M93 Raffica",1);
 		GiveInventory("M93RAmmo",68);
 		GiveInventory("Intervention Thermal",1);
+		GiveInventory("InterventionThermal",1);
 		GiveInventory("InterventionAmmo",10);
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_LMG",1);
@@ -4511,6 +4517,7 @@ script 638 (int Which)
 		//log(s:"Take3");
 		TakeInventory("Menu",1);
 		GiveInventory("M9 Tac Knife",1);
+		GiveInventory("M9Knife",1);
 		GiveInventory("M9Ammo",30);
 		GiveInventory("FN P90",1);
 		GiveInventory("P90Ammo",60);
@@ -4564,6 +4571,7 @@ script 638 (int Which)
 		//log(s:"Take4");
 		TakeInventory("Menu",1);
 		GiveInventory("G18 Akimbo",1);
+		GiveInventory("G18Akimbo",1);
 		GiveInventory("G18Ammo",66);
 		GiveInventory("G18Clip3",66);
 		GiveInventory("FAMAS",1);
