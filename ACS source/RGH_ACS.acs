@@ -3332,8 +3332,10 @@ script 626 (void) NET
 //------- I think this is for Cyberdemon/Spider, they give XP when put in the pain state.
 script 627 (int Amount)
 {
-	GiveInventory("Experience",Amount);
-	ACS_ExecuteAlways(616,0,0,0,0);
+	if (!(ClassifyActor(0) & ACTOR_MONSTER)){
+		GiveInventory("Experience",Amount);
+		ACS_ExecuteAlways(616,0,0,0,0);
+	}
 }
 
 //Remove TacticalInsertion
