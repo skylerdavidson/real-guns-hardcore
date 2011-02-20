@@ -13,6 +13,9 @@ bool TacticalInsertion[32];
 //Server settings...
 script 505 OPEN
 {
+	if(GetCVAR("alwaysapplydmflags") == 0)
+		ConsoleCommand("alwaysapplydmflags 1");
+	
 	if(GetCVAR("sv_nodrop") == 0)
 		ConsoleCommand("sv_nodrop 1");
 
@@ -21,9 +24,6 @@ script 505 OPEN
 
 	if(GetCVAR("sv_respawnsuper") == 0)
 		ConsoleCommand("sv_respawnsuper 1");
-		
-	if(GetCVAR("alwaysapplydmflags") == 0)
-		ConsoleCommand("alwaysapplydmflags 1");
 		
 	if(GetCVAR("compat_soundslots") == 1)
 		ConsoleCommand("compat_soundslots 0");
