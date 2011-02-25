@@ -1,6 +1,3 @@
-
-@@@dfssdfsdf dsfsd s sd 
-
 @echo off
 del output\RGH.pk3
 mkdir temp
@@ -17,10 +14,14 @@ cd data\monsters
 ..\..\utility\7z u ..\..\temp\debug-monsters.pk3 *.wad -mx0
 cd ..
 ..\utility\7z a ..\temp\debug-acs.pk3 LOADACS -mx0
+..\utility\7z u ..\temp\debug-data.pk3 sprites\* -mx0
+..\utility\7z u ..\temp\debug-data.pk3 sounds\* -mx0
+..\utility\7z u ..\temp\debug-data.pk3 graphics\* -mx0
+..\utility\7z u ..\temp\debug-data.pk3 hires\* -mx0
 cd ..\temp\acs
 ..\..\utility\7z a ..\..\temp\debug-acs.pk3 acs\RGH_ACS -mx0
 cd ..\..
-skulltag data/core/*.wad temp/debug-acs.pk3 temp/debug-monsters.pk3
+skulltag data/ temp/debug-data.pk3 data/core/*.wad temp/debug-acs.pk3 temp/debug-monsters.pk3
 exit
 
 :acserror
