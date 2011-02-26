@@ -69,3 +69,4 @@
 #include decorate/monsters/doom/afrit.txt
 #include decorate/monsters/doom/agathodemon.txt
 #include decorate/monsters/doom/arachnophyte.txt
+#include "decorate/monsters/doom/bfg zombie.txt"
