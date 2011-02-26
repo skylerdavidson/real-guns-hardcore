@@ -1,0 +1,233 @@
+
+actor S_ZombiemanSpot : ZombiemanSpot replaces ZombiemanSpot
+{
+//dropitem "ZombieManRes1" 32
+//dropitem "DrDude2" 32
+//dropitem "DrDude" 32
+dropitem "ZombieMan_2" 255
+dropitem "ShotgunGuy_2" 255
+}
+
+actor S_WolfensteinSSSpot : WolfensteinSSSpot replaces WolfensteinSSSpot
+{
+//dropitem "ZombieManRes1" 32
+//dropitem "DrDude2" 32
+//dropitem "DrDude" 32
+dropitem "ZombieMan_2" 255
+}
+
+actor S_WeakMonsterSpot : WeakMonsterSpot replaces WeakMonsterSpot
+{
+//dropitem "DrDude" 32
+dropitem "ZombieMan_2" 32
+dropitem "ShotgunGuy_2" 32
+dropitem "SuperShotgunGuy_2" 32
+dropitem "ChaingunGuy_2" 32
+dropitem "DoubleChaingunGuy_2" 32
+dropitem "ZombieCommando" 32
+dropitem "DoomImp_2" 32
+//dropitem "DoomImpRes" 32
+dropitem "DarkImp_2" 32
+//dropitem "DarkImpRes" 32
+dropitem "Demon_2" 32
+dropitem "Spectre_2" 32
+dropitem "LMGGuy" 32
+dropitem "BFGGuy" 32
+dropitem "MaulerDemon" 32
+dropitem "BloodDemon_2" 32
+}
+
+actor S_ShotgunguySpot : ShotgunguySpot replaces ShotgunguySpot
+{
+dropitem "ShotgunGuy_2" 255
+dropitem "SuperShotgunGuy_2" 64
+dropitem "ZombieSniper" 64
+dropitem "FreezerZombie" 64
+dropitem "ZombieCommando" 32
+//dropitem "SpaceNazi" 64
+}
+
+actor S_SuperShotgunGuySpot : SuperShotgunGuySpot replaces SuperShotgunGuySpot
+{
+dropitem "ShotgunGuy_2" 64
+dropitem "SuperShotgunGuy_2" 255
+dropitem "ZombieSniper" 64
+dropitem "FreezerZombie" 64
+dropitem "ZombieCommando" 64
+//dropitem "SpaceNazi" 64
+}
+
+actor S_ChaingunguySpot : ChaingunguySpot replaces ChaingunguySpot
+{
+dropitem "ChaingunGuy_2" 255
+dropitem "DoubleChaingunGuy_2" 64
+dropitem "GrenadeGuy_2" 64
+dropitem "LMGGuy" 64
+dropitem "BFGGuy" 64
+//dropitem "ZombieMarineA" 32
+}
+
+actor S_ImpSpot : ImpSpot replaces ImpSpot
+{
+dropitem "DoomImp_2" 255
+//dropitem "DoomImpRes" 64
+dropitem "DarkImp_2" 32
+//dropitem "DarkImpRes" 32
+dropitem "ImpBoy" 32
+dropitem "Hellion" 32
+}
+
+actor S_DarkImpSpot : DarkImpSpot replaces DarkImpSpot
+{
+dropitem "DarkImp_2" 255
+//dropitem "DarkImpRes" 64
+dropitem "ImpBoy" 64
+dropitem "Hellion" 128
+}
+
+actor S_DemonSpot : DemonSpot replaces DemonSpot
+{
+dropitem "StoneDemon" 32
+dropitem "MaulerDemon" 32
+dropitem "BloodDemon_2" 32
+dropitem "Demon_2" 255
+}
+
+actor S_BloodDemonSpot : BloodDemonSpot replaces BloodDemonSpot
+{
+dropitem "StoneDemon" 128
+dropitem "MaulerDemon" 128
+dropitem "BloodDemon_2" 255
+dropitem "Demon_2" 32
+}
+
+actor S_SpectreSpot : SpectreSpot replaces SpectreSpot
+{
+dropitem "SpectreStone" 32
+dropitem "SpectreBlood" 32
+dropitem "Spectre_2" 255
+}
+
+actor S_LostSoulSpot : LostSoulSpot replaces LostSoulSpot
+{
+dropitem "SpectreLostSoul" 32
+dropitem "LostSoul_2" 255
+dropitem "ESoul" 32
+dropitem "ForgottenOne" 255
+}
+
+actor S_HellKnightSpot : HellKnightSpot replaces HellKnightSpot
+{
+dropitem "SpectreHellKnight" 64
+dropitem "StoneKnight" 64
+dropitem "HellKnight_2" 255
+}
+
+actor S_BaronofHellSpot : BaronofHellSpot replaces BaronofHellSpot
+{
+dropitem "Cybruiser" 32
+dropitem "Belphegor_2" 32
+dropitem "StoneKnight" 64
+dropitem "BaronOfHell_2" 255
+dropitem "Afrit" 64
+dropitem "BruiserDemon" 64
+dropitem "HellsFury" 64
+dropitem "Hierophant" 32
+}
+
+actor S_BelphegorSpot : BelphegorSpot replaces BelphegorSpot
+{
+dropitem "Cybruiser" 96
+dropitem "Hierophant" 96
+dropitem "Afrit" 96
+dropitem "BruiserDemon" 96
+dropitem "HellsFury" 96
+dropitem "Belphegor_2" 255
+dropitem "StoneKnight" 64
+dropitem "BaronOfHell_2" 64
+}
+
+actor S_CacodemonSpot : CacodemonSpot replaces CacodemonSpot
+{
+dropitem "Cacodemon_2" 255
+dropitem "Cacolantern_2" 128
+dropitem "BlueCacodemon" 72
+dropitem "Abaddon_2" 48
+dropitem "Agathodemon" 60
+}
+
+actor S_CacolanternSpot : CacolanternSpot replaces CacolanternSpot
+{
+dropitem "Cacolantern_2" 255
+dropitem "BlueCacodemon" 128
+dropitem "Abaddon_2" 72
+}
+
+actor S_AbaddonSpot : AbaddonSpot replaces AbaddonSpot
+{
+dropitem "Abaddon_2" 255
+dropitem "Helemental" 16
+dropitem "CrackoDemon" 72
+dropitem "Agathodemon" 128
+}
+
+actor S_PainElementalSpot : PainElementalSpot replaces PainElementalSpot
+{
+dropitem "KamikazePainElemental" 96
+dropitem "SpectrePainElemental" 96
+dropitem "PlasmaPain" 96
+dropitem "PainElemental_2" 255
+dropitem "Defiler" 32
+}
+
+actor S_RevenantSpot : RevenantSpot replaces RevenantSpot
+{
+dropitem "BlueRevenant" 64
+dropitem "GreenRevenant" 128
+dropitem "Revenant_2" 255
+}
+
+actor S_ArachnotronSpot : ArachnotronSpot replaces ArachnotronSpot
+{
+dropitem "SpectreArachnotron" 128
+dropitem "Arachnotron_2" 255
+dropitem "Arachnobaron" 32
+}
+
+actor S_FatsoSpot : FatsoSpot replaces FatsoSpot
+{
+dropitem "Acubus" 64
+dropitem "Hectebus_2" 96
+dropitem "Fatso_2" 255
+}
+
+actor S_HectebusSpot : HectebusSpot replaces HectebusSpot
+{
+dropitem "Acubus" 96
+dropitem "Hectebus_2" 255
+}
+
+actor S_ArchVileSpot : ArchVileSpot replaces ArchVileSpot
+{
+//dropitem "SuperArchvile" 32
+dropitem "DarkArchvile" 96
+dropitem "Archvile_2" 255
+dropitem "Diabloist" 16
+}
+
+actor S_CyberdemonSpot : CyberdemonSpot replaces CyberdemonSpot
+{
+dropitem "Annihilator" 96
+dropitem "Thamuz" 32
+dropitem "Cardinal" 32
+dropitem "Overlord" 32
+dropitem "Cyberdemon_2" 255
+}
+
+actor S_SpiderMastermindSpot : SpiderMastermindSpot replaces SpiderMastermindSpot
+{
+dropitem "CyberMastermind" 96
+dropitem "Demolisher" 96
+dropitem "Overlord" 32
+dropitem "SpiderMastermind_2" 255
+}

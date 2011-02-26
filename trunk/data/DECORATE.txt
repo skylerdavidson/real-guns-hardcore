@@ -46,3 +46,23 @@
 #include decorate/D_TACTIC.txt
 #include decorate/D_ATTACH.txt
 #include decorate/D_DROPSP.txt
+
+#include decorate/monsters/doom/SPAWN.txt
+#include decorate/monsters/doom/DEC_ZOM1.txt
+#include decorate/monsters/doom/DEC_ZOM2.txt
+#include decorate/monsters/doom/DEC_ZOM3.txt
+#include decorate/monsters/doom/DEC_IMP.txt
+#include decorate/monsters/doom/DEC_DEMO.txt
+#include decorate/monsters/doom/DEC_SOUL.txt
+#include decorate/monsters/doom/DEC_PAIN.txt
+#include decorate/monsters/doom/DEC_REVE.txt
+#include decorate/monsters/doom/DEC_HELL.txt
+#include decorate/monsters/doom/DEC_CACO.txt
+#include decorate/monsters/doom/DEC_GOAT.txt
+#include decorate/monsters/doom/DEC_FATY.txt
+#include decorate/monsters/doom/DEC_ARCH.txt
+#include decorate/monsters/doom/DEC_ARAC.txt
+#include decorate/monsters/doom/DEC_CYBE.txt
+#include decorate/monsters/doom/DEC_SPID.txt
+#include decorate/monsters/doom/INVASION.txt
+#include decorate/monsters/doom/DEC_JUGG.txt

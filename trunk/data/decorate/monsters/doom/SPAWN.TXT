@@ -1,0 +1,780 @@
+Actor RGAMonster
+{
+  +DONTHURTSPECIES
+  DamageFactor "Bullet", 3.00
+  DamageFactor "Shotgun", 3.00
+  DamageFactor "Rifle", 3.00
+  DamageFactor "Sniper", 4.5
+  DamageFactor "Knife", 3.00
+  DamageFactor "LMG", 3.0
+  DamageFactor "BigPistol", 3.0
+  DamageFactor "Cybermissile", 4.5
+  DamageFactor "Explosion", 3.0
+  DamageFactor "Telebomb", 0.0
+  DamageFactor "Step", 10.0
+  Species "Monsters"
+}
+
+actor Awoken : Inventory
+{
+  inventory.amount 0
+  inventory.maxamount 1
+}
+
+ACTOR TeleportFogBomb : TeleportFog replaces TeleportFog
+{
+  +NOBLOCKMAP
+  +NOTELEPORT
+  +NOGRAVITY
+  +FORCERADIUSDMG
+  RenderStyle Add
+  damagetype "Telebomb"
+  States
+  {
+  Spawn:
+    TFOG A 6 Bright
+    TFOG B 6 Bright A_Explode(50,128)
+    TFOG ABCDEFGHIJ 6 Bright
+    Stop
+  }
+}
+
+
+
+
+actor ZombieMan_Spawner replaces ZombieMan
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    TNT1 A 0 
+    TNT1 A 0 A_Jump(128,"Spawn2")
+    TNT1 A 0 A_SpawnItemEx("ZombieMan_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("ShotgunGuy_Spawner",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+
+actor ShotgunGuy_Spawner replaces ShotgunGuy
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    TNT1 A 0 
+	TNT1 A 0 A_Jump(15,"Spawn5")
+	TNT1 A 0 A_Jump(35,"Spawn3","Spawn4")
+    TNT1 A 0 A_Jump(96,"Spawn2")
+    TNT1 A 0 A_SpawnItemEx("ShotgunGuy_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("SuperShotgunGuy_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn3:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("ZombieSniper",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn4:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("FreezerZombie",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn5:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("ZombieCommando",-10,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+	TNT1 A 0 A_SpawnItemEx("ZombieCommando",10,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+	TNT1 A 0 A_Die
+	stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+
+actor ChaingunGuy_Spawner replaces ChaingunGuy
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    TNT1 A 0 
+    TNT1 A 0 //A_Jump(32,"Spawn4")
+    TNT1 A 0 A_Jump(64,"Spawn3")
+    TNT1 A 0 A_Jump(16,"Spawn5")
+    TNT1 A 0 A_Jump(100,"Spawn2","Spawn4")
+    TNT1 A 0 A_SpawnItemEx("ChaingunGuy_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("DoubleChaingunGuy_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn3:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("GrenadeGuy_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn4:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("LMGGuy",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn5:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("BFGGuy",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+
+actor DoomImp_Spawner replaces DoomImp
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    TNT1 A 0 
+    TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4")
+    TNT1 A 0 A_SpawnItemEx("DoomImp_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("DarkImp_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn3:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("ImpBoy",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn4:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Hellion",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+
+actor Demon_Spawner replaces Demon
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    TNT1 A 0 
+    TNT1 A 0 A_Jump(48,"Spawn3")
+    TNT1 A 0 A_Jump(120,"Spawn2","Spawn4")
+    TNT1 A 0 A_SpawnItemEx("Demon_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("BloodDemon_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn3:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("StoneDemon",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn4:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("MaulerDemon",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+actor Spectre_Spawner replaces Spectre
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    TNT1 A 0 
+    TNT1 A 0 A_Jump(96,"Spawn3")
+    TNT1 A 0 A_Jump(96,"Spawn2")
+    TNT1 A 0 A_SpawnItemEx("Spectre_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("SpectreBlood",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn3:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("SpectreStone",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+
+actor LostSoul_Spawner replaces LostSoul
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    TNT1 A 0 
+    TNT1 A 0 A_Jump(190,"Spawn2","Spawn3","Spawn4")
+    TNT1 A 0 A_SpawnItemEx("LostSoul_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("KamikazeSoul",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn3:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("ESoul",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn4:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("ForgottenOne",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+
+actor PainElemental_Spawner replaces PainElemental
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    TNT1 A 0 
+    TNT1 A 0 A_Jump(96,"Spawn3")
+    TNT1 A 0 A_Jump(120,"Spawn4", "Spawn5")
+    TNT1 A 0 A_Jump(96,"Spawn2")
+    TNT1 A 0 A_SpawnItemEx("PainElemental_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("KamikazePainElemental",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn3:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("SpectrePainElemental",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn4:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("PlasmaElemental",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn5:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Defiler",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+
+actor Revenant_Spawner replaces Revenant
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    TNT1 A 0 
+    //TNT1 A 0 A_Jump(32,"Spawn5")
+    TNT1 A 0 A_Jump(34,"Spawn4")
+    TNT1 A 0 A_Jump(100,"Spawn2")
+    //TNT1 A 0 A_Jump(128,"Spawn3")
+    TNT1 A 0 A_SpawnItemEx("Revenant_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("GreenRevenant",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn3:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("SpectreRevenant",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn4:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("BlueRevenant",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn5:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("SuperRevenant",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION,0)
+    TNT1 A 0 A_Die
+    stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+
+actor HellKnight_Spawner replaces HellKnight
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    TNT1 A 0 
+    TNT1 A 0 A_Jump(168,"Spawn3","Spawn4","Spawn2")
+    TNT1 A 0 A_SpawnItemEx("HellKnight_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("SpectreHellKnight",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn3:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("StoneKnight",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn4:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("BaronOfHell_Spawner",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+
+actor Cacodemon_Spawner replaces Cacodemon
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    TNT1 A 0 
+    TNT1 A 0 A_Jump(32,"Spawn6","Spawn9")
+    TNT1 A 0 A_Jump(128,"Spawn3","Spawn2")
+    TNT1 A 0 A_Jump(60,"Spawn8","Spawn4")
+    TNT1 A 0 A_SpawnItemEx("Cacodemon_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Cacolantern_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn3:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("BlueCacodemon",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn4:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Abaddon_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn5:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("StoneAbaddon",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn6:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Agathodemon",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn7:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Overlord",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn8:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Helemental",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn9:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("CrackoDemon",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+
+actor DeadPlayer_Spawner replaces DeadMarine
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    POL5 A -1 
+	stop
+    TNT1 A 0 A_Jump(256,"Spawn2")
+    TNT1 A 0 A_SpawnItemEx("DeadMarine",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("ZombieMarine",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+
+actor RaisingChaingunGuy_Spawner replaces Gibs
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    POL5 A -1 
+    stop
+	TNT1 A 0 A_Jump(64,"Spawn3")
+    TNT1 A 0 A_Jump(96,"Spawn2")
+    TNT1 A 0 A_SpawnItemEx("RaisingChaingunGuy",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("RaisingDoubleChainGuy",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn3:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("RaisingGrenadeGuy",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+
+actor BaronOfHell_Spawner replaces BaronOfHell
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    TNT1 A 0 
+    TNT1 A 0 A_Jump(128,"Spawn3","Spawn2")
+    TNT1 A 0 A_Jump(120,"Spawn4","Spawn5","Spawn6", "Spawn7")
+    TNT1 A 0 A_SpawnItemEx("BaronOfHell_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Cybruiser",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn3:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Belphegor_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+  Spawn4:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Afrit",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn5:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("BruiserDemon",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn6:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("HellsFury",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn7:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Hierophant",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+
+actor Fatso_Spawner replaces Fatso
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    TNT1 A 0 
+    TNT1 A 0 A_Jump(20,"Spawn3")
+    TNT1 A 0 A_Jump(96,"Spawn2")
+    //TNT1 A 0 A_Jump(40,"Spawn5")
+    TNT1 A 0 A_SpawnItemEx("Fatso_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Hectebus_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn3:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Acubus",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn4:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Juggernaut",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn5:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Overlord",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+
+actor Archvile_Spawner replaces Archvile
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    TNT1 A 0 
+    //TNT1 A 0 A_Jump(64,"Spawn3")
+    TNT1 A 0 A_Jump(130,"Spawn2","Spawn4")
+    TNT1 A 0 A_SpawnItemEx("Archvile_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("DarkArchvile",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn3:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("SuperArchvile",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn4:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Diabloist",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+
+actor Arachnotron_Spawner replaces Arachnotron
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    TNT1 A 0 
+    TNT1 A 0 A_Jump(40,"Spawn3")
+    TNT1 A 0 A_Jump(128,"Spawn2")
+    TNT1 A 0 A_SpawnItemEx("Arachnotron_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("SpectreArachnotron",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn3:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Arachnobaron",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+actor Cyberdemon_Spawner replaces Cyberdemon
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    TNT1 A 0 
+    TNT1 A 0 A_Jump(196,"Spawn2","Spawn3","Spawn4", "Spawn5")
+    TNT1 A 0 A_SpawnItemEx("Cyberdemon_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Annihilator",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn3:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Thamuz",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn4:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Cardinal",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn5:  
+    TNT1 A 0
+	THT1 A 0 A_Jump(128, "Spawn")
+    TNT1 A 0 A_SpawnItemEx("Overlord",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+
+actor SpiderMastermind_Spawner replaces SpiderMastermind
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    TNT1 A 0 
+    TNT1 A 0 A_Jump(170,"Spawn3","Spawn2","Spawn4","Spawn5")
+    TNT1 A 0 A_SpawnItemEx("SpiderMastermind_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("CyberMastermind",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn3:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Arachnophyte",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn4:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("Demolisher",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn5:  
+    TNT1 A 0 
+	THT1 A 0 A_Jump(128, "Spawn")
+    TNT1 A 0 A_SpawnItemEx("Overlord",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+
+actor WolfensteinSS_Spawner replaces WolfensteinSS
+{
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  states
+  {
+  Spawn:
+    TNT1 A 0 
+    TNT1 A 0 A_Jump(128,"Spawn2")
+    TNT1 A 0 A_SpawnItemEx("SpaceNazi",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("UziGuy",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Death:
+    TNT1 A -1
+    loop
+  }  
+}
+
+ACTOR BossBrain2 : BossBrain replaces BossBrain
+{
+  Health 200
+}

@@ -1,0 +1,575 @@
+actor Fatso_2 : RGAMonster
+{
+  spawnid 112
+  obituary "%o was squashed by a mancubus."
+  health 1000
+  radius 48
+  height 64
+  mass 1000
+  speed 8
+  painchance 80
+  seesound "fatso/sight"
+  painsound "fatso/pain"
+  deathsound "fatso/death"
+  activesound "fatso/active"
+  MONSTER
+  +FLOORCLIP
+  Species "Fatso"
+  states
+  {
+  Spawn:
+    POSS A 0 
+    POSS A 0 Thing_SetSpecial(0,226,613,0,random(25,40))
+    FATT AB 15 A_Look
+    goto Spawn+2
+  See:
+    FATT AABBCCDDEEFF 4 A_Chase
+    loop
+  Missile:
+    FATT G 20 A_FatRaise
+    FATT H 10 bright A_FatAttack1("FatShot_2")  // See FatShot
+    FATT IG 5 A_FaceTarget
+    FATT H 10 bright A_FatAttack2("FatShot_2")
+    FATT IG 5 A_FaceTarget
+    FATT H 10 bright A_FatAttack3("FatShot_2")
+    FATT IG 5 A_FaceTarget
+    goto See
+  Pain:
+    FATT J 3
+    FATT J 3 A_Pain
+	TNT1 G 0 A_AlertMonsters
+    goto See
+  Death:
+    FATT K 6
+    FATT L 6 A_Scream
+    FATT M 6 A_NoBlocking
+    FATT NOPQRS 6
+    FATT T -1 A_BossDeath
+    stop
+  Raise:
+    FATT RQPONMLK 5
+    goto See
+  }
+}
+
+actor FatShot_2: FatShot
+{
+	Speed 26
+}
+
+//Credit to Mr. John Pinkertin for "Albino Mancubus" sprites.
+actor Acubus : Fatso_2
+{
+  obituary "%o was creamed by an Acubus."
+  health 2200
+  radius 48
+  height 64
+  mass 1200
+  speed 8
+  painchance 10
+  seesound "fatso2/sight"
+  painsound "fatso/pain"
+  deathsound "fatso2/death"
+  activesound "fatso/active"
+  MONSTER
+  +FLOORCLIP
+  +MISSILEEVENMORE
+  BloodColor "FF FF 00"
+  damagefactor "Fatso", 0.0
+  DropItem "Soulsphere2" 256
+  DropItem "AmmoSphere2" 192
+  states
+  {
+  Spawn:
+    POSS A 0 
+    POSS A 0 Thing_SetSpecial(0,226,613,0,random(100,200))
+    ALBM AB 15 A_Look
+    goto Spawn+2
+  See:
+    ALBM AABBCCDDEEFF 4 A_Chase
+    loop
+  Missile:
+    ALBM G 0 A_FaceTarget
+    ALBM G 0 A_Jump(64,"AltAttack")
+    ALBM G 30 A_PlaySound("fatso2/raiseguns")
+    ALBM H 0 A_FaceTarget
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-6,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-5.5,CMF_AIMOFFSET,0)
+    ALBM H 0 bright A_CustomMissile("HectShot",32,0,-5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-4.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-4,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-3.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-3,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-2.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-2,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-1.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-1,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-0.5,CMF_AIMOFFSET,0)
+    ALBM H 0 bright A_CustomMissile("HectShot",32,0,0,CMF_AIMOFFSET,0)
+    ALBM H 0 bright A_CustomMissile("HectShot",32,0,0.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,1,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,1.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,2,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,2.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,3,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,3.5,CMF_AIMOFFSET,0)
+    ALBM H 0 bright A_CustomMissile("HectShot",32,0,4,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,4.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,5.5,CMF_AIMOFFSET,0)
+    ALBM H 0 bright A_CustomMissile("HectShot",32,0,6,CMF_AIMOFFSET,0)
+    ALBM H 0 bright A_CustomMissile("HectShot",40,0,-6,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-5.5,CMF_AIMOFFSET,0.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",40,0,-5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-4.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-4,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-3.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-3,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-2.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-2,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-1.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-1,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-0.5,CMF_AIMOFFSET,0.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",40,0,0,CMF_AIMOFFSET,0.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",40,0,0.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,1,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,1.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,2,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,2.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,3,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,3.5,CMF_AIMOFFSET,0.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",40,0,4,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,4.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,5.5,CMF_AIMOFFSET,0.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",40,0,6,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-6,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-5.5,CMF_AIMOFFSET,1)
+    ALBM H 0 bright A_CustomMissile("HectShot",48,0,-5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-4.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-4,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-3.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-3,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-2.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-2,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-1.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-1,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-0.5,CMF_AIMOFFSET,1)
+    ALBM H 0 bright A_CustomMissile("HectShot",48,0,0,CMF_AIMOFFSET,1)
+    ALBM H 0 bright A_CustomMissile("HectShot",48,0,0.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,1,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,1.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,2,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,2.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,3,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,3.5,CMF_AIMOFFSET,1)
+    ALBM H 0 bright A_CustomMissile("HectShot",48,0,4,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,4.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,5.5,CMF_AIMOFFSET,1)
+    ALBM H 0 bright A_CustomMissile("HectShot",48,0,6,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-6,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-5.5,CMF_AIMOFFSET,1.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",56,0,-5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-4.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-4,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-3.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-3,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-2.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-2,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-1.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-1,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-0.5,CMF_AIMOFFSET,1.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",56,0,0,CMF_AIMOFFSET,1.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",56,0,0.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,1,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,1.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,2,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,2.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,3,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,3.5,CMF_AIMOFFSET,1.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",56,0,4,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,4.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,5.5,CMF_AIMOFFSET,1.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",56,0,6,CMF_AIMOFFSET,1.5)
+    ALBM IG 22 A_FaceTarget
+    ALBM H 0 A_FaceTarget
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-6,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-5.5,CMF_AIMOFFSET,0)
+    ALBM H 0 bright A_CustomMissile("HectShot",32,0,-5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-4.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-4,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-3.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-3,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-2.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-2,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-1.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-1,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-0.5,CMF_AIMOFFSET,0)
+    ALBM H 0 bright A_CustomMissile("HectShot",32,0,0,CMF_AIMOFFSET,0)
+    ALBM H 0 bright A_CustomMissile("HectShot",32,0,0.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,1,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,1.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,2,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,2.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,3,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,3.5,CMF_AIMOFFSET,0)
+    ALBM H 0 bright A_CustomMissile("HectShot",32,0,4,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,4.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,5.5,CMF_AIMOFFSET,0)
+    ALBM H 0 bright A_CustomMissile("HectShot",32,0,6,CMF_AIMOFFSET,0)
+    ALBM H 0 bright A_CustomMissile("HectShot",40,0,-6,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-5.5,CMF_AIMOFFSET,0.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",40,0,-5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-4.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-4,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-3.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-3,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-2.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-2,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-1.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-1,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-0.5,CMF_AIMOFFSET,0.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",40,0,0,CMF_AIMOFFSET,0.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",40,0,0.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,1,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,1.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,2,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,2.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,3,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,3.5,CMF_AIMOFFSET,0.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",40,0,4,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,4.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,5.5,CMF_AIMOFFSET,0.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",40,0,6,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-6,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-5.5,CMF_AIMOFFSET,1)
+    ALBM H 0 bright A_CustomMissile("HectShot",48,0,-5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-4.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-4,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-3.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-3,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-2.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-2,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-1.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-1,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-0.5,CMF_AIMOFFSET,1)
+    ALBM H 0 bright A_CustomMissile("HectShot",48,0,0,CMF_AIMOFFSET,1)
+    ALBM H 0 bright A_CustomMissile("HectShot",48,0,0.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,1,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,1.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,2,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,2.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,3,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,3.5,CMF_AIMOFFSET,1)
+    ALBM H 0 bright A_CustomMissile("HectShot",48,0,4,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,4.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,5.5,CMF_AIMOFFSET,1)
+    ALBM H 0 bright A_CustomMissile("HectShot",48,0,6,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-6,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-5.5,CMF_AIMOFFSET,1.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",56,0,-5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-4.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-4,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-3.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-3,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-2.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-2,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-1.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-1,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-0.5,CMF_AIMOFFSET,1.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",56,0,0,CMF_AIMOFFSET,1.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",56,0,0.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,1,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,1.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,2,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,2.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,3,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,3.5,CMF_AIMOFFSET,1.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",56,0,4,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,4.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,5.5,CMF_AIMOFFSET,1.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",56,0,6,CMF_AIMOFFSET,1.5)
+    ALBM IG 22 A_FaceTarget
+    ALBM H 0 A_FaceTarget
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-6,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-5.5,CMF_AIMOFFSET,0)
+    ALBM H 0 bright A_CustomMissile("HectShot",32,0,-5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-4.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-4,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-3.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-3,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-2.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-2,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-1.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-1,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,-0.5,CMF_AIMOFFSET,0)
+    ALBM H 0 bright A_CustomMissile("HectShot",32,0,0,CMF_AIMOFFSET,0)
+    ALBM H 0 bright A_CustomMissile("HectShot",32,0,0.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,1,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,1.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,2,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,2.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,3,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,3.5,CMF_AIMOFFSET,0)
+    ALBM H 0 bright A_CustomMissile("HectShot",32,0,4,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,4.5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,5,CMF_AIMOFFSET,0)
+	ALBM H 0 bright A_CustomMissile("HectShot",32,0,5.5,CMF_AIMOFFSET,0)
+    ALBM H 0 bright A_CustomMissile("HectShot",32,0,6,CMF_AIMOFFSET,0)
+    ALBM H 0 bright A_CustomMissile("HectShot",40,0,-6,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-5.5,CMF_AIMOFFSET,0.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",40,0,-5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-4.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-4,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-3.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-3,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-2.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-2,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-1.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-1,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,-0.5,CMF_AIMOFFSET,0.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",40,0,0,CMF_AIMOFFSET,0.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",40,0,0.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,1,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,1.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,2,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,2.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,3,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,3.5,CMF_AIMOFFSET,0.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",40,0,4,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,4.5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,5,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",40,0,5.5,CMF_AIMOFFSET,0.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",40,0,6,CMF_AIMOFFSET,0.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-6,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-5.5,CMF_AIMOFFSET,1)
+    ALBM H 0 bright A_CustomMissile("HectShot",48,0,-5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-4.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-4,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-3.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-3,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-2.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-2,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-1.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-1,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,-0.5,CMF_AIMOFFSET,1)
+    ALBM H 0 bright A_CustomMissile("HectShot",48,0,0,CMF_AIMOFFSET,1)
+    ALBM H 0 bright A_CustomMissile("HectShot",48,0,0.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,1,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,1.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,2,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,2.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,3,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,3.5,CMF_AIMOFFSET,1)
+    ALBM H 0 bright A_CustomMissile("HectShot",48,0,4,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,4.5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,5,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",48,0,5.5,CMF_AIMOFFSET,1)
+    ALBM H 0 bright A_CustomMissile("HectShot",48,0,6,CMF_AIMOFFSET,1)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-6,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-5.5,CMF_AIMOFFSET,1.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",56,0,-5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-4.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-4,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-3.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-3,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-2.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-2,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-1.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-1,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,-0.5,CMF_AIMOFFSET,1.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",56,0,0,CMF_AIMOFFSET,1.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",56,0,0.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,1,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,1.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,2,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,2.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,3,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,3.5,CMF_AIMOFFSET,1.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",56,0,4,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,4.5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,5,CMF_AIMOFFSET,1.5)
+	ALBM H 0 bright A_CustomMissile("HectShot",56,0,5.5,CMF_AIMOFFSET,1.5)
+    ALBM H 0 bright A_CustomMissile("HectShot",56,0,6,CMF_AIMOFFSET,1.5)
+    ALBM IG 22 A_FaceTarget
+    goto See
+  AltAttack:
+    ALBM G 20 A_PlaySound("bfg/start")
+    ALBM GGGGG 5 A_FaceTarget
+    ALBM G 0 A_FaceTarget
+    ALBM H 0 bright A_CustomMissile("AcubusBFG",32,-24,-1)
+    ALBM H 8 bright A_CustomMissile("AcubusBFG",32,24,1)
+    ALBM IG 7 A_FaceTarget
+    goto See
+  Pain:
+    ALBM J 3
+    ALBM J 3 A_Pain
+	TNT1 G 0 A_AlertMonsters
+    goto See
+  Death:
+    ALBM K 6
+    ALBM L 6 A_Scream
+    ALBM M 6 A_NoBlocking
+    ALBM NOPQRS 6
+    ALBM T -1 A_BossDeath
+    stop
+  Raise:
+    ALBM RQPONMLK 5
+    goto See
+  }
+}
+
+actor AcubusBFGBlasterBall
+{
+  radius 8
+  height 8
+  speed 25
+  damage (15)
+  renderstyle Add
+  alpha 0.9
+  seesound "bfg/alt"
+  deathsound "bfg/explode2"
+  PROJECTILE
+  scale 0.2
+  decal Scorch
+  +SEEKERMISSILE
+  states
+  {
+  Spawn:
+    8BLX B -1 BRIGHT
+    loop
+  Death:
+    TNT1 A 0
+    TNT1 A 1 A_SpawnItemEx("ExplosionSmall", 0, 0, 0, 0, 0, 0, 0, 0, 0)
+    stop
+  }
+}
+
+actor AcubusBFG
+{
+  RenderStyle Add
+  alpha 0.95
+  radius 8
+  height 8
+  speed 16
+  damage (100)
+  seesound "bfg/fire"
+  deathsound "bfg/explode1"
+  PROJECTILE
+  +EXTREMEDEATH 
+  +FORCERADIUSDMG
+  +SKYEXPLODE
+  decal BFGLightning
+  scale 0.2
+  DamageType "Fatso"
+  states
+  {
+  Spawn:
+    BFG2 A 1 BRIGHT
+    BFG2 A 0 BRIGHT
+    BFG2 A 9 BRIGHT A_Explode(2,512,0)
+    loop
+  Death:
+    TNT1 A 0 A_RadiusThrust(160,128)
+    TNT1 A 0 Radius_Quake(3,30,0,128,0)
+    TNT1 A 0 A_SpawnItemEx("BFG20kExplosionSmall", 0, 0, 0, 0, 0, 0, 0, 0, 0)
+    TNT1 A 5 A_Explode(25,512,0)
+	TNT1 G 0 A_AlertMonsters
+    stop
+  }
+}
+
+actor BFG20kExplosionSmall
+{
+  RenderStyle Add
+  alpha 0.9
+  +RANDOMIZE
+  +NOCLIP
+  +NOGRAVITY
+  Scale 0.6
+  states
+  {
+  Spawn:
+    BFG3 BABCDE 5 bright
+    stop
+  }
+}
+ACTOR Hectebus_2 : Fatso_2
+{
+  SpawnID 158
+  Health 1400
+  PainChance 20
+  Obituary "$OB_HECTEBUS" // "%o was cremated by a hectebus."
+  States
+  {
+  Spawn:
+    POSS A 0 
+    POSS A 0 Thing_SetSpecial(0,226,613,0,random(35,60))
+    HECT AB 15 A_Look
+    goto Spawn+2
+  See:
+    HECT AABBCCDDEEFF 4 A_Chase
+    Loop
+  Pain:
+    HECT J 3
+    HECT J 3 A_Pain
+	TNT1 G 0 A_AlertMonsters
+    Goto See
+  Missile:
+    //These Next 2 states replace A_FatRaise and A_HectRaise
+    HECT G 0 A_PlaySound("fatso/raiseguns")
+    HECT G 20 A_FaceTarget
+    HECT H 0 A_CustomMissile("HectShot",28,0,0,1)
+    HECT H 0 A_CustomMissile("HectShot",28,0,5.625,1)
+    HECT H 0 A_CustomMissile("HectShot",28,0,11.25,1)
+    HECT H 0 A_CustomMissile("HectShot",28,0,16.875,1)
+    HECT H 10 Bright
+    HECT IG 5 A_FaceTarget
+    HECT H 0 A_CustomMissile("HectShot",28,0,0,1)
+    HECT H 0 A_CustomMissile("HectShot",28,0,-5.625,1)
+    HECT H 0 A_CustomMissile("HectShot",28,0,-11.25,1)
+    HECT H 0 A_CustomMissile("HectShot",28,0,-16.875,1)
+    HECT H 10 Bright
+    HECT IG 5 A_FaceTarget
+    HECT G 0 A_Jump(32,"Missile2")
+    HECT H 0 A_CustomMissile("HectShot",28,0,-11.25,1)
+    HECT H 0 A_CustomMissile("HectShot",28,0,-5.625,1)
+    HECT H 0 A_CustomMissile("HectShot",28,0,0,1)
+    HECT H 0 A_CustomMissile("HectShot",28,0,5.625,1)
+    HECT H 0 A_CustomMissile("HectShot",28,0,11.25,1)
+    HECT H 10 Bright
+    HECT IG 5 A_FaceTarget
+    Goto Missile+2
+  Missile2:
+    BOS9 G 0 A_PlayWeaponSound("brain/spit")
+    HECT H 0 A_CustomMissile("StoneKnightCube",28,0,-11.25,1)
+    HECT H 0 A_CustomMissile("BruiserCube",28,0,0,1)
+    HECT H 0 A_CustomMissile("StoneKnightCube",28,0,11.25,1)
+    HECT H 10 Bright
+	HECT H 0 A_SpidRefire
+    HECT IG 5 A_FaceTarget	
+    Goto See
+  Death:
+    HECT K 6
+    HECT L 6 A_Scream
+    HECT M 6 A_NoBlocking
+    HECT NOPQRS 6
+	HECT S 0 A_BossDeath
+    HECT T -1
+    Stop
+  Raise:
+    HECT RQPONMLK 5
+    Goto See
+  }
+}
+
+actor HectShot2 : HectShot replaces HectShot
+{
+  damage (24)
+}

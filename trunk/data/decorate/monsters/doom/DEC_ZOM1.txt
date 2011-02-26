@@ -1,0 +1,720 @@
+actor ZombieMan_2 : RGAMonster
+{
+  spawnid 4
+  obituary "%o was killed by a zombieman."
+  health 5
+  radius 20
+  height 56
+  mass 100
+  speed 8
+  painchance 200
+  seesound "grunt/sight"
+  attacksound "u45/fire"
+  painsound "grunt/pain"
+  deathsound "grunt/death"
+  activesound "grunt/active"
+  DropItem "HandgunSpawner" 128
+  DropItem "HandgunAmmo" 255
+  DropItem "HandgunAmmo" 128
+  GibHealth 5
+  MONSTER
+  +FLOORCLIP
+  states
+  {
+  Spawn:
+    POSS A 0 
+    POSS A 0 A_GiveInventory("FragGrenadeAmmo",1)
+    POSS A 0 Thing_SetSpecial(0,226,613,0,random(5,10))
+    POSS AB 10 A_Look
+    goto Spawn+3
+  See:
+    POSS AABBCCDD 4 A_Chase
+    loop
+  Missile:
+    POSS E 10 A_FaceTarget
+    POSS E 0 A_Jump(64,"Grenade")
+    POSS F 8 A_CustomBulletAttack(22.5, 0, 1, 4, "BulletPuff")
+    POSS E 8
+    goto See
+  Grenade:
+    POSS E 0 A_JumpIfCloser(512,1)
+    goto Missile+2
+    POSS E 0 A_JumpIfInventory("FragGrenadeAmmo",1,1)
+    goto Missile+2
+    POSS E 0 A_PlaySound("russian/grenade")
+    POSS E 25 A_PlayWeaponSound("grenade/pinpull")
+    POSS E 0 A_FaceTarget
+    POSS E 1 A_PlayWeaponSound("grenade/throw")
+    POSS E 0 A_TakeInventory("FragGrenadeAmmo",1)
+    POSS V 25 A_CustomMissile("FragGrenade_Zombie",30,0,0,2,10)
+    goto See
+  Pain:
+    POSS G 30 BRIGHT
+    POSS G 3 A_Pain
+	TNT1 G 0 A_AlertMonsters
+    goto See
+  Death:
+    POSS H 0
+	POSS H 0 A_JumpIfHealthLower(random(-500,-110),"XDeath")
+    POSS H 0 A_Jump(0,"Death3","Death4")
+    POSS H 5 //A_Jump(96,"Death2")
+    POSS I 5 A_Scream
+    POSS J 5 A_NoBlocking
+    POSS KK 2 A_SpawnItemEx("HealthBonus",0,0,0,random(-2,2),random(-2,2),random(1,4),0,0,0)
+    POSS L -1
+    stop
+  Death2:
+    POSS H 5
+    POSS I 5 A_Scream
+    POSS J 5 A_NoBlocking
+    POSS K 5
+    POSS LLLL 115
+    POSS L 0 A_SpawnItemEx("ZombieManRes1",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    Stop
+  Death3:
+    POSS H 5
+    POSS I 5 A_Scream
+    POSS J 5 A_NoBlocking
+    POSS K 5
+    POSS L 35
+    POSS L 0 A_SpawnItemEx("ZombieMan_LastStand",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    Stop
+  Death4:
+    POSS H 5
+    POSS I 5 A_Scream
+    POSS J 5 A_NoBlocking
+    POSS K 5
+    POSS L 35
+    POSS L 0 A_SpawnItemEx("ZombieMan_LastStand2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    Stop
+  XDeath:
+    POSS M 5
+    POSS N 5 A_XScream
+    POSS O 5 A_NoBlocking
+    POSS PQRST 5
+    POSS U -1
+    stop
+  Raise:
+    POSS K 1 A_GiveInventory("BlueArmor",200)
+    POSS KJIH 5
+    goto See
+  }
+}
+
+Actor ZombieManRes1 : ZombieMan_2
+{
+  obituary "A zombieman got %o back with a vengeance."
+  Health 1
+  Speed 12
+  states
+  {
+  Spawn:
+    POSS A 0 
+    POSS A 0 Thing_SetSpecial(0,226,613,0,random(6,12))
+    POSS A 0 A_JumpIfInventory("Awoken",1,"Look")
+    POSS LKJIH 5 
+    Goto Look
+  Look:
+    POSS A 0 A_GiveInventory("Awoken",1)
+    POSS AB 10 A_Look
+    loop
+  Missile:
+    POSS E 5 A_FaceTarget
+    POSS F 4 A_CustomBulletAttack(22.5, 0, 1, 3, "BulletPuff")
+    POSS E 4 A_CPosRefire
+    Goto Missile
+  }
+}
+
+Actor ZombieManRes2 : ZombieMan_2
+{
+  obituary "A zombieman got %o back with a vengeance."
+  Health 1
+  Scale 1.1
+  Speed 15
+  states
+  {
+  Spawn:
+    POSS A 0 
+    POSS A 0 Thing_SetSpecial(0,226,613,0,random(7,14))
+    POSS A 0 A_JumpIfInventory("Awoken",1,"Look")
+    POSS LKJIH 5 
+    Goto Look
+  Look:
+    POSS A 0 A_GiveInventory("Awoken",1)
+    POSS AB 10 A_Look
+    loop
+  Missile:
+    POSS E 3 A_FaceTarget
+    POSS F 2 A_CustomBulletAttack(22.5, 0, 1, 3, "BulletPuff")
+    POSS E 2 A_CPosRefire
+    Goto Missile+1
+  }
+}
+
+actor ZombieLastStandHealth : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 50
+}
+
+actor ZombieMan_LastStand : RGAMonster
+{
+  obituary "%o was killed by a Last stand zombie!"
+  health 1
+  radius 20
+  height 56
+  mass 100
+  speed 0
+  painchance 200
+  seesound "grunt/fright"
+  attacksound "u45/fire"
+  painsound "grunt/pain"
+  deathsound "grunt/death"
+  activesound "grunt/pain"
+  MONSTER
+  +FLOORCLIP
+  -SOLID
+  states
+  {
+  Spawn:
+    POSS L 10 A_Look
+    loop
+  See:
+    LST1 A 0 A_JumpIfInventory("ZombieLastStandHealth",50,"Die")
+    LST1 A 0 A_GiveInventory("ZombieLastStandHealth",1)
+    LST1 AAAA 3 A_Chase
+    loop
+  Die: 
+    LST1 A 0 A_Die
+    goto Death
+  Missile:
+    LST1 A 5 A_FaceTarget
+    LST1 B 5 A_CustomBulletAttack(5.5, 0, 1, 4, "BulletPuff")
+    LST1 A 5
+    goto See
+  Pain:
+    LST1 C 3
+    LST1 C 3 A_Pain
+    goto See
+  Death:
+    LST1 H 0 A_JumpIfHealthLower(random(-100,-10),"XDeath")
+    LST1 C 5 A_Scream
+    POSS K 5 A_NoBlocking
+    POSS LLL 2 A_SpawnItemEx("HealthBonus",0,0,0,random(-2,2),random(-2,2),random(1,4),0,0,0)
+    POSS L -1
+    stop
+  Raise:
+    POSS K 1 
+    POSS KJIH 5 A_UnsetSolid
+    POSS L 0 A_SpawnItemEx("ZombieMan_2")
+    stop
+  XDeath:
+    POSS M 5
+    POSS N 5 A_XScream
+    POSS O 5 A_NoBlocking
+    POSS PQRST 5
+    POSS U -1
+    Stop
+  }
+}
+
+actor ZombieMan_LastStand2 : RGAMonster
+{
+  obituary "%o was killed by a Last stand zombie!"
+  health 1
+  radius 20
+  height 56
+  mass 100
+  speed 0
+  painchance 200
+  seesound "grunt/fright"
+  attacksound "44magnum/fire"
+  painsound "grunt/pain"
+  deathsound "grunt/death"
+  activesound "grunt/pain"
+  MONSTER
+  +FLOORCLIP
+  states
+  {
+  Spawn:
+    POSS L 10 A_Look
+    loop
+  See:
+    LST2 A 0 A_JumpIfInventory("ZombieLastStandHealth",50,"Die")
+    LST2 A 0 A_GiveInventory("ZombieLastStandHealth",1)
+    LST2 AAAA 3 A_Chase
+    loop
+  Die: 
+    LST2 A 0 A_Die
+    goto Death
+  Missile:
+    LST2 A 5 A_FaceTarget
+    LST2 B 5 A_CustomBulletAttack(5.5, 0, 1, 6, "BulletPuff")
+    LST2 A 5
+    goto See
+  Pain:
+    LST2 A 3
+    LST2 A 3 A_Pain
+    goto See
+  Death:
+	LST2 H 0 A_JumpIfHealthLower(random(-100,-10),"XDeath")
+    LST2 A 5 A_Scream
+    POSS K 5 A_NoBlocking
+    POSS LLL 2 A_SpawnItemEx("HealthBonus",0,0,0,random(-2,2),random(-2,2),random(1,4),0,0,0)
+    POSS L -1
+    stop
+  Raise:
+    POSS K 1 
+    POSS KJIH 5 A_UnsetSolid
+    POSS L 0 A_SpawnItemEx("ZombieMan_2")
+    stop
+  XDeath:
+    POSS M 5
+    POSS N 5 A_XScream
+    POSS O 5 A_NoBlocking
+    POSS PQRST 5
+    POSS U -1
+    Stop
+  }
+}
+
+actor DrDude : RGAMonster
+{
+  obituary "%o was capped by Dr. Dude."
+  hitobituary "%o was given brain surgery by Dr. Dude."
+  health 20
+  radius 20
+  height 56
+  mass 100
+  speed 6
+  painchance 200
+  seesound "doctor/sight"
+  //attacksound "44magnum/fire"
+  painsound "doctor/pain"
+  deathsound "doctor/death"
+  activesound "doctor/sight"
+  DropItem "HandgunSpawner" 172
+  DropItem "HandgunAmmo" 160
+  MONSTER
+  +FLOORCLIP
+  Translation "112:127=80:95"
+  Scale 1.15
+  states
+  {
+  Spawn:
+    POSS A 0 
+    POSS A 0 Thing_SetSpecial(0,226,613,0,random(6,12))
+    DRDO AB 10 A_Look
+    goto Spawn+2
+  See:
+    DRDO AABBCCDD 4 A_Chase
+    loop
+  Missile:
+    DRDO EF 10 A_FaceTarget
+    DRDO G 0 Bright A_PlayWeaponSound("44magnum/fire")
+    DRDO G 8 Bright A_CustomBulletAttack(6, 2, 1, 6, "BulletPuff")
+    DRDO F 8
+    goto See
+  Melee:
+    DRDO EF 5 A_FaceTarget
+    DRDO G 0 Bright A_PlayWeaponSound("44magnum/fire")
+    DRDO G 8 Bright A_CustomBulletAttack(1, 1, 1, 10, "BulletPuff")
+    DRDO F 8
+    goto See
+  Pain:
+    DRDO H 3
+    DRDO H 3 A_Pain
+    goto See
+  Death:
+    DRDO I 5
+	DRDO H 0 A_JumpIfHealthLower(random(-500,-110),"XDeath")
+    DRDO J 5 A_Scream
+    DRDO K 5 A_NoBlocking
+    DRDO L 5 //A_Jump(72,"Death2")
+    DRDO M 0 A_Jump(32,"Death3")
+    DRDO MMM 2 A_SpawnItemEx("HealthBonus",0,0,0,random(-2,2),random(-2,2),random(1,4),0,0,0)
+    DRDO N -1 
+    stop
+  Death2:
+    DRDO LM 5 
+    DRDO NN 115
+    DRDO N -1 A_SpawnItemEx("DrDude2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  Death3:
+    DRDO M 5
+    DRDO N 35
+    TNT1 A -1 A_SpawnItemEx("DrDude_LastStand",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  Raise:
+    DRDO NMLKJI 5
+    goto Spawn
+  XDeath:
+    DRDO M 5
+    POSS N 5 A_XScream
+    POSS O 5 A_NoBlocking
+    POSS PQRST 5
+    POSS U -1
+  }
+}
+
+actor DrDude2 : DrDude
+{
+  obituary "%o was capped by Dr. Dude's ghost."
+  hitobituary "%o was given brain surgery by Dr. Dude's ghost."
+  health 20
+  speed 8
+  painchance 200
+  seesound "doctor/sight"
+  //attacksound "44magnum/fire"
+  painsound "doctor/pain"
+  deathsound "doctor/death"
+  activesound "doctor/sight"
+  DropItem "HandgunSpawner" 172
+  DropItem "HandgunAmmo" 255
+  MONSTER
+  +FLOORCLIP
+  Translation "112:127=[100,100,100]:[0,0,0]"
+  RenderStyle Add
+  Alpha 0.0
+  Scale 1.15
+  +NOBLOOD
+  states
+  {
+  Spawn:
+    POSS A 0 
+    POSS A 0 Thing_SetSpecial(0,226,613,0,random(7,14))
+    POSS A 0 A_JumpIfInventory("Awoken",1,"Look")
+    DRDO AAAAAAAAAA 2 A_FadeIn(0.1)
+    Goto Look
+  Look:
+    POSS A 0 A_GiveInventory("Awoken",1)
+    DRDO AB 10 A_Look
+    loop
+  See:
+    DRDO AABBCCDD 2 A_Chase
+    loop
+  Missile:
+    DRDO EF 10 A_FaceTarget
+    DRDO G 0 Bright A_PlayWeaponSound("44magnum/fire")
+    DRDO G 8 Bright A_CustomBulletAttack(1, 1, 1, 7, "BulletPuff")
+    DRDO F 8
+    goto See
+  Melee:
+    DRDO EF 5 A_FaceTarget
+    DRDO G 0 Bright A_PlayWeaponSound("44magnum/fire")
+    DRDO G 8 Bright A_CustomBulletAttack(1, 1, 1, 12, "BulletPuff")
+    DRDO F 8
+    goto See
+  Pain:
+    DRDO H 3
+    DRDO H 3 A_Pain
+    goto See
+  Death:
+    DRDO I 5
+	DRDO H 0 A_JumpIfHealthLower(random(-500,-110),"XDeath")
+    DRDO J 5 A_Scream
+    DRDO K 5 A_NoBlocking
+    DRDO LLLMMM 2 A_SpawnItemEx("HealthBonus",0,0,0,random(-2,2),random(-2,2),random(1,4),0,0,0)
+    DRDO N -1
+    stop
+  XDeath:
+    POSS M 5
+    POSS N 5 A_XScream
+    POSS O 5 A_NoBlocking
+    POSS PQRST 5
+    POSS U -1
+    Stop
+  }
+}
+
+actor DrDude_LastStand : RGAMonster
+{
+  obituary "%o was killed by a Last stand zombie!"
+  health 1
+  radius 20
+  height 56
+  mass 100
+  speed 0
+  painchance 200
+  seesound "doctor/sight"
+  attacksound "44magnum/fire"
+  painsound "doctor/pain"
+  deathsound "doctor/death"
+  activesound "doctor/sight"
+  Translation "112:127=[100,100,100]:[0,0,0]"
+  MONSTER
+  +FLOORCLIP
+  Scale 1.15
+  -SOLID
+  states
+  {
+  Spawn:
+    DRDO N 10 A_Look
+    loop
+  See:
+    LST5 A 0 A_JumpIfInventory("ZombieLastStandHealth",50,"Die")
+    LST5 A 0 A_GiveInventory("ZombieLastStandHealth",1)
+    LST5 AAAA 3 A_Chase
+    loop
+  Die: 
+    LST5 A 0 A_Die
+    goto Death
+  Missile:
+    LST5 A 5 A_FaceTarget
+    LST5 B 5 A_CustomBulletAttack(5.5, 0, 1, 6, "BulletPuff")
+    LST5 A 5
+    goto See
+  Pain:
+    LST5 A 3
+    LST5 A 3 A_Pain
+    goto See
+  Death:
+    LST5 H 0 A_JumpIfHealthLower(random(-100,-10),"XDeath")
+    LST5 A 5 A_Scream
+    DRDO M 5 A_NoBlocking
+    DRDO NNN 2 A_SpawnItemEx("HealthBonus",0,0,0,random(-2,2),random(-2,2),random(1,4),0,0,0)
+    DRDO N -1
+    stop
+  Raise:
+    DRDO N 1 
+    DRDO NMLKJI 5 A_UnsetSolid
+    DRDO L 0 A_SpawnItemEx("DrDude",0,0,0,0,0,0,0,SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION,0)
+    stop
+  XDeath:
+    POSS M 5
+    POSS N 5 A_XScream
+    POSS O 5 A_NoBlocking
+    POSS PQRST 5
+    POSS U -1
+    Stop
+  }
+}
+
+actor ZombieMarine : RGAMonster
+{
+  +AMBUSH
+  states
+  {
+  Spawn:
+    PLAY N 5 A_LookEx(LOF_NOSOUNDCHECK,0,256,0,360)
+    loop
+  See:
+    PLAY N 105
+    PLAY NMLKJI 5
+    PLAY H 5 A_FaceTarget
+    PLAY H 0 A_SpawnItemEx("ZombieMarineA",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+
+actor ZombieMarineA : RGAMonster
+{
+  obituary "%o was spooked by a zombie player!"
+  health 450
+  radius 20
+  height 56
+  mass 500
+  speed 4
+  painchance 80
+  seesound "chainguy/fright"
+  painsound "chainguy/pain"
+  deathsound "commando/pain"
+  activesound "chainguy/active"
+  MONSTER
+  +FLOORCLIP
+  dropitem "AssaultRifleAmmo" 128
+  dropitem "SMGAmmo" 128
+  dropitem "LMGAmmo" 128
+  dropitem "HandgunAmmo" 128
+  +AMBUSH
+  states
+  {
+  Spawn:
+    POSS A 0 
+    POSS A 0 Thing_SetSpecial(0,226,613,0,random(12,24))
+    PLAY AB 10 A_Look
+    goto Spawn+2
+  See:
+    PLAY AABBCCDD 4 A_Chase
+    loop
+  Missile:
+    PLAY E 10 A_FaceTarget
+    PLAY F 0 Bright A_PlayWeaponSound("spas/fire")
+    PLAY F 8 Bright A_CustomBulletAttack(10, 0, 5, 4, "BulletPuff")
+    PLAY E 8
+    goto See
+  Pain:
+    PLAY G 3
+    PLAY G 3 A_Pain
+    Goto See
+  Death:
+    PLAY H 0
+	PLAY H 0 A_JumpIfHealthLower(random(-500,-110),"XDeath")
+    PLAY H 10 A_Jump(64,"Death2")
+    PLAY I 10 A_Scream
+    PLAY J 10 A_NoBlocking
+    PLAY KKKKKLLLLL 2 A_SpawnItemEx("HealthBonus",0,0,0,random(-2,2),random(-2,2),random(1,4),0,0,0)
+    PLAY M 10
+    PLAY N -1
+    stop
+  Death2:
+    PLAY H 10 
+    PLAY I 10 A_Scream
+    PLAY J 10 A_NoBlocking
+    PLAY KLM 10
+    PLAY N 35
+    TNT1 A -1 A_SpawnItemEx("ZombieMarine_LastStand",0,0,0,0,0,0,0,SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION,0)
+    stop
+  Raise:
+    PLAY N 5 A_TakeInventory("Awoken",1)
+    goto See
+  XDeath:
+    PLAY M 5
+    PLAY N 5 A_XScream
+    PLAY O 5 A_NoBlocking
+    PLAY PQRST 5
+    PLAY U -1
+  }
+}
+
+actor ZombieMarine_LastStand : RGAMonster
+{
+  obituary "%o was killed by a Last stand zombie!"
+  health 1
+  radius 20
+  height 56
+  mass 100
+  speed 0
+  painchance 200
+  seesound "chainguy/fright"
+  attacksound "u45/fire"
+  painsound "chainguy/pain"
+  deathsound "commando/pain"
+  activesound "chainguy/pain"
+  MONSTER
+  +FLOORCLIP
+  -SOLID
+  states
+  {
+  Spawn:
+    PLAY N 10 A_Look
+    loop
+  See:
+    LAST A 0 A_JumpIfInventory("ZombieLastStandHealth",50,"Die")
+    LAST A 0 A_GiveInventory("ZombieLastStandHealth",1)
+    LAST AAAA 3 A_Chase
+    loop
+  Die: 
+    LAST A 0 A_Die
+    goto Death
+  Missile:
+    LAST A 5 A_FaceTarget
+    LAST B 5 A_CustomBulletAttack(5.5, 0, 1, 4, "BulletPuff")
+    LAST A 5
+    goto See
+  Pain:
+    LAST C 3
+    LAST C 3 A_Pain
+    goto See
+  Death:
+    LAST C 10 A_Scream
+    LAST D 5 A_NoBlocking
+    LAST DDDDDEEEEE 2 A_SpawnItemEx("HealthBonus",0,0,0,random(-2,2),random(-2,2),random(1,4),0,0,0)
+    LAST E -1 A_Jump(128,1)
+    stop
+    LAST E -1 A_CustomMissile("FragGrenadeDropped2",8,0,0)
+    stop
+  Raise:
+    PLAY N 1 
+    PLAY NMLKJI 5 A_UnsetSolid
+    PLAY L 0 A_SpawnItemEx("ZombieMarineA",0,0,0,0,0,0,0,SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION,0)
+    stop
+  XDeath:
+    POSS M 5
+    POSS N 5 A_XScream
+    POSS O 5 A_NoBlocking
+    POSS PQRST 5
+    POSS U -1
+    Stop
+  }
+}
+
+actor ZombieSniper : RGAMonster
+{
+  spawnid 4
+  obituary "%o was sniped by a zombieman."
+  health 5
+  radius 20
+  height 56
+  mass 100
+  speed 8
+  painchance 200
+  seesound "grunt/sight"
+  painsound "grunt/pain"
+  deathsound "grunt/death"
+  activesound "grunt/active"
+  DropItem "SniperRifleSpawner" 15
+  DropItem "SniperAmmo" 160
+  DropItem "SniperAmmo" 30
+  DropItem "HandgunAmmo" 128
+  MONSTER
+  +FLOORCLIP
+  +MISSILEEVENMORE
+  states
+  {
+  Spawn:
+    ZHRT A 0 
+    ZHRT A 0 A_GiveInventory("FragGrenadeAmmo",1)
+    ZHRT A 0 Thing_SetSpecial(0,226,613,0,random(5,10))
+    ZHRT AB 10 A_Look
+    goto Spawn+3
+  See:
+    ZHRT AABBCCDD 4 A_Chase
+    loop
+  Missile:
+    ZHRT E 0 A_JumpIfCloser(600,"Pistol")
+    ZHRT E 0 A_FaceTarget
+    ZHRT E 30 A_FaceTarget
+    ZHRT E 0 A_JumpIfCloser(300,"Pistol")
+    ZHRT E 0 A_FaceTarget
+    ZHRT E 30 A_FaceTarget
+    ZHRT E 0 A_PlaySound("barrett/fire", CHAN_WEAPON, 1.0, false, 0.6)
+    ZHRT E 0 A_Jump(83,3)
+    ZHRT F 10 BRIGHT A_CustomBulletAttack(0.8, 0.8, 1, 10, "SniperPuff", 9999)
+    ZHRT E 0 A_Jump(256,2)
+    ZHRT F 10 BRIGHT
+    ZHRT E 0 A_Jump(30, "See")
+    ZHRT E 0 A_SpidRefire
+    goto Missile+3
+  Pistol:
+    ZHRT E 10 A_FaceTarget
+    ZHRT F 8 A_CustomBulletAttack(22.5, 0, 1, 4, "BulletPuff")
+    ZHRT E 0 A_PlaySound("u45/fire")
+    ZHRT E 8
+    goto See
+  Pain:
+    ZHRT G 3
+    ZHRT G 3 A_Pain
+    goto See
+  Death:
+    ZHRT H 0
+	ZHRT H 0 A_JumpIfHealthLower(random(-500,-110),"XDeath")
+    ZHRT I 5 A_Scream
+    ZHRT J 5 A_NoBlocking
+    ZHRT KK 2 A_SpawnItemEx("HealthBonus",0,0,0,random(-2,2),random(-2,2),random(1,4),0,0,0)
+    ZHRT L -1
+    stop
+  XDeath:
+    ZHRT O 5
+    ZHRT P 5 A_XScream
+    ZHRT Q 5 A_NoBlocking
+    ZHRT RTUV 5
+    ZHRT W -1
+    Stop
+  Raise:
+    ZHRT K 1 A_GiveInventory("BlueArmor",200)
+    ZHRT KJIH 5
+    goto See
+  }
+}
