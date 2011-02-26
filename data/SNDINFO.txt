@@ -562,3 +562,153 @@ renegade/death10          dedman10
 renegade/death21          death01
 renegade/death22          death02
 renegade/death23          death03
+
+stoneknight/sight	dsstnsit
+$rolloff 		stoneknight/sight	1000 3000
+$rolloff 		brain/spit	1000 3000
+
+$random stoner/sight	{ stoner/sight1 stoner/sight2 stoner/sight3 stoner/sight4 stoner/sight5 stoner/sight6 }
+stoner/sight1		rockgol1
+stoner/sight2		rockgol2
+stoner/sight3		rockgol3
+stoner/sight4		rockgol4
+stoner/sight5		rockgol5
+stoner/sight6		rockgol6
+
+fatso2/sight		dsalbsit
+fatso2/raiseguns	dsalbatk
+fatso2/death		dsalbdth
+vile2/sight		drvilsit
+vile2/pain		drvipain
+vile2/death		drvildth
+vile/raise		dsgetpow
+
+arachnobaron/death dsabrdth
+
+monster/brusit dsbrusit
+monster/brudth dsbrudth
+monster/bruwlk dsbruwlk
+
+
+$random doctor/sight { doctor/sight1 doctor/sight2 doctor/sight3 doctor/sight4 doctor/sight5 doctor/sight6 }
+doctor/sight1       docsit1
+doctor/sight2       docsit2
+doctor/sight3       docsit3
+doctor/sight4       docsit4
+doctor/sight5       docsit5
+doctor/sight6       docsit6
+
+$random doctor/death	{ doctor/death1 doctor/death2 }
+doctor/death1       docdth2
+doctor/death2       docdth3
+doctor/pain	    docpain
+
+skeleton/gib		skelgib
+skeleton/bounce		skelboun
+$limit skeleton/bounce	0
+
+space/nazi		spcsight
+
+
+peasant/pain1 DSPESPNA
+peasant/pain2 DSPESPNB
+peasant/pain3 DSPESPNC
+peasant/pain4 DSPESPND
+$random				peasant/pain {peasant/pain1 peasant/pain2 peasant/pain3 peasant/pain4}
+
+peasant/death D2PLDETH
+peasant/xdeath D2PLXDTH
+
+$random grunt/sight     { grunt/sight1 grunt/sight2 grunt/sight3 grunt/sight4 grunt/sight5 grunt/sight6 grunt/sight7 grunt/sight8 }
+$random grunt/fright     {  grunt/sight4 grunt/sight5 }
+grunt/sight1		 posssit1
+grunt/sight2		 posssit2
+grunt/sight3		 posssit3
+grunt/sight4		 posssit4
+grunt/sight5		 posssit5
+grunt/sight6		 posssit6
+grunt/sight7		 posssit7
+grunt/sight8		 posssit8
+$alias grunt/death       renegade/deaths1
+$random grunt/active     { grunt/active1  grunt/active2 grunt/active3 grunt/active4 }
+$random grunt/pain       { grunt/pain1  grunt/pain2 }
+grunt/pain1              posspn1
+grunt/pain2              posspn2
+grunt/active1            possact1
+grunt/active2            possact2
+grunt/active3            possact3
+grunt/active4            possact4
+
+$alias shotguy/death     renegade/deaths1
+$alias shotguy/pain      grunt/pain
+$random shotguy/active   { grunt/active1  grunt/active2 grunt/active3 grunt/active4 }
+
+
+$random chainguy/sight     { chainguy/sight1 chainguy/sight2 chainguy/sight3 chainguy/sight4 chainguy/sight5 chainguy/sight6 }
+$random chainguy/fright     { chainguy/sight5 chainguy/sight6 }
+chainguy/sight1		 cpossit1
+chainguy/sight2		 cpossit2
+chainguy/sight3		 cpossit3
+chainguy/sight4		 cpossit4
+chainguy/sight5		 cpossit5
+chainguy/sight6		 cpossit6
+$alias chainguy/death       renegade/deaths1
+$random chainguy/active     { chainguy/active1  chainguy/active2 chainguy/active3 chainguy/active4 }
+$random chainguy/pain       { chainguy/pain1  chainguy/pain2 }
+chainguy/pain1              cpospn1
+chainguy/pain2              cpospn2
+chainguy/active1            cposact1
+chainguy/active2            cposact2
+chainguy/active3            cposact3
+chainguy/active4            cposact4
+
+bfg/start			bfgstart
+bfg/fire			bfgfire
+bfg/alt				bfgalt
+bfg/explode1			bfgexplo
+bfg/explode2			bfgaltex
+$limit bfg/explode1		0
+$limit bfg/explode2		0
+$limit bfg/alt			0
+$rolloff 		bfg/explode1	1000 3000
+
+game/rank		levelup
+game/challenge		mp_chall
+game/laststand		mp_last_
+
+$random imp/sight	{ imp/sight1 imp/sight2 imp/sight3 imp/sight4 imp/sight5 imp/sight6 }
+$random imp/active	{ imp/active1 imp/active2 imp/active3 imp/active4 imp/sight1 imp/sight3}
+$random imp/pain	{ imp/pain1 imp/pain2 imp/pain3 }
+$random imp/death	{ imp/death1 imp/death2 imp/pain1 imp/pain2 imp/pain3 }
+imp/sight1		dimpsit1
+imp/sight2		dimpsit2
+imp/sight3		dimpsit3
+imp/sight4		dimpsit4
+imp/sight5		dimpsit5
+imp/sight6		dimpsit6
+imp/active1		dimpact1
+imp/active2		dimpact2
+imp/active3		dimpact3
+imp/active4		dimpact4
+imp/pain1		dimppn1
+imp/pain2		dimppn2
+imp/pain3		dimppn3
+imp/death1		dimpdth1
+imp/death2		dimpdth2
+
+$random juggernaut/death		    { misc/dsjudth1 misc/dsjudth2 misc/dsjudth3 misc/dsjudth4 misc/dsjudth5 }
+misc/dsjudth1           dsjudth1
+misc/dsjudth2           dsjudth2
+misc/dsjudth3           dsjudth3
+misc/dsjudth4           dsjudth4
+misc/dsjudth5           dsjudth5
+$random juggernaut/sight	{ misc/dsjugsit misc/dsjugsi2 misc/dsjugsi3 misc/dsjugsi4}
+misc/dsjugsit           dsjugsit
+misc/dsjugsi2           dsjugsi2
+misc/dsjugsi3           dsjugsi3
+misc/dsjugsi4           dsjugsi4
+$random juggernaut/pain		    { misc/dsjupai1 misc/dsjupai2 misc/dsjupai3 misc/dsjupai4 }
+misc/dsjupai1           dsjupai1
+misc/dsjupai2           dsjupai2
+misc/dsjupai3           dsjupai3
+misc/dsjupai4           dsjupai4

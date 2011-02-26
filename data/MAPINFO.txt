@@ -1,0 +1,211 @@
+gameinfo
+{
+	titlemusic = "$MUSIC_INTRO"
+	titletime = 999999
+	quitsound = "barett/fire"
+	drawreadthis = false
+    quitmessages = "THANK YOU for playing Real Guns Hardcore"	
+}
+
+map E1M8 lookup "HUSTR_E1M8"
+{
+	levelnum = 8
+	titlepatch = "WILV07"
+	next = "E2M1"
+	secretnext = "E1M9"
+	sky1 = "SKY1"
+	cluster = 1
+	par = 30
+	//nointermission
+	nosoundclipping
+	specialaction = "BaronOfHell_2", "Floor_LowerToNearest", 666, 16
+	specialaction = "Cybruiser", "Floor_LowerToNearest", 666, 16
+	specialaction = "Belphegor_2", "Floor_LowerToNearest", 666, 16
+	specialaction = "StoneKnight", "Floor_LowerToNearest", 666, 16
+	specialaction = "BruiserDemon", "Floor_LowerToNearest", 666, 16
+	specialaction = "HellsFury", "Floor_LowerToNearest", 666, 16
+	specialaction = "Afrit", "Floor_LowerToNearest", 666, 16
+	specialaction_lowerfloor
+	music = "$MUSIC_E1M8"
+	exitpic = "CREDIT"
+}
+
+map E2M8 lookup "HUSTR_E2M8"
+{
+	levelnum = 18
+	titlepatch = "WILV17"
+	next = "E3M1"
+	secretnext = "E2M9"
+	sky1 = "SKY2"
+	cluster = 2
+	par = 30
+	//nointermission
+	nosoundclipping
+	specialaction = "Cyberdemon_2", "ACS_ExecuteAlways", 612, 0, 1
+	specialaction = "Annihilator", "ACS_ExecuteAlways", 612, 0, 1
+	specialaction = "Thamuz", "ACS_ExecuteAlways", 612, 0, 1
+	specialaction = "Cardinal", "ACS_ExecuteAlways", 612, 0, 1
+	specialaction_exitlevel
+	music = "$MUSIC_E2M8"
+	exitpic = "VICTORY2"
+}
+
+map E3M8 lookup "HUSTR_E3M8"
+{
+	levelnum = 28
+	titlepatch = "WILV27"
+	next = "E4M1"
+	secretnext = "E3M9"
+	sky1 = "SKY3"
+	cluster = 3
+	par = 30
+	//nointermission
+	nosoundclipping
+	specialaction = "SpiderMastermind_2", "ACS_ExecuteAlways", 612, 0, 2
+	specialaction = "CyberMastermind", "ACS_ExecuteAlways", 612, 0, 2
+	specialaction = "Demolisher", "ACS_ExecuteAlways", 612, 0, 2
+	specialaction = "Arachnophyte", "ACS_ExecuteAlways", 612, 0, 2
+	specialaction_exitlevel
+	music = "$MUSIC_E3M8"
+	exitpic = "PFUB2"
+}
+
+map E4M8 lookup "HUSTR_E4M8"
+{
+	levelnum = 38
+	titlepatch = "WILV37"
+	next = "E1M1"
+	secretnext = "E4M9"
+	sky1 = "SKY4"
+	cluster = 4
+	//nointermission
+	nosoundclipping
+	specialaction = "SpiderMastermind_2", "ACS_ExecuteAlways", 612, 0, 2
+	specialaction = "CyberMastermind", "ACS_ExecuteAlways", 612, 0, 2
+	specialaction = "Demolisher", "ACS_ExecuteAlways", 612, 0, 2
+	specialaction = "Arachnophyte", "ACS_ExecuteAlways", 612, 0, 2
+	specialaction_lowerfloor
+	music = "$MUSIC_E2M5"
+	exitpic = "ENDPIC"
+}
+
+map MAP07 "dead stupid"
+{
+	titlepatch = "CWILV06"
+	next = "MAP08"
+	secretnext = "MAP08"
+	sky1 = "SKY1"
+	cluster = 6
+	par = 120
+	specialaction = "Fatso_2", "Floor_LowerToNearest", 666, 16
+	specialaction = "Hectebus_2", "Floor_LowerToNearest", 666, 16
+	specialaction = "Acubus", "Floor_LowerToNearest", 666, 16
+	specialaction = "Juggernaut", "Floor_LowerToNearest", 666, 16
+	specialaction = "Arachnotron_2", "ACS_ExecuteAlways", 666, 0
+	specialaction = "SpectreArachnotron", "ACS_ExecuteAlways", 666, 0
+	specialaction = "Arachnobaron", "ACS_ExecuteAlways", 66, 0
+	music = "$MUSIC_SHAWN"
+}
+clearskills
+
+
+skill trivial
+{
+   AmmoFactor = 1
+   DamageFactor = 1.0
+   SpawnFilter = "Hard"
+   textcolor="white"
+   Name = "Trivial  6 Guns,50% DMG"
+   acsreturn = 6
+}
+
+skill easy
+{
+   AmmoFactor = 1
+   DamageFactor = 2.0
+   SpawnFilter = "Hard"
+   textcolor="green"
+   Name = "Easy     4 Guns,100% DMG"
+   acsreturn = 4
+}
+
+
+skill medium
+{
+   AmmoFactor = 1
+   DamageFactor = 2.5
+   SpawnFilter = "Hard"
+   textcolor="yellow"
+   Name = "Medium  3 Guns,125% DMG"
+   acsreturn = 3
+}
+
+skill hard
+{
+   AmmoFactor = 1
+   DamageFactor = 3.0
+   SpawnFilter = "Hard"
+   textcolor="orange"
+   Name = "Hard     3 Guns,150% DMG"
+   acsreturn = 3
+}
+
+skill tactics
+{
+   AmmoFactor = 1
+   DamageFactor = 2.5
+   SpawnFilter = "Hard"
+   Name = "Tactics 2 Guns,125% DMG"
+   acsreturn = 2
+}
+
+skill fun
+{
+   AmmoFactor = 1
+   DamageFactor = 3.5
+   SpawnFilter = "Hard"
+   Name = "Fun       6 Guns,175% DMG "
+   acsreturn = 6
+}
+
+skill deadly
+{
+   AmmoFactor = 1
+   DamageFactor = 3.0
+   SpawnFilter = "Hard"
+   Name = "Deadly  2 Guns,150% DMG"
+   acsreturn = 2
+}
+
+skill realism
+{
+   AmmoFactor = 1
+   DamageFactor = 4.0
+   SpawnFilter = "Hard"
+   Name = "Realism 2 Guns,200% DMG"
+   textcolor="black"
+   acsreturn = 2
+}
+
+skill instagib
+{
+   AmmoFactor = 1
+   DamageFactor = 99.9
+   //monsterhealth = 0.001
+   SpawnFilter = "Hard"
+   textcolor="black"
+   Name = "INSTAGIB"
+   acsreturn = 1
+}
+
+skill oldschool
+{
+   AmmoFactor = 1
+   DamageFactor = 1.0
+   //monsterhealth = 0.4
+   SpawnFilter = "Hard"
+   textcolor="black"
+   Name = "OLDSCHOOL"
+   acsreturn = 9
+}
+

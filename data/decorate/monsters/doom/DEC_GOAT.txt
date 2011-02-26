@@ -1,0 +1,289 @@
+actor BaronOfHell_2 : RGAMonster
+{
+  spawnid 3
+  obituary "%o was bruised by a Baron of Hell."
+  hitobituary "%o was ripped open by a Baron of Hell."
+  health 1000
+  radius 24
+  height 64
+  mass 1000
+  speed 8
+  painchance 50
+  seesound "baron/sight"
+  painsound "baron/pain"
+  deathsound "baron/death"
+  activesound "baron/active"
+  MONSTER
+  +FLOORCLIP
+  +BOSSDEATH
+  Species "Goat"
+  damagefactor "BaronBall", 0.0
+  bloodcolor "Green"
+  states
+  {
+  Spawn:
+    POSS A 0 
+    POSS A 0 Thing_SetSpecial(0,226,613,0,random(35,50))
+    BOSS AB 10 A_Look
+    goto Spawn+2
+  See:
+    BOSS AABBCCDD 3 A_Chase
+    loop
+  Melee:
+  Missile:
+    BOSS E 0 
+    BOSS E 0 A_Jump(96,"Missile2")
+    BOSS EF 8 A_FaceTarget
+    BOSS G 8 A_CustomComboAttack("BaronBall",32,(10*random(1,5)),"imp/melee") // See BaronBall
+    goto See
+  Missile2:
+    BOSS PQ 11 A_FaceTarget
+    BOSS R 0 A_CustomComboAttack("BlueBaronBall",32,(10*random(1,5)),"imp/melee") // See BaronBall
+    BOSS R 11 A_CustomComboAttack("BaronBall",32,(10*random(1,5)),"imp/melee") // See BaronBall
+    goto See
+  Pain:
+    BOSS H 2
+    BOSS H 2 A_Pain
+	TNT1 G 0 A_AlertMonsters
+    goto See
+  Death:
+    BOSS I 8
+    BOSS J 8 A_Scream
+    BOSS K 8
+    BOSS L 8 A_NoBlocking
+    BOSS MN 8
+    BOSS O -1 A_BossDeath
+    stop
+  Raise:
+    BOSS ONMLKJI 8
+    goto See
+  }
+}
+
+actor Cybruiser : BaronOfHell_2
+{
+  obituary "%o was blown away by a Cybruiser."
+  hitobituary "%o was smashed by a Cybruiser."
+  health 2000
+  radius 24
+  height 64
+  mass 1000
+  speed 8
+  painchance 20
+  meleedamage 10
+  seesound "monster/brusit"
+  painsound "baron/pain"
+  deathsound "monster/brudth"
+  activesound "baron/active"
+  MONSTER
+  +FLOORCLIP
+  +MISSILEMORE
+  +NOBLOOD
+  damagefactor "BaronBall", 0.0
+  DropItem "SoulSphere2" 128
+  DropItem "RocketAmmo_2"
+  states
+  {
+  Spawn:
+    POSS A 0 
+    POSS A 0 Thing_SetSpecial(0,226,613,0,random(70,100))
+    BRUS AB 10 A_Look
+    goto Spawn+2
+  See:
+    BRUS A 1 A_Playsound("monster/bruwlk")
+    BRUS A 2 A_Chase
+    BRUS A 3 A_Chase
+    BRUS BB 3 A_Chase
+    BRUS C 1 A_Playsound("monster/bruwlk")
+    BRUS C 2 A_Chase
+    BRUS C 3 A_Chase 
+    BRUS DD 3 A_Chase
+    Loop 
+  Missile:
+    //BOS9 E 0 A_Jump(24,"Missile2")
+    BRUS E 8 A_FaceTarget 
+    BRUS F 6 Bright A_CustomMissile("BaronEightballMissile",38,15,0,0)
+    BRUS E 6 A_FaceTarget
+    BRUS F 6 Bright A_CustomMissile("BaronEightballMissile",38,15,0,0)
+    BRUS E 6 A_FaceTarget
+    BRUS F 6 Bright A_CustomMissile("BaronEightballMissile",38,15,0,0)
+    BRUS E 6 A_FaceTarget
+    BRUS F 6 Bright A_CustomMissile("BaronEightballMissile",38,15,0,0)
+    BRUS E 6 A_FaceTarget
+    BRUS F 6 Bright A_CustomMissile("BaronEightballMissile",38,15,0,0)
+    BRUS E 6 A_FaceTarget
+    BRUS F 6 Bright A_CustomMissile("BaronEightballMissile",38,15,0,0)
+    Goto See
+  Missile2:
+    BRUS GH 6 A_JumpIfCloser(96,"Melee")
+    BRUS H 0 A_PlayWeaponSound("brain/spit")
+    BRUS I 6 A_CustomMissile("BruiserCube",32,0,0,CMF_AIMDIRECTION,0)
+    BRUS A 1 A_Playsound("monster/bruwlk")
+    BRUS A 2 A_Chase("Melee","")
+    BRUS A 3 A_Chase("Melee","")
+    BRUS BB 3 A_Chase("Melee","")
+    BRUS C 1 A_Playsound("monster/bruwlk")
+    BRUS C 2 A_Chase("Melee","")
+    BRUS C 3 A_Chase("Melee","")
+    BRUS DD 3 A_Chase("Melee","")
+    BRUS A 1 A_Playsound("monster/bruwlk")
+    BRUS A 2 A_Chase("Melee","")
+    BRUS A 3 A_Chase("Melee","")
+    BRUS BB 3 A_Chase("Melee","")
+    BRUS C 1 A_Playsound("monster/bruwlk")
+    BRUS C 2 A_Chase("Melee","")
+    BRUS C 3 A_Chase("Melee","")
+    BRUS DD 3 A_Chase("Melee","")
+    goto See
+  Melee:
+    BRUS GH 8 A_FaceTarget
+    BRUS I 8 A_CustomComboAttack("BlueBaronBall",32,(10*random(1,5)),"skeleton/melee")
+    goto See
+  Pain:
+    BRUS H 2
+    BRUS H 2 A_Pain
+	TNT1 G 0 A_AlertMonsters
+    goto See
+  Death: 
+    BRUS K 6 Bright A_Scream
+    BRUS LMN 6 Bright
+    BRUS O 6 Bright A_NoBlocking
+    BRUS T 0 A_Jump(96,10)
+    BRUS PPQQRRSS 3 Bright A_SpawnItemEx("HealthBonus",0,0,0,random(-2,2),random(-2,2),random(1,4),0,0,0)
+    BRUS T -1 A_BossDeath
+    stop
+    BRUS PQRS 6 Bright 
+    BRUS TTTTT 115
+    BRUS T 0 A_PlayWeaponSound("brain/spit")
+    BRUS T -1 A_CustomMissile("StoneKnightCubeSelf",8,0,0,CMF_AIMDIRECTION,90)
+    stop
+  Death.Telefrag: 
+    BRUS K 6 Bright A_Scream
+    BRUS LMN 6 Bright
+    BRUS O 6 Bright A_NoBlocking
+    BRUS T 0 A_Jump(192,10)
+    BRUS PPQQRRSS 3 Bright A_SpawnItemEx("HealthBonus",0,0,0,random(-2,2),random(-2,2),random(1,4),0,0,0)
+    BRUS T -1 A_BossDeath
+    stop
+    BRUS PQRS 6 Bright 
+    BRUS TTTTT 115
+    BRUS T 0 A_PlayWeaponSound("brain/spit")
+    BRUS T -1 A_CustomMissile("StoneKnightCubeSelf",8,0,0,CMF_AIMDIRECTION,90)
+    stop
+  Raise:
+    BRUS TSRQPONMLK 8
+    goto See
+  }
+}
+
+actor BaronEightballMissile : RevenantEightballMissile 
+{
+  obituary "%o was blown away by a Cybruiser."
+  radius 8
+  height 8
+  speed 18
+  damage (20)
+  seesound "skeleton/attack"
+  deathsound "generic/explosion"
+  PROJECTILE
+  scale 0.6
+  -SEEKERMISSILE
+  damageType "BaronBall"
+  states
+  {
+  Death:
+    TNT1 A 0 A_Explode(10,128)
+    TNT1 A 5 A_SpawnItemEx("ExplosionMain", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+	TNT1 G 0 A_AlertMonsters
+    stop
+  }
+}
+
+actor BruiserCube
+{
+  Radius 16
+  Height 16
+  Speed 10
+  Damage (1)
+  RenderStyle Normal
+  Alpha 1
+  SeeSound "brain/cube"
+  DeathSound "misc/teleport"
+  Projectile
+  +RIPPER
+  scale 0.5
+  reactiontime 12
+  +THRUGHOST
+  +HEXENBOUNCE
+  states
+  {
+  Spawn:
+    BOSF ABCD 3 bright A_Countdown
+    loop
+  Death:
+    TNT1 A 0 A_SpawnItemEx("SpawnFire",0,0,0,0,0,0,0,0,0)
+    TNT1 A 0 A_Jump(16,"SpawnRevenant")
+    TNT1 A 0 A_Jump(96,"SpawnDemon")
+    TNT1 A 0 A_Jump(128,"SpawnImp")
+    TNT1 A 5 A_SpawnItemEx("HellKnight",0,0,0,0,0,0,0,SXF_TELEFRAG|SXF_NOCHECKPOSITION,0)
+    stop
+  SpawnImp:
+    TNT1 A 5 A_SpawnItemEx("Cacodemon_2",0,0,0,0,0,0,0,SXF_TELEFRAG|SXF_NOCHECKPOSITION,0)
+    stop
+  SpawnDemon:
+    TNT1 A 5 A_SpawnItemEx("ChaingunGuy_2",0,0,0,0,0,0,0,SXF_TELEFRAG|SXF_NOCHECKPOSITION,0)
+    stop
+  SpawnRevenant:
+    TNT1 A 5 A_SpawnItemEx("StoneKnight",0,0,0,0,0,0,0,SXF_TELEFRAG|SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+ACTOR Belphegor_2 : HellKnight_2
+{
+  SpawnID 215
+  Health 1500
+  PainChance 25
+  SeeSound "baron/sight"
+  PainSound "baron/pain"
+  DeathSound "baron/death"
+  ActiveSound "baron/active"
+  Obituary "$OB_BELPHEGOR" // "%o was slain by a Belphegor."
+  HitObituary "$OB_BELPHEGOR_MELEE" // "%o was slain by a Belphegor."
+  DropItem "SoulSphere2" 92
+  States
+  {
+  Spawn:
+    POSS A 0 
+    POSS A 0 Thing_SetSpecial(0,226,613,0,random(45,80))
+    BOS3 AB 10 A_Look
+    goto Spawn+2
+  See:
+    BOS3 AABBCCDD 3 A_Chase
+    Loop
+  Pain:
+    BOS3 H 2
+    BOS3 H 2 A_Pain
+	TNT1 G 0 A_AlertMonsters
+    Goto See
+  Melee:
+  Missile:
+    BOS3 EF 6 A_FaceTarget
+    BOS3 G 6 A_CustomComboAttack("BaronBall",32,(7*random(1,5)),"imp/melee")
+    BOS3 EF 6 A_FaceTarget
+    BOS3 G 6 A_CustomComboAttack("BaronBall",32,(7*random(1,5)),"imp/melee")
+    BOS3 EF 6 A_FaceTarget
+    BOS3 G 6 A_CustomComboAttack("BaronBall",32,(7*random(1,5)),"imp/melee")
+    Goto See
+  Death:
+    BOS3 I 8
+    BOS3 J 8 A_Scream
+    BOS3 K 8
+    BOS3 L 8 A_NoBlocking
+    BOS3 MN 8
+    BOS3 O -1 A_BossDeath
+    Stop
+  Raise:
+    BOS3 ONMLKJI 8
+    Goto See
+  }
+}

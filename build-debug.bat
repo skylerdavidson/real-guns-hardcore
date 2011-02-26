@@ -16,9 +16,11 @@ cd ..
 ..\utility\7z a ..\temp\debug-corelumps.pk3 *.txt -mx0
 ..\utility\7z a ..\temp\debug-corelumps.pk3 decorate\*.txt -mx0
 ..\utility\7z a ..\temp\debug-corelumps.pk3 decorate\*\*.txt -mx0
+..\utility\7z a ..\temp\debug-corelumps.pk3 decorate\*\*\*.txt -mx0
 ..\utility\7z u ..\temp\debug-data.pk3 sprites\*.png -mx0
 ..\utility\7z u ..\temp\debug-data.pk3 sprites\*\*.png -mx0
 ..\utility\7z u ..\temp\debug-data.pk3 sprites\*\*\*.png -mx0
+..\utility\7z u ..\temp\debug-data.pk3 sprites\*\*\*\*.png -mx0
 ..\utility\7z u ..\temp\debug-data.pk3 sounds\*.wav -mx0
 ..\utility\7z u ..\temp\debug-data.pk3 sounds\*.ogg -mx0
 ..\utility\7z u ..\temp\debug-data.pk3 sounds\*.mp3 -mx0
@@ -37,7 +39,7 @@ cd ..
 cd ..\temp\acs
 ..\..\utility\7z a ..\..\temp\debug-acs.pk3 acs\RGH_ACS -mx0
 cd ..\..
-skulltag data/ temp/debug-data.pk3 temp/debug-corelumps.pk3 data/core/*.wad temp/debug-acs.pk3 temp/debug-monsters.pk3
+skulltag temp/debug-data.pk3 temp/debug-corelumps.pk3 temp/debug-acs.pk3 temp/debug-monsters.pk3
 exit
 
 :acserror

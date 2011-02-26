@@ -1,0 +1,232 @@
+actor Cyberdemon_2 : RGAMonster
+{
+  obituary "%o was splattered by a cyberdemon."
+  health 6500
+  radius 40
+  height 110
+  mass 1000
+  speed 16
+  painchance 20
+  seesound "cyber/sight"
+  painsound "cyber/pain"
+  deathsound "cyber/death"
+  activesound "cyber/active"
+  MONSTER
+  +BOSS
+  +FLOORCLIP
+  +NORADIUSDMG
+  +DONTMORPH
+  +MISSILEMORE
+  +QUICKTORETALIATE
+  Species "Cyber"
+  DamageFactor "Telefrag", 0.0
+  damagetype "Cybermissile"
+  DamageFactor "Telebomb", 10.0
+  DropItem "MegaSphere2"
+  DropItem "AmmoSphere2"
+  states
+  {
+  Spawn:
+    CYBR AB 10 A_Look
+    loop
+  See:
+    CYBR A 3 A_Hoof
+    CYBR ABBCC 3 A_Chase
+    CYBR D 3 A_Metal
+    CYBR D 0 A_Chase
+    CYBR D 3 A_SpawnItemEx("CyberStepDamage", 0, 0, 16, 0, 0, 0, 0, 0, 0)
+    loop
+  Missile:
+    CYBR E 0 A_Jump(32,"Missile2")
+    CYBR E 6 A_FaceTarget
+    CYBR F 12 A_CustomMissile("CyberdemonMissile",56,-24)
+    CYBR E 12 A_FaceTarget
+    CYBR F 12 A_CustomMissile("CyberdemonMissile",56,-24)
+    CYBR E 12 A_FaceTarget
+    CYBR F 12 A_CustomMissile("CyberdemonMissile",56,-24)
+    goto See
+  Missile2:
+    CYBR E 6 
+    CYBR E 0 A_PlayWeaponSound("brain/spit")
+    CYBR F 12 A_CustomMissile("BruiserCube",56,-24,-16,CMF_AIMDIRECTION,0)
+    CYBR E 12 
+    CYBR E 0 A_PlayWeaponSound("brain/spit")
+    CYBR F 12 A_CustomMissile("StoneKnightCube",56,-24,0,CMF_AIMDIRECTION,0)
+    CYBR E 12 
+    CYBR E 0 A_PlayWeaponSound("brain/spit")
+    CYBR F 12 A_CustomMissile("BruiserCube",56,-24,16,CMF_AIMDIRECTION,0)
+    goto See
+  Pain:
+    POSS A 0 
+    POSS A 0 A_GiveToTarget("CyberXP",1)
+    CYBR G 10 A_Pain
+	TNT1 G 0 A_AlertMonsters
+    goto See
+  Death:
+    CYBR H 5
+    CYBR HHHHH 1 A_GiveToTarget("CyberXP",1)
+    CYBR I 10 A_Scream
+    CYBR JKL 10
+    CYBR M 10 A_NoBlocking
+    CYBR NO 10
+    CYBR P 30
+    CYBR P -1 A_BossDeath
+  }
+}
+
+actor CyberStepDamage
+{
+  RenderStyle None
+  +RANDOMIZE
+  +NOCLIP
+  PROJECTILE
+  Speed 1
+  Damage 0
+  Scale 0.7
+  DamageType "Step"
+  states
+  {
+  Spawn:
+    TNT1 A 0
+    TNT1 A 10 bright A_Explode(25,96,0)
+    stop
+  }  
+}
+
+actor Annihilator : Cyberdemon_2
+{
+  obituary "%o was imploded by an Annihilator."
+  health 6000
+  radius 40
+  height 110
+  mass 1000
+  speed 16
+  painchance 20
+  seesound "cyber/sight"
+  painsound "cyber/pain"
+  deathsound "cyber/death"
+  activesound "cyber/active"
+  MONSTER
+  +BOSS
+  +FLOORCLIP
+  +NORADIUSDMG
+  +DONTMORPH
+  +QUICKTORETALIATE
+  Species "Cyber"
+  DamageFactor "Telebomb", 10.0
+  DropItem "MegaSphere2"
+  DropItem "AmmoSphere2"
+  states
+  {
+  Spawn:
+    ANNI AB 10 A_Look
+    loop
+  See:
+    ANNI A 3 A_Hoof
+    ANNI ABBCC 3 A_Chase
+    ANNI D 3 A_Metal
+    ANNI D 0 A_Chase
+    ANNI D 3 A_SpawnItemEx("CyberStepDamage", 0, 0, 16, 0, 0, 0, 0, 0, 0)
+    loop
+  Missile:
+    CYBR E 0 A_Jump(32,"Missile2")
+    ANNI E 6 A_FaceTarget
+    ANNI F 0 A_CustomMissile("CyberdemonMissile",56,24)
+    ANNI F 12 BRIGHT A_CustomMissile("CyberdemonMissile",56,-24)
+    ANNI E 12 A_FaceTarget
+    ANNI F 0 A_CustomMissile("CyberdemonMissile",56,24)
+    ANNI F 12 BRIGHT A_CustomMissile("CyberdemonMissile",56,-24)
+    ANNI E 12 A_FaceTarget
+    ANNI F 0 A_CustomMissile("CyberdemonMissile",56,24)
+    ANNI F 12 BRIGHT A_CustomMissile("CyberdemonMissile",56,-24)
+    ANNI E 12 A_FaceTarget
+    goto See
+  Missile2:
+    ANNI E 6 
+    ANNI E 0 A_PlayWeaponSound("brain/spit")
+    ANNI F 0 A_CustomMissile("StoneKnightCube",56,24,-32,CMF_AIMDIRECTION,0)
+    ANNI F 12 A_CustomMissile("BruiserCube",56,-24,-16,CMF_AIMDIRECTION,0)
+    ANNI E 12 
+    ANNI E 0 A_PlayWeaponSound("brain/spit")
+    ANNI F 0 A_CustomMissile("StoneKnightCube",56,24,0,CMF_AIMDIRECTION,0)
+    ANNI F 12 A_CustomMissile("BruiserCube",56,-24,16,CMF_AIMDIRECTION,0)
+    ANNI E 12 
+    ANNI E 0 A_PlayWeaponSound("brain/spit")
+    ANNI F 0 A_CustomMissile("StoneKnightCube",56,24,32,CMF_AIMDIRECTION,0)
+    ANNI F 12 A_CustomMissile("BruiserCube",56,-24,48,CMF_AIMDIRECTION,0)
+    goto See
+  Pain:
+    POSS A 0 
+    POSS A 0 A_GiveToTarget("CyberXP",1)
+    ANNI G 10 A_Pain
+	TNT1 G 0 A_AlertMonsters
+    goto See
+  Death:
+    ANNI H 5
+    ANNI HHHHH 1 A_GiveToTarget("CyberXP",1)
+    ANNI I 10 A_Scream
+    ANNI JKL 10
+    ANNI M 10 A_NoBlocking
+    ANNI NO 10
+    ANNI P 30
+    ANNI P -1 A_BossDeath
+  }
+}
+
+actor CyberdemonMissile replaces Rocket
+{
+  radius 8
+  height 8
+  speed 26
+  damage (20)
+  seesound "weapons/rocklf"
+  PROJECTILE
+  scale 0.6
+  damagetype "Cybermissile"
+  states
+  {
+  Spawn:
+    TNT1 A 0 A_SpawnItemEx("EightballTrail", -18, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 A 0 A_SpawnItemEx("EightballTrail", -15, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 A 0 A_SpawnItemEx("EightballTrail", -12, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 A 0 A_SpawnItemEx("EightballTrail", -9, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 A 0 A_SpawnItemEx("EightballTrail", -6, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 A 0 A_SpawnItemEx("EightballTrail", -3, 0, 0, 0, 0, 0, 0, 128, 0)
+    8BLX A 1 BRIGHT 
+    TNT1 A 0 A_SpawnItemEx("EightballTrail", -18, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 A 0 A_SpawnItemEx("EightballTrail", -15, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 A 0 A_SpawnItemEx("EightballTrail", -12, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 A 0 A_SpawnItemEx("EightballTrail", -9, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 A 0 A_SpawnItemEx("EightballTrail", -6, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 A 0 A_SpawnItemEx("EightballTrail", -3, 0, 0, 0, 0, 0, 0, 128, 0)
+    8BLX A 1 BRIGHT 
+    TNT1 A 0 A_SpawnItemEx("EightballTrail", -18, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 A 0 A_SpawnItemEx("EightballTrail", -15, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 A 0 A_SpawnItemEx("EightballTrail", -12, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 A 0 A_SpawnItemEx("EightballTrail", -9, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 A 0 A_SpawnItemEx("EightballTrail", -6, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 A 0 A_SpawnItemEx("EightballTrail", -3, 0, 0, 0, 0, 0, 0, 128, 0)
+    8BLX A 1 BRIGHT 
+    8BLX A 0 A_CustomMissile("FlightSmokePuff",0,0,180,2,90)
+    loop
+  Death:
+    TNT1 A 0 A_Explode(20,128)
+    TNT1 A 5 A_SpawnItemEx("ExplosionMain", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+	TNT1 G 0 A_AlertMonsters
+    stop
+  }
+}
+actor CyberXP : CustomInventory
+{
+  inventory.maxamount 9999
+  +ALWAYSPICKUP
+  states
+  {
+  Spawn:
+    TNT1 A 5
+    stop
+  Pickup:
+    TNT1 A 0 ACS_ExecuteAlways(627,0,random(15,30),0,0)
+    stop
+  }
+}
