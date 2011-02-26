@@ -1301,3 +1301,5 @@ object BigTree
 {
     frame TREE { light FATSHADOW  }
 }
+
+#include gldefs/monsters/doom/afrit.txt
