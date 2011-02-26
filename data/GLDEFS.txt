@@ -1303,3 +1303,4 @@ object BigTree
 }
 
 #include gldefs/monsters/doom/afrit.txt
+#include gldefs/monsters/doom/agathodemon.txt
