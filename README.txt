@@ -1,4 +1,4 @@
-Real Guns Hardcode
+Real Guns Hardcore
 
 Building release version:
 Just execute the build-release.bat file. The WAD file will be in the output folder once the console window closes.
