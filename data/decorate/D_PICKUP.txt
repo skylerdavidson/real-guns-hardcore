@@ -1,0 +1,606 @@
+actor GunAmmoSpawner : RandomSpawner
+{
+    DropItem "AssaultRifleAmmo"
+    DropItem "AssaultRifleAmmo"
+    DropItem "SMGAmmo" 
+    DropItem "SMGAmmo" 
+    DropItem "ShotgunAmmo"
+    DropItem "ShotgunAmmo"
+    DropItem "SniperAmmo"
+    DropItem "SniperAmmo"
+    DropItem "ExplosiveAmmo"
+    DropItem "RocketAmmo_2"
+    DropItem "HandgunAmmo"
+    DropItem "HandgunAmmo"
+	DropItem "HandgunAmmo"
+	DropItem "HandgunAmmo"
+    DropItem "LMGAmmo"
+}
+
+actor HeavyAmmoSpawner : RandomSpawner
+{
+    DropItem "AssaultRifleAmmo" 
+    DropItem "SMGAmmo" 
+    DropItem "ShotgunAmmo" 
+    DropItem "SniperAmmo" 
+}
+
+actor RareAmmoSpawner : RandomSpawner
+{
+    DropItem "AssaultRifleAmmo" 
+    DropItem "AssaultRifleAmmo" 
+    DropItem "LMGAmmo"
+    DropItem "ExplosiveAmmo"
+    DropItem "RocketAmmo_2"
+    DropItem "HandgunAmmo"
+    DropItem "HandgunAmmo"
+    DropItem "SniperAmmo" 
+    DropItem "SniperAmmo" 
+}
+
+actor VoidSpawner : RandomSpawner
+{ 
+}
+
+actor GunAmmoSpawner1 : VoidSpawner replaces Clip {}
+actor GunAmmoSpawner2 : GunAmmoSpawner replaces ClipBox {}
+actor GunAmmoSpawner3 : VoidSpawner replaces Shell {}
+actor GunAmmoSpawner4 : GunAmmoSpawner replaces ShellBox {}
+actor GunAmmoSpawner5 : VoidSpawner replaces RocketAmmo {}
+actor GunAmmoSpawner6 : GunAmmoSpawner replaces RocketBox {}
+actor GunAmmoSpawner7 : VoidSpawner replaces Cell {}
+actor GunAmmoSpawner8 : GunAmmoSpawner replaces CellPack {}
+actor GunAmmoSpawner9 : VoidSpawner replaces Stimpack {}
+actor GunAmmoSpawner10 : GunAmmoSpawner replaces Medikit {}
+
+actor GunSpawner : RandomSpawner
+{
+    //DropItem "USP45Pickup"
+    //DropItem "44MagnumPickup"
+    DropItem "FAMASPickup"
+    DropItem "FALPickup"
+    DropItem "SPASPickup"
+    DropItem "AA12Pickup"
+    DropItem "UMP45Pickup"
+    DropItem "VectorPickup"
+    DropItem "MiniUziPickup"
+    DropItem "P90Pickup"
+    DropItem "ThumperPickup"
+    DropItem "ACRPickup"
+    DropItem "AT4Pickup"
+    DropItem "InterventionPickup"
+    DropItem "BarrettPickup"
+    DropItem "MG4Pickup"
+    DropItem "G18Pickup"
+    DropItem "PP2000Pickup"
+    DropItem "SCARHPickup"
+    DropItem "M4A1Pickup"
+    DropItem "RangerPickup"
+    DropItem "F2000Pickup"
+    DropItem "MP5Pickup"
+    DropItem "M93RPickup"
+    DropItem "M16Pickup"
+    DropItem "AK47Pickup"
+    DropItem "StrikerPickup"
+    DropItem "AUGHBARPickup"
+    DropItem "WA2000Pickup"
+    DropItem "DeaglePickup"
+    DropItem "M9Pickup"
+    DropItem "M1014Pickup"
+    DropItem "M240Pickup"
+    DropItem "L86Pickup"
+    DropItem "RPGPickup"
+    DropItem "M1887Pickup"
+    DropItem "M14Pickup"
+    DropItem "TacticalInsertionPickup"
+}
+
+actor GunSpawner1 : GunSpawner replaces Chainsaw {}
+actor GunSpawner2 : GunSpawner replaces Pistol{}
+actor GunSpawner3 : GunSpawner replaces Shotgun{}
+actor GunSpawner4 : GunSpawner replaces SuperShotgun{}
+actor GunSpawner5 : GunSpawner replaces Chaingun{}
+actor GunSpawner6 : GunSpawner replaces Minigun{}
+actor GunSpawner7 : GunSpawner replaces RocketLauncher{}
+actor GunSpawner8 : GunSpawner replaces GrenadeLauncher{}
+actor GunSpawner9 : GunSpawner replaces PlasmaRifle{}
+actor GunSpawner10 : GunSpawner replaces Railgun{}
+actor GunSpawner11 : GunSpawner replaces BFG9000{}
+actor GunSpawner12 : GunSpawner replaces BFG10k{}
+
+actor PowerIronFeet_ScavengerPro : PowerIronFeet
+{
+    Powerup.Duration -120
+}
+
+actor RadSuit_ScavengerPro : RadSuit
+{
+	Powerup.Type "PowerIronFeet_ScavengerPro"
+}
+
+actor RadSuit_Pickup : CustomInventory replaces RadSuit
+{
+  Inventory.PickupMessage "$GOTSUIT" 
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.BIGPOWERUP
+  Inventory.MaxAmount 0 
+
+  States
+  {
+  Spawn:
+    SUIT A -1 Bright
+    stop
+  Pickup:
+	SUIT A 0 Bright A_JumpIfInventory("Perk1_Scavenger_PRO", 1, "ScavengerPro")
+	SUIT A 0 Bright A_GiveInventory("RadSuit", 1)
+	stop
+  ScavengerPro:
+	SUIT A 0 Bright A_GiveInventory("RadSuit_ScavengerPro", 1)
+	stop
+  }
+}
+
+actor PowerLightAmp_ScavengerPro : PowerLightAmp
+{
+    Powerup.Duration -240
+}
+
+actor Infrared_ScavengerPro : Infrared
+{
+	Powerup.Type "PowerLightAmp_ScavengerPro"
+}
+
+actor Infrared_Pickup : CustomInventory replaces Infrared
+{
+  Inventory.PickupMessage "$GOTVISOR" 
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.BIGPOWERUP
+  Inventory.MaxAmount 0 
+
+  States
+  {
+  Spawn:
+    PVIS A 6 Bright
+	PVIS B 6
+    Loop
+  Pickup:
+	PVIS A 0 Bright A_JumpIfInventory("Perk1_Scavenger_PRO", 1, "ScavengerPro")
+	PVIS A 0 Bright A_GiveInventory("Infrared", 1)
+	stop
+  ScavengerPro:
+	PVIS A 0 Bright A_GiveInventory("Infrared_ScavengerPro", 1)
+	stop
+  }
+}
+
+actor PowerInvisibility_ScavengerPro : PowerInvisibility
+{
+    Powerup.Duration -60
+}
+
+actor BlurSphere_ScavengerPro : BlurSphere
+{
+	Powerup.Type "PowerInvisibility_ScavengerPro"
+}
+
+actor BlurSphere_Pickup : CustomInventory replaces BlurSphere
+{
+  Inventory.PickupMessage "$GOTINVIS" 
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.BIGPOWERUP
+  Inventory.MaxAmount 0 
+  Inventory.PickupAnnouncerEntry "partialinvisibility"
+  States
+  {
+  Spawn:
+    PINS ABCD 6 Bright
+    Loop
+  Pickup:
+	PINS A 0 Bright A_JumpIfInventory("Perk1_Scavenger_PRO", 1, "ScavengerPro")
+	PINS A 0 Bright A_GiveInventory("BlurSphere", 1)
+	stop
+  ScavengerPro:
+	PINS A 0 Bright A_GiveInventory("BlurSphere_ScavengerPro", 1)
+	stop
+  }
+}
+
+actor PowerInvulnerable_ScavengerPro : PowerInvulnerable
+{
+    Powerup.Duration -60
+}
+
+actor InvulSphere : InvulnerabilitySphere 
+{
+    powerup.color GoldMap // because png smoke puffs are completely opaque with  InverseMap
+}
+
+actor InvulSphere_ScavengerPro : InvulnerabilitySphere
+{
+    powerup.color GoldMap // because png smoke puffs are completely opaque with  InverseMap
+	Powerup.Type "PowerInvulnerable_ScavengerPro"
+}
+
+actor InvulSphere_Pickup : CustomInventory replaces InvulnerabilitySphere
+{
+  Inventory.PickupMessage "$GOTINVUL" 
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.BIGPOWERUP
+  Inventory.PickupAnnouncerEntry "invulnerability"
+  Inventory.MaxAmount 0 
+
+  States
+  {
+  Spawn:
+    PINV ABCD 6 Bright
+    Loop
+  Pickup:
+	PINV A 0 Bright A_JumpIfInventory("Perk1_Scavenger_PRO", 1, "ScavengerPro")
+	PINV A 0 Bright A_GiveInventory("InvulSphere", 1)
+	stop
+  ScavengerPro:
+	PINV A 0 Bright A_GiveInventory("InvulSphere_ScavengerPro", 1)
+	stop
+  }
+}
+
+Actor Armor400_50 : BasicArmorPickup
+{
+  Game Doom
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  //+INVENTORY.FANCYPICKUPSOUND
+  Inventory.Pickupmessage "$GOTMEGA" // "Picked up the MegaArmor!"
+  Inventory.Icon "ARM2A0"
+  Armor.Savepercent 50
+  Armor.Saveamount 400
+  States
+  {
+  Spawn:
+    ARM2 A 6
+    ARM2 B 6 bright
+    loop
+  }
+}
+
+Actor Armor400_33 : BasicArmorPickup
+{
+  Game Doom
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  //+INVENTORY.FANCYPICKUPSOUND
+  Inventory.Pickupmessage "$GOTMEGA" // "Picked up the MegaArmor!"
+  Inventory.Icon "ARM2A0"
+  Armor.Savepercent 33
+  Armor.Saveamount 400
+  States
+  {
+  Spawn:
+    ARM2 A 6
+    ARM2 B 6 bright
+    loop
+  }
+}
+
+/*Actor BlueArmor2_Normal : BasicArmorPickup
+{
+  Game Doom
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  //+INVENTORY.FANCYPICKUPSOUND
+  Inventory.Pickupmessage "$GOTMEGA" // "Picked up the MegaArmor!"
+  Inventory.Icon "ARM2A0"
+  Armor.Savepercent 50
+  Armor.Saveamount 400
+  States
+  {
+  Spawn:
+    ARM2 A 6
+    ARM2 B 6 bright
+    loop
+  }
+}*/
+
+actor BlueArmor2 : CustomInventory replaces BlueArmor
+{
+  Game Doom
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  //+INVENTORY.ALWAYSPICKUP
+  //+INVENTORY.FANCYPICKUPSOUND
+  Inventory.PickupMessage "$GOTMEGA" // "Supercharge!"
+  Inventory.PickupSound "misc/p_pkup"
+  States{
+  Spawn:
+    ARM2 A 6
+    ARM2 B 6 bright
+    Loop
+  Pickup:	
+	ARM2 A 0
+	ARM2 A 0 A_JumpIfInventory("Perk2_Juggernaut_Pro", 1, "JuggernautPro")
+	ARM2 A 0 A_JumpIfInventory("BasicArmor", 200, "FailState")
+	ARM2 A 0 A_GiveInventory("Armor400_50",1)
+	ARM2 A 0 A_TakeInventory("BasicArmor",200)
+	stop
+  JuggernautPro:
+	ARM2 A 0 A_JumpIfInventory("BasicArmor", 400, "FailState")
+	ARM2 A 0 A_GiveInventory("Armor400_50",1)	
+	stop
+  FailState:
+    ARM2 A 0 
+	fail
+  }
+}
+
+/*Actor GreenArmor2_JuggernautPro : BasicArmorPickup
+{
+  Game Doom
+  +COUNTITEM
+  +INVENTORY.ALWAYSPICKUP
+  Inventory.Pickupmessage "$GOTARMOR" // "Picked up the armor."
+  Inventory.Icon "ARM1A0"
+  Armor.Savepercent 33.33333
+  Armor.Saveamount 200
+  States
+  {
+  Spawn:
+    ARM1 A 6
+    ARM1 B 7 bright
+    loop
+  }
+}*/
+
+actor GreeenArmor2 : CustomInventory replaces GreenArmor
+{
+  Game Doom
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  //+INVENTORY.ALWAYSPICKUP
+  //+INVENTORY.FANCYPICKUPSOUND
+  Inventory.PickupMessage "$GOTARMOR" // "Supercharge!"
+  Inventory.PickupSound "misc/p_pkup"
+  States{
+  Spawn:
+    ARM1 A 6
+    ARM1 B 6 bright
+    Loop
+  Pickup:	
+	ARM1 A 0 A_JumpIfInventory("Perk2_Juggernaut_Pro", 1, "JuggernautPro")
+	ARM1 A 0 A_JumpIfInventory("BasicArmor", 100, "FailState")
+	ARM1 A 0 A_GiveInventory("Armor400_33",1)
+	ARM1 A 0 A_TakeInventory("BasicArmor", 300)
+	stop
+  JuggernautPro:
+	ARM1 A 0 A_JumpIfInventory("BasicArmor", 200, "FailState")
+	ARM1 A 0 A_GiveInventory("Armor400_33",1)
+	ARM1 A 0 A_TakeInventory("BasicArmor", 200)
+	stop
+  FailState:
+    ARM2 A 0 
+	fail
+  }
+}
+
+Actor ArmorBonus2_JuggernautPro : BasicArmorBonus
+{
+  Game Doom
+  Inventory.Pickupmessage "$GOTARMBONUS" // "Picked up an armor bonus."
+  Inventory.Icon "ARM1A0"
+  Armor.Savepercent 33.335
+  Armor.Saveamount 2
+  Armor.Maxsaveamount 400
+  +COUNTITEM
+  +INVENTORY.ALWAYSPICKUP
+  States
+  {
+  Spawn:
+    BON2 ABCDCB 6
+    loop
+  }
+}
+
+actor ArmorBonus2 : CustomInventory replaces ArmorBonus
+{
+  Game Doom
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  //+INVENTORY.ALWAYSPICKUP
+  Inventory.PickupMessage "$GOTARMBONUS" // "Picked up an armor bonus."
+  States{
+  Spawn:
+    BON2 ABCDCB 6
+    Loop
+  Pickup:
+	BON2 A 0 A_JumpIfInventory("Perk2_Juggernaut_Pro", 1, "JuggernautPro")
+	BON2 A 0 A_JumpIfInventory("BasicArmor",200, "FailState")
+	BON2 A 0 A_GiveInventory("ArmorBonus",1)
+	stop
+  JuggernautPro:
+    BON2 A 0 A_JumpIfInventory("BasicArmor",400, "FailState")
+	BON2 A 0 A_GiveInventory("ArmorBonus2_JuggernautPro",1)	
+	stop
+  FailState:
+    ARM2 A 0 
+	fail
+  }
+}
+
+actor HealthBonus2_JuggernautPro : HealthBonus
+{
+  Inventory.Amount 2
+  Inventory.MaxAmount 400
+}
+
+actor HealthBonus2 : CustomInventory replaces HealthBonus
+{
+  Game Doom
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  Inventory.PickupMessage "$GOTHTHBONUS" // "Picked up an health bonus."
+  Inventory.Amount 1
+  Inventory.MaxAmount 200
+  States{
+  Spawn:
+    BON1 ABCDCB 6
+    Loop
+  Pickup:
+	BON1 A 0 A_JumpIfInventory("Perk2_Juggernaut_Pro", 1, "JuggernautPro")
+	BON1 A 0 A_GiveInventory("HealthBonus",1)
+	stop
+  JuggernautPro:
+	BON1 A 0 A_GiveInventory("HealthBonus2_JuggernautPro",1)
+	stop
+  }
+}
+
+actor Soulsphere2 : CustomInventory replaces Soulsphere
+{
+  Game Doom
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.FANCYPICKUPSOUND
+  Inventory.PickupMessage "$GOTSUPER" // "Supercharge!"
+  Inventory.PickupSound "misc/p_pkup"
+  Inventory.PickupAnnouncerEntry "soulsphere"
+  Inventory.Amount 100
+  Inventory.MaxAmount 200
+  States{
+  Spawn:
+    SOUL ABCDCB 6 Bright
+    Loop
+  Pickup:
+	SOUL A 0 A_JumpIfInventory("Perk2_Juggernaut_Pro", 1, "JuggernautPro")
+	SOUL A 0 A_GiveInventory("Soulsphere",1)
+	stop
+  JuggernautPro:
+	SOUL A 0 A_GiveInventory("Soulsphere2_JuggernautPro",1)
+	stop
+  }
+}
+
+actor Soulsphere2_JuggernautPro : Soulsphere
+{
+  Inventory.Amount 200
+  Inventory.MaxAmount 400
+}
+
+ACTOR Megasphere2 : CustomInventory replaces Megasphere
+{
+  Game Doom
+  SpawnID 132
+  +COUNTITEM
+  +INVENTORY.ALWAYSPICKUP
+  +NOGRAVITY
+  Inventory.PickupMessage "$GOTMSPHERE" // "MegaSphere!"
+  Inventory.PickupSound "misc/p_pkup"
+  Inventory.PickupAnnouncerEntry "megasphere"
+  States
+  {
+  Spawn:
+    MEGA ABCD 6 BRIGHT
+    Loop
+  Pickup:
+	MEGA A 0 A_JumpIfInventory("Perk2_Juggernaut_Pro", 1, "JuggernautPro")
+    TNT1 A 0 A_GiveInventory("Armor400_50", 1)
+	TNT1 A 0 A_TakeInventory("BasicArmor", 200)
+    TNT1 AA 0 A_GiveInventory("Soulsphere2", 1)
+    Stop
+  JuggernautPro:
+	MEGA A 0 A_GiveInventory("Armor400_50", 1)
+    MEGA AA 0 A_GiveInventory("Soulsphere2_JuggernautPro", 1)
+	stop
+  }
+}
+
+ACTOR AmmoSphere2 : BackpackItem
+{
+  Inventory.PickupMessage "AmmoSphere!"
+  Inventory.PickupSound "misc/p_pkup"
+  +COUNTITEM
+  States
+  {
+  Spawn:
+	AMSP ABCD 6 bright
+    loop
+  }
+}
+
+actor HandgunSpawner : RandomSpawner
+{
+    DropItem "M9Pickup" 255 4
+    DropItem "USP45Pickup" 255 4
+    DropItem "DeaglePickup" 255 1
+	DropItem "44MagnumPickup" 255 1
+	DropItem "PP2000Pickup" 255 2
+	DropItem "44MagnumPickup" 255 1
+	DropItem "G18Pickup" 255 2
+	DropItem "M93RPickup" 255 1
+}
+
+actor ShotgunSpawner : RandomSpawner
+{
+    DropItem "RangerPickup" 255 2
+    DropItem "SPASPickup" 255 4
+    DropItem "AA12Pickup" 255 2
+	DropItem "M1887Pickup" 255 1
+	DropItem "M1014Pickup" 255 2
+	DropItem "StrikerPickup" 255 1
+}
+
+actor SMGSpawner : RandomSpawner
+{    
+    DropItem "UMP45Pickup" 255 4
+    DropItem "VectorPickup" 255 2
+	DropItem "MiniUziPickup" 255 2
+	DropItem "P90Pickup" 255 1
+	DropItem "MP5Pickup" 255 4
+}
+
+actor AssaultRifleSpawner : RandomSpawner
+{
+    DropItem "M4A1Pickup" 255 4
+    DropItem "AK47Pickup" 255 4
+	DropItem "M16Pickup" 255 4
+    DropItem "F2000Pickup" 255 2
+    DropItem "FAMASPickup" 255 1
+    DropItem "SCARHPickup" 255 1
+    DropItem "ACRPickup" 255 1
+	DropItem "FALPickup" 255 1
+}
+
+actor LMGSpawner : RandomSpawner
+{    
+    DropItem "L86Pickup"
+    DropItem "M240Pickup"
+	DropItem "MG4Pickup"
+	DropItem "AUGHBARPickup"
+}
+
+actor SniperRifleSpawner : RandomSpawner
+{    
+    DropItem "InterventionPickup" 255 4
+    DropItem "BarrettPickup" 255 1
+	DropItem "M14Pickup" 255 1
+	DropItem "WA2000Pickup" 255 1
+}
+
+actor BerserkSpawner : RandomSpawner replaces Berserk
+{
+    DropItem "BlueArmor2"
+    DropItem "GreeenArmor2"
+    DropItem "SoulSphere2"
+	DropItem "AmmoSphere2"
+}

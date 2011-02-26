@@ -1,0 +1,526 @@
+actor "WA2000" : RGUWeapon
+{
+  obituary "%k gives %o a WA2000 collecter's item."
+  inventory.pickupmessage "WA2000"  
+  //attacksound "wa2000/fire"
+  weapon.selectionorder 16
+  weapon.ammotype "WA2000Clip"
+  weapon.ammouse 1
+  weapon.ammogive 0
+  weapon.ammotype2 "WA2000Ammo"
+  weapon.ammouse2 0
+  weapon.ammogive2 0
+  states
+  {
+  Ready:
+    W20A A 2 //A_PlayWeaponSound("fal/select")
+    W20A BCDEFGHIJKLMNOO 2 A_WeaponReady(WRF_NOPRIMARY)
+    W20A O 0 A_JumpIfNoAmmo("Reload")
+    W20A O 0 A_JumpIfInventory("Aiming",1,5)
+    W20A O 0 A_JumpIfInventory("Reloading",1,"Reload")
+    W20A O 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    W20A O 0 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20A O 1 A_WeaponReady
+    goto Ready+16
+    INTF G 0 A_JumpIfInventory("Reloading",1,"Reload")    
+    INTF G 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    INTF G 0 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    INTF G 1 A_WeaponReady
+    goto Ready+22
+  Deselect:
+    W20A L 0 A_TakeInventory("Aiming",1)
+    W20A L 0 ACS_ExecuteAlways(602,0,0,0,0)
+    W20A L 0 A_TakeInventory("Reloading",1)
+    W20A L 0 A_ZoomFactor(1.0,ZOOM_INSTANT)
+    W20A L 0 A_Lower
+    W20A O 1 A_Lower
+    goto Deselect+3
+  Select:
+    W20A A 0 A_Raise
+	W20A A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    loop
+  Fire:
+	TNT1 A 0 A_GiveInventory("InCombat",5)
+    W20A O 0 A_JumpIfInventory("Aiming",1,"FireAim")
+    W20A O 1 A_JumpIfNoAmmo("ReloadStart")
+    W20B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
+    W20B A 0 A_PlayWeaponSound("wa2000/fire")
+    W20B AA 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,6,3)
+    W20B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,6,3)
+    W20B A 1 BRIGHT A_FireBullets (10.0, 10.0, -1, 50, "SniperPuff", 1, 0)
+    W20B B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
+    W20B A 0 A_JumpIfNoAmmo("FireEmpty")
+    W20B B 1 BRIGHT A_GunFlash
+    W20B CD 1
+    W20B EF 1 A_WeaponReady
+    W20B A 0 A_JumpIfInventory("WA2000Ammo",1,2)
+    W20B A 0 A_ReFire
+    goto Ready+16
+    W20B A 0 A_JumpIfNoAmmo("ReloadStart")
+    W20B A 0 A_ReFire
+    goto Ready+16
+  FireEmpty:
+    W20B B 1 BRIGHT A_GunFlash
+    W20B C 1 A_GiveInventory("WA2000Bolt",1)
+    W20B DEF 1 
+    W20B A 0 A_JumpIfInventory("WA2000Ammo",1,2)
+    W20B A 0 A_ReFire
+    goto Ready+16
+    W20B A 0 A_JumpIfNoAmmo("ReloadStart")
+    W20B A 0 A_ReFire
+    goto Ready+16
+  Hold:
+    W20A O 3 A_JumpIfInventory("Aiming",1,"HoldAim")
+    W20A O 1 A_ReFire
+    goto Ready+16
+  HoldAim:
+    INTF G 3
+    INTF G 1 A_ReFire
+    goto Ready+22
+  FireAim:
+    INTF G 1 A_JumpIfNoAmmo("ReloadStart")
+    INTF G 0 A_PlayWeaponSound("wa2000/fire")
+    INTF GG 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,0,3)
+    INTF G 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
+    INTF G 0 A_JumpIfInventory("Perk3_SteadyAim_Pro",1,2)
+	INTA N 0 A_JumpIfInventory("Moving",1,"FireAimMoving")
+    INTF G 0 A_JumpIfInventory("Perk2_StoppingPower_Pro",1,3)	
+	INTF G 2 BRIGHT A_FireBullets (0.1, 0.1, 1, 50, "SniperPuff", 1, 0)
+	INTF G 0 A_Jump(255, "FinishFireAim")
+	INTF G 0 BRIGHT A_FireBullets (0.1, 0.1, 1, 0, "SniperPuff", 0, 0)
+	INTF A 0 BRIGHT A_RailAttack(50,0,1,"none","none",1,0,"SniperPuff")
+  FinishFireAim:
+    INTF G 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
+    INTF G 0 A_JumpIfNoAmmo("FireAimEmpty")
+    INTF G 1 BRIGHT A_GunFlash
+    INTF G 2
+    INTF GG 1 A_WeaponReady
+    INTF G 0 A_JumpIfInventory("WA2000Ammo",1,2)
+    INTF G 0 A_ReFire
+    goto Ready+22
+    INTF A 0 A_JumpIfNoAmmo("ReloadStart")
+    INTF A 0 A_ReFire
+    goto Ready+22
+  FireAimMoving:
+    INTF G 1 BRIGHT A_FireBullets (6.0, 6.0, -1, 50, "SniperPuff", 1, 0)
+    goto FinishFireAim
+  FireAimEmpty:
+    INTF G 1 BRIGHT A_GunFlash
+    INTF G 1 A_GiveInventory("WA2000Bolt",1)
+    INTF GGG 1 
+    INTF G 0 A_JumpIfInventory("WA2000Ammo",1,2)
+    INTF G 0 A_ReFire
+    goto Ready+22
+    INTF A 0 A_JumpIfNoAmmo("ReloadStart")
+    INTF A 0 A_ReFire
+    goto Ready+22
+  Reload: //AltFire:
+    W20D A 0 A_JumpIfInventory("WA2000Ammo",1,"ReloadStart")
+    W20D A 0 A_TakeInventory("Reloading",1)
+    goto Ready+19
+  ReloadStart:
+    W20D A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
+    W20D A 3 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
+    W20D BCDEFG 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20D H 3 A_PlaySoundEx("m4a1/clipout","SoundSlot5")
+    W20D IJKLMN 3 A_WeaponReady(WRF_NOFIRE)
+    W20D OPQRST 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20D UVWX 3 A_WeaponReady(WRF_NOFIRE)
+    W20D Y 3 A_TakeInventory("Reloading",1)
+    W20D Z 3 A_PlaySoundEx("m4a1/clipin","SoundSlot5")
+    goto ReloadAmmo
+  ReloadAmmo:
+    W20D A 0 A_GiveInventory("WA2000Clip",1)
+    W20D A 0 A_TakeInventory("WA2000Ammo",1)
+    W20D A 0 A_JumpIfInventory("WA2000Clip",6,"ReloadEnd")
+    W20D A 0 A_JumpIfInventory("WA2000Ammo",1,"ReloadAmmo")
+    goto ReloadEnd
+  ReloadEnd:
+    W20E ABC 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20E D 3 A_JumpIfInventory("WA2000Bolt",1,"ReloadEndBolt")
+    W20E EFGH 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20E IJKL 3 A_WeaponReady(WRF_NOFIRE)
+    W20E D 0 A_ReFire
+    goto Ready+16
+  ReloadEndBolt:
+    W20F ABCDE 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20F F 3 A_PlaySoundEx("m4a1/bolt","SoundSlot5")
+    W20F G 3 A_TakeInventory("WA2000Bolt",1)
+    W20F HIJKLMN 3 A_WeaponReady(WRF_NOFIRE)
+    W20F OP 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20F D 0 A_ReFire
+    goto Ready+16
+  AltFire:
+    W20C A 0 A_JumpIfInventory("Aiming",1,"AltFire2")
+    W20C ABCDEF 1
+    INTF G 1 A_ZoomFactor(3.0,ZOOM_INSTANT)
+    W20C F 0 A_GiveInventory("Aiming",1)
+    W20C F 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto Ready+22
+  AltFire2:
+    W20C F 1 A_ZoomFactor(1.0,ZOOM_INSTANT)
+    W20C EDCBA 1
+    W20C A 0 A_TakeInventory("Aiming",1)
+    W20C A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto Ready+16
+  ReloadStartAim:
+    W20C F 1 A_ZoomFactor(1.0,ZOOM_INSTANT)
+    W20C EDCBA 1
+    W20C A 0 A_TakeInventory("Aiming",1)
+    W20C A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto ReloadStart+1
+  Flash:
+    TNT1 A 2 bright A_Light1
+    TNT1 A 0 bright A_Light0
+    stop
+  Spawn:
+    WEP2 C 15
+    WEP2 C 0 A_SpawnItem("WA2000Pickup")
+    stop
+  ReloadStart_SOH:
+    W20D A 2 
+    W20D BCDEFG 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20D H 2 A_PlaySoundEx("m4a1/clipout","SoundSlot5")
+    W20D IJKLMN 2 A_WeaponReady(WRF_NOFIRE)
+    W20D OPQRST 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20D UVWX 2 A_WeaponReady(WRF_NOFIRE)
+    W20D Y 2 A_TakeInventory("Reloading",1)
+    W20D Z 2 A_PlaySoundEx("m4a1/clipin","SoundSlot5")
+    goto ReloadAmmo_SOH
+  ReloadAmmo_SOH:
+    W20D A 0 A_GiveInventory("WA2000Clip",1)
+    W20D A 0 A_TakeInventory("WA2000Ammo",1)
+    W20D A 0 A_JumpIfInventory("WA2000Clip",6,"ReloadEnd_SOH")
+    W20D A 0 A_JumpIfInventory("WA2000Ammo",1,"ReloadAmmo_SOH")
+    goto ReloadEnd_SOH
+  ReloadEnd_SOH:
+    W20E ABC 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20E D 2 A_JumpIfInventory("WA2000Bolt",1,"ReloadEndBolt_SOH")
+    W20E EFGH 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20E IJKL 2 A_WeaponReady(WRF_NOFIRE)
+    W20E D 0 A_ReFire
+    goto Ready+16
+  ReloadEndBolt_SOH:
+    W20F ABCDE 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20F F 2 A_PlaySoundEx("m4a1/bolt","SoundSlot5")
+    W20F G 2 A_TakeInventory("WA2000Bolt",1)
+    W20F HIJKLMN 2 A_WeaponReady(WRF_NOFIRE)
+    W20F OP 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20F D 0 A_ReFire
+    goto Ready+16
+  Fire_SteadyAim:
+    W20B A 0 A_PlayWeaponSound("wa2000/fire")
+    W20B AA 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,6,3)
+    W20B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,6,3)
+    W20B A 1 BRIGHT A_FireBullets (8.0, 8.0, -1, 50, "SniperPuff", 1, 0)
+    W20B B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
+    W20B A 0 A_JumpIfNoAmmo("FireEmpty")
+    W20B B 1 BRIGHT A_GunFlash
+    W20B CD 1
+    W20B EF 1 A_WeaponReady
+    W20B A 0 A_JumpIfInventory("WA2000Ammo",1,2)
+    W20B A 0 A_ReFire
+    goto Ready+16
+    W20B A 0 A_JumpIfNoAmmo("ReloadStart")
+    W20B A 0 A_ReFire
+    goto Ready+16
+  FragGrenade:
+    U45F A 0 A_ZoomFactor(1.0)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    U45A L 0 A_TakeInventory("Reloading",1)
+    U45F A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    U45A L 0 A_JumpIfInventory("Perk1_SOH_Pro",1,"FragGrenade_SOH")
+    GRNA A 2 A_PlaySound("grenade/pinpull")
+    GRNA BCDEFGH 2
+    TNT1 A 15 
+    TNT1 A 0 A_PlaySound("grenade/throw")
+    GRNA A 0 A_PlaySoundEx("us/grenades","Voice")
+    GRNA IJK 2
+    GRNA L 0 A_TakeInventory("FragGrenadeAmmo",1)
+    GRNA L 0 A_TakeInventory("ThrowingGrenade",1)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    GRNA L 2 A_FireCustomMissile("FragGrenade",0,0,0,16)
+    GRNA MN 2 
+    goto Ready+1
+  FragGrenade_SOH:
+    GRNA A 1 A_PlaySound("grenade/pinpull")
+    GRNA BCDEFGH 1
+    TNT1 A 10
+    TNT1 A 0 A_PlaySound("grenade/throw")
+    GRNA A 0 A_PlaySoundEx("us/grenades","Voice")
+    GRNA IJK 1
+    GRNA L 0 A_TakeInventory("FragGrenadeAmmo",1)
+    GRNA L 0 A_TakeInventory("ThrowingGrenade",1)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    GRNA L 1 A_FireCustomMissile("FragGrenade",0,0,0,16)
+    GRNA MN 1 
+    goto Ready+1
+  KnifeAttack:
+    U45F A 0 A_ZoomFactor(1.0)
+    U45A L 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    U45A L 0 A_TakeInventory("Aiming",1)
+    U45A L 0 A_TakeInventory("Reloading",1)
+    U45F A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    U45A L 0 A_JumpIfInventory("Perk1_SOH_Pro",1,"KnifeAttack_SOH")
+    U45C A 0 A_JumpIfInventory("Perk3_Commando",1,"KnifeAttack_Commando")
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",96)
+    KNFA FGHIJKL 1 
+    TNT1 A 20
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_Commando:
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",160)
+    KNFA FGHIJKL 1 
+    TNT1 A 20
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_SOH:
+    U45C A 0 A_JumpIfInventory("Perk3_Commando",1,"KnifeAttack_SOH_Commando")
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",96)
+    KNFA FGHIJKL 1 
+    TNT1 A 10
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_SOH_Commando:
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",160)
+    KNFA FGHIJKL 1 
+    TNT1 A 10
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  }
+}
+
+actor WA2000Clip : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 0
+    inventory.maxamount 6
+    ammo.backpackamount 0
+    ammo.backpackmaxamount 6
+    +IGNORESKILL
+}
+
+actor WA2000Bolt : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+actor "WA2000 Thermal" : "WA2000"
+{
+  inventory.pickupmessage "Barrett 50cal"  
+  //attacksound "barrett/fire"
+  weapon.selectionorder 28
+  weapon.ammotype "WA2000Clip"
+  weapon.ammouse 1
+  weapon.ammogive 0
+  weapon.ammotype2 "WA2000Ammo"
+  weapon.ammouse2 0
+  weapon.ammogive2 0
+  states
+  {
+  Ready:
+    W20A A 2 //A_PlayWeaponSound("fal/select")
+    W20A BCDEFGHIJKLMNOO 2 A_WeaponReady(WRF_NOPRIMARY)
+    W20A P 0 A_JumpIfNoAmmo("Reload")
+    W20A P 0 A_JumpIfInventory("Aiming",1,5)
+    W20A P 0 A_JumpIfInventory("Reloading",1,"Reload")
+    W20A P 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    W20A P 0 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20A O 1 A_WeaponReady
+    goto Ready+16
+    INTF G 0 A_JumpIfInventory("Reloading",1,"Reload")    
+    INTF G 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    INTF G 0 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    INTF G 0 A_GiveInventory("SniperInfrared",1)
+    INTF G 1 A_WeaponReady
+    goto Ready+22
+  Deselect:
+    INTF G 0 A_TakeInventory("PowerLightAmp",500)
+    W20A L 0 A_TakeInventory("Aiming",1)
+    W20A L 0 ACS_ExecuteAlways(602,0,0,0,0)
+    W20A L 0 A_TakeInventory("Reloading",1)
+    W20A L 0 A_ZoomFactor(1.0,ZOOM_INSTANT)
+    W20A L 0 A_Lower
+    W20A O 1 A_Lower
+    goto Deselect+3
+  AltFire:
+    W20C A 0 A_JumpIfInventory("Aiming",1,"AltFire2")
+    W20C ABCDEF 1
+    INTF G 1 A_ZoomFactor(3.0,ZOOM_INSTANT)
+    W20C F 0 A_GiveInventory("Aiming",1)
+    W20C F 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto Ready+22
+  AltFire2:
+    INTF G 0 A_TakeInventory("PowerLightAmp",500)
+    W20C F 1 A_ZoomFactor(1.0,ZOOM_INSTANT)
+    W20C EDCBA 1
+    W20C A 0 A_TakeInventory("Aiming",1)
+    W20C A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto Ready+16
+  ReloadStartAim:
+    INTF G 0 A_TakeInventory("PowerLightAmp",500)
+    W20C F 1 A_ZoomFactor(1.0,ZOOM_INSTANT)
+    W20C EDCBA 1
+    W20C A 0 A_TakeInventory("Aiming",1)
+    W20C A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto ReloadStart+1
+  }
+}
+actor WA2000Thermal : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+actor "WA2000 Ex Mags" : "WA2000"
+{
+  obituary "%k gives %o a WA2000 collecter's item."
+  inventory.pickupmessage "WA2000"  
+  //attacksound "wa2000/fire"
+  weapon.selectionorder 16
+  weapon.ammotype "WA2000Clip2"
+  weapon.ammouse 1
+  weapon.ammogive 0
+  weapon.ammotype2 "WA2000Ammo"
+  weapon.ammouse2 0
+  weapon.ammogive2 0
+  states
+  {
+  Reload: //AltFire:
+    W20D A 0 A_JumpIfInventory("WA2000Ammo",1,"ReloadStart")
+    W20D A 0 A_TakeInventory("Reloading",1)
+    goto Ready+19
+  ReloadStart:
+    W20D A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
+    W20D A 3 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
+    W20D BCDEFG 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20D H 3 A_PlaySoundEx("m4a1/clipout","SoundSlot5")
+    W20D IJKLMN 3 A_WeaponReady(WRF_NOFIRE)
+    W20D OPQRST 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20D UVWX 3 A_WeaponReady(WRF_NOFIRE)
+    W20D Y 3 A_TakeInventory("Reloading",1)
+    W20D Z 3 A_PlaySoundEx("m4a1/clipin","SoundSlot5")
+    goto ReloadAmmo
+  ReloadAmmo:
+    W20D A 0 A_GiveInventory("WA2000Clip2",1)
+    W20D A 0 A_TakeInventory("WA2000Ammo",1)
+    W20D A 0 A_JumpIfInventory("WA2000Clip2",12,"ReloadEnd")
+    W20D A 0 A_JumpIfInventory("WA2000Ammo",1,"ReloadAmmo")
+    goto ReloadEnd
+  ReloadEnd:
+    W20E ABC 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20E D 3 A_JumpIfInventory("WA2000Bolt",1,"ReloadEndBolt")
+    W20E EFGH 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20E IJKL 3 A_WeaponReady(WRF_NOFIRE)
+    W20E D 0 A_ReFire
+    goto Ready+16
+  ReloadEndBolt:
+    W20F ABCDE 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20F F 3 A_PlaySoundEx("m4a1/bolt","SoundSlot5")
+    W20F G 3 A_TakeInventory("WA2000Bolt",1)
+    W20F HIJKLMN 3 A_WeaponReady(WRF_NOFIRE)
+    W20F OP 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20F D 0 A_ReFire
+    goto Ready+16
+  ReloadStartAim:
+    W20C F 1 A_ZoomFactor(1.0,ZOOM_INSTANT)
+    W20C EDCBA 1
+    W20C A 0 A_TakeInventory("Aiming",1)
+    W20C A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto ReloadStart+1
+  ReloadStart_SOH:
+    W20D A 2 
+    W20D BCDEFG 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20D H 2 A_PlaySoundEx("m4a1/clipout","SoundSlot5")
+    W20D IJKLMN 2 A_WeaponReady(WRF_NOFIRE)
+    W20D OPQRST 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20D UVWX 2 A_WeaponReady(WRF_NOFIRE)
+    W20D Y 2 A_TakeInventory("Reloading",1)
+    W20D Z 2 A_PlaySoundEx("m4a1/clipin","SoundSlot5")
+    goto ReloadAmmo_SOH
+  ReloadAmmo_SOH:
+    W20D A 0 A_GiveInventory("WA2000Clip2",1)
+    W20D A 0 A_TakeInventory("WA2000Ammo",1)
+    W20D A 0 A_JumpIfInventory("WA2000Clip2",12,"ReloadEnd_SOH")
+    W20D A 0 A_JumpIfInventory("WA2000Ammo",1,"ReloadAmmo_SOH")
+    goto ReloadEnd_SOH
+  ReloadEnd_SOH:
+    W20E ABC 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20E D 2 A_JumpIfInventory("WA2000Bolt",1,"ReloadEndBolt_SOH")
+    W20E EFGH 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20E IJKL 2 A_WeaponReady(WRF_NOFIRE)
+    W20E D 0 A_ReFire
+    goto Ready+16
+  ReloadEndBolt_SOH:
+    W20F ABCDE 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20F F 2 A_PlaySoundEx("m4a1/bolt","SoundSlot5")
+    W20F G 2 A_TakeInventory("WA2000Bolt",1)
+    W20F HIJKLMN 2 A_WeaponReady(WRF_NOFIRE)
+    W20F OP 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    W20F D 0 A_ReFire
+    goto Ready+16
+  }
+}
+
+actor WA2000Clip2 : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 0
+    inventory.maxamount 12
+    ammo.backpackamount 0
+    ammo.backpackmaxamount 12
+    +IGNORESKILL
+}
+
+actor WA2000ExMags : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+actor WA2000Pickup : CustomInventory
+{
+  inventory.pickupmessage "WA2000"  
+  inventory.pickupsound "misc/w_pkup"
+  +INVENTORY.AUTOACTIVATE
+  inventory.respawntics 35
+  scale 0.15
+  States
+  {
+  Spawn:
+    WEP2 C -1
+    stop
+  Pickup:
+    JDGP A 0
+    JDGP A 0 A_JumpIfInventory("WA2000",1,"FailPickup") // If the player already has this weapon, they get more ammo for it
+    JDGP A 0 A_JumpIfInventory("WA2000 Ex Mags",1,"FailPickup")
+    JDGP A 0 A_JumpIfInventory("WA2000 Thermal",1,"FailPickup")
+    JDGP A 0 A_JumpIfInventory("MaxWeaponsFilled",0,"FailPickup2")
+    BKPK A 0 ACS_ExecuteWithResult(618,29,0,0)
+    stop
+  AmmoPickup:
+    JDGP A 0
+    JDGP A 0 A_JumpIfInventory("WA2000Ammo",0,"FailPickup")
+    JDGP A 0 A_GiveInventory("WA2000Ammo",6)
+    stop
+  FailPickup:
+    WEP2 C 1
+    fail
+  FailPickup2:
+    WEP2 C 1 
+    BKPK A 0 ACS_ExecuteAlways(620,0,3,0,0)
+    fail
+  }
+}

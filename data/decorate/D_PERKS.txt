@@ -1,0 +1,466 @@
+
+
+//PERKS -- Blue perks
+//Marathon: Infinite running
+actor Perk1_Marathon : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Sleight of Hand: Increased reload speed
+actor Perk1_SOH : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+actor Perk1_SOH_Pro : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Sleight of Hand: Increased reload speed
+actor Perk1_Scavenger : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+actor Perk1_Scavenger_Pro : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Extreme Conditioning: 2+ extra regeneration
+actor Perk1_ExtremeConditioning : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Extreme Conditioning PRO: 10% extra speed
+actor Perk1_ExtremeConditioning_PRO : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//One Man Army: 2 extra weapon slots
+actor Perk1_OneManArmy : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//One Man Army PRO: 2 extra mags for everything
+actor Perk1_OneManArmy_PRO : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//PERKS -- Red perks
+//Light Weight: Speed increased by 10% - replaced with Extreme Conditioning PRO
+actor Perk2_LightWeight : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Juggernaut: Health increased by 15%
+actor Perk2_Juggernaut : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Juggernaut: Health increased by 25%
+actor Perk2_Juggernaut_PRO : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Stopping Power: Bullet damage increased by 15%
+actor Perk2_StoppingPower : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Stopping Power: Bullet damage increased by 25%
+actor Perk2_StoppingPower_PRO : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Danger Close: Explosive damage increased by 15%
+actor Perk2_DangerClose : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Danger Close: Explosive damage increased by 25%
+actor Perk2_DangerClose_PRO : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Danger Close: Explosive damage increased by 15%
+actor Perk2_ColdBlooded : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Danger Close: Explosive damage increased by 25%
+actor Perk2_ColdBlooded_PRO : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//PERKS -- Green perks
+//Steady Aim: Increased accuracy for hip fire
+actor Perk3_SteadyAim : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Steady Aim: Increased accuracy for scoped aim while moving
+actor Perk3_SteadyAim_PRO : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Commando: Increased melee range and damage
+actor Perk3_Commando : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+actor Perk3_Commando_Pro : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Ninja: Not used
+actor Perk3_Ninja : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Last Stand: The part where you get to fight for a little longer with a handgun, you will drop a grenade when killed
+actor Perk3_LastStand : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+//Last Stand: Given a Revival Kit to help allied players in Last Stand, it's a 1 in 8 chance they will not survive. Your survival rate is increased to 1 in 5
+actor Perk3_LastStand_PRO : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+actor Perk1_SOHPickup : CustomInventory
+{
+  inventory.pickupmessage "\cvSleight of Hand! \cfFaster reloading"
+  inventory.pickupsound "misc/ammo_pkup"
+  Scale 0.5
+  +INVENTORY.AUTOACTIVATE
+  inventory.respawntics 2100
+  states
+  {
+  Spawn:
+    PER1 A -1 BRIGHT
+    stop
+  Pickup:
+    TNT1 A 0 A_GiveInventory("Perk1_SOH")
+    stop
+  }
+}
+
+actor Perk1_ExtremeConditioningPickup : CustomInventory
+{
+  inventory.pickupmessage "\cvExtreme Conditioning! \cfExtra regeneration"
+  inventory.pickupsound "misc/ammo_pkup"
+  Scale 0.5
+  +INVENTORY.AUTOACTIVATE
+  inventory.respawntics 2100
+  states
+  {
+  Spawn:
+    PER1 B -1 BRIGHT
+    stop
+  Pickup:
+    TNT1 A 0 A_GiveInventory("Perk1_ExtremeConditioning")
+    stop
+  }
+}
+
+actor Perk1_OneManArmyPickup : CustomInventory
+{
+  inventory.pickupmessage "\cvOne Man Army! \cf2 extra weapon slots"
+  inventory.pickupsound "misc/ammo_pkup"
+  Scale 0.5
+  +INVENTORY.AUTOACTIVATE
+  inventory.respawntics 2100
+  states
+  {
+  Spawn:
+    PER1 C -1 BRIGHT
+    stop
+  Pickup:
+    TNT1 A 0 A_GiveInventory("Perk1_OneManArmy")
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(501,0,0,0,0)
+    stop
+  }
+}
+
+actor Perk2_StoppingPowerPickup : CustomInventory
+{
+  inventory.pickupmessage "\cgStopping Power! \cfIncreased bullet damage"
+  inventory.pickupsound "misc/ammo_pkup"
+  Scale 0.5
+  +INVENTORY.AUTOACTIVATE
+  inventory.respawntics 2100
+  states
+  {
+  Spawn:
+    PER2 A -1 BRIGHT
+    stop
+  Pickup:
+    TNT1 A 0 A_GiveInventory("Perk2_StoppingPower")
+    stop
+  Use:
+    TNT1 A 0 A_GiveInventory("Perk2_StoppingPowerEffect")
+    stop
+  }
+}
+actor Perk2_DangerClosePickup : CustomInventory
+{
+  inventory.pickupmessage "\cgDanger Close! \cfIncreased explosive damage"
+  inventory.pickupsound "misc/ammo_pkup"
+  Scale 0.5
+  +INVENTORY.AUTOACTIVATE
+  inventory.respawntics 2100
+  states
+  {
+  Spawn:
+    PER2 B -1 BRIGHT
+    stop
+  Pickup:
+    TNT1 A 0 A_GiveInventory("Perk2_DangerClose")
+    stop
+  Use:
+    TNT1 A 0 A_GiveInventory("Perk2_DangerCloseEffect")
+    stop
+  }
+}
+actor Perk2_JuggernautPickup : CustomInventory
+{
+  inventory.pickupmessage "\cgJuggernaut! \cfIncreased damage resistance"
+  inventory.pickupsound "misc/ammo_pkup"
+  Scale 0.5
+  +INVENTORY.AUTOACTIVATE
+  inventory.respawntics 2100
+  states
+  {
+  Spawn:
+    PER2 C -1 BRIGHT
+    stop
+  Pickup:
+    TNT1 A 0 A_GiveInventory("Perk2_Juggernaut")
+    stop
+  Use:
+    TNT1 A 0 A_GiveInventory("Perk2_JuggernautEffect")
+    stop
+  }
+}
+actor Perk3_SteadyAimPickup : CustomInventory
+{
+  inventory.pickupmessage "\cdSteady Aim! \cfIncreased Accuracy"
+  inventory.pickupsound "misc/ammo_pkup"
+  Scale 0.5
+  +INVENTORY.AUTOACTIVATE
+  inventory.respawntics 2100
+  states
+  {
+  Spawn:
+    PER3 A -1 BRIGHT
+    stop
+  Pickup:
+    TNT1 A 0 A_GiveInventory("Perk3_SteadyAim")
+    stop
+  }
+}
+actor Perk3_CommandoPickup : CustomInventory
+{
+  inventory.pickupmessage "\cdCommando! \cfIncreased Knife range and damage"
+  inventory.pickupsound "misc/ammo_pkup"
+  Scale 0.5
+  +INVENTORY.AUTOACTIVATE
+  inventory.respawntics 2100
+  states
+  {
+  Spawn:
+    PER3 B -1 BRIGHT
+    stop
+  Pickup:
+    TNT1 A 0 A_GiveInventory("Perk3_Commando")
+    stop
+  Use:
+    TNT1 A 0 A_GiveInventory("Perk3_CommandoEffect")
+    stop
+  }
+}
+actor Perk3_LastStandPickup : CustomInventory
+{
+  inventory.pickupmessage "\cdLast Stand! \cfFight some more!"
+  inventory.pickupsound "misc/ammo_pkup"
+  Scale 0.5
+  +INVENTORY.AUTOACTIVATE
+  inventory.respawntics 2100
+  states
+  {
+  Spawn:
+    PER3 C -1 BRIGHT
+    stop
+  Pickup:
+    TNT1 A 0 A_GiveInventory("Perk3_LastStand")
+    stop
+  }
+}
+////////////////////////
+actor PowerPerk2_StoppingPowerEffectPower : PowerDamage
+{
+  damagefactor "Bullet", 1.25
+  damagefactor "Shotgun", 1.25
+  damagefactor "Sniper", 1.25
+  damagefactor "Rifle", 1.25
+  damagefactor "LMG", 1.25
+  damagefactor "BigPistol", 1.25
+}
+
+actor Perk2_StoppingPowerEffect : PowerupGiver
+{
+  inventory.maxamount 0
+  powerup.type "Perk2_StoppingPowerEffectPower"
+  powerup.duration 9999999
+  +AUTOACTIVATE
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  }
+}
+
+actor PowerPerk2_DangerCloseEffectPower : PowerDamage
+{
+  damagefactor "Explosion", 2.0
+}
+
+actor Perk2_DangerCloseEffect : PowerupGiver
+{
+  inventory.maxamount 0
+  powerup.type "Perk2_DangerCloseEffectPower"
+  powerup.duration 9999999  
+  +AUTOACTIVATE
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  }
+}
+
+actor PowerPerk2_JuggernautEffectPower : PowerProtection
+{
+  damagefactor "Bullet", 0.65
+  damagefactor "Shotgun", 0.65
+  damagefactor "Sniper", 0.65
+  damagefactor "Rifle", 0.65
+  damagefactor "LMG", 0.65
+  damagefactor "BigPistol", 0.65
+  damagefactor "Fire", 0.65
+  damagefactor "Normal", 0.65
+  damagefactor "Slime", 0.65
+}
+
+actor Perk2_JuggernautEffect : PowerupGiver
+{
+  inventory.maxamount 0
+  powerup.type "Perk2_JuggernautEffectPower"
+  powerup.duration 9999999
+  +AUTOACTIVATE
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  }
+}
+
+actor PowerPerk2_ColdBloodedProEffectPower : PowerInvisibility
+{
+	Powerup.Duration 3
+}
+
+actor Perk2_ColdBloodedProEffect : PowerupGiver
+{
+  inventory.maxamount 0
+  powerup.type "Perk2_ColdBloodedProEffectPower"
+  Powerup.Duration 3
+  +AUTOACTIVATE
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  }
+}
+
+actor IsAlreadyInvisible : Inventory{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+actor InvisibilityRunning : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+actor PowerPerk3_CommandoEffectPower : PowerDamage
+{
+  damagefactor "Knife", 2.0
+}
+
+actor Perk3_CommandoEffect : PowerupGiver
+{
+  inventory.maxamount 0
+  powerup.type "Perk3_CommandoEffectPower"
+  powerup.duration 9999999
+  +AUTOACTIVATE
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  }
+}

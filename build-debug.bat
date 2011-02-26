@@ -13,7 +13,9 @@ if exist "acs.err" goto acserror
 cd data\monsters
 ..\..\utility\7z u ..\..\temp\debug-monsters.pk3 *.wad -mx0
 cd ..
-..\utility\7z a ..\temp\debug-acs.pk3 LOADACS.txt -mx0
+..\utility\7z a ..\temp\debug-corelumps.pk3 *.txt -mx0
+..\utility\7z a ..\temp\debug-corelumps.pk3 decorate\*.txt -mx0
+..\utility\7z a ..\temp\debug-corelumps.pk3 decorate\*\*.txt -mx0
 ..\utility\7z u ..\temp\debug-data.pk3 sprites\*.png -mx0
 ..\utility\7z u ..\temp\debug-data.pk3 sprites\*\*.png -mx0
 ..\utility\7z u ..\temp\debug-data.pk3 sprites\*\*\*.png -mx0
@@ -35,7 +37,7 @@ cd ..
 cd ..\temp\acs
 ..\..\utility\7z a ..\..\temp\debug-acs.pk3 acs\RGH_ACS -mx0
 cd ..\..
-skulltag data/ temp/debug-data.pk3 data/core/*.wad temp/debug-acs.pk3 temp/debug-monsters.pk3
+skulltag data/ temp/debug-data.pk3 temp/debug-corelumps.pk3 data/core/*.wad temp/debug-acs.pk3 temp/debug-monsters.pk3
 exit
 
 :acserror

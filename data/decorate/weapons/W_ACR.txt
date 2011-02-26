@@ -1,0 +1,479 @@
+actor "ACR" : RGUWeapon
+{
+  obituary "%k gunned %o down with the ACR."
+  inventory.pickupmessage "ACR"  
+  //attacksound "acr/fire"
+  weapon.selectionorder 4
+  weapon.ammotype "ACRClip"
+  weapon.ammouse 1
+  weapon.ammogive 0
+  weapon.ammotype2 "ACRAmmo"
+  weapon.ammouse2 0
+  weapon.ammogive2 0
+  -NOAUTOFIRE
+  states
+  {
+  Ready:
+    ACRA A 2 //A_PlayWeaponSound("m9/select")
+    ACRA BCDEFGHIJKLM 2 A_WeaponReady(WRF_NOPRIMARY)
+    ACRA M 0 A_JumpIfNoAmmo("Reload")
+    ACRA M 0 A_JumpIfInventory("Aiming",1,5)
+    ACRA M 0 A_JumpIfInventory("Reloading",1,"Reload")
+    ACRA M 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    ACRA M 0 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRA M 1 A_WeaponReady
+    goto Ready+13
+    ACRF F 0 A_JumpIfInventory("Reloading",1,"Reload")    
+    ACRF F 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    ACRF F 0 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRF F 1 A_WeaponReady(WRF_NOBOB)
+    goto Ready+19
+  Deselect:
+    ACRA K 0 A_TakeInventory("Aiming",1)
+    ACRA K 0 ACS_ExecuteAlways(602,0,0,0,0)
+    ACRA K 0 A_TakeInventory("Reloading",1)
+    INTA L 0 A_ZoomFactor(1.0)
+    ACRA K 0 A_Lower
+    ACRA K 1 A_Lower
+    goto Deselect+2
+  Select:
+    ACRA A 0 A_Raise
+	ACRA A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    loop
+  Fire:
+	TNT1 A 0 A_GiveInventory("InCombat",5)
+    ACRB A 0 A_JumpIfInventory("Aiming",1,"FireAim")
+    ACRB A 0 A_JumpIfNoAmmo("ReloadStart")
+    ACRB A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
+    ACRB A 0 A_PlayWeaponSound("acr/fire")
+    ACRB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    ACRB A 1 BRIGHT A_FireBullets (7.0, 7.0, -1, 19, "RiflePuff", 1, 6000)
+    ACRB B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
+    ACRB A 0 A_JumpIfNoAmmo("FireEmpty")
+    ACRB B 1 BRIGHT A_GunFlash
+    ACRB C 1
+    ACRB A 0 A_JumpIfInventory("ACRAmmo",1,2)
+    ACRB D 1 A_ReFire
+    goto Ready+13
+    ACRB A 0 A_JumpIfNoAmmo("ReloadStart")
+    ACRB D 1 A_ReFire
+    goto Ready+13
+  Hold:
+    ACRB A 0 A_JumpIfInventory("Aiming",1,"HoldAim")
+    ACRB A 0 A_JumpIfNoAmmo("ReloadStart")
+    ACRB A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Hold_SteadyAim")
+    ACRB A 0 A_PlayWeaponSound("acr/fire")
+    ACRB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    ACRB A 1 BRIGHT A_FireBullets (10.5, 10.5, -1, 19, "RiflePuff", 1, 6000)
+    ACRB B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
+    ACRB A 0 A_JumpIfNoAmmo("FireEmpty")
+    ACRB B 1 BRIGHT A_GunFlash
+    ACRB C 1
+    ACRB A 0 A_JumpIfInventory("ACRAmmo",1,2)
+    ACRB D 1 A_ReFire
+    goto Ready+13
+    ACRB A 0 A_JumpIfNoAmmo("ReloadStart")
+    ACRB D 1 A_ReFire
+    goto Ready+13
+  FireEmpty:
+    ACRB B 1 BRIGHT A_GunFlash
+    ACRB CD 1 A_GiveInventory("ACRBolt",1)
+    ACRB A 0 A_JumpIfInventory("ACRAmmo",1,2)
+    ACRB D 1 A_ReFire
+    goto Ready+13
+    ACRB A 0 A_JumpIfNoAmmo("ReloadStart")
+    ACRB D 1 A_ReFire
+    goto Ready+13
+  FireAim:
+    ACRF F 0 A_PlayWeaponSound("acr/fire")
+    ACRF F 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
+    ACRF G 1 BRIGHT A_FireBullets (0.5, 0.5, -1, 19, "RiflePuff", 1, 6000)
+    ACRF G 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
+    ACRF G 0 A_JumpIfNoAmmo("FireEmpty")
+    ACRF H 1 BRIGHT A_GunFlash
+    ACRF I 1
+    ACRF A 0 A_JumpIfInventory("ACRAmmo",1,2)
+    ACRF J 1 A_ReFire
+    goto Ready+13
+    ACRF A 0 A_JumpIfNoAmmo("ReloadStart")
+    ACRF J 1 A_ReFire
+    goto Ready+13
+  HoldAim:
+    ACRF F 0 A_PlayWeaponSound("acr/fire")
+    ACRF F 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
+    ACRF G 1 BRIGHT A_FireBullets (3, 3, -1, 19, "RiflePuff", 1, 6000)
+    ACRF G 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
+    ACRF G 0 A_JumpIfNoAmmo("FireAimEmpty")
+    ACRF H 1 BRIGHT A_GunFlash
+    ACRF I 1
+    ACRF A 0 A_JumpIfInventory("ACRAmmo",1,2)
+    ACRF J 1 A_ReFire
+    goto Ready+13
+    ACRF A 0 A_JumpIfNoAmmo("ReloadStart")
+    ACRF J 1 A_ReFire
+    goto Ready+13
+  FireAimEmpty:
+    ACRF H 1 BRIGHT A_GunFlash
+    ACRF IJ 1 A_GiveInventory("ACRBolt",1)
+    ACRF A 0 A_JumpIfInventory("ACRAmmo",1,2)
+    ACRF J 1 A_ReFire
+    goto Ready+13
+    ACRF A 0 A_JumpIfNoAmmo("ReloadStart")
+    ACRF J 1 A_ReFire
+    goto Ready+13
+  Reload: //AltFire:
+    ACRC A 0 A_JumpIfInventory("ACRAmmo",1,"ReloadStart")
+    ACRC A 0 A_TakeInventory("Reloading",1)
+    goto Ready+16
+  ReloadStart:
+    ACRC A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
+    ACRC A 2 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
+    ACRC BCD 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRC E 3 A_PlaySoundEx("acr/clipout","SoundSlot5")
+    ACRC FGHIJKLM 3 A_WeaponReady(WRF_NOFIRE)
+    ACRC N 3 A_TakeInventory("Reloading",1)
+    ACRC O 3 A_PlayWeaponSound("acr/clipin")
+    goto ReloadAmmo
+  ReloadAmmo:
+    ACRC P 0 A_GiveInventory("ACRClip",1)
+    ACRC P 0 A_TakeInventory("ACRAmmo",1)
+    ACRC P 0 A_JumpIfInventory("ACRClip",30,"ReloadEnd")
+    ACRC P 0 A_JumpIfInventory("ACRAmmo",1,"ReloadAmmo")
+    goto ReloadEnd
+  ReloadEnd:
+    ACRC PQ 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRA H 3 A_JumpIfInventory("ACRBolt",1,"ReloadEndBolt")
+    ACRA IJKLM 3 A_WeaponReady(WRF_NOFIRE)
+    ACRA B 0 A_ReFire
+    goto Ready+13
+  ReloadEndBolt:
+    ACRC R 3 A_TakeInventory("ACRBolt",1)
+    ACRC S 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRC T 3 A_PlayWeaponSound("acr/bolt")
+    ACRC UVWXYZ 3 A_WeaponReady(WRF_NOFIRE)
+    ACRD ABC 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRD B 0 A_ReFire
+    goto Ready+13
+  AltFire:
+    U45F A 0 A_ZoomFactor(1.25)
+    ACRF A 0 A_JumpIfInventory("Aiming",1,"AltFire2")
+    ACRF ABCDEF 1
+    ACRF G 0 A_GiveInventory("Aiming",1)
+    ACRF G 0 ACS_ExecuteAlways(602,0,0,0,0)
+    ACRF G 0 A_Refire
+    goto Ready+19
+  AltFire2:
+    U45F A 0 A_ZoomFactor(1.0)
+    ACRF FEDCBA 1
+    ACRF A 0 A_TakeInventory("Aiming",1)
+    ACRF A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    ACRF G 0 A_Refire
+    goto Ready+13
+  AltHold:
+    ACRA M 1 A_JumpIfInventory("Aiming",1,"AltHoldAim")
+    ACRA M 1 A_ReFire
+    goto Ready+13
+  AltHoldAim:
+    ACRF F 1
+    ACRF F 1 A_ReFire
+    goto Ready+19
+  ReloadStartAim:
+    ACRF A 0 A_ZoomFactor(1.0)
+    ACRF FEDCBA 1
+    ACRF A 0 A_TakeInventory("Aiming",1)
+    ACRF A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto ReloadStart+1
+  Flash:
+    TNT1 A 2 bright A_Light1
+    TNT1 A 0 bright A_Light0
+    stop
+  Spawn:
+    WEAP C 15
+    WEAP C 0 A_SpawnItemEx("ACRPickup")
+    stop
+  Fire_SteadyAim:
+    ACRB A 0 A_PlayWeaponSound("acr/fire")
+    ACRB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    ACRB A 1 BRIGHT A_FireBullets (4.62, 4.62, -1, 19, "RiflePuff", 1, 6000)
+    ACRB B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
+    ACRB A 0 A_JumpIfNoAmmo("FireEmpty")
+    ACRB B 1 BRIGHT A_GunFlash
+    ACRB C 1
+    ACRB A 0 A_JumpIfInventory("ACRAmmo",1,2)
+    ACRB D 1 A_ReFire
+    goto Ready+13
+    ACRB A 0 A_JumpIfNoAmmo("ReloadStart")
+    ACRB D 1 A_ReFire
+    goto Ready+13
+  Hold_SteadyAim:
+    ACRB A 0 A_PlayWeaponSound("acr/fire")
+    ACRB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    ACRB A 1 BRIGHT A_FireBullets (6.93, 6.93, -1, 19, "RiflePuff", 1, 6000)
+    ACRB B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
+    ACRB A 0 A_JumpIfNoAmmo("FireEmpty")
+    ACRB B 1 BRIGHT A_GunFlash
+    ACRB C 1
+    ACRB A 0 A_JumpIfInventory("ACRAmmo",1,2)
+    ACRB D 1 A_ReFire
+    goto Ready+13
+    ACRB A 0 A_JumpIfNoAmmo("ReloadStart")
+    ACRB D 1 A_ReFire
+    goto Ready+13
+  ReloadStart_SOH:
+    ACRC A 2 
+    ACRC BCD 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRC E 2 A_PlaySoundEx("acr/clipout","SoundSlot5")
+    ACRC FGHIJKLM 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRC N 2 A_TakeInventory("Reloading",1)
+    ACRC O 2 A_PlayWeaponSound("acr/clipin")
+    goto ReloadAmmo_SOH
+  ReloadAmmo_SOH:
+    ACRC P 0 A_GiveInventory("ACRClip",1)
+    ACRC P 0 A_TakeInventory("ACRAmmo",1)
+    ACRC P 0 A_JumpIfInventory("ACRClip",30,"ReloadEnd_SOH")
+    ACRC P 0 A_JumpIfInventory("ACRAmmo",1,"ReloadAmmo_SOH")
+    goto ReloadEnd_SOH
+  ReloadEnd_SOH:
+    ACRC PQ 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRA H 2 A_JumpIfInventory("ACRBolt",1,"ReloadEndBolt_SOH")
+    ACRA IJKLM 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRA B 0 A_ReFire
+    goto Ready+13
+  ReloadEndBolt_SOH:
+    ACRC R 2 A_TakeInventory("ACRBolt",1)
+    ACRC S 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRC T 2 A_PlayWeaponSound("acr/bolt")
+    ACRC UVWXYZ 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRD ABC 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRD B 0 A_ReFire
+    goto Ready+13
+  FragGrenade:
+    U45F A 0 A_ZoomFactor(1.0)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    U45A L 0 A_TakeInventory("Reloading",1)
+    U45F A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    U45A L 0 A_JumpIfInventory("Perk1_SOH_Pro",1,"FragGrenade_SOH")
+    GRNA A 2 A_PlaySound("grenade/pinpull")
+    GRNA BCDEFGH 2
+    TNT1 A 15 
+    TNT1 A 0 A_PlaySound("grenade/throw")
+    GRNA A 0 A_PlaySoundEx("us/grenades","Voice")
+    GRNA IJK 2
+    GRNA L 0 A_TakeInventory("FragGrenadeAmmo",1)
+    GRNA L 0 A_TakeInventory("ThrowingGrenade",1)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    GRNA L 2 A_FireCustomMissile("FragGrenade",0,0,0,16)
+    GRNA MN 2 
+    goto Ready+1
+  FragGrenade_SOH:
+    GRNA A 1 A_PlaySound("grenade/pinpull")
+    GRNA BCDEFGH 1
+    TNT1 A 10
+    TNT1 A 0 A_PlaySound("grenade/throw")
+    GRNA A 0 A_PlaySoundEx("us/grenades","Voice")
+    GRNA IJK 1
+    GRNA L 0 A_TakeInventory("FragGrenadeAmmo",1)
+    GRNA L 0 A_TakeInventory("ThrowingGrenade",1)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    GRNA L 1 A_FireCustomMissile("FragGrenade",0,0,0,16)
+    GRNA MN 1 
+    goto Ready+1
+  KnifeAttack:
+    U45F A 0 A_ZoomFactor(1.0)
+    U45A L 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    U45A L 0 A_TakeInventory("Aiming",1)
+    U45A L 0 A_TakeInventory("Reloading",1)
+    U45F A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    U45A L 0 A_JumpIfInventory("Perk1_SOH_Pro",1,"KnifeAttack_SOH")
+    U45C A 0 A_JumpIfInventory("Perk3_Commando",1,"KnifeAttack_Commando")
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",96)
+    KNFA FGHIJKL 1 
+    TNT1 A 20
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_Commando:
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",160)
+    KNFA FGHIJKL 1 
+    TNT1 A 20
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_SOH:
+    U45C A 0 A_JumpIfInventory("Perk3_Commando",1,"KnifeAttack_SOH_Commando")
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",96)
+    KNFA FGHIJKL 1 
+    TNT1 A 10
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_SOH_Commando:
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",160)
+    KNFA FGHIJKL 1 
+    TNT1 A 10
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  }
+}
+
+actor ACRClip : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 0
+    inventory.maxamount 30
+    ammo.backpackamount 0
+    ammo.backpackmaxamount 30
+    +IGNORESKILL
+}
+
+actor ACRBolt : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+actor "ACR Ex Mags" : "ACR"
+{
+  obituary "%k gunned %o down with the ACR."
+  inventory.pickupmessage "ACR"  
+  //attacksound "acr/fire"
+  weapon.selectionorder 4
+  weapon.ammotype "ACRClip2"
+  weapon.ammouse 1
+  weapon.ammogive 0
+  weapon.ammotype2 "ACRAmmo"
+  weapon.ammouse2 0
+  weapon.ammogive2 0
+  -NOAUTOFIRE
+  states
+  {
+  Reload: //AltFire:
+    ACRC A 0 A_JumpIfInventory("ACRAmmo",1,"ReloadStart")
+    ACRC A 0 A_TakeInventory("Reloading",1)
+    goto Ready+16
+  ReloadStart:
+    ACRC A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
+    ACRC A 2 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
+    ACRC BCD 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRC E 3 A_PlaySoundEx("acr/clipout","SoundSlot5")
+    ACRC FGHIJKLM 3 A_WeaponReady(WRF_NOFIRE)
+    ACRC N 3 A_TakeInventory("Reloading",1)
+    ACRC O 3 A_PlayWeaponSound("acr/clipin")
+    goto ReloadAmmo
+  ReloadAmmo:
+    ACRC P 0 A_GiveInventory("ACRClip2",1)
+    ACRC P 0 A_TakeInventory("ACRAmmo",1)
+    ACRC P 0 A_JumpIfInventory("ACRClip2",45,"ReloadEnd")
+    ACRC P 0 A_JumpIfInventory("ACRAmmo",1,"ReloadAmmo")
+    goto ReloadEnd
+  ReloadEnd:
+    ACRC PQ 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRA H 3 A_JumpIfInventory("ACRBolt",1,"ReloadEndBolt")
+    ACRA IJKLM 3 A_WeaponReady(WRF_NOFIRE)
+    ACRA B 0 A_ReFire
+    goto Ready+13
+  ReloadEndBolt:
+    ACRC R 3 A_TakeInventory("ACRBolt",1)
+    ACRC S 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRC T 3 A_PlayWeaponSound("acr/bolt")
+    ACRC UVWXYZ 3 A_WeaponReady(WRF_NOFIRE)
+    ACRD ABC 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRD B 0 A_ReFire
+    goto Ready+13
+  ReloadStartAim:
+    ACRF A 0 A_ZoomFactor(1.0)
+    ACRF FEDCBA 1
+    ACRF A 0 A_TakeInventory("Aiming",1)
+    ACRF A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto ReloadStart+1
+  ReloadStart_SOH:
+    ACRC A 2 
+    ACRC BCD 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRC E 2 A_PlaySoundEx("acr/clipout","SoundSlot5")
+    ACRC FGHIJKLM 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRC N 2 A_TakeInventory("Reloading",1)
+    ACRC O 2 A_PlayWeaponSound("acr/clipin")
+    goto ReloadAmmo_SOH
+  ReloadAmmo_SOH:
+    ACRC P 0 A_GiveInventory("ACRClip2",1)
+    ACRC P 0 A_TakeInventory("ACRAmmo",1)
+    ACRC P 0 A_JumpIfInventory("ACRClip2",45,"ReloadEnd_SOH")
+    ACRC P 0 A_JumpIfInventory("ACRAmmo",1,"ReloadAmmo_SOH")
+    goto ReloadEnd_SOH
+  ReloadEnd_SOH:
+    ACRC PQ 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRA H 2 A_JumpIfInventory("ACRBolt",1,"ReloadEndBolt_SOH")
+    ACRA IJKLM 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRA B 0 A_ReFire
+    goto Ready+13
+  ReloadEndBolt_SOH:
+    ACRC R 2 A_TakeInventory("ACRBolt",1)
+    ACRC S 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRC T 2 A_PlayWeaponSound("acr/bolt")
+    ACRC UVWXYZ 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRD ABC 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    ACRD B 0 A_ReFire
+    goto Ready+13
+  }
+}
+
+actor ACRClip2 : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 0
+    inventory.maxamount 45
+    ammo.backpackamount 0
+    ammo.backpackmaxamount 45
+    +IGNORESKILL
+}
+
+actor ACRExMags : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+actor ACRPickup : CustomInventory
+{
+  inventory.pickupmessage "ACR"  
+  inventory.pickupsound "misc/w_pkup"
+  +INVENTORY.AUTOACTIVATE
+  inventory.respawntics 35
+  scale 0.15
+  States
+  {
+  Spawn:
+    WEAP C -1
+    stop
+  Pickup:
+    JDGP A 0
+    JDGP A 0 A_JumpIfInventory("ACR",1,"FailPickup") // If the player already has this weapon, they get more ammo for it
+    JDGP A 0 A_JumpIfInventory("ACR Ex Mags",1,"FailPickup")
+    JDGP A 0 A_JumpIfInventory("MaxWeaponsFilled",0,"FailPickup2")
+    BKPK A 0 ACS_ExecuteWithResult(618,13,0,0)
+    stop
+  AmmoPickup:
+    JDGP A 0
+    JDGP A 0 A_JumpIfInventory("ACRAmmo",0,"FailPickup")
+    JDGP A 0 A_GiveInventory("ACRAmmo",30)
+    stop
+  FailPickup:
+    WEAP C 1
+    fail
+  FailPickup2:
+    WEAP C 1 
+    BKPK A 0 ACS_ExecuteAlways(620,0,0,0,0)
+    fail
+  }
+}
+

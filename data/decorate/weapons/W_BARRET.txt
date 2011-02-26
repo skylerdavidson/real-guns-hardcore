@@ -1,0 +1,544 @@
+actor "Barrett 50cal" : RGUWeapon
+{
+  obituary "%k gives %o a .50 cal bullet."
+  inventory.pickupmessage "Barrett .50cal"  
+  //attacksound "barrett/fire"
+  weapon.selectionorder 16
+  weapon.ammotype "BarrettClip"
+  weapon.ammouse 1
+  weapon.ammogive 0
+  weapon.ammotype2 "BarrettAmmo"
+  weapon.ammouse2 0
+  weapon.ammogive2 0
+  states
+  {
+  Ready:
+    B50A A 2 //A_PlayWeaponSound("fal/select")
+    B50A BCDEFGHIJKLMNOP 2 A_WeaponReady(WRF_NOPRIMARY)
+    B50A P 0 A_JumpIfNoAmmo("Reload")
+    B50A P 0 A_JumpIfInventory("Aiming",1,5)
+    B50A P 0 A_JumpIfInventory("Reloading",1,"Reload")
+    B50A P 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    B50A P 0 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50A P 1 A_WeaponReady
+    goto Ready+16
+    INTF G 0 A_JumpIfInventory("Reloading",1,"Reload")    
+    INTF G 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    INTF G 0 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    INTF G 1 A_WeaponReady
+    goto Ready+22
+  Deselect:
+    B50A L 0 A_TakeInventory("Aiming",1)
+    B50A L 0 ACS_ExecuteAlways(602,0,0,0,0)
+    B50A L 0 A_TakeInventory("Reloading",1)
+    B50A L 0 A_ZoomFactor(1.0,ZOOM_INSTANT)
+    B50A L 0 A_Lower
+    B50A L 1 A_Lower
+    goto Deselect+3
+  Select:
+    B50A A 0 A_Raise
+	B50A A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    loop
+  Fire:
+	TNT1 A 0 A_GiveInventory("InCombat",5)
+    B50A N 0 A_JumpIfInventory("Aiming",1,"FireAim")
+    B50A P 1 A_JumpIfNoAmmo("ReloadStart")
+    B50B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
+    B50B A 0 A_PlayWeaponSound("barrett/fire")
+    B50B AA 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,6,3)
+    B50B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,6,3)
+    B50B A 1 BRIGHT A_FireBullets (15.0, 15.0, -1, 70, "SniperPuff", 1, 0)
+    B50B B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
+    B50B A 0 A_JumpIfNoAmmo("FireEmpty")
+    B50B B 1 BRIGHT A_GunFlash
+    B50B CD 1
+    B50B EF 1 A_WeaponReady
+    B50B A 0 A_JumpIfInventory("BarrettAmmo",1,2)
+    B50B A 0 A_ReFire
+    goto Ready+16
+    B50B A 0 A_JumpIfNoAmmo("ReloadStart")
+    B50B A 0 A_ReFire
+    goto Ready+16
+  FireEmpty:
+    B50B B 1 BRIGHT A_GunFlash
+    B50B C 1 A_GiveInventory("BarrettBolt",1)
+    B50B DEF 1 
+    B50B A 0 A_JumpIfInventory("BarrettAmmo",1,2)
+    B50B A 0 A_ReFire
+    goto Ready+16
+    B50B A 0 A_JumpIfNoAmmo("ReloadStart")
+    B50B A 0 A_ReFire
+    goto Ready+16
+  Hold:
+    B50A P 3 A_JumpIfInventory("Aiming",1,"HoldAim")
+    B50A P 1 A_ReFire
+    goto Ready+16
+  HoldAim:
+    INTF G 3
+    INTF G 1 A_ReFire
+    goto Ready+22
+  FireAim:
+    INTF G 1 A_JumpIfNoAmmo("ReloadStart")
+    INTF G 0 A_PlayWeaponSound("barrett/fire")
+    INTF GG 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,0,3)
+    INTF G 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
+    INTF G 0 A_JumpIfInventory("Perk3_SteadyAim_Pro",1,2)
+	INTA N 0 A_JumpIfInventory("Moving",1,"FireAimMoving")
+    INTF G 0 A_JumpIfInventory("Perk2_StoppingPower_Pro",1,3)	
+	INTF G 2 BRIGHT A_FireBullets (0.1, 0.1, 1, 70, "SniperPuff", 1, 0)
+	INTF G 0 A_Jump(255, "FinishFireAim")
+	INTF G 0 BRIGHT A_FireBullets (0.1, 0.1, 1, 0, "SniperPuff", 0, 0)
+	INTF A 0 BRIGHT A_RailAttack(70,0,1,"none","none",1,0,"SniperPuff")
+  FinishFireAim:
+    INTF G 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
+    INTF G 0 A_JumpIfNoAmmo("FireAimEmpty")
+    INTF G 1 BRIGHT A_GunFlash
+    INTF G 2
+    INTF GG 1 A_WeaponReady
+    INTF G 0 A_JumpIfInventory("BarrettAmmo",1,2)
+    INTF G 0 A_ReFire
+    goto Ready+22
+    INTF A 0 A_JumpIfNoAmmo("ReloadStart")
+    INTF A 0 A_ReFire
+    goto Ready+22
+  FireAimMoving:
+    INTF G 0 A_JumpIfInventory("Perk3_SteadyAim_Pro",1,2)
+    INTF G 1 BRIGHT A_FireBullets (6.0, 6.0, -1, 70, "SniperPuff", 1, 0)
+    goto FinishFireAim
+  FireAimEmpty:
+    INTF G 1 BRIGHT A_GunFlash
+    INTF G 1 A_GiveInventory("BarrettBolt",1)
+    INTF GGG 1 
+    INTF G 0 A_JumpIfInventory("BarrettAmmo",1,2)
+    INTF G 0 A_ReFire
+    goto Ready+22
+    INTF A 0 A_JumpIfNoAmmo("ReloadStart")
+    INTF A 0 A_ReFire
+    goto Ready+22
+  Reload: //AltFire:
+    B50C A 0 A_JumpIfInventory("BarrettAmmo",1,"ReloadStart")
+    B50C A 0 A_TakeInventory("Reloading",1)
+    goto Ready+19
+  ReloadStart:
+    B50C A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
+    B50C A 3 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
+    B50C BCDEFGHIJK 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50C L 3 A_PlaySoundEx("barrett/clipout","SoundSlot5")
+    B50C MNOPQR 3 A_WeaponReady(WRF_NOFIRE)
+    B50C STUVWXY 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50C Z 3 A_TakeInventory("Reloading",1)
+    B50D ABC 3 A_WeaponReady(WRF_NOFIRE)
+    goto ReloadAmmo
+  ReloadAmmo:
+    B50C A 0 A_GiveInventory("BarrettClip",1)
+    B50C A 0 A_TakeInventory("BarrettAmmo",1)
+    B50C A 0 A_JumpIfInventory("BarrettClip",10,"ReloadEnd")
+    B50C A 0 A_JumpIfInventory("BarrettAmmo",1,"ReloadAmmo")
+    goto ReloadEnd
+  ReloadEnd:
+    B50D D 3 A_PlaySoundEx("barrett/clipin","SoundSlot5")
+    B50D EFGHIJKL 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50D M 3 A_JumpIfInventory("BarrettBolt",1,"ReloadEndBolt")
+    B50A KLMNOP 3 A_WeaponReady(WRF_NOFIRE)
+    B50A D 0 A_ReFire
+    goto Ready+16
+  ReloadEndBolt:
+    B50D MNOP 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50D Q 3 A_PlaySoundEx("barrett/bolt","SoundSlot5")
+    B50D R 3 A_TakeInventory("BarrettBolt",1)
+    B50D S 3 
+    B50D TUV 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50D D 0 A_ReFire
+    goto Ready+16
+  AltFire:
+    B50F A 0 A_JumpIfInventory("Aiming",1,"AltFire2")
+    B50F ABCDEF 1
+    INTF G 1 A_ZoomFactor(3.0,ZOOM_INSTANT)
+    B50F F 0 A_GiveInventory("Aiming",1)
+    B50F F 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto Ready+22
+  AltFire2:
+    B50F F 1 A_ZoomFactor(1.0,ZOOM_INSTANT)
+    B50F EDCBA 1
+    B50F A 0 A_TakeInventory("Aiming",1)
+    B50F A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto Ready+16
+  ReloadStartAim:
+    B50F F 1 A_ZoomFactor(1.0,ZOOM_INSTANT)
+    B50F EDCBA 1
+    B50F A 0 A_TakeInventory("Aiming",1)
+    B50F A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto ReloadStart+1
+  Flash:
+    TNT1 A 2 bright A_Light1
+    TNT1 A 0 bright A_Light0
+    stop
+  Spawn:
+    WEAP E 15
+    WEAP A 0 A_SpawnItem("BarrettPickup")
+    stop
+  Fire_SteadyAim:
+    B50B A 0 A_PlayWeaponSound("barrett/fire")
+    B50B AA 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,6,3)
+    B50B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,6,3)
+    B50B A 1 BRIGHT A_FireBullets (10.0, 10.0, -1, 70, "SniperPuff", 1, 0)
+    B50B B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
+    B50B A 0 A_JumpIfNoAmmo("FireEmpty")
+    B50B B 1 BRIGHT A_GunFlash
+    B50B C 1
+    B50B DEF 1 A_WeaponReady
+    B50B A 0 A_JumpIfInventory("BarrettAmmo",1,2)
+    B50B A 0 A_ReFire
+    goto Ready+16
+    B50B A 0 A_JumpIfNoAmmo("ReloadStart")
+    B50B A 0 A_ReFire
+    goto Ready+16
+  ReloadStart_SOH:
+    B50C A 2 
+    B50C BCDEFGHIJK 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50C L 2 A_PlaySoundEx("barrett/clipout","SoundSlot5")
+    B50C MNOPQR 2 A_WeaponReady(WRF_NOFIRE)
+    B50C STUVWXY 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50C Z 2 A_TakeInventory("Reloading",1)
+    B50D ABC 2 A_WeaponReady(WRF_NOFIRE)
+    goto ReloadAmmo_SOH
+  ReloadAmmo_SOH:
+    B50C A 0 A_GiveInventory("BarrettClip",1)
+    B50C A 0 A_TakeInventory("BarrettAmmo",1)
+    B50C A 0 A_JumpIfInventory("BarrettClip",10,"ReloadEnd_SOH")
+    B50C A 0 A_JumpIfInventory("BarrettAmmo",1,"ReloadAmmo_SOH")
+    goto ReloadEnd_SOH
+  ReloadEnd_SOH:
+    B50D D 2 A_PlaySoundEx("barrett/clipin","SoundSlot5")
+    B50D EFGHIJKL 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50D M 2 A_JumpIfInventory("BarrettBolt",1,"ReloadEndBolt_SOH")
+    B50A KLMNOP 2 A_WeaponReady(WRF_NOFIRE)
+    B50A D 0 A_ReFire
+    goto Ready+16
+  ReloadEndBolt_SOH:
+    B50D MNOP 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50D Q 2 A_PlaySoundEx("barrett/bolt","SoundSlot5")
+    B50D R 2 A_TakeInventory("BarrettBolt",1)
+    B50D S 2 
+    B50D TUV 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50D D 0 A_ReFire
+    goto Ready+16
+  FragGrenade:
+    U45F A 0 A_ZoomFactor(1.0)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    U45A L 0 A_TakeInventory("Reloading",1)
+    U45F A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    U45A L 0 A_JumpIfInventory("Perk1_SOH_Pro",1,"FragGrenade_SOH")
+    GRNA A 2 A_PlaySound("grenade/pinpull")
+    GRNA BCDEFGH 2
+    TNT1 A 15 
+    TNT1 A 0 A_PlaySound("grenade/throw")
+    GRNA A 0 A_PlaySoundEx("us/grenades","Voice")
+    GRNA IJK 2
+    GRNA L 0 A_TakeInventory("FragGrenadeAmmo",1)
+    GRNA L 0 A_TakeInventory("ThrowingGrenade",1)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    GRNA L 2 A_FireCustomMissile("FragGrenade",0,0,0,16)
+    GRNA MN 2 
+    goto Ready+1
+  FragGrenade_SOH:
+    GRNA A 1 A_PlaySound("grenade/pinpull")
+    GRNA BCDEFGH 1
+    TNT1 A 10
+    TNT1 A 0 A_PlaySound("grenade/throw")
+    GRNA A 0 A_PlaySoundEx("us/grenades","Voice")
+    GRNA IJK 1
+    GRNA L 0 A_TakeInventory("FragGrenadeAmmo",1)
+    GRNA L 0 A_TakeInventory("ThrowingGrenade",1)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    GRNA L 1 A_FireCustomMissile("FragGrenade",0,0,0,16)
+    GRNA MN 1 
+    goto Ready+1
+  KnifeAttack:
+    U45F A 0 A_ZoomFactor(1.0)
+    U45A L 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    U45A L 0 A_TakeInventory("Aiming",1)
+    U45A L 0 A_TakeInventory("Reloading",1)
+    U45F A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    U45A L 0 A_JumpIfInventory("Perk1_SOH_Pro",1,"KnifeAttack_SOH")
+    U45C A 0 A_JumpIfInventory("Perk3_Commando",1,"KnifeAttack_Commando")
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",96)
+    KNFA FGHIJKL 1 
+    TNT1 A 20
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_Commando:
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",160)
+    KNFA FGHIJKL 1 
+    TNT1 A 20
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_SOH:
+    U45C A 0 A_JumpIfInventory("Perk3_Commando",1,"KnifeAttack_SOH_Commando")
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",96)
+    KNFA FGHIJKL 1 
+    TNT1 A 10
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_SOH_Commando:
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",160)
+    KNFA FGHIJKL 1 
+    TNT1 A 10
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  }
+}
+
+actor BarrettClip : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 0
+    inventory.maxamount 10
+    ammo.backpackamount 0
+    ammo.backpackmaxamount 10
+    +IGNORESKILL
+}
+
+actor BarrettBolt : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+actor "Barrett 50cal Thermal" : "Barrett 50cal"
+{
+  obituary "%k gives %o a .50 cal bullet."
+  inventory.pickupmessage "Barrett 50cal"  
+  //attacksound "barrett/fire"
+  weapon.selectionorder 28
+  weapon.ammotype "BarrettClip"
+  weapon.ammouse 1
+  weapon.ammogive 0
+  weapon.ammotype2 "BarrettAmmo"
+  weapon.ammouse2 0
+  weapon.ammogive2 0
+  states
+  {
+  Ready:
+    B50A A 2 //A_PlayWeaponSound("fal/select")
+    B50A BCDEFGHIJKLMNOP 2 A_WeaponReady(WRF_NOPRIMARY)
+    B50A P 0 A_JumpIfNoAmmo("Reload")
+    B50A P 0 A_JumpIfInventory("Aiming",1,5)
+    B50A P 0 A_JumpIfInventory("Reloading",1,"Reload")
+    B50A P 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    B50A P 0 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50A P 1 A_WeaponReady
+    goto Ready+16
+    INTF G 0 A_JumpIfInventory("Reloading",1,"Reload")    
+    INTF G 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    INTF G 0 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    INTF G 0 A_GiveInventory("SniperInfrared",1)
+    INTF G 1 A_WeaponReady
+    goto Ready+22
+  Deselect:
+    INTF G 0 A_TakeInventory("PowerLightAmp",500)
+    B50A L 0 A_TakeInventory("Aiming",1)
+    B50A L 0 ACS_ExecuteAlways(602,0,0,0,0)
+    B50A L 0 A_TakeInventory("Reloading",1)
+    B50A L 0 A_ZoomFactor(1.0,ZOOM_INSTANT)
+    B50A L 0 A_Lower
+    B50A L 1 A_Lower
+    goto Deselect+3
+  AltFire:
+    B50F A 0 A_JumpIfInventory("Aiming",1,"AltFire2")
+    B50F ABCDEF 1
+    INTF G 1 A_ZoomFactor(3.0,ZOOM_INSTANT)
+    B50F F 0 A_GiveInventory("Aiming",1)
+    B50F F 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto Ready+22
+  AltFire2:
+    INTF G 0 A_TakeInventory("PowerLightAmp",500)
+    B50F F 1 A_ZoomFactor(1.0,ZOOM_INSTANT)
+    B50F EDCBA 1
+    B50F A 0 A_TakeInventory("Aiming",1)
+    B50F A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto Ready+16
+  ReloadStartAim:
+    INTF G 0 A_TakeInventory("PowerLightAmp",500)
+    B50F F 1 A_ZoomFactor(1.0,ZOOM_INSTANT)
+    B50F EDCBA 1
+    B50F A 0 A_TakeInventory("Aiming",1)
+    B50F A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto ReloadStart+1
+  }
+}
+ACTOR SniperInfrared : PowerupGiver
+{
+  Game Doom
+  SpawnID 138
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  Inventory.MaxAmount 0
+  Powerup.Type "LightAmp"
+  Powerup.Duration -25
+  Inventory.PickupMessage "$GOTVISOR" // "Light Amplification Visor"
+  States
+  {
+    Spawn:
+    PVIS A 6 Bright
+    PVIS B 6
+    Loop
+  }
+}
+
+actor BarrettThermal : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+actor "Barrett 50cal Ex Mags" : "Barrett 50cal"
+{
+  obituary "%k gives %o a .50 cal bullet."
+  inventory.pickupmessage "Barrett .50cal"  
+  //attacksound "barrett/fire"
+  weapon.selectionorder 16
+  weapon.ammotype "BarrettClip2"
+  weapon.ammouse 1
+  weapon.ammogive 0
+  weapon.ammotype2 "BarrettAmmo"
+  weapon.ammouse2 0
+  weapon.ammogive2 0
+  states
+  {
+  Reload: //AltFire:
+    B50C A 0 A_JumpIfInventory("BarrettAmmo",1,"ReloadStart")
+    B50C A 0 A_TakeInventory("Reloading",1)
+    goto Ready+19
+  ReloadStart:
+    B50C A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
+    B50C A 3 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
+    B50C BCDEFGHIJK 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50C L 3 A_PlaySoundEx("barrett/clipout","SoundSlot5")
+    B50C MNOPQR 3 A_WeaponReady(WRF_NOFIRE)
+    B50C STUVWXY 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50C Z 3 A_TakeInventory("Reloading",1)
+    B50D ABC 3 A_WeaponReady(WRF_NOFIRE)
+    goto ReloadAmmo
+  ReloadAmmo:
+    B50C A 0 A_GiveInventory("BarrettClip2",1)
+    B50C A 0 A_TakeInventory("BarrettAmmo",1)
+    B50C A 0 A_JumpIfInventory("BarrettClip2",15,"ReloadEnd")
+    B50C A 0 A_JumpIfInventory("BarrettAmmo",1,"ReloadAmmo")
+    goto ReloadEnd
+  ReloadEnd:
+    B50D D 3 A_PlaySoundEx("barrett/clipin","SoundSlot5")
+    B50D EFGHIJKL 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50D M 3 A_JumpIfInventory("BarrettBolt",1,"ReloadEndBolt")
+    B50A KLMNOP 3 A_WeaponReady(WRF_NOFIRE)
+    B50A D 0 A_ReFire
+    goto Ready+16
+  ReloadEndBolt:
+    B50D MNOP 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50D Q 3 A_PlaySoundEx("barrett/bolt","SoundSlot5")
+    B50D R 3 A_TakeInventory("BarrettBolt",1)
+    B50D S 3 
+    B50D TUV 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50D D 0 A_ReFire
+    goto Ready+16
+  ReloadStart_SOH:
+    B50C A 2 
+    B50C BCDEFGHIJK 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50C L 2 A_PlaySoundEx("barrett/clipout","SoundSlot5")
+    B50C MNOPQR 2 A_WeaponReady(WRF_NOFIRE)
+    B50C STUVWXY 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50C Z 2 A_TakeInventory("Reloading",1)
+    B50D ABC 2 A_WeaponReady(WRF_NOFIRE)
+    goto ReloadAmmo_SOH
+  ReloadAmmo_SOH:
+    B50C A 0 A_GiveInventory("BarrettClip2",1)
+    B50C A 0 A_TakeInventory("BarrettAmmo",1)
+    B50C A 0 A_JumpIfInventory("BarrettClip2",15,"ReloadEnd_SOH")
+    B50C A 0 A_JumpIfInventory("BarrettAmmo",1,"ReloadAmmo_SOH")
+    goto ReloadEnd_SOH
+  ReloadEnd_SOH:
+    B50D D 2 A_PlaySoundEx("barrett/clipin","SoundSlot5")
+    B50D EFGHIJKL 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50D M 2 A_JumpIfInventory("BarrettBolt",1,"ReloadEndBolt_SOH")
+    B50A KLMNOP 2 A_WeaponReady(WRF_NOFIRE)
+    B50A D 0 A_ReFire
+    goto Ready+16
+  ReloadEndBolt_SOH:
+    B50D MNOP 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50D Q 2 A_PlaySoundEx("barrett/bolt","SoundSlot5")
+    B50D R 2 A_TakeInventory("BarrettBolt",1)
+    B50D S 2 
+    B50D TUV 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    B50D D 0 A_ReFire
+    goto Ready+16
+  ReloadStartAim:
+    B50F F 1 A_ZoomFactor(1.0,ZOOM_INSTANT)
+    B50F EDCBA 1
+    B50F A 0 A_TakeInventory("Aiming",1)
+    B50F A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto ReloadStart+1
+  }
+}
+
+actor BarrettClip2 : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 0
+    inventory.maxamount 15
+    ammo.backpackamount 0
+    ammo.backpackmaxamount 15
+    +IGNORESKILL
+}
+
+actor BarrettExMags : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+actor BarrettPickup : CustomInventory
+{
+  inventory.pickupmessage "Barrett .50cal"  
+  inventory.pickupsound "misc/w_pkup"
+  +INVENTORY.AUTOACTIVATE
+  inventory.respawntics 35
+  scale 0.15
+  States
+  {
+  Spawn:
+    WEAP E -1
+    stop
+  Pickup:
+    JDGP A 0
+    JDGP A 0 A_JumpIfInventory("Barrett 50cal",1,"FailPickup") // If the player already has this weapon, they get more ammo for it
+    JDGP A 0 A_JumpIfInventory("Barrett 50cal Ex Mags",1,"FailPickup")
+    JDGP A 0 A_JumpIfInventory("Barrett 50cal Thermal",1,"FailPickup")
+    JDGP A 0 A_JumpIfInventory("MaxWeaponsFilled",0,"FailPickup2")
+    BKPK A 0 ACS_ExecuteWithResult(618,2,0,0)
+    stop
+  AmmoPickup:
+    JDGP A 0
+    JDGP A 0 A_JumpIfInventory("BarrettAmmo",0,"FailPickup")
+    JDGP A 0 A_GiveInventory("BarrettAmmo",10)
+    stop
+  FailPickup:
+    WEAP E 1
+    fail
+  FailPickup2:
+    WEAP E 1 
+    BKPK A 0 ACS_ExecuteAlways(620,0,3,0,0)
+    fail
+  }
+}

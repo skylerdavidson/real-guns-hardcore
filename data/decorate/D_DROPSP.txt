@@ -1,0 +1,603 @@
+//Fake weapons, spawn into real weapons.
+actor USP45PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("USP45Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+
+actor 44MagnumPickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("44MagnumPickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor FAMASPickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("FAMASPickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor FALPickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("FALPickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor SPASPickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("SPASPickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor AA12PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("AA12Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+
+actor UMP45PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("UMP45Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+
+actor VectorPickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("VectorPickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor MiniUziPickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("MiniUziPickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor P90PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("P90Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor ThumperPickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("ThumperPickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor ACRPickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("ACRPickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor AT4PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("AT4Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor InterventionPickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("InterventionPickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor BarrettPickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("BarrettPickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor MG4PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("MG4Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor G18PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("G18Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor PP2000PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("PP2000Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor SCARHPickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("SCARHPickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor M4A1PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("M4A1Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor RangerPickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("RangerPickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor F2000PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("F2000Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor MP5PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("MP5Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor M93RPickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("M93RPickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor M16PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("M16Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor AK47PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("AK47Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor StrikerPickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("StrikerPickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+
+actor AUGHBARPickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("AUGHBARPickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+
+actor WA2000PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("WA2000Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor M9PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("M9Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor DeaglePickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("DeaglePickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+actor M1014PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("M1014Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+
+actor M240PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("M240Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+
+actor L86PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("L86Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+
+actor RPGPickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("RPGPickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+
+actor M1887PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("M1887Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}
+
+actor M14PickupSpawn
+{
+  +NOCLIP
+  +NOBLOCKMAP
+  Radius 1
+  Height 1
+  States
+  {
+  Spawn:
+    TNT1 A 175
+    TNT1 A 0 A_PlayWeaponSound("misc/spawn")
+    TNT1 A 0 A_SpawnItemEx("ItemFog",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 A 0 A_SpawnItemEx("M14Pickup",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}

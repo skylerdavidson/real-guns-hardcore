@@ -1,0 +1,261 @@
+
+
+actor "Menu" : Weapon
+{
+  obituary "%o was killed."
+  inventory.pickupmessage "Snagged an item!"  
+  weapon.selectionorder 500
+  weapon.kickback 0
+  decal BulletChip
+  +NOAUTOFIRE
+  +NOALERT
+  states
+  {
+  Spawn:
+    TNT1 A 0
+    stop
+  Ready: 
+    TNT1 A 0
+	TNT1 A 0 ACS_ExecuteAlways(635,0,0,0,0)
+    TNT1 A 0 ACS_ExecuteAlways(636,0,0,0,0)
+    TNT1 A 0 A_WeaponReady
+    TNT1 A 1 A_ChangeFlag("PICKUP",0)
+    goto Ready+3
+  Deselect:
+    TNT1 A 0 A_Lower
+    TNT1 A 0 A_SelectWeapon("Menu")
+    TNT1 A 0 A_Lower
+    TNT1 A 1 A_Lower
+    loop
+  Select:
+    TNT1 A 0 A_Raise
+    TNT1 A 0 A_Raise
+    TNT1 A 1 A_Raise
+    loop
+  Fire:
+    TNT1 A 1 A_GiveInventory("MenuCursor",1)
+    TNT1 A 0 ACS_ExecuteAlways(636,0,0,0,0)
+	goto Ready+3
+  AltFire:
+    TNT1 A 1 ACS_ExecuteAlways(637,0,0,0,0)
+    goto Ready+3
+  }
+}
+
+actor "MenuChoice1" : Weapon
+{
+  obituary "%o was killed."
+  inventory.pickupmessage "Snagged an item!"  
+  weapon.selectionorder 500
+  weapon.kickback 0
+  decal BulletChip
+  +NOAUTOFIRE
+  +NOALERT
+  states
+  {
+  Spawn:
+    TNT1 A 0
+    stop
+  Ready:
+    TNT1 A 0
+	TNT1 A 0 A_TakeInventory("MenuCursor", 20)
+	//goto GiveCursor
+  GiveCursor:
+	TNT1 A 0
+	goto FinishReady
+  FinishReady:
+    TNT1 A 0 ACS_ExecuteAlways(637,0,0,0,0)
+    TNT1 A 1 A_ChangeFlag("PICKUP",0)
+    TNT1 A 1 A_SelectWeapon("Menu")
+	TNT1 A 0 A_WeaponReady
+	goto FinishReady+1
+  Deselect:
+	TNT1 A 0 A_Lower
+	TNT1 A 0 A_Lower
+	TNT1 A 0 A_Lower
+	TNT1 A 0 A_Lower
+	TNT1 A 0 A_Lower
+    TNT1 A 0 A_Lower
+    loop
+  Select:
+	TNT1 A 0 A_Raise
+	TNT1 A 0 A_Raise
+	TNT1 A 0 A_Raise
+	TNT1 A 0 A_Raise
+	TNT1 A 0 A_Raise
+    loop
+  Fire:
+    TNT1 A 1 
+	goto Ready
+  }
+}
+
+actor "MenuChoice2" : MenuChoice1
+{
+  states
+  {
+  Ready:
+	TNT1 A 0
+	TNT1 A 0 A_TakeInventory("MenuCursor", 20)
+	TNT1 A 0 A_GiveInventory("MenuCursor", 1)
+	goto FinishReady
+  }
+}
+
+actor "MenuChoice3" : MenuChoice1
+{
+	states{
+	  Ready:
+		TNT1 A 0
+		TNT1 A 0 A_TakeInventory("MenuCursor", 20)
+		TNT1 A 0 A_GiveInventory("MenuCursor", 2)
+		goto FinishReady
+	}
+}
+
+actor "MenuChoice4" : MenuChoice1
+{
+	states{
+	  Ready:
+		TNT1 A 0
+		TNT1 A 0 A_TakeInventory("MenuCursor", 20)
+		TNT1 A 0 A_GiveInventory("MenuCursor", 3)
+		goto FinishReady
+	}
+}
+
+actor "MenuChoice5" : MenuChoice1
+{
+	states{
+	  Ready:
+		TNT1 A 0
+		TNT1 A 0 A_TakeInventory("MenuCursor", 20)
+		TNT1 A 0 A_GiveInventory("MenuCursor", 4)
+		goto FinishReady
+	}
+}
+
+actor "MenuChoice6" : MenuChoice1
+{
+	states{
+	  Ready:
+		TNT1 A 0
+		TNT1 A 0 A_TakeInventory("MenuCursor", 20)
+		TNT1 A 0 A_GiveInventory("MenuCursor", 5)
+		goto FinishReady
+	}
+}
+
+actor "MenuChoice7" : MenuChoice1
+{
+	states{
+	  Ready:
+		TNT1 A 0
+		TNT1 A 0 A_TakeInventory("MenuCursor", 20)
+		TNT1 A 0 A_GiveInventory("MenuCursor", 6)
+		goto FinishReady
+	}
+}
+
+actor "MenuChoice8" : MenuChoice1
+{
+	states{
+	  Ready:
+		TNT1 A 0
+		TNT1 A 0 A_TakeInventory("MenuCursor", 20)
+		TNT1 A 0 A_GiveInventory("MenuCursor", 7)
+		goto FinishReady
+	}
+}
+
+actor "MenuChoice9" : MenuChoice1
+{
+	states{
+	  Ready:
+		TNT1 A 0
+		TNT1 A 0 A_TakeInventory("MenuCursor", 20)
+		TNT1 A 0 A_GiveInventory("MenuCursor", 8)
+		goto FinishReady
+	}
+}
+
+actor "MenuChoice10" : MenuChoice1
+{
+	states{
+	  Ready:
+		TNT1 A 0
+		TNT1 A 0 A_TakeInventory("MenuCursor", 20)
+		TNT1 A 0 A_GiveInventory("MenuCursor", 9)
+		goto FinishReady
+	}
+}
+
+actor MenuPlace : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 6
+}
+
+actor MenuCursor : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 15
+}
+
+actor "RandomThing" : Weapon
+{
+  obituary "%o was killed."
+  inventory.pickupmessage "Snagged an item!"  
+  weapon.selectionorder 500
+  weapon.kickback 0
+  decal BulletChip
+  +NOAUTOFIRE
+  +NOALERT
+  states
+  {
+  Spawn:
+    TNT1 A 0
+    stop
+  Ready:
+    TNT1 A 0 
+    TNT1 A 0 ACS_ExecuteAlways(639,0,0,0,0)
+    TNT1 A 0 A_TakeInventory("RandomThing",1)
+    TNT1 A 1 A_WeaponReady
+    goto Ready+2
+  Deselect:
+    TNT1 A 0 A_Lower
+    TNT1 A 0 A_SelectWeapon("Menu")
+    TNT1 A 0 A_Lower
+    TNT1 A 1 A_Lower
+    loop
+  Select:
+    TNT1 A 0 A_Raise
+    TNT1 A 0 A_Raise
+    TNT1 A 1 A_Raise
+    loop
+  Fire:
+    TNT1 A 5 
+    goto Ready+2
+  AltFire:
+    TNT1 A 5 
+    goto Ready+2
+  }
+}
+
+actor SetPickupPickup : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item!"
+  inventory.pickupsound "misc/ammo_pkup"
+  Scale 0.5
+  +INVENTORY.AUTOACTIVATE
+  inventory.respawntics 2100
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Pickup:
+    TNT1 A 0 A_ChangeFlag("PICKUP",1)
+    stop
+  }
+}

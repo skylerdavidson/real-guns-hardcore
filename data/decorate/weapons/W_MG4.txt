@@ -1,0 +1,585 @@
+actor "MG4" : RGUWeapon
+{
+  obituary "%k fed %o with lead from the MG4."
+  inventory.pickupmessage "MG4"  
+  //attacksound "mg4/fire1"
+  weapon.selectionorder 1
+  weapon.ammotype "MG4Clip"
+  weapon.ammouse 1
+  weapon.ammogive 0
+  weapon.ammotype2 "MG4Ammo"
+  weapon.ammouse2 0
+  weapon.ammogive2 0
+  -NOAUTOFIRE
+  states
+  {
+  Ready:
+    MG4A A 2 //A_PlayWeaponSound("m9/select")
+    MG4A BCDEFGH 2 
+    MG4A IJKLMNO 2 A_WeaponReady(WRF_NOPRIMARY)
+    MG4A P 0 A_JumpIfNoAmmo("Reload")
+    MG4A P 0 A_JumpIfInventory("Aiming",1,5)
+    MG4A P 0 A_JumpIfInventory("Reloading",1,"Reload")
+    MG4A P 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    MG4A P 0 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4A P 1 A_WeaponReady
+    goto Ready+15
+    MG4C F 0 A_JumpIfInventory("Reloading",1,"Reload")    
+    MG4C F 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    MG4C F 0 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4C F 1 A_WeaponReady(WRF_NOBOB)
+    goto Ready+21
+  Deselect:
+    MG4A K 0 A_TakeInventory("Aiming",1)
+    MG4A K 0 ACS_ExecuteAlways(602,0,0,0,0)
+    MG4A L 0 A_TakeInventory("Reloading",1)
+    MG4A L 0 A_ZoomFactor(1.0)
+    MG4A K 0 A_Lower
+    MG4A K 1 A_Lower
+    goto Deselect+2
+  Select:
+    MG4A A 0 A_Raise
+	MG4A A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    loop
+  Fire:
+	TNT1 A 0 A_GiveInventory("InCombat",5)
+    MG4B A 0 A_JumpIfInventory("Aiming",1,"FireAim")
+    MG4B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MG4B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
+    MG4B A 0 A_PlayWeaponSound("mg4/fire")
+    MG4B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    MG4B A 1 BRIGHT A_FireBullets (7.0, 7.0, -1, 11, "LMGPuff", 1, 6000)
+    MG4B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MG4B A 0 //A_JumpIfNoAmmo("FireEmpty")
+    MG4B B 1 BRIGHT A_GunFlash
+    MG4B CD 1
+    MG4B D 0 A_JumpIfInventory("MG4Ammo",1,2)
+    MG4B D 1 A_ReFire
+    goto Ready+15
+    MG4B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MG4B A 0 A_ReFire
+    goto Ready+15
+  Hold:
+    MG4B A 0 A_JumpIfInventory("Aiming",1,"HoldAim")
+    MG4B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MG4B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Hold_SteadyAim")
+    MG4B A 0 A_PlayWeaponSound("mg4/fire")
+    MG4B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    MG4B A 1 BRIGHT A_FireBullets (10.0, 10.0, -1, 11, "LMGPuff", 1, 6000)
+    MG4B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MG4B A 0 //A_JumpIfNoAmmo("FireEmpty")
+    MG4B B 1 BRIGHT A_GunFlash
+    MG4B CD 1
+    MG4B D 0 A_JumpIfInventory("MG4Ammo",1,2)
+    MG4B D 1 A_ReFire
+    goto Ready+15
+    MG4B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MG4B A 0 A_ReFire
+    goto Ready+15
+  FireAim:
+    MG4C G 0 A_PlayWeaponSound("mg4/fire")
+    MG4C G 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
+    MG4C G 1 BRIGHT A_FireBullets (0.75, 0.75, -1, 11, "LMGPuff", 1, 6000)
+    MG4C G 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MG4C G 0 //A_JumpIfNoAmmo("FireEmpty")
+    MG4C H 1 BRIGHT A_GunFlash
+    MG4C IJ 1
+    MG4C I 0 A_JumpIfInventory("MG4Ammo",1,2)
+    MG4C J 1 A_ReFire
+    goto Ready+21
+    MG4C A 0 A_JumpIfNoAmmo("ReloadStart")
+    MG4C A 0 A_ReFire
+    goto Ready+21
+  HoldAim:
+    MG4C G 0 A_PlayWeaponSound("mg4/fire")
+    MG4C G 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
+    MG4C G 1 BRIGHT A_FireBullets (2.0, 2.0, -1, 11, "LMGPuff", 1, 6000)
+    MG4C H 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MG4C H 0 //A_JumpIfNoAmmo("FireEmpty")
+    MG4C H 1 BRIGHT A_GunFlash
+    MG4C IJ 1
+    MG4C J 0 A_JumpIfInventory("MG4Ammo",1,2)
+    MG4C J 1 A_ReFire
+    goto Ready+21
+    MG4C A 0 A_JumpIfNoAmmo("ReloadStart")
+    MG4C A 0 A_ReFire
+    goto Ready+21
+  Reload: //AltFire:
+    MG4D A 0 A_JumpIfInventory("MG4Ammo",1,"ReloadStart")
+    MG4D A 0 A_TakeInventory("Reloading",1)
+    goto Ready+18
+  ReloadStart:
+    MG4D A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
+    MG4D A 0 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
+    MG4D A 3 A_PlaySoundEx("mg4/reload1","SoundSlot5")
+    MG4D BCDEFGHI 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4D JKLMNOPQ 3 A_WeaponReady(WRF_NOFIRE)
+    MG4D RSTUVWXY 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4D Z 3 A_PlaySoundEx("mg4/reload2","SoundSlot5")
+    MG4E ABCDEFGHI 3 A_WeaponReady(WRF_NOFIRE)
+    MG4E J 3 A_PlaySoundEx("mg4/reload3","SoundSlot5")
+    MG4E KLMNOPQR 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4E STUVWXYZ 3 A_WeaponReady(WRF_NOFIRE)
+    MG4F ABCD 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4F E 3 A_PlaySoundEx("mg4/reload4","SoundSlot5")
+    MG4F FGHIJKL 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4F M 3 A_PlaySoundEx("mg4/reload5","SoundSlot5")
+    MG4F N 3 A_TakeInventory("Reloading",1)
+    MG4F O 3 
+    goto ReloadAmmo
+  ReloadAmmo:
+    U46C P 0 A_GiveInventory("MG4Clip",1)
+    U46C P 0 A_TakeInventory("MG4Ammo",1)
+    U46C P 0 A_JumpIfInventory("MG4Clip",100,"ReloadEnd")
+    U46C P 0 A_JumpIfInventory("MG4Ammo",1,"ReloadAmmo")
+    goto ReloadEnd
+  ReloadEnd:
+    MG4F PQRSTUVWXYZ 3 A_WeaponReady(WRF_NOFIRE)
+    MG4G A 3 A_PlaySoundEx("mg4/reload6","SoundSlot5")
+    MG4G BCDEFGHIJKLM 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4G NOPQRSTUVWXYZ 3 A_WeaponReady(WRF_NOFIRE)
+    MG4H ABCDEF 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    U46D B 0 A_ReFire
+    goto Ready+15
+  AltFire:
+    MG4C A 0 A_JumpIfInventory("Aiming",1,"AltFire2")
+    MG4C A 0 A_ZoomFactor(1.2)
+    MG4C ABCDEF 2
+    MG4C G 0 A_GiveInventory("Aiming",1)
+    MG4C G 0 ACS_ExecuteAlways(602,0,0,0,0)
+    MG4C G 0 A_Refire
+    goto Ready+21
+  AltFire2:
+    MG4C A 0 A_ZoomFactor(1.0)
+    MG4C FEDCBA 2
+    MG4C A 0 A_TakeInventory("Aiming",1)
+    MG4C A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    MG4C G 0 A_Refire
+    goto Ready+15
+  AltHold:
+    MG4A P 1 A_JumpIfInventory("Aiming",1,"AltHoldAim")
+    MG4A P 1 A_ReFire
+    goto Ready+15
+  AltHoldAim:
+    MG4C F 1
+    MG4C F 1 A_ReFire
+    goto Ready+17
+  ReloadStartAim:
+    MG4C A 0 A_ZoomFactor(1.0)
+    MG4C FEDCBA 2
+    MG4C A 0 A_TakeInventory("Aiming",1)
+    MG4C A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto ReloadStart+1
+  Flash:
+    TNT1 A 2 bright A_Light1
+    TNT1 A 0 bright A_Light0
+    stop
+  Spawn:
+    WEAP J 15
+    WEAP J 0 A_SpawnItemEx("MG4Pickup")
+    stop
+  Fire_SteadyAim:
+    MG4B A 0 A_PlayWeaponSound("mg4/fire")
+    MG4B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    MG4B A 1 BRIGHT A_FireBullets (5.0, 5.0, -1, 11, "LMGPuff", 1, 6000)
+    MG4B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MG4B A 0 //A_JumpIfNoAmmo("FireEmpty")
+    MG4B B 1 BRIGHT A_GunFlash
+    MG4B CD 1
+    MG4B D 0 A_JumpIfInventory("MG4Ammo",1,2)
+    MG4B D 1 A_ReFire
+    goto Ready+15
+    MG4B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MG4B A 0 A_ReFire
+    goto Ready+15
+  Hold_SteadyAim:
+    MG4B A 0 A_PlayWeaponSound("mg4/fire")
+    MG4B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    MG4B A 1 BRIGHT A_FireBullets (8.0, 8.0, -1, 11, "LMGPuff", 1, 6000)
+    MG4B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MG4B A 0 //A_JumpIfNoAmmo("FireEmpty")
+    MG4B B 1 BRIGHT A_GunFlash
+    MG4B CD 1
+    MG4B D 0 A_JumpIfInventory("MG4Ammo",1,2)
+    MG4B D 1 A_ReFire
+    goto Ready+15
+    MG4B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MG4B A 0 A_ReFire
+    goto Ready+15
+  ReloadStart_SOH:
+    MG4D A 2 A_PlaySoundEx("mg4/reload1","SoundSlot5")
+    MG4D BCDEFGHI 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4D JKLMNOPQ 2 A_WeaponReady(WRF_NOFIRE)
+    MG4D RSTUVWXY 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4D Z 2 A_PlaySoundEx("mg4/reload2","SoundSlot5")
+    MG4E ABCDEFGHI 2 A_WeaponReady(WRF_NOFIRE)
+    MG4E J 2 A_PlaySoundEx("mg4/reload3","SoundSlot5")
+    MG4E KLMNOPQR 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4E STUVWXYZ 2 A_WeaponReady(WRF_NOFIRE)
+    MG4F ABCD 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4F E 2 A_PlaySoundEx("mg4/reload4","SoundSlot5")
+    MG4F FGHIJKL 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4F M 2 A_PlaySoundEx("mg4/reload5","SoundSlot5")
+    MG4F N 2 A_TakeInventory("Reloading",1)
+    MG4F O 2 
+    goto ReloadAmmo_SOH
+  ReloadAmmo_SOH:
+    U46C P 0 A_GiveInventory("MG4Clip",1)
+    U46C P 0 A_TakeInventory("MG4Ammo",1)
+    U46C P 0 A_JumpIfInventory("MG4Clip",100,"ReloadEnd_SOH")
+    U46C P 0 A_JumpIfInventory("MG4Ammo",1,"ReloadAmmo_SOH")
+    goto ReloadEnd_SOH
+  ReloadEnd_SOH:
+    MG4F PQRSTUVWXYZ 2 A_WeaponReady(WRF_NOFIRE)
+    MG4G A 2 A_PlaySoundEx("mg4/reload6","SoundSlot5")
+    MG4G BCDEFGHIJKLM 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4G NOPQRSTUVWXYZ 2 A_WeaponReady(WRF_NOFIRE)
+    MG4H ABCDEF 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    U46D B 0 A_ReFire
+    goto Ready+15
+  FragGrenade:
+    U45F A 0 A_ZoomFactor(1.0)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    U45A L 0 A_TakeInventory("Reloading",1)
+    U45F A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    U45A L 0 A_JumpIfInventory("Perk1_SOH_Pro",1,"FragGrenade_SOH")
+    GRNA A 2 A_PlaySound("grenade/pinpull")
+    GRNA BCDEFGH 2
+    TNT1 A 15 
+    TNT1 A 0 A_PlaySound("grenade/throw")
+    GRNA A 0 A_PlaySoundEx("us/grenades","Voice")
+    GRNA IJK 2
+    GRNA L 0 A_TakeInventory("FragGrenadeAmmo",1)
+    GRNA L 0 A_TakeInventory("ThrowingGrenade",1)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    GRNA L 2 A_FireCustomMissile("FragGrenade",0,0,0,16)
+    GRNA MN 2 
+    goto Ready+1
+  FragGrenade_SOH:
+    GRNA A 1 A_PlaySound("grenade/pinpull")
+    GRNA BCDEFGH 1
+    TNT1 A 10
+    TNT1 A 0 A_PlaySound("grenade/throw")
+    GRNA A 0 A_PlaySoundEx("us/grenades","Voice")
+    GRNA IJK 1
+    GRNA L 0 A_TakeInventory("FragGrenadeAmmo",1)
+    GRNA L 0 A_TakeInventory("ThrowingGrenade",1)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    GRNA L 1 A_FireCustomMissile("FragGrenade",0,0,0,16)
+    GRNA MN 1 
+    goto Ready+1
+  KnifeAttack:
+    U45F A 0 A_ZoomFactor(1.0)
+    U45A L 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    U45A L 0 A_TakeInventory("Aiming",1)
+    U45A L 0 A_TakeInventory("Reloading",1)
+    U45F A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    U45A L 0 A_JumpIfInventory("Perk1_SOH_Pro",1,"KnifeAttack_SOH")
+    U45C A 0 A_JumpIfInventory("Perk3_Commando",1,"KnifeAttack_Commando")
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",96)
+    KNFA FGHIJKL 1 
+    TNT1 A 20
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_Commando:
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",160)
+    KNFA FGHIJKL 1 
+    TNT1 A 20
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_SOH:
+    U45C A 0 A_JumpIfInventory("Perk3_Commando",1,"KnifeAttack_SOH_Commando")
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",96)
+    KNFA FGHIJKL 1 
+    TNT1 A 10
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_SOH_Commando:
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",160)
+    KNFA FGHIJKL 1 
+    TNT1 A 10
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  }
+}
+
+actor MG4Clip : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 0
+    inventory.maxamount 100
+    ammo.backpackamount 0
+    ammo.backpackmaxamount 100
+    +IGNORESKILL
+}
+actor "MG4 Ex Mags" : "MG4"
+{
+  obituary "%k fed %o with lead from the MG4."
+  inventory.pickupmessage "MG4"  
+  //attacksound "mg4/fire1"
+  weapon.selectionorder 1
+  weapon.ammotype "MG4Clip2"
+  weapon.ammouse 1
+  weapon.ammogive 0
+  weapon.ammotype2 "MG4Ammo"
+  weapon.ammouse2 0
+  weapon.ammogive2 0
+  -NOAUTOFIRE
+  states
+  {
+  Reload: //AltFire:
+    MG4D A 0 A_JumpIfInventory("MG4Ammo",1,"ReloadStart")
+    MG4D A 0 A_TakeInventory("Reloading",1)
+    goto Ready+18
+  ReloadStart:
+    MG4D A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
+    MG4D A 0 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
+    MG4D A 3 A_PlaySoundEx("mg4/reload1","SoundSlot5")
+    MG4D BCDEFGHI 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4D JKLMNOPQ 3 A_WeaponReady(WRF_NOFIRE)
+    MG4D RSTUVWXY 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4D Z 3 A_PlaySoundEx("mg4/reload2","SoundSlot5")
+    MG4E ABCDEFGHI 3 A_WeaponReady(WRF_NOFIRE)
+    MG4E J 3 A_PlaySoundEx("mg4/reload3","SoundSlot5")
+    MG4E KLMNOPQR 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4E STUVWXYZ 3 A_WeaponReady(WRF_NOFIRE)
+    MG4F ABCD 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4F E 3 A_PlaySoundEx("mg4/reload4","SoundSlot5")
+    MG4F FGHIJKL 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4F M 3 A_PlaySoundEx("mg4/reload5","SoundSlot5")
+    MG4F N 3 A_TakeInventory("Reloading",1)
+    MG4F O 3 
+    goto ReloadAmmo
+  ReloadAmmo:
+    U46C P 0 A_GiveInventory("MG4Clip2",1)
+    U46C P 0 A_TakeInventory("MG4Ammo",1)
+    U46C P 0 A_JumpIfInventory("MG4Clip2",200,"ReloadEnd")
+    U46C P 0 A_JumpIfInventory("MG4Ammo",1,"ReloadAmmo")
+    goto ReloadEnd
+  ReloadEnd:
+    MG4F PQRSTUVWXYZ 3 A_WeaponReady(WRF_NOFIRE)
+    MG4G A 3 A_PlaySoundEx("mg4/reload6","SoundSlot5")
+    MG4G BCDEFGHIJKLM 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4G NOPQRSTUVWXYZ 3 A_WeaponReady(WRF_NOFIRE)
+    MG4H ABCDEF 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    U46D B 0 A_ReFire
+    goto Ready+15
+  ReloadStartAim:
+    MG4C A 0 A_ZoomFactor(1.0)
+    MG4C FEDCBA 2
+    MG4C A 0 A_TakeInventory("Aiming",1)
+    MG4C A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto ReloadStart+1
+  ReloadStart_SOH:
+    MG4D A 2 A_PlaySoundEx("mg4/reload1","SoundSlot5")
+    MG4D BCDEFGHI 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4D JKLMNOPQ 2 A_WeaponReady(WRF_NOFIRE)
+    MG4D RSTUVWXY 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4D Z 2 A_PlaySoundEx("mg4/reload2","SoundSlot5")
+    MG4E ABCDEFGHI 2 A_WeaponReady(WRF_NOFIRE)
+    MG4E J 2 A_PlaySoundEx("mg4/reload3","SoundSlot5")
+    MG4E KLMNOPQR 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4E STUVWXYZ 2 A_WeaponReady(WRF_NOFIRE)
+    MG4F ABCD 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4F E 2 A_PlaySoundEx("mg4/reload4","SoundSlot5")
+    MG4F FGHIJKL 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4F M 2 A_PlaySoundEx("mg4/reload5","SoundSlot5")
+    MG4F N 2 A_TakeInventory("Reloading",1)
+    MG4F O 2 
+    goto ReloadAmmo_SOH
+  ReloadAmmo_SOH:
+    U46C P 0 A_GiveInventory("MG4Clip2",1)
+    U46C P 0 A_TakeInventory("MG4Ammo",1)
+    U46C P 0 A_JumpIfInventory("MG4Clip2",200,"ReloadEnd_SOH")
+    U46C P 0 A_JumpIfInventory("MG4Ammo",1,"ReloadAmmo_SOH")
+    goto ReloadEnd_SOH
+  ReloadEnd_SOH:
+    MG4F PQRSTUVWXYZ 2 A_WeaponReady(WRF_NOFIRE)
+    MG4G A 2 A_PlaySoundEx("mg4/reload6","SoundSlot5")
+    MG4G BCDEFGHIJKLM 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MG4G NOPQRSTUVWXYZ 2 A_WeaponReady(WRF_NOFIRE)
+    MG4H ABCDEF 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    U46D B 0 A_ReFire
+    goto Ready+15
+
+  }
+}
+
+actor MG4Clip2 : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 0
+    inventory.maxamount 200
+    ammo.backpackamount 0
+    ammo.backpackmaxamount 200
+    +IGNORESKILL
+}
+
+actor MG4ExMags : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+actor "MG4 Grip" : "MG4"
+{/*
+  obituary "%k fed %o with lead from the MG4."
+  inventory.pickupmessage "MG4"  
+  //attacksound "mg4/fire1"
+  weapon.selectionorder 1
+  weapon.ammotype "MG4Clip"
+  weapon.ammouse 1
+  weapon.ammogive 0
+  weapon.ammotype2 "MG4Ammo"
+  weapon.ammouse2 0
+  weapon.ammogive2 0
+  -NOAUTOFIRE
+  states
+  {
+  Fire:
+    MG4B A 0 A_JumpIfInventory("Aiming",1,"FireAim")
+    MG4B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MG4B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
+    MG4B A 0 A_PlayWeaponSound("mg4/fire")
+    MG4B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    MG4B A 1 BRIGHT A_FireBullets (5.0, 5.0, -1, 12, "LMGPuff", 1, 6000)
+    MG4B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MG4B A 0 //A_JumpIfNoAmmo("FireEmpty")
+    MG4B B 1 BRIGHT A_GunFlash
+    MG4B CD 1
+    MG4B D 0 A_JumpIfInventory("MG4Ammo",1,2)
+    MG4B D 1 A_ReFire
+    goto Ready+15
+    MG4B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MG4B A 0 A_ReFire
+    goto Ready+15
+  Hold:
+    MG4B A 0 A_JumpIfInventory("Aiming",1,"HoldAim")
+    MG4B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MG4B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Hold_SteadyAim")
+    MG4B A 0 A_PlayWeaponSound("mg4/fire")
+    MG4B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    MG4B A 1 BRIGHT A_FireBullets (7.5, 7.5, -1, 12, "LMGPuff", 1, 6000)
+    MG4B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MG4B A 0 //A_JumpIfNoAmmo("FireEmpty")
+    MG4B B 1 BRIGHT A_GunFlash
+    MG4B CD 1
+    MG4B D 0 A_JumpIfInventory("MG4Ammo",1,2)
+    MG4B D 1 A_ReFire
+    goto Ready+15
+    MG4B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MG4B A 0 A_ReFire
+    goto Ready+15
+  FireAim:
+    MG4C G 0 A_PlayWeaponSound("mg4/fire")
+    MG4C G 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
+    MG4C G 1 BRIGHT A_FireBullets (0.5, 0.5, -1, 12, "LMGPuff", 1, 6000)
+    MG4C G 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MG4C G 0 //A_JumpIfNoAmmo("FireEmpty")
+    MG4C H 1 BRIGHT A_GunFlash
+    MG4C IJ 1
+    MG4C I 0 A_JumpIfInventory("MG4Ammo",1,2)
+    MG4C J 1 A_ReFire
+    goto Ready+21
+    MG4C A 0 A_JumpIfNoAmmo("ReloadStart")
+    MG4C A 0 A_ReFire
+    goto Ready+21
+  HoldAim:
+    MG4C G 0 A_PlayWeaponSound("mg4/fire")
+    MG4C G 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
+    MG4C G 1 BRIGHT A_FireBullets (1.5, 1.5, -1, 12, "LMGPuff", 1, 6000)
+    MG4C H 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MG4C H 0 //A_JumpIfNoAmmo("FireEmpty")
+    MG4C H 1 BRIGHT A_GunFlash
+    MG4C IJ 1
+    MG4C J 0 A_JumpIfInventory("MG4Ammo",1,2)
+    MG4C J 1 A_ReFire
+    goto Ready+21
+    MG4C A 0 A_JumpIfNoAmmo("ReloadStart")
+    MG4C A 0 A_ReFire
+    goto Ready+21
+  Fire_SteadyAim:
+    MG4B A 0 A_PlayWeaponSound("mg4/fire")
+    MG4B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    MG4B A 1 BRIGHT A_FireBullets (4.0, 4.0, -1, 12, "LMGPuff", 1, 6000)
+    MG4B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MG4B A 0 //A_JumpIfNoAmmo("FireEmpty")
+    MG4B B 1 BRIGHT A_GunFlash
+    MG4B CD 1
+    MG4B D 0 A_JumpIfInventory("MG4Ammo",1,2)
+    MG4B D 1 A_ReFire
+    goto Ready+15
+    MG4B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MG4B A 0 A_ReFire
+    goto Ready+15
+  Hold_SteadyAim:
+    MG4B A 0 A_PlayWeaponSound("mg4/fire")
+    MG4B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    MG4B A 1 BRIGHT A_FireBullets (6.0, 6.0, -1, 12, "LMGPuff", 1, 6000)
+    MG4B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MG4B A 0 //A_JumpIfNoAmmo("FireEmpty")
+    MG4B B 1 BRIGHT A_GunFlash
+    MG4B CD 1
+    MG4B D 0 A_JumpIfInventory("MG4Ammo",1,2)
+    MG4B D 1 A_ReFire
+    goto Ready+15
+    MG4B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MG4B A 0 A_ReFire
+    goto Ready+15
+  }*/
+}
+
+actor MG4Grip : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+actor MG4Pickup : CustomInventory
+{
+  inventory.pickupmessage "MG4"  
+  inventory.pickupsound "misc/w_pkup"
+  +INVENTORY.AUTOACTIVATE
+  inventory.respawntics 35
+  scale 0.15
+  States
+  {
+  Spawn:
+    WEAP J -1
+    stop
+  Pickup:
+    JDGP A 0
+    JDGP A 0 A_JumpIfInventory("MG4",1,"FailPickup") // If the player already has this weapon, they get more ammo for it
+    JDGP A 0 A_JumpIfInventory("MG4 Ex Mags",1,"FailPickup")
+    JDGP A 0 A_JumpIfInventory("MG4 Grip",1,"FailPickup")
+    JDGP A 0 A_JumpIfInventory("MaxWeaponsFilled",0,"FailPickup2")
+    BKPK A 0 ACS_ExecuteWithResult(618,14,0,0)
+    stop
+  AmmoPickup:
+    JDGP A 0
+    JDGP A 0 A_JumpIfInventory("MG4Ammo",0,"FailPickup")
+    JDGP A 0 A_GiveInventory("MG4Ammo",100)
+    stop
+  FailPickup:
+    WEAP J 1
+    fail
+  FailPickup2:
+    WEAP J 1 
+    BKPK A 0 ACS_ExecuteAlways(620,0,3,0,0)
+    fail
+  }
+}

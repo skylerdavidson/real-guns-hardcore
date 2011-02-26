@@ -1,0 +1,313 @@
+
+// Fullscreen HUD
+
+statusbar fullscreen, forcescaled
+{
+	drawswitchableimage BlueSkull, "nullimage", "BLUSKLL", 12, 165;
+	drawswitchableimage YellowSkull, "nullimage", "YELSKLL", 24, 165;
+	drawswitchableimage RedSkull, "nullimage", "REDSKLL", 36, 165;
+	drawswitchableimage BlueCard, "nullimage", "BLUCARD", 60, 165;
+	drawswitchableimage YellowCard, "nullimage", "YELCARD", 72, 165;
+	drawswitchableimage RedCard, "nulliUmage", "REDCARD", 84, 165;
+
+ 	drawbar "HEALBAR", "HEALBAR2", Health, horizontal, reverse, 8, 185;
+ 	drawbar "ARMRBAR", "ARMRBAR2", Armor, horizontal, reverse, 8, 191;
+        drawimage "HEALBAR3", 6, 183;
+        drawnumber 3, CONFONT, Yellow, Health, 44,  184, 0, Red, 33, Green, 66;
+        drawnumber 3, CONFONT, Green, Armor, whennotzero, 98,  187, 0, Red, 33, Blue, 101;
+
+        drawnumber 3, CONFONT, Gray, ammo2, 245,  175;
+        drawnumber 3, CONFONT, Gray, ammo1, 206,  185;
+        
+	IsSelected "M14 EBR Ex Mags"
+	{
+ 		drawbar "AMMO10", "AMMO10B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "M14 EBR", "M14 EBR Thermal"
+	{
+ 		drawbar "AMMO10", "AMMO10B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "Model 1887"
+	{
+ 		drawbar "AMMO7", "AMMO7B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "M240 Ex Mags", "M240"
+	{
+ 		drawbar "AMMO50", "AMMO50B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "M240 Grip", "L86"
+	{
+ 		drawbar "AMMO50", "AMMO50B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "L86 Ex Mags", "L86 Grip"
+	{
+ 		drawbar "AMMO50", "AMMO50B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "M1014", "M1014 Grip"
+	{
+ 		drawbar "AMMO4", "AMMO4B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "M1014 Ex Mags"
+	{
+ 		drawbar "AMMO6", "AMMO6B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "M9", "M9 Ex Mags"
+	{
+ 		drawbar "AMMO15", "AMMO15B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "M9 Tac Knife"
+	{
+ 		drawbar "AMMO15", "AMMO15B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "M9 Akimbo"
+	{
+ 		drawbar "AMMO30", "AMMO30B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "WA2000", "WA2000 Thermal"
+	{
+ 		drawbar "AMMO6", "AMMO6B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "WA2000 Ex Mags"
+	{
+ 		drawbar "AMMO12S", "AMMO12SB", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "AUG HBAR", "AUG HBAR Ex Mags"
+	{
+ 		drawbar "AMMO42", "AMMO42B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "AUG HBAR Grip"
+	{
+ 		drawbar "AMMO42", "AMMO42B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "Striker", "Striker Ex Mags"
+	{
+ 		drawbar "AMMO12S", "AMMO12SB", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "Striker Grip"
+	{
+ 		drawbar "AMMO12S", "AMMO12SB", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "AK-47", "AK-47 Ex Mags"
+	{
+ 		drawbar "AMMO30", "AMMO30B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "M16A4", "M16A4 Ex Mags"
+	{
+ 		drawbar "AMMO30", "AMMO30B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "M93 Raffica"
+	{
+ 		drawbar "AMMO20", "AMMO20B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "M93 Raffica Ex Mags"
+	{
+ 		drawbar "AMMO30", "AMMO30B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "FAL", "PP2000"
+	{
+ 		drawbar "AMMO20", "AMMO20B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "PP2000 Akimbo"
+	{
+ 		drawbar "AMMO20", "AMMO20B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "FAL Ex Mags", "PP2000 Ex Mags"
+	{
+ 		drawbar "AMMO30", "AMMO30B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "SCAR-H"
+	{
+ 		drawbar "AMMO20", "AMMO20B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "SCAR-H Ex Mags"
+	{
+ 		drawbar "AMMO30", "AMMO30B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "FAMAS", "FAMAS Ex Mags"
+	{
+ 		drawbar "AMMO30", "AMMO30B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "M4A1", "M4A1 Ex Mags"
+	{
+ 		drawbar "AMMO30", "AMMO30B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "TDI Vector", "TDI Vector Ex Mags"
+	{
+ 		drawbar "AMMO30", "AMMO30B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "ACR", "ACR Ex Mags"
+	{
+ 		drawbar "AMMO30", "AMMO30B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "F2000", "F2000 Ex Mags"
+	{
+ 		drawbar "AMMO30", "AMMO30B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "FN P90", "FN P90 Rapid Fire"
+	{
+ 		drawbar "AMMO50", "AMMO50B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "FN P90 Ex Mags", "MG4"
+	{
+ 		drawbar "AMMO50", "AMMO50B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "MG4 Ex Mags", "MG4 Grip"
+	{
+ 		drawbar "AMMO50", "AMMO50B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "UMP45", "UMP45 Rapid Fire"
+	{
+ 		drawbar "AMMO32", "AMMO32B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "UMP45 Ex Mags", "Mini-UZI"
+	{
+ 		drawbar "AMMO32", "AMMO32B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "Mini-UZI Ex Mags", "Mini-UZI Akimbo"
+	{
+ 		drawbar "AMMO32", "AMMO32B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "G18", "G18 Akimbo"
+	{
+ 		drawbar "AMMO33", "AMMO33B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "G18 Ex Mags"
+	{
+ 		drawbar "AMMO50", "AMMO50B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "USP .45", "USP .45 Ex Mags"
+	{
+ 		drawbar "AMMO12", "AMMO12B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "USP .45 Akimbo", "USP .45 Tac Knife"
+	{
+ 		drawbar "AMMO12", "AMMO12B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "USP .45 LastStand"
+	{
+ 		drawbar "AMMO12", "AMMO12B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "Intervention", "Intervention Thermal"
+	{
+ 		drawbar "AMMO5", "AMMO5B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "Intervention Ex Mags", "Barrett 50cal Ex Mags"
+	{
+ 		drawbar "AMMO10", "AMMO10B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "Barrett 50cal", "Barrett 50cal Thermal"
+	{
+ 		drawbar "AMMO10", "AMMO10B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "SPAS-12", "SPAS-12 Ex Mags"
+	{
+ 		drawbar "AMMO8", "AMMO8B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "SPAS-12 Grip", "AA-12"
+	{
+ 		drawbar "AMMO8", "AMMO8B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "AA-12 Grip", "AA-12 Ex Mags"
+	{
+ 		drawbar "AMMO8", "AMMO8B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "MP5K", "MP5K Ex Mags"
+	{
+ 		drawbar "AMMO30", "AMMO30B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "MP5K Rapid Fire"
+	{
+ 		drawbar "AMMO30", "AMMO30B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "Ranger"
+	{
+ 		drawbar "AMMO2", "AMMO2B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "Thumper", "FAMAS M203"
+	{
+ 		drawbar "AMMO203", "AMMO203B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "AT4-HS", "RPG-7"
+	{
+ 		drawbar "AMMOAT4", "AMMOAT4B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected ".44 Magnum", ".44 Magnum Tac Knife"
+	{
+ 		drawbar "AMMO6", "AMMO6B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected ".44 Magnum Akimbo"
+	{
+ 		drawbar "AMMO12", "AMMO12B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+
+	IsSelected "Desert Eagle", "Desert Eagle Tac Knife"
+	{
+ 		drawbar "AMMO7", "AMMO7B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+	IsSelected "Deagle Special", "Desert Eagle Akimbo"
+	{
+ 		drawbar "AMMO14", "AMMO14B", Ammo1, horizontal, reverse, 210, 185;
+ 	}
+
+	drawselectedinventory INDEXFON, 126, 170;
+
+        drawnumber 1, CONFONT, Gray, ammo FragGrenadeAmmo, whennotzero, 166,  185;
+        DrawSwitchableImage FragGrenadeAmmo, "", "FRAGAMMO", 170, 183;
+}
+
+statusbar inventoryfullscreen
+{
+	drawinventorybar Doom, 7, INDEXFON, 80, 150;
+}
+
+statusbar normal
+{
+	drawimage "STBAR", 0, 168;
+	drawimage "STTPRCNT", 90, 171;
+	drawimage "STTPRCNT", 221, 171;
+	drawnumber 3, HUDFONT_DOOM, red, ammo1, 44, 171;
+	drawnumber 3, HUDFONT_DOOM, red, health, 90, 171;
+	drawnumber 3, HUDFONT_DOOM, red, armor, 221, 171;
+
+	//keys
+	drawswitchableimage BlueCard && BlueSkull, "nullimage", "STKEYS0", "STKEYS3", "STKEYS6", 239, 171;
+	drawswitchableimage YellowCard && YellowSkull, "nullimage", "STKEYS1", "STKEYS4", "STKEYS7", 239, 181;
+	drawswitchableimage RedCard && RedSkull, "nullimage", "STKEYS2", "STKEYS5", "STKEYS8", 239, 191;
+
+	drawnumber 3, INDEXFON, gold, ammo Clip, 288, 173;
+	drawnumber 3, INDEXFON, gold, ammo Shell, 288, 179;
+	drawnumber 3, INDEXFON, gold, ammo RocketAmmo, 288, 185;
+	drawnumber 3, INDEXFON, gold, ammo Cell, 288, 191;
+
+	drawnumber 3, INDEXFON, gold, ammocapacity Clip, 314, 173;
+	drawnumber 3, INDEXFON, gold, ammocapacity Shell, 314, 179;
+	drawnumber 3, INDEXFON, gold, ammocapacity RocketAmmo, 314, 185;
+	drawnumber 3, INDEXFON, gold, ammocapacity Cell, 314, 191;
+	gamemode deathmatch, teamgame
+	{
+		drawnumber 2, HUDFONT_DOOM, red, frags, 138, 171;
+	}
+	gamemode cooperative, singleplayer
+	{
+		drawimage "STARMS", 104, 168;
+		drawswitchableimage weaponslot 2, "STGNUM2", "STYSNUM2", 111, 172; 
+		drawswitchableimage weaponslot 3, "STGNUM3", "STYSNUM3", 123, 172;
+		drawswitchableimage weaponslot 4, "STGNUM4", "STYSNUM4", 135, 172;
+		drawswitchableimage weaponslot 5, "STGNUM5", "STYSNUM5", 111, 182;
+		drawswitchableimage weaponslot 6, "STGNUM6", "STYSNUM6", 123, 182;
+		drawswitchableimage weaponslot 7, "STGNUM7", "STYSNUM7", 135, 182;
+	}
+	gamemode cooperative, deathmatch, teamgame
+	{
+		drawimage translatable "STFBANY", 144, 169;
+	}
+	drawselectedinventory alternateonempty, INDEXFON, 143, 168
+	{
+		drawmugshot "STF", 5, 143, 168;
+	}
+}
+
+statusbar inventory
+{
+	drawinventorybar Doom, 7, INDEXFON, 50, 170;
+}

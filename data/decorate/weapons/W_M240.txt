@@ -1,0 +1,587 @@
+actor "M240" : RGUWeapon
+{
+  obituary "%k fed %o with lead from the M240."
+  inventory.pickupmessage "M240"  
+  //attacksound "mg4/fire1"
+  weapon.selectionorder 1
+  weapon.ammotype "M240Clip"
+  weapon.ammouse 1
+  weapon.ammogive 0
+  weapon.ammotype2 "M240Ammo"
+  weapon.ammouse2 0
+  weapon.ammogive2 0
+  -NOAUTOFIRE
+  states
+  {
+  Ready:
+    M24A A 2 //A_PlayWeaponSound("m9/select")
+    M24A BCDEFGH 2 
+    M24A IJKLMNO 2 A_WeaponReady(WRF_NOPRIMARY)
+    M24A P 0 A_JumpIfNoAmmo("Reload")
+    M24A P 0 A_JumpIfInventory("Aiming",1,5)
+    M24A P 0 A_JumpIfInventory("Reloading",1,"Reload")
+    M24A P 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    M24A P 0 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24A P 1 A_WeaponReady
+    goto Ready+15
+    M24C F 0 A_JumpIfInventory("Reloading",1,"Reload")    
+    M24C F 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    M24C F 0 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24C F 1 A_WeaponReady(WRF_NOBOB)
+    goto Ready+21
+  Deselect:
+    M24A K 0 A_TakeInventory("Aiming",1)
+    M24A K 0 ACS_ExecuteAlways(602,0,0,0,0)
+    M24A L 0 A_TakeInventory("Reloading",1)
+    M24A L 0 A_ZoomFactor(1.0)
+    M24A K 0 A_Lower
+    M24A K 1 A_Lower
+    goto Deselect+2
+  Select:
+    M24A A 0 A_Raise
+	M24A A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    loop
+  Fire:
+	TNT1 A 0 A_GiveInventory("InCombat",5)
+    M24B A 0 A_JumpIfInventory("Aiming",1,"FireAim")
+    M24B A 0 A_JumpIfNoAmmo("ReloadStart")
+    M24B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
+    M24B A 0 A_PlayWeaponSound("m240/fire")
+    M24B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    M24B A 1 BRIGHT A_FireBullets (8.0, 8.0, -1, 22, "LMGPuff", 1, 6000)
+    M24B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    M24B A 0 //A_JumpIfNoAmmo("FireEmpty")
+    M24B B 1 BRIGHT A_GunFlash
+    M24B C 1
+    M24B D 0 A_JumpIfInventory("M240Ammo",1,4)
+    M24B DEF 1 A_ReFire
+    goto Ready+15
+    M24B A 0 A_JumpIfNoAmmo("ReloadStart")
+    M24B DEF 1 A_ReFire
+    goto Ready+15
+  Hold:
+    M24B A 0 A_JumpIfInventory("Aiming",1,"HoldAim")
+    M24B A 0 A_JumpIfNoAmmo("ReloadStart")
+    M24B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Hold_SteadyAim")
+    M24B A 0 A_PlayWeaponSound("m240/fire")
+    M24B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    M24B A 1 BRIGHT A_FireBullets (12.0, 12.0, -1, 22, "LMGPuff", 1, 6000)
+    M24B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    M24B A 0 //A_JumpIfNoAmmo("FireEmpty")
+    M24B B 1 BRIGHT A_GunFlash
+    M24B C 1
+    M24B D 0 A_JumpIfInventory("M240Ammo",1,4)
+    M24B DEF 1 A_ReFire
+    goto Ready+15
+    M24B A 0 A_JumpIfNoAmmo("ReloadStart")
+    M24B DEF 1 A_ReFire
+    goto Ready+15
+  FireAim:
+    M24D A 0 A_PlayWeaponSound("m240/fire")
+    M24D A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
+    M24D A 1 BRIGHT A_FireBullets (1.0, 1.0, -1, 22, "LMGPuff", 1, 6000)
+    M24D B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    M24D A 0 //A_JumpIfNoAmmo("FireEmpty")
+    M24D B 1 BRIGHT A_GunFlash
+    M24D C 1
+    M24D D 0 A_JumpIfInventory("M240Ammo",1,4)
+    M24D DEF 1 A_ReFire
+    goto Ready+15
+    M24D A 0 A_JumpIfNoAmmo("ReloadStart")
+    M24D DEF 1 A_ReFire
+    goto Ready+15
+  HoldAim:
+    M24D A 0 A_PlayWeaponSound("m240/fire")
+    M24D A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
+    M24D A 1 BRIGHT A_FireBullets (2.5, 2.5, -1, 22, "LMGPuff", 1, 6000)
+    M24D B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    M24D A 0 //A_JumpIfNoAmmo("FireEmpty")
+    M24D B 1 BRIGHT A_GunFlash
+    M24D C 1
+    M24D D 0 A_JumpIfInventory("M240Ammo",1,4)
+    M24D DEF 1 A_ReFire
+    goto Ready+15
+    M24D A 0 A_JumpIfNoAmmo("ReloadStart")
+    M24D DEF 1 A_ReFire
+    goto Ready+15
+  Reload: //AltFire:
+    M24E A 0 A_JumpIfInventory("M240Ammo",1,"ReloadStart")
+    M24E A 0 A_TakeInventory("Reloading",1)
+    goto Ready+18
+  ReloadStart:
+    M24E A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
+    M24E A 0 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
+    M24E A 3 A_PlaySoundEx("m240/reload1","SoundSlot5")
+    M24E BCDEFGHI 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24E JKLMNOPQ 3 A_WeaponReady(WRF_NOFIRE)
+    M24E RSTUVWXY 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24E Z 3 A_PlaySoundEx("m240/reload2","SoundSlot5")
+    M24F ABCDEFGH 3 A_WeaponReady(WRF_NOFIRE)
+    M24F I 3 A_PlaySoundEx("m240/reload3","SoundSlot5")
+    M24F JKLMNOPQR 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24F STUV 3 A_WeaponReady(WRF_NOFIRE)
+    M24F W 3 A_PlaySoundEx("m240/reload4","SoundSlot5")
+    M24F XYZ 3 A_WeaponReady(WRF_NOFIRE)
+    M24G ABCDEFG 3 A_WeaponReady(WRF_NOFIRE)
+    M24G HIJ 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24G K 3 A_PlaySoundEx("m240/reload5","SoundSlot5")
+    M24G L 3 A_TakeInventory("Reloading",1)
+    M24G M 3 
+    goto ReloadAmmo
+  ReloadAmmo:
+    M24G P 0 A_GiveInventory("M240Clip",1)
+    M24G P 0 A_TakeInventory("M240Ammo",1)
+    M24G P 0 A_JumpIfInventory("M240Clip",100,"ReloadEnd")
+    M24G P 0 A_JumpIfInventory("M240Ammo",1,"ReloadAmmo")
+    goto ReloadEnd
+  ReloadEnd:
+    M24G NOPQRST 3 A_WeaponReady(WRF_NOFIRE)
+    M24G U 3 A_PlaySoundEx("m240/reload6","SoundSlot5")
+    M24G VWXYZ 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24H ABCDEFG 3 A_WeaponReady(WRF_NOFIRE)
+    M24H JIKLMNO 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    U46D B 0 A_ReFire
+    goto Ready+15
+  AltFire:
+    M24C A 0 A_JumpIfInventory("Aiming",1,"AltFire2")
+    M24C A 0 A_ZoomFactor(1.2)
+    M24C ABCDEF 2
+    M24C G 0 A_GiveInventory("Aiming",1)
+    M24C G 0 ACS_ExecuteAlways(602,0,0,0,0)
+    M24C G 0 A_Refire
+    goto Ready+21
+  AltFire2:
+    M24C A 0 A_ZoomFactor(1.0)
+    M24C FEDCBA 2
+    M24C A 0 A_TakeInventory("Aiming",1)
+    M24C A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    M24C G 0 A_Refire
+    goto Ready+15
+  AltHold:
+    M24A P 1 A_JumpIfInventory("Aiming",1,"AltHoldAim")
+    M24A P 1 A_ReFire
+    goto Ready+15
+  AltHoldAim:
+    M24C F 1
+    M24C F 1 A_ReFire
+    goto Ready+17
+  ReloadStartAim:
+    M24C A 0 A_ZoomFactor(1.0)
+    M24C FEDCBA 2
+    M24C A 0 A_TakeInventory("Aiming",1)
+    M24C A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto ReloadStart+1
+  Flash:
+    TNT1 A 2 bright A_Light1
+    TNT1 A 0 bright A_Light0
+    stop
+  Spawn:
+    WEP2 G 15
+    WEP2 G 0 A_SpawnItemEx("M240Pickup")
+    stop
+  ReloadStart_SOH:
+    M24E A 2 A_PlaySoundEx("m240/reload1","SoundSlot5")
+    M24E BCDEFGHI 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24E JKLMNOPQ 2 A_WeaponReady(WRF_NOFIRE)
+    M24E RSTUVWXY 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24E Z 2 A_PlaySoundEx("m240/reload2","SoundSlot5")
+    M24F ABCDEFGH 2 A_WeaponReady(WRF_NOFIRE)
+    M24F I 2 A_PlaySoundEx("m240/reload3","SoundSlot5")
+    M24F JKLMNOPQR 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24F STUV 2 A_WeaponReady(WRF_NOFIRE)
+    M24F W 2 A_PlaySoundEx("m240/reload4","SoundSlot5")
+    M24F XYZ 2 A_WeaponReady(WRF_NOFIRE)
+    M24G ABCDEFG 2 A_WeaponReady(WRF_NOFIRE)
+    M24G HIJ 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24G K 2 A_PlaySoundEx("m240/reload5","SoundSlot5")
+    M24G L 2 A_TakeInventory("Reloading",1)
+    M24G M 2 
+    goto ReloadAmmo_SOH
+  ReloadAmmo_SOH:
+    M24G P 0 A_GiveInventory("M240Clip",1)
+    M24G P 0 A_TakeInventory("M240Ammo",1)
+    M24G P 0 A_JumpIfInventory("M240Clip",100,"ReloadEnd_SOH")
+    M24G P 0 A_JumpIfInventory("M240Ammo",1,"ReloadAmmo_SOH")
+    goto ReloadEnd_SOH
+  ReloadEnd_SOH:
+    M24G NOPQRST 2 A_WeaponReady(WRF_NOFIRE)
+    M24G U 2 A_PlaySoundEx("m240/reload6","SoundSlot5")
+    M24G VWXYZ 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24H ABCDEFG 2 A_WeaponReady(WRF_NOFIRE)
+    M24H JIKLMNO 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    U46D B 0 A_ReFire
+    goto Ready+15
+  Fire_SteadyAim:
+    M24B A 0 A_PlayWeaponSound("m240/fire")
+    M24B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    M24B A 1 BRIGHT A_FireBullets (5.28, 5.28, -1, 22, "LMGPuff", 1, 6000)
+    M24B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    M24B A 0 //A_JumpIfNoAmmo("FireEmpty")
+    M24B B 1 BRIGHT A_GunFlash
+    M24B C 1
+    M24B D 0 A_JumpIfInventory("M240Ammo",1,4)
+    M24B DEF 1 A_ReFire
+    goto Ready+15
+    M24B A 0 A_JumpIfNoAmmo("ReloadStart")
+    M24B DEF 1 A_ReFire
+    goto Ready+15
+  Hold_SteadyAim:
+    M24B A 0 A_PlayWeaponSound("m240/fire")
+    M24B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    M24B A 1 BRIGHT A_FireBullets (8.0, 8.0, -1, 10, "LMGPuff", 1, 6000)
+    M24B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    M24B A 0 //A_JumpIfNoAmmo("FireEmpty")
+    M24B B 1 BRIGHT A_GunFlash
+    M24B C 1
+    M24B D 0 A_JumpIfInventory("M240Ammo",1,4)
+    M24B DEF 1 A_ReFire
+    goto Ready+15
+    M24B A 0 A_JumpIfNoAmmo("ReloadStart")
+    M24B DEF 1 A_ReFire
+    goto Ready+15
+  FragGrenade:
+    U45F A 0 A_ZoomFactor(1.0)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    U45A L 0 A_TakeInventory("Reloading",1)
+    U45F A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    U45A L 0 A_JumpIfInventory("Perk1_SOH_Pro",1,"FragGrenade_SOH")
+    GRNA A 2 A_PlaySound("grenade/pinpull")
+    GRNA BCDEFGH 2
+    TNT1 A 15 
+    TNT1 A 0 A_PlaySound("grenade/throw")
+    GRNA A 0 A_PlaySoundEx("us/grenades","Voice")
+    GRNA IJK 2
+    GRNA L 0 A_TakeInventory("FragGrenadeAmmo",1)
+    GRNA L 0 A_TakeInventory("ThrowingGrenade",1)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    GRNA L 2 A_FireCustomMissile("FragGrenade",0,0,0,16)
+    GRNA MN 2 
+    goto Ready+1
+  FragGrenade_SOH:
+    GRNA A 1 A_PlaySound("grenade/pinpull")
+    GRNA BCDEFGH 1
+    TNT1 A 10
+    TNT1 A 0 A_PlaySound("grenade/throw")
+    GRNA A 0 A_PlaySoundEx("us/grenades","Voice")
+    GRNA IJK 1
+    GRNA L 0 A_TakeInventory("FragGrenadeAmmo",1)
+    GRNA L 0 A_TakeInventory("ThrowingGrenade",1)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    GRNA L 1 A_FireCustomMissile("FragGrenade",0,0,0,16)
+    GRNA MN 1 
+    goto Ready+1
+  KnifeAttack:
+    U45F A 0 A_ZoomFactor(1.0)
+    U45A L 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    U45A L 0 A_TakeInventory("Aiming",1)
+    U45A L 0 A_TakeInventory("Reloading",1)
+    U45F A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    U45A L 0 A_JumpIfInventory("Perk1_SOH_Pro",1,"KnifeAttack_SOH")
+    U45C A 0 A_JumpIfInventory("Perk3_Commando",1,"KnifeAttack_Commando")
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",96)
+    KNFA FGHIJKL 1 
+    TNT1 A 20
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_Commando:
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",160)
+    KNFA FGHIJKL 1 
+    TNT1 A 20
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_SOH:
+    U45C A 0 A_JumpIfInventory("Perk3_Commando",1,"KnifeAttack_SOH_Commando")
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",96)
+    KNFA FGHIJKL 1 
+    TNT1 A 10
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_SOH_Commando:
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",160)
+    KNFA FGHIJKL 1 
+    TNT1 A 10
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  }
+}
+
+actor M240Clip : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 0
+    inventory.maxamount 100
+    ammo.backpackamount 0
+    ammo.backpackmaxamount 100
+    +IGNORESKILL
+}
+actor "M240 Ex Mags" : "M240"
+{
+  obituary "%k fed %o with lead from the M240."
+  inventory.pickupmessage "M240"  
+  //attacksound "mg4/fire1"
+  weapon.selectionorder 1
+  weapon.ammotype "M240Clip2"
+  weapon.ammouse 1
+  weapon.ammogive 0
+  weapon.ammotype2 "M240Ammo"
+  weapon.ammouse2 0
+  weapon.ammogive2 0
+  -NOAUTOFIRE
+  states
+  {
+  Reload: //AltFire:
+    M24E A 0 A_JumpIfInventory("M240Ammo",1,"ReloadStart")
+    M24E A 0 A_TakeInventory("Reloading",1)
+    goto Ready+18
+  ReloadStart:
+    M24E A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
+    M24E A 0 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
+    M24E A 3 A_PlaySoundEx("m240/reload1","SoundSlot5")
+    M24E BCDEFGHI 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24E JKLMNOPQ 3 A_WeaponReady(WRF_NOFIRE)
+    M24E RSTUVWXY 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24E Z 3 A_PlaySoundEx("m240/reload2","SoundSlot5")
+    M24F ABCDEFGH 3 A_WeaponReady(WRF_NOFIRE)
+    M24F I 3 A_PlaySoundEx("m240/reload3","SoundSlot5")
+    M24F JKLMNOPQR 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24F STUV 3 A_WeaponReady(WRF_NOFIRE)
+    M24F W 3 A_PlaySoundEx("m240/reload4","SoundSlot5")
+    M24F XYZ 3 A_WeaponReady(WRF_NOFIRE)
+    M24G ABCDEFG 3 A_WeaponReady(WRF_NOFIRE)
+    M24G HIJ 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24G K 3 A_PlaySoundEx("m240/reload5","SoundSlot5")
+    M24G L 3 A_TakeInventory("Reloading",1)
+    M24G M 3 
+    goto ReloadAmmo
+  ReloadAmmo:
+    M24G P 0 A_GiveInventory("M240Clip2",1)
+    M24G P 0 A_TakeInventory("M240Ammo",1)
+    M24G P 0 A_JumpIfInventory("M240Clip2",200,"ReloadEnd")
+    M24G P 0 A_JumpIfInventory("M240Ammo",1,"ReloadAmmo")
+    goto ReloadEnd
+  ReloadEnd:
+    M24G NOPQRST 3 A_WeaponReady(WRF_NOFIRE)
+    M24G U 3 A_PlaySoundEx("m240/reload6","SoundSlot5")
+    M24G VWXYZ 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24H ABCDEFG 3 A_WeaponReady(WRF_NOFIRE)
+    M24H JIKLMNO 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    U46D B 0 A_ReFire
+    goto Ready+15
+  ReloadStartAim:
+    M24C A 0 A_ZoomFactor(1.0)
+    M24C FEDCBA 2
+    M24C A 0 A_TakeInventory("Aiming",1)
+    M24C A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto ReloadStart+1
+  ReloadStart_SOH:
+    M24E A 2 A_PlaySoundEx("m240/reload1","SoundSlot5")
+    M24E BCDEFGHI 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24E JKLMNOPQ 2 A_WeaponReady(WRF_NOFIRE)
+    M24E RSTUVWXY 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24E Z 2 A_PlaySoundEx("m240/reload2","SoundSlot5")
+    M24F ABCDEFGH 2 A_WeaponReady(WRF_NOFIRE)
+    M24F I 2 A_PlaySoundEx("m240/reload3","SoundSlot5")
+    M24F JKLMNOPQR 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24F STUV 2 A_WeaponReady(WRF_NOFIRE)
+    M24F W 2 A_PlaySoundEx("m240/reload4","SoundSlot5")
+    M24F XYZ 2 A_WeaponReady(WRF_NOFIRE)
+    M24G ABCDEFG 2 A_WeaponReady(WRF_NOFIRE)
+    M24G HIJ 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24G K 2 A_PlaySoundEx("m240/reload5","SoundSlot5")
+    M24G L 2 A_TakeInventory("Reloading",1)
+    M24G M 2 
+    goto ReloadAmmo_SOH
+  ReloadAmmo_SOH:
+    M24G P 0 A_GiveInventory("M240Clip2",1)
+    M24G P 0 A_TakeInventory("M240Ammo",1)
+    M24G P 0 A_JumpIfInventory("M240Clip2",200,"ReloadEnd_SOH")
+    M24G P 0 A_JumpIfInventory("M240Ammo",1,"ReloadAmmo_SOH")
+    goto ReloadEnd_SOH
+  ReloadEnd_SOH:
+    M24G NOPQRST 2 A_WeaponReady(WRF_NOFIRE)
+    M24G U 2 A_PlaySoundEx("m240/reload6","SoundSlot5")
+    M24G VWXYZ 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    M24H ABCDEFG 2 A_WeaponReady(WRF_NOFIRE)
+    M24H JIKLMNO 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    U46D B 0 A_ReFire
+    goto Ready+15
+  }
+}
+
+actor M240Clip2 : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 0
+    inventory.maxamount 200
+    ammo.backpackamount 0
+    ammo.backpackmaxamount 200
+    +IGNORESKILL
+}
+
+actor M240ExMags : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+actor "M240 Grip" : "M240"
+{/*
+  obituary "%k fed %o with lead from the M240."
+  inventory.pickupmessage "M240"  
+  //attacksound "mg4/fire1"
+  weapon.selectionorder 1
+  weapon.ammotype "M240Clip"
+  weapon.ammouse 1
+  weapon.ammogive 0
+  weapon.ammotype2 "M240Ammo"
+  weapon.ammouse2 0
+  weapon.ammogive2 0
+  -NOAUTOFIRE
+  states
+  {
+  Fire:
+    M24B A 0 A_JumpIfInventory("Aiming",1,"FireAim")
+    M24B A 0 A_JumpIfNoAmmo("ReloadStart")
+    M24B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
+    M24B A 0 A_PlayWeaponSound("m240/fire")
+    M24B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    M24B A 1 BRIGHT A_FireBullets (8.0, 8.0, -1, 22, "LMGPuff", 1, 6000)
+    M24B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    M24B A 0 //A_JumpIfNoAmmo("FireEmpty")
+    M24B B 1 BRIGHT A_GunFlash
+    M24B C 1
+    M24B D 0 A_JumpIfInventory("M240Ammo",1,4)
+    M24B DEF 1 A_ReFire
+    goto Ready+15
+    M24B A 0 A_JumpIfNoAmmo("ReloadStart")
+    M24B DEF 1 A_ReFire
+    goto Ready+15
+  Hold:
+    M24B A 0 A_JumpIfInventory("Aiming",1,"HoldAim")
+    M24B A 0 A_JumpIfNoAmmo("ReloadStart")
+    M24B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Hold_SteadyAim")
+    M24B A 0 A_PlayWeaponSound("m240/fire")
+    M24B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    M24B A 1 BRIGHT A_FireBullets (10.0, 10.0, -1, 22, "LMGPuff", 1, 6000)
+    M24B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    M24B A 0 //A_JumpIfNoAmmo("FireEmpty")
+    M24B B 1 BRIGHT A_GunFlash
+    M24B C 1
+    M24B D 0 A_JumpIfInventory("M240Ammo",1,4)
+    M24B DEF 1 A_ReFire
+    goto Ready+15
+    M24B A 0 A_JumpIfNoAmmo("ReloadStart")
+    M24B DEF 1 A_ReFire
+    goto Ready+15
+  FireAim:
+    M24D A 0 A_PlayWeaponSound("m240/fire")
+    M24D A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
+    M24D A 1 BRIGHT A_FireBullets (1, 1, -1, 22, "LMGPuff", 1, 6000)
+    M24D B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    M24D A 0 //A_JumpIfNoAmmo("FireEmpty")
+    M24D B 1 BRIGHT A_GunFlash
+    M24D C 1
+    M24D D 0 A_JumpIfInventory("M240Ammo",1,4)
+    M24D DEF 1 A_ReFire
+    goto Ready+15
+    M24D A 0 A_JumpIfNoAmmo("ReloadStart")
+    M24D DEF 1 A_ReFire
+    goto Ready+15
+  HoldAim:
+    M24D A 0 A_PlayWeaponSound("m240/fire")
+    M24D A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
+    M24D A 1 BRIGHT A_FireBullets (1.75, 1.75, -1, 22, "LMGPuff", 1, 6000)
+    M24D B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    M24D A 0 //A_JumpIfNoAmmo("FireEmpty")
+    M24D B 1 BRIGHT A_GunFlash
+    M24D C 1
+    M24D D 0 A_JumpIfInventory("M240Ammo",1,4)
+    M24D DEF 1 A_ReFire
+    goto Ready+15
+    M24D A 0 A_JumpIfNoAmmo("ReloadStart")
+    M24D DEF 1 A_ReFire
+    goto Ready+15
+  Fire_SteadyAim:
+    M24B A 0 A_PlayWeaponSound("m240/fire")
+    M24B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    M24B A 1 BRIGHT A_FireBullets (5.28, 5.28, -1, 22, "LMGPuff", 1, 6000)
+    M24B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    M24B A 0 //A_JumpIfNoAmmo("FireEmpty")
+    M24B B 1 BRIGHT A_GunFlash
+    M24B C 1
+    M24B D 0 A_JumpIfInventory("M240Ammo",1,4)
+    M24B DEF 1 A_ReFire
+    goto Ready+15
+    M24B A 0 A_JumpIfNoAmmo("ReloadStart")
+    M24B DEF 1 A_ReFire
+    goto Ready+15
+  Hold_SteadyAim:
+    M24B A 0 A_PlayWeaponSound("m240/fire")
+    M24B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
+    M24B A 1 BRIGHT A_FireBullets (6.64, 6.64, -1, 22, "LMGPuff", 1, 6000)
+    M24B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    M24B A 0 //A_JumpIfNoAmmo("FireEmpty")
+    M24B B 1 BRIGHT A_GunFlash
+    M24B C 1
+    M24B D 0 A_JumpIfInventory("M240Ammo",1,4)
+    M24B DEF 1 A_ReFire
+    goto Ready+15
+    M24B A 0 A_JumpIfNoAmmo("ReloadStart")
+    M24B DEF 1 A_ReFire
+    goto Ready+15
+  }*/
+}
+
+actor M240Grip : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+actor M240Pickup : CustomInventory
+{
+  inventory.pickupmessage "M240"  
+  inventory.pickupsound "misc/w_pkup"
+  +INVENTORY.AUTOACTIVATE
+  inventory.respawntics 35
+  scale 0.15
+  States
+  {
+  Spawn:
+    WEP2 G -1
+    stop
+  Pickup:
+    JDGP A 0
+    JDGP A 0 A_JumpIfInventory("M240",1,"FailPickup") // If the player already has this weapon, they get more ammo for it
+    JDGP A 0 A_JumpIfInventory("M240 Ex Mags",1,"FailPickup")
+    JDGP A 0 A_JumpIfInventory("M240 Grip",1,"FailPickup")
+    JDGP A 0 A_JumpIfInventory("MaxWeaponsFilled",0,"FailPickup2")
+    BKPK A 0 ACS_ExecuteWithResult(618,33,0,0)
+    stop
+  AmmoPickup:
+    JDGP A 0
+    JDGP A 0 A_JumpIfInventory("M240Ammo",0,"FailPickup")
+    JDGP A 0 A_GiveInventory("M240Ammo",100)
+    stop
+  FailPickup:
+    WEP2 G 1
+    fail
+  FailPickup2:
+    WEP2 G 1 
+    BKPK A 0 ACS_ExecuteAlways(620,0,3,0,0)
+    fail
+  }
+}
