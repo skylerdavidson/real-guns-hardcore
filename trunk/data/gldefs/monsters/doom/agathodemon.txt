@@ -1,0 +1,93 @@
+Pointlight AgathoBall1
+{
+Color 1.0 0.4 0.4
+Size 48
+}
+
+Pointlight AgathoBall2
+{
+Color 0.8 0.2 0.2
+Size 48
+}
+
+Pointlight AgathoBall3
+{
+Color 0.8 0.2 0.2
+Size 64
+}
+
+Pointlight AgathoBall4
+{
+Color 0.6 0.0 0.0
+Size 56
+}
+
+Pointlight AgathoBall5
+{
+Color 0.5 0.0 0.0
+Size 56
+}
+
+Pointlight AgathoBall6
+{
+Color 0.5 0.0 0.0
+Size 48
+}
+
+Pointlight AgathoBall6
+{
+Color 0.4 0.0 0.0
+Size 32
+}
+
+Object AgathoDemonFireball
+{
+Frame TNT1A { Light AgathoBall1 }
+Frame AGFXG { Light AgathoBall2 }
+Frame AGFXH { Light AgathoBall3 }
+Frame AGFXI { Light AgathoBall4 }
+Frame AGFXJ { Light AgathoBall5 }
+Frame AGFXK { Light AgathoBall6 }
+Frame AGFXL { Light AgathoBall7 }
+}
+
+Pointlight AgathoTracer1
+{
+Color 0.8 0.0 0.0
+Size 48
+}
+
+Pointlight AgathoTracer2
+{
+Color 1.0 0.0 0.0
+Size 64
+}
+
+Pointlight AgathoTracer3
+{
+Color 0.8 0.0 0.0
+Size 56
+}
+
+Pointlight AgathoTracer4
+{
+Color 0.4 0.0 0.0
+Size 48
+}
+
+Pointlight AgathoTracer5
+{
+Color 0.4 0.0 0.0
+Size 40
+}
+
+Object AgathoDemonTracer
+{
+Frame AGFBA { Light AgathoTracer1 }
+Frame AGFBB { Light AgathoTracer1 }
+Frame AGFBC { Light AgathoTracer1 }
+Frame AGFBD { Light AgathoTracer2 }
+Frame AGFBE { Light AgathoTracer3 }
+Frame AGFBF { Light AgathoTracer4 }
+Frame AGFBG { Light AgathoTracer5 }
+}
