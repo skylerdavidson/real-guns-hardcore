@@ -1306,5 +1306,6 @@ object BigTree
 #include gldefs/monsters/doom/agathodemon.txt
 #include gldefs/monsters/doom/arachnophyte.txt
 #include "gldefs/monsters/doom/bruiser demon.txt"
+#include "gldefs/monsters/doom/crackodemon.txt"
 
 #include gldefs/artifacts/doom/ammosphere.txt
