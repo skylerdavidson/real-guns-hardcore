@@ -1,0 +1,61 @@
+ACTOR Arachnophyte : RGAMonster
+{
+    //$Category monsters
+    Health 2500
+    Radius 64
+    Height 100
+    Speed 6
+    PainChance 15
+    Mass 5000
+    MONSTER 
+    +NoGravity
+    +FloatBob
+    +Float
+    +NoRadiusDMG
+    +FireResist
+    SEESOUND "arachnophyte/sight"
+    PAINSOUND "arachnophyte/pain"
+    DEATHSOUND "arachnophyte/death"
+    ATTACKSOUND "spider/attack"
+    OBITUARY "%o was perforated by an Arachnophyte."
+    ExplosionDamage 128
+    ExplosionRadius 255
+    Decal Bulletchip
+	DropItem "SoulSphere2"
+    DropItem "AmmoSphere2" 128
+    states
+    {
+    Spawn:
+		APYT A 0 
+		APYT A 0 Thing_SetSpecial(0,226,613,0,random(250,400))
+        APYT A 0 A_PlaySound("arachnophyte/engine")		
+        APYT ABABAB 4 A_Look
+        goto Spawn+2
+    See:
+        APYT A 0 A_PlaySound("arachnophyte/engine")
+        APYT AABBAABBAABB 2 A_Chase
+        Loop
+    Missile:
+        APYT A 0 A_PlaySound("arachnophyte/engine")
+        APYT BABAB 4 A_FaceTarget
+        APYT A 0 A_PlaySound("arachnophyte/engine")
+        APYT CD 4 A_SPosAttack
+        APYT D 1 A_SpidRefire
+        Goto Missile+6
+    Pain:
+        APYT A 1 A_Pain
+        Goto See
+    Death:
+        APYT A 0 A_PlaySound("spider/death")
+        APYT A 4 A_Scream
+        APYT B 4 
+        APYT E 8 
+        APYT F 8
+        APYT G 6 A_Explode
+        APYT H 6 A_Fall
+        APYT I 6
+        APYT J 6
+        Stop
+    }
+}
+
