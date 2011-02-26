@@ -13,11 +13,25 @@ if exist "acs.err" goto acserror
 cd data\monsters
 ..\..\utility\7z u ..\..\temp\debug-monsters.pk3 *.wad -mx0
 cd ..
-..\utility\7z a ..\temp\debug-acs.pk3 LOADACS -mx0
-..\utility\7z u ..\temp\debug-data.pk3 sprites\* -mx0
-..\utility\7z u ..\temp\debug-data.pk3 sounds\* -mx0
-..\utility\7z u ..\temp\debug-data.pk3 graphics\* -mx0
-..\utility\7z u ..\temp\debug-data.pk3 hires\* -mx0
+..\utility\7z a ..\temp\debug-acs.pk3 LOADACS.txt -mx0
+..\utility\7z u ..\temp\debug-data.pk3 sprites\*.png -mx0
+..\utility\7z u ..\temp\debug-data.pk3 sprites\*\*.png -mx0
+..\utility\7z u ..\temp\debug-data.pk3 sprites\*\*\*.png -mx0
+..\utility\7z u ..\temp\debug-data.pk3 sounds\*.wav -mx0
+..\utility\7z u ..\temp\debug-data.pk3 sounds\*.ogg -mx0
+..\utility\7z u ..\temp\debug-data.pk3 sounds\*.mp3 -mx0
+..\utility\7z u ..\temp\debug-data.pk3 sounds\*\*.wav -mx0
+..\utility\7z u ..\temp\debug-data.pk3 sounds\*\*.ogg -mx0
+..\utility\7z u ..\temp\debug-data.pk3 sounds\*\*.mp3 -mx0
+..\utility\7z u ..\temp\debug-data.pk3 sounds\*\*\*.wav -mx0
+..\utility\7z u ..\temp\debug-data.pk3 sounds\*\*\*.ogg -mx0
+..\utility\7z u ..\temp\debug-data.pk3 sounds\*\*\*.mp3 -mx0
+..\utility\7z u ..\temp\debug-data.pk3 graphics\*.png -mx0
+..\utility\7z u ..\temp\debug-data.pk3 graphics\*\*.png -mx0
+..\utility\7z u ..\temp\debug-data.pk3 graphics\*\*\*.png -mx0
+..\utility\7z u ..\temp\debug-data.pk3 hires\*.png -mx0
+..\utility\7z u ..\temp\debug-data.pk3 hires\*\*.png -mx0
+..\utility\7z u ..\temp\debug-data.pk3 hires\*\*\*.png -mx0
 cd ..\temp\acs
 ..\..\utility\7z a ..\..\temp\debug-acs.pk3 acs\RGH_ACS -mx0
 cd ..\..
