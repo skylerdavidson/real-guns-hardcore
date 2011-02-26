@@ -1,0 +1,41 @@
+WeaponSection "RealGunsUltimate"
+setslot 1 "MenuChoice1" "USP .45" "USP .45 Ex Mags" "USP .45 Akimbo" "USP .45 Tac Knife" ".44 Magnum" ".44 Magnum Akimbo" ".44 Magnum Tac Knife" "M9" "M9 Akimbo" "M9 Tac Knife" "M9 Ex Mags" "Desert Eagle" "Deagle Special" "Desert Eagle Akimbo" "Desert Eagle Tac Knife" "PP2000" "PP2000 Ex Mags" "PP2000 Akimbo" "G18" "G18 Akimbo" "G18 Ex Mags" "M93 Raffica" "M93 Raffica Ex Mags"
+setslot 2 "MenuChoice2" "SPAS-12" "SPAS-12 Ex Mags" "SPAS-12 Grip" "AA-12" "AA-12 Ex Mags" "AA-12 Grip" "Striker" "Striker Ex Mags" "Striker Grip" "Ranger" "M1014" "M1014 Ex Mags" "M1014 Grip" "Model 1887"
+setslot 3 "MenuChoice3" "MP5K" "MP5K Ex Mags" "MP5K Rapid Fire" "UMP45" "UMP45 Ex Mags" "UMP45 Rapid Fire" "TDI Vector" "TDI Vector Ex Mags" "Mini-UZI" "Mini-UZI Ex Mags" "Mini-UZI Akimbo" "FN P90" "FN P90 Ex Mags" "FN P90 Rapid Fire"
+setslot 4 "MenuChoice4" "M4A1" "M4A1 Ex Mags" "FAMAS" "FAMAS Ex Mags" "FAMAS M203" "SCAR-H" "SCAR-H Ex Mags" "FAL" "FAL Ex Mags" "M16A4" "M16A4 Ex Mags" "ACR" "ACR Ex Mags" "F2000" "F2000 Ex Mags" "AK-47" "AK-47 Ex Mags"
+setslot 5 "MenuChoice5" "Thumper" "AT4-HS" "RPG-7"
+setslot 6 "MenuChoice6" "Intervention" "Intervention Thermal" "Intervention Ex Mags" "Barrett 50cal" "Barrett 50cal Thermal" "Barrett 50cal Ex Mags" "WA2000" "WA2000 Thermal" "WA2000 Ex Mags" "M14 EBR" "M14 EBR Thermal" "M14 EBR Ex Mags"
+setslot 7 "MenuChoice7" "L86" "L86 Ex Mags" "L86 Grip" "MG4" "MG4 Ex Mags" "MG4 Grip" "AUG HBAR" "AUG HBAR Ex Mags" "AUG HBAR Grip" "M240" "M240 Ex Mags" "M240 Grip"
+setslot 8 "MenuChoice8" "TacticalInsertion" "Revival Kit"
+setslot 9 "MenuChoice9"
+setslot 0 "MenuChoice10"
+ 
+
+addkeysection "Real Guns Hardcore" RealGuns
+addmenukey "Reload" reload
+addmenukey "Equipment/Grenade" grenade
+addmenukey "Knife attack" knife
+addmenukey "Drop Weapon" dropcurrent
+addmenukey "Change Voice" voice
+//addmenukey "Open/Close Loadout Menu" classmenu
+
+alias reload "puke 601"
+alias grenade "puke 603"
+alias knife "puke 604"
+alias dropcurrent "puke 621"
+alias classmenu "puke 613"
+alias voice "puke 626"
+
+defaultbind R reload
+defaultbind T grenade
+defaultbind G dropcurrent
+defaultbind F knife
+defaultbind Y voice
+
+clearplayerclasses
+Addplayerclass RGUPlayer_Create
+//Addplayerclass RGUPlayer_Random
+//Addplayerclass RGUPlayer
+//Addplayerclass RGUPlayer_Juggernaut
+//Addplayerclass RGUPlayer_Sniper
+//Addplayerclass RGUPlayer_Medic

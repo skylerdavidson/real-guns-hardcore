@@ -1,0 +1,534 @@
+actor GripAttachment : CustomInventory
+{
+  inventory.pickupmessage "Grip"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "ATTAD0"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    ATTA D -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(619,0,0,0,0)
+    stop
+  }
+}
+actor RapidFireAttachment : CustomInventory
+{
+  inventory.pickupmessage "Rapid Fire"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "ATTAC0"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    ATTA C -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(619,0,1,0,0)
+    stop
+  }
+}
+
+actor ExtendedMagsAttachment : CustomInventory
+{
+  inventory.pickupmessage "Extended Mags"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "ATTAB0"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    ATTA B -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(619,0,2,0,0)
+    stop
+  }
+}
+actor ThermalAttachment : CustomInventory
+{
+  inventory.pickupmessage "Thermal Scope"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "ATTAA0"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    ATTA A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(619,0,3,0,0)
+    stop
+  }
+}
+actor AkimboAttachment : CustomInventory
+{
+  inventory.pickupmessage "Akimbo"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "ATTAE0"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    ATTA E -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(619,0,4,0,0)
+    stop
+  }
+}
+
+actor KnifeAttachment : CustomInventory
+{
+  inventory.pickupmessage "Tactical Knife"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "ATTAF0"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    ATTA F -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(619,0,5,0,0)
+    stop
+  }
+}
+
+actor Perk1_SOHAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_SOH"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,0,0,0)
+    stop
+  }
+}
+
+
+actor Perk1_ExtremeConditioningAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_EXCOND"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,1,0,0)
+    stop
+  }
+}
+
+actor Perk1_OMAAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_OMA"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,2,0,0)
+    stop
+  }
+}
+
+actor Perk2_StoppingPowerAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_POWER"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,3,0,0)
+    stop
+  }
+}
+
+actor Perk2_DangerCloseAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_DANGER"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,4,0,0)
+    stop
+  }
+}
+
+actor Perk2_ColdBlooded_ProAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_COLDP"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,18,0,0)
+    stop
+  }
+}
+
+actor Perk2_JuggernautAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_JUGGER"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,5,0,0)
+    stop
+  }
+}
+actor Perk3_SteadyAimAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_STEADY"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,6,0,0)
+    stop
+  }
+}
+actor Perk3_CommandoAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_COMM"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,7,0,0)
+    stop
+  }
+}
+
+actor Perk3_LastStandAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_LASTAN"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,8,0,0)
+    stop
+  }
+}
+
+actor Perk1_SOH_ProAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_SOHP"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,9,0,0)
+    stop
+  }
+}
+
+actor Perk1_ExtremeConditioning_ProAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_EXCONP"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,10,0,0)
+    stop
+  }
+}
+
+actor Perk1_OMA_ProAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_OMAP"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,11,0,0)
+    stop
+  }
+}
+
+actor Perk2_StoppingPower_ProAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_POWERP"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,12,0,0)
+    stop
+  }
+}
+
+actor Perk2_DangerClose_ProAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_DANGEP"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,17,0,0)
+    stop
+  }
+}
+actor Perk2_Juggernaut_ProAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_JUGGEP"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,14,0,0)
+    stop
+  }
+}
+
+actor Perk3_SteadyAim_ProAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_STEADP"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,15,0,0)
+    stop
+  }
+}
+
+actor Perk3_Commando_PROAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_COMMP"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,17,0,0)
+    stop
+  }
+}
+
+actor Perk3_LastStand_ProAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_LASTAP"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,16,0,0)
+    stop
+  }
+}
+
+actor Perk1_ScavengerAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_SCA"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,19,0,0)
+    stop
+  }
+}
+
+actor Perk1_Scavenger_ProAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_SCAP"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,20,0,0)
+    stop
+  }
+}

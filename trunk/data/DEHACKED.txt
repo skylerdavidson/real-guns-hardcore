@@ -1,0 +1,79 @@
+Patch File for DeHackEd v3.0
+# Created with WhackEd2 0.50.168
+
+Doom version = 21
+Patch format = 6
+
+
+Thing 73 (BFG 9000)
+Bits = 0
+
+Thing 74 (Chaingun)
+Bits = 0
+
+Thing 75 (Chainsaw)
+Bits = 0
+
+Thing 76 (Rocket Launcher)
+Bits = 0
+
+Thing 77 (Plasma Gun)
+Bits = 0
+
+Thing 78 (Shotgun)
+Bits = 0
+
+Thing 79 (Super Shotgun)
+Bits = 0
+
+Weapon 1 (Pistol)
+Ammo type = 5
+Deselect frame = 4
+Select frame = 3
+Bobbing frame = 2
+Shooting frame = 5
+Firing frame = 0
+
+Weapon 2 (Shotgun)
+Ammo type = 5
+Deselect frame = 4
+Select frame = 3
+Bobbing frame = 2
+Shooting frame = 5
+Firing frame = 0
+
+Weapon 3 (Chaingun)
+Ammo type = 5
+Deselect frame = 4
+Select frame = 3
+Bobbing frame = 2
+Shooting frame = 5
+Firing frame = 0
+
+Weapon 4 (Rocket Launcher)
+Ammo type = 5
+Deselect frame = 4
+Select frame = 3
+Bobbing frame = 2
+Shooting frame = 5
+Firing frame = 0
+
+Weapon 5 (Plasma Gun)
+Ammo type = 5
+Deselect frame = 4
+Select frame = 3
+Bobbing frame = 2
+Shooting frame = 5
+Firing frame = 0
+
+Weapon 6 (BFG 9000)
+Ammo type = 5
+Deselect frame = 4
+Select frame = 3
+Bobbing frame = 2
+Shooting frame = 5
+Firing frame = 0
+
+[STRINGS]
+OB_SUICIDE = %o bled out.
+OB_EXIT = %o was given an aneurysm.

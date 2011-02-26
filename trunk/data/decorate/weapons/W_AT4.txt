@@ -1,0 +1,474 @@
+actor "AT4-HS" : RGUWeapon
+{
+  obituary "%k exploded %o with the AT4."
+  inventory.pickupmessage "AT4-HS"  
+  //attacksound "at4/fire"
+  weapon.selectionorder 21
+  weapon.ammotype "AT4Clip"
+  weapon.ammouse 1
+  weapon.ammogive 0
+  weapon.ammotype2 "AT4Ammo"
+  weapon.ammouse2 0
+  weapon.ammogive2 0
+  states
+  {
+  Ready:
+    AT4A A 2 //A_PlayWeaponSound("m79/select")
+    AT4A BCDEFGHIJK 2 A_WeaponReady(WRF_NOFIRE)
+    AT4A K 0 A_JumpIfNoAmmo("Reload")
+    AT4A K 0 A_JumpIfInventory("Aiming",1,5)
+    AT4A K 0 A_JumpIfInventory("Reloading",1,"Reload")
+    AT4A K 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    AT4A K 0 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    AT4A K 1 A_WeaponReady
+    AT4B I 0 A_TakeInventory("AT4Lock",3)
+    goto Ready+11
+    AT4B I 0 A_JumpIfInventory("Reloading",1,"Reload")    
+    AT4B I 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    AT4B I 0 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    AT4B I 0 A_JumpIfTargetInLOS(3)
+    AT4B I 3 A_WeaponReady(WRF_NOBOB)
+    AT4B I 0 A_TakeInventory("AT4Lock",1)
+    goto Ready+18
+    AT4B I 0 A_JumpIfInventory("AT4Lock",2,4)
+    AT4B I 0 A_PlaySound("seek/lost")
+    AT4B I 0 A_GiveInventory("AT4Lock",1)
+    AT4B I 20 A_WeaponReady(WRF_NOBOB)
+    goto Ready+18    
+    AT4B I 0 A_GiveInventory("AT4Lock",1)
+    AT4B I 0 A_PlaySound("seek/lock")
+    AT4B I 3 A_WeaponReady(WRF_NOBOB)
+    goto Ready+18
+  Deselect:
+    AT4A L 0 A_TakeInventory("Aiming",1)
+    AT4A A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    AT4A L 0 A_TakeInventory("Reloading",1)
+    INTA L 0 A_ZoomFactor(1.0)
+    AT4A L 0 A_Lower
+    AT4A K 1 A_Lower
+    goto Deselect+2
+  Select:
+    AT4A A 0 A_Raise
+	AT4A A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    loop
+  Fire:
+	TNT1 A 0 A_GiveInventory("InCombat",5)
+    AT4B A 0 A_JumpIfInventory("Aiming",1,"FireAim")
+    AT4A K 1 A_JumpIfNoAmmo("ReloadStart")
+    U45F A 0 A_ZoomFactor(1.25)
+    AT4B ABCDEFGHI 2
+    AT4B A 0 A_TakeInventory("Aiming",1)
+    AT4B A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    AT4B H 0 //A_PlayWeaponSound("at4/fire")
+    AT4B H 0 A_FireCustomMissile("WeaponSmokePuffLong",0,0,0,6)
+    AT4B H 0 A_FireCustomMissile("WeaponSmokePuffLong",0,0,-4,0)
+    AT4B H 0 A_FireCustomMissile("WeaponSmokePuffLong",0,0,4,0)
+    AT4B H 0 A_JumpIfInventory("AT4Lock",3,"FireSeek")
+    AT4B I 2 BRIGHT A_FireCustomMissile("AT4Missile",0,1,0,6)
+  //FinishFire:
+    AT4B I 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
+    AT4B I 0 A_TakeInventory("AT4Lock",3)
+    AT4B JK 2 BRIGHT A_GunFlash
+    AT4B LMNOPQ 2 BRIGHT
+    U45F A 0 A_ZoomFactor(1.0)
+    AT4B R 2 A_FireCustomMissile("AT4FireDebris",0,0,0,6)
+    AT4B ST 2 
+    AT4B A 0 A_JumpIfInventory("AT4Ammo",1,2)
+    AT4B A 0 A_ReFire
+    goto Ready+11
+    AT4B A 0 A_JumpIfNoAmmo("ReloadStart")
+    AT4B A 0 A_ReFire
+    goto Ready+11
+  FireAim:
+    AT4B A 0 A_TakeInventory("Aiming",1)
+    AT4B A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    AT4B H 0 //A_PlayWeaponSound("at4/fire")
+    AT4B H 0 A_FireCustomMissile("WeaponSmokePuffLong",0,0,0,6)
+    AT4B H 0 A_FireCustomMissile("WeaponSmokePuffLong",0,0,-4,0)
+    AT4B H 0 A_FireCustomMissile("WeaponSmokePuffLong",0,0,4,0)
+    AT4B H 0 A_JumpIfInventory("AT4Lock",3,"FireSeek")
+    AT4B I 2 BRIGHT A_FireCustomMissile("AT4MissileStraight",0,1,0,6)
+  FinishFire:
+    AT4B I 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
+    AT4B I 0 A_TakeInventory("AT4Lock",3)
+    AT4B JK 2 BRIGHT A_GunFlash
+    AT4B LMNOPQ 2 BRIGHT
+    U45F A 0 A_ZoomFactor(1.0)
+    AT4B R 2 A_FireCustomMissile("AT4FireDebris",0,0,0,6)
+    AT4B ST 2 
+    AT4B A 0 A_JumpIfInventory("AT4Ammo",1,2)
+    AT4B A 0 A_ReFire
+    goto Ready+11
+    AT4B A 0 A_JumpIfNoAmmo("ReloadStart")
+    AT4B A 0 A_ReFire
+    goto Ready+11
+  FireSeek:
+    AT4B I 2 BRIGHT A_FireCustomMissile("AT4MissileSeek",0,1,0,6)
+    goto FinishFire
+  Hold:
+    AT4A K 1 
+    AT4A K 1 A_ReFire
+    goto Ready+11
+  Reload: //AltFire:
+    AT4A A 0 A_JumpIfInventory("AT4Ammo",1,"ReloadStart")
+    AT4A A 0 A_TakeInventory("Reloading",1)
+    goto Ready+14
+  ReloadStart:
+    AT4A A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
+    AT4A KJIHGFEDCB 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    AT4A A 3 A_PlaySoundEx("grenade/throw","SoundSlot5")
+    TNT1 A 0 A_TakeInventory("Reloading",1)
+    TNT1 AAAAAAA 10 A_WeaponReady(WRF_NOFIRE)
+    goto ReloadAmmo
+  ReloadAmmo:
+    AT4A P 0 A_GiveInventory("AT4Clip",1)
+    AT4A P 0 A_TakeInventory("AT4Ammo",1)
+    AT4A P 0 A_JumpIfInventory("AT4Clip",1,"ReloadEnd")
+    AT4A P 0 A_JumpIfInventory("AT4Ammo",1,"ReloadAmmo")
+    goto ReloadEnd
+  ReloadEnd:
+    AT4A A 2 A_PlayWeaponSound("m79/select")
+    AT4A BCDEFGHIJK 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    AT4A G 0 A_ReFire
+    goto Ready+14
+  AltFire:
+    U45F A 0 A_ZoomFactor(1.25)
+    AT4B A 0 A_JumpIfInventory("Aiming",1,"AltFire2")
+    AT4B ABCDEFGHI 2
+    AT4B G 0 A_GiveInventory("Aiming",1)
+    AT4B G 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto Ready+18
+  AltFire2:
+    U45F A 0 A_ZoomFactor(1.0)
+    AT4B IHGFEDCBA 2
+    AT4B A 0 A_TakeInventory("Aiming",1)
+    AT4B A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto Ready+11
+  ReloadStartAim:
+    U45F A 0 A_ZoomFactor(1.0)
+    AT4B IHGFEDCBA 2
+    AT4B A 0 A_TakeInventory("Aiming",1)
+    AT4B A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto ReloadStart+1
+  Flash:
+    TNT1 A 2 bright A_Light1
+    TNT1 A 0 bright A_Light0
+    stop
+  Spawn:
+    WEAP D 15
+    TNT1 A 0 A_SpawnItem("AT4Pickup")
+    stop
+  FragGrenade:
+    U45F A 0 A_ZoomFactor(1.0)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    U45A L 0 A_TakeInventory("Reloading",1)
+    U45F A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    U45A L 0 A_JumpIfInventory("Perk1_SOH_Pro",1,"FragGrenade_SOH")
+    GRNA A 2 A_PlaySound("grenade/pinpull")
+    GRNA BCDEFGH 2
+    TNT1 A 15 
+    TNT1 A 0 A_PlaySound("grenade/throw")
+    GRNA A 0 A_PlaySoundEx("us/grenades","Voice")
+    GRNA IJK 2
+    GRNA L 0 A_TakeInventory("FragGrenadeAmmo",1)
+    GRNA L 0 A_TakeInventory("ThrowingGrenade",1)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    GRNA L 2 A_FireCustomMissile("FragGrenade",0,0,0,16)
+    GRNA MN 2 
+    goto Ready+1
+  FragGrenade_SOH:
+    GRNA A 1 A_PlaySound("grenade/pinpull")
+    GRNA BCDEFGH 1
+    TNT1 A 10
+    TNT1 A 0 A_PlaySound("grenade/throw")
+    GRNA A 0 A_PlaySoundEx("us/grenades","Voice")
+    GRNA IJK 1
+    GRNA L 0 A_TakeInventory("FragGrenadeAmmo",1)
+    GRNA L 0 A_TakeInventory("ThrowingGrenade",1)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    GRNA L 1 A_FireCustomMissile("FragGrenade",0,0,0,16)
+    GRNA MN 1 
+    goto Ready+1
+  KnifeAttack:
+    U45F A 0 A_ZoomFactor(1.0)
+    U45A L 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    U45A L 0 A_TakeInventory("Aiming",1)
+    U45A L 0 A_TakeInventory("Reloading",1)
+    U45F A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    U45A L 0 A_JumpIfInventory("Perk1_SOH_Pro",1,"KnifeAttack_SOH")
+    U45C A 0 A_JumpIfInventory("Perk3_Commando",1,"KnifeAttack_Commando")
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",96)
+    KNFA FGHIJKL 1 
+    TNT1 A 20
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_Commando:
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",160)
+    KNFA FGHIJKL 1 
+    TNT1 A 20
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_SOH:
+    U45C A 0 A_JumpIfInventory("Perk3_Commando",1,"KnifeAttack_SOH_Commando")
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",96)
+    KNFA FGHIJKL 1 
+    TNT1 A 10
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_SOH_Commando:
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",160)
+    KNFA FGHIJKL 1 
+    TNT1 A 10
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  }
+}
+
+actor AT4Clip : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 0
+    inventory.maxamount 1
+    ammo.backpackamount 0
+    ammo.backpackmaxamount 1
+    +IGNORESKILL
+}
+
+actor AT4Ammo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 1
+    inventory.maxamount 1
+    ammo.backpackamount 2
+    ammo.backpackmaxamount 2
+    +IGNORESKILL
+}
+
+actor AT4Lock : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 3
+}
+
+actor AT4Missile
+{
+  obituary "%k exploded %o with the AT4."
+  radius 5
+  height 5
+  speed 50
+  damage (250)
+  seesound "at4/fire"
+  deathsound "generic/fleshhit"
+  PROJECTILE
+  +RANDOMIZE
+  +NOEXTREMEDEATH
+  +FORCERADIUSDMG
+  Scale 0.05
+  damagetype "Explosion"
+  -NOTELEPORT
+  states
+  {
+  Spawn:
+    G69X AAAAA 1 A_SpawnItemEx("WeaponSmokePuffLong", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+    G69X A 0 ThrustThingZ(0,random(0,5),random(0,1),1)
+    G69X A 0 ThrustThing((angle*256/360)+(random(-5,5)), 5, 0, 0)
+    Loop
+  XDeath:
+    TNT1 A 0 
+    TNT1 A 0 A_GiveToTarget("HitIndicator",1)
+  Death:
+    TNT1 A 0
+    TNT1 A 0 A_RadiusThrust(160,128)
+    TNT1 A 0 Radius_Quake(3,30,0,128,0)
+    TNT1 A 0 A_AlertMonsters
+    TNT1 AAAA 0 A_SpawnItemEx("ExplosionMain",random(-8,8),random(-8,8),0,0,0,0,0,0,0)
+    TNT1 AAAAAAAAAA 0 A_SpawnItemEx("ImpactSpark2", random(-32,32), random(-32,32), random(-32,32), random(-5,5), random(-5,5), random(-1,5), 0, 128, 0)
+    TNT1 AAAAAAAAAA 0 A_SpawnItemEx("ImpactSpark2", random(-32,32), random(-32,32), random(-32,32), random(-5,5), random(-5,5), random(-1,5), 0, 128, 0)
+	TNT1 A 0 A_JumpIfInTargetInventory("Perk2_DangerClose_Pro", 1, "DangerClosePro")
+    TNT1 A 0 A_Explode(500,60)
+    TNT1 A 0 A_Explode(250,120)
+    TNT1 A 0 A_Explode(100,300,0)
+	TNT1 A 20
+    stop
+  DangerClosePro:
+    TNT1 A 0 A_Explode(500,90)
+    TNT1 A 0 A_Explode(250,180)
+    TNT1 A 0 A_Explode(100,450,0)
+	TNT1 A 20
+	stop
+  }
+}
+actor AT4MissileStraight
+{
+  obituary "%k exploded %o with the AT4."
+  radius 5
+  height 5
+  speed 50
+  damage (250)
+  seesound "at4/fire"
+  deathsound "generic/fleshhit"
+  PROJECTILE
+  +RANDOMIZE
+  +NOEXTREMEDEATH
+  +FORCERADIUSDMG
+  Scale 0.05
+  damagetype "Explosion"
+  -NOTELEPORT
+  states
+  {
+  Spawn:
+    G69X AAAAAAAAAA 1 A_SpawnItemEx("WeaponSmokePuffLong", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+    G69X A 0 ThrustThingZ(0,random(0,3),random(0,1),1)
+    G69X A 0 ThrustThing((angle*256/360)+(random(-2,2)), 5, 0, 0)
+    Loop
+  XDeath:
+    TNT1 A 0 
+    TNT1 A 0 A_GiveToTarget("HitIndicator",1)
+  Death:
+    TNT1 A 0 
+    TNT1 A 0 A_AlertMonsters
+    TNT1 AAAA 0 A_SpawnItemEx("ExplosionMain",random(-8,8),random(-8,8),0,0,0,0,0,0,0)
+    TNT1 AAAAAAAAAA 0 A_SpawnItemEx("ImpactSpark2", random(-32,32), random(-32,32), random(-32,32), random(-5,5), random(-5,5), random(-1,5), 0, 128, 0)
+    TNT1 AAAAAAAAAA 0 A_SpawnItemEx("ImpactSpark2", random(-32,32), random(-32,32), random(-32,32), random(-5,5), random(-5,5), random(-1,5), 0, 128, 0)
+	TNT1 A 0 A_JumpIfInTargetInventory("Perk2_DangerClose_Pro", 1, "DangerClosePro")
+    TNT1 A 0 A_Explode(500,60)
+    TNT1 A 0 A_Explode(250,120)
+    TNT1 A 0 A_Explode(100,300,0)
+	TNT1 A 20
+    stop
+  DangerClosePro:
+    TNT1 A 0 A_Explode(500,90)
+    TNT1 A 0 A_Explode(250,180)
+    TNT1 A 0 A_Explode(100,450,0)
+	TNT1 A 20
+	stop
+  }
+}
+
+actor AT4MissileSeek
+{
+  obituary "%k scores an AT4 seeking kill on %o with the AT4!"
+  radius 5
+  height 5
+  speed 50
+  damage (375)
+  seesound "at4/fire"
+  deathsound "generic/fleshhit"
+  PROJECTILE
+  +RANDOMIZE
+  +NOEXTREMEDEATH
+  +FORCERADIUSDMG
+  +SEEKERMISSILE
+  Scale 0.05
+  damagetype "Explosion"
+  -NOTELEPORT
+  states
+  {
+  Spawn:
+    G69X A 1 A_SpawnItemEx("WeaponSmokePuffLong", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+    G69X A 0 A_Tracer2
+    Loop
+  XDeath:
+    TNT1 A 0 
+    TNT1 A 0 A_GiveToTarget("HitIndicator",1)
+  Death:
+    TNT1 A 0 
+    TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 A_Explode(625,96)
+    TNT1 A 0 A_Explode(375,160)
+    TNT1 A 0 A_Explode(200,450,0)
+    TNT1 AAAA 0 A_SpawnItemEx("ExplosionMain",random(-8,8),random(-8,8),0,0,0,0,0,0,0)
+    TNT1 AAAAAAAAAA 0 A_SpawnItemEx("ImpactSpark2", random(-32,32), random(-32,32), random(-32,32), random(-5,5), random(-5,5), random(-1,5), 0, 128, 0)
+    TNT1 AAAAAAAAAA 0 A_SpawnItemEx("ImpactSpark2", random(-32,32), random(-32,32), random(-32,32), random(-5,5), random(-5,5), random(-1,5), 0, 128, 0)
+    TNT1 A 20
+    stop
+  }
+}
+
+actor AT4FireDebris
+{
+  RenderStyle None
+  -RANDOMIZE
+  +NOCLIP
+  PROJECTILE
+  Speed 16
+  Damage 0
+  states
+  {
+  Spawn:
+    TNT1 A 1
+    TNT1 A 0 A_SpawnItemEx("AT4FireDebris_Spawned", 0, 0, -6, 0, -5, 0, 5, 128, 0)
+    stop
+  }
+}
+
+actor AT4FireDebris_Spawned
+{
+  RenderStyle Normal
+  alpha 1.0
+  -RANDOMIZE
+  PROJECTILE
+  -NOGRAVITY
+  Speed 0
+  Damage 0
+  Scale 0.1
+  Gravity 0.5
+  +CLIENTSIDEONLY
+  states
+  {
+  Spawn:
+    AT4X A 35
+    stop
+  Death:
+    AT4X A 0
+    stop
+  }
+}
+
+actor AT4Pickup : CustomInventory
+{
+  inventory.pickupmessage "AT4-HS"  
+  inventory.pickupsound "misc/w_pkup"
+  +INVENTORY.AUTOACTIVATE
+  inventory.respawntics 35
+  scale 0.15
+  States
+  {
+  Spawn:
+    WEAP D -1
+    stop
+  Pickup:
+    JDGP A 0
+    JDGP A 0 A_JumpIfInventory("AT4-HS",1,"FailPickup") // If the player already has this weapon, they get more ammo for it
+    JDGP A 0 A_JumpIfInventory("MaxWeaponsFilled",0,"FailPickup2")
+    BKPK A 0 ACS_ExecuteWithResult(618,24,0,0)
+    stop
+  AmmoPickup:
+    JDGP A 0
+    JDGP A 0 A_JumpIfInventory("AT4Ammo",0,"FailPickup")
+    JDGP A 0 A_GiveInventory("AT4Ammo",1)
+    stop
+  FailPickup:
+    WEAP D 1
+    fail
+  FailPickup2:
+    WEAP D 1 
+    BKPK A 0 ACS_ExecuteAlways(620,0,4,0,0)
+    fail
+  }
+}
+ 

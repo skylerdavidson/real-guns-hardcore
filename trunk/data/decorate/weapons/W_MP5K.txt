@@ -1,0 +1,582 @@
+actor "MP5K" : RGUWeapon
+{
+  obituary "%k took down %o with the MP5K."
+  inventory.pickupmessage "MP5K"  
+  //attacksound "ump45/fire6"
+  weapon.selectionorder 10
+  weapon.ammotype "MP5Clip"
+  weapon.ammouse 1
+  weapon.ammogive 0
+  weapon.ammotype2 "MP5Ammo"
+  weapon.ammouse2 0
+  weapon.ammogive2 0
+  -NOAUTOFIRE
+  states
+  {
+  Ready:
+    MP5A A 2 //A_PlayWeaponSound("m9/select")
+    MP5A BCDEFGHIJKL 2 A_WeaponReady(WRF_NOPRIMARY)
+    MP5A L 0 A_JumpIfNoAmmo("Reload")
+    MP5A L 0 A_JumpIfInventory("Aiming",1,5)
+    MP5A L 0 A_JumpIfInventory("Reloading",1,"Reload")
+    MP5A L 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    MP5A L 0 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MP5A L 1 A_WeaponReady
+    goto Ready+12
+    MP5C F 0 A_JumpIfInventory("Reloading",1,"Reload")    
+    MP5C F 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    MP5C F 0 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MP5C F 1 A_WeaponReady(WRF_NOBOB)
+    goto Ready+18
+  Deselect:
+    MP5A K 0 A_TakeInventory("Aiming",1)
+    MP5A K 0 ACS_ExecuteAlways(602,0,0,0,0)
+    MP5A L 0 A_TakeInventory("Reloading",1)
+    MP5A L 0 A_ZoomFactor(1.0)
+    MP5A K 0 A_Lower
+    MP5A K 1 A_Lower
+    goto Deselect+2
+  Select:
+    MP5A A 0 A_Raise
+	MP5A A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    loop
+  Fire:	
+	TNT1 A 0 A_GiveInventory("InCombat",5)
+    MP5B A 0 A_JumpIfInventory("Aiming",1,"FireAim")
+    MP5B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MP5B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
+    MP5B A 0 A_PlayWeaponSound("mp5k/fire")
+    MP5B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,10,0)
+    MP5B A 1 BRIGHT A_FireBullets (8.0, 8.0, -1, 8, "HHBulletPuff", 1, 6000)
+    MP5B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MP5B A 0 A_JumpIfNoAmmo("FireEmpty")
+    MP5B B 1 BRIGHT A_GunFlash
+    MP5B C 1
+    MP5B A 0 A_JumpIfInventory("MP5Ammo",1,4)
+    MP5B DEF 1 A_ReFire
+    goto Ready+12
+    MP5B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MP5B DEF 1 A_ReFire
+    goto Ready+12
+  Hold:
+    MP5B A 0 A_JumpIfInventory("Aiming",1,"HoldAim")
+    MP5B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MP5B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Hold_SteadyAim")
+    MP5B A 0 A_PlayWeaponSound("mp5k/fire")
+    MP5B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,10,0)
+    MP5B A 1 BRIGHT A_FireBullets (12.0, 12.0, -1, 8, "HHBulletPuff", 1, 6000)
+    MP5B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MP5B A 0 A_JumpIfNoAmmo("FireEmpty")
+    MP5B B 1 BRIGHT A_GunFlash
+    MP5B C 1
+    MP5B A 0 A_JumpIfInventory("MP5Ammo",1,4)
+    MP5B DEF 1 A_ReFire
+    goto Ready+12
+    MP5B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MP5B DEF 1 A_ReFire
+    goto Ready+12
+  FireEmpty:
+    MP5B B 1 BRIGHT A_GunFlash
+    MP5B CDEF 1 A_GiveInventory("MP5Bolt",1)
+    MP5B A 0 A_JumpIfInventory("MP5Ammo",1,2)
+    MP5B A 0 A_ReFire
+    goto Ready+12
+    MP5B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MP5B A 0 A_ReFire
+    goto Ready+12
+  FireAim:
+    MP5D A 0 A_PlayWeaponSound("mp5k/fire")
+    MP5D A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,0,0)
+    MP5D A 1 BRIGHT A_FireBullets (1.5, 1.5, -1, 8, "HHBulletPuff", 1, 6000)
+    MP5D A 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MP5D A 0 A_JumpIfNoAmmo("FireAimEmpty")
+    MP5D B 1 BRIGHT A_GunFlash
+    MP5D C 1
+    MP5D A 0 A_JumpIfInventory("MP5Ammo",1,5)
+    MP5D DEFG 1 A_ReFire
+    goto Ready+18
+    MP5D A 0 A_JumpIfNoAmmo("ReloadStart")
+    MP5D A 0 A_ReFire
+    goto Ready+18
+  HoldAim:
+    MP5D A 0 A_PlayWeaponSound("mp5k/fire")
+    MP5D A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,0,0)
+    MP5D A 1 BRIGHT A_FireBullets (5, 5, -1, 8, "HHBulletPuff", 1, 6000)
+    MP5D A 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MP5D A 0 A_JumpIfNoAmmo("FireAimEmpty")
+    MP5D B 1 BRIGHT A_GunFlash
+    MP5D C 1
+    MP5D A 0 A_JumpIfInventory("MP5Ammo",1,5)
+    MP5D DEFG 1 A_ReFire
+    goto Ready+18
+    MP5D A 0 A_JumpIfNoAmmo("ReloadStart")
+    MP5D A 0 A_ReFire
+    goto Ready+18
+  FireAimEmpty:
+    MP5D B 1 BRIGHT A_GunFlash
+    MP5D CDEFG 1 A_GiveInventory("MP5Bolt",1)
+    MP5D A 0 A_JumpIfInventory("MP5Ammo",1,2)
+    MP5D A 0 A_ReFire
+    goto Ready+12
+    MP5D A 0 A_JumpIfNoAmmo("ReloadStart")
+    MP5D A 0 A_ReFire
+    goto Ready+12
+  Reload: //AltFire:
+    MP5E A 0 A_JumpIfInventory("MP5Ammo",1,"ReloadStart")
+    MP5E A 0 A_TakeInventory("Reloading",1)
+    goto Ready+15
+  ReloadStart:
+    MP5E A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
+    MP5E A 0 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
+    MP5E A 3 A_PlaySoundEx("mp5k/clipout","SoundSlot5")
+    MP5E BCDEFGHIJK 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MP5E LMNOPQRSTU 3 A_WeaponReady(WRF_NOFIRE)
+    MP5E V 3 A_PlaySoundEx("mp5k/clipin","SoundSlot5")
+    MP5E WX 3 A_TakeInventory("Reloading",1)
+    goto ReloadAmmo
+  ReloadAmmo:
+    MP5E Z 0 A_GiveInventory("MP5Clip",1)
+    MP5E Z 0 A_TakeInventory("MP5Ammo",1)
+    MP5E Z 0 A_JumpIfInventory("MP5Clip",30,"ReloadEnd")
+    MP5E Z 0 A_JumpIfInventory("MP5Ammo",1,"ReloadAmmo")
+    goto ReloadEnd
+  ReloadEnd:
+    MP5E Z 0 A_JumpIfInventory("MP5Bolt",1,"ReloadEndBolt") 
+    MP5E YZ 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MP5F ABCD 3 A_WeaponReady(WRF_NOFIRE)
+    MP5E G 0 A_ReFire
+    goto Ready+12 
+  ReloadEndBolt:
+    MP5G A 3 A_TakeInventory("MP5Bolt",1)
+    MP5G BCDEF 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MP5G G 0 A_PlaySoundEx("mp5k/bolt","SoundSlot5")
+    MP5G HIJKL 3 A_WeaponReady(WRF_NOFIRE)
+    MP5G V 0 A_ReFire
+    goto Ready+12 
+  AltFire:
+    MP5C A 0 A_JumpIfInventory("Aiming",1,"AltFire2")
+    MP5C A 0 A_ZoomFactor(1.2)
+    MP5C ABCDEF 1
+    MP5C G 0 A_GiveInventory("Aiming",1)
+    MP5C G 0 ACS_ExecuteAlways(602,0,0,0,0)
+    MP5C G 0 A_Refire
+    goto Ready+18
+  AltFire2:
+    MP5C A 0 A_ZoomFactor(1.0)
+    MP5C FEDCBA 1
+    MP5C A 0 A_TakeInventory("Aiming",1)
+    MP5C A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    MP5C G 0 A_Refire
+    goto Ready+12
+  AltHold:
+    MP5A L 1 A_JumpIfInventory("Aiming",1,"AltHoldAim")
+    MP5A L 1 A_ReFire
+    goto Ready+12
+  AltHoldAim:
+    MP5C F 1
+    MP5C F 1 A_ReFire
+    goto Ready+18
+  ReloadStartAim:
+    MP5C A 0 A_ZoomFactor(1.0)
+    MP5C FEDCBA 1
+    MP5C A 0 A_TakeInventory("Aiming",1)
+    MP5C A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto ReloadStart+1
+  Flash:
+    TNT1 A 2 bright A_Light1
+    TNT1 A 0 bright A_Light0
+    stop
+  Spawn:
+    WEAP W 15 
+    TNT1 A 0 A_SpawnItemEx("MP5Pickup")
+    stop
+  ReloadStart_SOH:
+    MP5E A 2 A_PlaySoundEx("mp5k/clipout","SoundSlot5")
+    MP5E BCDEFGHIJK 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MP5E LMNOPQRSTU 2 A_WeaponReady(WRF_NOFIRE)
+    MP5E V 2 A_PlaySoundEx("mp5k/clipin","SoundSlot5")
+    MP5E WX 2 A_TakeInventory("Reloading",1)
+    goto ReloadAmmo_SOH
+  ReloadAmmo_SOH:
+    MP5E Z 0 A_GiveInventory("MP5Clip",1)
+    MP5E Z 0 A_TakeInventory("MP5Ammo",1)
+    MP5E Z 0 A_JumpIfInventory("MP5Clip",30,"ReloadEnd_SOH")
+    MP5E Z 0 A_JumpIfInventory("MP5Ammo",1,"ReloadAmmo_SOH")
+    goto ReloadEnd_SOH
+  ReloadEnd_SOH:
+    MP5E Z 0 A_JumpIfInventory("MP5Bolt",1,"ReloadEndBolt_SOH") 
+    MP5E YZ 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MP5F ABCD 2 A_WeaponReady(WRF_NOFIRE)
+    MP5E G 0 A_ReFire
+    goto Ready+12 
+  ReloadEndBolt_SOH:
+    MP5G A 2 A_TakeInventory("MP5Bolt",1)
+    MP5G BCDEF 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MP5G G 0 A_PlaySoundEx("mp5k/bolt","SoundSlot5")
+    MP5G HIJKL 2 A_WeaponReady(WRF_NOFIRE)
+    MP5G V 0 A_ReFire
+    goto Ready+12 
+  Fire_SteadyAim:
+    MP5B A 0 A_PlayWeaponSound("mp5k/fire")
+    MP5B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,10,0)
+    MP5B A 1 BRIGHT A_FireBullets (5.28, 5.28, -1, 8, "HHBulletPuff", 1, 6000)
+    MP5B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MP5B A 0 A_JumpIfNoAmmo("FireEmpty")
+    MP5B B 1 BRIGHT A_GunFlash
+    MP5B C 1
+    MP5B A 0 A_JumpIfInventory("MP5Ammo",1,4)
+    MP5B DEF 1 A_ReFire
+    goto Ready+12
+    MP5B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MP5B DEF 1 A_ReFire
+    goto Ready+12
+  Hold_SteadyAim:
+    MP5B A 0 A_PlayWeaponSound("mp5k/fire")
+    MP5B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,10,0)
+    MP5B A 1 BRIGHT A_FireBullets (7.92, 7.92, -1, 8, "HHBulletPuff", 1, 6000)
+    MP5B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MP5B A 0 A_JumpIfNoAmmo("FireEmpty")
+    MP5B B 1 BRIGHT A_GunFlash
+    MP5B C 1
+    MP5B A 0 A_JumpIfInventory("MP5Ammo",1,4)
+    MP5B DEF 1 A_ReFire
+    goto Ready+12
+    MP5B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MP5B DEF 1 A_ReFire
+    goto Ready+12
+  FragGrenade:
+    U45F A 0 A_ZoomFactor(1.0)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    U45A L 0 A_TakeInventory("Reloading",1)
+    U45F A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    U45A L 0 A_JumpIfInventory("Perk1_SOH_Pro",1,"FragGrenade_SOH")
+    GRNA A 2 A_PlaySound("grenade/pinpull")
+    GRNA BCDEFGH 2
+    TNT1 A 15 
+    TNT1 A 0 A_PlaySound("grenade/throw")
+    GRNA A 0 A_PlaySoundEx("us/grenades","Voice")
+    GRNA IJK 2
+    GRNA L 0 A_TakeInventory("FragGrenadeAmmo",1)
+    GRNA L 0 A_TakeInventory("ThrowingGrenade",1)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    GRNA L 2 A_FireCustomMissile("FragGrenade",0,0,0,16)
+    GRNA MN 2 
+    goto Ready+1
+  FragGrenade_SOH:
+    GRNA A 1 A_PlaySound("grenade/pinpull")
+    GRNA BCDEFGH 1
+    TNT1 A 10
+    TNT1 A 0 A_PlaySound("grenade/throw")
+    GRNA A 0 A_PlaySoundEx("us/grenades","Voice")
+    GRNA IJK 1
+    GRNA L 0 A_TakeInventory("FragGrenadeAmmo",1)
+    GRNA L 0 A_TakeInventory("ThrowingGrenade",1)
+    U45A L 0 A_TakeInventory("Aiming",1)
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    GRNA L 1 A_FireCustomMissile("FragGrenade",0,0,0,16)
+    GRNA MN 1 
+    goto Ready+1
+  KnifeAttack:
+    U45F A 0 A_ZoomFactor(1.0)
+    U45A L 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
+    U45A L 0 A_TakeInventory("Aiming",1)
+    U45A L 0 A_TakeInventory("Reloading",1)
+    U45F A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    U45A L 0 A_JumpIfInventory("Perk1_SOH_Pro",1,"KnifeAttack_SOH")
+    U45C A 0 A_JumpIfInventory("Perk3_Commando",1,"KnifeAttack_Commando")
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",96)
+    KNFA FGHIJKL 1 
+    TNT1 A 20
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_Commando:
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",160)
+    KNFA FGHIJKL 1 
+    TNT1 A 20
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_SOH:
+    U45C A 0 A_JumpIfInventory("Perk3_Commando",1,"KnifeAttack_SOH_Commando")
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",96)
+    KNFA FGHIJKL 1 
+    TNT1 A 10
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  KnifeAttack_SOH_Commando:
+    KNFA A 0 ACS_ExecuteAlways(599,0,0,0,0)
+    KNFA AB 1
+    KNFA B 0 A_PlaySound("knife/swing")
+    KNFA CDE 1 A_CustomPunch(34,1,0,"KnifePuff",160)
+    KNFA FGHIJKL 1 
+    TNT1 A 10
+    GRNA L 0 A_TakeInventory("KnifeAttack",1)
+    goto Ready+1
+  }
+}
+
+actor MP5Clip : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 0
+    inventory.maxamount 30
+    ammo.backpackamount 0
+    ammo.backpackmaxamount 30
+    +IGNORESKILL
+}
+
+actor MP5Bolt : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+actor "MP5K Ex Mags" : "MP5K"
+{
+  obituary "%k took down %o with the MP5K."
+  inventory.pickupmessage "MP5K"  
+  //attacksound "ump45/fire6"
+  weapon.selectionorder 10
+  weapon.ammotype "MP5Clip2"
+  weapon.ammouse 1
+  weapon.ammogive 0
+  weapon.ammotype2 "MP5Ammo"
+  weapon.ammouse2 0
+  weapon.ammogive2 0
+  -NOAUTOFIRE
+  states
+  {
+  Reload: //AltFire:
+    MP5E A 0 A_JumpIfInventory("MP5Ammo",1,"ReloadStart")
+    MP5E A 0 A_TakeInventory("Reloading",1)
+    goto Ready+15
+  ReloadStart:
+    MP5E A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
+    MP5E A 0 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
+    MP5E A 3 A_PlaySoundEx("mp5k/clipout","SoundSlot5")
+    MP5E BCDEFGHIJK 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MP5E LMNOPQRSTU 3 A_WeaponReady(WRF_NOFIRE)
+    MP5E V 3 A_PlaySoundEx("mp5k/clipin","SoundSlot5")
+    MP5E WX 3 A_TakeInventory("Reloading",1)
+    goto ReloadAmmo
+  ReloadAmmo:
+    MP5E Z 0 A_GiveInventory("MP5Clip2",1)
+    MP5E Z 0 A_TakeInventory("MP5Ammo",1)
+    MP5E Z 0 A_JumpIfInventory("MP5Clip2",45,"ReloadEnd")
+    MP5E Z 0 A_JumpIfInventory("MP5Ammo",1,"ReloadAmmo")
+    goto ReloadEnd
+  ReloadEnd:
+    MP5E Z 0 A_JumpIfInventory("MP5Bolt",1,"ReloadEndBolt") 
+    MP5E YZ 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MP5F ABCD 3 A_WeaponReady(WRF_NOFIRE)
+    MP5E G 0 A_ReFire
+    goto Ready+12 
+  ReloadEndBolt:
+    MP5G A 3 A_TakeInventory("MP5Bolt",1)
+    MP5G BCDEF 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MP5G G 0 A_PlaySoundEx("mp5k/bolt","SoundSlot5")
+    MP5G HIJKL 3 A_WeaponReady(WRF_NOFIRE)
+    MP5G V 0 A_ReFire
+    goto Ready+12 
+  ReloadStartAim:
+    MP5C A 0 A_ZoomFactor(1.0)
+    MP5C FEDCBA 1
+    MP5C A 0 A_TakeInventory("Aiming",1)
+    MP5C A 0 ACS_ExecuteAlways(602,0,0,0,0)
+    goto ReloadStart+1
+  ReloadStart_SOH:
+    MP5E A 2 A_PlaySoundEx("mp5k/clipout","SoundSlot5")
+    MP5E BCDEFGHIJK 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MP5E LMNOPQRSTU 2 A_WeaponReady(WRF_NOFIRE)
+    MP5E V 2 A_PlaySoundEx("mp5k/clipin","SoundSlot5")
+    MP5E WX 2 A_TakeInventory("Reloading",1)
+    goto ReloadAmmo_SOH
+  ReloadAmmo_SOH:
+    MP5E Z 0 A_GiveInventory("MP5Clip2",1)
+    MP5E Z 0 A_TakeInventory("MP5Ammo",1)
+    MP5E Z 0 A_JumpIfInventory("MP5Clip2",45,"ReloadEnd_SOH")
+    MP5E Z 0 A_JumpIfInventory("MP5Ammo",1,"ReloadAmmo_SOH")
+    goto ReloadEnd_SOH
+  ReloadEnd_SOH:
+    MP5E Z 0 A_JumpIfInventory("MP5Bolt",1,"ReloadEndBolt_SOH") 
+    MP5E YZ 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MP5F ABCD 2 A_WeaponReady(WRF_NOFIRE)
+    MP5E G 0 A_ReFire
+    goto Ready+12 
+  ReloadEndBolt_SOH:
+    MP5G A 2 A_TakeInventory("MP5Bolt",1)
+    MP5G BCDEF 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    MP5G G 0 A_PlaySoundEx("mp5k/bolt","SoundSlot5")
+    MP5G HIJKL 2 A_WeaponReady(WRF_NOFIRE)
+    MP5G V 0 A_ReFire
+    goto Ready+12 
+  }
+}
+
+actor MP5Clip2 : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 0
+    inventory.maxamount 45
+    ammo.backpackamount 0
+    ammo.backpackmaxamount 45
+    +IGNORESKILL
+}
+
+actor MP5ExMags : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+actor "MP5K Rapid Fire" : "MP5K"
+{
+  obituary "%k took down %o with the MP5K."
+  inventory.pickupmessage "MP5K"  
+  //attacksound "ump45/fire6"
+  weapon.selectionorder 10
+  weapon.ammotype "MP5Clip"
+  weapon.ammouse 1
+  weapon.ammogive 0
+  weapon.ammotype2 "MP5Ammo"
+  weapon.ammouse2 0
+  weapon.ammogive2 0
+  -NOAUTOFIRE
+  states
+  {
+  Fire:
+	TNT1 A 0 A_GiveInventory("InCombat",5)
+    MP5B A 0 A_JumpIfInventory("Aiming",1,"FireAim")
+    MP5B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MP5B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
+    MP5B A 0 A_PlayWeaponSound("mp5k/fire")
+    MP5B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,10,0)
+    MP5B A 1 BRIGHT A_FireBullets (8.0, 8.0, -1, 8, "HHBulletPuff", 1, 6000)
+    MP5B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MP5B A 0 A_JumpIfNoAmmo("FireEmpty")
+    MP5B B 1 BRIGHT A_GunFlash
+    MP5B A 0 A_JumpIfInventory("MP5Ammo",1,5)
+    MP5B CDEF 1 A_ReFire
+    goto Ready+12
+    MP5B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MP5B CDEF 1 A_ReFire
+    goto Ready+12
+  Hold:
+    MP5B A 0 A_JumpIfInventory("Aiming",1,"HoldAim")
+    MP5B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MP5B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Hold_SteadyAim")
+    MP5B A 0 A_PlayWeaponSound("mp5k/fire")
+    MP5B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,10,0)
+    MP5B A 1 BRIGHT A_FireBullets (12.0, 12.0, -1, 8, "HHBulletPuff", 1, 6000)
+    MP5B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MP5B A 0 A_JumpIfNoAmmo("FireEmpty")
+    MP5B B 1 BRIGHT A_GunFlash
+    MP5B A 0 A_JumpIfInventory("MP5Ammo",1,5)
+    MP5B CDEF 1 A_ReFire
+    goto Ready+12
+    MP5B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MP5B CDEF 1 A_ReFire
+    goto Ready+12
+  FireAim:
+    MP5D A 0 A_PlayWeaponSound("mp5k/fire")
+    MP5D A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,0,0)
+    MP5D A 1 BRIGHT A_FireBullets (1.5, 1.5, -1, 8, "HHBulletPuff", 1, 6000)
+    MP5D A 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MP5D A 0 A_JumpIfNoAmmo("FireAimEmpty")
+    MP5D B 1 BRIGHT A_GunFlash
+    MP5D A 0 A_JumpIfInventory("MP5Ammo",1,6)
+    MP5D CDEFG 1 A_ReFire
+    goto Ready+18
+    MP5D A 0 A_JumpIfNoAmmo("ReloadStart")
+    MP5D A 0 A_ReFire
+    goto Ready+18
+  HoldAim:
+    MP5D A 0 A_PlayWeaponSound("mp5k/fire")
+    MP5D A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,0,0)
+    MP5D A 1 BRIGHT A_FireBullets (5, 5, -1, 8, "HHBulletPuff", 1, 6000)
+    MP5D A 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MP5D A 0 A_JumpIfNoAmmo("FireAimEmpty")
+    MP5D B 1 BRIGHT A_GunFlash
+    MP5D A 0 A_JumpIfInventory("MP5Ammo",1,6)
+    MP5D CDEFG 1 A_ReFire
+    goto Ready+18
+    MP5D A 0 A_JumpIfNoAmmo("ReloadStart")
+    MP5D A 0 A_ReFire
+    goto Ready+18
+  Fire_SteadyAim:
+    MP5B A 0 A_PlayWeaponSound("mp5k/fire")
+    MP5B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,10,0)
+    MP5B A 1 BRIGHT A_FireBullets (5.28, 5.28, -1, 8, "HHBulletPuff", 1, 6000)
+    MP5B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MP5B A 0 A_JumpIfNoAmmo("FireEmpty")
+    MP5B B 1 BRIGHT A_GunFlash
+    MP5B A 0 A_JumpIfInventory("MP5Ammo",1,5)
+    MP5B CDEF 1 A_ReFire
+    goto Ready+12
+    MP5B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MP5B CDEF 1 A_ReFire
+    goto Ready+12
+  Hold_SteadyAim:
+    MP5B A 0 A_PlayWeaponSound("mp5k/fire")
+    MP5B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,10,0)
+    MP5B A 1 BRIGHT A_FireBullets (7.92, 7.92 , -1, 8, "HHBulletPuff", 1, 6000)
+    MP5B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
+    MP5B A 0 A_JumpIfNoAmmo("FireEmpty")
+    MP5B B 1 BRIGHT A_GunFlash
+    MP5B A 0 A_JumpIfInventory("MP5Ammo",1,5)
+    MP5B CDEF 1 A_ReFire
+    goto Ready+12
+    MP5B A 0 A_JumpIfNoAmmo("ReloadStart")
+    MP5B CDEF 1 A_ReFire
+    goto Ready+12
+  }
+}
+
+actor MP5RapidFire : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+actor MP5Pickup : CustomInventory
+{
+  inventory.pickupmessage "MP5K"  
+  inventory.pickupsound "misc/w_pkup"
+  +INVENTORY.AUTOACTIVATE
+  inventory.respawntics 35
+  scale 0.15
+  States
+  {
+  Spawn:
+    WEAP W -1
+    stop
+  Pickup:
+    JDGP A 0
+    JDGP A 0 A_JumpIfInventory("MP5K",1,"FailPickup") // If the player already has this weapon, they get more ammo for it
+    JDGP A 0 A_JumpIfInventory("MP5K Ex Mags",1,"FailPickup")
+    JDGP A 0 A_JumpIfInventory("MP5K Rapid Fire",1,"FailPickup")
+    JDGP A 0 A_JumpIfInventory("MaxWeaponsFilled",0,"FailPickup2")
+    BKPK A 0 ACS_ExecuteWithResult(618,21,0,0)
+    stop
+  AmmoPickup:
+    JDGP A 0
+    JDGP A 0 A_JumpIfInventory("MP5Ammo",0,"FailPickup")
+    JDGP A 0 A_GiveInventory("MP5Ammo",30)
+    stop
+  FailPickup:
+    WEAP W 1
+    fail
+  FailPickup2:
+    WEAP W 1 
+    BKPK A 0 ACS_ExecuteAlways(620,0,0,0,0)
+    fail
+  }
+}

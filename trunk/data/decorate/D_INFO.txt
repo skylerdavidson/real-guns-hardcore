@@ -1,0 +1,156 @@
+//Assault Rifle and Sub Machine gun slots
+actor MaxWeaponsFilled_ARSMG : Ammo
+{
+    inventory.amount 0
+    inventory.maxamount 2
+    ammo.backpackamount 0
+    ammo.backpackmaxamount 2
+    +IGNORESKILL
+}
+
+actor MaxWeaponsFilled_Shotgun : Ammo
+{
+    inventory.amount 0
+    inventory.maxamount 1
+    ammo.backpackamount 0
+    ammo.backpackmaxamount 1
+    +IGNORESKILL
+}
+
+actor MaxWeaponsFilled_Handgun : Ammo
+{
+    inventory.amount 0
+    inventory.maxamount 1
+    ammo.backpackamount 0
+    ammo.backpackmaxamount 1
+    +IGNORESKILL
+}
+actor MaxWeaponsFilled_LMG : Ammo //also Snipers
+{
+    inventory.amount 0
+    inventory.maxamount 1
+    ammo.backpackamount 0
+    ammo.backpackmaxamount 1
+    +IGNORESKILL
+}
+
+actor MaxWeaponsFilled_Explosive : Ammo
+{
+    inventory.amount 0
+    inventory.maxamount 1
+    ammo.backpackamount 0
+    ammo.backpackmaxamount 1
+    +IGNORESKILL
+}
+
+actor MaxWeaponsFilled : Ammo
+{
+    inventory.amount 0
+    inventory.maxamount 2
+    ammo.backpackamount 0
+    ammo.backpackmaxamount 2
+    +IGNORESKILL
+}
+
+
+//Check this to make the next shot less accurate
+actor Firing : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Check this to switch mode on weapon
+actor SwitchMode: Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Check this to make aiming inaccurate
+actor Moving : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Check this to use "Equipment" item
+actor ThrowingGrenade : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Check this to throw Special grenade
+actor ThrowingSpecial : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Check this to use knife attack
+actor KnifeAttack : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Heavy Weight applies to assault rifles, launchers and shotguns. Reduces speed by 20%
+actor HeavyWeight : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Given when puking the reload script.
+actor Reloading : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Given when pressing altfire to aim, reduces speed by %65
+actor Aiming : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//Experience Points for Cooperative mode.
+actor Experience : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 80000
+}
+
+//CurrentRank
+actor Rank : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 20
+}
+
+//Change your char's voice; Coop only.
+actor Voice : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 5
+}
+
+actor Speaking : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+actor Combo : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 25
+}
+
+actor InLastStand : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}

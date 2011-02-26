@@ -1,0 +1,811 @@
+
+actor FamasAmmo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 15
+    inventory.maxamount 150
+    ammo.backpackamount 30
+    ammo.backpackmaxamount 240
+    +IGNORESKILL
+    inventory.pickupmessage "Got FAMAS rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor FALAmmo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 10
+    inventory.maxamount 100
+    ammo.backpackamount 20
+    ammo.backpackmaxamount 160
+    +IGNORESKILL
+    inventory.pickupmessage "Got FAL rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor ACRAmmo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 15
+    inventory.maxamount 150
+    ammo.backpackamount 30
+    ammo.backpackmaxamount 240
+    +IGNORESKILL
+    inventory.pickupmessage "Got ACR rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor P90Ammo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 25
+    inventory.maxamount 250
+    ammo.backpackamount 50
+    ammo.backpackmaxamount 400
+    +IGNORESKILL
+    inventory.pickupmessage "Got P90 rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor UMP45Ammo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 16
+    inventory.maxamount 160
+    ammo.backpackamount 32
+    ammo.backpackmaxamount 256
+    +IGNORESKILL
+    inventory.pickupmessage "Got UMP45 rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor MiniUziAmmo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 16
+    inventory.maxamount 160
+    ammo.backpackamount 32
+    ammo.backpackmaxamount 256
+    +IGNORESKILL
+    inventory.pickupmessage "Got Mini-UZI rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor VectorAmmo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 15
+    inventory.maxamount 150
+    ammo.backpackamount 30
+    ammo.backpackmaxamount 240
+    +IGNORESKILL
+    inventory.pickupmessage "Got Vector rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor InterventionAmmo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 5
+    inventory.maxamount 25
+    ammo.backpackamount 10
+    ammo.backpackmaxamount 40
+    +IGNORESKILL
+    inventory.pickupmessage "Got Intervention rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor BarrettAmmo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 5
+    inventory.maxamount 30
+    ammo.backpackamount 10
+    ammo.backpackmaxamount 60
+    +IGNORESKILL
+    inventory.pickupmessage "Got Barrett rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor WA2000Ammo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 6
+    inventory.maxamount 30
+    ammo.backpackamount 12
+    ammo.backpackmaxamount 48
+    +IGNORESKILL
+    inventory.pickupmessage "Got WA2000 rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+actor M14Ammo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 5
+    inventory.maxamount 30
+    ammo.backpackamount 10
+    ammo.backpackmaxamount 60
+    +IGNORESKILL
+    inventory.pickupmessage "Got M14 rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor USP45Ammo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 6
+    inventory.maxamount 60
+    ammo.backpackamount 12
+    ammo.backpackmaxamount 96
+    +IGNORESKILL
+    inventory.pickupmessage "Got USP .45 rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+
+actor 44MagnumAmmo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 3
+    inventory.maxamount 30
+    ammo.backpackamount 6
+    ammo.backpackmaxamount 48
+    +IGNORESKILL
+    inventory.pickupmessage "Got .44 Magnum rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+actor M9Ammo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 8
+    inventory.maxamount 75
+    ammo.backpackamount 12
+    ammo.backpackmaxamount 120
+    +IGNORESKILL
+    inventory.pickupmessage "Got M9 rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor DeagleAmmo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 4
+    inventory.maxamount 35
+    ammo.backpackamount 7
+    ammo.backpackmaxamount 56
+    +IGNORESKILL
+    inventory.pickupmessage "Got Desert Eagle rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor SPAS12Ammo : Ammo
+{
+    inventory.icon "SHELA0"
+    inventory.amount 4
+    inventory.maxamount 24
+    ammo.backpackamount 8
+    ammo.backpackmaxamount 48
+    +IGNORESKILL
+    inventory.pickupmessage "Got SPAS-12 shells!"  
+    States
+    {
+    Spawn:
+      SHEL A -1
+      Stop
+    }
+}
+
+actor AA12Ammo : Ammo
+{
+    inventory.icon "SHELA0"
+    inventory.amount 4
+    inventory.maxamount 32
+    ammo.backpackamount 8
+    ammo.backpackmaxamount 64
+    +IGNORESKILL
+    inventory.pickupmessage "Got AA-12 shells!"  
+    States
+    {
+    Spawn:
+      SHEL A -1
+      Stop
+    }
+}
+
+actor RangerAmmo : Ammo
+{
+    inventory.icon "SHELA0"
+    inventory.amount 4
+    inventory.maxamount 20
+    ammo.backpackamount 8
+    ammo.backpackmaxamount 40
+    +IGNORESKILL
+    inventory.pickupmessage "Got Ranger shells!"  
+    States
+    {
+    Spawn:
+      SHEL A -1
+      Stop
+    }
+}
+
+actor StrikerAmmo : Ammo
+{
+    inventory.icon "SHELA0"
+    inventory.amount 6
+    inventory.maxamount 32
+    ammo.backpackamount 12
+    ammo.backpackmaxamount 64
+    +IGNORESKILL
+    inventory.pickupmessage "Got Striker shells!"  
+    States
+    {
+    Spawn:
+      SHEL A -1
+      Stop
+    }
+}
+
+actor M1014Ammo : Ammo
+{
+    inventory.icon "SHELA0"
+    inventory.amount 4
+    inventory.maxamount 24
+    ammo.backpackamount 8
+    ammo.backpackmaxamount 48
+    +IGNORESKILL
+    inventory.pickupmessage "Got M1014 shells!"  
+    States
+    {
+    Spawn:
+      SHEL A -1
+      Stop
+    }
+}
+
+actor M1887Ammo : Ammo
+{
+    inventory.icon "SHELA0"
+    inventory.amount 4
+    inventory.maxamount 28
+    ammo.backpackamount 7
+    ammo.backpackmaxamount 49
+    +IGNORESKILL
+    inventory.pickupmessage "Got Model 1887 shells!"  
+    States
+    {
+    Spawn:
+      SHEL A -1
+      Stop
+    }
+}
+
+
+actor MG4Ammo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 50
+    inventory.maxamount 200
+    ammo.backpackamount 100
+    ammo.backpackmaxamount 400
+    +IGNORESKILL
+    inventory.pickupmessage "Got MG4 rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+actor AUGHBARAmmo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 21
+    inventory.maxamount 210
+    ammo.backpackamount 42
+    ammo.backpackmaxamount 336
+    +IGNORESKILL
+    inventory.pickupmessage "Got AUG HBAR rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+actor M240Ammo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 50
+    inventory.maxamount 200
+    ammo.backpackamount 100
+    ammo.backpackmaxamount 400
+    +IGNORESKILL
+    inventory.pickupmessage "Got M240 rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+actor L86Ammo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 50
+    inventory.maxamount 200
+    ammo.backpackamount 100
+    ammo.backpackmaxamount 400
+    +IGNORESKILL
+    inventory.pickupmessage "Got L86 rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor G18Ammo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 16
+    inventory.maxamount 99
+    ammo.backpackamount 33
+    ammo.backpackmaxamount 165
+    +IGNORESKILL
+    inventory.pickupmessage "Got G18 rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor PP2000Ammo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 10
+    inventory.maxamount 60
+    ammo.backpackamount 20
+    ammo.backpackmaxamount 100
+    +IGNORESKILL
+    inventory.pickupmessage "Got PP2000 rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor SCARHAmmo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 10
+    inventory.maxamount 100
+    ammo.backpackamount 20
+    ammo.backpackmaxamount 160
+    +IGNORESKILL
+    inventory.pickupmessage "Got SCAR-H rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor M4A1Ammo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 15
+    inventory.maxamount 150
+    ammo.backpackamount 30
+    ammo.backpackmaxamount 240
+    +IGNORESKILL
+    inventory.pickupmessage "Got M4A1 rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor F2000Ammo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 15
+    inventory.maxamount 150
+    ammo.backpackamount 30
+    ammo.backpackmaxamount 240
+    +IGNORESKILL
+    inventory.pickupmessage "Got F2000 rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor MP5Ammo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 15
+    inventory.maxamount 150
+    ammo.backpackamount 30
+    ammo.backpackmaxamount 240
+    +IGNORESKILL
+    inventory.pickupmessage "Got MP5K rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor M93RAmmo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 10
+    inventory.maxamount 60
+    ammo.backpackamount 20
+    ammo.backpackmaxamount 100
+    +IGNORESKILL
+    inventory.pickupmessage "Got M93 Raffica rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+actor M16Ammo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 15
+    inventory.maxamount 150
+    ammo.backpackamount 30
+    ammo.backpackmaxamount 240
+    +IGNORESKILL
+    inventory.pickupmessage "Got M16A4 rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+actor AK47Ammo : Ammo
+{
+    inventory.icon "CLIPA0"
+    inventory.amount 15
+    inventory.maxamount 150
+    ammo.backpackamount 30
+    ammo.backpackmaxamount 240
+    +IGNORESKILL
+    inventory.pickupmessage "Got AK47 rounds!"  
+    States
+    {
+    Spawn:
+      CLIP A -1
+      Stop
+    }
+}
+
+//Assault Rifle ammo pickup
+actor AssaultRifleAmmo : CustomInventory
+{
+  inventory.pickupmessage "Got Assault Rifle clips!"  
+  inventory.pickupsound "misc/ammo_pkup"
+  +INVENTORY.AUTOACTIVATE
+  scale 0.75
+  States
+  {
+  Spawn:
+    AMMO A -1
+    stop
+  Pickup:
+    BKPK A 0 A_GiveInventory("FamasAmmo",15)
+    BKPK A 0 A_GiveInventory("FALAmmo",10)
+    BKPK A 0 A_GiveInventory("ACRAmmo",15)
+    BKPK A 0 A_GiveInventory("M4A1Ammo",15)
+    BKPK A 0 A_GiveInventory("SCARHAmmo",10)
+    BKPK A 0 A_GiveInventory("F2000Ammo",15)
+    BKPK A 0 A_GiveInventory("M16Ammo",15)
+    BKPK A 0 A_GiveInventory("AK47Ammo",15)
+	BKPK A 0 A_JumpIfInventory("Perk1_Scavenger", 1, "Scavenger")
+    stop
+  Scavenger: // Scavenger bonus ammo
+    BKPK A 0 A_GiveInventory("FamasAmmo",15)
+    BKPK A 0 A_GiveInventory("FALAmmo",10)
+    BKPK A 0 A_GiveInventory("ACRAmmo",15)
+    BKPK A 0 A_GiveInventory("M4A1Ammo",15)
+    BKPK A 0 A_GiveInventory("SCARHAmmo",10)
+    BKPK A 0 A_GiveInventory("F2000Ammo",15)
+    BKPK A 0 A_GiveInventory("M16Ammo",15)
+    BKPK A 0 A_GiveInventory("AK47Ammo",15)
+	stop
+  }
+}
+
+//SMG ammo pickup
+actor SMGAmmo : CustomInventory
+{
+  inventory.pickupmessage "Got SMG clips!"  
+  inventory.pickupsound "misc/ammo_pkup"
+  +INVENTORY.AUTOACTIVATE
+  scale 0.75
+  States
+  {
+  Spawn:
+    AMMO B -1
+    stop
+  Pickup:
+    BKPK A 0 A_GiveInventory("MP5Ammo",15)
+    BKPK A 0 A_GiveInventory("MiniUziAmmo",16)
+    BKPK A 0 A_GiveInventory("UMP45Ammo",16)
+    BKPK A 0 A_GiveInventory("VectorAmmo",15)
+    BKPK A 0 A_GiveInventory("P90Ammo",25)
+	BKPK A 0 A_JumpIfInventory("Perk1_Scavenger", 1, "Scavenger")
+    stop
+  Scavenger: // Scavenger bonus ammo
+	BKPK A 0 A_GiveInventory("MP5Ammo",15)
+    BKPK A 0 A_GiveInventory("MiniUziAmmo",16)
+    BKPK A 0 A_GiveInventory("UMP45Ammo",16)
+    BKPK A 0 A_GiveInventory("VectorAmmo",15)
+    BKPK A 0 A_GiveInventory("P90Ammo",25)
+	stop
+  }
+}
+
+//Shell ammo pickup
+actor ShotgunAmmo : CustomInventory
+{
+  inventory.pickupmessage "Got Shotgun shells!"  
+  inventory.pickupsound "misc/ammo_pkup"
+  +INVENTORY.AUTOACTIVATE
+  scale 0.75
+  States
+  {
+  Spawn:
+    SBOX A -1
+    stop
+  Pickup:	
+    BKPK A 0 A_GiveInventory("AA12Ammo",4)
+    BKPK A 0 A_GiveInventory("RangerAmmo",4)
+    BKPK A 0 A_GiveInventory("SPAS12Ammo",4)
+    BKPK A 0 A_GiveInventory("StrikerAmmo",6)
+    BKPK A 0 A_GiveInventory("M1014Ammo",4)
+    BKPK A 0 A_GiveInventory("M1887Ammo",4)
+	BKPK A 0 A_JumpIfInventory("Perk1_Scavenger", 1, "Scavenger")
+    stop
+  Scavenger: // Scavenger bonus ammo
+	BKPK A 0 A_GiveInventory("AA12Ammo",4)
+    BKPK A 0 A_GiveInventory("RangerAmmo",4)
+    BKPK A 0 A_GiveInventory("SPAS12Ammo",4)
+    BKPK A 0 A_GiveInventory("StrikerAmmo",6)
+    BKPK A 0 A_GiveInventory("M1014Ammo",4)
+    BKPK A 0 A_GiveInventory("M1887Ammo",4)
+	stop
+  }
+}
+
+//Handgun ammo pickup
+actor HandgunAmmo : CustomInventory
+{
+  inventory.pickupmessage "Got Handgun clips!"
+  inventory.pickupsound "misc/ammo_pkup"
+  +INVENTORY.AUTOACTIVATE
+  scale 0.5
+  States
+  {
+  Spawn:
+    AMMO D -1
+    stop
+  Pickup:
+    BKPK A 0 A_GiveInventory("USP45Ammo",6)
+    BKPK A 0 A_GiveInventory("44MagnumAmmo",3)
+    BKPK A 0 A_GiveInventory("DeagleAmmo",4)
+    BKPK A 0 A_GiveInventory("M9Ammo",8)
+    BKPK A 0 A_GiveInventory("G18Ammo",16)
+    BKPK A 0 A_GiveInventory("PP2000Ammo",10)
+    BKPK A 0 A_GiveInventory("M93RAmmo",10)
+	BKPK A 0 A_JumpIfInventory("Perk1_Scavenger", 1, "Scavenger")
+    stop
+  Scavenger: // Scavenger bonus ammo
+	BKPK A 0 A_GiveInventory("USP45Ammo",6)
+    BKPK A 0 A_GiveInventory("44MagnumAmmo",3)
+    BKPK A 0 A_GiveInventory("DeagleAmmo",4)
+    BKPK A 0 A_GiveInventory("M9Ammo",8)
+    BKPK A 0 A_GiveInventory("G18Ammo",16)
+    BKPK A 0 A_GiveInventory("PP2000Ammo",10)
+    BKPK A 0 A_GiveInventory("M93RAmmo",10)
+	stop
+  }
+}
+
+//Sniper ammo pickup
+actor SniperAmmo : CustomInventory
+{
+  inventory.pickupmessage "Got Sniper clips!"  
+  inventory.pickupsound "misc/ammo_pkup"
+  +INVENTORY.AUTOACTIVATE
+  scale 0.75
+  States
+  {
+  Spawn:
+    AMMO C -1
+    stop
+  Pickup:
+    BKPK A 0 A_GiveInventory("InterventionAmmo",5)
+    BKPK A 0 A_GiveInventory("BarrettAmmo",5)
+    BKPK A 0 A_GiveInventory("WA2000Ammo",6)
+    BKPK A 0 A_GiveInventory("M14Ammo",5)
+	BKPK A 0 A_JumpIfInventory("Perk1_Scavenger", 1, "Scavenger")
+    stop
+  Scavenger:
+	BKPK A 0 A_GiveInventory("InterventionAmmo",5)
+    BKPK A 0 A_GiveInventory("BarrettAmmo",5)
+    BKPK A 0 A_GiveInventory("WA2000Ammo",6)
+    BKPK A 0 A_GiveInventory("M14Ammo",5)
+	stop
+  }
+}
+
+//Explosive ammo pickup
+actor ExplosiveAmmo : CustomInventory
+{
+  inventory.pickupmessage "Got grenades!"  
+  inventory.pickupsound "misc/ammo_pkup"
+  +INVENTORY.AUTOACTIVATE
+  scale 0.65
+  States
+  {
+  Spawn:
+    BROK A -1
+    stop
+  Pickup:
+    BKPK A 0 A_GiveInventory("FragGrenadeAmmo",1)
+    BKPK A 0 A_GiveInventory("M203Ammo",1)
+    BKPK A 0 A_GiveInventory("ThumperAmmo",1)
+	BKPK A 0 A_JumpIfInventory("Perk1_Scavenger", 1, "Scavenger")
+	stop
+  Scavenger:
+	BKPK A 0 A_GiveInventory("FragGrenadeAmmo",1)
+    BKPK A 0 A_GiveInventory("M203Ammo",1)
+    BKPK A 0 A_GiveInventory("ThumperAmmo",1)
+	stop
+  }
+}
+
+actor RocketAmmo_2 : CustomInventory
+{
+  inventory.pickupmessage "Got a rocket!"  
+  inventory.pickupsound "misc/ammo_pkup"
+  +INVENTORY.AUTOACTIVATE
+  scale 0.75
+  States
+  {
+  Spawn:
+    ROCK A -1
+    stop
+  Pickup:
+    BKPK A 0 A_GiveInventory("AT4Ammo",1)
+    BKPK A 0 A_GiveInventory("RPGAmmo",1)
+	BKPK A 0 A_JumpIfInventory("Perk1_Scavenger", 1, "Scavenger")
+	stop
+  Scavenger:
+	BKPK A 0 A_GiveInventory("AT4Ammo",1)
+    BKPK A 0 A_GiveInventory("RPGAmmo",1)
+	stop
+  }
+}
+
+//LMG ammo pickup
+actor LMGAmmo : CustomInventory
+{
+  inventory.pickupmessage "Got LMG bullets!"  
+  inventory.pickupsound "misc/ammo_pkup"
+  +INVENTORY.AUTOACTIVATE
+  scale 1.0
+  States
+  {
+  Spawn:
+    AMMO E -1
+    stop
+  Pickup:
+    BKPK A 0 A_GiveInventory("MG4Ammo",50)
+    BKPK A 0 A_GiveInventory("AUGHBARAmmo",42)
+    BKPK A 0 A_GiveInventory("M240Ammo",50)
+    BKPK A 0 A_GiveInventory("L86Ammo",50)
+	BKPK A 0 A_JumpIfInventory("Perk1_Scavenger", 1, "Scavenger")
+    stop
+  Scavenger:
+	BKPK A 0 A_GiveInventory("MG4Ammo",50)
+    BKPK A 0 A_GiveInventory("AUGHBARAmmo",42)
+    BKPK A 0 A_GiveInventory("M240Ammo",50)
+    BKPK A 0 A_GiveInventory("L86Ammo",50)
+	stop
+  }
+}

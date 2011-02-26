@@ -1,0 +1,564 @@
+m9/fire             	m9
+m9/clipin           	m9clipin
+m9/clipout          	m9clipou
+m9/slide1           	m9slide1
+m9/lock             	m9lockba
+m9/select           	m9select
+$random u45/fire	{ u45/fire1 u45/fire2 u45/fire3 u45/fire4}
+u45/fire1		uspfire1
+u45/fire2		uspfire2
+u45/fire3		uspfire3
+u45/fire4		uspfire4
+$random 44magnum/fire	{ 44magnum/fire1 44magnum/fire2 44magnum/fire3}
+44magnum/fire1		magnfir1
+44magnum/fire2		magnfir2
+44magnum/fire3		magnfir3
+44magnum/out		magnclpo
+44magnum/in		magnclpi
+44magnum/click		magnclp2
+g2/clipin               famaclpi
+g2/clipout              famaclpo
+g2/bolt                 famabolt
+$random g2/fire		{ g2/fire1 g2/fire2 }
+g2/fire1		famfire1
+g2/fire2		famfire2
+g2/select		mp5magin
+$random hk69/fire	{ hk69/fire1 hk69/fire2 }
+hk69/fire1		grenfir1
+hk69/fire2		grenfir2
+hk69/open		grenopen
+hk69/in			grenin
+hk69/close		grenclos
+$random	fal/fire	{ fal/fire1 fal/fire2 fal/fire3 fal/fire4 }
+fal/fire1		falfire1
+fal/fire2		falfire2
+fal/fire3		falfire3
+fal/fire4		falfire4
+fal/select		falselec
+fal/clipin		falclipi
+fal/clipout		falclipo
+fal/bolt		falbolt
+$random spas/fire	{ spas/fire1 spas/fire2}
+spas/fire1		spasfir1
+spas/fire2		spasfir2
+$random spas/insert	{ spas/insert1 spas/insert2}
+spas/insert1		spasshl1
+spas/insert2		spasshl2
+spas/pump		spaspump
+$random aa12/fire	{ aa12/fire1 aa12/fire2 aa12/fire3 }
+aa12/fire1		aa12fir1
+aa12/fire2		aa12fir2
+aa12/fire3		aa12fir3
+aa12/clipout		aa12clpo
+aa12/clipin		aa12clpi
+aa12/bolt		aa12bolt
+aa12/select		aa12sele
+$random	ump45/fire	{ ump45/fire1 ump45/fire2 ump45/fire3 ump45/fire4 }
+ump45/fire1		umpfire1
+ump45/fire2		umpfire2
+ump45/fire3		umpfire3
+ump45/fire4		umpfire4
+ump45/clipout		umpclipo
+ump45/clipin		umpclipi
+ump45/bolt		umpbolt
+$random	vector/fire	{ vector/fire1 vector/fire2 vector/fire3 }
+vector/fire1		vecfire1
+vector/fire2		vecfire2
+vector/fire3		vecfire3
+vector/bolt		vecbolt
+vector/clipout		vecclipo
+vector/clipin		vecclipi
+$random uzi/fire	{ uzi/fire1 uzi/fire2 uzi/fire3 uzi/fire4 }
+uzi/fire1		uzifire1
+uzi/fire2		uzifire2
+uzi/fire3		uzifire3
+uzi/fire4		uzifire4
+uzi/bolt		uzibolt
+uzi/clipin		uziclipi
+uzi/clipout		uziclipo
+$random p90/fire	{ p90/fire1 p90/fire2 p90/fire3 }
+p90/fire1		p90fire1
+p90/fire2		p90fire2
+p90/fire3		p90fire3
+p90/fire4		p90fire4
+p90/clipout		p90clipo
+p90/clipin		p90clipi
+p90/hit			p90hit
+p90/bolt		p90bolt
+$random m79/fire	{m79/fire1 m79/fire2 } 
+m79/fire1		thumfir1
+m79/fire2		thumfir2
+m79/select		m79selec
+m79/open		thumopen
+m79/out			thumout
+m79/in			thumin
+m79/close		thumclos
+$random acr/fire	{ acr/fire1 acr/fire2 acr/fire3 }
+acr/fire1		acrfire1
+acr/fire2		acrfire2
+acr/fire3		acrfire3
+acr/clipout		acrclipo
+acr/clipin		acrclipi
+acr/bolt		acrbolt
+at4/fire		avrilfir
+seek/lock		seeklock
+seek/lost		seeklost
+$random intervention/fire	{ intervention/fire1 intervention/fire2 }
+intervention/fire1	intfire1
+intervention/fire2	intfire2
+intervention/open	rc50blto
+intervention/close	rc50bltc
+intervention/clipout	intclipo
+intervention/clipin	intclipi
+$random barrett/fire	{ barrett/fire1 barrett/fire2 barrett/fire3 }
+barrett/fire1		ba50fir1
+barrett/fire2		ba50fir2
+barrett/fire3		ba50fir3
+barrett/clipout		barrclpo
+barrett/clipin		barrclpi
+barrett/bolt	barrbolt
+$random misc/footstep	{ step/step1 step/step2 step/step3 step/step4 step/step5 step/step6 }
+$random misc/footstep2	{ step/step1 step/step2 step/step3 step/step4 step/step5 step/step6 }
+step/step1		step01s
+step/step2		step02s
+step/step3		step03s
+step/step4		step04s
+step/step5		step05s
+step/step6		step06s
+$random mg4/fire	{ mg4/fire1 mg4/fire2 mg4/fire3 }
+mg4/fire1		mg4fire1
+mg4/fire2		mg4fire2
+mg4/fire3		mg4fire3
+mg4/reload1		mg4relo1
+mg4/reload2		mg4relo2
+mg4/reload3		mg4relo3
+mg4/reload4		mg4relo4
+mg4/reload5		mg4relo5
+mg4/reload6		mg4relo6
+$random g18/fire	{ g18/fire1 g18/fire2 g18/fire3 }
+g18/fire1		g18fire1
+g18/fire2		g18fire2
+g18/fire3		g18fire3
+g18/clipout		g18clipo
+g18/clipin		g18clipi
+g18/bolt		g18bolt
+$random tactical/insert	{ tactical/insert1 tactical/insert2 }
+tactical/insert1	tactins1
+tactical/insert2	tactins2
+tactical/flare		flares1
+$random pp2000/fire	{ pp2000/fire1 pp2000/fire2 pp2000/fire3 }
+pp2000/fire1		pp20fir1
+pp2000/fire2		pp20fir2
+pp2000/fire3		pp20fir3
+pp2000/clipout		pp20clpo
+pp2000/clipin		pp20clpi
+pp2000/bolt		pp20bolt
+$random scar/fire	{ scar/fire1 scar/fire2 scar/fire3 }
+scar/fire1		scarfir1
+scar/fire2		scarfir2
+scar/fire3		scarfir3
+scar/clipout		scarclpo
+scar/clipin		scarclpi
+scar/bolt		scarbolt
+$random m4a1/fire	{ m4a1/fire1 m4a1/fire2 m4a1/fire3 }
+m4a1/fire1		m4a1fir1
+m4a1/fire2		m4a1fir2
+m4a1/fire3		m4a1fir3
+m4a1/clipout		m4a1clpo
+m4a1/clipin		m4a1clpi
+m4a1/bolt		m4a1bolt
+$random ranger/fire	{ ranger/fire1 ranger/fire2 ranger/fire3 }
+ranger/fire1		rangfir1
+ranger/fire2		rangfir2
+ranger/fire3		rangfir3
+ranger/open		rangopen
+$random ranger/in	{ ranger/in1 ranger/in2 }
+ranger/in1		rangin1
+ranger/in2		rangin2
+ranger/close		rangclos
+$random f2000/fire	{ f2000/fire1 f2000/fire2 f2000/fire3 }
+f2000/fire1		f200fir1
+f2000/fire2		f200fir2
+f2000/fire3		f200fir3
+f2000/clipout		f200clpo
+f2000/clipin		f200clpi
+f2000/bolt		f200bolt
+$random mp5k/fire	{ mp5k/fire1 mp5k/fire2 mp5k/fire3 }
+mp5k/fire1		mp5kfir1
+mp5k/fire2		mp5kfir2
+mp5k/fire3		mp5kfir3
+mp5k/clipout		mp5kclpo
+mp5k/clipin		mp5kclpi
+mp5k/bolt		mp5kbolt
+$random m93r/fire	{ m93r/fire1 m93r/fire2 m93r/fire3 }
+m93r/fire1		m93rfir1
+m93r/fire2		m93rfir2
+m93r/fire3		m93rfir3
+m93r/clipout		m93rclpo
+m93r/clipin		m93rclpi
+m93r/bolt		m93rbolt
+$random m16/fire	{ m16/fire1 m16/fire2 m16/fire3 }
+m16/fire1		m16afir1
+m16/fire2		m16afir2
+m16/fire3		m16afir3
+$random ak47/fire	{ ak47/fire1 ak47/fire2 ak47/fire3 }
+ak47/fire1		ak47fir1
+ak47/fire2		ak47fir2
+ak47/fire3		ak47fir3
+ak47/clipout		ak47clpo
+ak47/clipin		ak47clpi
+ak47/bolt		ak47bolt
+$random striker/fire	{ striker/fire1 striker/fire2 striker/fire3}
+striker/fire1		strkfir1
+striker/fire2		strkfir2
+striker/fire3		strkfir3
+$random striker/insert	{ striker/insert1 striker/insert2}
+striker/insert1		strkin1
+striker/insert2		strkin2
+striker/up		strkopen
+striker/down		strkclos
+$random hbar/fire	{ hbar/fire1 hbar/fire2 hbar/fire3 }
+hbar/fire1		hbarfir1
+hbar/fire2		hbarfir2
+hbar/fire3		hbarfir3
+hbar/clipout		hbarclpo
+hbar/clipin		hbarclpi
+hbar/bolt		hbarbolt
+hbar/up			hbarup
+$random wa2000/fire	{ wa2000/fire1 wa2000/fire2 wa2000/fire3 wa2000/fire4 }
+wa2000/fire1		wa20fir1
+wa2000/fire2		wa20fir2
+wa2000/fire3		wa20fir3
+wa2000/fire4		wa20fir4
+$random deagle/fire	{ deagle/fire1 deagle/fire2 deagle/fire3 deagle/fire4 }
+deagle/fire1		deagfir1
+deagle/fire2		deagfir2
+deagle/fire3		deagfir3
+deagle/fire4		deagfir4
+deagle/clipout		deagclpo
+deagle/clipin		deagclpi
+deagle/bolt		deagbolt
+$random m1014/fire	{ m1014/fire1 m1014/fire2 m1014/fire3 m1014/fire4}
+m1014/fire1		m101fir1
+m1014/fire2		m101fir2
+m1014/fire3		m101fir3
+m1014/fire4		m101fir4
+$random m1014/insert	{ m1014/insert1 m1014/insert2}
+m1014/insert1		m101in1
+m1014/insert2		m101in2
+$random m240/fire	{ m240/fire1 m240/fire2 m240/fire3 m240/fire4 }
+m240/fire1		m240fir1
+m240/fire2		m240fir2
+m240/fire3		m240fir3
+m240/fire4		m240fir4
+m240/reload1		m240rel1
+m240/reload2		m240rel2
+m240/reload3		m240rel3
+m240/reload4		m240rel4
+m240/reload5		m240rel5
+m240/reload6		m240rel6
+$random l86/fire	{ l86/fire1 l86/fire2 l86/fire3 }
+l86/fire1		l86fire1
+l86/fire2		l86fire2
+l86/fire3		l86fire3
+l86/clipout		l86clipo
+l86/clipin		l86clipi
+l86/bolt		l86bolt
+rpg/open		rpg7open
+rpg/in			rpg7clpi
+$random m1887/fire	{ m1887/fire1 m1887/fire2 m1887/fire3 m1887/fire4 }
+m1887/fire1		m887fir1
+m1887/fire2		m887fir2
+m1887/fire3		m887fir3
+m1887/fire4		m887fir4
+m1887/fireempty		m887fir0
+m1887/open		m887open
+m1887/close		m887clos
+$random m1887/insert	{ m1887/in1 m1887/in2 m1887/in3 }
+m1887/in1		m887in1
+m1887/in2		m887in2
+m1887/in3		m887in3
+$random grenade/lob	{ grenade/lob1 grenade/lob2 grenade/lob3 grenade/lob4 }
+grenade/lob1		grenlob1
+grenade/lob2		grenlob2
+grenade/lob3		grenlob3
+grenade/lob4		grenlob4
+$random m14/fire	{ m14/fire1 m14/fire2 m14/fire3 }
+m14/fire1		m14efir1
+m14/fire2		m14efir2
+m14/fire3		m14efir3
+m14/clipout		m14eclpo
+m14/clipin		m14eclpi
+m14/bolt		m14ebolt
+
+$rolloff 		44magnum/fire	500 1500
+$rolloff 		u45/fire6	500 1500
+$rolloff 		g2/fire		500 1500
+$rolloff 		hk69/fire	700 2500
+$rolloff 		fal/fire	500 1500
+$rolloff 		spas/fire	500 1500
+$rolloff 		aa12/fire	500 1500
+$rolloff 		ump45/fire	500 1500
+$rolloff 		vector/fire	500 1500
+$rolloff 		uzi/fire	500 1500
+$rolloff 		p90/fire	500 1500
+$rolloff 		acr/fire	500 1500
+$rolloff 		m79/fire	700 2500
+$rolloff 		at4/fire	700 2500
+$rolloff 		intervention/fire	1000 3000
+$rolloff 		barrett/fire	1000 3000
+$rolloff 		misc/footstep	100 500
+$rolloff 		misc/footstep2	100 300
+$volume			misc/footstep2  0.25
+$rolloff 		mg4/fire	500 1500
+$rolloff 		g18/fire	500 1500
+$rolloff 		pp2000/fire	500 1500
+$rolloff 		scar/fire	500 1500
+$rolloff 		m4a1/fire	500 1500
+$rolloff 		tactical/insert	100 250
+$rolloff 		tactical/flare	100 250
+$rolloff 		ranger/fire	500 1500
+$rolloff 		f2000/fire	500 1500
+$rolloff 		mp5k/fire	500 1500
+$rolloff 		m93r/fire	500 1500
+$rolloff 		m16/fire	500 1500
+$rolloff 		ak47/fire	500 1500
+$rolloff 		striker/fire	500 1500
+$rolloff 		hbar/fire	500 1500
+$rolloff 		wa2000/fire	1000 3000
+$rolloff 		deagle/fire	500 1500
+$rolloff 		m1014/fire	500 1500
+$rolloff 		m240/fire	500 1500
+$rolloff 		l86/fire	500 1500
+$rolloff 		m1887/fire	500 1500
+$rolloff 		m14/fire	1000 3000
+
+$random generic/explosion	{ generic/explosion1 generic/explosion2 generic/explosion3 generic/explosion4 }
+generic/explosion1		explo01
+generic/explosion2		explo02
+generic/explosion3		explo03
+generic/explosion4		explo04
+$rolloff 			generic/explosion	700 2500
+
+knife/swing		knifeswi
+knife/hit		knifehit
+
+generic/fleshhit	ricoche6
+$limit generic/fleshhit	4
+
+$random generic/ricochet      {  generic/ricochets world/blank1 }
+$random generic/ricochets        {  world/ricochet1 world/ricochet2 world/ricochet3 world/ricochet4 world/ricochet5 }
+world/ricochet1     	ricoche1
+world/ricochet2     	ricoche2
+world/ricochet3     	ricoche3
+world/ricochet4     	ricoche4
+world/ricochet5     	ricoche5
+world/blank1        	blanksnd
+world/blank2        	blanksnd
+
+
+$random us/grenade        {  us/grenade1 us/grenade2 us/grenade3 us/grenade4 us/grenade5 }
+$random us/reload        {  us/reload1 us/reload2 us/reload3 us/reload4 us/reload5 us/reload6 }
+$random us/kill        {  us/kill1 us/kill2 us/kill3 us/kill4 us/kill5 us/kill6 }
+us/grenade1		r_fragg1
+us/grenade2		r_fragg2
+us/grenade3		r_fragg3
+us/grenade4		r_greng1
+us/grenade5		r_greng2
+us/reload1		r_relo1
+us/reload2		r_relo2
+us/reload3		r_relo3
+us/reload4		r_relo4
+us/reload5		r_relo5
+us/reload6		r_relo6
+us/kill1		r_kill1
+us/kill2		r_kill2
+us/kill3		r_kill3
+us/kill4		r_kill4
+us/kill5		r_kill5
+us/kill6		r_kill6
+$random us/down	  { us/down1 us/down2 }
+us/down1		us_inj1
+us/down2		us_inj2
+
+$random russian/grenade	  { russian/grenade1 russian/grenade2 russian/grenade3 russian/grenade4 russian/grenade5 russian/grenade6 }
+$random russian/reload	  { russian/reload1 russian/reload2 russian/reload3 russian/reload4 russian/reload5 russian/reload6 }
+$random russian/kill	  { russian/kill1 russian/kill2 russian/kill3 russian/kill4 russian/kill5 russian/kill6 russian/kill7 russian/kill8 }
+russian/grenade1	ru_gren1
+russian/grenade2	ru_gren2
+russian/grenade3	ru_gren3
+russian/grenade4	ru_gren4
+russian/grenade5	ru_gren5
+russian/grenade6	ru_gren6
+russian/reload1		ru_relo1
+russian/reload2		ru_relo2
+russian/reload3		ru_relo3
+russian/reload4		ru_relo4
+russian/reload5		ru_relo5
+russian/reload6		ru_relo6
+russian/kill1		ru_kill1
+russian/kill2		ru_kill2
+russian/kill3		ru_kill3
+russian/kill4		ru_kill4
+russian/kill5		ru_kill5
+russian/kill6		ru_kill6
+russian/kill7		ru_kill7
+russian/kill8		ru_kill8
+$random russian/down	  { russian/down1 russian/down2 }
+russian/down1		ru_inj1
+russian/down2		ru_inj2
+
+$random brazil/grenade	  { brazil/grenade1 brazil/grenade2 brazil/grenade3 brazil/grenade4 brazil/grenade5 brazil/grenade6 }
+$random brazil/reload	  { brazil/reload1 brazil/reload2 brazil/reload3 brazil/reload4 brazil/reload5 brazil/reload6 }
+$random brazil/kill	  { brazil/kill1 brazil/kill2 brazil/kill3 brazil/kill4 brazil/kill5 brazil/kill6 }
+brazil/grenade1		pg_gren1
+brazil/grenade2		pg_gren2
+brazil/grenade3		pg_gren3
+brazil/grenade4		pg_gren4
+brazil/grenade5		pg_gren5
+brazil/grenade6		pg_gren6
+brazil/reload1		pg_relo1
+brazil/reload2		pg_relo2
+brazil/reload3		pg_relo3
+brazil/reload4		pg_relo4
+brazil/reload5		pg_relo5
+brazil/reload6		pg_relo6
+brazil/kill1		pg_kill1
+brazil/kill2		pg_kill2
+brazil/kill3		pg_kill3
+brazil/kill4		pg_kill4
+brazil/kill5		pg_kill5
+brazil/kill6		pg_kill6
+$random brazil/down	  { brazil/down1 brazil/down2 }
+brazil/down1		pg_inj1
+brazil/down2		pg_inj2
+
+$random seal/grenade	  { seal/grenade1 seal/grenade2 seal/grenade3 seal/grenade4 seal/grenade5 seal/grenade6 }
+$random seal/reload	  { seal/reload1 seal/reload2 seal/reload3 seal/reload4 seal/reload5 seal/reload6 }
+$random seal/kill	  { seal/kill1 seal/kill2 seal/kill3 seal/kill4 seal/kill5 seal/kill6 }
+seal/grenade1		ns_gren1
+seal/grenade2		ns_gren2
+seal/grenade3		ns_gren3
+seal/grenade4		ns_gren4
+seal/grenade5		ns_gren5
+seal/grenade6		ns_gren6
+seal/reload1		ns_relo1
+seal/reload2		ns_relo2
+seal/reload3		ns_relo3
+seal/reload4		ns_relo4
+seal/reload5		ns_relo5
+seal/reload6		ns_relo6
+seal/kill1		ns_kill1
+seal/kill2		ns_kill2
+seal/kill3		ns_kill3
+seal/kill4		ns_kill4
+seal/kill5		ns_kill5
+seal/kill6		ns_kill6
+$random seal/down	  { seal/down1 seal/down2 }
+seal/down1		ns_inj1
+seal/down2		ns_inj2
+
+$random opfor/grenade	  { opfor/grenade1 opfor/grenade2 opfor/grenade3 opfor/grenade4 opfor/grenade5 opfor/grenade6  }
+$random opfor/reload	  { opfor/reload1 opfor/reload2 opfor/reload3 opfor/reload4 opfor/reload5 opfor/reload6 }
+$random opfor/kill	  { opfor/kill1 opfor/kill2 opfor/kill3 opfor/kill4 opfor/kill5 opfor/kill6 }
+opfor/grenade1		of_gren1
+opfor/grenade2		of_gren2
+opfor/grenade3		of_gren3
+opfor/grenade4		of_gren4
+opfor/grenade5		of_gren5
+opfor/grenade6		of_gren6
+opfor/reload1		of_relo1
+opfor/reload2		of_relo2
+opfor/reload3		of_relo3
+opfor/reload4		of_relo4
+opfor/reload5		of_relo5
+opfor/reload6		of_relo6
+opfor/kill1		of_kill1
+opfor/kill2		of_kill2
+opfor/kill3		of_kill3
+opfor/kill4		of_kill4
+opfor/kill5		of_kill5
+opfor/kill6		of_kill6
+$random opfor/down	  { opfor/down1 opfor/down2 }
+opfor/down1		ab_inj1
+opfor/down2		ab_inj2
+
+$random tf141/grenade	  { tf141/grenade1  tf141/grenade2 tf141/grenade3  tf141/grenade4  tf141/grenade5  tf141/grenade6   }
+$random tf141/reload	  { tf141/reload1 tf141/reload2 tf141/reload3 tf141/reload4 tf141/reload5 tf141/reload6 }
+$random tf141/kill	  { tf141/kill1 tf141/kill2 tf141/kill3 tf141/kill4 tf141/kill5 tf141/kill6 }
+tf141/grenade1		uk_gren1
+tf141/grenade2		uk_gren2
+tf141/grenade3		uk_gren3
+tf141/grenade4		uk_gren4
+tf141/grenade5		uk_gren5
+tf141/grenade6		uk_gren6
+tf141/reload1		uk_relo1
+tf141/reload2		uk_relo2
+tf141/reload3		uk_relo3
+tf141/reload4		uk_relo4
+tf141/reload5		uk_relo5
+tf141/reload6		uk_relo6
+tf141/kill1		uk_kill1
+tf141/kill2		uk_kill2
+tf141/kill3		uk_kill3
+tf141/kill4		uk_kill4
+tf141/kill5		uk_kill5
+tf141/kill6		uk_kill6
+$random tf141/down	  { tf141/down1 tf141/down2 }
+tf141/down1		uk_inj1
+tf141/down2		uk_inj2
+
+$rolloff 		us/down			700 2500
+$rolloff 		russian/down		700 2500
+$rolloff 		brazil/down		700 2500
+$rolloff 		seal/down		700 2500
+$rolloff 		opfor/down		700 2500
+$rolloff 		tf141/down		700 2500
+
+grenade/throw		throw
+grenade/pinpull		pinpull
+
+$playeralias	player		male	*death		commando/pain   
+$playeralias	player		male	*xdeath		commando/pain   
+$playersound	player		male	*gibbed		commando/pain
+$playeralias	player		male	*pain100	commando/death
+$playersounddup	player		male	*pain75		*pain100
+$playersounddup	player		male	*pain50		*pain100
+$playersounddup	player		male	*pain25		*pain100
+$playersound	player		male	*grunt		irandi4
+$playersound	player		male	*land		irandi4
+$playersound	player		male	*jump		dsempty
+$playersound	player		male	*usefail	irandi4
+$playeralias	player		male	*taunt		commando/speak
+$playeralias	player		male	*falling	commando/fear
+
+$random				commando/death	{ cmdo/death1 cmdo/death2 cmdo/death3 cmdo/death4 cmdo/death5 cmdo/death6 cmdo/death7 } 
+cmdo/death1			irandi1
+cmdo/death2			irandi2
+cmdo/death3			irandi3
+cmdo/death4			irandi5
+cmdo/death5			irandi6
+cmdo/death6			irandi7
+cmdo/death7			irandi8
+
+$random				commando/pain	{ cmdo/pain1 cmdo/pain2 cmdo/pain3 cmdo/pain4 } 
+cmdo/pain1			iranpa1
+cmdo/pain2			iranpa2
+cmdo/pain3			iranpa3
+cmdo/pain4			iranpa4
+
+$random renegade/deaths1 { renegade/death1 renegade/death2 renegade/death3 renegade/death4 renegade/death5 renegade/death6 renegade/death7 renegade/death8 renegade/death9 renegade/death10  }
+$random renegade/deaths2 { renegade/death21 renegade/death22 renegade/death23 }
+renegade/death1          dedman1
+renegade/death2          dedman2
+renegade/death3          dedman3
+renegade/death4          dedman4
+renegade/death5          dedman5
+renegade/death6          dedman6
+renegade/death7          dedman7
+renegade/death8          dedman8	
+renegade/death9          dedman9
+renegade/death10          dedman10
+renegade/death21          death01
+renegade/death22          death02
+renegade/death23          death03
