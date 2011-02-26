@@ -67,3 +67,5 @@
 #include decorate/monsters/doom/INVASION.txt
 #include decorate/monsters/doom/DEC_JUGG.txt
 #include decorate/monsters/doom/afrit.txt
+#include decorate/monsters/doom/agathodemon.txt
+#include decorate/monsters/doom/arachnophyte.txt
