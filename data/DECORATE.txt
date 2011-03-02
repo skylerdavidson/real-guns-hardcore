@@ -81,3 +81,4 @@
 #include "decorate/monsters/doom/freezer zombie.txt"
 #include "decorate/monsters/doom/helemental.txt"
 #include "decorate/monsters/doom/hellion.txt"
+#include "decorate/monsters/doom/hells fury.txt"
