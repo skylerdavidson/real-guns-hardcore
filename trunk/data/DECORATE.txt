@@ -79,3 +79,4 @@
 #include "decorate/monsters/doom/ethereal soul.txt"
 #include "decorate/monsters/doom/forgotten one.txt"
 #include "decorate/monsters/doom/freezer zombie.txt"
+#include "decorate/monsters/doom/helemental.txt"
