@@ -1,0 +1,41 @@
+Pointlight ShadowBall
+{
+Color 1.0 0.0 0.0
+Size 32
+}
+
+Pointlight ShadowBall2
+{
+Color 1.0 0.0 0.0
+Size 44
+}
+
+Pointlight ShadowBall3
+{
+Color 1.0 0.0 0.0
+Size 48
+}
+
+Pointlight ShadowBall4
+{
+Color 0.6 0.0 0.0
+Size 36
+}
+
+Pointlight ShadowBall5
+{
+Color 0.4 0.0 0.0
+Size 24
+}
+
+Object ShadowBall
+{
+Frame SBALA { Light ShadowBall }
+Frame SBALB { Light ShadowBall }
+Frame SBALC { Light ShadowBall }
+Frame SBALD { Light ShadowBall1 }
+Frame SBALE { Light ShadowBall2 }
+Frame SBALF { Light ShadowBall3 }
+Frame SBALG { Light ShadowBall4 }
+Frame SBALH { Light ShadowBall5 }
+}

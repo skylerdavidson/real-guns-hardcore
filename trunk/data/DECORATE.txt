@@ -76,3 +76,4 @@
 #include "decorate/monsters/doom/defiler.txt"
 #include "decorate/monsters/doom/demolisher.txt"
 #include "decorate/monsters/doom/diabloist.txt"
+#include "decorate/monsters/doom/ethereal soul.txt"
