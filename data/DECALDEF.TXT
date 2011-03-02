@@ -1,2 +1,12 @@
 generator CrackodemonBall CacoScorch
 generator Blusoul CacoScorch
+
+decal FreezeBlastMelt
+{
+	pic BSMEAR1
+	x-scale 1.1
+	y-scale 1.1
+	shade "DD DD FF"
+	randomflipx
+	animator BloodSmearer
+}

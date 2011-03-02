@@ -1312,5 +1312,6 @@ object BigTree
 #include "gldefs/monsters/doom/diabloist.txt"
 #include "gldefs/monsters/doom/ethereal soul.txt"
 #include "gldefs/monsters/doom/forgotten one.txt"
+#include "gldefs/monsters/doom/freezer zombie.txt"
 
 #include gldefs/artifacts/doom/ammosphere.txt

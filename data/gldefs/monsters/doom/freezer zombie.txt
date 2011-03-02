@@ -1,0 +1,10 @@
+pointlight ICEGLOWER
+{
+    color 0.5 0.5 1.0
+    size 20
+}
+
+object FreezeBlast
+{
+frame FBLS { light ICEGLOWER }
+}
