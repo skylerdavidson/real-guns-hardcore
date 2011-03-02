@@ -1,0 +1,178 @@
+Pointlight DefilerShot
+{
+Color 1.0 0.0 0.0
+Size 40
+}
+
+Pointlight DefilerShot2
+{
+Color 1.0 0.0 0.0
+Size 44
+}
+
+Pointlight DefilerShot3
+{
+Color 0.6 0.0 0.0
+Size 48
+}
+
+Pointlight DefilerShot4
+{
+Color 0.4 0.0 0.0
+Size 36
+}
+
+Object DefilerShot
+{
+Frame DFSHA { Light DefilerShot }
+Frame DFSHB { Light DefilerShot }
+Frame DFSHC { Light DefilerShot2 }
+Frame DFSHD { Light DefilerShot3 }
+Frame DFSHE { Light DefilerShot4 }
+}
+
+Pointlight DefilerBall
+{
+Color 1.0 0.4 0.0
+Size 30
+}
+
+Pointlight DefilerBall2
+{
+Color 1.0 0.4 0.0
+Size 34
+}
+
+Pointlight DefilerBall3
+{
+Color 0.4 0.3 0.0
+Size 38
+}
+
+Pointlight DefilerBall4
+{
+Color 0.4 0.2 0.0
+Size 32
+}
+
+Pointlight DefilerBall5
+{
+Color 0.4 0.2 0.0
+Size 32
+}
+
+Pointlight DefilerBall6
+{
+Color 0.4 0.2 0.0
+Size 30
+}
+
+Pointlight DefilerBall7
+{
+Color 0.4 0.2 0.0
+Size 30
+}
+
+Object DefilerBall
+{
+Frame RVBAA { Light DefilerBall }
+Frame RVBAB { Light DefilerBall }
+Frame RVBAC { Light DefilerBall2 }
+Frame RVBAD { Light DefilerBall3 }
+Frame RVBAE { Light DefilerBall4 }
+Frame RVBAF { Light DefilerBall5 }
+Frame RVBAG { Light DefilerBall6 }
+Frame RVBAH { Light DefilerBall7 }
+}
+
+Pointlight DefilerFire1
+{
+Color 0.0 0.0 0.0
+Size 30
+}
+
+Pointlight DefilerFire2
+{
+Color 0.7 0.0 0.0
+Size 34
+}
+
+Pointlight DefilerFire3
+{
+Color 0.8 0.0 0.0
+Size 38
+}
+
+Pointlight DefilerFire4
+{
+Color 1.0 0.0 0.0
+Size 44
+}
+
+Pointlight DefilerFire5
+{
+Color 0.8 0.0 0.0
+Size 40
+}
+
+Pointlight DefilerFire6
+{
+Color 0.7 0.0 0.0
+Size 38
+}
+
+Pointlight DefilerFire7
+{
+Color 0.6 0.0 0.0
+Size 34
+}
+
+Pointlight DefilerFire8
+{
+Color 0.5 0.0 0.0
+Size 30
+}
+
+Object DefilerFire
+{
+Frame REFRA { Light DefilerFire1 }
+Frame REFRB { Light DefilerFire2 }
+Frame REFRC { Light DefilerFire3 }
+Frame REFRD { Light DefilerFire4 }
+Frame REFRE { Light DefilerFire5 }
+Frame REFRF { Light DefilerFire6 }
+Frame REFRG { Light DefilerFire7 }
+Frame REFRH { Light DefilerFire8 }
+}
+
+Pointlight DefilerDeath1
+{
+Color 1.0 0.4 0.0
+Size 40
+}
+
+Pointlight DefilerDeath2
+{
+Color 1.0 0.5 0.0
+Size 45
+}
+
+Pointlight DefilerDeath3
+{
+Color 0.6 0.3 0.0
+Size 40
+}
+
+Pointlight DefilerDeath4
+{
+Color 0.4 0.2 0.0
+Size 35
+}
+
+Object Defiler
+{
+Frame DEFIH { Light DefilerDeath1 }
+Frame DEFII { Light DefilerDeath2 }
+Frame DEFIJ { Light DefilerDeath3 }
+Frame DEFIK { Light DefilerDeath4 }
+}
