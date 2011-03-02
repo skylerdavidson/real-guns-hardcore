@@ -1,0 +1,264 @@
+Pointlight HadesBall1
+{
+Color 0.8 0.0 0.0
+Size 40
+}
+
+Pointlight HadesBall2
+{
+Color 0.9 0.0 0.0
+Size 48
+}
+
+Pointlight HadesBall3
+{
+Color 0.7 0.0 0.0
+Size 56
+}
+
+Pointlight HadesBall4
+{
+Color 0.6 0.0 0.0
+Size 40
+}
+
+Pointlight HadesBall5
+{
+Color 0.5 0.0 0.0
+Size 32
+}
+
+Pointlight HadesBall6
+{
+Color 0.4 0.0 0.0
+Size 24
+}
+
+Pointlight HadesBall7
+{
+Color 0.3 0.0 0.0
+Size 16
+}
+
+Object HadesBall
+{
+Frame HEFXA { Light HadesBall1 }
+Frame HEFXB { Light HadesBall1 }
+Frame HEFXC { Light HadesBall2 }
+Frame HEFXD { Light HadesBall3 }
+Frame HEFXE { Light HadesBall4 }
+Frame HEFXF { Light HadesBall5 }
+Frame HEFXG { Light HadesBall6 }
+Frame HEFXH { Light HadesBall7 }
+}
+
+Flickerlight2 HadesBolt1
+{
+Color 1.0 0.2 0.2
+Size 48
+SecondarySize 56
+Interval 2
+}
+
+Pointlight HadesBolt2
+{
+Color 1.0 0.5 0.5
+Size 24
+}
+
+Pointlight HadesBolt3
+{
+Color 1.0 0.3 0.3
+Size 32
+}
+
+Pointlight HadesBolt4
+{
+Color 0.8 0.0 0.0
+Size 40
+}
+
+Pointlight HadesBolt5
+{
+Color 0.7 0.0 0.0
+Size 32
+}
+
+Pointlight HadesBolt6
+{
+Color 0.4 0.0 0.0
+Size 24
+}
+
+Object HadesBolt1
+{
+Frame LFX1A { Light HadesBolt1 }
+Frame LFX1B { Light HadesBolt1 }
+Frame LFX1C { Light HadesBolt1 }
+Frame LFX1D { Light HadesBolt2 }
+Frame LFX1E { Light HadesBolt3 }
+Frame LFX1F { Light HadesBolt4 }
+Frame LFX1G { Light HadesBolt5 }
+Frame LFX1H { Light HadesBolt6 }
+}
+
+Object HadesBolt2
+{
+Frame LFX3A { Light HadesBolt1 }
+Frame LFX3B { Light HadesBolt1 }
+Frame LFX3C { Light HadesBolt1 }
+Frame LFX1D { Light HadesBolt2 }
+Frame LFX1E { Light HadesBolt3 }
+Frame LFX1F { Light HadesBolt4 }
+Frame LFX1G { Light HadesBolt5 }
+Frame LFX1H { Light HadesBolt6 }
+}
+
+
+PointLight HadesSphere_1
+{
+Color 1.0 0.0 0.0
+Offset 0 4 0
+Size 10
+}
+
+PointLight HadesSphere_2
+{
+Color 1.0 0.0 0.0
+Offset 0 4 0
+Size 20
+}
+
+PointLight HadesSphere_3
+{
+Color 1.0 0.0 0.0
+Offset 0 4 0
+Size 30
+}
+
+PointLight HadesSphere_4
+{
+Color 1.0 0.0 0.0
+Offset 0 4 0
+Size 40
+}
+
+FlickerLight2 HadesSphere
+{
+Color 1.0 0.0 0.0
+Offset 0 8 0
+Size 50
+SecondarySize 70
+Interval 2.0
+}
+
+Object HS
+{
+Frame HADEE { Light HadesSphere_1 }
+Frame HADEF { Light HadesSphere_2 }
+Frame HADEG { Light HadesSphere_3 }
+Frame HADEH { Light HadesSphere_4 }
+Frame HADEA { Light HadesSphere }
+Frame HADEB { Light HadesSphere }
+Frame HADEC { Light HadesSphere }
+Frame HADED { Light HadesSphere }
+Frame HADEG { Light HadesSphere }
+}
+
+PointLight HadesBoom_1
+{
+Color 1.0 0.0 0.0
+Offset 0 14 0
+Size 80
+}
+
+PointLight HadesBoom_2
+{
+Color 0.9 0.0 0.0
+Offset 0 14 0
+Size 92
+}
+
+PointLight HadesBoom_3
+{
+Color 0.78 0.0 0.0
+Offset 0 14 0
+Size 96
+}
+
+PointLight HadesBoom_4
+{
+Color 0.56 0.0 0.0
+Offset 0 14 0
+Size 100
+}
+
+PointLight HadesBoom_5
+{
+Color 0.32 0.0 0.0
+Offset 0 14 0
+Size 110
+}
+
+Object HSBoom
+{
+Frame HADEM { Light HadesBoom_1 }
+Frame HADEN { Light HadesBoom_2 }
+Frame HADEO { Light HadesBoom_3 }
+Frame HADEP { Light HadesBoom_4 }
+Frame HADEQ { Light HadesBoom_5 }
+}
+
+Flickerlight2 HadeslightningA
+{
+ Color 1.0 0.0 0.0
+ Offset 0 0 0
+ Size 50
+ SecondarySize 100
+ Interval 0.005
+}
+
+Flickerlight2 HadeslightningB
+{
+ Color 1.0 0.0 0.0
+ Offset 0 0 0
+ Size 80
+ SecondarySize 90
+ Interval 0.005
+}
+
+Flickerlight2 HadeslightningC
+{
+ Color 1.0 0.0 0.0
+ Offset 0 0 0
+ Size 98
+ SecondarySize 138
+ Interval 0.005
+}
+
+Flickerlight2 HadeslightningD
+{
+ Color 1.0 0.0 0.0
+ Offset 0 0 0
+ Size 77
+ SecondarySize 157
+ Interval 0.005
+}
+
+Flickerlight2 HadeslightningE
+{
+ Color 1.0 0.0 0.0
+ Offset 0 0 0
+ Size 72
+ SecondarySize 132
+ Interval 0.005
+}
+
+Object Hadesbolt
+{
+ Frame LFX2F { Light HadeslightningA }
+ Frame LFX2G { Light HadeslightningB }
+ Frame LFX2H { Light HadeslightningC }
+ Frame LFX2I { Light HadeslightningD }
+ Frame LFX2J { Light HadeslightningE }
+}
