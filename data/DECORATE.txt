@@ -73,3 +73,4 @@
 #include "decorate/monsters/doom/bruiser demon.txt"
 #include "decorate/monsters/doom/crackodemon.txt"
 #include "decorate/monsters/doom/dark cardinal.txt"
+#include "decorate/monsters/doom/defiler.txt"
