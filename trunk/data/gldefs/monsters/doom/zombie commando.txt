@@ -1,0 +1,11 @@
+Pointlight MGUNZSPECOPS
+{
+Color 1.0 1.0 0.0
+Size 24
+Offset 20 28 0
+}
+
+Object ZSpecOpsMachinegun
+{
+Frame ZSP2F { Light MGUNZSPECOPS }
+}

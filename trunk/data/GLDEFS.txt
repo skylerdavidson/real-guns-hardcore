@@ -1319,5 +1319,6 @@ object BigTree
 #include "gldefs/monsters/doom/hierophant.txt"
 #include "gldefs/monsters/doom/plasma elemental.txt"
 #include "gldefs/monsters/doom/thamuz.txt"
+#include "gldefs/monsters/doom/zombie commando.txt"
 
 #include gldefs/artifacts/doom/ammosphere.txt
