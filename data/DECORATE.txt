@@ -82,3 +82,4 @@
 #include "decorate/monsters/doom/helemental.txt"
 #include "decorate/monsters/doom/hellion.txt"
 #include "decorate/monsters/doom/hells fury.txt"
+#include "decorate/monsters/doom/hierophant.txt"
