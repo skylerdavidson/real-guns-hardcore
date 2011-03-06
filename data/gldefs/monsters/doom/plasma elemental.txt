@@ -1,0 +1,56 @@
+PointLight PlasmaElementalAttack1
+{
+Color 0.2 0.6 0.0
+Size 32
+}
+
+PointLight PlasmaElementalAttack2
+{
+Color 0.4 0.8 0.0
+Size 37
+}
+
+PointLight PlasmaElementalAttack3
+{
+Color 0.6 1.0 0.0
+Size 40
+}
+
+Object PlasmaElemental
+{
+Frame PLEMD { Light PlasmaElementalAttack }
+Frame PLEME { Light PlasmaElementalAttack2 }
+Frame PLEMF { Light PlasmaElementalAttack3 }
+}
+
+Pointlight PlasmaElementalDeath1
+{
+Color 0.6 1.0 0.0
+Size 35
+}
+
+Pointlight PlasmaElementalDeath2
+{
+Color 0.6 1.0 0.0
+Size 45
+}
+
+Pointlight PlasmaElementalDeath3
+{
+Color 0.4 0.6 0.0
+Size 40
+}
+
+Pointlight PlasmaElementalDeath4
+{
+Color 0.2 0.4 0.0
+Size 35
+}
+
+Object PlasmaElemental
+{
+Frame PLEMJ { Light PlasmaElementalDeath1 }
+Frame PLEMK { Light PlasmaElementalDeath2 }
+Frame PLEML { Light PlasmaElementalDeath3 }
+Frame PLEMM { Light PlasmaElementalDeath4 }
+}
