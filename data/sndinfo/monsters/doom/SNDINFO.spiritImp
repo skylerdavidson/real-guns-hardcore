@@ -1,0 +1,10 @@
+SpiritImp/Active	SPIPACTI
+$Random SpiritImp/Death { SPIPDEA1 SPIPDEA2 }
+SPIPDEA1		SPIPDEA1
+SPIPDEA2		SPIPDEA2
+$Random SpiritImp/Sight { SPIPSIG1 SPIPSIG2 }
+SPIPSIG1		SPIPSIG1
+SPIPSIG2		SPIPSIG2
+
+harvester/scream shfbscrm
+harvester/ghost shghscrm
