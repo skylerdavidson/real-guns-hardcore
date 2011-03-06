@@ -87,3 +87,4 @@
 #include "decorate/monsters/doom/overlord.txt"
 #include "decorate/monsters/doom/plasma elemental.txt"
 #include "decorate/monsters/doom/thamuz.txt"
+#include "decorate/monsters/doom/zombie commando.txt"
