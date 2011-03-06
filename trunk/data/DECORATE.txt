@@ -85,3 +85,4 @@
 #include "decorate/monsters/doom/hierophant.txt"
 #include "decorate/monsters/doom/mauler demon.txt"
 #include "decorate/monsters/doom/overlord.txt"
+#include "decorate/monsters/doom/plasma elemental.txt"
