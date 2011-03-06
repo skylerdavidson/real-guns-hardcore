@@ -1316,5 +1316,6 @@ object BigTree
 #include "gldefs/monsters/doom/helemental.txt"
 #include "gldefs/monsters/doom/hellion.txt"
 #include "gldefs/monsters/doom/hells fury.txt"
+#include "gldefs/monsters/doom/hierophant.txt"
 
 #include gldefs/artifacts/doom/ammosphere.txt
