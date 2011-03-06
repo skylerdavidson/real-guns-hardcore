@@ -1,0 +1,333 @@
+Pointlight DCBMiss1
+{
+Color 0.0 1.0 0.0
+Size 40
+}
+
+Pointlight DCBMiss12
+{
+Color 0.0 1.0 0.0
+Size 48
+}
+
+Pointlight DCBMiss13
+{
+Color 0.0 0.9 0.0
+Size 44
+}
+
+Pointlight DCBMiss14
+{
+Color 0.0 0.8 0.0
+Size 40
+}
+
+Pointlight DCBMiss15
+{
+Color 0.0 0.7 0.0
+Size 36
+}
+
+Pointlight DCBMiss16
+{
+Color 0.0 0.6 0.0
+Size 32
+}
+
+Pointlight DCBMiss17
+{
+Color 0.0 0.5 0.0
+Size 28
+}
+
+Pointlight DCBMiss18
+{
+Color 0.0 0.4 0.0
+Size 24
+}
+
+Pointlight DCBMiss19
+{
+Color 0.0 0.3 0.0
+Size 20
+}
+
+Pointlight DCBMiss110
+{
+Color 0.0 0.2 0.0
+Size 16
+}
+
+Pointlight DCBMiss111
+{
+Color 0.0 0.1 0.0
+Size 12
+}
+
+Object DCBMiss1
+{
+Frame CBTSA { Light DCBMiss1 }
+Frame CBTSB { Light DCBMiss1 }
+Frame CBTSC { Light DCBMiss1 }
+Frame CBTSD { Light DCBMiss1 }
+Frame CBTSE { Light DCBMiss1 }
+Frame CBTSF { Light DCBMiss1 }
+Frame CBTSG { Light DCBMiss1 }
+Frame CBTSH { Light DCBMiss1 }
+Frame CBTSI { Light DCBMiss1 }
+Frame CBTSJ { Light DCBMiss1 }
+Frame CBTSK { Light DCBMiss12 }
+Frame CBTSL { Light DCBMiss13 }
+Frame CBTSM { Light DCBMiss14 }
+Frame CBTSN { Light DCBMiss15 }
+Frame CBTSO { Light DCBMiss16 }
+Frame CBTSP { Light DCBMiss17 }
+Frame CBTSQ { Light DCBMiss18 }
+Frame CBTSR { Light DCBMiss19 }
+Frame CBTSS { Light DCBMiss110 }
+Frame CBTST { Light DCBMiss111 }
+Frame CBTSU { Light DCBMiss111 }
+Frame CBTSV { Light DCBMiss111 }
+Frame CBTSW { Light DCBMiss111 }
+}
+
+Pointlight DCBMiss2
+{
+Color 0.0 1.0 0.0
+Size 32
+}
+
+Pointlight DCBMiss22
+{
+Color 0.0 1.0 0.0
+Size 36
+}
+
+Pointlight DCBMiss23
+{
+Color 0.0 1.0 0.0
+Size 40
+}
+
+Pointlight DCBMiss24
+{
+Color 0.0 0.9 0.0
+Size 36
+}
+
+Pointlight DCBMiss25
+{
+Color 0.0 0.8 0.0
+Size 32
+}
+
+Pointlight DCBMiss26
+{
+Color 0.0 0.7 0.0
+Size 30
+}
+
+Pointlight DCBMiss27
+{
+Color 0.0 0.6 0.0
+Size 28
+}
+
+Pointlight DCBMiss28
+{
+Color 0.0 0.5 0.0
+Size 26
+}
+
+Pointlight DCBMiss29
+{
+Color 0.0 0.4 0.0
+Size 24
+}
+
+Pointlight DCBMiss210
+{
+Color 0.0 0.3 0.0
+Size 22
+}
+
+Pointlight DCBMiss211
+{
+Color 0.0 0.2 0.0
+Size 20
+}
+
+Object DCBMiss2
+{
+Frame THZ4A { Light DCBMiss2 }
+Frame FSFXD { Light DCBMiss22 }
+Frame FSFXE { Light DCBMiss23 }
+Frame FSFXF { Light DCBMiss24 }
+Frame FSFXG { Light DCBMiss25 }
+Frame FSFXH { Light DCBMiss26 }
+Frame FSFXI { Light DCBMiss27 }
+Frame FSFXJ { Light DCBMiss28 }
+Frame FSFXK { Light DCBMiss29 }
+Frame FSFXL { Light DCBMiss210 }
+Frame FSFXM { Light DCBMiss211 }
+}
+
+Pointlight DCBMiss3M1
+{
+Color 0.0 1.0 0.0
+Size 20
+}
+
+Pointlight DCBMiss3M2
+{
+Color 0.0 1.0 0.0
+Size 24
+}
+
+Pointlight DCBMiss3M3
+{
+Color 0.0 1.0 0.0
+Size 20
+}
+
+Pointlight DCBMiss3M4
+{
+Color 0.0 0.9 0.0
+Size 18
+}
+
+Pointlight DCBMiss3M5
+{
+Color 0.0 0.8 0.0
+Size 16
+}
+
+Pointlight DCBMiss3M6
+{
+Color 0.0 0.7 0.0
+Size 14
+}
+
+Pointlight DCBMiss3M7
+{
+Color 0.0 0.6 0.0
+Size 12
+}
+
+Pointlight DCBMiss3M8
+{
+Color 0.0 0.5 0.0
+Size 10
+}
+
+Pointlight DCBMiss3M9
+{
+Color 0.0 0.4 0.0
+Size 8
+}
+
+Pointlight DCBMiss3M10
+{
+Color 0.0 0.3 0.0
+Size 6
+}
+
+Pointlight DCBMiss3M11
+{
+Color 0.0 0.2 0.0
+Size 4
+}
+
+Object DCBMiss3M
+{
+Frame FSFXN { Light DCBMiss3M1 }
+Frame FSFXO { Light DCBMiss3M2 }
+Frame FSFXP { Light DCBMiss3M3 }
+Frame FSFXD { Light DCBMiss3M4 }
+Frame FSFXQ { Light DCBMiss3M5 }
+Frame FSFXR { Light DCBMiss3M6 }
+Frame FSFXS { Light DCBMiss3M7 }
+Frame FSFXT { Light DCBMiss3M8 }
+Frame FSFXU { Light DCBMiss3M9 }
+Frame FSFXV { Light DCBMiss3M10 }
+Frame FSFXW { Light DCBMiss3M11 }
+}
+
+Object DCBMiss3MG
+{
+Frame FSFXN { Light DCBMiss3M1 }
+Frame FSFXO { Light DCBMiss3M2 }
+Frame FSFXP { Light DCBMiss3M3 }
+Frame FSFXD { Light DCBMiss3M4 }
+Frame FSFXQ { Light DCBMiss3M5 }
+Frame FSFXR { Light DCBMiss3M6 }
+Frame FSFXS { Light DCBMiss3M7 }
+Frame FSFXT { Light DCBMiss3M8 }
+}
+
+Pointlight ThamuzDeath1
+{
+Color 0.0 0.8 0.0
+Size 50
+}
+
+Pointlight ThamuzDeath2
+{
+Color 0.0 0.9 0.0
+Size 58
+}
+
+Pointlight ThamuzDeath3
+{
+Color 0.0 1.0 0.0
+Size 62
+}
+
+Pointlight ThamuzDeath4
+{
+Color 0.0 1.0 0.0
+Size 66
+}
+
+Pointlight ThamuzDeath5
+{
+Color 0.0 1.0 0.0
+Size 62
+}
+
+Pointlight ThamuzDeath6
+{
+Color 0.0 0.7 0.0
+Size 58
+}
+
+Pointlight ThamuzDeath7
+{
+Color 0.0 0.4 0.0
+Size 50
+}
+
+Pointlight ThamuzDeath8
+{
+Color 0.0 0.2 0.0
+Size 50
+}
+
+Pointlight ThamuzAttack
+{
+Color 0.0 0.8 0.0
+Size 56
+}
+
+Object Thamuz
+{
+Frame DCYBF { Light ThamuzAttack }
+Frame DCYBH { Light ThamuzDeath1 }
+Frame DCYBI { Light ThamuzDeath2 }
+Frame DCYBJ { Light ThamuzDeath3 }
+Frame DCYBK { Light ThamuzDeath4 }
+Frame DCYBL { Light ThamuzDeath5 }
+Frame DCYBM { Light ThamuzDeath6 }
+Frame DCYBN { Light ThamuzDeath7 }
+Frame DCYBO { Light ThamuzDeath8 }
+}
