@@ -153,6 +153,7 @@ actor "WA2000" : RGUWeapon
   AltFire:
     W20C A 0 A_JumpIfInventory("Aiming",1,"AltFire2")
     W20C ABCDEF 1
+    W20C F 0 ACS_ExecuteAlways(642,0,0,0,0)
     INTF G 1 A_ZoomFactor(3.0,ZOOM_INSTANT)
     W20C F 0 A_GiveInventory("Aiming",1)
     W20C F 0 ACS_ExecuteAlways(602,0,0,0,0)
@@ -360,6 +361,7 @@ actor "WA2000 Thermal" : "WA2000"
   AltFire:
     W20C A 0 A_JumpIfInventory("Aiming",1,"AltFire2")
     W20C ABCDEF 1
+    W20C F 0 ACS_ExecuteAlways(642,0,0,0,0)
     INTF G 1 A_ZoomFactor(3.0,ZOOM_INSTANT)
     W20C F 0 A_GiveInventory("Aiming",1)
     W20C F 0 ACS_ExecuteAlways(602,0,0,0,0)

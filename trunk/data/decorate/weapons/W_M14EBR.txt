@@ -153,6 +153,7 @@ actor "M14 EBR" : RGUWeapon
   AltFire:
     M14C A 0 A_JumpIfInventory("Aiming",1,"AltFire2")
     M14C ABCDEFG 1
+    M14C F 0 ACS_ExecuteAlways(642,0,0,0,0)
     INTF G 1 A_ZoomFactor(3.0,ZOOM_INSTANT)
     M14C F 0 A_GiveInventory("Aiming",1)
     M14C F 0 ACS_ExecuteAlways(602,0,0,0,0)
@@ -351,6 +352,7 @@ actor "M14 EBR Thermal" : "M14 EBR"
   AltFire:
     M14C A 0 A_JumpIfInventory("Aiming",1,"AltFire2")
     M14C ABCDEFG 1
+    M14C F 0 ACS_ExecuteAlways(642,0,0,0,0)
     INTF G 1 A_ZoomFactor(3.0,ZOOM_INSTANT)
     M14C F 0 A_GiveInventory("Aiming",1)
     M14C F 0 ACS_ExecuteAlways(602,0,0,0,0)
