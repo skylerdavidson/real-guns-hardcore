@@ -39,7 +39,7 @@ ACTOR Demon_2 : RGAMonster
     SARG K 4
     SARG L 4 A_NoBlocking
     SARG M 4
-    //SARG N -1 A_Jump(64,1)
+    SARG N -1
     stop
     //SARG NNNN 115
     //SARG N 15 A_PlaySound("stoner/sight2")
