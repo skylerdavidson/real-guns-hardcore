@@ -4550,7 +4550,7 @@ script 638 (int Which)
 		GiveInventory("SPAS-12",1);
 		GiveInventory("SPAS12Ammo",32);
 		GiveInventory("RPG-7",1);
-		GiveInventory("RPGAmmo",2);
+		GiveInventory("RPGAmmo",1);
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
 		GiveInventory("MaxWeaponsFilled",2);		
