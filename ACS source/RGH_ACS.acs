@@ -250,7 +250,7 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 	bool EnableRandomization = false;
 
 	// Small handguns
-	if(CheckWeapon("USP .45") || CheckWeapon("USP .45 Ex Mags") || CheckWeapon("USP .45 Akimbo") || CheckWeapon("USP .45 Tac Knife") || CheckWeapon("M9") || CheckWeapon("M9 Ex Mags"))
+	if(CheckWeapon("USP .45") || CheckWeapon("USP .45 Ex Mags") || CheckWeapon("USP .45 Akimbo") || CheckWeapon("USP .45 Tac Knife") || CheckWeapon("USP .45 LastStand") || CheckWeapon("M9") || CheckWeapon("M9 Ex Mags"))
 	{
 		Strength = 600;
 		Reverse = 600;
