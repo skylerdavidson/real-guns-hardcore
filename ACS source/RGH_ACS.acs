@@ -3896,7 +3896,7 @@ script 636 (void)
 		//List menu
 		HudMessage(s:"1)    Make your own!"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
 		HudMessage(s:"2)    Assault:       M4A1 (+Extended Mags) and USP .45\n\n                + \cvScavenger, \cgStopping Power, \cdCommando PRO"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);	
-		HudMessage(s:"3)    Juggernaut:    M240 and Desert Eagle\n\n                + \cvSleight of Hand, \cgJuggernaut PRO, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 180.0, 0.0);	
+		HudMessage(s:"3)    Juggernaut:    L86 and Desert Eagle\n\n                + \cvSleight of Hand, \cgJuggernaut PRO, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 180.0, 0.0);	
 		HudMessage(s:"4)    Sniper:        Intervention (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 60.1, 220.0, 0.0);	
 		HudMessage(s:"5)    Recon:         FN P90  and M9 (+Tac Knife)\n\n                + \cvExtreme Conditioning, \cgCold Blooded PRO, \cdCommando"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 60.1, 260.0, 0.0);		
 		HudMessage(s:"6)    Demolitions:   RPG-7 and SPAS-12\n\n                + \cvScavenger, \cgDanger Close PRO, \cdSteady Aim"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 60.1, 300.0, 0.0);		
@@ -3911,7 +3911,7 @@ script 636 (void)
 			HudMessage(s:"\cvScavenger: +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration\n\n\cgStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies\n\n\cdCommando: +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 160.1, 460.0, 0.0);
 		}
 		else if(CheckInventory("MenuCursor") == 2){
-			HudMessage(s:"3)  > Juggernaut:    M240 and Desert Eagle\n\n                + \cvSleight of Hand, \cgJuggernaut PRO, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 60.1, 180.0, 0.0);	
+			HudMessage(s:"3)  > Juggernaut:    L86 and Desert Eagle\n\n                + \cvSleight of Hand, \cgJuggernaut PRO, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 60.1, 180.0, 0.0);	
 			HudMessage(s:"\cvSleight of Hand: faster reloading\n\n         \cjPRO\cv: faster knifing and grenade throwing\n\n\cgJuggernaut: +40% damage resistance\n\n         \cjPRO\cg: double bonuses from health/armor pickups\n\n\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Revival Kit"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 160.1, 460.0, 0.0);
 		}
 		else if(CheckInventory("MenuCursor") == 3){
@@ -4468,8 +4468,8 @@ script 638 (int Which)
 		TakeInventory("Menu",1);
 		GiveInventory("Desert Eagle",1);
 		GiveInventory("DeagleAmmo",14);
-		GiveInventory("M240",1);
-		GiveInventory("M240Ammo",100);
+		GiveInventory("L86",1);
+		GiveInventory("L86Ammo",100);
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
 		GiveInventory("MaxWeaponsFilled",2);
