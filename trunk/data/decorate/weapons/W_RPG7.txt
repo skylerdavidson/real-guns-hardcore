@@ -274,8 +274,8 @@ actor RPGAmmo : Ammo
 {
     inventory.icon "CLIPA0"
     inventory.amount 0
-    inventory.maxamount 2
-    ammo.backpackamount 2
+    inventory.maxamount 1
+    ammo.backpackamount 1
     ammo.backpackmaxamount 4
     +IGNORESKILL
 }

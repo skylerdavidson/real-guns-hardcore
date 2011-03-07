@@ -253,7 +253,7 @@ actor AT4Ammo : Ammo
     inventory.icon "CLIPA0"
     inventory.amount 1
     inventory.maxamount 1
-    ammo.backpackamount 2
+    ammo.backpackamount 1
     ammo.backpackmaxamount 2
     +IGNORESKILL
 }
