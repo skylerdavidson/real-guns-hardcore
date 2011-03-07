@@ -236,7 +236,7 @@ actor ThumperAmmo : Ammo
     inventory.icon "CLIPA0"
     inventory.amount 0
     inventory.maxamount 3
-    ammo.backpackamount 3
+    ammo.backpackamount 1
     ammo.backpackmaxamount 6
     +IGNORESKILL
 }
