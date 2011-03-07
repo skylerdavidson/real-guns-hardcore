@@ -11,15 +11,10 @@ move temp\acs\acs\RGH_ACS.o temp\acs\acs\RGH_ACS
 if exist "acs.err" goto acserror
 
 cd data
-..\utility\7z a ..\output\RGH.pk3 credits.txt
-cd core
-..\..\utility\7z a ..\..\output\RGH.pk3 *.wad
-cd ..\monsters
-..\..\utility\7z a ..\..\output\RGH.pk3 *.wad
-cd ..
-..\utility\7z a ..\output\RGH.pk3 LOADACS
+del ..\temp\RGH-debug.pk3
+..\utility\7z a ..\output\RGH.pk3 * -xr!.svn -tzip
 cd ..\temp\acs
-..\..\utility\7z a ..\..\output\RGH.pk3 acs\RGH_ACS
+..\..\utility\7z a ..\..\output\RGH.pk3 acs\RGH_ACS -tzip
 cd ..\..
 exit
 
