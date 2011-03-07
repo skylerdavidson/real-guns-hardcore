@@ -3000,6 +3000,7 @@ script 622 (void)
 	TakeInventory("Perk1_ExtremeConditioning_ProAward",1);
 	//TakeInventory("Perk1_OMAAward",1);
 	TakeInventory("Perk1_OMA_ProAward",1);
+	TakeInventory("Perk1_Scavenger_ProAward",1);
 	//TakeInventory("Perk2_StoppingPowerAward",1);
 	TakeInventory("Perk2_StoppingPower_ProAward",1);
 	//TakeInventory("Perk2_DangerCloseAward",1);
