@@ -29,8 +29,10 @@ actor SpiderMastermind_2
   states
   {
   Spawn:
+    SPID A 0 
+	SPID A 0 Thing_SetSpecial(0,226,613,0,random(600,700))
     SPID AB 10 A_Look
-    loop
+    goto Spawn+2
   See:
     SPID A 3 A_Metal
     SPID ABB 3 A_Chase
@@ -110,8 +112,10 @@ actor CyberMastermind
     States
     {
     Spawn:
-        CYMM AB 10 A_Look
-        loop
+        CYMM A 0 
+		CYMM A 0 Thing_SetSpecial(0,226,613,0,random(700,800))
+	    CYMM AB 10 A_Look
+	    goto Spawn+2
     See:
         CYMM AABB 3 A_Chase
         CYMM B 0 A_PlaySound("spider/walk")
