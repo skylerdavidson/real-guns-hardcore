@@ -149,6 +149,7 @@ actor "Intervention" : RGUWeapon
   AltFire:
     INTF A 0 A_JumpIfInventory("Aiming",1,"AltFire2")
     INTF ABCDEF 1
+    INTF F 0 ACS_ExecuteAlways(642,0,0,0,0)
     INTF G 1 A_ZoomFactor(3.0,ZOOM_INSTANT)
     INTF F 0 A_GiveInventory("Aiming",1)
     INTF F 0 ACS_ExecuteAlways(602,0,0,0,0)
@@ -346,6 +347,7 @@ actor "Intervention Thermal" : "Intervention"
   AltFire:
     INTF A 0 A_JumpIfInventory("Aiming",1,"AltFire2")
     INTF ABCDEF 1
+    INTF F 0 ACS_ExecuteAlways(642,0,0,0,0)
     INTF G 1 A_ZoomFactor(3.0,ZOOM_INSTANT)
     INTF F 0 A_GiveInventory("Aiming",1)
     INTF F 0 ACS_ExecuteAlways(602,0,0,0,0)

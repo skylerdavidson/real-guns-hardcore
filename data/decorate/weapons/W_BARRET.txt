@@ -153,6 +153,7 @@ actor "Barrett 50cal" : RGUWeapon
   AltFire:
     B50F A 0 A_JumpIfInventory("Aiming",1,"AltFire2")
     B50F ABCDEF 1
+    B50F F 0 ACS_ExecuteAlways(642,0,0,0,0)
     INTF G 1 A_ZoomFactor(3.0,ZOOM_INSTANT)
     B50F F 0 A_GiveInventory("Aiming",1)
     B50F F 0 ACS_ExecuteAlways(602,0,0,0,0)
@@ -360,6 +361,7 @@ actor "Barrett 50cal Thermal" : "Barrett 50cal"
   AltFire:
     B50F A 0 A_JumpIfInventory("Aiming",1,"AltFire2")
     B50F ABCDEF 1
+    B50F F 0 ACS_ExecuteAlways(642,0,0,0,0)
     INTF G 1 A_ZoomFactor(3.0,ZOOM_INSTANT)
     B50F F 0 A_GiveInventory("Aiming",1)
     B50F F 0 ACS_ExecuteAlways(602,0,0,0,0)

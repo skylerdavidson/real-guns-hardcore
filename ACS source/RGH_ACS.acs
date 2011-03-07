@@ -652,7 +652,7 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 			Delay(1);
 		}
 	}*/
-}
+}             
 
 //Reload
 script 601 (void) NET
@@ -4876,4 +4876,10 @@ script 641 (void) {
 	if(ClassifyActor(0) & ACTOR_BOT){
 		GiveInventory("Backpack", 1);		
 	}
+}
+
+// Move viewport a little bit when scoping to prevent quickscoping
+script 642 (void) {
+	SetActorAngle(0,GetActorAngle(0)+random(-700,700));
+	SetActorPitch(0,GetActorPitch(0)+random(-700,700));
 }
