@@ -423,16 +423,16 @@ actor ArmorBonus2 : CustomInventory replaces ArmorBonus
     Loop
   Pickup:
 	BON2 A 0 A_JumpIfInventory("Perk2_Juggernaut_Pro", 1, "JuggernautPro")
-	BON2 A 0 A_JumpIfInventory("BasicArmor",200, "FailState")
+	//BON2 A 0 A_JumpIfInventory("BasicArmor",200, "FailState")
 	BON2 A 0 A_GiveInventory("ArmorBonus",1)
 	stop
   JuggernautPro:
-    BON2 A 0 A_JumpIfInventory("BasicArmor",400, "FailState")
+    //BON2 A 0 A_JumpIfInventory("BasicArmor",400, "FailState")
 	BON2 A 0 A_GiveInventory("ArmorBonus2_JuggernautPro",1)	
 	stop
   FailState:
     ARM2 A 0 
-	fail
+	stop
   }
 }
 
