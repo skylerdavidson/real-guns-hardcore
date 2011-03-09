@@ -89,9 +89,7 @@ script 501 RESPAWN
 	}
 
 	int MaxGunCount = GameSkill();
-	if(GameType() == GAME_NET_DEATHMATCH){
-		MaxGunCount = 2;
-	}
+
 	If(CheckInventory("Perk1_OneManArmy_Pro") == 1){
 		MaxGunCount++;
 	}			
@@ -128,8 +126,15 @@ script 503 DEATH
 	int KillersMaxHealths = KillersMaxHealth;
 	int KillersIDs = KillersID;
 	str KillersGuns = KillersGun;
-	Delay(36);
 
+	SetFont("CONFONT");
+
+	if(GameType() == GAME_NET_DEATHMATCH){
+		HudMessage(s:"\ccHold \cf", k:"+speed", s:"\cc while respawning to change your class"; HUDMSG_PLAIN, 2700+PlayerNumber(), CR_Green, 0.5, 0.75, 0);
+	}
+
+	Delay(36);
+	
 	if(KillersHealths > 0 && GetActorProperty(0,APROP_Health) < 1) //Don't view killers health or cam if he died at the same time you did. Or if you've respawned already.
 	{
 		SetFont("BIGFONT");
@@ -3837,6 +3842,7 @@ script 635 (void)
 	SetActorProperty(0,APROP_Invulnerable,0);
 }
 
+str Class[32];
 str Handgun[32];
 str HandgunAmmo[32];
 int HandgunAmmoAmount[32];
@@ -3853,12 +3859,28 @@ str Attachment[32];
 bool GotClass[32];
 
 //Show menu
-script 636 (void)
+script 636 (int firstTimeAfterDeath)
 {
+	// Bot? -> Random loadout
 	if(ClassifyActor(0) & ACTOR_BOT){
 		ACS_ExecuteAlways(639,0,0,0,0);
 		terminate;
-	}	
+	}
+	
+	// erase the Press X to change class message
+	HudMessage(s:""; HUDMSG_FADEOUT, 2700+PlayerNumber(), CR_Green, 0.5, 0.75, 0.5, 1.0);
+	
+	// skip class menu if respawining in DM and RUN is not pressed                                       
+	int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+	if(
+		(GameType() != GAME_SINGLE_PLAYER || GameType() != GAME_NET_COOPERATIVE) && 
+		GotClass[PlayerNumber()+1] == TRUE &&
+		!(buttons & BT_SPEED) &&
+		firstTimeAfterDeath == 1
+	) {
+		ACS_ExecuteAlways(638,0,Class[PlayerNumber()+1],0,0);
+		terminate;
+	}		
 
 	//log(i:CheckWeapon("Menu"));
 	//log(i:CheckWeapon("MenuPlace"));
@@ -3931,9 +3953,6 @@ script 636 (void)
 			HudMessage(s:"7)  > Grenadier:   FAMAS (+M203) and G18\n\n                + \cvExtreme Conditioning PRO, \cgDanger Close, \cdLast Stand"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_YELLOW, 60.1, 340.0, 0.0);
 			HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner\n\n\cgDanger Close: +100% explosive damage\n\n         \cjPRO\cg: +50% explosive blast radius\n\n\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Revival Kit"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 160.1, 460.0, 0.0);
 		}
-		
-		//if((GameType() != GAME_SINGLE_PLAYER || GameType() != GAME_NET_COOPERATIVE) && GotClass[PlayerNumber()+1] == TRUE)
-		//	ACS_ExecuteAlways(638,0,9,0,0);	
 
 		if(CheckInventory("MenuCursor") >= 7){
 			TakeInventory("MenuCursor",10);
@@ -4434,6 +4453,8 @@ script 638 (int Which)
 	TakeInventory("MenuChoice8",1);
 	TakeInventory("MenuChoice9",1);
 	TakeInventory("MenuChoice10",1);
+	
+	Class[PlayerNumber()+1] = Which;
 	If(Which == 0)
 	{
 		//log(s:"Take0");
@@ -4461,7 +4482,7 @@ script 638 (int Which)
 		HudMessage(s:"\cdYou are Assault!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
-		GotClass[PlayerNumber()+1] = True;
+		GotClass[PlayerNumber()+1] = True;		
 	}
 	else If(Which == 1)
 	{
@@ -4597,7 +4618,7 @@ script 638 (int Which)
 		HudMessage(s:"\cdYou are Grenadier!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
-		GotClass[PlayerNumber()+1] = True;
+		GotClass[PlayerNumber()+1] = True;		
 	}
 	else if(Which == 9)
 	{
@@ -4644,6 +4665,9 @@ script 638 (int Which)
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
+	}
+	else{
+		HudMessage(s:"NO NUMBER"; HUDMSG_FADEOUT, 1, CR_RED, 0.5, 0.69, 2.0, 1.0);
 	}
 	
 	if(GameType() == GAME_NET_DEATHMATCH){
