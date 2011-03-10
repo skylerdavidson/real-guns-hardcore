@@ -464,3 +464,18 @@ actor Perk3_CommandoEffect : PowerupGiver
     stop
   }
 }
+
+actor LastStandUrn : HealthPickup
+{
+  Health 1
+  Inventory.MaxAmount 10000
+  -INVENTORY.INVBAR
+  +COUNTITEM
+  HealthPickup.Autouse 2
+  States
+  {
+  Spawn:
+    SPHL A 350
+    Loop
+  }
+}
