@@ -916,7 +916,7 @@ script 606 (void)
 			//SetHudSize(1280,800,1);
 			//HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.5, 1.0);
 			
-				if(CheckInventory("InCombatRegeneration") > 0 || CheckInventory("InLastStand") > 0)
+				if(CheckInventory("InCombatRegeneration") > 0 || (CheckInventory("InLastStand") > 0 && CheckInventory("Perk3_LastStand_Pro") == 0))
 				{
 					//log(i:CheckInventory("InCombatRegeneration"));
 	
@@ -3242,7 +3242,7 @@ script 624 (int Which)
 		GiveInventory("Revival Kit",1);
 		SetFont("BIGFONT");
 		HudMessage(s:"\cdLAST STAND PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"Use a Revival Kit to help out allied players!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"Get 30 health in last stand!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 18) // COLD BLOODED PRO
 	{
@@ -3553,6 +3553,16 @@ script 630 (void)
 		GiveInventory("USP45Clip",12);
 		MorphActor(0,"RGULastStandPlayer_Unspecified","",99999,256,"NoFlash","NoFlash");
 	}
+	
+	If(CheckInventory("Perk3_LastStand_Pro") == 1){
+		GiveInventory("Health",30);
+	}
+	else {
+		// set health to 1
+		//DamageThing(GetActorProperty(0,APROP_Health) - 1, "LastStandModifier");
+		SetActorProperty(0, APROP_Health, 1);
+	}
+	
 	GiveInventory("InLastStand",1);
 }
 
@@ -3942,7 +3952,7 @@ script 636 (int firstTimeAfterDeath)
 		}
 		else if(CheckInventory("MenuCursor") == 2){
 			HudMessage(s:"3)  > Juggernaut:    L86 and Desert Eagle\n\n                + \cvSleight of Hand, \cgJuggernaut PRO, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 60.1, 180.0, 0.0);	
-			HudMessage(s:"\cvSleight of Hand: faster reloading\n\n         \cjPRO\cv: faster knifing and grenade throwing\n\n\cgJuggernaut: +40% damage resistance\n\n         \cjPRO\cg: double bonuses from health/armor pickups\n\n\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Revival Kit"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 160.1, 460.0, 0.0);
+			HudMessage(s:"\cvSleight of Hand: faster reloading\n\n         \cjPRO\cv: faster knifing and grenade throwing\n\n\cgJuggernaut: +40% damage resistance\n\n         \cjPRO\cg: double bonuses from health/armor pickups\n\n\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Get 30 health in last stand"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 160.1, 460.0, 0.0);
 		}
 		else if(CheckInventory("MenuCursor") == 3){
 			HudMessage(s:"4)  > Sniper:        Intervention (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 60.1, 220.0, 0.0);	
@@ -3958,7 +3968,7 @@ script 636 (int firstTimeAfterDeath)
 		}
 		else if(CheckInventory("MenuCursor") == 6){
 			HudMessage(s:"7)  > Grenadier:   FAMAS (+M203) and G18\n\n                + \cvExtreme Conditioning PRO, \cgDanger Close, \cdLast Stand"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_YELLOW, 60.1, 340.0, 0.0);
-			HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner\n\n\cgDanger Close: +100% explosive damage\n\n         \cjPRO\cg: +50% explosive blast radius\n\n\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Revival Kit"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 160.1, 460.0, 0.0);
+			HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner\n\n\cgDanger Close: +100% explosive damage\n\n         \cjPRO\cg: +50% explosive blast radius\n\n\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Get 30 health in last stand"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 160.1, 460.0, 0.0);
 		}
 
 		if(CheckInventory("MenuCursor") >= 7){
@@ -4137,7 +4147,7 @@ script 636 (int firstTimeAfterDeath)
 		//List menu
 		HudMessage(s:"1)    \cdSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
 		HudMessage(s:"2)    \cdCommando:   +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);	
-		HudMessage(s:"3)    \cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Revival Kit"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 180.0, 0.0);	
+		HudMessage(s:"3)    \cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Get 30 health in last stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 180.0, 0.0);	
 		HudMessage(s:"4)    Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 60.1, 220.0, 0.0);	
 
 		if(CheckInventory("MenuCursor") == 0)
@@ -4145,7 +4155,7 @@ script 636 (int firstTimeAfterDeath)
 		else if(CheckInventory("MenuCursor") == 1)
 			HudMessage(s:"2)  > \ckCommando:   +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 60.1, 140.0, 0.0);	
 		else if(CheckInventory("MenuCursor") == 2)
-			HudMessage(s:"3)  > \ckLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Revival Kit"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 60.1, 180.0, 0.0);	
+			HudMessage(s:"3)  > \ckLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Get 30 health in last stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 60.1, 180.0, 0.0);	
 		else if(CheckInventory("MenuCursor") == 3)
 			HudMessage(s:"4)  > Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 60.1, 220.0, 0.0);	
 	
