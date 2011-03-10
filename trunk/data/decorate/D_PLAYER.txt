@@ -155,7 +155,11 @@ ACTOR RGUPlayer : DoomPlayer
     Goto Pain
   PainLastStand:
     PLAY G 0 ACS_ExecuteAlways(643,0,0,0,0) // Perform ASYNCHRONOUS health check (the Urn won't restore HP fast enough for the check to be successful)
-	goto Pain+1
+    PLAY G 0 ACS_ExecuteAlways(600,0,0,0,1) // recoil
+    PLAY G 4 ACS_ExecuteAlways(606,0,0,0,0) // regen
+	//PLAY G 0 ACS_ExecuteAlways(640,0,0,0,0) // cold blooded invis    
+    PLAY G 4 A_Pain
+	goto Spawn
   Death:
     PLAY H 1	
     PLAY H 0 Thing_ChangeTID(0,9999)
