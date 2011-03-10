@@ -337,7 +337,7 @@ ACTOR RGULastStandPlayer : PlayerPawn
   +NOSKIN
   -PICKUP
   Speed 1
-  Health 1
+  Health 30
   Radius 16
   Height 24
   Mass 1000
