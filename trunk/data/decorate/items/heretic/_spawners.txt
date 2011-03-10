@@ -1,0 +1,22 @@
+actor GunAmmoSpawnerH1 : VoidSpawner replaces GoldWandAmmo {}
+actor GunAmmoSpawnerH2 : GunAmmoSpawner replaces GoldWandHefty {}
+actor GunAmmoSpawnerH3 : GunAmmoSpawner replaces CrossbowAmmo {}
+actor GunAmmoSpawnerH4 : GunAmmoSpawner replaces CrossbowHefty {}
+actor GunAmmoSpawnerH5 : VoidSpawner replaces BlasterAmmo {}
+actor GunAmmoSpawnerH6 : GunAmmoSpawner replaces BlasterHefty {}
+actor GunAmmoSpawnerH7 : VoidSpawner replaces SkullRodAmmo {}
+actor GunAmmoSpawnerH8 : GunAmmoSpawner replaces SkullRodHefty {}
+actor GunAmmoSpawnerH7 : VoidSpawner replaces MaceAmmo {}
+actor GunAmmoSpawnerH8 : GunAmmoSpawner replaces MaceHefty {}
+actor GunAmmoSpawnerH7 : VoidSpawner replaces PhoenixRodAmmo {}
+actor GunAmmoSpawnerH8 : GunAmmoSpawner replaces PhoenixRodHefty {}
+actor GunAmmoSpawnerH10 : GunAmmoSpawner replaces CrystalVial {}
+
+actor GunSpawnerH1 : GunSpawner replaces Gauntlets {}
+actor GunSpawnerH2 : GunSpawner replaces GoldWand{}
+actor GunSpawnerH2 : GunSpawner replaces Crossbow{}
+actor GunSpawnerH3 : GunSpawner replaces Blaster{}
+actor GunSpawnerH4 : GunSpawner replaces Mace{}
+actor GunSpawnerH5 : GunSpawner replaces SkullRod{}
+actor GunSpawnerH6 : GunSpawner replaces Staff{}
+actor GunSpawnerH7 : GunSpawner replaces PhoenixRod{}
