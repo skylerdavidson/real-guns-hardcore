@@ -77,6 +77,9 @@ script 501 RESPAWN
 		if(CheckInventory("Perk1_OneManArmy") == 1)
 			SetAmmoCapacity("MaxWeaponsFilled_ARSMG",4);
 		
+		if(CheckInventory("Perk3_LastStand") == 1)
+			GiveInventory("LastStandUrn",10000);
+		
 		TakeInventory("InvisibilityRunning", 1);
 	
 
@@ -184,6 +187,9 @@ script 597 ENTER
 			SetAmmoCapacity("MaxWeaponsFilled_ARSMG",4);
 		if(CheckInventory("Perk1_OneManArmy_Pro") == 1)
 			ACS_ExecuteAlways(629,0,0,0,0);
+		
+		if(CheckInventory("Perk3_LastStand") == 1)
+			GiveInventory("LastStandUrn",10000);
 		
 		TakeInventory("InvisibilityRunning", 1);
 		
@@ -3677,6 +3683,7 @@ script 631 ENTER
 		UnMorphActor(0);
 	}
 	TakeInventory("InLastStand", 1);
+	GiveInventory("LastStandUrn",10000);
 }
 
 //------------------------------------------
@@ -4501,6 +4508,7 @@ script 638 (int Which)
 			GiveInventory("Perk2_JuggernautEffect",1);
 			GiveInventory("Perk2_Juggernaut_Pro",1);
 			GiveInventory("Perk3_LastStand",1);
+			GiveInventory("LastStandUrn",10000);
 		}
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
@@ -4653,6 +4661,11 @@ script 638 (int Which)
 			{
 				GiveInventory("Perk2_StoppingPowerEffect",1);
 			}
+			if(Perk2[PlayerNumber()+1] == "Perk3_LastStand")
+			{
+				GiveInventory("LastStandUrn",10000);
+			}
+			
 			GiveInventory(Perk3[PlayerNumber()+1],1);
 			If(Perk3[PlayerNumber()+1] == "Perk3_Commando")
 			{
@@ -4906,4 +4919,12 @@ script 641 (void) {
 script 642 (void) {
 	SetActorAngle(0,GetActorAngle(0)+random(-700,700));
 	SetActorPitch(0,GetActorPitch(0)+random(-700,700));
+}
+
+// Perform ASYNCHRONOUS health check for Last Stand (the Urn won't restore HP fast enough for the check to be successful), triggered in player pain state 
+script 643 (void) {
+	delay(0);
+	if(GetActorProperty(0,APROP_Health) == 1){
+		ACS_ExecuteAlways(625,0,0,0,0); // Transform into Last Stand
+	}
 }

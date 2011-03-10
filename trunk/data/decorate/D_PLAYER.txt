@@ -129,13 +129,13 @@ ACTOR RGUPlayer : DoomPlayer
 	//PLAY E 0 A_TakeInventory("Perk2_ColdBloodedProEffect", 0)
     Goto Missile
   Pain:
-    PLAY G 0 A_JumpIfInventory("Perk3_LastStand",1,"PainLastStand")
     PLAY G 1 A_GiveInventory("InCombat",5)
-	PLAY G 1 A_GiveInventory("InCombatRegeneration",5)	
+	PLAY G 1 A_GiveInventory("InCombatRegeneration",5)
+	PLAY G 4 A_GiveToTarget("HitIndicator",1)
+	PLAY G 0 A_JumpIfInventory("Perk3_LastStand",1,"PainLastStand")	
 	PLAY G 0 ACS_ExecuteAlways(600,0,0,0,1) // recoil
-    PLAY G 0 ACS_ExecuteAlways(606,0,0,0,0) // regen
-	//PLAY G 0 ACS_ExecuteAlways(640,0,0,0,0) // cold blooded invis
-    PLAY G 4 A_GiveToTarget("HitIndicator",1)
+    PLAY G 4 ACS_ExecuteAlways(606,0,0,0,0) // regen
+	//PLAY G 0 ACS_ExecuteAlways(640,0,0,0,0) // cold blooded invis    
     PLAY G 4 A_Pain
     Goto Spawn
   Pain.Ice:
@@ -154,16 +154,10 @@ ACTOR RGUPlayer : DoomPlayer
     PLAY G 0 A_GiveInventory("HieroWeaken",1)
     Goto Pain
   PainLastStand:
-    PLAY G 0 A_JumpIfHealthLower(25,"GoLastStand")
+    PLAY G 0 ACS_ExecuteAlways(643,0,0,0,0) // Perform ASYNCHRONOUS health check (the Urn won't restore HP fast enough for the check to be successful)
 	goto Pain+1
-  GoLastStand:
-	//PLAY G 0 A_ChangeFlag("NODAMAGE", 1)
-    PLAY G 0 A_GiveInventory("InCombat",5)
-    PLAY G 0 A_GiveToTarget("HitIndicator",1)
-    PLAY G 0 ACS_ExecuteAlways(625,0,0,0,0)
-    Goto Spawn
   Death:
-    PLAY H 1 
+    PLAY H 1	
     PLAY H 0 Thing_ChangeTID(0,9999)
     PLAY H 0 A_TakeInventory("ThrowingGrenade",1)
     PLAY H 0 A_TakeInventory("KnifeAttack",1)
