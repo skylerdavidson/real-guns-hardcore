@@ -6,11 +6,11 @@ actor GunAmmoSpawnerH5 : VoidSpawner replaces BlasterAmmo {}
 actor GunAmmoSpawnerH6 : GunAmmoSpawner replaces BlasterHefty {}
 actor GunAmmoSpawnerH7 : VoidSpawner replaces SkullRodAmmo {}
 actor GunAmmoSpawnerH8 : GunAmmoSpawner replaces SkullRodHefty {}
-actor GunAmmoSpawnerH7 : VoidSpawner replaces MaceAmmo {}
-actor GunAmmoSpawnerH8 : GunAmmoSpawner replaces MaceHefty {}
-actor GunAmmoSpawnerH7 : VoidSpawner replaces PhoenixRodAmmo {}
-actor GunAmmoSpawnerH8 : GunAmmoSpawner replaces PhoenixRodHefty {}
-actor GunAmmoSpawnerH10 : GunAmmoSpawner replaces CrystalVial {}
+actor GunAmmoSpawnerH9 : VoidSpawner replaces MaceAmmo {}
+actor GunAmmoSpawnerH10 : GunAmmoSpawner replaces MaceHefty {}
+actor GunAmmoSpawnerH11 : VoidSpawner replaces PhoenixRodAmmo {}
+actor GunAmmoSpawnerH12 : GunAmmoSpawner replaces PhoenixRodHefty {}
+actor GunAmmoSpawnerH13 : GunAmmoSpawner replaces CrystalVial {}
 
 actor GunSpawnerH1 : GunSpawner replaces Gauntlets {}
 actor GunSpawnerH2 : GunSpawner replaces GoldWand{}
