@@ -117,6 +117,7 @@ skill trivial
    textcolor="white"
    Name = "Trivial  6 Guns,50% DMG"
    acsreturn = 6
+   autousehealth
 }
 
 skill easy
@@ -127,6 +128,7 @@ skill easy
    textcolor="green"
    Name = "Easy     4 Guns,100% DMG"
    acsreturn = 4
+   autousehealth
 }
 
 
@@ -138,7 +140,7 @@ skill medium
    textcolor="yellow"
    Name = "Medium  3 Guns,125% DMG"
    acsreturn = 3
-   autousehealth = 1
+   autousehealth
 }
 
 skill hard
@@ -149,7 +151,7 @@ skill hard
    textcolor="orange"
    Name = "Hard     3 Guns,150% DMG"
    acsreturn = 3
-   autousehealth = 1
+   autousehealth
 }
 
 skill tactics
@@ -159,7 +161,7 @@ skill tactics
    SpawnFilter = "Hard"
    Name = "Tactics 2 Guns,125% DMG"
    acsreturn = 2
-   autousehealth = 1
+   autousehealth
 }
 
 skill fun
@@ -169,7 +171,7 @@ skill fun
    SpawnFilter = "Hard"
    Name = "Fun       6 Guns,175% DMG "
    acsreturn = 6
-   autousehealth = 1
+   autousehealth
 }
 
 skill deadly
@@ -179,7 +181,7 @@ skill deadly
    SpawnFilter = "Hard"
    Name = "Deadly  2 Guns,150% DMG"
    acsreturn = 2
-   autousehealth = 1
+   autousehealth
 }
 
 skill realism
@@ -190,7 +192,7 @@ skill realism
    Name = "Realism 2 Guns,200% DMG"
    textcolor="black"
    acsreturn = 2
-   autousehealth = 1
+   autousehealth
 }
 
 skill instagib
@@ -202,7 +204,7 @@ skill instagib
    textcolor="black"
    Name = "INSTAGIB"
    acsreturn = 1
-   autousehealth = 1
+   autousehealth
 }
 
 skill oldschool
@@ -214,6 +216,6 @@ skill oldschool
    textcolor="black"
    Name = "OLDSCHOOL"
    acsreturn = 9
-   autousehealth = 1
+   autousehealth
 }
 
