@@ -48,6 +48,7 @@
 #include decorate/D_DROPSP.txt
 
 #include decorate/items/heretic/_spawners.txt
+#include "decorate/items/heretic/quartz flask.txt"
 
 #include decorate/monsters/doom/SPAWN.txt
 #include decorate/monsters/doom/DEC_ZOM1.txt
