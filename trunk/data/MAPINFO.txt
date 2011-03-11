@@ -1,6 +1,5 @@
 gameinfo
 {
-	titlemusic = "$MUSIC_INTRO"
 	titletime = 999999
 	quitsound = "barett/fire"
 	drawreadthis = false
