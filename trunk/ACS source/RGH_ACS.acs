@@ -214,6 +214,15 @@ script 597 ENTER
 	
 	ACS_ExecuteAlways(602,0,0,0,0); // adjust movement speed
 
+	if(GetScreenWidth() * 3 != GetScreenHeight() * 4){
+		SetFont("BIGFONT");
+		SetHudSize(480,300,1);		
+		HudMessage(s:"\cgYour screen resolution is not supported"; HUDMSG_PLAIN,1,CR_BLUE,240.0,100.0,0);
+		SetFont("COFONT");
+		HudMessage(s:"\cgRGH is compatible only with 4:3 aspect ratio resolutions"; HUDMSG_PLAIN,2,CR_BLUE,240.0,130.0,0);
+		terminate;
+	}
+
 	SetFont("BIGFONT");
 	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.6 \ch=="; HUDMSG_FADEOUT,0,CR_BLUE,0.5,0.6,2.0,0.5);
 	SetFont("DOOMFONT");
