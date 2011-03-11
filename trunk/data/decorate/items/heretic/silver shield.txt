@@ -1,0 +1,30 @@
+actor SilverShield2 : CustomInventory replaces SilverShield
+{
+  Game Heretic
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  +FLOATBOB
+  //+INVENTORY.ALWAYSPICKUP
+  //+INVENTORY.FANCYPICKUPSOUND
+  Inventory.PickupMessage "$TXT_ITEMSHIELD1" // "SILVER SHIELD"
+  Inventory.PickupSound "misc/p_pkup"
+  States{
+  Spawn:
+    SHLD A -1
+    Stop
+  Pickup:	
+	SHLD A 0 A_JumpIfInventory("Perk2_Juggernaut_Pro", 1, "JuggernautPro")
+	SHLD A 0 A_JumpIfInventory("BasicArmor", 100, "FailState")
+	SHLD A 0 A_GiveInventory("Armor400_33",1)
+	SHLD A 0 A_TakeInventory("BasicArmor", 300)
+	stop
+  JuggernautPro:
+	SHLD A 0 A_JumpIfInventory("BasicArmor", 200, "FailState")
+	SHLD A 0 A_GiveInventory("Armor400_33",1)
+	SHLD A 0 A_TakeInventory("BasicArmor", 200)
+	stop
+  FailState:
+    SHLD A 0 
+	fail
+  }
+}
