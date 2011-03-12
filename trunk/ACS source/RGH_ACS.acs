@@ -3702,7 +3702,9 @@ script 631 ENTER
 		UnMorphActor(0);
 	}
 	TakeInventory("InLastStand", 1);
-	GiveInventory("LastStandUrn",10000);
+	
+	if(CheckInventory('Perk3_LastStand') == 1)
+		GiveInventory("LastStandUrn",10000);
 }
 
 //------------------------------------------
@@ -4680,7 +4682,7 @@ script 638 (int Which)
 			{
 				GiveInventory("Perk2_StoppingPowerEffect",1);
 			}
-			if(Perk2[PlayerNumber()+1] == "Perk3_LastStand")
+			X
 			{
 				GiveInventory("LastStandUrn",10000);
 			}
