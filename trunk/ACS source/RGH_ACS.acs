@@ -3898,6 +3898,12 @@ script 636 (int firstTimeAfterDeath)
 	// erase the Press X to change class message
 	HudMessage(s:""; HUDMSG_FADEOUT, 2700+PlayerNumber(), CR_Green, 0.5, 0.75, 0.5, 1.0);
 	
+	// do not give more weapons after respawning in coop
+	if(GotClass[PlayerNumber()+1] == TRUE && GameType() == GAME_NET_COOPERATIVE)
+	{
+	    terminate;
+	}	
+	
 	// skip class menu if respawining in DM and RUN is not pressed                                       
 	int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
 	if(
@@ -3905,14 +3911,12 @@ script 636 (int firstTimeAfterDeath)
 		GotClass[PlayerNumber()+1] == TRUE &&
 		!(buttons & BT_SPEED) &&
 		firstTimeAfterDeath == 1
-	) {
+	) {		
+	
 		ACS_ExecuteAlways(638,0,Class[PlayerNumber()+1],0,0);
 		terminate;
-	}		
+	}
 
-	//log(i:CheckWeapon("Menu"));
-	//log(i:CheckWeapon("MenuPlace"));
-	//log(s:"------------");
 
 	// force redraw of all menus
 	HudMessage(s:""; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0);
@@ -4481,6 +4485,12 @@ script 638 (int Which)
 	TakeInventory("MenuChoice8",1);
 	TakeInventory("MenuChoice9",1);
 	TakeInventory("MenuChoice10",1);
+
+	// do not give more weapons after respawning in coop
+	if(GotClass[PlayerNumber()+1] == TRUE && GameType() == GAME_NET_COOPERATIVE)
+	{
+	    terminate;
+	}	
 	
 	Class[PlayerNumber()+1] = Which;
 	If(Which == 0)
