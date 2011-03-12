@@ -14,9 +14,9 @@ actor GunAmmoSpawnerH13 : GunAmmoSpawner replaces CrystalVial {}
 
 actor GunSpawnerH1 : GunSpawner replaces Gauntlets {}
 actor GunSpawnerH2 : GunSpawner replaces GoldWand{}
-actor GunSpawnerH2 : GunSpawner replaces Crossbow{}
-actor GunSpawnerH3 : GunSpawner replaces Blaster{}
-actor GunSpawnerH4 : GunSpawner replaces Mace{}
-actor GunSpawnerH5 : GunSpawner replaces SkullRod{}
-actor GunSpawnerH6 : GunSpawner replaces Staff{}
-actor GunSpawnerH7 : GunSpawner replaces PhoenixRod{}
+actor GunSpawnerH3 : GunSpawner replaces Crossbow{}
+actor GunSpawnerH4 : GunSpawner replaces Blaster{}
+actor GunSpawnerH5 : GunSpawner replaces Mace{}
+actor GunSpawnerH6 : GunSpawner replaces SkullRod{}
+actor GunSpawnerH7 : GunSpawner replaces Staff{}
+actor GunSpawnerH8 : GunSpawner replaces PhoenixRod{}
