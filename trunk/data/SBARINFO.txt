@@ -3,12 +3,18 @@
 
 statusbar fullscreen, forcescaled
 {
+
 	drawswitchableimage BlueSkull, "nullimage", "BLUSKLL", 12, 165;
 	drawswitchableimage YellowSkull, "nullimage", "YELSKLL", 24, 165;
 	drawswitchableimage RedSkull, "nullimage", "REDSKLL", 36, 165;
 	drawswitchableimage BlueCard, "nullimage", "BLUCARD", 60, 165;
 	drawswitchableimage YellowCard, "nullimage", "YELCARD", 72, 165;
 	drawswitchableimage RedCard, "nulliUmage", "REDCARD", 84, 165;
+
+	drawswitchableimage KeyBlue, "nullimage", "BLKEY", 60, 165;
+	drawswitchableimage KeyGreen, "nullimage", "GRKEY", 72, 165;
+	drawswitchableimage KeyYellow, "nullimage", "YLKEY", 84, 165;
+
 
  	drawbar "HEALBAR", "HEALBAR2", Health, horizontal, reverse, 8, 185;
  	drawbar "ARMRBAR", "ARMRBAR2", Armor, horizontal, reverse, 8, 191;
