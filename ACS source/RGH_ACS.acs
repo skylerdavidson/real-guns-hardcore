@@ -407,15 +407,24 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 		CheckWeapon("MG4 Ex Mags") ||
 		CheckWeapon("MG4 Grip") || 
 		CheckWeapon("AK-47") || 
-		CheckWeapon("AK-47 Ex Mags") ||
-		CheckWeapon("M240") || 
-		CheckWeapon("M240 Ex Mags") ||
-		CheckWeapon("M240 Grip")
+		CheckWeapon("AK-47 Ex Mags")
 	) 
 	{
 		Strength = 1100;
 		Reverse = 300;
 		RecoilSpeed = 200;
+	}
+
+	// Rapid fire high recoil automatic weapons
+	if(
+		CheckWeapon("M240") ||
+		CheckWeapon("M240 Ex Mags") ||
+		CheckWeapon("M240 Grip")
+	) 
+	{
+		Strength = 800;
+		Reverse = 75;
+		RecoilSpeed = 250;
 	}
 
 	// Medium recoil automatic weapons
@@ -528,21 +537,6 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 		Strength = Strength / 2;
 		Reverse = Reverse / 2;
 	}
-	
-	//Strength = Strength * 2;
-	//Reverse = Reverse * 2;
-	
-	
-	
-	/*if(EnableRandomization){
-		print(s:"Rand");
-		int RandomOffset = Random(80, 120);
-		print(i:RandomOffset);
-		Reverse = Reverse * RandomOffset / 100;
-	}
-	else {
-		print(s:"NoRand");
-	}*/
 	
 	int ReturnAngleOffsetX = random(80, 120);
 	int ReturnAngleOffsetY = random(80, 120);
