@@ -1,0 +1,53 @@
+/*actor ArtiSuperHealth2 : HealthPickup replaces ArtiSuperHealth
+{
+  Game Raven
+  SpawnID 25
+  Health 200
+  +COUNTITEM
+  +FLOATBOB
+  +INVENTORY.PICKUPFLASH
+  +INVENTORY.FANCYPICKUPSOUND
+  Inventory.Icon ARTISPHL
+  Inventory.PickupSound "misc/p_pkup"
+  Inventory.PickupMessage "$TXT_ARTISUPERHEALTH" // "MYSTIC URN"
+  HealthPickup.Autouse 2
+  States
+  {
+  Spawn:
+    SPHL A 350
+    Loop
+  }
+} */
+
+actor MUrn : HealthPickup replaces ArtiSuperHealth
+{
+  Game Heretic
+  +COUNTITEM
+  +FLOATBOB
+  +INVENTORY.AUTOACTIVATE
+  //+INVENTORY.ALWAYSPICKUP
+  //+INVENTORY.FANCYPICKUPSOUND
+  Inventory.PickupMessage "$GOTMEGA" // "Supercharge!"
+  Inventory.PickupSound "misc/p_pkup"
+  HealthPickup.Autouse 2
+  States{
+  Spawn:
+    SHD2 A -1    
+    Stop
+  Pickup:	
+	SHD2 A 0
+	//SHD2 A 0 A_JumpIfInventory("Perk2_Juggernaut_Pro", 1, "JuggernautPro")
+	//SHD2 A 0 A_JumpIfInventory("BasicArmor", 200, "FailState")
+	//SHD2 A 0 A_GiveInventory("Armor400_75",1)
+	//SHD2 A 0 A_TakeInventory("BasicArmor",200)
+	SHD2 A 0 A_GiveInventory("MegaSphere2",1)
+	stop
+  JuggernautPro:
+	SHD2 A 0 A_JumpIfInventory("BasicArmor", 400, "FailState")
+	SHD2 A 0 A_GiveInventory("Armor400_75",1)	
+	stop
+  FailState:
+    SHD2 A 0 
+	fail
+  }
+}
