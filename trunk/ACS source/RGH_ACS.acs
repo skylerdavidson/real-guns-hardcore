@@ -930,12 +930,10 @@ script 606 (void)
 					//log(i:CheckInventory("InCombatRegeneration"));
 	
 					if(GetActorProperty(0,APROP_Health) < 60){
-						/*if(GetActorProperty(0,APROP_Health) > 80)
-							SetFont("DAMSCRN1");
-						else if(GetActorProperty(0,APROP_Health) > 60)
-							SetFont("DAMSCRN1");
-						else */
-						if(GetActorProperty(0,APROP_Health) > 40)
+						if(CheckInventory("InLastStand") > 0){
+					        SetFont("LSSCRN");
+						}
+					    else if(GetActorProperty(0,APROP_Health) > 40)
 							SetFont("DAMSCRN1");
 						else if(GetActorProperty(0,APROP_Health) > 20)
 							SetFont("DAMSCRN2");
