@@ -18,6 +18,7 @@ ACTOR MaulerDemon : RGAMonster
    ActiveSound "demon/active" 
    Obituary "%o was gored by a Mauler Demon."
    HitObituary "%o was mauled by a Mauler Demon"
+   Species "Demon"
    States 
    { 
    Spawn: 
