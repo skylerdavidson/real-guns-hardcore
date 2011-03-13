@@ -1,7 +1,7 @@
 ACTOR Arachnophyte : RGAMonster
 {
     //$Category monsters
-    Health 2500
+    Health 6500
     Radius 64
     Height 100
     Speed 6
