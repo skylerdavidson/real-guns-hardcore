@@ -14,6 +14,7 @@ ACTOR Demon_2 : RGAMonster
   DeathSound "demon/death"
   ActiveSound "demon/active"
   Obituary "$OB_DEMONHIT" // "%o was bit by a demon."
+  Species "Demon"
   States
   {
   Spawn:
@@ -58,6 +59,7 @@ ACTOR BloodDemon_2 : Demon_2
   Health 350
   Speed 28
   Obituary "$OB_BLOODDEMON_MELEE" // "%o was chomped on by a blood demon."
+  Species "Demon"
   States
   {
   Spawn:
@@ -108,6 +110,7 @@ actor StoneDemon : RGAMonster
   +FLOORCLIP
   +NOBLOOD
   DropItem "GreenArmor" 64
+  Species "Demon"
   states
   {
   Spawn:
@@ -172,6 +175,7 @@ actor SpectreBlood : BloodDemon_2
   hitobituary "%o was chomped by a spectre blood demon."
   +SHADOW
   RenderStyle OptFuzzy
+  Species "Demon"
   Alpha 0.5
 }
 
@@ -180,5 +184,6 @@ actor SpectreStone : StoneDemon
   hitobituary "%o was crunched by a spectre stone demon."
   +SHADOW
   RenderStyle OptFuzzy
+  Species "Demon"
   Alpha 0.5
 }
