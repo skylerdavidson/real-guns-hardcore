@@ -220,6 +220,8 @@ script 597 ENTER
 		HudMessage(s:"\cgYour screen resolution is not supported"; HUDMSG_PLAIN,1,CR_BLUE,290.0,100.0,0);
 		SetFont("COFONT");
 		HudMessage(s:"\cgRGH is compatible only with 4:3 aspect ratio resolutions"; HUDMSG_PLAIN,2,CR_BLUE,290.0,130.0,0);
+		HudMessage(s:"\cgPlease change your screen resolution and restart the game"; HUDMSG_PLAIN,3,CR_BLUE,290.0,160.0,0);
+		HudMessage(s:"\cg( Menu -> Options -> Set video mode )"; HUDMSG_PLAIN,4,CR_BLUE,290.0,190.0,0);
 		terminate;
 	}
 
