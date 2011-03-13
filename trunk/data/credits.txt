@@ -2,6 +2,8 @@ This mod is based on Real Guns Advanced 2 made by Voltlock. Great many graphics 
 
 Monster authors (in mostly random order): Nanami, Ghastly_dragon, Keksdose, Espi, Ebola, Jimmy, Eriance, Vader, WhoDaMan, Xaser, Quasar, Dreadopp, ItsNatureToDie, neoworm, scalliano, Icytux, zrrion the insect, Lord_Z, Captain Toenail, Cryptic, AgentSpork, The Dark Archon, The Ultimate Doomer, DBThanatos, Xim.
 
+Mungbean, Blox and Se7eNytes for the Last Stand blood screen.
+
 You are allowed to make changes to this mod and redistribute it as long as:
 1) You credit both me and Voltlock (do not remove our names from the in-game title screen).
 2) Its name cannot be confused with "Real Guns Hardcore".
