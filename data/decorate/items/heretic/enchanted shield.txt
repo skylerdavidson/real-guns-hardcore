@@ -1,0 +1,48 @@
+Actor Armor400_75 : BasicArmorPickup
+{
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  //+INVENTORY.FANCYPICKUPSOUND
+  Inventory.Icon "ARM2A0"
+  Armor.Savepercent 75
+  Armor.Saveamount 400
+  States
+  {
+  Spawn:
+    ARM2 A 6
+    ARM2 B 6 bright
+    loop
+  }
+}
+
+actor EnchantedShield2 : CustomInventory replaces EnchantedShield
+{
+  Game Heretic
+  +COUNTITEM
+  +FLOATBOB
+  +INVENTORY.AUTOACTIVATE
+  //+INVENTORY.ALWAYSPICKUP
+  //+INVENTORY.FANCYPICKUPSOUND
+  Inventory.PickupMessage "$GOTMEGA" // "Supercharge!"
+  Inventory.PickupSound "misc/p_pkup"
+  States{
+  Spawn:
+    SHD2 A -1    
+    Stop
+  Pickup:	
+	SHD2 A 0
+	SHD2 A 0 A_JumpIfInventory("Perk2_Juggernaut_Pro", 1, "JuggernautPro")
+	SHD2 A 0 A_JumpIfInventory("BasicArmor", 200, "FailState")
+	SHD2 A 0 A_GiveInventory("Armor400_75",1)
+	SHD2 A 0 A_TakeInventory("BasicArmor",200)
+	stop
+  JuggernautPro:
+	SHD2 A 0 A_JumpIfInventory("BasicArmor", 400, "FailState")
+	SHD2 A 0 A_GiveInventory("Armor400_75",1)	
+	stop
+  FailState:
+    SHD2 A 0 
+	fail
+  }
+}
