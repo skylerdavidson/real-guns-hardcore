@@ -227,7 +227,7 @@ script 597 ENTER
 	}
 
 	SetFont("BIGFONT");
-	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.6 \ch=="; HUDMSG_FADEOUT,0,CR_BLUE,0.5,0.6,2.0,0.5);
+	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.7 \ch=="; HUDMSG_FADEOUT,0,CR_BLUE,0.5,0.6,2.0,0.5);
 	SetFont("DOOMFONT");
 	HudMessage(s:"\ccBy \cvVoltlocK\cj and \cvCommanderZ"; HUDMSG_FADEOUT,0,CR_YELLOW,0.5,0.7,2.0,0.5);
 }
