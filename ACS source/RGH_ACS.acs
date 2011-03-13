@@ -58,12 +58,13 @@ script 501 RESPAWN
 	Thing_ChangeTID(0,PlayerNumber()+500);
         SetThingSpecial(0,226,502,0,0,0,0);
 
-    TakeInventory("ReadyRegen",1);
+    //TakeInventory("ReadyRegen",1);
+    //ACS_ExecuteAlways(606,0,0,0,0);
 
 	if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
 	{	
-		if(GetActorProperty(0,APROP_HEALTH) < 100)
-			ACS_ExecuteAlways(606,0,0,0,0);
+		//if(GetActorProperty(0,APROP_HEALTH) < 100)
+			
 		//if(GetActorProperty(0, APROP_Speed) != 1.15)
 		//	SetActorProperty(0, APROP_Speed, 1.15);
 		if(CheckInventory("Perk2_StoppingPower") == 1)
@@ -168,11 +169,12 @@ script 504 (void)
 script 597 ENTER
 {
 	TakeInventory("ReadyRegen",1);
+    ACS_ExecuteAlways(606,0,0,0,0);
 
 	if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
 	{	
-		if(GetActorProperty(0,APROP_HEALTH) < 100)
-			ACS_ExecuteAlways(606,0,0,0,0);
+		//if(GetActorProperty(0,APROP_HEALTH) < 100)
+			
 		//if(GetActorProperty(0, APROP_Speed) != 1.15)
 		//	SetActorProperty(0, APROP_Speed, 1.15);
 		if(CheckInventory("Perk2_StoppingPower") == 1)
@@ -903,11 +905,17 @@ script 605 (void) CLIENTSIDE
 //Regeneration
 script 606 (void)
 {
+	int i = 0;
 	//print(i:CheckInventory("ReadyRegen"));
 	if(CheckInventory("ReadyRegen") == 0)
 	{
 		GiveInventory("ReadyRegen",1);
 		while(true){
+			i++;
+			//HudMessage(i:i);
+			//SetFont("BIGFONT");
+			//SetHudSize(1280,800,1);
+			//HudMessage(i:i; HUDMSG_PLAIN, 11111, CR_UNTRANSLATED, 400.0, 400.0, 0);
 			//SetFont("DAMSCRN1");
 							
 			//SetHudSize(1280,800,1);
