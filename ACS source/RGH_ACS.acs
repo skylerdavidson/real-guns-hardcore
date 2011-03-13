@@ -396,8 +396,8 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 		CheckWeapon("M16A4 Ex Mags")
 	)
 	{
-		Strength = 500;
-		Reverse = 350;
+		Strength = 700;
+		Reverse = 300;
 		RecoilSpeed = 200;
 	}
 
@@ -409,7 +409,7 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 		CheckWeapon("AK-47") || 
 		CheckWeapon("AK-47 Ex Mags"))
 	{
-		Strength = 800;
+		Strength = 1100;
 		Reverse = 300;
 		RecoilSpeed = 200;
 	}
@@ -440,8 +440,8 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 		CheckWeapon("FAMAS Ex Mags")
 	)
 	{
-		Strength = 600;
-		Reverse = 350;
+		Strength = 800;
+		Reverse = 250;
 		RecoilSpeed = 200;
 	}
 
