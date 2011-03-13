@@ -4952,7 +4952,7 @@ script 642 (void) {
 
 // Perform ASYNCHRONOUS health check for Last Stand (the Urn won't restore HP fast enough for the check to be successful), triggered in player pain state 
 script 643 (void) {
-	delay(0);
+	delay(1);
 	if(GetActorProperty(0,APROP_Health) == 1){
 		ACS_ExecuteAlways(625,0,0,0,0); // Transform into Last Stand
 	}
