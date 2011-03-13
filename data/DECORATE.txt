@@ -51,6 +51,7 @@
 #include "decorate/items/heretic/quartz flask.txt"
 #include "decorate/items/heretic/silver shield.txt"
 #include "decorate/items/heretic/enchanted shield.txt"
+#include "decorate/items/heretic/mystic urn.txt"
 
 #include decorate/monsters/doom/SPAWN.txt
 #include decorate/monsters/doom/DEC_ZOM1.txt
