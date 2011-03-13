@@ -55,8 +55,8 @@ actor GunAmmoSpawner10 : GunAmmoSpawner replaces Medikit {}
 
 actor GunSpawner : RandomSpawner
 {
-    //DropItem "USP45Pickup"
-    //DropItem "44MagnumPickup"
+    DropItem "USP45Pickup"
+    DropItem "44MagnumPickup"
     DropItem "FAMASPickup"
     DropItem "FALPickup"
     DropItem "SPASPickup"
