@@ -124,7 +124,7 @@ actor DoomImpRes : RGAMonster
   Melee:
   Missile:
     SPIP EF 8 A_FaceTarget
-    SPIP G 6 A_CustomComboAttack("SpiritImpBall",32,5,"imp/melee")
+    SPIP G 6 A_CustomMissile("SpiritImpBall",30,0,5)
     goto See
   Missile2:
     SPIP EF 8 A_FaceTarget
