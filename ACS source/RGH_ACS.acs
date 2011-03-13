@@ -373,7 +373,7 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 		}
 	}
 
-	// Low recoil ARs and SMGs, AUG
+	// Low recoil automatic weapons
 	if(
 		CheckWeapon("UMP45") || 
 		CheckWeapon("UMP45 Ex Mags") || 
@@ -401,27 +401,28 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 		RecoilSpeed = 200;
 	}
 
-	// MG4, AK47
+	// Very high recoil automatic weapons
 	if(
 		CheckWeapon("MG4") || 
 		CheckWeapon("MG4 Ex Mags") ||
 		CheckWeapon("MG4 Grip") || 
 		CheckWeapon("AK-47") || 
-		CheckWeapon("AK-47 Ex Mags"))
+		CheckWeapon("AK-47 Ex Mags") ||
+		CheckWeapon("M240") || 
+		CheckWeapon("M240 Ex Mags") ||
+		CheckWeapon("M240 Grip")
+	) 
 	{
 		Strength = 1100;
 		Reverse = 300;
 		RecoilSpeed = 200;
 	}
 
-	// High recoil SMGS and ARs, L86 and M240
+	// Medium recoil automatic weapons
 	if(
 		CheckWeapon("L86") || 
 		CheckWeapon("L86 Ex Mags") ||
 		CheckWeapon("L86 Grip") ||
-		CheckWeapon("M240") || 
-		CheckWeapon("M240 Ex Mags") ||
-		CheckWeapon("M240 Grip")|| 
 		CheckWeapon("TDI Vector") || 
 		CheckWeapon("TDI Vector Ex Mags") || 
 		CheckWeapon("Mini-UZI") || 
