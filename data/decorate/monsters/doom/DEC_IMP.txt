@@ -233,10 +233,22 @@ actor DarkImp_2 : RGAMonster
     goto See
   }
 }
-actor DarkImpBall2 : DarkImpBall replaces DarkImpBall
+
+actor DarkImpBall2 : DoomImpBall
 {
-  Damage (15)
+  Game Doom
+  SpawnID 218
   Speed 40
+  Damage 3
+  States
+  {
+  Spawn:
+    BAL4 AB 4 Bright
+    Loop
+  Death:
+    BAL4 CDE 6 Bright
+    Stop
+  }
 }
 
 actor ImpBoy : DoomImp_2
