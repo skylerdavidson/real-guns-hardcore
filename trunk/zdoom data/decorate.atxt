@@ -1,0 +1,37 @@
+// this file contains dummy actors that provide replace bases for Skulltag-specific actors
+
+// these actors will never be used ingame, so they can be empty 
+
+// Skulltag weapons
+actor Minigun {}
+actor GrenadeLauncher {}
+actor Railgun {}
+actor BFG10k {}
+
+// Invasion spawn points
+actor ZombiemanSpot {}
+actor WolfensteinSSSpot {}
+actor WeakMonsterSpot {}
+actor ShotgunguySpot {}
+actor SuperShotgunGuySpot {}
+actor ChaingunguySpot {}
+actor ImpSpot {}
+actor DarkImpSpot {}
+actor DemonSpot {}
+actor BloodDemonSpot {}
+actor SpectreSpot {}
+actor LostSoulSpot {}
+actor HellKnightSpot {}
+actor BaronofHellSpot {}
+actor BelphegorSpot {}
+actor CacodemonSpot {}
+actor CacolanternSpot {}
+actor AbaddonSpot {}
+actor PainElementalSpot {}
+actor RevenantSpot {}
+actor ArachnotronSpot {}
+actor FatsoSpot {}
+actor HectebusSpot {}
+actor ArchVileSpot {}
+actor CyberdemonSpot {}
+actor SpiderMastermindSpot {}

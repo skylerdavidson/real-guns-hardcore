@@ -1,5 +1,5 @@
-#library "RGH_ACS"
-#include "zcommon.acs"
+IgnoreHash(#library "RGH_ACS")
+IgnoreHash(#include "zcommon.acs")
 
 int KillersID;
 int KillersHealth;
@@ -10,7 +10,9 @@ str ExperienceNeed[40];
 bool TacticalInsertion[32];
 
 
+
 //Server settings...
+#ifdef SKULLTAG
 script 505 OPEN
 {
 	if(GetCVAR("alwaysapplydmflags") == 0)
@@ -40,7 +42,7 @@ script 505 OPEN
 	delay(35*5);
 	restart;
 }
-
+#endif
 
 //KILL CAM script source.
 //Function: It changes view to killer's view, and displays killer's health.
@@ -150,6 +152,7 @@ script 503 DEATH
 script 504 (void)
 {
 	Delay(1);
+#ifdef SKULLTAG
 	if(GetActorProperty(0,APROP_Health) > 0 && (GameType() != GAME_NET_COOPERATIVE || GameType() != GAME_SINGLE_PLAYER))
 	{
 		if(PlayerTeam() == TEAM_RED)
@@ -161,6 +164,7 @@ script 504 (void)
 		else if(PlayerTeam() == 3)
 			ActivatorSound("opfor/kill",127);
 	}
+#endif
 }
 
 //------------------------------------------
@@ -227,7 +231,13 @@ script 597 ENTER
 	}
 
 	SetFont("BIGFONT");
-	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.7 \ch=="; HUDMSG_FADEOUT,0,CR_BLUE,0.5,0.6,2.0,0.5);
+	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.7 "
+#ifdef SKULLTAG
+		,s:"SKULLTAG"
+#else
+		,s:"ZDOOM"
+#endif
+		,s:"\ch=="; HUDMSG_FADEOUT,0,CR_BLUE,0.5,0.6,2.0,0.5);
 	SetFont("DOOMFONT");
 	HudMessage(s:"\ccBy \cvVoltlocK\cj and \cvCommanderZ"; HUDMSG_FADEOUT,0,CR_YELLOW,0.5,0.7,2.0,0.5);
 }
@@ -716,13 +726,25 @@ script 601 (void) NET
 	{
 		GiveInventory("Reloading",1);
 
-		if(PlayerTeam() == TEAM_RED || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 1))
+#ifdef SKULLTAG
+		bool isRed = PlayerTeam() == TEAM_RED;		
+		bool isBlue = PlayerTeam() == TEAM_BLUE;
+		bool isThree = PlayerTeam() == 2;
+		bool isFour = PlayerTeam() == 3;
+#else
+		bool isRed = false;
+		bool isBlue = false;
+		bool isThree = false;
+		bool isFour = false;
+#endif
+
+		if(isRed || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 1))
 			ActivatorSound("russian/reload",127);
-		else if(PlayerTeam() == TEAM_BLUE || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 0))
+		else if(isBlue || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 0))
 			ActivatorSound("us/reload",127);	
-		else if(PlayerTeam() == 2 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 2))
+		else if(isThree || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 2))
 			ActivatorSound("brazil/reload",127);
-		else if(PlayerTeam() == 3 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 3))
+		else if(isFour || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 3))
 			ActivatorSound("opfor/reload",127);
 		else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 4)
 			ActivatorSound("seal/reload",127);
@@ -1078,13 +1100,26 @@ script 613 (int XpAmount)
 			GiveInventory("Speaking",1);
 			
 			delay(20);
-			if(PlayerTeam() == TEAM_RED || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 1))
+			
+#ifdef SKULLTAG
+			bool isRed = PlayerTeam() == TEAM_RED;		
+			bool isBlue = PlayerTeam() == TEAM_BLUE;
+			bool isThree = PlayerTeam() == 2;
+			bool isFour = PlayerTeam() == 3;
+#else
+			bool isRed = false;
+			bool isBlue = false;
+			bool isThree = false;
+			bool isFour = false;
+#endif
+			
+			if(isRed || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 1))
 				ActivatorSound("russian/kill",127);
-			else if(PlayerTeam() == TEAM_BLUE || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 0))
+			else if(isBlue || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 0))
 				ActivatorSound("us/kill",127);	
-			else if(PlayerTeam() == 2 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 2))
+			else if(isThree || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 2))
 				ActivatorSound("brazil/kill",127);
-			else if(PlayerTeam() == 3 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 3))
+			else if(isFour || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 3))
 				ActivatorSound("opfor/kill",127);
 			else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 4)
 				ActivatorSound("seal/kill",127);
@@ -3737,13 +3772,25 @@ script 633 (void)
 {
 	if(GetActorProperty(0,APROP_Health) < 26 && GetActorProperty(0,APROP_Health) > 0)
 	{
-		if(PlayerTeam() == TEAM_RED || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 1))
+#ifdef SKULLTAG
+		bool isRed = PlayerTeam() == TEAM_RED;		
+		bool isBlue = PlayerTeam() == TEAM_BLUE;
+		bool isThree = PlayerTeam() == 2;
+		bool isFour = PlayerTeam() == 3;
+#else
+		bool isRed = false;
+		bool isBlue = false;
+		bool isThree = false;
+		bool isFour = false;
+#endif
+	
+		if(isRed || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 1))
 			ActivatorSound("russian/down",127);
-		else if(PlayerTeam() == TEAM_BLUE || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 0))
+		else if(isBlue || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 0))
 			ActivatorSound("us/down",127);	
-		else if(PlayerTeam() == 2 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 2))
+		else if(isThree || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 2))
 			ActivatorSound("brazil/down",127);
-		else if(PlayerTeam() == 3 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 3))
+		else if(isFour || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 3))
 			ActivatorSound("opfor/down",127);
 		else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 4)
 			ActivatorSound("seal/down",127);
