@@ -12,8 +12,6 @@ if exist "temp\acs\acs.err" goto acserror
 
 move temp\acs\acs\RGH_ACS.o temp\acs\acs\RGH_ACS
 
-pause
-
 cd data
 ..\utility\7z u ..\temp\RGH-debug-skulltag.pk3 * -xr!.svn  -mx0
 cd ..\temp\acs
