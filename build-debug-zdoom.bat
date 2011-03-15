@@ -3,7 +3,7 @@ mkdir temp
 mkdir temp\acs
 mkdir temp\acs\acs
 mkdir output
-utility\mcpp "ACS source\RGH_ACS.acs" -o temp\acs\processed.acs -D ZDOOM -D IgnoreHash(x)=x -P
+utility\mcpp "ACS source\RGH_ACS.acs" -o temp\acs\processed.acs -D ZDOOM -D IgnoreHash(x)=x -D DEBUG -P
 echo ==============================================================
 utility\acc temp\acs\processed.acs temp\acs\acs\RGH_ACS
 
