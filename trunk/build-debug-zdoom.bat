@@ -4,11 +4,12 @@ mkdir temp\acs
 mkdir temp\acs\acs
 mkdir output
 utility\mcpp "ACS source\RGH_ACS.acs" -o temp\acs\processed.acs -D ZDOOM -D IgnoreHash(x)=x -P
+echo ==============================================================
 utility\acc temp\acs\processed.acs temp\acs\acs\RGH_ACS
 
-move temp\acs\acs\RGH_ACS.o temp\acs\acs\RGH_ACS
+if exist "temp\acs\acs.err" goto acserror
 
-if exist "acs.err" goto acserror
+move temp\acs\acs\RGH_ACS.o temp\acs\acs\RGH_ACS
 
 cd data
 ..\utility\7z u ..\temp\RGH-debug-zdoom.pk3 * -xr!.svn  -mx0
@@ -23,8 +24,5 @@ exit
 
 :acserror
 	echo ==============================================================
-	type acs.err
-	move acs.err acs_err.log
-	echo ==============================================================
-	del acs.err
+	move temp\acs\acs.err acs_errors.log	
 	pause
