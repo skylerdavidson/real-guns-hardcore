@@ -9,8 +9,6 @@ str ExperienceNeed[40];
 
 bool TacticalInsertion[32];
 
-
-
 //Server settings...
 #ifdef SKULLTAG
 script 505 OPEN
@@ -237,7 +235,10 @@ script 597 ENTER
 #else
 		,s:"ZDOOM"
 #endif
-		,s:"\ch=="; HUDMSG_FADEOUT,0,CR_BLUE,0.5,0.6,2.0,0.5);
+#ifdef DEBUG
+      	,s:" DEBUG"
+#endif
+		,s:" \ch=="; HUDMSG_FADEOUT,0,CR_BLUE,0.5,0.6,2.0,0.5);
 	SetFont("DOOMFONT");
 	HudMessage(s:"\ccBy \cvVoltlocK\cj and \cvCommanderZ"; HUDMSG_FADEOUT,0,CR_YELLOW,0.5,0.7,2.0,0.5);
 }
