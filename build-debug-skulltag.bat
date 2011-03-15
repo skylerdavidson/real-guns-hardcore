@@ -1,15 +1,18 @@
 @echo off
-del output\RGH.pk3
+@echo off
 mkdir temp
 mkdir temp\acs
 mkdir temp\acs\acs
 mkdir output
 utility\mcpp "ACS source\RGH_ACS.acs" -o temp\acs\processed.acs -D SKULLTAG -D IgnoreHash(x)=x -P
+echo ==============================================================
 utility\acc temp\acs\processed.acs temp\acs\acs\RGH_ACS
+
+if exist "temp\acs\acs.err" goto acserror
 
 move temp\acs\acs\RGH_ACS.o temp\acs\acs\RGH_ACS
 
-if exist "acs.err" goto acserror
+pause
 
 cd data
 ..\utility\7z u ..\temp\RGH-debug-skulltag.pk3 * -xr!.svn  -mx0
@@ -21,8 +24,5 @@ exit
 
 :acserror
 	echo ==============================================================
-	type acs.err
-	move acs.err acs_err.log
-	echo ==============================================================
-	del acs.err
+	move temp\acs\acs.err acs_errors.log	
 	pause
