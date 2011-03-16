@@ -133,7 +133,7 @@ script 503 DEATH
 	
 	if(GameType() == GAME_NET_DEATHMATCH){
 		SetFont("BIGFONT");
-		HudMessage(s:"\ccHold \cf", k:"+speed", s:"\cc while respawning to change your class"; HUDMSG_PLAIN, 2700+PlayerNumber(), CR_Green, 0.5, 0.75, 0);
+		HudMessage(s:"\ccHold \cf", k:"+altattack", s:"\cc while respawning to change your class"; HUDMSG_PLAIN, 2700+PlayerNumber(), CR_Green, 0.5, 0.75, 0);
 	}
     SetFont("CONFONT");
 	Delay(36);
@@ -3959,7 +3959,7 @@ script 636 (int firstTimeAfterDeath)
 	if(
 		(GameType() != GAME_SINGLE_PLAYER || GameType() != GAME_NET_COOPERATIVE) && 
 		GotClass[PlayerNumber()+1] == TRUE &&
-		!(buttons & BT_SPEED) &&
+		!(buttons & BT_ALTATTACK) &&
 		firstTimeAfterDeath == 1
 	) {		
 	
