@@ -229,7 +229,7 @@ script 597 ENTER
 	}
 
 	SetFont("BIGFONT");
-	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.7 "
+	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.8 "
 #ifdef SKULLTAG
 		,s:"SKULLTAG"
 #else
