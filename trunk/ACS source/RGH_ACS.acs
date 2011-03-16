@@ -403,16 +403,47 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 		CheckWeapon("MP5K Ex Mags") ||
 		CheckWeapon("PP2000") || 
 		CheckWeapon("PP2000 Ex Mags") || 
+		CheckWeapon("M16A4") || 
+		CheckWeapon("M16A4 Ex Mags") ||
+		CheckWeapon("TDI Vector") || 
+		CheckWeapon("TDI Vector Ex Mags") ||
+		CheckWeapon("G18") || 
+		CheckWeapon("G18 Ex Mags") ||
+		CheckWeapon("L86") || 
+		CheckWeapon("L86 Ex Mags") ||
+		CheckWeapon("L86 Grip") ||
+		CheckWeapon("UMP45 Rapid Fire") || 
+		CheckWeapon("FN P90 Rapid Fire") || 
+		CheckWeapon("MP5K Rapid Fire") ||
 		CheckWeapon("AUG HBAR") ||
 		CheckWeapon("AUG HBAR Ex Mags") ||
-		CheckWeapon("AUG HBAR Grip") ||
-		CheckWeapon("M16A4") || 
-		CheckWeapon("M16A4 Ex Mags")
+		CheckWeapon("AUG HBAR Grip") ||		
+		CheckWeapon("M240") ||
+		CheckWeapon("M240 Ex Mags") ||
+		CheckWeapon("M240 Grip")
 	)
 	{
-		Strength = 700;
-		Reverse = 300;
-		RecoilSpeed = 200;
+		Strength = 400;
+		Reverse = 200;
+		RecoilSpeed = 100;
+	}
+
+	// Medium recoil automatic weapons
+	if(
+		CheckWeapon("Mini-UZI") || 
+		CheckWeapon("Mini-UZI Ex Mags") || 
+		CheckWeapon("Mini-UZI Akimbo") || 
+		CheckWeapon("F2000") || 
+		CheckWeapon("F2000 Ex Mags") || 
+		CheckWeapon("M93 Raffica") || 
+		CheckWeapon("M93 Raffica Ex Mags") ||
+		CheckWeapon("FAMAS") || 
+		CheckWeapon("FAMAS Ex Mags")
+	)
+	{
+		Strength = 550;
+		Reverse = 250;
+		RecoilSpeed = 250;
 	}
 
 	// Very high recoil automatic weapons
@@ -424,49 +455,9 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 		CheckWeapon("AK-47 Ex Mags")
 	) 
 	{
-		Strength = 1100;
-		Reverse = 300;
-		RecoilSpeed = 200;
-	}
-
-	// Rapid fire high recoil automatic weapons
-	if(
-		CheckWeapon("M240") ||
-		CheckWeapon("M240 Ex Mags") ||
-		CheckWeapon("M240 Grip")
-	) 
-	{
-		Strength = 800;
-		Reverse = 75;
-		RecoilSpeed = 250;
-	}
-
-	// Medium recoil automatic weapons
-	if(
-		CheckWeapon("L86") || 
-		CheckWeapon("L86 Ex Mags") ||
-		CheckWeapon("L86 Grip") ||
-		CheckWeapon("TDI Vector") || 
-		CheckWeapon("TDI Vector Ex Mags") || 
-		CheckWeapon("Mini-UZI") || 
-		CheckWeapon("Mini-UZI Ex Mags") || 
-		CheckWeapon("Mini-UZI Akimbo") || 
-		CheckWeapon("G18") || 
-		CheckWeapon("G18 Ex Mags") || 
-		CheckWeapon("F2000") || 
-		CheckWeapon("F2000 Ex Mags") || 
-		CheckWeapon("UMP45 Rapid Fire") || 
-		CheckWeapon("FN P90 Rapid Fire") || 
-		CheckWeapon("MP5K Rapid Fire") || 
-		CheckWeapon("M93 Raffica") || 
-		CheckWeapon("M93 Raffica Ex Mags") ||
-		CheckWeapon("FAMAS") || 
-		CheckWeapon("FAMAS Ex Mags")
-	)
-	{
-		Strength = 800;
-		Reverse = 250;
-		RecoilSpeed = 200;
+		Strength = 920;
+		Reverse = 400;
+		RecoilSpeed = 260;
 	}
 
 	// Sniper rifles
@@ -550,10 +541,17 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 	{
 		Strength = Strength / 2;
 		Reverse = Reverse / 2;
+		RecoilSpeed = RecoilSpeed / 2;
 	}
 	
-	int ReturnAngleOffsetX = random(80, 120);
-	int ReturnAngleOffsetY = random(80, 120);
+	
+	int ReturnAngleOffsetX = 100;
+	int ReturnAngleOffsetY = 100;
+	
+	if(enableRandomization){
+		ReturnAngleOffsetX = random(80, 120);
+		ReturnAngleOffsetY = random(80, 120);
+	}
 
 	int Counter;
 		while(Counter < Strength)
