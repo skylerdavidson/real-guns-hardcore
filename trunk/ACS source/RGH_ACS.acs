@@ -4890,7 +4890,7 @@ script 638 (int Which)
 			GiveInventory("Perk2_DangerClose_Pro",1);
 		}
 		else {
-    	GiveInventory("Perk1_Scavenger_DM",1);
+    		GiveInventory("Perk1_Scavenger_DM",1);
 			GiveInventory("Perk2_DangerClose_Pro",1);
 			GiveInventory("Backpack", 1);
     }
@@ -4991,12 +4991,52 @@ script 638 (int Which)
 			{
 				GiveInventory("Perk2_StoppingPowerEffect",1);
 			}
-			if(Perk2[PlayerNumber()+1] == "Perk3_LastStand")
+			if(Perk3[PlayerNumber()+1] == "Perk3_LastStand")
 			{
 				GiveInventory("LastStandUrn",10000);
 			}
 			
 			GiveInventory(Perk3[PlayerNumber()+1],1);
+			If(Perk3[PlayerNumber()+1] == "Perk3_Commando")
+			{
+				GiveInventory("Perk3_CommandoEffect",1);
+			}
+		}
+		else {  // Deathmatch
+		    if(Perk1[PlayerNumber()+1] == "Perk1_OneManArmy")
+				GiveInventory("Perk1_OneManArmy_PRO", 1);
+			else if(Perk1[PlayerNumber()+1] == "Perk1_Scavenger"){
+				GiveInventory("Perk1_Scavenger_DM", 1);
+				GiveInventory("Backpack", 1);
+			}
+			else {
+				GiveInventory(Perk2[PlayerNumber()+1],1);			    
+			}
+			
+			if(Perk2[PlayerNumber()+1] == "Perk1_OneManArmy")
+				GiveInventory("Perk2_DangerClose_PRO", 1);
+			else if(Perk2[PlayerNumber()+1] == "Perk2_ColdBlooded"){
+				GiveInventory("Perk2_ColdBlooded_DM", 1);
+			}
+			else {
+				If(Perk2[PlayerNumber()+1] == "Perk2_Juggernaut")
+				{
+					GiveInventory("Perk2_JuggernautEffect",1);
+				}
+				If(Perk2[PlayerNumber()+1] == "Perk2_StoppingPower")
+				{
+					GiveInventory("Perk2_StoppingPowerEffect",1);
+				}
+			
+				GiveInventory(Perk2[PlayerNumber()+1],1);			    
+			}
+			
+			GiveInventory(Perk3[PlayerNumber()+1],1);
+			
+			if(Perk3[PlayerNumber()+1] == "Perk3_LastStand")
+			{
+				GiveInventory("LastStandUrn",10000);
+			}
 			If(Perk3[PlayerNumber()+1] == "Perk3_Commando")
 			{
 				GiveInventory("Perk3_CommandoEffect",1);
@@ -5137,13 +5177,15 @@ script 639 (void)
 		else if(Randomiser == 2)		//One Man Army
 			Perk1[PlayerNumber()+1] = "Perk1_OneManArmy";
 
-	Randomiser = random(0,2);
+	Randomiser = random(0,3);
 		if(Randomiser == 0)			//Stopping Power
 			Perk2[PlayerNumber()+1] = "Perk2_StoppingPower";
 		else if(Randomiser == 1)		//Danger Close
 			Perk2[PlayerNumber()+1] = "Perk2_DangerClose";
 		else if(Randomiser == 2)		//Juggernaut
 			Perk2[PlayerNumber()+1] = "Perk2_Juggernaut";
+        else if(Randomiser == 3)		//ColdBlooded
+			Perk2[PlayerNumber()+1] = "Perk2_ColdBlooded";
 
 	Randomiser = random(0,2);
 		if(Randomiser == 0)			//Steady Aim
