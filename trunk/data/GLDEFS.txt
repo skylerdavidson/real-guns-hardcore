@@ -627,7 +627,7 @@ flickerlight2 ZOMBIEATK
     offset 0 40 0
 }
 
-object ZombieMan1
+/*object ZombieMan1
 {
     frame POSSF { light ZOMBIEATK }
 }
@@ -641,7 +641,7 @@ object ChaingunGuy1
 {
     frame CPOSE { light ZOMBIEATK }
     frame CPOSF { light ZOMBIEATK }
-}
+}*/
 
 // Doom Imp Fireball
 pointlight IMPBALL
@@ -675,7 +675,7 @@ flickerlight IMPBALL_X3
     chance 0.25
 }
 
-object FireBall_
+/*object FireBall_
 {
     frame BAL1A { light IMPBALL    }
     frame BAL1B { light IMPBALL    }
@@ -686,7 +686,7 @@ object FireBall_
     frame BAL1F { light IMPBALL_X2 }
     frame BAL1G { light IMPBALL_X2 }
     frame BAL1H { light IMPBALL_X3 }
-}
+} */
 
 // Cacodemon fireball
 flickerlight CACOBALL
@@ -721,7 +721,7 @@ flickerlight CACOBALL_X3
     chance 0.25
 }
 
-object CacodemonBall1
+/*object CacodemonBall1
 {
     frame BAL2A { light CACOBALL }
     frame BAL2B { light CACOBALL }
@@ -729,7 +729,7 @@ object CacodemonBall1
     frame BAL2C { light CACOBALL_X1 }
     frame BAL2D { light CACOBALL_X2 }
     frame BAL2E { light CACOBALL_X3 }
-}
+} */
 
 // Baron / Hell Knight fireball
 pointlight BARONBALL
@@ -821,7 +821,7 @@ flickerlight LOSTSOUL_X4
     chance 0.25
 }
 
-object TehLostSoul
+/*object TehLostSoul
 {
     frame SKULA { light LOSTSOUL_X1 }
     frame SKULB { light LOSTSOUL_X1 }
@@ -834,10 +834,10 @@ object TehLostSoul
     frame SKULI { light LOSTSOUL_X2 }
     frame SKULJ { light LOSTSOUL_X3 }
     frame SKULK { light LOSTSOUL_X4 }
-}
+} */
 
 // Mancubus Fireball
-object BigFireBall
+/*object BigFireBall
 {
     frame MANFA { light IMPBALL   }
     frame MANFB { light IMPBALL   }
@@ -845,7 +845,7 @@ object BigFireBall
     frame MISLB { light ROCKET_X1 }
     frame MISLC { light ROCKET_X2 }
     frame MISLD { light ROCKET_X3 }
-}
+} */
 
 // Arachnotron Fireball
 pointlight ARACHPLAS
@@ -886,7 +886,7 @@ flickerlight ARACHPLAS_X4
     chance 0.3
 }
 
-object ArachnotronPlasma1
+/*object ArachnotronPlasma1
 {
     frame APLSA { light ARACHPLAS }
     frame APLSB { light ARACHPLAS }
@@ -896,7 +896,7 @@ object ArachnotronPlasma1
     frame APBXC { light ARACHPLAS_X2 }
     frame APBXD { light ARACHPLAS_X3 }
     frame APBXE { light ARACHPLAS_X4 }
-}
+} */
 
 // Revenant tracer
 pointlight TRACER
@@ -1158,7 +1158,7 @@ object Revenant1
     frame SKELI { light 64SHADOW  }
 }
 
-object TehArchvile
+/*object TehArchvile
 {
     frame VILE { light 64SHADOW  }
 }
@@ -1171,7 +1171,7 @@ object TheCyberdemon
 object TheSpiderMastermind
 {
     frame SPID { light SPIDERSHADOW  }
-}
+} */
 
 
 object Nightvision
@@ -1179,13 +1179,13 @@ object Nightvision
     frame PVIS { light 2SHADOW  }
 }
 
-object Berserker
+/*object Berserker
 {
     frame PSTR { light GUNSHADOW  }
-}
+} */
 
 
-object HealthPlus
+/*object HealthPlus
 {
     frame BON1 { light 1SHADOW  }
 }
@@ -1300,7 +1300,7 @@ object BackPack
 object BigTree
 {
     frame TREE { light FATSHADOW  }
-}
+} */
 
 #include gldefs/monsters/doom/afrit.txt
 #include gldefs/monsters/doom/agathodemon.txt

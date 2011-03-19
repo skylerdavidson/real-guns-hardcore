@@ -334,7 +334,7 @@ ACTOR AbaddonBall2
   Radius 6
   Height 8
   Speed 25
-  Damage 10
+  Damage 6
   Projectile
   +RANDOMIZE
   RenderStyle Add
