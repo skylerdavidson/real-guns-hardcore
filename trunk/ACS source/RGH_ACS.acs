@@ -122,7 +122,7 @@ script 502 (void)
 
 //------------------------------------------
 //------- Player's death, shows killer health and cam after 1 second. Might not work properly.
-script 503 DEATH
+script 503 DEATH CLIENTSIDE
 {		
 	//Preserve information just for this script; don't want it to view someone else's killer.
 	Delay(1);
@@ -2692,7 +2692,7 @@ script 619 (int Which)
 
 //------------------------------------------
 //------- Just tells the player that they can't pick up another of this type of weapon.
-script 620 (int Which)
+script 620 (int Which) CLIENTSIDE
 {
 	SetFont("CONFONT");
 	HudMessage(s:"All weapon slots are full!\n\n"; HUDMSG_FADEOUT, 200+PlayerNumber(), CR_Green, 0.5, 0.7, 0.5, 1.0);
