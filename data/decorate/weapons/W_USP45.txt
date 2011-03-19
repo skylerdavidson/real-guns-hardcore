@@ -486,12 +486,12 @@ actor FragGrenadeExplosion
   Spawn:
     TNT1 A 0
 	TNT1 A 0 A_JumpIfInTargetInventory("Perk2_DangerClose_Pro", 1, "DangerClosePro")
-    TNT1 A 0 A_Explode(150,140,0)
-    TNT1 A 5 A_Explode(100,250)
+    TNT1 A 0 A_Explode(150,90,0)
+    TNT1 A 5 A_Explode(100,160)
     stop
   DangerClosePro:
-    TNT1 A 0 A_Explode(150,210,0)
-    TNT1 A 5 A_Explode(100,375)
+    TNT1 A 0 A_Explode(150,140,0)
+    TNT1 A 5 A_Explode(100,250)
 	stop
   }  
 }
