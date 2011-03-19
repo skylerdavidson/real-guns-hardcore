@@ -3389,7 +3389,7 @@ script 625 (void)
 	delay(35*4);
 	ACS_ExecuteAlways(633,0,0,0,0);
 	delay(35*4);
-	if(GetActorProperty(0,APROP_Health) < 26 && Survival != 6 && GetActorProperty(0,APROP_Health) > 0)
+	if(GetActorProperty(0,APROP_Health) < 31 && GameType() == GAME_NET_DEATHMATCH && GetActorProperty(0,APROP_Health) > 0)
 		Thing_Damage(0,75,18); //Bleed out
 	else if(GetActorProperty(0,APROP_Health) < 31 && Survival == 6 && GetActorProperty(0,APROP_Health) > 0)  //Survival rate: 1 in 6
 	{
