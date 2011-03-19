@@ -216,6 +216,26 @@ actor Perk2_DangerCloseAward : CustomInventory
   }
 }
 
+actor Perk2_ColdBloodedAward : CustomInventory
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_COLD"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+    TNT1 A 0 ACS_ExecuteAlways(624,0,22,0,0)
+    stop
+  }
+}
+
 actor Perk2_ColdBlooded_ProAward : CustomInventory
 {
   inventory.pickupmessage "Snagged an Item"
@@ -508,7 +528,7 @@ actor Perk1_ScavengerAward : CustomInventory
     TNT1 A -1
     stop
   Use:
-    TNT1 A 0 ACS_ExecuteAlways(624,0,19,0,0)
+    TNT1 A 0 ACS_ExecuteAlways(624,0,21,0,0)
     stop
   }
 }
