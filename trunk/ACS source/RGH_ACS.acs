@@ -4736,6 +4736,7 @@ script 638 (int Which)
 	// do not give more weapons after respawning in coop
 	if(GotClass[PlayerNumber()+1] == TRUE && GameType() == GAME_NET_COOPERATIVE)
 	{
+		GiveInventory("SetPickupPickup",1);
 	    terminate;
 	}	
 	
@@ -4755,14 +4756,14 @@ script 638 (int Which)
 		GiveInventory("MaxWeaponsFilled",2);
 		if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER){
 			GiveInventory("Perk1_Scavenger",1);
-      GiveInventory("Perk3_Commando_Pro",1);		
-		}
-		else {
-      GiveInventory("Perk1_Scavenger_DM",1);
-      GiveInventory("Backpack", 1);	
-    }
-		
-    GiveInventory("Perk2_StoppingPower",1);
+	      GiveInventory("Perk3_Commando_Pro",1);		
+			}
+			else {
+	      GiveInventory("Perk1_Scavenger_DM",1);
+	      GiveInventory("Backpack", 1);	
+	    }
+			
+	    GiveInventory("Perk2_StoppingPower",1);
 		GiveInventory("Perk2_StoppingPowerEffect",1);
 		GiveInventory("Perk3_Commando",1);
 		GiveInventory("Perk3_CommandoEffect",1);
