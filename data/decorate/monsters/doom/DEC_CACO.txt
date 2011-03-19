@@ -113,7 +113,7 @@ actor CacolanternBall2
   Radius 6
   Height 8
   Speed 20
-  Damage 5
+  Damage 4
   Projectile
   +RANDOMIZE
   RenderStyle Add
