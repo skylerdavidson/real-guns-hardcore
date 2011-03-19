@@ -3319,8 +3319,7 @@ script 624 (int Which)
 	if(Which == 17) // COMMANDO PRO
 	{
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
-		GiveInventory("Perk3_Commando_Pro",1);
-		//GiveInventory("Revival Kit",1);
+		GiveInventory("Perk3_Commando_Pro",1);		
 		SetFont("BIGFONT");
 		HudMessage(s:"\cdCOMMANDO PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
 		HudMessage(s:"Attacking doesn't block regeneration!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
@@ -3328,8 +3327,7 @@ script 624 (int Which)
 	if(Which == 16) // LAST STAND PRO
 	{
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
-		GiveInventory("Perk3_LastStand_Pro",1);
-		GiveInventory("Revival Kit",1);
+		GiveInventory("Perk3_LastStand_Pro",1);		
 		SetFont("BIGFONT");
 		HudMessage(s:"\cdLAST STAND PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
 		HudMessage(s:"Get 30 health in last stand!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
