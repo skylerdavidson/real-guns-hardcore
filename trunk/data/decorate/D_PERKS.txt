@@ -34,6 +34,12 @@ actor Perk1_Scavenger_Pro : Inventory
     inventory.maxamount 1
 }
 
+actor Perk1_Scavenger_DM : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
 //Extreme Conditioning: 2+ extra regeneration
 actor Perk1_ExtremeConditioning : Inventory
 {
@@ -125,6 +131,13 @@ actor Perk2_ColdBlooded_PRO : Inventory
     inventory.amount 0
     inventory.maxamount 1
 }
+
+actor Perk2_ColdBlooded_DM : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
 
 //PERKS -- Green perks
 //Steady Aim: Increased accuracy for hip fire
