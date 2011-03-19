@@ -407,7 +407,7 @@ ACTOR RGULastStandPlayer : PlayerPawn
     LAST C 0 A_TakeInventory("Reloading",1)
     LAST C 9 A_GiveToTarget("HitIndicator",1)
     LAST D 10 A_PlayerScream
-    LAST C 0 A_CustomMissile("FragGrenadeDropped",8,0,0)
+    //LAST C 0 A_CustomMissile("FragGrenadeDropped",8,0,0)
     LAST E 10 A_NoBlocking
     LAST EEE 10
     LAST E -1
