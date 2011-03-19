@@ -5012,7 +5012,7 @@ script 638 (int Which)
 				GiveInventory("Backpack", 1);
 			}
 			else {
-				GiveInventory(Perk2[PlayerNumber()+1],1);			    
+				GiveInventory(Perk1[PlayerNumber()+1],1);			    
 			}
 			
 			if(Perk2[PlayerNumber()+1] == "Perk1_OneManArmy")
@@ -5189,7 +5189,7 @@ script 639 (void)
         else if(Randomiser == 3)		//ColdBlooded
 			Perk2[PlayerNumber()+1] = "Perk2_ColdBlooded";
 
-	Randomiser = random(0,2);
+	Randomiser = random(0,1);
 		if(Randomiser == 0)			//Steady Aim
 			Perk3[PlayerNumber()+1] = "Perk3_SteadyAim";
 		else if(Randomiser == 1)		//Commando
@@ -5292,6 +5292,7 @@ script 642 (void) {
 // Perform ASYNCHRONOUS health check for Last Stand (the Urn won't restore HP fast enough for the check to be successful), triggered in player pain state 
 script 643 (void) {
 	delay(1);
+	log(i:GetActorProperty(0,APROP_Health));
 	if(GetActorProperty(0,APROP_Health) == 1){
 		ACS_ExecuteAlways(625,0,0,0,0); // Transform into Last Stand
 	}
