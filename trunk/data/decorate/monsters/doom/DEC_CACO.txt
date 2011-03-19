@@ -49,7 +49,7 @@ actor Cacodemon_2 : RGAMonster
     HEAD IJ 8
     HEAD K 8 A_NoBlocking
     HEAD L 0 A_SetFloorClip
-    HEAD L -1 A_Jump(30,1)
+    //HEAD L -1 A_Jump(30,1)
     Stop
     HEAD LLLL 115
     HEAD L 0 A_SpawnItemEx("CacolanternRes",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
@@ -95,7 +95,7 @@ actor BlueCacodemon : Cacodemon_2
     HED6 IJ 8
     HED6 K 8 A_NoBlocking
     HED6 L 0 A_SetFloorClip
-    HED6 L -1 A_Jump(30,1)
+    //HED6 L -1 A_Jump(30,1)
     Stop
     HED6 LLLL 115
     HED6 L 0 A_SpawnItemEx("AbaddonRes",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
@@ -193,7 +193,7 @@ ACTOR Cacolantern_2 : Cacodemon_2
     HED2 H 8 A_Scream
     HED2 IJK 8
     HED2 L 0 A_SetFloorClip
-    HED2 L -1 A_Jump(30,1)
+    //HED2 L -1 A_Jump(30,1)
     Stop
     HED2 LLLL 115
     HED2 L 0 A_SpawnItemEx("BlueCacodemonRes",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
@@ -244,7 +244,7 @@ ACTOR Abaddon_2 : Cacolantern_2
     HED3 H 8 A_Scream
     HED3 IJK 8
     HED3 L 0 A_SetFloorClip
-    HED3 L -1 A_Jump(30,1)
+    //HED3 L -1 A_Jump(30,1)
     Stop
     HED3 LLLL 115
     HED3 L 0 A_SpawnItemEx("StoneAbaddonRes",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
