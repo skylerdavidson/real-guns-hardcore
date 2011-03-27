@@ -253,7 +253,7 @@ actor DarkImpBall2 : DoomImpBall
 
 actor ImpBoy : DoomImp_2
 {
-  obituary "%o was shut down by Impboy."
+  obituary "%o was shut down by deep imp."
   health 30
   radius 20
   height 56
@@ -266,39 +266,47 @@ actor ImpBoy : DoomImp_2
   deathsound "imp/death"
   MONSTER
   +FLOORCLIP
-  Translation "112:127=176:191"
   Species "Imp"
   states
   {
   Spawn:
-    POSS A 0 
-    POSS A 0 Thing_SetSpecial(0,226,613,0,random(8,16))
-    IMPB AB 10 A_Look
+    TRO2 A 0 
+    TRO2 A 0 Thing_SetSpecial(0,226,613,0,random(8,16))
+    TRO2 AB 10 A_Look
     loop
   See:
-    IMPB AABBCCDD 4 A_Chase
+    TRO2 AABBCCDD 4 A_Chase
     loop
   Melee:
-    TROO EF 8 A_FaceTarget
-    TROO G 6 A_CustomComboAttack("DoomImpBall_2",32,5,"imp/melee")
+    TRO2 EF 8 A_FaceTarget
+    TRO2 G 6 A_CustomComboAttack("DoomImpBall_2",32,5,"imp/melee")
     goto See
   Missile:
-    IMPB E 10 A_FaceTarget
-    IMPB FFFF 5 A_CustomMissile("DoomImpBall_2",30,0,0)
-    IMPB E 10 A_FaceTarget
+    TRO2 E 10 A_FaceTarget
+    TRO2 FFFF 5 A_CustomMissile("DoomImpBall_2",30,0,0)
+    TRO2 E 10 A_FaceTarget
     goto See
   Pain:
-    IMPB G 3
-    IMPB G 3 A_Pain
-	TNT1 G 0 A_AlertMonsters
+    TRO2 G 3
+    TRO2 G 3 A_Pain
+	TRO2 G 0 A_AlertMonsters
     goto See
   Death:
-    IMPB H 10
-	IMPB I 0 A_JumpIfHealthLower(random(-500,-110),"XDeath")
-    IMPB I 10 A_Scream
-    IMPB J 10 A_NoBlocking
-    IMPB KLM 10
-    IMPB N -1 A_Jump(15,"Res")
+    TRO2 H 10
+	TRO2 I 0 A_JumpIfHealthLower(random(-500,-110),"XDeath")
+    TRO2 I 8
+    TRO2 J 8 A_Scream
+    TRO2 K 6
+    TRO2 L 6 A_NoBlocking
+    TRO2 M -1
+    stop
+  XDeath:
+    TRO2 N 5
+    TRO2 O 5 A_XScream
+    TRO2 P 5
+    TRO2 Q 5 A_NoBlocking
+    TRO2 RST 5
+    TRO2 U -1
     stop
   Res:
     IMPB NN 115
