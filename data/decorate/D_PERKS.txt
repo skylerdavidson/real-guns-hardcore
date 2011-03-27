@@ -431,14 +431,14 @@ actor Perk2_JuggernautEffect : PowerupGiver
 
 actor PowerPerk2_ColdBloodedProEffectPower : PowerInvisibility
 {
-	Powerup.Duration 3
+	Powerup.Duration -9999999
 }
 
 actor Perk2_ColdBloodedProEffect : PowerupGiver
 {
   inventory.maxamount 0
   powerup.type "Perk2_ColdBloodedProEffectPower"
-  Powerup.Duration 3
+  Powerup.Duration -9999999
   +AUTOACTIVATE
   states
   {
