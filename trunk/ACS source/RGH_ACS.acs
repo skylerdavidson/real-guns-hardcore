@@ -936,6 +936,101 @@ script 605 (void) CLIENTSIDE
 	}
 }
 
+function bool is4to3(void){
+	int w = GetScreenWidth();
+	int h = GetScreenHeight();
+	
+	if(
+		(w == 640 &&  h == 480) ||
+	    (w == 800 &&  h == 600) ||
+	    (w == 1024 &&  h == 768) ||
+	    (w == 1152 &&  h == 1280) ||
+	    (w == 1280 &&  h == 960) ||
+	    (w == 1400 &&  h == 1050)
+	){
+		return true;
+	}	
+	return false;	
+}
+
+function bool is5to4(void){
+	int w = GetScreenWidth();
+	int h = GetScreenHeight();
+	
+	if(
+		(w == 720 &&  h == 576) ||
+	    (w == 1280 &&  h == 1024)
+	){
+		return true;
+	}	
+	return false;	
+}
+
+function bool is16to9(void){
+	int w = GetScreenWidth();
+	int h = GetScreenHeight();
+	
+	if(
+		(w == 1280 &&  h == 720) ||
+	    (w == 1024 &&  h == 576) ||
+	    (w == 1600 &&  h == 900) ||
+	    (w == 640 &&  h == 360) ||
+	    (w == 800 &&  h == 450) ||
+	    (w == 1024 &&  h == 576) ||
+	    (w == 1152 &&  h == 648) ||
+	    (w == 1280 &&  h == 720) ||
+	    (w == 1400 &&  h == 787)
+	){
+		return true;
+	}	
+	return false;	
+}
+
+function bool is16to10(void){
+	int w = GetScreenWidth();
+	int h = GetScreenHeight();
+	
+	if(
+		(w == 720 &&  h == 480) ||
+	    (w == 1600 &&  h == 1024) ||
+	    (w == 1680 &&  h == 1050) ||
+	    (w == 1280 &&  h == 800) ||
+	    (w == 800 &&  h == 500) ||
+	    (w == 1024 &&  h == 640) ||
+	    (w == 1152 &&  h == 720) ||
+	    (w == 1280 &&  h == 1280) ||
+	    (w == 1400 &&  h == 875)
+	){
+		return true;
+	}	
+	return false;	
+}
+
+function void drawStretchedImage(int id, int time, int fadeTime){
+	int hudScreenWidth = 800 * 4 / 3 * 16 / 10;
+	int hudScreenHeight = 800;
+	
+	if(is4to3()){							
+		hudScreenWidth = hudScreenWidth / 4 * 3;
+	}
+	else if(is5to4()){
+		hudScreenWidth = hudScreenWidth / 4 * 3;
+		hudScreenHeight = 750; // I was too lazy to design the formula for just one res :)
+	}
+	else if(is16to9()){
+		hudScreenWidth = hudScreenWidth / 16 * 9;
+	}
+	else if(is16to10()){							
+		hudScreenWidth = hudScreenWidth / 16 * 10;
+	}
+	else {
+		log(s:"unknown resolution");
+	}
+
+	SetHudSize(hudScreenWidth,hudScreenHeight,1);
+	HudMessage(s:"a"; HUDMSG_FADEOUT, id, CR_UNTRANSLATED, (hudScreenWidth/ 2)* 65536, (hudScreenHeight/ 2)* 65536, time, fadeTime);
+}
+
 //Regeneration
 script 606 (void)
 {
@@ -978,9 +1073,8 @@ script 606 (void)
 							SetFont("DAMSCRN2");
 						else
 							SetFont("DAMSCRN3");
-							
-						SetHudSize(1280,800,1);
-						HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.5, 1.0); 
+						
+                        drawStretchedImage(50+PlayerNumber(), 0.5, 1.0);
 					}
 					Delay(25);
 					
@@ -1013,8 +1107,7 @@ script 606 (void)
 							else
 								SetFont("DAMSCRN3");				
 		
-							SetHudSize(1280,800,1);
-							HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.3, 1.0);
+							drawStretchedImage(50+PlayerNumber(), 0.3, 1.0);
 						}
 		
 						
@@ -5251,7 +5344,7 @@ script 640 (void)
 					//GiveInventory("IsAlreadyInvisible", 1);
 					SetFont("INVSCRN");
 						
-					SetHudSize(800,600,1);
+					//SetHudSize(800,600,1);
 					//if(counter % 7 == 0){
 						if(isInvScrnOn == false){
 							HudMessage(s:"a"; HUDMSG_FADEINOUT, 30+PlayerNumber(), CR_UNTRANSLATED, 400.0, 300.0, 0.5, 0.25, 0.25);
