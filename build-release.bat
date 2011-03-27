@@ -22,14 +22,14 @@ move temp\acs-zdoom\acs\RGH_ACS.o temp\acs-zdoom\acs\RGH_ACS
 
 
 cd data
-..\utility\7z a ..\output\RGH-Skulltag.pk3 * -xr!.svn -tzip
+..\utility\7z a ..\output\RGH-Skulltag.pk3 * -xr!.svn -mx0
 copy ..\output\RGH-Skulltag.pk3 ..\output\RGH-ZDoom.pk3
 cd ..\temp\acs-skulltag
-..\..\utility\7z a ..\..\output\RGH-Skulltag.pk3 acs\RGH_ACS -tzip
+..\..\utility\7z a ..\..\output\RGH-Skulltag.pk3 acs\RGH_ACS -mx0
 cd ..\acs-zdoom
-..\..\utility\7z a ..\..\output\RGH-ZDoom.pk3 acs\RGH_ACS -tzip
+..\..\utility\7z a ..\..\output\RGH-ZDoom.pk3 acs\RGH_ACS -mx0
 cd "..\..\zdoom data"
-..\utility\7z u ..\output\RGH-ZDoom.pk3 * -xr!.svn -tzip
+..\utility\7z u ..\output\RGH-ZDoom.pk3 * -xr!.svn -mx0
 cd ..
 exit
 
