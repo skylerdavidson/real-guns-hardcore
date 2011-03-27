@@ -7,6 +7,8 @@ int KillersMaxHealth;
 str KillersGun;
 str ExperienceNeed[40];
 
+str KillersIdArray[32];
+
 bool TacticalInsertion[32];
 
 //Server settings...
@@ -91,6 +93,14 @@ script 501 RESPAWN
 		ACS_ExecuteAlways(631,0,0,0,0); // unmorph from last stand
 		
 	}
+	else {
+		if(KillersIdArray[PlayerNumber()] == 0){
+			ChangeCamera(9999, 0, 1);
+		}
+		else {
+		    ChangeCamera(KillersIdArray[PlayerNumber()], 0, 1);
+		}
+	}
 
 	int MaxGunCount = GameSkill();
 
@@ -129,7 +139,7 @@ script 503 DEATH CLIENTSIDE
 	int KillersHealths = KillersHealth;
 	int KillersMaxHealths = KillersMaxHealth;
 	int KillersIDs = KillersID;
-	str KillersGuns = KillersGun;
+	str KillersGuns = KillersGun;	 
 	
 	if(GameType() == GAME_NET_DEATHMATCH){
 		SetFont("BIGFONT");
@@ -140,8 +150,9 @@ script 503 DEATH CLIENTSIDE
 	
 	if(KillersHealths > 0 && GetActorProperty(0,APROP_Health) < 1) //Don't view killers health or cam if he died at the same time you did. Or if you've respawned already.
 	{
-		SetFont("BIGFONT");
+		SetFont("BIGFONT");		
 		ChangeCamera(KillersIDs,0,1);
+		KillersIdArray[PlayerNumber()] = KillersID;
 		HudMessage(s:"\ccKiller's Health left:\cg ", i:KillersHealths, s:"\cc of \cg", i:KillersMaxHealths, s:" \cc" ;HUDMSG_FADEOUT,0,CR_Blue,0.5,0.6,3.0,2.0);
 	}
 }
@@ -4016,7 +4027,8 @@ script 636 (int firstTimeAfterDeath)
 	// do not give more weapons after respawning in coop
 	if(GotClass[PlayerNumber()+1] == TRUE && GameType() == GAME_NET_COOPERATIVE)
 	{
-	    terminate;
+		SetActorState (0, "SpawnUnInvis");
+		terminate;
 	}	
 	
 	// skip class menu if respawining in DM and RUN is not pressed                                       
@@ -4027,7 +4039,7 @@ script 636 (int firstTimeAfterDeath)
 		!(buttons & BT_ALTATTACK) &&
 		firstTimeAfterDeath == 1
 	) {		
-	
+	    ChangeCamera(0, 0, 0);
 		ACS_ExecuteAlways(638,0,Class[PlayerNumber()+1],0,0);
 		terminate;
 	}
@@ -4740,13 +4752,16 @@ script 638 (int Which)
 	if(GotClass[PlayerNumber()+1] == TRUE && GameType() == GAME_NET_COOPERATIVE)
 	{
 		GiveInventory("SetPickupPickup",1);
+		SetActorState (0, "SpawnUnInvis");
 	    terminate;
-	}	
+	}
+	
+	// revert the camera from  in-menu killcam
+	ChangeCamera(0, 0, 0);	
 	
 	Class[PlayerNumber()+1] = Which;
 	If(Which == 0)
 	{
-		//log(s:"Take0");
 		TakeInventory("Menu",1);
 		GiveInventory("USP .45",1);
 		GiveInventory("USP45Ammo",24);
@@ -5060,6 +5075,8 @@ script 638 (int Which)
 	}
 	SetAmmoCapacity("MaxWeaponsFilled",MaxGunCount);
 	TakeInventory("InCombat", 5);
+	
+	SetActorState (0, "SpawnUnInvis");	
 }
 
 script 639 (void)

@@ -2,6 +2,14 @@ ACTOR RGUPlayer : DoomPlayer
 {
   +QUICKTORETALIATE
   +ISMONSTER
+  -SHOOTABLE
+  -SOLID
+  +INVISIBLE  
+  +INVULNERABLE
+  
+  RenderStyle Translucent
+  //Alpha 0.5
+  
   Speed 1
   Health 100
   Radius 16
@@ -91,12 +99,14 @@ ACTOR RGUPlayer : DoomPlayer
   ColdBlooded_DM:
   	PLAY A 0 A_SetTranslucent (0.45, 0)
   	goto Spawn
-  ColdBloodedProFadeOut:
-	PLAY A 0 A_FadeOut(0.5)
-	goto Spawn
-  ColdBloodedProFadeIn:
-	PLAY A 0 A_FadeIn(0.5)
-	goto Spawn
+  SpawnUnInvis:
+  	PLAY A 0 A_FadeIn(1.0)                             
+  	PLAY A 0 A_ChangeFlag("INVISIBLE", 0)
+	PLAY A 0 A_ChangeFlag("INVULNERABLE", 0)
+	PLAY A 0 A_ChangeFlag("SHOOTABLE", 1)
+	PLAY A 0 A_ChangeFlag("SOLID", 1)
+	PLAY A 0 A_GiveInventory("ResetVisibility", 1)
+	goto Spawn 
   See:
 	PLAY A 0 ACS_ExecuteAlways(641,0,0,0,0) // Infinite ammo for bots	
 	PLAY A 0 A_JumpIfInventory("Aiming",1,"SeeAim")
@@ -639,4 +649,27 @@ actor ReadyRegen : Inventory
 {
     inventory.amount 0
     inventory.maxamount 1
+}
+
+ACTOR ResetVisibility : PowerupGiver
+{
+  +COUNTITEM
+  +VISIBILITYPULSE
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.BIGPOWERUP
+  Inventory.MaxAmount 0
+  Powerup.Type "ResetVisibility"
+  RenderStyle Translucent
+  States
+  {
+  Spawn:
+     PINS ABCD 6 Bright
+     Loop
+  }
+}
+
+ACTOR PowerResetVisibility : PowerInvisibility
+{
+  Powerup.Duration 1
 }
