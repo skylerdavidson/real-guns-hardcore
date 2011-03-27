@@ -1053,12 +1053,6 @@ script 606 (void)
 			//print(s:"R");
 			While(GetActorProperty(0,APROP_Health) < 100 && GetActorProperty(0,APROP_Health) > 0)
 			{
-				//print(s:"S");
-
-                //SetFont("DAMSCRN1");
-			//SetHudSize(1280,800,1);
-			//HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.5, 1.0);
-			
 				if(CheckInventory("InCombatRegeneration") > 0 || (CheckInventory("InLastStand") > 0 && CheckInventory("Perk3_LastStand_Pro") == 0))
 				{
 					//log(i:CheckInventory("InCombatRegeneration"));
@@ -1080,7 +1074,6 @@ script 606 (void)
 					
 					if(CheckInventory("Perk1_ExtremeConditioning_PRO") == 1 && CheckInventory("InCombatRegeneration") == 2)
 					{
-						//print(s:"Extreme");
 						TakeInventory("InCombatRegeneration",2);
 					}
 					
@@ -1091,10 +1084,6 @@ script 606 (void)
 				else {
 					if(GetActorProperty(0,APROP_Health) < 100 && GetActorProperty(0,APROP_Health) > 0)
 					{
-					
-						//log(s:"Regen");
-						//print(i:CheckInventory("InLastStand"));
-					
 						if(GetActorProperty(0,APROP_Health) < 60){
 							/*if(GetActorProperty(0,APROP_Health) > 80)
 								SetFont("DAMSCRN1");
@@ -5331,56 +5320,18 @@ script 640 (void)
 {
 	if(CheckInventory("InvisibilityRunning") == 0){
 		GiveInventory("InvisibilityRunning", 1);
-		int counter = 0;
-		bool isInvScrnOn = false;
-		while(true){
-			if(CheckInventory("InCombat") == 0){
-			
-				if(CheckInventory("Perk2_ColdBlooded_PRO") == 1 && CheckInventory("IsAlreadyInvisible") == 0){
-					//SetActorProperty(0, APROP_RenderStyle, STYLE_Fuzzy);
+
+		while(true){	
+			if(CheckInventory("Perk2_ColdBlooded_PRO") == 1){
+				if(CheckInventory("InCombat") == 0){
 					GiveInventory("Perk2_ColdBloodedProEffect", 1);
-					//print(s:"ON");
-					//SetActorState (0, "ColdBloodedProFadeOut");
-					//GiveInventory("IsAlreadyInvisible", 1);
-					SetFont("INVSCRN");
-						
-					//SetHudSize(800,600,1);
-					//if(counter % 7 == 0){
-						if(isInvScrnOn == false){
-							HudMessage(s:"a"; HUDMSG_FADEINOUT, 30+PlayerNumber(), CR_UNTRANSLATED, 400.0, 300.0, 0.5, 0.25, 0.25);
-							isInvScrnOn = true;
-							delay(10);
-						}
-						else {
-							HudMessage(s:"a"; HUDMSG_FADEOUT, 30+PlayerNumber(), CR_UNTRANSLATED, 400.0, 300.0, 0.10, 0.25);							
-						}
-					//}
 				}
-				//else print(s:"OFF");
-				
-				
-				//print(s:"sON");
-			}
-			else {
-				isInvScrnOn = false;
-				//TakeInventory("Perk2_ColdBloodedProEffect", 1);
-				//if(CheckInventory("IsAlreadyInvisible") > 0){
-					//SetActorState (0, "ColdBloodedProFadeIn");
-					//TakeInventory("IsAlreadyInvisible", 1);
-					//print(s:"Visible");
-				//}
-				//GiveInventory("Perk2_ColdBloodedProEffect2", 1);
-				
-				
-				
-				if(counter % 18 == 0){
+				else {				
 					TakeInventory("InCombat",1);
-					//print(i:CheckInventory("InCombat"));
 				}
 			}
-			
-			counter = counter + 1;
-			delay(2);
+
+			delay(35);
 		}
 	}
 }
