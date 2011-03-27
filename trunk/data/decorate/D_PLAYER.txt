@@ -139,7 +139,6 @@ ACTOR RGUPlayer : DoomPlayer
     Goto Spawn
   Melee:
     PLAY F 3 BRIGHT	
-	PLAY F 0 A_GiveInventory("MegaSphere", 5)
 	//PLAY F 0 A_GiveInventory("InCombat",5)
 	//PLAY F 0 ACS_ExecuteAlways(640,0,0,0,0) // cold blooded invis
 	PLAY F 0 A_JumpIfInventory("Perk3_Commando_Pro", 1, "Spawn")
