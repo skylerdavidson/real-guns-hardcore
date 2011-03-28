@@ -750,18 +750,19 @@ script 601 (void) NET
 		bool isThree = false;
 		bool isFour = false;
 #endif
+		bool noTeam = (!(isRed || isBlue || isThree || isFour) || GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER);
 
-		if(isRed || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 1))
+		if(isRed || (noTeam && CheckInventory("Voice") == 1))
 			ActivatorSound("russian/reload",127);
-		else if(isBlue || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 0))
+		else if(isBlue || (noTeam && CheckInventory("Voice") == 0))
 			ActivatorSound("us/reload",127);	
-		else if(isThree || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 2))
+		else if(isThree || (noTeam && CheckInventory("Voice") == 2))
 			ActivatorSound("brazil/reload",127);
-		else if(isFour || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 3))
+		else if(isFour || (noTeam && CheckInventory("Voice") == 3))
 			ActivatorSound("opfor/reload",127);
-		else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 4)
+		else if(noTeam && CheckInventory("Voice") == 4)
 			ActivatorSound("seal/reload",127);
-		else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 5)
+		else if(noTeam && CheckInventory("Voice") == 5)
 			ActivatorSound("tf141/reload",127);
 	}
 }
@@ -1207,18 +1208,19 @@ script 613 (int XpAmount)
 			bool isThree = false;
 			bool isFour = false;
 #endif
+			bool noTeam = (!(isRed || isBlue || isThree || isFour) || GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER);
 			
-			if(isRed || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 1))
+			if(isRed || (noTeam && CheckInventory("Voice") == 1))
 				ActivatorSound("russian/kill",127);
-			else if(isBlue || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 0))
+			else if(isBlue || (noTeam && CheckInventory("Voice") == 0))
 				ActivatorSound("us/kill",127);	
-			else if(isThree || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 2))
+			else if(isThree || (noTeam && CheckInventory("Voice") == 2))
 				ActivatorSound("brazil/kill",127);
-			else if(isFour || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 3))
+			else if(isFour || (noTeam && CheckInventory("Voice") == 3))
 				ActivatorSound("opfor/kill",127);
-			else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 4)
+			else if(noTeam && CheckInventory("Voice") == 4)
 				ActivatorSound("seal/kill",127);
-			else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 5)
+			else if(noTeam && CheckInventory("Voice") == 5)
 				ActivatorSound("tf141/kill",127);
 			
 			
@@ -4721,7 +4723,7 @@ script 637 (void)
 			GiveInventory("MenuPlace",1);
 			Primary[PlayerNumber()+1] = "RPG-7";
 			PrimaryAmmo[PlayerNumber()+1] = "RPGAmmo";
-			PrimaryAmmoAmount[PlayerNumber()+1] = 100;
+			PrimaryAmmoAmount[PlayerNumber()+1] = 2;
 		}
 		else if(CheckInventory("MenuCursor") == 7)		//Intervention
 		{
