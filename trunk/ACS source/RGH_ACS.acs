@@ -4254,30 +4254,49 @@ script 636 (int firstTimeAfterDeath)
 		//restart;
 	}
 
-	//Choose handgun
+	//Choose secondary weapon
 	if(CheckWeapon("Menu") == 1 && CheckInventory("MenuPlace") == 1)
 	{
 		SetHudSize(800,600,1);
 		SetFont("BIGFONT");
-		HudMessage(s:"Choose a handgun"; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 400.0, 30.0, 0.0);
+		HudMessage(s:"Choose a secondary weapon"; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 400.0, 30.0, 0.0);
 
 		SetFont("CONFONT");
 		//List menu
-		HudMessage(s:"1)    USP .45: 12-round mag, semi-auto"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
-		HudMessage(s:"2)    M9:      15-round mag, semi-auto, less damage"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 120.0, 0.0);	
-		HudMessage(s:"3)    PP2000:  20-round mag, full-auto"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);	
-		HudMessage(s:"4)    Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 60.1, 160.0, 0.0);	
+		HudMessage(s:"1)    USP .45:      handgun, 12-round mag, semi-auto"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
+		HudMessage(s:"2)    M9:           handgun, 15-round mag, semi-auto, less damage"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 120.0, 0.0);
+		HudMessage(s:"3)    Desert Eagle: handgun, 7-round mag, semi-auto, high damage"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);	
+		HudMessage(s:"4)    PP2000:       machine pistol, 20-round mag, full-auto"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 60.1, 160.0, 0.0);
+		HudMessage(s:"5)    G18:          machine pistol, 33-round mag, full-auto, high recoil"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 60.1, 180.0, 0.0);
+		HudMessage(s:"6)    M93 Raffica   machine pistol, 20-round mag, burst fire"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 60.1, 200.0, 0.0);				
+		HudMessage(s:"7)    SPAS-12:      shotgun, 8-round mag, pump action"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 60.1, 220.0, 0.0);				
+		HudMessage(s:"8)    M1014:        shotgun, 4-round mag, semi-auto"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_WHITE, 60.1, 240.0, 0.0);
+		HudMessage(s:"9)    Thumper:      grenade launcher"; HUDMSG_PLAIN, 800+PlayerNumber(), CR_WHITE, 60.1, 260.0, 0.0);
+		HudMessage(s:"0)    Back"; HUDMSG_PLAIN, 850+PlayerNumber(), CR_WHITE, 60.1, 280.0, 0.0);	
+		
 	
 		if(CheckInventory("MenuCursor") == 0)
-			HudMessage(s:"1)  > USP .45: 12-round mag, semi-auto"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 60.1, 100.0, 0.0);	
+			HudMessage(s:"1)  > USP .45:      handgun, 12-round mag, semi-auto"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 60.1, 100.0, 0.0);	
 		else if(CheckInventory("MenuCursor") == 1)
-			HudMessage(s:"2)  > M9:      15-round mag, semi-auto, less damage"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 60.1, 120.0, 0.0);	
+			HudMessage(s:"2)  > M9:           handgun, 15-round mag, semi-auto, less damage"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 60.1, 120.0, 0.0);	
 		else if(CheckInventory("MenuCursor") == 2)
-			HudMessage(s:"3)  > PP2000:  20-round mag, full-auto"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 60.1, 140.0, 0.0);	
+			HudMessage(s:"3)  > Desert Eagle: handgun, 7-round mag, semi-auto, high damage"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 60.1, 140.0, 0.0);
 		else if(CheckInventory("MenuCursor") == 3)
-			HudMessage(s:"4)  > Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 60.1, 160.0, 0.0);	
+			HudMessage(s:"4)  > PP2000:       machine pistol, 20-round mag, full-auto"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 60.1, 160.0, 0.0);	
+		else if(CheckInventory("MenuCursor") == 4)
+			HudMessage(s:"5)  > G18:          machine pistol, 33-round mag, full-auto, high recoil"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_YELLOW, 60.1, 180.0, 0.0);	
+		else if(CheckInventory("MenuCursor") == 5)
+			HudMessage(s:"6)  > M93 Raffica   machine pistol, 20-round mag, burst fire"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_YELLOW, 60.1, 200.0, 0.0);	
+		else if(CheckInventory("MenuCursor") == 6)
+			HudMessage(s:"7)  > SPAS-12:      shotgun, 8-round mag, pump action"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_YELLOW, 60.1, 220.0, 0.0);        
+		else if(CheckInventory("MenuCursor") == 7)
+			HudMessage(s:"8)  > M1014:        shotgun, 4-round mag, semi-auto"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_YELLOW, 60.1, 240.0, 0.0);
+		else if(CheckInventory("MenuCursor") == 8)
+			HudMessage(s:"9)  > Thumper:      grenade launcher"; HUDMSG_PLAIN, 800+PlayerNumber(), CR_YELLOW, 60.1, 260.0, 0.0);
+		else if(CheckInventory("MenuCursor") == 9)
+			HudMessage(s:"0)  > Back"; HUDMSG_PLAIN, 850+PlayerNumber(), CR_YELLOW, 60.1, 280.0, 0.0);	
 
-		if(CheckInventory("MenuCursor") >= 4){
+		if(CheckInventory("MenuCursor") >= 10){
 			TakeInventory("MenuCursor",10);
 			ACS_ExecuteAlways(636,0,0,0,0); // redraw the menu
 		}
@@ -4295,45 +4314,39 @@ script 636 (int firstTimeAfterDeath)
 		SetFont("CONFONT");
 
 		//List menu
-		HudMessage(s:"1)    M4A1:     30-round mag, assault rifle, low damage, high fire rate and accuracy"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
-		HudMessage(s:"2)    FAMAS:    30-round mag, assault rifle, burst fire, low damage, M203 Grenade launcher"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 120.0, 0.0);	
-		HudMessage(s:"3)    SCAR-H:   20-round mag, assault rifle, high damage"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);	
-		HudMessage(s:"4)    FAL:      20-round mag, assault rifle, semi-auto high damage"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 60.1, 160.0, 0.0);	
-		HudMessage(s:"5)    SPAS-12:   8-round mag, shotgun, pump action"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 60.1, 180.0, 0.0);	
-		HudMessage(s:"6)    Ranger:    Sawn-off shotgun, short range, high damage"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 60.1, 200.0, 0.0);	
-		HudMessage(s:"7)    Striker:  12-round mag, shotgun, semi-auto"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 60.1, 220.0, 0.0);	
-		HudMessage(s:"8)    MP5K:     30-round mag, SMG, accurate"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_WHITE, 60.1, 240.0, 0.0);	
-		HudMessage(s:"9)    UMP45:    32-round mag, SMG, high damage"; HUDMSG_PLAIN, 800+PlayerNumber(), CR_WHITE, 60.1, 260.0, 0.0);	
-		HudMessage(s:"0)    Vector:   30-round mag, SMG, high rate of fire"; HUDMSG_PLAIN, 850+PlayerNumber(), CR_WHITE, 60.1, 280.0, 0.0);	
-		HudMessage(s:"      Intervention:   5-round mag, sniper rifle, bolt action"; HUDMSG_PLAIN, 900+PlayerNumber(), CR_WHITE, 60.1, 300.0, 0.0);	
-		HudMessage(s:"      Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 60.1, 320.0, 0.0);	
+		HudMessage(s:"1)    UMP45:         SMG, 32-round mag, high damage"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
+		HudMessage(s:"2)    Vector:        SMG, 30-round mag, high rate of fire"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 120.0, 0.0);	
+		HudMessage(s:"3)    M4A1:          assault rifle, 30-round mag, low damage, high fire rate and accuracy"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);				
+		HudMessage(s:"4)    SCAR-H:        assault rifle, 20-round mag, high damage"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 60.1, 160.0, 0.0);
+		HudMessage(s:"5)    FAMAS:         assault rifle, 30-round mag,  burst fire, low damage, M203 Grenade launcher"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 60.1, 180.0, 0.0);	
+		HudMessage(s:"6)    FAL:           assault rifle, 20-round mag, semi-auto, high damage"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 60.1, 200.0, 0.0);
+		HudMessage(s:"7)    RPG-7:         rocket launcher, unguided missiles"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 60.1, 220.0, 0.0);	
+		HudMessage(s:"8)    Intervention:  sniper rifle, 5-round mag, bolt action"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_WHITE, 60.1, 240.0, 0.0);
+		HudMessage(s:"9)    L86:           LMG, 100-round mag"; HUDMSG_PLAIN, 800+PlayerNumber(), CR_WHITE, 60.1, 260.0, 0.0);	
+		HudMessage(s:"0)    Back"; HUDMSG_PLAIN, 850+PlayerNumber(), CR_WHITE, 60.1, 280.0, 0.0);	
 	
 		if(CheckInventory("MenuCursor") == 0)
-			HudMessage(s:"1)  > M4A1:     30-round mag, assault rifle, low damage, high fire rate and accuracy"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 60.1, 100.0, 0.0);	
+			HudMessage(s:"1)  > UMP45:         SMG, 32-round mag, high damage"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 60.1, 100.0, 0.0);	
 		else if(CheckInventory("MenuCursor") == 1)
-			HudMessage(s:"2)  > FAMAS:    30-round mag, assault rifle, burst fire, low damage, M203 Grenade launcher"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 60.1, 120.0, 0.0);	
+			HudMessage(s:"2)  > Vector:        SMG, 30-round mag, high rate of fire"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 60.1, 120.0, 0.0);	
 		else if(CheckInventory("MenuCursor") == 2)
-			HudMessage(s:"3)  > SCAR-H:   20-round mag, assault rifle, high damage"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 60.1, 140.0, 0.0);	
+			HudMessage(s:"3)  > M4A1:          assault rifle, 30-round mag, low damage, high fire rate and accuracy"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 60.1, 140.0, 0.0);	
 		else if(CheckInventory("MenuCursor") == 3)
-			HudMessage(s:"4)  > FAL:      20-round mag, assault rifle, semi-auto high damage"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 60.1, 160.0, 0.0);	
+			HudMessage(s:"4)  > SCAR-H:        assault rifle, 20-round mag, high damage"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 60.1, 160.0, 0.0);	
 		else if(CheckInventory("MenuCursor") == 4)
-			HudMessage(s:"5)  > SPAS-12:   8-round mag, shotgun, pump action"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_YELLOW, 60.1, 180.0, 0.0);	
+			HudMessage(s:"5)  > FAMAS:         assault rifle, 30-round mag,  burst fire, low damage, M203 Grenade launcher"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_YELLOW, 60.1, 180.0, 0.0);	
 		else if(CheckInventory("MenuCursor") == 5)
-			HudMessage(s:"6)  > Ranger:    Sawn-off shotgun, short range, high damage"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_YELLOW, 60.1, 200.0, 0.0);	
+			HudMessage(s:"6)  > FAL:           assault rifle, 20-round mag, semi-auto, high damage"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_YELLOW, 60.1, 200.0, 0.0);	
 		else if(CheckInventory("MenuCursor") == 6)
-			HudMessage(s:"7)  > Striker:  12-round mag, shotgun, semi-auto"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_YELLOW, 60.1, 220.0, 0.0);	
+			HudMessage(s:"7)  > RPG-7:         rocket launcher, unguided missiles"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_YELLOW, 60.1, 220.0, 0.0);	
 		else if(CheckInventory("MenuCursor") == 7)
-			HudMessage(s:"8)  > MP5K:     30-round mag, SMG, accurate"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_YELLOW, 60.1, 240.0, 0.0);	
+			HudMessage(s:"8)  > Intervention:  sniper rifle, 5-round mag, bolt action"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_YELLOW, 60.1, 240.0, 0.0);	
 		else if(CheckInventory("MenuCursor") == 8)
-			HudMessage(s:"9)  > UMP45:    32-round mag, SMG, high damage"; HUDMSG_PLAIN, 800+PlayerNumber(), CR_YELLOW, 60.1, 260.0, 0.0);	
+			HudMessage(s:"9)  > L86:           LMG, 100-round mag"; HUDMSG_PLAIN, 800+PlayerNumber(), CR_YELLOW, 60.1, 260.0, 0.0);	
 		else if(CheckInventory("MenuCursor") == 9)
-			HudMessage(s:"0)  > Vector:   30-round mag, SMG, high rate of fire"; HUDMSG_PLAIN, 850+PlayerNumber(), CR_YELLOW, 60.1, 280.0, 0.0);	
-		else if(CheckInventory("MenuCursor") == 10)
-			HudMessage(s:"    > Intervention:   5-round mag, sniper rifle, bolt action"; HUDMSG_PLAIN, 900+PlayerNumber(), CR_YELLOW, 60.1, 300.0, 0.0);	
-		else if(CheckInventory("MenuCursor") == 11)
-			HudMessage(s:"    > Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 60.1, 320.0, 0.0);	
+			HudMessage(s:"0)  > Back"; HUDMSG_PLAIN, 850+PlayerNumber(), CR_YELLOW, 60.1, 280.0, 0.0);	
 
-		if(CheckInventory("MenuCursor") >= 12){
+		if(CheckInventory("MenuCursor") >= 10){
 			TakeInventory("MenuCursor",15);
 			ACS_ExecuteAlways(636,0,0,0,0); // redraw the menu
 		}
@@ -4571,7 +4584,7 @@ script 637 (void)
 	}
 	//MenuPlace 1: We're in the handguns menu.
 	else if(CheckInventory("MenuPlace") == 1)
-	{
+	{	
 		if(CheckInventory("MenuCursor") == 0)		//Set USP .45, go to next menu
 		{
 			GiveInventory("MenuPlace",1);
@@ -4586,21 +4599,90 @@ script 637 (void)
 			HandgunAmmo[PlayerNumber()+1] = "M9Ammo";
 			HandgunAmmoAmount[PlayerNumber()+1] = 30;
 		}
-		else if(CheckInventory("MenuCursor") == 2)	//Set PP2000, go to next menu
+		else if(CheckInventory("MenuCursor") == 2)	//Set Deagle, go to next menu
+		{
+			GiveInventory("MenuPlace",1);
+			Handgun[PlayerNumber()+1] = "Desert Eagle";
+			HandgunAmmo[PlayerNumber()+1] = "DeagleAmmo";
+			HandgunAmmoAmount[PlayerNumber()+1] = 14;
+		}
+		else if(CheckInventory("MenuCursor") == 3)	//Set PP2000, go to next menu
 		{
 			GiveInventory("MenuPlace",1);
 			Handgun[PlayerNumber()+1] = "PP2000";
 			HandgunAmmo[PlayerNumber()+1] = "PP2000Ammo";
 			HandgunAmmoAmount[PlayerNumber()+1] = 40;
 		}
-		else if(CheckInventory("MenuCursor") == 3)	//Go back
+		else if(CheckInventory("MenuCursor") == 4)	//Set G18, go to next menu
+		{
+			GiveInventory("MenuPlace",1);
+			Handgun[PlayerNumber()+1] = "G18";
+			HandgunAmmo[PlayerNumber()+1] = "G18Ammo";
+			HandgunAmmoAmount[PlayerNumber()+1] = 66;
+		}
+		else if(CheckInventory("MenuCursor") == 5)	//Set M93, go to next menu
+		{
+			GiveInventory("MenuPlace",1);
+			Handgun[PlayerNumber()+1] = "M93 Raffica";
+			HandgunAmmo[PlayerNumber()+1] = "M93RAmmo";
+			HandgunAmmoAmount[PlayerNumber()+1] = 40;
+		}
+		else if(CheckInventory("MenuCursor") == 6)		//SPAS-12
+		{
+			GiveInventory("MenuPlace",1);
+			Handgun[PlayerNumber()+1] = "SPAS-12";
+			HandgunAmmo[PlayerNumber()+1] = "SPAS12Ammo";
+			HandgunAmmoAmount[PlayerNumber()+1] = 32;
+		}
+        else if(CheckInventory("MenuCursor") == 7)		//M1014
+		{
+			GiveInventory("MenuPlace",1);
+			Handgun[PlayerNumber()+1] = "M1014";
+			HandgunAmmo[PlayerNumber()+1] = "M1014Ammo";
+			HandgunAmmoAmount[PlayerNumber()+1] = 24;
+		}
+        else if(CheckInventory("MenuCursor") == 8)		//Thumper
+		{
+			GiveInventory("MenuPlace",1);
+			Handgun[PlayerNumber()+1] = "Thumper";
+			HandgunAmmo[PlayerNumber()+1] = "ThumperAmmo";
+			HandgunAmmoAmount[PlayerNumber()+1] = 2;
+		}
+		else if(CheckInventory("MenuCursor") == 9)	//Go back
 			TakeInventory("MenuPlace",1);
 		TakeInventory("MenuCursor",15);
 	}
 	//MenuPlace 2: We're in the primary weapons menu.
 	else if(CheckInventory("MenuPlace") == 2)
 	{
-		if(CheckInventory("MenuCursor") == 0)			//M4A1
+				HudMessage(s:"1)    UMP45:         SMG, 32-round mag, high damage"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
+		HudMessage(s:"2)    Vector:        SMG, 30-round mag, high rate of fire"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 120.0, 0.0);	
+		HudMessage(s:"3)    M4A1:          assault rifle, 30-round mag, low damage, high fire rate and accuracy"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);				
+		HudMessage(s:"4)    SCAR-H:        assault rifle, 20-round mag, high damage"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 60.1, 160.0, 0.0);
+		HudMessage(s:"5)    FAMAS:         assault rifle, 30-round mag,  burst fire, low damage, M203 Grenade launcher"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 60.1, 180.0, 0.0);	
+		HudMessage(s:"6)    FAL:           assault rifle, 20-round mag, semi-auto, high damage"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 60.1, 200.0, 0.0);
+		HudMessage(s:"7)    RPG-7:         rocket launcher, unguided missiles"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 60.1, 220.0, 0.0);	
+		HudMessage(s:"8)    Intervention:  sniper rifle, 5-round mag, bolt action"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_WHITE, 60.1, 240.0, 0.0);
+		HudMessage(s:"9)    L86:           LMG, 100-round mag"; HUDMSG_PLAIN, 800+PlayerNumber(), CR_WHITE, 60.1, 260.0, 0.0);	
+		HudMessage(s:"0)    Back"; HUDMSG_PLAIN, 850+PlayerNumber(), CR_WHITE, 60.1, 280.0, 0.0);	
+	
+		if(CheckInventory("MenuCursor") == 0)		//UMP45
+		{
+			GiveInventory("MenuPlace",1);
+			Primary[PlayerNumber()+1] = "UMP45";
+			PrimaryAmmo[PlayerNumber()+1] = "UMP45Ammo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 128;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
+		}
+		else if(CheckInventory("MenuCursor") == 1)		//Vector
+		{
+			GiveInventory("MenuPlace",1);
+			Primary[PlayerNumber()+1] = "TDI Vector";
+			PrimaryAmmo[PlayerNumber()+1] = "VectorAmmo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 120;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
+		}
+		if(CheckInventory("MenuCursor") == 2)			//M4A1
 		{
 			GiveInventory("MenuPlace",1);
 			Primary[PlayerNumber()+1] = "M4A1";
@@ -4608,7 +4690,15 @@ script 637 (void)
 			PrimaryAmmoAmount[PlayerNumber()+1] = 120;
 			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
 		}
-		else if(CheckInventory("MenuCursor") == 1)		//FAMAS
+		else if(CheckInventory("MenuCursor") == 3)		//SCAR-H
+		{
+			GiveInventory("MenuPlace",1);
+			Primary[PlayerNumber()+1] = "SCAR-H";
+			PrimaryAmmo[PlayerNumber()+1] = "SCARHAmmo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 100;
+			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
+		}
+		else if(CheckInventory("MenuCursor") == 4)		//FAMAS
 		{
 			GiveInventory("MenuPlace",1);
 			Primary[PlayerNumber()+1] = "FAMAS";
@@ -4618,15 +4708,7 @@ script 637 (void)
 			PrimaryAmmoAmount[PlayerNumber()+1] = 120;
 			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
 		}
-		else if(CheckInventory("MenuCursor") == 2)		//SCAR-H
-		{
-			GiveInventory("MenuPlace",1);
-			Primary[PlayerNumber()+1] = "SCAR-H";
-			PrimaryAmmo[PlayerNumber()+1] = "SCARHAmmo";
-			PrimaryAmmoAmount[PlayerNumber()+1] = 100;
-			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
-		}
-		else if(CheckInventory("MenuCursor") == 3)		//FAL
+		else if(CheckInventory("MenuCursor") == 5)		//FAL
 		{
 			GiveInventory("MenuPlace",1);
 			Primary[PlayerNumber()+1] = "FAL";
@@ -4634,55 +4716,14 @@ script 637 (void)
 			PrimaryAmmoAmount[PlayerNumber()+1] = 100;
 			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
 		}
-		else if(CheckInventory("MenuCursor") == 4)		//SPAS-12
+		else if(CheckInventory("MenuCursor") == 6)		//RPG
 		{
 			GiveInventory("MenuPlace",1);
-			Primary[PlayerNumber()+1] = "SPAS-12";
-			PrimaryAmmo[PlayerNumber()+1] = "SPAS12Ammo";
-			PrimaryAmmoAmount[PlayerNumber()+1] = 32;
-			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_Shotgun";
+			Primary[PlayerNumber()+1] = "RPG-7";
+			PrimaryAmmo[PlayerNumber()+1] = "RPGAmmo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 100;
 		}
-		else if(CheckInventory("MenuCursor") == 5)		//Ranger
-		{
-			GiveInventory("MenuPlace",1);
-			Primary[PlayerNumber()+1] = "Ranger";
-			PrimaryAmmo[PlayerNumber()+1] = "RangerAmmo";
-			PrimaryAmmoAmount[PlayerNumber()+1] = 20;
-			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_Shotgun";
-		}
-		else if(CheckInventory("MenuCursor") == 6)		//Striker
-		{
-			GiveInventory("MenuPlace",1);
-			Primary[PlayerNumber()+1] = "Striker";
-			PrimaryAmmo[PlayerNumber()+1] = "StrikerAmmo";
-			PrimaryAmmoAmount[PlayerNumber()+1] = 32;
-			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_Shotgun";
-		}
-		else if(CheckInventory("MenuCursor") == 7)		//MP5K
-		{
-			GiveInventory("MenuPlace",1);
-			Primary[PlayerNumber()+1] = "MP5K";
-			PrimaryAmmo[PlayerNumber()+1] = "MP5Ammo";
-			PrimaryAmmoAmount[PlayerNumber()+1] = 120;
-			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
-		}
-		else if(CheckInventory("MenuCursor") == 8)		//UMP45
-		{
-			GiveInventory("MenuPlace",1);
-			Primary[PlayerNumber()+1] = "UMP45";
-			PrimaryAmmo[PlayerNumber()+1] = "UMP45Ammo";
-			PrimaryAmmoAmount[PlayerNumber()+1] = 128;
-			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
-		}
-		else if(CheckInventory("MenuCursor") == 9)		//Vector
-		{
-			GiveInventory("MenuPlace",1);
-			Primary[PlayerNumber()+1] = "TDI Vector";
-			PrimaryAmmo[PlayerNumber()+1] = "VectorAmmo";
-			PrimaryAmmoAmount[PlayerNumber()+1] = 120;
-			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_ARSMG";
-		}
-		else if(CheckInventory("MenuCursor") == 10)		//Intervention
+		else if(CheckInventory("MenuCursor") == 7)		//Intervention
 		{
 			GiveInventory("MenuPlace",1);
 			Primary[PlayerNumber()+1] = "Intervention";
@@ -4690,7 +4731,14 @@ script 637 (void)
 			PrimaryAmmoAmount[PlayerNumber()+1] = 20;
 			PrimaryType[PlayerNumber()+1] = "MaxWeaponsFilled_LMG";
 		}
-		else if(CheckInventory("MenuCursor") == 11)	//Go back
+		else if(CheckInventory("MenuCursor") == 8)		//L86
+		{
+			GiveInventory("MenuPlace",1);
+			Primary[PlayerNumber()+1] = "L86";
+			PrimaryAmmo[PlayerNumber()+1] = "L86Ammo";
+			PrimaryAmmoAmount[PlayerNumber()+1] = 200;
+		}
+		else if(CheckInventory("MenuCursor") >= 10)	//Go back
 			TakeInventory("MenuPlace",1);
 		TakeInventory("MenuCursor",15);
 	}
