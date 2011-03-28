@@ -15,8 +15,8 @@ bool TacticalInsertion[32];
 #ifdef SKULLTAG
 script 505 OPEN
 {
-	if(GetCVAR("alwaysapplydmflags") == 0)
-		ConsoleCommand("alwaysapplydmflags 1");
+	//if(GetCVAR("alwaysapplydmflags") == 0)
+	//	ConsoleCommand("alwaysapplydmflags 1");
 	
 	if(GetCVAR("sv_nodrop") == 0)
 		ConsoleCommand("sv_nodrop 1");
