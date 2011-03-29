@@ -111,6 +111,10 @@ script 501 RESPAWN
 	
 	TakeInventory("InCombat", 5);
 	ACS_ExecuteAlways(602,0,0,0,0); // adjust movement speed
+	
+	// erase the press X to change class message
+	HudMessage(s:""; HUDMSG_PLAIN, 2700+PlayerNumber(), CR_WHITE, 400.0, 60.0, 2.0);
+		
 }
 
 //------------------------------------------
@@ -5417,4 +5421,8 @@ script 643 (void) {
 	if(GetActorProperty(0,APROP_Health) == 1){
 		ACS_ExecuteAlways(625,0,0,0,0); // Transform into Last Stand
 	}
+}
+
+script 644 RESPAWN CLIENTSIDE {
+	HudMessage(s:""; HUDMSG_PLAIN, 2700 + PlayerNumber(), CR_WHITE, 400.0, 60.0, 2.0);
 }
