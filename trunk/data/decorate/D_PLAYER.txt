@@ -8,7 +8,7 @@ ACTOR RGUPlayer : DoomPlayer
   +INVULNERABLE
   
   RenderStyle Translucent
-  //Alpha 0.5
+  Alpha 0.0
   
   Speed 1
   Health 100

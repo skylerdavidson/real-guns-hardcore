@@ -4128,6 +4128,7 @@ script 636 (int firstTimeAfterDeath)
 	if(GotClass[PlayerNumber()+1] == TRUE && GameType() == GAME_NET_COOPERATIVE)
 	{
 		SetActorState (0, "SpawnUnInvis");
+		SetActorProperty(0, APROP_Alpha, 1.0);
 		terminate;
 	}	
 	
@@ -4901,11 +4902,13 @@ script 638 (int Which)
 	{
 		GiveInventory("SetPickupPickup",1);
 		SetActorState (0, "SpawnUnInvis");
+		SetActorProperty(0, APROP_Alpha, 1.0);
 	    terminate;
 	}
 	
 	// revert the camera from  in-menu killcam
-	ChangeCamera(0, 0, 0);	
+	ChangeCamera(0, 0, 0);
+	SetActorProperty(0, APROP_Alpha, 1.0);	
 	
 	Class[PlayerNumber()+1] = Which;
 	If(Which == 0)
@@ -5224,7 +5227,8 @@ script 638 (int Which)
 	SetAmmoCapacity("MaxWeaponsFilled",MaxGunCount);
 	TakeInventory("InCombat", 5);
 	
-	SetActorState (0, "SpawnUnInvis");	
+	SetActorState (0, "SpawnUnInvis");
+	SetActorProperty(0, APROP_Alpha, 1.0);	
 }
 
 script 639 (void)
