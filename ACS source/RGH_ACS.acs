@@ -898,18 +898,30 @@ script 603 (void) NET
 		//if(CheckInventory("Reloading") == 1)
 			GiveInventory("KnifeAttack",1);
 
+#ifdef SKULLTAG
+		bool isRed = PlayerTeam() == TEAM_RED;		
+		bool isBlue = PlayerTeam() == TEAM_BLUE;
+		bool isThree = PlayerTeam() == 2;
+		bool isFour = PlayerTeam() == 3;
+#else
+		bool isRed = false;
+		bool isBlue = false;
+		bool isThree = false;
+		bool isFour = false;
+#endif
+		bool noTeam = (!(isRed || isBlue || isThree || isFour) || GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER);
 
-		if(PlayerTeam() == TEAM_RED || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 1))
+		if(isRed || (noTeam && CheckInventory("Voice") == 1))
 			ActivatorSound("russian/grenade",127);
-		else if(PlayerTeam() == TEAM_BLUE || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 0))
+		else if(isBlue || (noTeam && CheckInventory("Voice") == 0))
 			ActivatorSound("us/grenade",127);	
-		else if(PlayerTeam() == 2 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 2))
+		else if(isThree || (noTeam && CheckInventory("Voice") == 2))
 			ActivatorSound("brazil/grenade",127);
-		else if(PlayerTeam() == 3 || ((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 3))
+		else if(isFour || (noTeam && CheckInventory("Voice") == 3))
 			ActivatorSound("opfor/grenade",127);
-		else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 4)
+		else if(noTeam && CheckInventory("Voice") == 4)
 			ActivatorSound("seal/grenade",127);
-		else if((GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER) && CheckInventory("Voice") == 5)
+		else if(noTeam && CheckInventory("Voice") == 5)
 			ActivatorSound("tf141/grenade",127);
 	}
 	if(CheckWeapon("FAMAS") == 1 && CheckInventory("FragGrenadeAmmo") == 0 && (CheckInventory("M203Ammo") != 0 || CheckInventory("M203Clip") != 0))

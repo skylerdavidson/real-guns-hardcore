@@ -397,7 +397,7 @@ actor FragGrenade
   -NOGRAVITY
   +RANDOMIZE
   +HEXENBOUNCE
-  +NOEXTREMEDEATH
+  +EXTREMEDEATH
   +FORCERADIUSDMG
   +CANBOUNCEWATER
   +BOUNCEONACTORS
@@ -406,7 +406,7 @@ actor FragGrenade
   +TELESTOMP
   Scale 0.16
   gravity 0.4
-  bouncefactor 0.5
+  bouncefactor 0.35
   damagetype "Explosion"
   ReactionTime 3
   seesound "grenade/lob"
