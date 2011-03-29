@@ -434,7 +434,9 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 		CheckWeapon("AUG HBAR Grip") ||		
 		CheckWeapon("M240") ||
 		CheckWeapon("M240 Ex Mags") ||
-		CheckWeapon("M240 Grip")
+		CheckWeapon("M240 Grip") ||
+		CheckWeapon("FAMAS") || 
+		CheckWeapon("FAMAS Ex Mags")
 	)
 	{
 		Strength = 400;
@@ -450,9 +452,7 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 		CheckWeapon("F2000") || 
 		CheckWeapon("F2000 Ex Mags") || 
 		CheckWeapon("M93 Raffica") || 
-		CheckWeapon("M93 Raffica Ex Mags") ||
-		CheckWeapon("FAMAS") || 
-		CheckWeapon("FAMAS Ex Mags")
+		CheckWeapon("M93 Raffica Ex Mags")
 	)
 	{
 		Strength = 550;
