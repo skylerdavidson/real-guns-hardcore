@@ -20,3 +20,15 @@ actor GunSpawnerH5 : GunSpawner replaces Mace{}
 actor GunSpawnerH6 : GunSpawner replaces SkullRod{}
 actor GunSpawnerH7 : GunSpawner replaces Staff{}
 actor GunSpawnerH8 : GunSpawner replaces PhoenixRod{}
+
+actor HereticArtifactSpawner : RandomSpawner {
+	DropItem "ArtiEgg"
+	DropItem "ArtiInvisibility"
+	DropItem "ArtiInvulnerability"
+	DropItem "ArtiSuperHealth"
+	DropItem "ArtiTeleport"
+	DropItem "ArtiFly"
+	DropItem "ArtiTorch"
+}
+
+actor ArtiTomeOfPower2 : HereticArtifactSpawner replaces ArtiTomeOfPower {}
