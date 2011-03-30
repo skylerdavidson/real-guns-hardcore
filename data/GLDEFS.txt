@@ -1302,6 +1302,24 @@ object BigTree
     frame TREE { light FATSHADOW  }
 } */
 
+/*
+// Muzzle flash
+flickerlight MUZZLEFLASH
+{
+    color 1.0 0.9 0.2
+    size 80
+    secondarySize 120
+    offset 0 32 0
+}
+
+object MuzzleFlash{
+	frame TNT1 { light MUZZLEFLASH  }	
+	frame E2_A { light MUZZLEFLASH  }
+	frame E3_A { light MUZZLEFLASH  }
+	frame E4_A { light MUZZLEFLASH  }
+	frame E5_A { light MUZZLEFLASH  }
+}/*
+
 #include gldefs/monsters/doom/afrit.txt
 #include gldefs/monsters/doom/agathodemon.txt
 #include gldefs/monsters/doom/arachnophyte.txt
