@@ -1049,35 +1049,15 @@ script 606 (void)
 		GiveInventory("ReadyRegen",1);
 		while(true){
 			i++;
-			//HudMessage(i:i);
-			//SetFont("BIGFONT");
-			//SetHudSize(1280,800,1);
-			//HudMessage(i:i; HUDMSG_PLAIN, 11111, CR_UNTRANSLATED, 400.0, 400.0, 0);
-			//SetFont("DAMSCRN1");
-							
-			//SetHudSize(1280,800,1);
-			//HudMessage(s:"a"; HUDMSG_FADEOUT, 50+PlayerNumber(), CR_UNTRANSLATED, 640.0, 400.0, 0.5, 1.0);
-			
-			//print(s:"R");
+
 			While(GetActorProperty(0,APROP_Health) < 100 && GetActorProperty(0,APROP_Health) > 0)
 			{
 				if(CheckInventory("InCombatRegeneration") > 0 || (CheckInventory("InLastStand") > 0 && CheckInventory("Perk3_LastStand_Pro") == 0))
 				{
 					//log(i:CheckInventory("InCombatRegeneration"));
 	
-					if(GetActorProperty(0,APROP_Health) < 60){
-						if(CheckInventory("InLastStand") > 0){
-					        SetFont("LSSCRN");
-						}
-					    else if(GetActorProperty(0,APROP_Health) > 40)
-							SetFont("DAMSCRN1");
-						else if(GetActorProperty(0,APROP_Health) > 20)
-							SetFont("DAMSCRN2");
-						else
-							SetFont("DAMSCRN3");
-						
-                        drawStretchedImage(50+PlayerNumber(), 0.5, 1.0);
-					}
+					ACS_ExecuteAlways(647,0,0,0,0);
+
 					Delay(25);
 					
 					if(CheckInventory("Perk1_ExtremeConditioning_PRO") == 1 && CheckInventory("InCombatRegeneration") == 2)
@@ -1092,21 +1072,7 @@ script 606 (void)
 				else {
 					if(GetActorProperty(0,APROP_Health) < 100 && GetActorProperty(0,APROP_Health) > 0)
 					{
-						if(GetActorProperty(0,APROP_Health) < 60){
-							/*if(GetActorProperty(0,APROP_Health) > 80)
-								SetFont("DAMSCRN1");
-							else if(GetActorProperty(0,APROP_Health) > 60)
-								SetFont("DAMSCRN2");
-							else */if(GetActorProperty(0,APROP_Health) > 40)
-								SetFont("DAMSCRN1");
-							else if(GetActorProperty(0,APROP_Health) > 20)
-								SetFont("DAMSCRN2");
-							else
-								SetFont("DAMSCRN3");				
-		
-							drawStretchedImage(50+PlayerNumber(), 0.3, 1.0);
-						}
-		
+						ACS_ExecuteAlways(647,0,0,0,0);
 						
 						if(CheckInventory("Perk1_ExtremeConditioning_PRO") == 1)
 							GiveInventory("Health",32);
@@ -3494,9 +3460,9 @@ script 625 (void)
 	delay(35*4);
 	ACS_ExecuteAlways(633,0,0,0,0);
 	delay(35*4);
-	if(GetActorProperty(0,APROP_Health) < 31 && GameType() == GAME_NET_DEATHMATCH && GetActorProperty(0,APROP_Health) > 0)
+	/*if(GetActorProperty(0,APROP_Health) < 31 && GameType() == GAME_NET_DEATHMATCH && GetActorProperty(0,APROP_Health) > 0)
 		Thing_Damage(0,75,18); //Bleed out
-	else if(GetActorProperty(0,APROP_Health) < 31 && Survival == 6 && GetActorProperty(0,APROP_Health) > 0)  //Survival rate: 1 in 6
+	else */if(GetActorProperty(0,APROP_Health) < 31 && Survival == 6 && GetActorProperty(0,APROP_Health) > 0)  //Survival rate: 1 in 6
 	{
 		ACS_ExecuteAlways(631,0,0,0,0);  // unmorph from last stand
 		SetFont("BIGFONT");
@@ -5432,4 +5398,20 @@ script 645 (void) {
 // Force the player to reappear after leaving the menu
 script 646 (void) {
 	SetActorProperty(0, APROP_Alpha, 1.0);
+}
+
+script 647 (void) CLIENTSIDE {
+	if(GetActorProperty(0,APROP_Health) < 60){
+		if(CheckInventory("InLastStand") > 0){
+	        SetFont("LSSCRN");
+		}
+	    else if(GetActorProperty(0,APROP_Health) > 40)
+			SetFont("DAMSCRN1");
+		else if(GetActorProperty(0,APROP_Health) > 20)
+			SetFont("DAMSCRN2");
+		else
+			SetFont("DAMSCRN3");
+		
+        drawStretchedImage(50+PlayerNumber(), 0.5, 1.0);
+	}
 }
