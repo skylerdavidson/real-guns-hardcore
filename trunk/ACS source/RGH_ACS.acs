@@ -216,8 +216,9 @@ script 597 ENTER
 		SetActorProperty(0,APROP_Invulnerable,0);		
 		ACS_ExecuteAlways(631,0,0,0,0);  // unmorph from last stand
 		ACS_ExecuteAlways(634,0,0,0,0);
-		ACS_ExecuteAlways(640,0,0,0,0);
+		
 	}
+	ACS_ExecuteAlways(640,0,0,0,0);
 	
 	int MaxGunCount = GameSkill();
 	if(GameType() == GAME_NET_DEATHMATCH){
@@ -5021,15 +5022,17 @@ script 638 (int Which)
 		GiveInventory("Perk1_ExtremeConditioning",1);
 		
 		if(GameType() == GAME_SINGLE_PLAYER || GameType() == GAME_NET_COOPERATIVE){
-    	GiveInventory("Perk2_ColdBlooded",1);
-			GiveInventory("Perk2_ColdBlooded_Pro",1);
+    		GiveInventory("Perk2_ColdBlooded",1);
+			
 		}
 		else {
-      GiveInventory("Perk2_ColdBlooded_DM",1);
-    }
+      		//GiveInventory("Perk2_ColdBlooded_DM",1);
+    	}
 		
-  	GiveInventory("Perk3_Commando",1);
-  	GiveInventory("Perk3_CommandoEffect",1);
+		GiveInventory("Perk2_ColdBlooded_Pro",1);
+		
+  		GiveInventory("Perk3_Commando",1);
+  		GiveInventory("Perk3_CommandoEffect",1);
   	
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
@@ -5436,7 +5439,7 @@ script 645 (void) {
 	SetActorProperty(0, APROP_Alpha, 0.45);
 }
 
-// Cold blooded DM translucency
+// Force the player to reappear after leaving the menu
 script 646 (void) {
-	SetActorProperty(0, APROP_Alpha, 0.45);
+	SetActorProperty(0, APROP_Alpha, 1.0);
 }
