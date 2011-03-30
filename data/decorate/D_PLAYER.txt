@@ -358,6 +358,7 @@ ACTOR RGULastStandPlayer : PlayerPawn
 {
   +QUICKTORETALIATE
   +NOSKIN
+  +ISMONSTER
   -PICKUP
   Speed 1
   Health 30
