@@ -233,20 +233,6 @@ script 597 ENTER
 	
 	ACS_ExecuteAlways(602,0,0,0,0); // adjust movement speed
 
-	if(GetScreenWidth() * 3 != GetScreenHeight() * 4 &&
-		!(GetScreenWidth() == 320 && GetScreenHeight() == 200) && // software mode allows some resolutions, which are "emulated 4:3" with nonsquare pixels
-		!(GetScreenWidth() == 640 && GetScreenHeight() == 400)
-	){
-		SetFont("BIGFONT");
-		SetHudSize(580,435,1);		
-		HudMessage(s:"\cgYour screen resolution is not supported"; HUDMSG_FADEOUT,1,CR_BLUE,290.0,100.0,15.0, 2.0);
-		SetFont("COFONT");
-		HudMessage(s:"\cgRGH is compatible only with 4:3 aspect ratio resolutions"; HUDMSG_FADEOUT,2,CR_BLUE,290.0,130.0,15.0, 2.0);
-		HudMessage(s:"\cgPlease change your screen resolution and restart the game"; HUDMSG_FADEOUT,3,CR_BLUE,290.0,160.0,15.0, 2.0);
-		HudMessage(s:"\cg( Menu -> Options -> Set video mode )"; HUDMSG_FADEOUT,4,CR_BLUE,290.0,190.0,15.0, 2.0);
-		terminate;
-	}
-
 	SetFont("BIGFONT");
 	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.9 "
 #ifdef SKULLTAG
@@ -1045,6 +1031,7 @@ function void drawStretchedImage(int id, int time, int fadeTime){
 		hudScreenWidth = hudScreenWidth / 16 * 10;
 	}
 	else {
+		hudScreenWidth = 1280;
 		log(s:"unknown resolution");
 	}
 
