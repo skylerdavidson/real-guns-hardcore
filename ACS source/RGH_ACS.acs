@@ -5430,3 +5430,13 @@ script 643 (void) {
 script 644 RESPAWN CLIENTSIDE {
 	HudMessage(s:""; HUDMSG_PLAIN, 2700 + PlayerNumber(), CR_WHITE, 400.0, 60.0, 2.0);
 }
+
+// Cold blooded DM translucency
+script 645 (void) {
+	SetActorProperty(0, APROP_Alpha, 0.45);
+}
+
+// Cold blooded DM translucency
+script 646 (void) {
+	SetActorProperty(0, APROP_Alpha, 0.45);
+}
