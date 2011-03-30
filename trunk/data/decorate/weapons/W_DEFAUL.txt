@@ -775,8 +775,7 @@ actor MuzzleFlash
   +NOINTERACTION
   states
   {
-  Spawn:
-    E1_A A 0 
+  Spawn:     
     E1_A A 0 bright A_Jump(255,"Spawn1","Spawn2","Spawn3","Spawn4","Spawn5")
   Spawn1:
 	E1_A ABCDEFGH 1 bright A_Fadeout(0.1)
