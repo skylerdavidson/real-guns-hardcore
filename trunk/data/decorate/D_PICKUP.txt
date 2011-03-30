@@ -2,6 +2,8 @@ actor GunAmmoSpawner : RandomSpawner
 {
     DropItem "AssaultRifleAmmo"
     DropItem "AssaultRifleAmmo"
+    DropItem "AssaultRifleAmmo"
+    DropItem "SMGAmmo" 
     DropItem "SMGAmmo" 
     DropItem "SMGAmmo" 
     DropItem "ShotgunAmmo"
@@ -12,7 +14,6 @@ actor GunAmmoSpawner : RandomSpawner
     DropItem "RocketAmmo_2"
     DropItem "HandgunAmmo"
     DropItem "HandgunAmmo"
-	DropItem "HandgunAmmo"
 	DropItem "HandgunAmmo"
     DropItem "LMGAmmo"
 }
@@ -46,9 +47,9 @@ actor GunAmmoSpawner1 : VoidSpawner replaces Clip {}
 actor GunAmmoSpawner2 : GunAmmoSpawner replaces ClipBox {}
 actor GunAmmoSpawner3 : VoidSpawner replaces Shell {}
 actor GunAmmoSpawner4 : GunAmmoSpawner replaces ShellBox {}
-actor GunAmmoSpawner5 : VoidSpawner replaces RocketAmmo {}
+actor GunAmmoSpawner5 : GunAmmoSpawner replaces RocketAmmo {}
 actor GunAmmoSpawner6 : GunAmmoSpawner replaces RocketBox {}
-actor GunAmmoSpawner7 : VoidSpawner replaces Cell {}
+actor GunAmmoSpawner7 : GunAmmoSpawner replaces Cell {}
 actor GunAmmoSpawner8 : GunAmmoSpawner replaces CellPack {}
 actor GunAmmoSpawner9 : VoidSpawner replaces Stimpack {}
 actor GunAmmoSpawner10 : GunAmmoSpawner replaces Medikit {}
