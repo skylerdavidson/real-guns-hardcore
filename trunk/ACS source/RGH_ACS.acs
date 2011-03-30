@@ -3872,6 +3872,8 @@ script 631 ENTER
 	
 	if(CheckInventory("Perk3_LastStand") == 1)
 		GiveInventory("LastStandUrn",10000);
+		
+	SetActorState (0, "SpawnUnInvis");
 }
 
 //------------------------------------------
