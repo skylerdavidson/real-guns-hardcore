@@ -192,11 +192,7 @@ ACTOR Cacolantern_2 : Cacodemon_2
     HED2 G 8 A_NoBlocking
     HED2 H 8 A_Scream
     HED2 IJK 8
-    HED2 L 0 A_SetFloorClip
-    //HED2 L -1 A_Jump(30,1)
-    Stop
-    HED2 LLLL 115
-    HED2 L 0 A_SpawnItemEx("BlueCacodemonRes",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    HED2 L -1 A_SetFloorClip
     Stop
   Raise:
     HED2 L 8 A_UnsetFloorClip
