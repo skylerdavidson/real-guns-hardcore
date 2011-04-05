@@ -263,7 +263,7 @@ statusbar fullscreen, forcescaled
 
 statusbar inventoryfullscreen
 {
-	drawinventorybar Doom, 7, INDEXFON, 80, 150;
+	drawinventorybar Heretic, 7, INDEXFON, 80, 150;
 }
 
 statusbar normal
