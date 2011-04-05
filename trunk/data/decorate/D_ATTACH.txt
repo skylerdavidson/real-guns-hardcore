@@ -429,7 +429,7 @@ actor Perk2_DangerClose_ProAward : CustomInventory
     TNT1 A -1
     stop
   Use:
-    TNT1 A 0 ACS_ExecuteAlways(624,0,17,0,0)
+    TNT1 A 0 ACS_ExecuteAlways(624,0,13,0,0)
     stop
   }
 }
