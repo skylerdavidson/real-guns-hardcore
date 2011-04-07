@@ -119,7 +119,7 @@ actor Hellion: RGAMonster
 
 ACTOR HellionBall : CacodemonBall
 {
-Damage 5
+Damage 3
 Speed 10
 Alpha 0.80
 DamageType fire
