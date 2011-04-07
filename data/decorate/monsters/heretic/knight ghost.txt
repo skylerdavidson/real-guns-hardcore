@@ -6,7 +6,7 @@ ACTOR KnightGhost2 : KnightGhost replaces KnightGhost
   +GHOST
   RenderStyle Translucent
   Alpha 0.4
-  Health 350
+  Health 240
   States
   {  
   Spawn:
