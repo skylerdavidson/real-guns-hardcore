@@ -105,11 +105,7 @@ script 501 RESPAWN
 	SetAmmoCapacity("MaxWeaponsFilled",MaxGunCount);
 	
 	TakeInventory("InCombat", 5);
-	ACS_ExecuteAlways(602,0,0,0,0); // adjust movement speed
-	
-	// erase the press X to change class message
-	HudMessage(s:""; HUDMSG_PLAIN, 2700+PlayerNumber(), CR_WHITE, 400.0, 60.0, 2.0);
-		
+	ACS_ExecuteAlways(602,0,0,0,0); // adjust movement speed		
 }
 
 //------------------------------------------
@@ -142,6 +138,7 @@ script 503 DEATH CLIENTSIDE
 	
 	if(GameType() == GAME_NET_DEATHMATCH){
 		SetFont("BIGFONT");
+		log(i:PlayerNumber());
 		HudMessage(s:"\ccHold \cf", k:"+altattack", s:"\cc while respawning to change your class"; HUDMSG_PLAIN, 2700+PlayerNumber(), CR_Green, 0.5, 0.75, 0);
 	}
     SetFont("CONFONT");
@@ -4079,9 +4076,6 @@ script 636 (int firstTimeAfterDeath)
 		terminate;
 	}
 	
-	// erase the Press X to change class message
-	HudMessage(s:""; HUDMSG_FADEOUT, 2700+PlayerNumber(), CR_Green, 0.5, 0.75, 0.5, 1.0);
-	
 	// do not give more weapons after respawning in coop
 	if(CheckInventory("Spawned") > 0)
 	{
@@ -5386,10 +5380,18 @@ script 643 (void) {
 	}
 }
 
-script 644 RESPAWN CLIENTSIDE {
-	HudMessage(s:""; HUDMSG_PLAIN, 2700 + PlayerNumber(), CR_WHITE, 400.0, 60.0, 2.0);
+// erase the "press X to change class" message
+script 644 RESPAWN{
+	// call the clientside script (the message is only clientside)
+	// it must go through serverside script, since clientside respawn script wouldn't get PlayerNumber set correctly
+	ACS_ExecuteAlways(645,0,PlayerNumber(),0,0);
 }
 
+script 645 (int p) CLIENTSIDE { // helper for 644
+	HudMessage(s:""; HUDMSG_PLAIN, 2700+p, CR_WHITE, 400.0, 60.0, 2.0);
+}
+
+// cold blooded invisibility managment loop
 script 647 (void) CLIENTSIDE {
 	if(GetActorProperty(0,APROP_Health) < 60){
 		if(CheckInventory("InLastStand") > 0){
