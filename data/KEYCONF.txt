@@ -33,7 +33,7 @@ defaultbind F knife
 defaultbind Y voice
 
 clearplayerclasses
-Addplayerclass RGUPlayer_Create
+Addplayerclass RGUPlayer
 //Addplayerclass RGUPlayer_Random
 //Addplayerclass RGUPlayer
 //Addplayerclass RGUPlayer_Juggernaut

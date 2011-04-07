@@ -57,18 +57,15 @@ script 500 ENTER
 
 script 501 RESPAWN
 {
+	if(CheckInventory("Spawned") == 0){
+		GiveInventory("GoToMenu",1);
+	}
+	
 	Thing_ChangeTID(0,PlayerNumber()+500);
         SetThingSpecial(0,226,502,0,0,0,0);
 
-    //TakeInventory("ReadyRegen",1);
-    //ACS_ExecuteAlways(606,0,0,0,0);
-
-	if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
+    if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
 	{	
-		//if(GetActorProperty(0,APROP_HEALTH) < 100)
-			
-		//if(GetActorProperty(0, APROP_Speed) != 1.15)
-		//	SetActorProperty(0, APROP_Speed, 1.15);
 		if(CheckInventory("Perk2_StoppingPower") == 1)
 			GiveInventory("Perk2_StoppingPowerEffect",1);
 		if(CheckInventory("Perk2_DangerClose") == 1)
@@ -84,8 +81,6 @@ script 501 RESPAWN
 			GiveInventory("LastStandUrn",10000);
 		
 		TakeInventory("InvisibilityRunning", 1);
-	
-
 			
 		if(CheckInventory("Perk1_OneManArmy") == 1)
 			ACS_ExecuteAlways(629,0,0,0,0); // set ammo capacities
@@ -184,6 +179,10 @@ script 504 (void)
 //------- Give stuff, fix minor bugs, and so on
 script 597 ENTER
 {
+	if(CheckInventory("Spawned") == 0){
+		GiveInventory("GoToMenu", 1);
+	}
+	
 	TakeInventory("ReadyRegen",1);
     ACS_ExecuteAlways(606,0,0,0,0);
 
@@ -234,7 +233,7 @@ script 597 ENTER
 	ACS_ExecuteAlways(602,0,0,0,0); // adjust movement speed
 
 	SetFont("BIGFONT");
-	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.10 BETA "
+	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.10 BETA 2 "
 #ifdef SKULLTAG
 		,s:"SKULLTAG"
 #else
@@ -3934,7 +3933,7 @@ script 633 (void)
 //------------------------------------------
 //------- Shows current perks
 script 634 RESPAWN NET
-{	
+{
 	//Delay(15);
 	
 	if(CheckInventory("Menu") == 1){
@@ -4084,10 +4083,9 @@ script 636 (int firstTimeAfterDeath)
 	HudMessage(s:""; HUDMSG_FADEOUT, 2700+PlayerNumber(), CR_Green, 0.5, 0.75, 0.5, 1.0);
 	
 	// do not give more weapons after respawning in coop
-	if(GotClass[PlayerNumber()+1] == TRUE && GameType() == GAME_NET_COOPERATIVE)
+	if(CheckInventory("Spawned") > 0)
 	{
-		SetActorState (0, "SpawnUnInvis");
-		SetActorProperty(0, APROP_Alpha, 1.0);
+		TakeInventory("PowerMenu",1);
 		terminate;
 	}	
 	
@@ -4537,7 +4535,7 @@ script 636 (int firstTimeAfterDeath)
 
 //Make selection
 script 637 (void)
-{	
+{
 	//MenuPlace 0: We're in the presets menu.
 	if(CheckInventory("MenuPlace") == 0)
 	{
@@ -4845,6 +4843,9 @@ script 637 (void)
 
 script 638 (int Which)
 {
+	TakeInventory("PowerMenu",1);
+	SetPlayerProperty(0,0,PROP_FROZEN);
+	
 	TakeInventory("MenuChoice1",1);
 	TakeInventory("MenuChoice2",1);
 	TakeInventory("MenuChoice3",1);
@@ -4855,19 +4856,9 @@ script 638 (int Which)
 	TakeInventory("MenuChoice8",1);
 	TakeInventory("MenuChoice9",1);
 	TakeInventory("MenuChoice10",1);
-
-	// do not give more weapons after respawning in coop
-	if(GotClass[PlayerNumber()+1] == TRUE && GameType() == GAME_NET_COOPERATIVE)
-	{
-		GiveInventory("SetPickupPickup",1);
-		SetActorState (0, "SpawnUnInvis");
-		SetActorProperty(0, APROP_Alpha, 1.0);
-	    terminate;
-	}
 	
 	// revert the camera from  in-menu killcam
 	ChangeCamera(0, 0, 0);
-	SetActorProperty(0, APROP_Alpha, 1.0);	
 	
 	Class[PlayerNumber()+1] = Which;
 	If(Which == 0)
@@ -4902,7 +4893,8 @@ script 638 (int Which)
 		HudMessage(s:"\cdYou are Assault!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
-		GotClass[PlayerNumber()+1] = True;		
+		GotClass[PlayerNumber()+1] = True;
+		SetWeapon("M4A1 Ex Mags");		
 	}
 	else If(Which == 1)
 	{
@@ -4932,6 +4924,7 @@ script 638 (int Which)
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
+		SetWeapon("L86");
 	}
 	else If(Which == 2)
 	{
@@ -4964,6 +4957,7 @@ script 638 (int Which)
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
+		SetWeapon("Intervention Thermal");
 	}
 	else If(Which == 3)
 	{
@@ -4999,6 +4993,7 @@ script 638 (int Which)
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
+		SetWeapon("FN P90");
 	}
 	else If(Which == 4)
 	{
@@ -5022,17 +5017,18 @@ script 638 (int Which)
     		GiveInventory("Perk1_Scavenger_DM",1);
 			GiveInventory("Perk2_DangerClose_Pro",1);
 			GiveInventory("Backpack", 1);
-    }
+    	}
 		
-    GiveInventory("Perk3_SteadyAim",1);
+    	GiveInventory("Perk3_SteadyAim",1);
 		
-    ACS_ExecuteAlways(634,0,0,0,0);
+    	ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
 		SetFont("BIGFONT");
 		HudMessage(s:"\cdYou are Demolitions!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
+		SetWeapon("SPAS-12");
 	}
 	else If(Which == 5)
 	{
@@ -5049,9 +5045,9 @@ script 638 (int Which)
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
 		GiveInventory("MaxWeaponsFilled",2);
 		
-    GiveInventory("Perk1_ExtremeConditioning",1);
+    	GiveInventory("Perk1_ExtremeConditioning",1);
 		
-    if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER){		
+    	if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER){		
 			GiveInventory("Perk1_ExtremeConditioning_Pro",1);
 			GiveInventory("Perk2_DangerClose",1);
 			GiveInventory("Perk2_DangerCloseEffect",1);			
@@ -5068,7 +5064,8 @@ script 638 (int Which)
 		HudMessage(s:"\cdYou are Grenadier!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
-		GotClass[PlayerNumber()+1] = True;		
+		GotClass[PlayerNumber()+1] = True;
+		SetWeapon("FAMAS M203");		
 	}
 	else If(Which == 6)
 	{
@@ -5084,7 +5081,8 @@ script 638 (int Which)
 		HudMessage(s:"\cdYou are Daredevil!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
-		GotClass[PlayerNumber()+1] = True;		
+		GotClass[PlayerNumber()+1] = True;
+		SetWeapon("USP .45");		
 	}
 	else if(Which == 9)
 	{
@@ -5176,10 +5174,13 @@ script 638 (int Which)
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
+		SetWeapon(Primary[PlayerNumber()+1]);
 	}
 	else{
 		HudMessage(s:"NO NUMBER"; HUDMSG_FADEOUT, 1, CR_RED, 0.5, 0.69, 2.0, 1.0);
 	}
+	
+    GiveInventory("Spawned", 1);
 	
 	int MaxGunCount = GameSkill();
 	If(CheckInventory("Perk1_OneManArmy_Pro") == 1){
@@ -5187,9 +5188,6 @@ script 638 (int Which)
 	}
 	SetAmmoCapacity("MaxWeaponsFilled",MaxGunCount);
 	TakeInventory("InCombat", 5);
-	
-	SetActorState (0, "SpawnUnInvis");
-	SetActorProperty(0, APROP_Alpha, 1.0);	
 }
 
 script 639 (void)
@@ -5390,16 +5388,6 @@ script 643 (void) {
 
 script 644 RESPAWN CLIENTSIDE {
 	HudMessage(s:""; HUDMSG_PLAIN, 2700 + PlayerNumber(), CR_WHITE, 400.0, 60.0, 2.0);
-}
-
-// Cold blooded DM translucency
-script 645 (void) {
-	SetActorProperty(0, APROP_Alpha, 0.45);
-}
-
-// Force the player to reappear after leaving the menu
-script 646 (void) {
-	SetActorProperty(0, APROP_Alpha, 1.0);
 }
 
 script 647 (void) CLIENTSIDE {

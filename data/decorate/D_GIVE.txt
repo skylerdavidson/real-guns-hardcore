@@ -1,5 +1,3 @@
-
-
 actor "Menu" : Weapon
 {
   obituary "%o was killed."
@@ -20,7 +18,7 @@ actor "Menu" : Weapon
     TNT1 A 0 ACS_ExecuteAlways(636,0,1,0,0)
     TNT1 A 0 A_WeaponReady
     TNT1 A 1 A_ChangeFlag("PICKUP",0)
-    goto Ready+3
+    goto Ready + 3
   Deselect:
     TNT1 A 0 A_Lower
     TNT1 A 0 A_SelectWeapon("Menu")
@@ -40,6 +38,28 @@ actor "Menu" : Weapon
     TNT1 A 1 ACS_ExecuteAlways(637,0,0,0,0)
     goto Ready+3
   }
+}
+
+ACTOR GoToMenu : PowerupGiver 666
+{
+	Powerup.Type Menu
+	Powerup.Duration -9999999// about 120 seconds
+	+COUNTITEM
+	+FLOATBOB
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		stop
+	}
+}
+ACTOR PowerMenu : PowerMorph
+{
+	PowerMorph.PlayerClass MenuPlayer
+	PowerMorph.MorphStyle (MRF_WHENINVULNERABLE|MRF_LOSEACTUALWEAPON|MRF_NEWTIDBEHAVIOUR)
+	PowerMorph.MorphFlash "NoFlash"
 }
 
 actor "MenuChoice1" : Weapon
