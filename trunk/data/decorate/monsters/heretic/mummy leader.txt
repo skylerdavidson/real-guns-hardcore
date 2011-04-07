@@ -1,0 +1,21 @@
+ACTOR MummyLeader2 : MummyLeader replaces MummyLeader
+{
+  Game Heretic
+  SpawnID 2
+  Health 250
+  Painchance 64
+  Obituary "$OB_MUMMYLEADER" // "%o was shrieked to death by a nitrogolem."
+  States
+  {
+  Spawn:
+  	MUMM A 0
+  	MUMM A 0 Thing_SetSpecial(0,226,613,0,random(20,40))
+    MUMM ABCB 10 A_Look
+    goto Spawn+2
+  }
+}
+
+ACTOR MummyFX1_2 : MummyFX1 replaces MummyFX1
+{
+  Speed 14
+}

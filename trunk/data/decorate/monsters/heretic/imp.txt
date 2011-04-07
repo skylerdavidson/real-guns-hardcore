@@ -1,0 +1,33 @@
+ACTOR HereticImp2: HereticImp replaces HereticImp
+{
+  Game Heretic
+  SpawnID 5
+  Health 80
+  Radius 16
+  Height 36
+  Mass 50
+  Speed 10
+  Painchance 200
+  Monster
+  +FLOAT
+  +NOGRAVITY
+  +SPAWNFLOAT
+  +DONTOVERLAP
+  +MISSILEMORE
+  SeeSound "himp/sight"
+  AttackSound "himp/attack"
+  PainSound "himp/pain"
+  DeathSound "himp/death"
+  ActiveSound "himp/active"
+  Obituary "$OB_HERETICIMP" // "%o was scarred by a gargoyle."
+  HitObituary "$OB_HERETICIMPHIT" // "%o was hacked by a gargoyle."
+
+  States
+  {
+  Spawn:
+  	IMPX A 0
+  	IMPX A 0 Thing_SetSpecial(0,226,613,0,random(10,20))
+    IMPX ABCB 10 A_Look
+    goto Spawn+2
+  }
+}

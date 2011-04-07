@@ -1,0 +1,46 @@
+ACTOR Ironlich2 : Ironlich replaces Ironlich
+{
+  Game Heretic
+  SpawnID 20
+  Health 2000
+  Radius 40
+  Height 72
+  Mass 325
+  Speed 6
+  Painchance 32
+  Monster
+  +NOBLOOD
+  +DONTMORPH
+  +DONTSQUASH
+  +BOSSDEATH
+  SeeSound "ironlich/sight"
+  AttackSound "ironlich/attack"
+  PainSound "ironlich/pain"
+  DeathSound "ironlich/death"
+  ActiveSound "ironlich/active"
+  Obituary "$OB_IRONLICH" // "%o was devastated by an ironlich."
+  HitObituary "$OB_IRONLICHHIT" // "%o got up-close and personal with an ironlich."
+
+  DropItem "ArtiEgg", 51, 0
+  
+  States
+  {
+  Spawn:
+  	LICH A 0
+  	LICH A 0 Thing_SetSpecial(0,226,613,0,random(300,500))
+    LICH A 10 A_Look
+    goto Spawn + 2
+  }
+}
+
+// ice shot
+ACTOR HeadFX1_2 : HeadFX1 replaces HeadFX1
+{
+  Speed 20
+}
+
+// fire column
+ACTOR HeadFX3_2 : HeadFX3 replaces HeadFX3
+{
+  Speed 18
+}

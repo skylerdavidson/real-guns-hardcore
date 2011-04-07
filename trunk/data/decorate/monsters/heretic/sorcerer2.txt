@@ -1,0 +1,41 @@
+ACTOR Sorcerer2_2 : Sorcerer2 replaces Sorcerer2
+{
+  Game Heretic
+  SpawnID 143
+  Health 7000
+  Radius 16
+  Height 70
+  Mass 300
+  Speed 14
+  Painchance 32
+  Monster
+  +DROPOFF
+  +BOSS
+  +DONTMORPH
+  +FULLVOLACTIVE
+  +NORADIUSDMG
+  +NOTARGET
+  +NOICEDEATH
+  +FLOORCLIP
+  +BOSSDEATH
+  SeeSound "dsparil/sight"
+  AttackSound "dsparil/attack"
+  PainSound "dsparil/pain"
+  ActiveSound "dsparil/active"
+  Obituary "$OB_DSPARIL2" // "%o was no match for D'Sparil."
+  HitObituary "$OB_DSPARIL2HIT" // "%o was smacked down by D'Sparil."
+
+  States
+  {
+  Spawn:
+  	SOR2 A 0
+  	SOR2 A 0 Thing_SetSpecial(0,226,613,0,random(2000,3000))
+    SOR2 MN 10 A_Look
+    goto Spawn + 2
+  }
+}
+
+ACTOR Sorcerer2FX1_2 : Sorcerer2FX1 replaces Sorcerer2FX1
+{
+  Speed 28
+}

@@ -1,0 +1,20 @@
+ACTOR HereticImpLeader2: HereticImpLeader replaces HereticImpLeader
+{
+  Game Heretic
+  SpawnID 7
+  Health 150
+  AttackSound "himp/leaderattack"
+  States
+  {
+  Spawn:
+  	IMPX A 0
+  	IMPX A 0 Thing_SetSpecial(0,226,613,0,random(15,30))
+    IMPX ABCB 10 A_Look
+    goto Spawn+2
+  }
+}
+
+ACTOR HereticImpBall2 : HereticImpBall replaces HereticImpBall
+{
+	speed 13
+}

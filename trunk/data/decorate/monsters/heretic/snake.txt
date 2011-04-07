@@ -1,0 +1,37 @@
+ACTOR Snake2 : Snake replaces Snake
+{
+  Game Heretic
+  SpawnID 132
+  Health 500
+  Radius 22
+  Height 70
+  Speed 10
+  Painchance 48
+  Monster
+  +FLOORCLIP
+  AttackSound "snake/attack"
+  SeeSound "snake/sight"
+  PainSound "snake/pain"
+  DeathSound "snake/death"
+  ActiveSound "snake/active"
+  Obituary "$OB_SNAKE" // "%o was rattled by an ophidian."
+ 
+  States
+  {
+  Spawn:
+  	SNKE A 0
+  	SNKE A 0 Thing_SetSpecial(0,226,613,0,random(80,160))
+    SNKE AB 10 A_Look
+    goto Spawn + 2
+  }
+}
+
+ACTOR SnakeProjA2 : SnakeProjA replaces SnakeProjA
+{
+	Speed 20
+}
+
+ACTOR SnakeProjB2 : SnakeProjB replaces SnakeProjB
+{
+	Speed 20
+}

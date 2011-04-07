@@ -1,0 +1,27 @@
+ACTOR Mummy2 : Mummy replaces Mummy
+{
+  Game Heretic
+  SpawnID 4
+  Health 200
+  Radius 22
+  Height 62
+  Mass 75
+  Speed 12
+  Painchance 128
+  Monster
+  +FLOORCLIP
+  SeeSound "mummy/sight"
+  AttackSound "mummy/attack1"
+  PainSound "mummy/pain"
+  DeathSound "mummy/death"
+  ActiveSound "mummy/active"
+  HitObituary "$OB_MUMMY" // "%o was smashed by a golem."
+  States
+  {
+  Spawn:
+  	MUMM A 0
+  	MUMM A 0 Thing_SetSpecial(0,226,613,0,random(15,30))
+    MUMM AB 10 A_Look
+    goto Spawn + 2
+  }
+}
