@@ -25,43 +25,80 @@ ACTOR RGUPlayer : DoomPlayer
 
   Player.StartItem "FragGrenadeAmmo", 2
   Player.StartItem "USP45Clip", 12
+  Player.StartItem "USP45Clip2", 18
+  Player.StartItem "USP45Clip3", 24
   Player.StartItem "44MagnumClip", 6
+  Player.StartItem "44MagnumClip2", 12
   Player.StartItem "FAMASClip", 30
+  Player.StartItem "FAMASClip2", 45
   Player.StartItem "M203Clip", 1
   Player.StartItem "FALClip", 30
+  Player.StartItem "FALClip2", 45
   Player.StartItem "SPASClip", 8
+  Player.StartItem "SPASClip2", 16
   Player.StartItem "AA12Clip", 8
+  Player.StartItem "AA12Clip2", 16
   Player.StartItem "UMP45Clip", 32
+  Player.StartItem "UMP45Clip2", 48
   Player.StartItem "VectorClip", 30
+  Player.StartItem "VectorClip2", 45
   Player.StartItem "MiniUziClip", 32
+  Player.StartItem "MiniUziClip2", 48
+  Player.StartItem "MiniUziClip3", 64
   Player.StartItem "P90Clip", 50
+  Player.StartItem "P90Clip2", 75
   Player.StartItem "ThumperClip", 1
   Player.StartItem "ACRClip", 30
+  Player.StartItem "ACRClip2", 45
   Player.StartItem "AT4Clip", 1
   Player.StartItem "InterventionClip", 5
+  Player.StartItem "InterventionClip2", 10
   Player.StartItem "BarrettClip", 10
+  Player.StartItem "BarrettClip2", 15
   Player.StartItem "G18Clip", 33
+  Player.StartItem "G18Clip2", 50
+  Player.StartItem "G18Clip3", 66
   Player.StartItem "MG4Clip", 100
+  Player.StartItem "MG4Clip2", 200
   Player.StartItem "PP2000Clip", 20
+  Player.StartItem "PP2000Clip2", 30
+  Player.StartItem "PP2200Clip", 40
   Player.StartItem "SCARHClip", 20
+  Player.StartItem "SCARHClip2", 30
   Player.StartItem "M4A1Clip", 30
+  Player.StartItem "M4A1Clip2", 45
   Player.StartItem "RangerClip", 2
   Player.StartItem "F2000Clip", 30
+  Player.StartItem "F2000Clip2", 45
   Player.StartItem "MP5Clip", 30
+  Player.StartItem "MP5Clip2", 45
   Player.StartItem "M93RClip", 20
+  Player.StartItem "M93RClip2", 30
   Player.StartItem "M16Clip", 30
+  Player.StartItem "M16Clip2", 45
   Player.StartItem "AK47Clip", 30
+  Player.StartItem "AK47Clip2", 45
   Player.StartItem "StrikerClip", 12
+  Player.StartItem "StrikerClip", 18
   Player.StartItem "AUGHBARClip", 42
+  Player.StartItem "AUGHBARClip2", 63
   Player.StartItem "WA2000Clip", 6
+  Player.StartItem "WA2000Clip2", 12
   Player.StartItem "DeagleClip", 7
+  Player.StartItem "DeagleClip2", 14
   Player.StartItem "M9Clip", 15
+  Player.StartItem "M9Clip2", 25
+  Player.StartItem "M9Clip3", 30
   Player.StartItem "M1014Clip", 4
+  Player.StartItem "M1014Clip2", 6
   Player.StartItem "M240Clip", 100
+  Player.StartItem "M240Clip2", 200
   Player.StartItem "L86Clip", 100
+  Player.StartItem "L86Clip2", 200
   Player.StartItem "RPGClip", 1
   Player.StartItem "M1887Clip", 7
   Player.StartItem "M14Clip", 10
+  Player.StartItem "M14Clip2", 15
   
   Player.SideMove 0.65
   Player.ForwardMove 0.65

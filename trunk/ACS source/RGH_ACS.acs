@@ -4856,11 +4856,11 @@ script 638 (int Which)
 	{
 		TakeInventory("Menu",1);
 		GiveInventory("USP .45",1);
-		GiveInventory("USP45Ammo",24);
+		//GiveInventory("USP45Ammo",24);
 		GiveInventory("M4A1 Ex Mags",1);
 		GiveInventory("M4A1ExMags", 1);
-		GiveInventory("M4A1Ammo",60);
-		GiveInventory("M4A1Clip2",45);
+		//GiveInventory("M4A1Ammo",60);
+		//GiveInventory("M4A1Clip2",45);
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
 		GiveInventory("MaxWeaponsFilled",2);
@@ -4892,9 +4892,9 @@ script 638 (int Which)
 		//log(s:"Take1");
 		TakeInventory("Menu",1);
 		GiveInventory("Desert Eagle",1);
-		GiveInventory("DeagleAmmo",14);
+		//GiveInventory("DeagleAmmo",14);
 		GiveInventory("L86",1);
-		GiveInventory("L86Ammo",100);
+		//GiveInventory("L86Ammo",100);
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
 		GiveInventory("MaxWeaponsFilled",2);
@@ -4922,10 +4922,10 @@ script 638 (int Which)
 		//log(s:"Take2");
 		TakeInventory("Menu",1);
 		GiveInventory("M93 Raffica",1);
-		GiveInventory("M93RAmmo",68);
+		//GiveInventory("M93RAmmo",68);
 		GiveInventory("Intervention Thermal",1);
 		GiveInventory("InterventionThermal",1);
-		GiveInventory("InterventionAmmo",10);
+		//GiveInventory("InterventionAmmo",10);
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_LMG",1);
 		GiveInventory("MaxWeaponsFilled",2);
@@ -4956,9 +4956,9 @@ script 638 (int Which)
 		TakeInventory("Menu",1);
 		GiveInventory("M9 Tac Knife",1);
 		GiveInventory("M9Knife",1);
-		GiveInventory("M9Ammo",30);
+		//GiveInventory("M9Ammo",30);
 		GiveInventory("FN P90",1);
-		GiveInventory("P90Ammo",60);
+		//GiveInventory("P90Ammo",60);
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
 		GiveInventory("MaxWeaponsFilled",2);
@@ -4991,9 +4991,9 @@ script 638 (int Which)
 		//log(s:"Take4");
 		TakeInventory("Menu",1);
 		GiveInventory("SPAS-12",1);
-		GiveInventory("SPAS12Ammo",32);
+		//GiveInventory("SPAS12Ammo",32);
 		GiveInventory("RPG-7",1);
-		GiveInventory("RPGAmmo",1);
+		//GiveInventory("RPGAmmo",1);
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
 		GiveInventory("MaxWeaponsFilled",2);
@@ -5026,12 +5026,12 @@ script 638 (int Which)
 		//log(s:"Take4");
 		TakeInventory("Menu",1);		
 		GiveInventory("G18",1);		
-		GiveInventory("G18Ammo",66);
-		GiveInventory("G18Clip",33);
+		//GiveInventory("G18Ammo",66);
+		//GiveInventory("G18Clip",33);
 		GiveInventory("FAMAS",1);
 		GiveInventory("FAMASAmmo",2);
 		GiveInventory("FAMAS M203",1);
-		GiveInventory("M203Ammo",1);
+		//GiveInventory("M203Ammo",1);
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
 		GiveInventory("MaxWeaponsFilled",2);
@@ -5063,7 +5063,7 @@ script 638 (int Which)
 		//log(s:"Take4");
 		TakeInventory("Menu",1);		
 		GiveInventory("USP .45",1);
-    	GiveInventory("USP45Ammo",12);
+    	//GiveInventory("USP45Ammo",12);
 		GiveInventory("MaxWeaponsFilled_Handgun",1);		
 		GiveInventory("MaxWeaponsFilled",1);
 		ACS_ExecuteAlways(634,0,0,0,0);
@@ -5080,16 +5080,16 @@ script 638 (int Which)
 		//log(s:"Take9");
 		TakeInventory("Menu",1);
 		GiveInventory(Handgun[PlayerNumber()+1],1);
-		GiveInventory(HandgunAmmo[PlayerNumber()+1],HandgunAmmoAmount[PlayerNumber()+1]);
+		//GiveInventory(HandgunAmmo[PlayerNumber()+1],HandgunAmmoAmount[PlayerNumber()+1]);
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory(Primary[PlayerNumber()+1],1);
-		GiveInventory(PrimaryAmmo[PlayerNumber()+1],PrimaryAmmoAmount[PlayerNumber()+1]);
+		//GiveInventory(PrimaryAmmo[PlayerNumber()+1],PrimaryAmmoAmount[PlayerNumber()+1]);
 		GiveInventory(PrimaryType[PlayerNumber()+1],1);
 		GiveInventory("MaxWeaponsFilled",2);
 		if(Primary[PlayerNumber()+1] == "FAMAS")
 		{
 			GiveInventory("FAMAS M203",1);
-			GiveInventory("M203Ammo",1);
+			//GiveInventory("M203Ammo",1);
 		}
 		if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER){
 			GiveInventory(Perk1[PlayerNumber()+1],1);
@@ -5177,6 +5177,9 @@ script 638 (int Which)
 	If(CheckInventory("Perk1_OneManArmy_Pro") == 1){
 		MaxGunCount++;
 	}
+	
+	GiveInventory("Backpack", 1);
+	
 	SetAmmoCapacity("MaxWeaponsFilled",MaxGunCount);
 	TakeInventory("InCombat", 5);
 }
@@ -5329,7 +5332,6 @@ script 639 (void)
 			Attachment[PlayerNumber()+1] = "ThermalAttachment";
 		else if(Randomiser == 5)		//Grip
 			Attachment[PlayerNumber()+1] = "GripAttachment";
-
 
 	ACS_ExecuteAlways(638,0,9,0,0);
 }
