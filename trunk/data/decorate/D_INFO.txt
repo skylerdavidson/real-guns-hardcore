@@ -154,3 +154,9 @@ actor InLastStand : Inventory
     inventory.amount 0
     inventory.maxamount 1
 }
+
+actor Spawned : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
