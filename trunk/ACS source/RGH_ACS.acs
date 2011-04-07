@@ -137,8 +137,7 @@ script 503 DEATH CLIENTSIDE
 	str KillersGuns = KillersGun;	 
 	
 	if(GameType() == GAME_NET_DEATHMATCH){
-		SetFont("BIGFONT");
-		log(i:PlayerNumber());
+		SetFont("BIGFONT");		
 		HudMessage(s:"\ccHold \cf", k:"+altattack", s:"\cc while respawning to change your class"; HUDMSG_PLAIN, 2700+PlayerNumber(), CR_Green, 0.5, 0.75, 0);
 	}
     SetFont("CONFONT");
@@ -1049,9 +1048,7 @@ script 606 (void)
 			While(GetActorProperty(0,APROP_Health) < 100 && GetActorProperty(0,APROP_Health) > 0)
 			{
 				if(CheckInventory("InCombatRegeneration") > 0 || (CheckInventory("InLastStand") > 0 && CheckInventory("Perk3_LastStand_Pro") == 0))
-				{
-					//log(i:CheckInventory("InCombatRegeneration"));
-	
+				{			
 					ACS_ExecuteAlways(647,0,0,0,0);
 
 					Delay(25);
