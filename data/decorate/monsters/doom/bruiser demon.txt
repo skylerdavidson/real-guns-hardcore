@@ -10,7 +10,6 @@ ACTOR BruiserDemon : RGAMonster
 	Monster
 	+BOSS
 	+FLOORCLIP
-	+LOOKALLAROUND
 	+MISSILEEVENMORE
 	+NORADIUSDMG
 	MissileType BruiserBall
