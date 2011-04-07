@@ -4,7 +4,9 @@ gameinfo
 	quitsound = "barett/fire"
 	drawreadthis = false
     quitmessages = "THANK YOU for playing Real Guns Hardcore"
-	titlepage = "TITLEPIC"	
+	titlepage = "TITLEPIC"
+	titlemusic = "D_INTRO"
+	intermissionmusic = "D_INTER"	
 }
 
 map E1M8 lookup "HUSTR_E1M8"
