@@ -2,7 +2,7 @@ ACTOR Knight2 : Knight replaces Knight
 {
   Game Heretic
   SpawnID 6
-  Health 350
+  Health 240
   Radius 24
   Height 78
   Mass 150

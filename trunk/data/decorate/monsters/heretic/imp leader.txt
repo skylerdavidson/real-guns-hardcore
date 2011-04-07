@@ -2,7 +2,7 @@ ACTOR HereticImpLeader2: HereticImpLeader replaces HereticImpLeader
 {
   Game Heretic
   SpawnID 7
-  Health 150
+  Health 120
   AttackSound "himp/leaderattack"
   States
   {

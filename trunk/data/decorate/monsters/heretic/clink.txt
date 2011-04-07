@@ -2,7 +2,7 @@ ACTOR Clink2 : Clink replaces Clink
 {
   Game Heretic
   SpawnID 1
-  Health 150
+  Health 250
   Radius 20
   Height 64
   Mass 75
