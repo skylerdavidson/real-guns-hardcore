@@ -1,0 +1,35 @@
+ACTOR Minotaur2 : Minotaur replaces Minotaur
+{
+  Game Heretic
+  Health 3000
+  Radius 28
+  Height 100
+  Mass 2000
+  Speed 16
+  Damage 7
+  Painchance 25
+  Monster
+  +DROPOFF
+  +FLOORCLIP
+  +BOSS
+  +NORADIUSDMG
+  +DONTMORPH
+  +NOTARGET
+  +BOSSDEATH
+  SeeSound "minotaur/sight"
+  AttackSound "minotaur/attack1"
+  PainSound "minotaur/pain"
+  DeathSound "minotaur/death"
+  ActiveSound "minotaur/active"
+  
+  DropItem "ArtiSuperHealth", 51
+
+  States
+  {
+  Spawn:
+  	MNTR A 0
+  	MNTR A 0 Thing_SetSpecial(0,226,613,0,random(500,900))
+    MNTR AB 10 A_MinotaurLook
+    goto Spawn + 2
+  }
+}

@@ -1,0 +1,18 @@
+ACTOR KnightGhost2 : KnightGhost replaces KnightGhost
+{
+  Game Heretic
+  SpawnID 129
+  +SHADOW
+  +GHOST
+  RenderStyle Translucent
+  Alpha 0.4
+  Health 350
+  States
+  {  
+  Spawn:
+  	KNIG A 0
+  	KNIG A 0 Thing_SetSpecial(0,226,613,0,random(30,60))
+    KNIG AB 10 A_Look
+    goto Spawn + 2
+  }
+}

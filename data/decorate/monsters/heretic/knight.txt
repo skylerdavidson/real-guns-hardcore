@@ -1,0 +1,39 @@
+ACTOR Knight2 : Knight replaces Knight
+{
+  Game Heretic
+  SpawnID 6
+  Health 350
+  Radius 24
+  Height 78
+  Mass 150
+  Speed 12
+  Painchance 100
+  Monster
+  +FLOORCLIP
+  SeeSound "hknight/sight"
+  AttackSound "hknight/attack"
+  PainSound "hknight/pain"
+  DeathSound "hknight/death"
+  ActiveSound "hknight/active"
+  Obituary "$OB_BONEKNIGHT" // "%o was axed by an undead warrior."
+  HitObituary "$OB_BONEKNIGHTHIT" // "%o was slain by an undead warrior."
+
+  States
+  {
+  Spawn:
+  	KNIG A 0
+  	KNIG A 0 Thing_SetSpecial(0,226,613,0,random(20,40))
+    KNIG AB 10 A_Look
+    Loop
+  }
+}
+
+ACTOR KnightAxe2 : KnightAxe replaces KnightAxe 
+{
+  Speed 18
+}
+
+ACTOR RedAxe2 : RedAxe replaces RedAxe 
+{
+  Speed 18
+}

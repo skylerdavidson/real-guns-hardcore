@@ -1,0 +1,29 @@
+ACTOR Clink2 : Clink replaces Clink
+{
+  Game Heretic
+  SpawnID 1
+  Health 150
+  Radius 20
+  Height 64
+  Mass 75
+  Speed 22
+  Painchance 32
+  Monster
+  +NOBLOOD
+  +FLOORCLIP
+  SeeSound "clink/sight"
+  AttackSound "clink/attack"
+  PainSound "clink/pain"
+  DeathSound "clink/death"
+  ActiveSound "clink/active"
+  Obituary "$OB_CLINK" // "%o was slashed by a sabreclaw."
+   
+  States
+  {
+  Spawn:
+  	CLNK A 0
+  	CLNK A 0 Thing_SetSpecial(0,226,613,0,random(50,70))
+    CLNK AB 10 A_Look
+    goto Spawn + 2
+  }
+}

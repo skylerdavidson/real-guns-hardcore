@@ -1,0 +1,38 @@
+ACTOR Wizard2 : Wizard replaces Wizard
+{
+  Game Heretic
+  SpawnID 19
+  Health 500
+  Radius 16
+  Height 68
+  Mass 100
+  Speed 12
+  Painchance 64
+  Monster
+  +FLOAT
+  +NOGRAVITY
+  +DONTOVERLAP
+  SeeSound "wizard/sight"
+  AttackSound "wizard/attack"
+  PainSound "wizard/pain"
+  DeathSound "wizard/death"
+  ActiveSound "wizard/active"
+  Obituary "$OB_WIZARD" // "%o was cursed by a wizard."
+  HitObituary "$OB_WIZARDHIT" // "%o was palpated by a wizard."
+
+  DropItem "ArtiTomeOfPower", 16, 0
+
+  States
+  {
+  Spawn:
+  	WZRD A 0
+  	WZRD A 0 Thing_SetSpecial(0,226,613,0,random(60,100))
+    WZRD AB 10 A_Look
+    goto Spawn + 2
+  }
+}
+
+ACTOR WizardFX1_2 : WizardFX1 replaces WizardFX1
+{
+	Speed 25
+}

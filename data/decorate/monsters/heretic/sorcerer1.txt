@@ -1,0 +1,40 @@
+ACTOR Sorcerer1_2 : Sorcerer1 replaces Sorcerer1
+{
+  Game Heretic
+  SpawnID 142
+  Health 5000
+  Radius 28
+  Height 100
+  Mass 800
+  Speed 16
+  PainChance 56
+  Monster
+  +BOSS
+  +DONTMORPH
+  +NORADIUSDMG
+  +NOTARGET
+  +NOICEDEATH
+  +FLOORCLIP
+  +DONTGIB
+  SeeSound "dsparilserpent/sight"
+  AttackSound "dsparilserpent/attack"
+  PainSound "dsparilserpent/pain"
+  DeathSound "dsparilserpent/death"
+  ActiveSound "dsparilserpent/active"
+  Obituary "$OB_DSPARIL1" // "%o was scalded by D'Sparil's serpent."
+  HitObituary "$OB_DSPARIL1HIT" // "%o was chewed up by D'Sparil's serpent."
+
+  States
+  {
+  Spawn:
+  	SRCR A 0
+  	SRCR A 0 Thing_SetSpecial(0,226,613,0,random(1000,2000))
+    SRCR AB 10 A_Look
+    goto Spawn+2
+  }
+}
+
+ACTOR SorcererFX1_2 : SorcererFX1 replaces SorcererFX1 
+{
+  Speed 28
+}
