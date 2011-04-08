@@ -229,7 +229,7 @@ script 597 ENTER
 	ACS_ExecuteAlways(602,0,0,0,0); // adjust movement speed
 
 	SetFont("BIGFONT");
-	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.10 BETA 2 "
+	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.10 "
 #ifdef SKULLTAG
 		,s:"SKULLTAG"
 #else
@@ -4705,7 +4705,7 @@ script 637 (void)
 			PrimaryAmmo[PlayerNumber()+1] = "L86Ammo";
 			PrimaryAmmoAmount[PlayerNumber()+1] = 200;
 		}
-		else if(CheckInventory("MenuCursor") >= 10)	//Go back
+		else if(CheckInventory("MenuCursor") >= 9)	//Go back
 			TakeInventory("MenuPlace",1);
 		TakeInventory("MenuCursor",15);
 	}
