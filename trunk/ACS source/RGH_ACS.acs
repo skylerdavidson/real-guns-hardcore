@@ -90,10 +90,10 @@ script 501 RESPAWN
 	}
 	else {
 		if(KillersIdArray[PlayerNumber()] == 0){
-			//ChangeCamera(9999, 0, 1);
+			ChangeCamera(9999, 0, 1);
 		}
 		else {
-		    //ChangeCamera(KillersIdArray[PlayerNumber()], 0, 1);
+		    ChangeCamera(KillersIdArray[PlayerNumber()], 0, 1);
 		}
 	}
 
