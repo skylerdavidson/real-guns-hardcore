@@ -90,10 +90,10 @@ script 501 RESPAWN
 	}
 	else {
 		if(KillersIdArray[PlayerNumber()] == 0){
-			ChangeCamera(9999, 0, 1);
+			//ChangeCamera(9999, 0, 1);
 		}
 		else {
-		    ChangeCamera(KillersIdArray[PlayerNumber()], 0, 1);
+		    //ChangeCamera(KillersIdArray[PlayerNumber()], 0, 1);
 		}
 	}
 
@@ -4076,7 +4076,8 @@ script 636 (int firstTimeAfterDeath)
 	// do not give more weapons after respawning in coop
 	if(CheckInventory("Spawned") > 0)
 	{
-		TakeInventory("PowerMenu",1);
+		SetActorState (0, "SpawnExplode");		
+		TakeInventory("PowerMenu",1);		
 		terminate;
 	}	
 	
@@ -4834,7 +4835,8 @@ script 637 (void)
 
 script 638 (int Which)
 {
-	TakeInventory("PowerMenu",1);
+	SetActorState (0, "SpawnExplode");
+	TakeInventory("PowerMenu",1);	
 	SetPlayerProperty(0,0,PROP_FROZEN);
 	
 	TakeInventory("MenuChoice1",1);
