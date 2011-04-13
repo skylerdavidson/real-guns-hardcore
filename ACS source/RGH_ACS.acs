@@ -5032,7 +5032,7 @@ script 638 (int Which)
 		//GiveInventory("G18Ammo",66);
 		//GiveInventory("G18Clip",33);
 		GiveInventory("FAMAS",1);
-		GiveInventory("FAMASAmmo",2);
+		//GiveInventory("FAMASAmmo",2);
 		GiveInventory("FAMAS M203",1);
 		//GiveInventory("M203Ammo",1);
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
