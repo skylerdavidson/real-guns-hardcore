@@ -932,6 +932,10 @@ function bool is4to3(void){
 	int h = GetScreenHeight();
 	
 	if(
+		(w == 320 &&  h == 240) ||
+		(w == 400 &&  h == 300) ||
+		(w == 512 &&  h == 384) ||
+		(w == 576 &&  h == 432) ||
 		(w == 640 &&  h == 480) ||
 	    (w == 800 &&  h == 600) ||
 	    (w == 1024 &&  h == 768) ||
@@ -949,6 +953,8 @@ function bool is5to4(void){
 	int h = GetScreenHeight();
 	
 	if(
+		(w == 320 &&  h == 256) ||
+		(w == 360 &&  h == 288) ||		
 		(w == 720 &&  h == 576) ||
 	    (w == 1280 &&  h == 1024)
 	){
@@ -961,7 +967,7 @@ function bool is16to9(void){
 	int w = GetScreenWidth();
 	int h = GetScreenHeight();
 	
-	if(
+	if(                    
 		(w == 1280 &&  h == 720) ||
 	    (w == 1024 &&  h == 576) ||
 	    (w == 1600 &&  h == 900) ||
@@ -984,6 +990,8 @@ function bool is16to10(void){
 	int h = GetScreenHeight();
 	
 	if(
+		(w == 360 &&  h == 240) ||
+		(w == 400 &&  h == 256) ||
 		(w == 720 &&  h == 480) ||
 	    (w == 1600 &&  h == 1024) ||
 	    (w == 1680 &&  h == 1050) ||
@@ -1019,7 +1027,7 @@ function void drawStretchedImage(int id, int time, int fadeTime){
 	}
 	else {
 		hudScreenWidth = 1280;
-		log(s:"unknown resolution");
+		log(s:"unknown resolution - please choose a valid resoltion from the SET VIDEO MODE menu");
 	}
 
 	SetHudSize(hudScreenWidth,hudScreenHeight,1);
