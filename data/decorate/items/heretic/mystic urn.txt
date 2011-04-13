@@ -18,7 +18,7 @@
     Loop
   }
 } */
-
+			/*
 actor MUrn : HealthPickup replaces ArtiSuperHealth
 {
   Game Heretic
@@ -50,4 +50,4 @@ actor MUrn : HealthPickup replaces ArtiSuperHealth
     SHD2 A 0 
 	fail
   }
-}
+}          */
