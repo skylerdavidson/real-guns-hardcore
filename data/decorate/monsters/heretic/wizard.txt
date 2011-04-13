@@ -2,7 +2,7 @@ ACTOR Wizard2 : Wizard replaces Wizard
 {
   Game Heretic
   SpawnID 19
-  Health 500
+  Health 300
   Radius 16
   Height 68
   Mass 100

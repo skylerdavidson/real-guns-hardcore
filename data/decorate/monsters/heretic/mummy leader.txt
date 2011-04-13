@@ -2,7 +2,7 @@ ACTOR MummyLeader2 : MummyLeader replaces MummyLeader
 {
   Game Heretic
   SpawnID 2
-  Health 250
+  Health 200
   Painchance 64
   Obituary "$OB_MUMMYLEADER" // "%o was shrieked to death by a nitrogolem."
   States

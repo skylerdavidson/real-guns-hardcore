@@ -55,6 +55,7 @@ ACTOR GoToMenu : PowerupGiver 666
 		stop
 	}
 }
+
 ACTOR PowerMenu : PowerMorph
 {
 	PowerMorph.PlayerClass MenuPlayer

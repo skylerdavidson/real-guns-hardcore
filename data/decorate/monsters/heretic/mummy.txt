@@ -2,7 +2,7 @@ ACTOR Mummy2 : Mummy replaces Mummy
 {
   Game Heretic
   SpawnID 4
-  Health 200
+  Health 180
   Radius 22
   Height 62
   Mass 75
