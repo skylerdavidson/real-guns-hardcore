@@ -4936,7 +4936,7 @@ script 638 (int Which)
 			GiveInventory("Perk2_StoppingPower_Pro",1);
 		}
 		else {
-      GiveInventory("Perk1_OneManArmy",1);
+      GiveInventory("Perk1_OneManArmy_PRO",1);
     }
 		
 		GiveInventory("Perk2_StoppingPower",1);
