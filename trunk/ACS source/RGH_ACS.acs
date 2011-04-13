@@ -757,120 +757,112 @@ script 601 (void) NET
 //------- Sets player speed, affected by "ExtremeConditioning pro" perk.
 script 602 (void)
 {
-	/*if(CheckInventory("Aiming") == 1)
-		SetActorProperty(0,APROP_Speed,0.35);
-	else if(CheckInventory("Aiming") == 0)
-		SetActorProperty(0,APROP_Speed,1.0);*/
+	int MoveSpeed = 1.5;
 
-	//if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
-	//{
-		int MoveSpeed = 1.5;
+	if(
+		CheckWeapon("USP .45") == 1 || CheckWeapon("USP .45 Tac Knife") == 1 || CheckWeapon("USP .45 Ex Mags") == 1 || CheckWeapon("USP .45 Akimbo") == 1 ||
+		CheckWeapon(".44 Magnum") == 1 || CheckWeapon(".44 Magnum Tac Knife") == 1 || CheckWeapon(".44 Magnum Akimbo") == 1 ||
+		CheckWeapon("G18") == 1 || CheckWeapon("G18 Ex Mags") == 1 || CheckWeapon("G18 Akimbo") == 1 ||
+		CheckWeapon("M93 Raffica") == 1 || CheckWeapon("M93 Raffica Ex Mags") == 1 ||
+		CheckWeapon("Desert Eagle") == 1 || CheckWeapon("Desert Eagle Tac Knife") == 1 || CheckWeapon("Deagle Special") == 1 || CheckWeapon("Desert Eagle Akimbo") == 1 ||
+		CheckWeapon("PP2000") == 1 || CheckWeapon("PP2000 Ex Mags") == 1 || CheckWeapon("PP2000 Akimbo") == 1 ||
+		CheckWeapon("M9") == 1 || CheckWeapon("M9 Tac Knife") == 1 || CheckWeapon("M9 Ex Mags") == 1 || CheckWeapon("M9 Akimbo") == 1
+	)
+	{
+		if(CheckInventory("Aiming") == 1)
+			MoveSpeed = 1.2;
+		else
+			MoveSpeed = 1.50;
+	}
+	else if(
+		CheckWeapon("SPAS-12") == 1 || CheckWeapon("SPAS-12 Grip") == 1 || CheckWeapon("SPAS-12 Ex Mags") == 1 ||
+		CheckWeapon("AA-12") == 1 || CheckWeapon("AA-12 Grip") == 1 || CheckWeapon("AA-12 Ex Mags") == 1 ||
+		CheckWeapon("M1014") == 1 || CheckWeapon("M1014 Grip") == 1 || CheckWeapon("M1014 Ex Mags") == 1 ||
+		CheckWeapon("Striker") == 1 || CheckWeapon("Striker Grip") == 1 || CheckWeapon("Striker Ex Mags") == 1 ||
+		CheckWeapon("Ranger") == 1 || 
+		CheckWeapon("Model 1887") == 1
+	)
+	{
+		if(CheckInventory("Aiming") == 1)
+			MoveSpeed = 1.1;
+		else
+			MoveSpeed = 1.25;
+	}
+	else if(
+		CheckWeapon("UMP45") == 1 || CheckWeapon("UMP45 Rapid Fire") == 1 || CheckWeapon("UMP45 Ex Mags") == 1 || 
+		CheckWeapon("TDI Vector") == 1 || CheckWeapon("TDI Vector Ex Mags") == 1 ||
+		CheckWeapon("FN P90") == 1 || CheckWeapon("FN P90 Rapid Fire") == 1 || CheckWeapon("FN P90 Ex Mags") == 1 ||
+		CheckWeapon("MP5K") == 1 || CheckWeapon("MP5K Rapid Fire") == 1 || CheckWeapon("MP5K Ex Mags") == 1 ||
+		CheckWeapon("Mini-UZI") == 1 || CheckWeapon("Mini-UZI Ex Mags") == 1 || CheckWeapon("Mini-UZI Rapid Fire") == 1 || CheckWeapon("Mini-UZI Akimbo") == 1
+	)
+	{
+		if(CheckInventory("Aiming") == 1)
+			MoveSpeed = 1.1;
+		else
+			MoveSpeed = 1.25;
+	}
+	else if(
+		CheckWeapon("ACR") == 1 || CheckWeapon("ACR Ex Mags") == 1 ||
+		CheckWeapon("SCAR-H") == 1 || CheckWeapon("SCAR-H Ex Mags") == 1 ||
+		CheckWeapon("M4A1") == 1 || CheckWeapon("M4A1 Ex Mags") == 1 ||
+		CheckWeapon("M16A4") == 1 || CheckWeapon("M16A4 Ex Mags") == 1 ||
+		CheckWeapon("AK-47") == 1 || CheckWeapon("AK-47 Ex Mags") == 1 ||
+		CheckWeapon("FAMAS M203") == 1 ||
+		CheckWeapon("FAMAS") == 1 || CheckWeapon("FAMAS Ex Mags") == 1 ||
+		CheckWeapon("F2000") == 1 || CheckWeapon("F2000 Ex Mags") == 1 ||
+		CheckWeapon("FAL") == 1 || CheckWeapon("FAL Ex Mags") == 1 ||
+		CheckWeapon("Thumper") == 1 // thumper is considered to be an AR, because it is basically a FAMAS without the machinegun :)
+	)
+	{
+		if(CheckInventory("Aiming") == 1)
+			MoveSpeed = 0.7;
+		else
+			MoveSpeed = 1.0;		
+	}
+	else if(
+		CheckWeapon("MG4") == 1 || CheckWeapon("MG4 Grip") == 1 || CheckWeapon("MG4 Ex Mags") == 1 ||
+		CheckWeapon("AUG HBAR") == 1 || CheckWeapon("AUG HBAR Grip") == 1 || CheckWeapon("AUG HBAR Ex Mags") == 1 ||
+		CheckWeapon("M240") == 1 || CheckWeapon("M240 Grip") == 1 || CheckWeapon("M240 Ex Mags") == 1 ||
+		CheckWeapon("L86") == 1 || CheckWeapon("L86 Grip") == 1 || CheckWeapon("L86 Ex Mags") == 1
+	)
+	{
+		if(CheckInventory("Aiming") == 1)
+			MoveSpeed = 0.2;
+		else
+			MoveSpeed = 0.6;		
+	}
+	else if(
+		CheckWeapon("Intervention") == 1 || CheckWeapon("Intervention Thermal") == 1 || CheckWeapon("Intervention Ex Mags") ||
+		CheckWeapon("Barrett 50cal Ex Mags") == 1 || CheckWeapon("Barrett 50cal") == 1 || CheckWeapon("Barrett 50cal Thermal") == 1 ||
+		CheckWeapon("WA2000") == 1 || CheckWeapon("WA2000 Thermal") == 1 || CheckWeapon("WA2000 Ex Mags") == 1 ||
+		CheckWeapon("M14 EBR Ex Mags") == 1  || CheckWeapon("M14 EBR") == 1 || CheckWeapon("M14 EBR Thermal") == 1
+	)
+	{
+		if(CheckInventory("Aiming") == 1)
+			MoveSpeed = 0.1;
+		else
+			MoveSpeed = 0.6;		
+	}		
+	else if(
+		CheckWeapon("AT4-HS") ||
+		CheckWeapon("RPG-7")
+	)
+	{
+		if(CheckInventory("Aiming") == 1)
+			MoveSpeed = 0.1;
+		else
+			MoveSpeed = 0.6;		
+	}	
 	
-	//if(CheckInventory("Aiming") == 1)
-		if(
-			CheckWeapon("USP .45") == 1 || CheckWeapon("USP .45 Tac Knife") == 1 || CheckWeapon("USP .45 Ex Mags") == 1 || CheckWeapon("USP .45 Akimbo") == 1 ||
-			CheckWeapon(".44 Magnum") == 1 || CheckWeapon(".44 Magnum Tac Knife") == 1 || CheckWeapon(".44 Magnum Akimbo") == 1 ||
-			CheckWeapon("G18") == 1 || CheckWeapon("G18 Ex Mags") == 1 || CheckWeapon("G18 Akimbo") == 1 ||
-			CheckWeapon("M93 Raffica") == 1 || CheckWeapon("M93 Raffica Ex Mags") == 1 ||
-			CheckWeapon("Desert Eagle") == 1 || CheckWeapon("Desert Eagle Tac Knife") == 1 || CheckWeapon("Deagle Special") == 1 || CheckWeapon("Desert Eagle Akimbo") == 1 ||
-			CheckWeapon("PP2000") == 1 || CheckWeapon("PP2000 Ex Mags") == 1 || CheckWeapon("PP2000 Akimbo") == 1 ||
-			CheckWeapon("M9") == 1 || CheckWeapon("M9 Tac Knife") == 1 || CheckWeapon("M9 Ex Mags") == 1 || CheckWeapon("M9 Akimbo") == 1
-		)
-		{
-			if(CheckInventory("Aiming") == 1)
-				MoveSpeed = 1.2;
-			else
-				MoveSpeed = 1.50;
-		}
-		else if(
-			CheckWeapon("SPAS-12") == 1 || CheckWeapon("SPAS-12 Grip") == 1 || CheckWeapon("SPAS-12 Ex Mags") == 1 ||
-			CheckWeapon("AA-12") == 1 || CheckWeapon("AA-12 Grip") == 1 || CheckWeapon("AA-12 Ex Mags") == 1 ||
-			CheckWeapon("M1014") == 1 || CheckWeapon("M1014 Grip") == 1 || CheckWeapon("M1014 Ex Mags") == 1 ||
-			CheckWeapon("Striker") == 1 || CheckWeapon("Striker Grip") == 1 || CheckWeapon("Striker Ex Mags") == 1 ||
-			CheckWeapon("Ranger") == 1 || 
-			CheckWeapon("Model 1887") == 1
-		)
-		{
-			if(CheckInventory("Aiming") == 1)
-				MoveSpeed = 1.1;
-			else
-				MoveSpeed = 1.25;
-		}
-		else if(
-			CheckWeapon("UMP45") == 1 || CheckWeapon("UMP45 Rapid Fire") == 1 || CheckWeapon("UMP45 Ex Mags") == 1 || 
-			CheckWeapon("TDI Vector") == 1 || CheckWeapon("TDI Vector Ex Mags") == 1 ||
-			CheckWeapon("FN P90") == 1 || CheckWeapon("FN P90 Rapid Fire") == 1 || CheckWeapon("FN P90 Ex Mags") == 1 ||
-			CheckWeapon("MP5K") == 1 || CheckWeapon("MP5K Rapid Fire") == 1 || CheckWeapon("MP5K Ex Mags") == 1 ||
-			CheckWeapon("Mini-UZI") == 1 || CheckWeapon("Mini-UZI Ex Mags") == 1 || CheckInventory("MiniUziClip2") || CheckWeapon("Mini-UZI Akimbo") == 1
-		)
-		{
-			if(CheckInventory("Aiming") == 1)
-				MoveSpeed = 1.1;
-			else
-				MoveSpeed = 1.25;
-		}
-		else if(
-			CheckWeapon("ACR") == 1 || CheckWeapon("ACR Ex Mags") == 1 ||
-			CheckWeapon("SCAR-H") == 1 || CheckWeapon("SCAR-H Ex Mags") == 1 ||
-			CheckWeapon("M4A1") == 1 || CheckWeapon("M4A1 Ex Mags") == 1 ||
-			CheckWeapon("M16A4") == 1 || CheckWeapon("M16A4 Ex Mags") == 1 ||
-			CheckWeapon("AK-47") == 1 || CheckWeapon("AK-47 Ex Mags") == 1 ||
-			CheckWeapon("FAMAS M203") == 1 ||
-			CheckWeapon("FAMAS") == 1 || CheckWeapon("FAMAS Ex Mags") == 1 ||
-			CheckWeapon("F2000") == 1 || CheckWeapon("F2000 Ex Mags") == 1 ||
-			CheckWeapon("FAL") == 1 || CheckWeapon("FAL Ex Mags") == 1 ||
-			CheckWeapon("Thumper") == 1 // thumper is considered to be an AR, because it is basically a FAMAS without the machinegun :)
-		)
-		{
-			if(CheckInventory("Aiming") == 1)
-				MoveSpeed = 0.7;
-			else
-				MoveSpeed = 1.0;		
-		}
-		else if(
-			CheckWeapon("MG4") == 1 || CheckWeapon("MG4 Grip") == 1 || CheckWeapon("MG4 Ex Mags") == 1 ||
-			CheckWeapon("AUG HBAR") == 1 || CheckWeapon("AUG HBAR Grip") == 1 || CheckWeapon("AUG HBAR Ex Mags") == 1 ||
-			CheckWeapon("M240") == 1 || CheckWeapon("M240 Grip") == 1 || CheckWeapon("M240 Ex Mags") == 1 ||
-			CheckWeapon("L86") == 1 || CheckWeapon("L86 Grip") == 1 || CheckWeapon("L86 Ex Mags") == 1
-		)
-		{
-			if(CheckInventory("Aiming") == 1)
-				MoveSpeed = 0.2;
-			else
-				MoveSpeed = 0.6;		
-		}
-		else if(
-			CheckWeapon("Intervention") == 1 || CheckWeapon("Intervention Thermal") == 1 || CheckWeapon("Intervention Ex Mags") ||
-			CheckWeapon("Barrett 50cal Ex Mags") == 1 || CheckWeapon("Barrett 50cal") == 1 || CheckWeapon("Barrett 50cal Thermal") == 1 ||
-			CheckWeapon("WA2000") == 1 || CheckWeapon("WA2000 Thermal") == 1 || CheckWeapon("WA2000 Ex Mags") == 1 ||
-			CheckWeapon("M14 EBR Ex Mags") == 1  || CheckWeapon("M14 EBR") == 1 || CheckWeapon("M14 EBR Thermal") == 1
-		)
-		{
-			if(CheckInventory("Aiming") == 1)
-				MoveSpeed = 0.1;
-			else
-				MoveSpeed = 0.6;		
-		}		
-		else if(
-			CheckWeapon("AT4-HS") ||
-			CheckWeapon("RPG-7")
-		)
-		{
-			if(CheckInventory("Aiming") == 1)
-				MoveSpeed = 0.1;
-			else
-				MoveSpeed = 0.6;		
-		}	
+	
+	
+	if(CheckInventory("Perk1_ExtremeConditioning") == 1)
+	{
+		MoveSpeed = FixedMul(MoveSpeed, 1.15);
+	}
 		
-		
-		
-		if(CheckInventory("Perk1_ExtremeConditioning") == 1)
-		{
-			MoveSpeed = FixedMul(MoveSpeed, 1.15);
-		}
-			
-		//print(f:MoveSpeed);
-	//}
+	//print(f:MoveSpeed);
+	
 	SetActorProperty(0,APROP_Speed,MoveSpeed);
 }
 
