@@ -5176,6 +5176,10 @@ script 638 (int Which)
     GiveInventory("Spawned", 1);
 	
 	int MaxGunCount = GameSkill();
+	if(GameType() == GAME_NET_DEATHMATCH){
+		MaxGunCount = 2;
+	}
+	
 	If(CheckInventory("Perk1_OneManArmy_Pro") == 1){
 		MaxGunCount++;
 	}
