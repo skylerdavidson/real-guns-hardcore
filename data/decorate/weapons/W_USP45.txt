@@ -391,7 +391,7 @@ actor FragGrenade
   obituary "%o caught %k's hot potato."
   radius 5
   height 5
-  speed 20
+  speed 23
   damage (1)
   PROJECTILE
   -NOGRAVITY
@@ -406,7 +406,7 @@ actor FragGrenade
   +TELESTOMP
   Scale 0.16
   gravity 0.4
-  bouncefactor 0.35
+  bouncefactor 0.05
   damagetype "Explosion"
   ReactionTime 3
   seesound "grenade/lob"
