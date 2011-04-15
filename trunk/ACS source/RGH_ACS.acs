@@ -4084,7 +4084,8 @@ script 636 (int firstTimeAfterDeath)
 	if(CheckInventory("Spawned") > 0)
 	{
 		SetActorState (0, "SpawnExplode");		
-		TakeInventory("PowerMenu",1);		
+		TakeInventory("PowerMenu",1);
+		GiveInventory("ResetVisibility",1);		
 		terminate;
 	}	
 	
@@ -4843,7 +4844,8 @@ script 637 (void)
 script 638 (int Which)
 {
 	SetActorState (0, "SpawnExplode");
-	TakeInventory("PowerMenu",1);	
+	TakeInventory("PowerMenu",1);
+	GiveInventory("ResetVisibility",1);	
 	SetPlayerProperty(0,0,PROP_FROZEN);
 	
 	TakeInventory("MenuChoice1",1);
