@@ -5057,6 +5057,7 @@ script 638 (int Which)
 		}
 		
 		GiveInventory("Perk3_LastStand",1);
+		GiveInventory("LastStandUrn",10000);
 		
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
