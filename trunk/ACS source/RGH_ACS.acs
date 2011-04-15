@@ -389,6 +389,9 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 
 	// Low recoil automatic weapons
 	if(
+		CheckWeapon("Mini-UZI") ||
+		CheckWeapon("Mini-UZI Ex Mags") || 
+		CheckWeapon("Mini-UZI Akimbo") || 
 		CheckWeapon("UMP45") || 
 		CheckWeapon("UMP45 Ex Mags") || 
 		CheckWeapon("FN P90") || 
@@ -431,10 +434,7 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 	}
 
 	// Medium recoil automatic weapons
-	if(
-		CheckWeapon("Mini-UZI") || 
-		CheckWeapon("Mini-UZI Ex Mags") || 
-		CheckWeapon("Mini-UZI Akimbo") || 
+	if(		 
 		CheckWeapon("F2000") || 
 		CheckWeapon("F2000 Ex Mags") || 
 		CheckWeapon("M93 Raffica") || 
