@@ -1046,8 +1046,14 @@ script 606 (void)
 		while(true){
 			i++;
 
+
+
 			While(GetActorProperty(0,APROP_Health) < 100 && GetActorProperty(0,APROP_Health) > 0)
 			{
+				if(GetActorProperty(0,APROP_Health) == 1 && CheckInventory("InLastStand") == 0 && CheckInventory("Perk3_LastStand") == 1){
+					ACS_ExecuteAlways(625,0,0,0,0);	
+				}
+			
 				if(CheckInventory("InCombatRegeneration") > 0 || (CheckInventory("InLastStand") > 0 && CheckInventory("Perk3_LastStand_Pro") == 0))
 				{			
 					ACS_ExecuteAlways(647,0,0,0,0);
@@ -5317,7 +5323,7 @@ script 639 (void)
         else if(Randomiser == 3)		//ColdBlooded
 			Perk2[PlayerNumber()+1] = "Perk2_ColdBlooded";
 
-	Randomiser = random(0,1);
+	Randomiser = random(0,2);
 		if(Randomiser == 0)			//Steady Aim
 			Perk3[PlayerNumber()+1] = "Perk3_SteadyAim";
 		else if(Randomiser == 1)		//Commando
