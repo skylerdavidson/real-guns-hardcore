@@ -1,5 +1,3 @@
-                     
-                            
 ACTOR RGUPlayer : DoomPlayer
 {
 +QUICKTORETALIATE
@@ -680,4 +678,23 @@ actor ReadyRegen : Inventory
 {
     inventory.amount 0
     inventory.maxamount 1
+}
+
+actor PowerResetVisibility : PowerInvisibility
+{
+	Powerup.Duration 1
+}
+
+actor ResetVisibility : PowerupGiver
+{
+  inventory.maxamount 0
+  powerup.type "PowerResetVisibility"
+  Powerup.Duration 1
+  +AUTOACTIVATE
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  }
 }
