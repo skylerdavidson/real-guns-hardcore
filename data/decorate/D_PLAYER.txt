@@ -105,7 +105,7 @@ ACTOR RGUPlayer : DoomPlayer
   DamageFactor "Normal", 1.75
   DamageFactor "Fire", 1.0
   DamageFactor "Slime", 1.0
-  DamageFactor "Falling", 5.0
+  DamageFactor "Falling", 1.0
   DamageFactor "Bullet", 1.0
   DamageFactor "Shotgun", 1.0
   DamageFactor "Rifle", 1.0
