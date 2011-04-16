@@ -93,7 +93,7 @@ actor GunSpawner : RandomSpawner
     DropItem "RPGPickup"
     DropItem "M1887Pickup"
     DropItem "M14Pickup"
-    DropItem "TacticalInsertionPickup"
+    //DropItem "TacticalInsertionPickup"
 }
 
 actor GunSpawner1 : GunSpawner replaces Chainsaw {}
