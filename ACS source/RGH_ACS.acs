@@ -1255,6 +1255,7 @@ script 616 RESPAWN
 		HudMessageBold(n:0,s:" \cdranked up to level 1!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		RankedUp = True;
 		GiveInventory("Rank",1);
+		GiveInventory("RewardsToPick",1);
 		
 		ACS_ExecuteAlways(623,0,0,0,0);
 	}
@@ -1268,6 +1269,7 @@ script 616 RESPAWN
 		HudMessageBold(n:0,s:" \cdranked up to level 2!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		RankedUp = True;
 		GiveInventory("Rank",1);
+		GiveInventory("RewardsToPick",1);
 		
 		ACS_ExecuteAlways(623,0,0,0,0);
 	}
@@ -1281,6 +1283,7 @@ script 616 RESPAWN
 		HudMessageBold(n:0,s:" \cdranked up to level 3!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		RankedUp = True;
 		GiveInventory("Rank",1);
+		GiveInventory("RewardsToPick",1);
 
 		ACS_ExecuteAlways(623,0,0,0,0);
 	}
@@ -1294,6 +1297,7 @@ script 616 RESPAWN
 		HudMessageBold(n:0,s:" \cdranked up to level 4!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		RankedUp = True;
 		GiveInventory("Rank",1);
+		GiveInventory("RewardsToPick",1);
 		
 		ACS_ExecuteAlways(623,0,0,0,0);
 	}
@@ -1307,6 +1311,7 @@ script 616 RESPAWN
 		HudMessageBold(n:0,s:" \cdranked up to level 5!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		RankedUp = True;
 		GiveInventory("Rank",1);
+		GiveInventory("RewardsToPick",1);
 
 		ACS_ExecuteAlways(623,0,0,0,0);
 	}
@@ -1320,6 +1325,7 @@ script 616 RESPAWN
 		HudMessageBold(n:0,s:" \cdranked up to level 6!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		RankedUp = True;
 		GiveInventory("Rank",1);
+		GiveInventory("RewardsToPick",1);
 		
 		ACS_ExecuteAlways(623,0,0,0,0);
 	}
@@ -1333,6 +1339,7 @@ script 616 RESPAWN
 		HudMessageBold(n:0,s:" \cdranked up to level 7!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		RankedUp = True;
 		GiveInventory("Rank",1);
+		GiveInventory("RewardsToPick",1);
 
 		ACS_ExecuteAlways(623,0,0,0,0);
 	}
@@ -1346,6 +1353,7 @@ script 616 RESPAWN
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		RankedUp = True;
 		GiveInventory("Rank",1);
+		GiveInventory("RewardsToPick",1);
 		
 		ACS_ExecuteAlways(623,0,0,0,0);
 	}
@@ -1358,6 +1366,7 @@ script 616 RESPAWN
 		HudMessageBold(n:0,s:" \cdranked up to level 9!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		RankedUp = True;
 		GiveInventory("Rank",1);
+		GiveInventory("RewardsToPick",1);
 
 		ACS_ExecuteAlways(623,0,0,0,0);
 	}
@@ -1371,6 +1380,7 @@ script 616 RESPAWN
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		RankedUp = True;
 		GiveInventory("Rank",1);
+		GiveInventory("RewardsToPick",1);
 		
 		ACS_ExecuteAlways(623,0,0,0,0);
 	}
@@ -1384,6 +1394,7 @@ script 616 RESPAWN
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		RankedUp = True;
 		GiveInventory("Rank",1);
+		GiveInventory("RewardsToPick",1);
 		
 		ACS_ExecuteAlways(623,0,0,0,0);
 	}
@@ -1397,6 +1408,7 @@ script 616 RESPAWN
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		RankedUp = True;
 		GiveInventory("Rank",1);
+		GiveInventory("RewardsToPick",1);
 		
 		ACS_ExecuteAlways(623,0,0,0,0);
 	}
@@ -1410,6 +1422,7 @@ script 616 RESPAWN
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		RankedUp = True;
 		GiveInventory("Rank",1);
+		GiveInventory("RewardsToPick",1);
 		
 		ACS_ExecuteAlways(623,0,0,0,0);
 	}
@@ -1423,6 +1436,7 @@ script 616 RESPAWN
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		RankedUp = True;
 		GiveInventory("Rank",1);
+		GiveInventory("RewardsToPick",1);
 		
 		ACS_ExecuteAlways(623,0,0,0,0);
 	}
@@ -1436,6 +1450,7 @@ script 616 RESPAWN
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		RankedUp = True;
 		GiveInventory("Rank",1);
+		GiveInventory("RewardsToPick",1);
 		
 		ACS_ExecuteAlways(623,0,0,0,0);
 	}
@@ -3158,6 +3173,12 @@ script 622 (void)
 	
 	TakeInventory("Combo",25);
 	LocalAmbientSound("game/challenge",255);
+	
+	TakeInventory("RewardsToPick",1);
+	
+	if(CheckInventory("RewardsToPick") > 0){
+		ACS_ExecuteAlways(623,0,0,0,0); // Fill the rewards menu once more
+	}
 }
 
 //------------------------------------------
