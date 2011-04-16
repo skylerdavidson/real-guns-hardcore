@@ -2,10 +2,11 @@ gameinfo
 {
 	titletime = 999999
 	quitsound = "barett/fire"
-	drawreadthis = false
+	drawreadthis = true
     quitmessages = "THANK YOU for playing Real Guns Hardcore"
 	titlepage = "TITLEPIC"
 	titlemusic = "D_INTRO"
+	infopage = "HELPPIC"
 	intermissionmusic = "D_INTER"	
 }
 
