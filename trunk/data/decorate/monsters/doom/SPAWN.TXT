@@ -21,27 +21,6 @@ actor Awoken : Inventory
   inventory.maxamount 1
 }
 
-ACTOR TeleportFogBomb : TeleportFog replaces TeleportFog
-{
-  +NOBLOCKMAP
-  +NOTELEPORT
-  +NOGRAVITY
-  +FORCERADIUSDMG
-  RenderStyle Add
-  damagetype "Telebomb"
-  States
-  {
-  Spawn:
-    TFOG A 6 Bright
-    TFOG B 6 Bright A_Explode(50,128)
-    TFOG ABCDEFGHIJ 6 Bright
-    Stop
-  }
-}
-
-
-
-
 actor ZombieMan_Spawner replaces ZombieMan
 {
   MONSTER
