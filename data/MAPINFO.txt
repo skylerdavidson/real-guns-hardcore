@@ -28,6 +28,7 @@ map E1M8 lookup "HUSTR_E1M8"
 	specialaction = "BruiserDemon", "Floor_LowerToNearest", 666, 16
 	specialaction = "HellsFury", "Floor_LowerToNearest", 666, 16
 	specialaction = "Afrit", "Floor_LowerToNearest", 666, 16
+	specialaction = "Ironlich2", "Floor_LowerToNearest", 666, 16
 	specialaction_lowerfloor
 	music = "$MUSIC_E1M8"
 	exitpic = "CREDIT"
