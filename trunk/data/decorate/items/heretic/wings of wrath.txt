@@ -1,0 +1,43 @@
+actor ArtiFly2 : CustomInventory replaces ArtiFly
+{
+	Game Raven
+	+COUNTITEM
+	+FLOATBOB
+	+INVENTORY.PICKUPFLASH
+	+INVENTORY.INVBAR
+	-INVENTORY.AUTOACTIVATE
+	+INVENTORY.INTERHUBSTRIP
+	Inventory.Amount 1
+	Inventory.MaxAmount 99 
+  
+	Inventory.RespawnTics 4230
+	Inventory.Icon ARTISOAR
+	Inventory.PickupMessage "$TXT_ARTIFLY" // "WINGS OF WRATH"
+	States
+	{
+		Spawn:
+			SOAR ABCB 5
+			Loop
+		Use:
+			SOAR A 0 A_JumpIfInventory("PowerFlight", 1, "FailState")
+			SOAR A 0 A_JumpIfInventory("Perk1_Scavenger_PRO", 1, "ScavengerPro")
+			SOAR A 0 A_GiveInventory("ArtiFly2_Normal", 1)
+			stop
+		ScavengerPro:
+			SOAR A 0 A_GiveInventory("ArtiFly2_ScavengerPro", 1)
+			stop
+		FailState: 
+			SOAR A 0
+			fail
+	}
+}
+
+actor ArtiFly2_Normal: ArtiFly{
+	+INVENTORY.AUTOACTIVATE
+}
+
+actor ArtiFly2_ScavengerPro : ArtiFly
+{
+	+INVENTORY.AUTOACTIVATE
+	Powerup.Duration -120
+}

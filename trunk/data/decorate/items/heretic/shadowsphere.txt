@@ -1,0 +1,43 @@
+actor ArtiInvisibility2 : CustomInventory replaces ArtiInvisibility
+{
+	Game Heretic
+	RenderStyle Translucent
+  	Alpha 0.4	
+	+COUNTITEM
+	+FLOATBOB
+	+INVENTORY.PICKUPFLASH
+	+INVENTORY.INVBAR
+	-INVENTORY.AUTOACTIVATE
+	Inventory.Amount 1
+	Inventory.MaxAmount 99 
+	Inventory.RespawnTics 4230
+	Inventory.Icon ARTIINVS
+	Inventory.PickupMessage "$TXT_ARTIINVISIBILITY" // "SHADOWSPHERE"
+	States
+	{
+		Spawn:
+			INVS A 350 BRIGHT
+			Loop
+		Use:
+			INVS A 0 A_JumpIfInventory("PowerGhost", 1, "FailState")
+			INVS A 0 A_JumpIfInventory("Perk1_Scavenger_PRO", 1, "ScavengerPro")
+			INVS A 0 A_GiveInventory("ArtiInvisibility2_Normal", 1)
+			stop
+		ScavengerPro:
+			INVS A 0 A_GiveInventory("ArtiInvisibility2_ScavengerPro", 1)
+			stop
+		FailState: 
+			INVS A 0
+			fail
+	}
+}
+
+actor ArtiInvisibility2_Normal: ArtiInvisibility{
+	+INVENTORY.AUTOACTIVATE
+}
+
+actor ArtiInvisibility2_ScavengerPro : ArtiInvisibility
+{
+	+INVENTORY.AUTOACTIVATE
+	Powerup.Duration -120
+}

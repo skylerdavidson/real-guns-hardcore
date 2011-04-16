@@ -52,6 +52,10 @@
 #include "decorate/items/heretic/silver shield.txt"
 #include "decorate/items/heretic/enchanted shield.txt"
 #include "decorate/items/heretic/mystic urn.txt"
+#include "decorate/items/heretic/ring of invulnerability.txt"
+#include "decorate/items/heretic/shadowsphere.txt"
+#include "decorate/items/heretic/wings of wrath.txt"
+#include "decorate/items/heretic/torch.txt"
 
 #include decorate/monsters/doom/SPAWN.txt
 #include decorate/monsters/doom/DEC_ZOM1.txt
