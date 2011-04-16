@@ -1,0 +1,41 @@
+actor ArtiTorch2 : CustomInventory replaces ArtiTorch
+{
+	Game Raven
+	+COUNTITEM
+	+FLOATBOB
+	+INVENTORY.PICKUPFLASH
+	+INVENTORY.INVBAR
+	-INVENTORY.AUTOACTIVATE
+	Inventory.Amount 1
+	Inventory.MaxAmount 99 
+
+	Inventory.Icon ARTITRCH
+	Inventory.PickupMessage "$TXT_ARTITORCH" // "TORCH"
+	States
+	{
+		Spawn:
+			TRCH ABC 3 Bright
+			Loop
+		Use:
+			TRCH A 0 A_JumpIfInventory("PowerTorch", 1, "FailState")
+			TRCH A 0 A_JumpIfInventory("Perk1_Scavenger_PRO", 1, "ScavengerPro")
+			TRCH A 0 A_GiveInventory("ArtiTorch2_Normal", 1)
+			stop
+		ScavengerPro:
+			TRCH A 0 A_GiveInventory("ArtiTorch2_ScavengerPro", 1)
+			stop
+		FailState: 
+			TRCH A 0
+			fail
+	}
+}
+
+actor ArtiTorch2_Normal: ArtiTorch{
+	+INVENTORY.AUTOACTIVATE
+}
+
+actor ArtiTorch2_ScavengerPro : ArtiTorch
+{
+	+INVENTORY.AUTOACTIVATE
+	Powerup.Duration -240
+}
