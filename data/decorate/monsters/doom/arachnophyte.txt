@@ -55,6 +55,7 @@ ACTOR Arachnophyte : RGAMonster
         APYT H 6 A_Fall
         APYT I 6
         APYT J 6
+        APYT J 0 A_BossDeath
         Stop
     }
 }
