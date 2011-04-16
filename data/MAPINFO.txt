@@ -49,6 +49,7 @@ map E2M8 lookup "HUSTR_E2M8"
 	specialaction = "Annihilator", "ACS_ExecuteAlways", 612, 0, 1
 	specialaction = "Thamuz", "ACS_ExecuteAlways", 612, 0, 1
 	specialaction = "Cardinal", "ACS_ExecuteAlways", 612, 0, 1
+	specialaction = "Minotaur2", "Floor_LowerToNearest", 666, 16
 	specialaction_exitlevel
 	music = "$MUSIC_E2M8"
 	exitpic = "VICTORY2"
