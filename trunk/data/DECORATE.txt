@@ -47,6 +47,8 @@
 #include decorate/D_ATTACH.txt
 #include decorate/D_DROPSP.txt
 
+#include "decorate/props/doom/explosive barrel.txt"
+
 #include decorate/items/heretic/_spawners.txt
 #include "decorate/items/heretic/quartz flask.txt"
 #include "decorate/items/heretic/silver shield.txt"
