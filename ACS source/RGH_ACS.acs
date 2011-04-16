@@ -6,6 +6,7 @@ int KillersHealth;
 int KillersMaxHealth;
 str KillersGun;
 str ExperienceNeed[40];
+str CurrentVoice[40];
 
 str KillersIdArray[32];
 
@@ -3513,6 +3514,8 @@ script 626 (void) NET
 		HudMessage(s:"\cdVoice changed to American [US Rangers]"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
 		TakeInventory("Voice",10);
 	}
+	
+	CurrentVoice[PlayerNumber()] = CheckInventory("Voice");
 }
 
 
@@ -3939,6 +3942,11 @@ script 634 RESPAWN NET
 	
 	if(CheckInventory("Menu") == 1){
 		terminate; // terminate the script if we are in menu (to prevent erasing the menu)
+	}
+	
+	if(GameType() == GAME_NET_DEATHMATCH){
+		TakeInventory("Voice", 9);
+		GiveInventory("Voice", CurrentVoice[PlayerNumber()]);
 	}
 	
 	HudMessage(s:""; HUDMSG_PLAIN, 1001, CR_WHITE, 100.1, 100.0, 1.0);
