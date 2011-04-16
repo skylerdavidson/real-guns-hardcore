@@ -5414,6 +5414,13 @@ script 645 (int p) CLIENTSIDE { // helper for 644
 	HudMessage(s:""; HUDMSG_PLAIN, 2700+p, CR_WHITE, 400.0, 60.0, 2.0);
 }
 
+// script for "give level"
+script 646 (void) {
+	GiveInventory("Experience", ExperienceNeed[PlayerNumber()+1] - CheckInventory("Experience"));
+	
+	ACS_ExecuteAlways(616,0,0,0,0); // refresh level counter
+}
+
 // cold blooded invisibility managment loop
 script 647 (void) CLIENTSIDE {
 	if(GetActorProperty(0,APROP_Health) < 60){

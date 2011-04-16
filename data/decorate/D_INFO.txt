@@ -123,6 +123,23 @@ actor Experience : Inventory
     inventory.maxamount 80000
 }
 
+//Level (only for purpose of giving)
+actor Level : CustomInventory
+{
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  Inventory.MaxAmount 0 
+
+  States
+  {
+  Pickup:
+	TNT1 A 0
+	TNT1 A 0 ACS_ExecuteAlways(646,0,0,0,0)
+	stop
+  }
+}
+
 //CurrentRank
 actor Rank : Inventory
 {
