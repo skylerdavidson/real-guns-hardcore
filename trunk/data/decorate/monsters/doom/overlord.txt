@@ -126,6 +126,7 @@ MeleeSound "caco/melee"
     OVER P 0 bright A_CustomMissile("OverHorn1",110,-16,-90,2,random(-15,15))
     OVER P 0 bright A_CustomMissile("OverHorn2",110,16,90,2,random(-15,15))
     OVER PQRSTUV 8 bright
+    OVER V 0 A_BossDeath
     stop
   }
 }

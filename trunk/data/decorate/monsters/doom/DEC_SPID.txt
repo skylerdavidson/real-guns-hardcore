@@ -164,6 +164,7 @@ actor CyberMastermind
         CYMM N 10
         CYMM O 10 A_Fall
         CYMM PQRST 10
+        CYMM T 0 A_BossDeath
         CYMM U -1
         Stop
     }

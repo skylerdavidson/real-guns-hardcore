@@ -1145,11 +1145,11 @@ script 612 (int Which)
 	{
 		ConsoleCommand("nextmap");
 	}
-	else if(Which == 1 && (ThingCountName("Cyberdemon_2", 0) == 0 && ThingCountName("Annihilator", 0) == 0 && ThingCountName("Thamuz", 0) == 0 && ThingCountName("Cardinal", 0) == 0))
+	else if(Which == 1 && (ThingCountName("Cyberdemon_2", 0) == 0 && ThingCountName("Annihilator", 0) == 0 && ThingCountName("Thamuz", 0) == 0 && ThingCountName("Cardinal", 0) == 0 && ThingCountName("Overlord", 0) == 0))
 	{
 		ConsoleCommand("nextmap");
 	}
-	else if(Which == 2 && (ThingCountName("SpiderMastermind_2", 0) == 0 && ThingCountName("CyberMastermind", 0) == 0 && ThingCountName("Demolisher", 0) == 0 && ThingCountName("Arachnophyte", 0) == 0))
+	else if(Which == 2 && (ThingCountName("SpiderMastermind_2", 0) == 0 && ThingCountName("CyberMastermind", 0) == 0 && ThingCountName("Demolisher", 0) == 0 && ThingCountName("Arachnophyte", 0) == 0 && ThingCountName("Overlord", 0) == 0))
 	{
 		ConsoleCommand("nextmap");
 	}

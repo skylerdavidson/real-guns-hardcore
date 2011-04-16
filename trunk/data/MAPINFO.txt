@@ -29,6 +29,7 @@ map E1M8 lookup "HUSTR_E1M8"
 	specialaction = "HellsFury", "Floor_LowerToNearest", 666, 16
 	specialaction = "Afrit", "Floor_LowerToNearest", 666, 16
 	specialaction = "Ironlich2", "Floor_LowerToNearest", 666, 16
+	specialaction = "Hierophant", "Floor_LowerToNearest", 666, 16
 	specialaction_lowerfloor
 	music = "$MUSIC_E1M8"
 	exitpic = "CREDIT"
@@ -49,6 +50,7 @@ map E2M8 lookup "HUSTR_E2M8"
 	specialaction = "Annihilator", "ACS_ExecuteAlways", 612, 0, 1
 	specialaction = "Thamuz", "ACS_ExecuteAlways", 612, 0, 1
 	specialaction = "Cardinal", "ACS_ExecuteAlways", 612, 0, 1
+	specialaction = "Overlord", "ACS_ExecuteAlways", 612, 0, 1
 	specialaction = "Minotaur2", "Floor_LowerToNearest", 666, 16
 	specialaction_exitlevel
 	music = "$MUSIC_E2M8"
@@ -70,6 +72,7 @@ map E3M8 lookup "HUSTR_E3M8"
 	specialaction = "CyberMastermind", "ACS_ExecuteAlways", 612, 0, 2
 	specialaction = "Demolisher", "ACS_ExecuteAlways", 612, 0, 2
 	specialaction = "Arachnophyte", "ACS_ExecuteAlways", 612, 0, 2
+	specialaction = "Overlord", "ACS_ExecuteAlways", 612, 0, 2
 	specialaction_exitlevel
 	music = "$MUSIC_E3M8"
 	exitpic = "PFUB2"
@@ -89,6 +92,7 @@ map E4M8 lookup "HUSTR_E4M8"
 	specialaction = "CyberMastermind", "ACS_ExecuteAlways", 612, 0, 2
 	specialaction = "Demolisher", "ACS_ExecuteAlways", 612, 0, 2
 	specialaction = "Arachnophyte", "ACS_ExecuteAlways", 612, 0, 2
+	specialaction = "Overlord", "ACS_ExecuteAlways", 612, 0, 2
 	specialaction_lowerfloor
 	music = "$MUSIC_E2M5"
 	exitpic = "ENDPIC"
