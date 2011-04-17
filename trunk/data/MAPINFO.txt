@@ -83,7 +83,7 @@ map E4M8 lookup "HUSTR_E4M8"
 {
 	levelnum = 38
 	titlepatch = "WILV37"
-	next = "E1M1"
+	next = "E5M1"
 	secretnext = "E4M9"
 	sky1 = "SKY4"
 	cluster = 4
@@ -93,11 +93,24 @@ map E4M8 lookup "HUSTR_E4M8"
 	specialaction = "CyberMastermind", "ACS_ExecuteAlways", 612, 0, 2
 	specialaction = "Demolisher", "ACS_ExecuteAlways", 612, 0, 2
 	specialaction = "Arachnophyte", "ACS_ExecuteAlways", 612, 0, 2
-	specialaction = "Overlord", "ACS_ExecuteAlways", 612, 0, 2	
+	specialaction = "Overlord", "ACS_ExecuteAlways", 612, 0, 2
+	specialaction = "Ironlich2", "Floor_LowerByValue", 666, 16, 256	
 	specialaction_lowerfloor
 	music = "$MUSIC_E2M5"
 	exitpic = "ENDPIC"
 }
+
+map E5M8 lookup "HHUSTR_E5M8"
+{
+	next = "EndGame1"
+	secretnext = "E5M9"
+	sky1 = "SKY3"
+	cluster = 5
+	nointermission
+    specialaction = "Minotaur2", "Floor_LowerToNearest", 666, 16
+	music = "MUS_E2M8"
+}
+
 
 map MAP07 "dead stupid"
 {
