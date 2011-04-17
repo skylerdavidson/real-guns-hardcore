@@ -153,7 +153,7 @@ actor Infrared_ScavengerPro : Infrared
 	Powerup.Type "PowerLightAmp_ScavengerPro"
 }
 
-actor Infrared_Pickup : CustomInventory replaces Infrared
+actor Infrared_Pickup : CustomInventory// replaces Infrared
 {
   Inventory.PickupMessage "$GOTVISOR" 
   +COUNTITEM
@@ -605,3 +605,5 @@ actor BerserkSpawner : RandomSpawner replaces Berserk
     DropItem "SoulSphere2"
 	DropItem "AmmoSphere2"
 }
+
+actor NoInfrared: BerserkSpawner replaces Infrared {}
