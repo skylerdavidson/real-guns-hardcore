@@ -253,6 +253,7 @@ script 598 OPEN
 //Knife screen
 script 599 (int Strength, int Reverse) NET CLIENTSIDE
 {
+	TakeInventory("PowerLightAmp", 1);
 
 	if(CheckInventory("KnifeAttack") == 1)
 	{
@@ -871,6 +872,8 @@ script 602 (void)
 //------- Throw grenade.
 script 603 (void) NET
 {
+	TakeInventory("PowerLightAmp", 1);
+	
 	if(CheckInventory("FragGrenadeAmmo") != 0 && CheckInventory("ThrowingGrenade") == 0)
 	{
 		GiveInventory("ThrowingGrenade",1);
@@ -912,6 +915,8 @@ script 603 (void) NET
 //------- Use Knife
 script 604 (void) NET
 {
+	TakeInventory("PowerLightAmp", 1);
+
 	GiveInventory("KnifeAttack",1); //Hack, refer to decorate coding.
 }
 
@@ -2828,6 +2833,8 @@ script 620 (int Which) CLIENTSIDE
 //Drops (not destroys) current weapon.
 script 621 (void) NET
 {
+	TakeInventory("PowerLightAmp", 1);
+
 	if(CheckWeapon("USP .45") == 1 || CheckWeapon("USP .45 Ex Mags") == 1 || CheckWeapon("USP .45 Akimbo") == 1 || CheckWeapon("USP .45 Tac Knife") == 1)
 	{
 		TakeInventory("USP .45",1);
