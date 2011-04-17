@@ -84,7 +84,8 @@ ACTOR BruiserDemon : RGAMonster
 		BRUD H 4 Bright A_Fall
 		BRUD IJKLMNOP 4 Bright
 		BRUD QRSTUV 4
-		BRUD W -1   
+		BRUD W 0 A_BossDeath
+		BRUD W -1 		  
 		Stop
 	}
 }

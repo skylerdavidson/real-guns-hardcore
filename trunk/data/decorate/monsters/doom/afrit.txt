@@ -70,6 +70,7 @@ Actor Afrit : RGAMonster
     FRIT I 6 Bright A_Scream
     FRIT J 5 Bright A_NoBlocking
     FRIT KLMNOPQR 4 Bright
+    FRIT R 0 A_BossDeath
     Stop
   }
 }

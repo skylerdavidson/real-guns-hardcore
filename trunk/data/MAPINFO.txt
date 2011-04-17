@@ -21,16 +21,15 @@ map E1M8 lookup "HUSTR_E1M8"
 	par = 30
 	//nointermission
 	nosoundclipping
-	specialaction = "BaronOfHell_2", "Floor_LowerToNearest", 666, 16
-	specialaction = "Cybruiser", "Floor_LowerToNearest", 666, 16
-	specialaction = "Belphegor_2", "Floor_LowerToNearest", 666, 16
-	specialaction = "StoneKnight", "Floor_LowerToNearest", 666, 16
-	specialaction = "BruiserDemon", "Floor_LowerToNearest", 666, 16
-	specialaction = "HellsFury", "Floor_LowerToNearest", 666, 16
-	specialaction = "Afrit", "Floor_LowerToNearest", 666, 16
+	specialaction = "BaronOfHell_2", "ACS_ExecuteAlways", 612, 0, 4
+	specialaction = "Cybruiser", "ACS_ExecuteAlways", 612, 0, 4
+	specialaction = "Belphegor_2", "ACS_ExecuteAlways", 612, 0, 4
+	specialaction = "StoneKnight", "ACS_ExecuteAlways", 612, 0, 4
+	specialaction = "BruiserDemon", "ACS_ExecuteAlways", 612, 0, 4
+	specialaction = "HellsFury", "ACS_ExecuteAlways", 612, 0, 4
+	specialaction = "Afrit", "ACS_ExecuteAlways", 612, 0, 4
+	specialaction = "Hierophant", "ACS_ExecuteAlways", 612, 0, 4
 	specialaction = "Ironlich2", "Floor_LowerToNearest", 666, 16
-	specialaction = "Hierophant", "Floor_LowerToNearest", 666, 16
-	specialaction_lowerfloor
 	music = "$MUSIC_E1M8"
 	exitpic = "CREDIT"
 }
