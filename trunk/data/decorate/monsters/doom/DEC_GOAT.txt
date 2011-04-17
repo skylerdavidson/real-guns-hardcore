@@ -148,27 +148,8 @@ actor Cybruiser : BaronOfHell_2
     BRUS K 6 Bright A_Scream
     BRUS LMN 6 Bright
     BRUS O 6 Bright A_NoBlocking
-    BRUS T 0 A_Jump(96,10)
     BRUS PPQQRRSS 3 Bright A_SpawnItemEx("HealthBonus",0,0,0,random(-2,2),random(-2,2),random(1,4),0,0,0)
     BRUS T -1 A_BossDeath
-    stop
-    BRUS PQRS 6 Bright 
-    BRUS TTTTT 115
-    BRUS T 0 A_PlayWeaponSound("brain/spit")
-    BRUS T -1 A_CustomMissile("StoneKnightCubeSelf",8,0,0,CMF_AIMDIRECTION,90)
-    stop
-  Death.Telefrag: 
-    BRUS K 6 Bright A_Scream
-    BRUS LMN 6 Bright
-    BRUS O 6 Bright A_NoBlocking
-    BRUS T 0 A_Jump(192,10)
-    BRUS PPQQRRSS 3 Bright A_SpawnItemEx("HealthBonus",0,0,0,random(-2,2),random(-2,2),random(1,4),0,0,0)
-    BRUS T -1 A_BossDeath
-    stop
-    BRUS PQRS 6 Bright 
-    BRUS TTTTT 115
-    BRUS T 0 A_PlayWeaponSound("brain/spit")
-    BRUS T -1 A_CustomMissile("StoneKnightCubeSelf",8,0,0,CMF_AIMDIRECTION,90)
     stop
   Raise:
     BRUS TSRQPONMLK 8
