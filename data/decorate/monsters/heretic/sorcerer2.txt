@@ -32,6 +32,36 @@ ACTOR Sorcerer2_2 : Sorcerer2 replaces Sorcerer2
   	SOR2 A 0 Thing_SetSpecial(0,226,613,0,random(2000,3000))
     SOR2 MN 10 A_Look
     goto Spawn + 2
+  Death:
+    SDTH A 8
+    SDTH B 8
+    SDTH C 8 A_PlaySoundEx("dsparil/scream", "Body")
+    SDTH DE 7
+    SDTH F 7
+	SDTH DE 7
+    SDTH F 7
+	SDTH DE 7
+    SDTH F 7
+	SDTH DE 7
+    SDTH F 7
+	SDTH DE 7
+    SDTH F 7
+	SDTH DE 7
+    SDTH F 7
+	SDTH DE 7
+    SDTH F 7
+	SDTH DE 7
+    SDTH F 7
+	SDTH DE 7
+    SDTH F 7 
+    SDTH G 6 A_PlaySoundEx("dsparil/explode", "Body")
+    SDTH H 6
+    SDTH I 18
+    SDTH J 6 A_NoBlocking
+    SDTH K 6 A_PlaySoundEx("dsparil/bones", "Body")
+    SDTH LMN 6
+    SDTH O -1 A_BossDeath
+    Stop
   }
 }
 
