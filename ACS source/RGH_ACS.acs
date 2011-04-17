@@ -1148,11 +1148,19 @@ script 612 (int Which)
 	}
 	else if(Which == 1 && (ThingCountName("Cyberdemon_2", 0) == 0 && ThingCountName("Annihilator", 0) == 0 && ThingCountName("Thamuz", 0) == 0 && ThingCountName("Cardinal", 0) == 0 && ThingCountName("Overlord", 0) == 0))
 	{
-		ConsoleCommand("nextmap");
+#ifdef SKULLTAG
+		ConsoleCommand("nextmap");		
+#else		
+		Exit_Normal(0);
+#endif
 	}
 	else if(Which == 2 && (ThingCountName("SpiderMastermind_2", 0) == 0 && ThingCountName("CyberMastermind", 0) == 0 && ThingCountName("Demolisher", 0) == 0 && ThingCountName("Arachnophyte", 0) == 0 && ThingCountName("Overlord", 0) == 0))
 	{
+#ifdef SKULLTAG
 		ConsoleCommand("nextmap");		
+#else		
+		Exit_Normal(0);
+#endif
 	}
 	// Doom2 Map07
 	else if(Which == 3 && (ThingCountName("Fatso_2", 0) == 0 && ThingCountName("Hectebus_2", 0) == 0 && ThingCountName("Acubus", 0) == 0 && ThingCountName("Juggernaut", 0) == 0))
