@@ -230,7 +230,7 @@ script 597 ENTER
 	ACS_ExecuteAlways(602,0,0,0,0); // adjust movement speed
 
 	SetFont("BIGFONT");
-	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.10.1 "
+	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.10.2 "
 #ifdef SKULLTAG
 		,s:"SKULLTAG"
 #else
@@ -1146,8 +1146,6 @@ script 611 (void)
 //------- This is for the monsters wad, refer to MAPINFO
 script 612 (int Which)
 {
-	log(i:612);
-
 	// Doom2 Map07
 	if(Which == 0 && (ThingCountName("Arachnotron_2", 0) == 0 && ThingCountName("SpectreArachnotron", 0) == 0 && ThingCountName("Arachnobaron", 0) == 0))
 	{
