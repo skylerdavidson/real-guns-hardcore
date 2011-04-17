@@ -1141,6 +1141,8 @@ script 611 (void)
 //------- This is for the monsters wad, refer to MAPINFO
 script 612 (int Which)
 {
+	log(i:612);
+
 	// Doom2 Map07
 	if(Which == 0 && (ThingCountName("Arachnotron_2", 0) == 0 && ThingCountName("SpectreArachnotron", 0) == 0 && ThingCountName("Arachnobaron", 0) == 0))
 	{
@@ -1164,6 +1166,11 @@ script 612 (int Which)
 	}
 	// Doom2 Map07
 	else if(Which == 3 && (ThingCountName("Fatso_2", 0) == 0 && ThingCountName("Hectebus_2", 0) == 0 && ThingCountName("Acubus", 0) == 0 && ThingCountName("Juggernaut", 0) == 0))
+	{
+		Floor_LowerToNearest(666,16);
+	}
+	// Doom1 E1M8
+	else if(Which == 4 && (ThingCountName("BaronOfHell_2", 0) == 0 && ThingCountName("Cybruiser", 0) == 0 && ThingCountName("Belphegor_2", 0) == 0 && ThingCountName("StoneKnight", 0) == 0 && ThingCountName("BruiserDemon", 0) == 0 && ThingCountName("HellsFury", 0) == 0 && ThingCountName("Afrit", 0) == 0 && ThingCountName("Hierophant", 0) == 0))
 	{
 		Floor_LowerToNearest(666,16);
 	}
