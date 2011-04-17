@@ -106,13 +106,13 @@ map MAP07 "dead stupid"
 	sky1 = "SKY1"
 	cluster = 6
 	par = 120
-	specialaction = "Fatso_2", "Floor_LowerToNearest", 666, 16
-	specialaction = "Hectebus_2", "Floor_LowerToNearest", 666, 16
-	specialaction = "Acubus", "Floor_LowerToNearest", 666, 16
-	specialaction = "Juggernaut", "Floor_LowerToNearest", 666, 16
-	specialaction = "Arachnotron_2", "ACS_ExecuteAlways", 666, 0
-	specialaction = "SpectreArachnotron", "ACS_ExecuteAlways", 666, 0
-	specialaction = "Arachnobaron", "ACS_ExecuteAlways", 66, 0
+	specialaction = "Fatso_2", "ACS_ExecuteAlways", 612, 0, 3
+	specialaction = "Hectebus_2", "ACS_ExecuteAlways", 612, 0, 3
+	specialaction = "Acubus", "ACS_ExecuteAlways", 612, 0, 3
+	specialaction = "Juggernaut", "ACS_ExecuteAlways", 612, 0, 3
+	specialaction = "Arachnotron_2", "ACS_ExecuteAlways", 612, 0, 0
+	specialaction = "SpectreArachnotron", "ACS_ExecuteAlways", 612, 0, 0
+	specialaction = "Arachnobaron", "ACS_ExecuteAlways", 612, 0, 0
 	music = "$MUSIC_SHAWN"
 }
 clearskills
