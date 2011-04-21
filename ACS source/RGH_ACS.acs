@@ -4212,7 +4212,7 @@ script 636 (int firstTimeAfterDeath)
   			HudMessage(s:"\cvSleight of Hand: faster reloading\n\n         \cjPRO\cv: faster knifing and grenade throwing\n\n\cgJuggernaut: +40% damage resistance\n\n         \cjPRO\cg: double bonuses from health/armor pickups\n\n\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Get 30 health in last stand"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 160.1, 460.0, 0.0);
   		}
   		else if(CheckInventory("MenuCursor") == 3){
-  			HudMessage(s:"4)  > Sniper:        Intervention (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 60.1, 220.0, 0.0);	
+  			HudMessage(s:"4)  > Sniper:        Barett .50 cal (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 60.1, 220.0, 0.0);	
   			HudMessage(s:"\cvOne Man Army: Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon\n\n\cgStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies\n\n\cdSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 160.1, 460.0, 0.0);
   		}
   		else if(CheckInventory("MenuCursor") == 4){
@@ -4260,7 +4260,7 @@ script 636 (int firstTimeAfterDeath)
   			HudMessage(s:"\cvSleight of Hand: faster reloading\n\n\cgJuggernaut: +40% damage resistance\n\n\cdLast Stand: Pull out your handgun before dying"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 160.1, 460.0, 0.0);
   		}
   		else if(CheckInventory("MenuCursor") == 3){
-  			HudMessage(s:"4)  > Sniper:        Intervention (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 60.1, 220.0, 0.0);	
+  			HudMessage(s:"4)  > Sniper:        Barett .50 cal (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 60.1, 220.0, 0.0);	
   			HudMessage(s:"\cvOne Man Army: Carry extra gun\n\n\cgStopping Power: +25% bullet damage\n\n\cdSteady Aim: +33% hip-fire accuracy"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 160.1, 460.0, 0.0);
   		}
   		else if(CheckInventory("MenuCursor") == 4){
@@ -4989,8 +4989,8 @@ script 638 (int Which)
 		TakeInventory("Menu",1);
 		GiveInventory("M93 Raffica",1);
 		//GiveInventory("M93RAmmo",68);
-		GiveInventory("Intervention Thermal",1);
-		GiveInventory("InterventionThermal",1);
+		GiveInventory("Barrett 50cal Thermal",1);
+		GiveInventory("BarrettThermal",1);
 		//GiveInventory("InterventionAmmo",10);
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_LMG",1);
