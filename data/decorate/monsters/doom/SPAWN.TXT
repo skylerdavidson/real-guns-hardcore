@@ -4,7 +4,7 @@ Actor RGAMonster
   DamageFactor "Bullet", 3.00
   DamageFactor "Shotgun", 3.00
   DamageFactor "Rifle", 3.00
-  DamageFactor "Sniper", 4.5
+  DamageFactor "Sniper", 3.00
   DamageFactor "Knife", 3.00
   DamageFactor "LMG", 3.0
   DamageFactor "BigPistol", 3.0
