@@ -595,6 +595,17 @@ actor AssaultRifleAmmo : CustomInventory
     BKPK A 0 A_GiveInventory("M16Ammo",15)
     BKPK A 0 A_GiveInventory("AK47Ammo",15)
 	BKPK A 0 A_JumpIfInventory("Perk1_Scavenger", 1, "Scavenger")
+	BKPK A 0 A_JumpIfInventory("Classic", 1, "Classic")
+    stop
+  Classic:
+    BKPK A 0 A_GiveInventory("FamasAmmo",15)
+    BKPK A 0 A_GiveInventory("FALAmmo",10)
+    BKPK A 0 A_GiveInventory("ACRAmmo",15)
+    BKPK A 0 A_GiveInventory("M4A1Ammo",15)
+    BKPK A 0 A_GiveInventory("SCARHAmmo",10)
+    BKPK A 0 A_GiveInventory("F2000Ammo",15)
+    BKPK A 0 A_GiveInventory("M16Ammo",15)
+    BKPK A 0 A_GiveInventory("AK47Ammo",15)
     stop
   Scavenger: // Scavenger bonus ammo
     BKPK A 0 A_GiveInventory("FamasAmmo",15)
@@ -605,6 +616,17 @@ actor AssaultRifleAmmo : CustomInventory
     BKPK A 0 A_GiveInventory("F2000Ammo",15)
     BKPK A 0 A_GiveInventory("M16Ammo",15)
     BKPK A 0 A_GiveInventory("AK47Ammo",15)
+    BKPK A 0 A_JumpIfInventory("Classic", 1, "ClassicScavenger")
+    stop
+  ClassicScavenger:
+    BKPK A 0 A_GiveInventory("FamasAmmo",30)
+    BKPK A 0 A_GiveInventory("FALAmmo",20)
+    BKPK A 0 A_GiveInventory("ACRAmmo",30)
+    BKPK A 0 A_GiveInventory("M4A1Ammo",30)
+    BKPK A 0 A_GiveInventory("SCARHAmmo",20)
+    BKPK A 0 A_GiveInventory("F2000Ammo",30)
+    BKPK A 0 A_GiveInventory("M16Ammo",30)
+    BKPK A 0 A_GiveInventory("AK47Ammo",30)
 	stop
   }
 }
@@ -628,13 +650,29 @@ actor SMGAmmo : CustomInventory
     BKPK A 0 A_GiveInventory("VectorAmmo",15)
     BKPK A 0 A_GiveInventory("P90Ammo",25)
 	BKPK A 0 A_JumpIfInventory("Perk1_Scavenger", 1, "Scavenger")
+	BKPK A 0 A_JumpIfInventory("Classic", 1, "Classic")
     stop
+  Classic:
+	BKPK A 0 A_GiveInventory("MP5Ammo",15)
+    BKPK A 0 A_GiveInventory("MiniUziAmmo",16)
+    BKPK A 0 A_GiveInventory("UMP45Ammo",16)
+    BKPK A 0 A_GiveInventory("VectorAmmo",15)
+    BKPK A 0 A_GiveInventory("P90Ammo",25)
+	stop
   Scavenger: // Scavenger bonus ammo
 	BKPK A 0 A_GiveInventory("MP5Ammo",15)
     BKPK A 0 A_GiveInventory("MiniUziAmmo",16)
     BKPK A 0 A_GiveInventory("UMP45Ammo",16)
     BKPK A 0 A_GiveInventory("VectorAmmo",15)
     BKPK A 0 A_GiveInventory("P90Ammo",25)
+    BKPK A 0 A_JumpIfInventory("Classic", 1, "ClassicScavenger")
+	stop
+  ClassicScavenger:
+	BKPK A 0 A_GiveInventory("MP5Ammo",30)
+    BKPK A 0 A_GiveInventory("MiniUziAmmo",32)
+    BKPK A 0 A_GiveInventory("UMP45Ammo",32)
+    BKPK A 0 A_GiveInventory("VectorAmmo",30)
+    BKPK A 0 A_GiveInventory("P90Ammo",50)
 	stop
   }
 }
@@ -659,7 +697,16 @@ actor ShotgunAmmo : CustomInventory
     BKPK A 0 A_GiveInventory("M1014Ammo",4)
     BKPK A 0 A_GiveInventory("M1887Ammo",4)
 	BKPK A 0 A_JumpIfInventory("Perk1_Scavenger", 1, "Scavenger")
+	BKPK A 0 A_JumpIfInventory("Classic", 1, "Classic")
     stop
+  Classic:
+	BKPK A 0 A_GiveInventory("AA12Ammo",4)
+    BKPK A 0 A_GiveInventory("RangerAmmo",4)
+    BKPK A 0 A_GiveInventory("SPAS12Ammo",4)
+    BKPK A 0 A_GiveInventory("StrikerAmmo",6)
+    BKPK A 0 A_GiveInventory("M1014Ammo",4)
+    BKPK A 0 A_GiveInventory("M1887Ammo",4)
+	stop
   Scavenger: // Scavenger bonus ammo
 	BKPK A 0 A_GiveInventory("AA12Ammo",4)
     BKPK A 0 A_GiveInventory("RangerAmmo",4)
@@ -667,6 +714,15 @@ actor ShotgunAmmo : CustomInventory
     BKPK A 0 A_GiveInventory("StrikerAmmo",6)
     BKPK A 0 A_GiveInventory("M1014Ammo",4)
     BKPK A 0 A_GiveInventory("M1887Ammo",4)
+    BKPK A 0 A_JumpIfInventory("Classic", 1, "ClassicScavenger")
+	stop
+  ClassicScavenger: 
+	BKPK A 0 A_GiveInventory("AA12Ammo",8)
+    BKPK A 0 A_GiveInventory("RangerAmmo",8)
+    BKPK A 0 A_GiveInventory("SPAS12Ammo",8)
+    BKPK A 0 A_GiveInventory("StrikerAmmo",12)
+    BKPK A 0 A_GiveInventory("M1014Ammo",8)
+    BKPK A 0 A_GiveInventory("M1887Ammo",8)
 	stop
   }
 }
@@ -692,7 +748,17 @@ actor HandgunAmmo : CustomInventory
     BKPK A 0 A_GiveInventory("PP2000Ammo",10)
     BKPK A 0 A_GiveInventory("M93RAmmo",10)
 	BKPK A 0 A_JumpIfInventory("Perk1_Scavenger", 1, "Scavenger")
+	BKPK A 0 A_JumpIfInventory("Classic", 1, "Classic")
     stop
+  Classic:
+	BKPK A 0 A_GiveInventory("USP45Ammo",6)
+    BKPK A 0 A_GiveInventory("44MagnumAmmo",3)
+    BKPK A 0 A_GiveInventory("DeagleAmmo",4)
+    BKPK A 0 A_GiveInventory("M9Ammo",8)
+    BKPK A 0 A_GiveInventory("G18Ammo",16)
+    BKPK A 0 A_GiveInventory("PP2000Ammo",10)
+    BKPK A 0 A_GiveInventory("M93RAmmo",10)
+	stop
   Scavenger: // Scavenger bonus ammo
 	BKPK A 0 A_GiveInventory("USP45Ammo",6)
     BKPK A 0 A_GiveInventory("44MagnumAmmo",3)
@@ -701,6 +767,16 @@ actor HandgunAmmo : CustomInventory
     BKPK A 0 A_GiveInventory("G18Ammo",16)
     BKPK A 0 A_GiveInventory("PP2000Ammo",10)
     BKPK A 0 A_GiveInventory("M93RAmmo",10)
+    BKPK A 0 A_JumpIfInventory("Classic", 1, "ClassicScavenger")
+	stop
+  ClassicScavenger:
+	BKPK A 0 A_GiveInventory("USP45Ammo",12)
+    BKPK A 0 A_GiveInventory("44MagnumAmmo",6)
+    BKPK A 0 A_GiveInventory("DeagleAmmo",8)
+    BKPK A 0 A_GiveInventory("M9Ammo",16)
+    BKPK A 0 A_GiveInventory("G18Ammo",32)
+    BKPK A 0 A_GiveInventory("PP2000Ammo",20)
+    BKPK A 0 A_GiveInventory("M93RAmmo",20)
 	stop
   }
 }
@@ -723,12 +799,26 @@ actor SniperAmmo : CustomInventory
     BKPK A 0 A_GiveInventory("WA2000Ammo",6)
     BKPK A 0 A_GiveInventory("M14Ammo",5)
 	BKPK A 0 A_JumpIfInventory("Perk1_Scavenger", 1, "Scavenger")
+	BKPK A 0 A_JumpIfInventory("Classic", 1, "Classic")
     stop
+  Classic:
+	BKPK A 0 A_GiveInventory("InterventionAmmo",5)
+    BKPK A 0 A_GiveInventory("BarrettAmmo",5)
+    BKPK A 0 A_GiveInventory("WA2000Ammo",6)
+    BKPK A 0 A_GiveInventory("M14Ammo",5)
+	stop
   Scavenger:
 	BKPK A 0 A_GiveInventory("InterventionAmmo",5)
     BKPK A 0 A_GiveInventory("BarrettAmmo",5)
     BKPK A 0 A_GiveInventory("WA2000Ammo",6)
     BKPK A 0 A_GiveInventory("M14Ammo",5)
+    BKPK A 0 A_JumpIfInventory("Classic", 1, "ClassicScavenger")
+	stop
+  ClassicScavenger:
+	BKPK A 0 A_GiveInventory("InterventionAmmo",10)
+    BKPK A 0 A_GiveInventory("BarrettAmmo",10)
+    BKPK A 0 A_GiveInventory("WA2000Ammo",12)
+    BKPK A 0 A_GiveInventory("M14Ammo",10)
 	stop
   }
 }
@@ -774,7 +864,7 @@ actor RocketAmmo_2 : CustomInventory
     BKPK A 0 A_GiveInventory("AT4Ammo",1)
     BKPK A 0 A_GiveInventory("RPGAmmo",1)
 	BKPK A 0 A_JumpIfInventory("Perk1_Scavenger", 1, "Scavenger")
-	stop
+	stop  
   Scavenger:
 	BKPK A 0 A_GiveInventory("AT4Ammo",1)
     BKPK A 0 A_GiveInventory("RPGAmmo",1)
@@ -800,12 +890,26 @@ actor LMGAmmo : CustomInventory
     BKPK A 0 A_GiveInventory("M240Ammo",50)
     BKPK A 0 A_GiveInventory("L86Ammo",50)
 	BKPK A 0 A_JumpIfInventory("Perk1_Scavenger", 1, "Scavenger")
+	BKPK A 0 A_JumpIfInventory("Classic", 1, "Classic")
     stop
-  Scavenger:
+  Classic:
 	BKPK A 0 A_GiveInventory("MG4Ammo",50)
     BKPK A 0 A_GiveInventory("AUGHBARAmmo",42)
     BKPK A 0 A_GiveInventory("M240Ammo",50)
     BKPK A 0 A_GiveInventory("L86Ammo",50)
+	stop  
+  Scavenger:    
+	BKPK A 0 A_GiveInventory("MG4Ammo",50)
+    BKPK A 0 A_GiveInventory("AUGHBARAmmo",42)
+    BKPK A 0 A_GiveInventory("M240Ammo",50)
+    BKPK A 0 A_GiveInventory("L86Ammo",50)
+    BKPK A 0 A_JumpIfInventory("Classic", 1, "ClassicScavenger")
+    stop
+  ClassicScavenger:    
+	BKPK A 0 A_GiveInventory("MG4Ammo",100)
+    BKPK A 0 A_GiveInventory("AUGHBARAmmo",82)
+    BKPK A 0 A_GiveInventory("M240Ammo",100)
+    BKPK A 0 A_GiveInventory("L86Ammo",100)
 	stop
   }
 }
