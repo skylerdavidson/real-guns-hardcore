@@ -2,7 +2,7 @@ actor ChaingunGuy_2 : RGAMonster
 {
   spawnid 2
   obituary "%o was perforated by a SMG zombie."
-  health 40
+  health 70
   radius 20
   height 56
   mass 100
@@ -84,7 +84,7 @@ actor DoubleChaingunGuy_2 : RGAMonster
 {
   spawnid 2
   obituary "%o was minced by an akimbo zombie."
-  health 40
+  health 70
   radius 20
   height 56
   mass 100
@@ -168,7 +168,7 @@ actor LMGGuy : RGAMonster
 {
   spawnid 2
   obituary "%o was perforated by a LMG zombie."
-  health 40
+  health 110
   radius 20
   height 56
   mass 100
@@ -232,7 +232,7 @@ actor GrenadeGuy_2 : RGAMonster
 {
   spawnid 2
   obituary "%o was popped by a grenadier sergeant."
-  health 40
+  health 70
   radius 20
   height 56
   mass 100
@@ -272,7 +272,6 @@ actor GrenadeGuy_2 : RGAMonster
     goto See
   Death:
     CZOM H 0
-    CZOM H 0 A_Jump(0,"Death3")
     CZOM H 5 A_Jump(128,"Death1")
     CZOM I 5 A_Scream
     CZOM J 5 A_NoBlocking
@@ -288,14 +287,6 @@ actor GrenadeGuy_2 : RGAMonster
     CDTH DE 5
     CDTH FF 2 A_SpawnItemEx("HealthBonus",0,0,0,random(-2,2),random(-2,2),random(1,4),0,0,0)
     CDTH G -1
-    Stop
-  Death3:
-    CDTH A 5 
-    CDTH B 5 A_Scream
-    CDTH C 5 A_NoBlocking
-    CDTH DEF 5
-    CDTH G 35
-    CDTH N 0 A_SpawnItemEx("ChaingunGuy_LastStand",0,0,0,0,0,0,0,SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION,0)
     Stop
   XDeath:
     CPOS O 5
@@ -347,120 +338,6 @@ actor GrenadeGuyShell
     TNT1 AAAAAAAAAA 0 A_SpawnItemEx("ImpactSpark2", random(-32,32), random(-32,32), random(-32,32), random(-5,5), random(-5,5), random(-1,5), 0, 128, 0)
     TNT1 AAAAAAAAAA 0 A_SpawnItemEx("ImpactSpark2", random(-32,32), random(-32,32), random(-32,32), random(-5,5), random(-5,5), random(-1,5), 0, 128, 0)
     TNT1 A 20
-    stop
-  }
-}
-
-actor RaisingChaingunGuy : RGAMonster
-{
-  +AMBUSH
-  Translation "112:127=[131,31,31]:[0,0,0]"
-  states
-  {
-  Spawn:
-    POL5 A 5 A_LookEx(LOF_NOSOUNDCHECK,0,256,0,360)
-    loop
-  See:
-    POL5 A 105
-    POL5 BCDE 5
-    POL5 F 5 A_FaceTarget
-    POL5 F 0 A_SpawnItemEx("ChaingunGuy_2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
-    stop
-  }
-}
-
-actor RaisingDoubleChainGuy : RGAMonster
-{
-  +AMBUSH
-  Translation "112:127=[0,0,131]:[0,0,0]"
-  states
-  {
-  Spawn:
-    POL5 A 5 A_LookEx(LOF_NOSOUNDCHECK,0,256,0,360)
-    loop
-  See:
-    POL5 A 105
-    POL5 BCDE 5
-    POL5 F 5 A_FaceTarget
-    POL5 F 0 A_SpawnItemEx("DoubleChaingunGuy_2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
-    stop
-  }
-}
-actor RaisingGrenadeGuy : RGAMonster
-{
-  +AMBUSH
-  Translation "112:127=[131,107,75]:[0,0,0]"
-  states
-  {
-  Spawn:
-    POL5 A 5 A_LookEx(LOF_NOSOUNDCHECK,0,256,0,360)
-    loop
-  See:
-    POL5 A 105
-    POL5 BCDE 5
-    POL5 F 5 A_FaceTarget
-    POL5 F 0 A_SpawnItemEx("GrenadeGuy_2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
-    stop
-  }
-}
-
-actor ChaingunGuy_LastStand : RGAMonster
-{
-  obituary "%o was killed by a Last stand zombie!"
-  health 1
-  radius 20
-  height 56
-  mass 100
-  speed 0
-  painchance 200
-  seesound "chainguy/fright"
-  attacksound "u45/fire"
-  painsound "chainguy/pain"
-  deathsound "chainguy/death"
-  activesound "chainguy/pain"
-  MONSTER
-  +FLOORCLIP
-  -SOLID
-  states
-  {
-  Spawn:
-    CDTH G 10 A_Look
-    loop
-  See:
-    CDTH H 0 A_JumpIfInventory("ZombieLastStandHealth",50,"Die")
-    CDTH H 0 A_GiveInventory("ZombieLastStandHealth",1)
-    CDTH HHHHHHHH 1 A_Chase
-    loop
-  Die: 
-    CDTH A 0 A_Die
-    goto Death
-  Missile:
-    CDTH H 3 A_FaceTarget
-    CDTH I 3 A_CustomBulletAttack(12.5, 0, 1, 4, "BulletPuff")
-    CDTH H 3
-    goto See
-  Pain:
-    CDTH H 3
-    CDTH H 3 A_Pain
-    goto See
-  Death:
-	CZOM H 0 A_JumpIfHealthLower(random(-500,-110),"XDeath")
-    CDTH H 5 A_Scream
-    CDTH E 5 A_NoBlocking
-    CDTH FFG 2 A_SpawnItemEx("HealthBonus",0,0,0,random(-2,2),random(-2,2),random(1,4),0,0,0)
-    CDTH G -1
-    stop
-  XDeath:
-    CPOS O 5
-    CPOS P 5 A_XScream
-    CPOS Q 5 A_NoBlocking
-    CPOS RS 5
-    CPOS T -1
-    stop
-  Raise:
-    CDTH G 1
-    CDTH GFEDCBA 5 A_UnsetSolid
-    CDTH L 0 A_SpawnItemEx("ChaingunGuy_2")
     stop
   }
 }
