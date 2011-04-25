@@ -840,11 +840,23 @@ actor ExplosiveAmmo : CustomInventory
     BKPK A 0 A_GiveInventory("M203Ammo",1)
     BKPK A 0 A_GiveInventory("ThumperAmmo",1)
 	BKPK A 0 A_JumpIfInventory("Perk1_Scavenger", 1, "Scavenger")
+	BKPK A 0 A_JumpIfInventory("Classic", 1, "Classic")
+	stop
+  Classic:
+	BKPK A 0 A_GiveInventory("FragGrenadeAmmo",1)
+    BKPK A 0 A_GiveInventory("M203Ammo",1)
+    BKPK A 0 A_GiveInventory("ThumperAmmo",1)
 	stop
   Scavenger:
 	BKPK A 0 A_GiveInventory("FragGrenadeAmmo",1)
     BKPK A 0 A_GiveInventory("M203Ammo",1)
     BKPK A 0 A_GiveInventory("ThumperAmmo",1)
+    BKPK A 0 A_JumpIfInventory("Classic", 1, "ClassicScavenger")
+	stop
+  ClassicScavenger:
+	BKPK A 0 A_GiveInventory("FragGrenadeAmmo",2)
+    BKPK A 0 A_GiveInventory("M203Ammo",2)
+    BKPK A 0 A_GiveInventory("ThumperAmmo",2)
 	stop
   }
 }
@@ -864,10 +876,20 @@ actor RocketAmmo_2 : CustomInventory
     BKPK A 0 A_GiveInventory("AT4Ammo",1)
     BKPK A 0 A_GiveInventory("RPGAmmo",1)
 	BKPK A 0 A_JumpIfInventory("Perk1_Scavenger", 1, "Scavenger")
+	BKPK A 0 A_JumpIfInventory("Classic", 1, "Classic")
 	stop  
+  Classic:
+	BKPK A 0 A_GiveInventory("AT4Ammo",1)
+    BKPK A 0 A_GiveInventory("RPGAmmo",1)
+	stop
   Scavenger:
 	BKPK A 0 A_GiveInventory("AT4Ammo",1)
     BKPK A 0 A_GiveInventory("RPGAmmo",1)
+    BKPK A 0 A_JumpIfInventory("Classic", 1, "ClassicScavenger")
+	stop
+  ClassicScavenger:
+	BKPK A 0 A_GiveInventory("AT4Ammo",2)
+    BKPK A 0 A_GiveInventory("RPGAmmo",2)
 	stop
   }
 }
