@@ -1,0 +1,64 @@
+actor Classic: Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+actor Arcade: Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+actor PowerClassicDurability : PowerProtection
+{
+  damagefactor "Bullet", 0.5
+  damagefactor "Shotgun", 0.5
+  damagefactor "Sniper", 0.5
+  damagefactor "Rifle", 0.5
+  damagefactor "LMG", 0.5
+  damagefactor "BigPistol", 0.5
+  damagefactor "Fire", 0.5
+  damagefactor "Normal", 0.5
+  damagefactor "Slime", 0.5
+}
+
+actor ClassicDurability : PowerupGiver
+{
+  inventory.maxamount 0
+  powerup.type "ClassicDurability"
+  powerup.duration 9999999
+  +AUTOACTIVATE
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  }
+}
+
+actor PowerClassicDamage : PowerDamage
+{
+  damagefactor "Bullet", 0.5
+  damagefactor "Shotgun", 0.5
+  damagefactor "Sniper", 0.5
+  damagefactor "Rifle", 0.5
+  damagefactor "LMG", 0.5
+  damagefactor "BigPistol", 0.5
+  damagefactor "Explosion", 0.5
+  Powerup.Color RedMap
+}
+
+actor ClassicDamage : PowerupGiver
+{
+  inventory.maxamount 0
+  powerup.type "ClassicDamage"
+  powerup.duration 9999999
+  +AUTOACTIVATE
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  }
+}

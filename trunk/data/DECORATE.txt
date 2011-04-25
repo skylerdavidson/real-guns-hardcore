@@ -38,6 +38,8 @@
 #include decorate/weapons/W_RPG7.txt
 #include decorate/weapons/W_W1887.txt
 #include decorate/weapons/W_M14EBR.txt
+
+#include "decorate/game modes.txt"
 #include decorate/D_INFO.txt  //Generic information things
 #include decorate/D_PERKS.txt //Perks
 #include decorate/D_GIVE.txt 
