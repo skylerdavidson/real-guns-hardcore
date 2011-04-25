@@ -3,7 +3,7 @@ actor DoomImp_2 : RGAMonster
   spawnid 5
   obituary "%o was burned by an imp."
   hitobituary "%o was slashed by an imp."
-  health 20
+  health 60
   radius 20
   height 56
   mass 100
@@ -164,7 +164,7 @@ actor DarkImp_2 : RGAMonster
   spawnid 5
   obituary "%o was burned by a dark imp."
   hitobituary "%o was slashed by a dark imp."
-  health 40
+  health 90
   radius 20
   height 56
   mass 100
@@ -254,7 +254,7 @@ actor DarkImpBall2 : DoomImpBall
 actor ImpBoy : DoomImp_2
 {
   obituary "%o was shut down by deep imp."
-  health 30
+  health 70
   radius 20
   height 56
   mass 100
