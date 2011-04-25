@@ -5632,19 +5632,27 @@ script 648 (void) {
 script 649 (int mClassic, int mArcade) {
 	if(mClassic){
 		GiveInventory("Classic", 1);
+		GiveInventory("ClassicDamage", 1);
+		GiveInventory("ClassicDurability", 1);
+		log(s:"Classic mode is ON");
 	}
 	else
 	{
 		TakeInventory("Classic", 1);
+		TakeInventory("PowerClassicDamage", 99);
+		TakeInventory("PowerClassicDurability", 99);
+		log(s:"Classic mode is OFF");
 	}
 	
 	if(mArcade){
 		GiveInventory("Arcade", 1);
 		arcade = true;
+		log(s:"Arcade mode is ON");
 	}
 	else
 	{
 		TakeInventory("Arcade", 1);
 		arcade = false;
+		log(s:"Arcade mode is OFF");
 	}
 }
