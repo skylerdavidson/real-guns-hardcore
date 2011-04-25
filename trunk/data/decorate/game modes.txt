@@ -46,7 +46,6 @@ actor PowerClassicDamage : PowerDamage
   damagefactor "LMG", 0.5
   damagefactor "BigPistol", 0.5
   damagefactor "Explosion", 0.5
-  Powerup.Color RedMap
 }
 
 actor ClassicDamage : PowerupGiver
