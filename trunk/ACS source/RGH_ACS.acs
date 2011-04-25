@@ -4227,7 +4227,7 @@ script 636 (int firstTimeAfterDeath)
 	  		SetFont("CONFONT");	
 	  		HudMessage(s:"                       \cjDoom-like gameplay"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 60.1, 103.0, 0.0);
 			HudMessage(s:"                       \cjGreatly increased weapon and monster damage"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 60.1, 143.0, 0.0);
-			HudMessage(s:"                       \cjMonsters drop experience and health on the ground"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 60.1, 183.0, 0.0);	
+			HudMessage(s:"                       \cjMonsters drop experience on the ground"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 60.1, 183.0, 0.0);	
 	  		
 	  		SetFont("BIGFONT");
 	  		if(CheckInventory("MenuCursor") == 0){
