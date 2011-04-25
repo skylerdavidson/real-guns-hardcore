@@ -183,3 +183,10 @@ actor RewardsToPick: Inventory
     inventory.amount 0
     inventory.maxamount 15
 }
+
+// xp point count spawned when monster dies
+actor XPAmount: Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 100000
+}

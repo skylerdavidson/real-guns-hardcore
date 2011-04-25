@@ -43,7 +43,7 @@ ACTOR SpiritImp 31179
     SPIP S 6 A_SpawnItemEx("SpiritImpGhost1", 0, 0, 32, 0, 0, 0, 0, 128) 
     SPIP T 5 A_Fall 
     SPIP U 5 A_SpawnItem("SpiritImpGhost")
-    SPIP V 5 A_NoBlocking
+    SPIP V 5 A_NoBlocking    
     SPIP W 3 A_FadeOut(0.015)
     Goto Death+8
     }
