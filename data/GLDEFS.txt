@@ -1320,6 +1320,32 @@ object MuzzleFlash{
 	frame E5_A { light MUZZLEFLASH  }
 }/*
 
+pulselight ARCXP1
+{
+    color 1.0 0.0 0.0
+    size 8
+    secondarySize 10
+    interval 2.0
+}
+
+pulselight ARCXP10
+{
+    color 1.0 0.0 0.0
+    size 16
+    secondarySize 18
+    interval 2.0
+}
+
+object ArcadeXP1
+{
+    frame AXP1 { light ARCXP1 }
+}
+
+object ArcadeXP10
+{
+    frame AXP2 { light ARCXP10 }
+}
+
 #include gldefs/monsters/doom/afrit.txt
 #include gldefs/monsters/doom/agathodemon.txt
 #include gldefs/monsters/doom/arachnophyte.txt

@@ -20,8 +20,9 @@ actor Fatso_2 : RGAMonster
   Spawn:
     POSS A 0 
     POSS A 0 Thing_SetSpecial(0,226,613,0,random(25,40))
+    POSS A 0 A_GiveInventory("XPAmount", random(225, 40))
     FATT AB 15 A_Look
-    goto Spawn+2
+    goto Spawn+3
   See:
     FATT AABBCCDDEEFF 4 A_Chase
     loop
@@ -43,6 +44,7 @@ actor Fatso_2 : RGAMonster
     FATT K 6
     FATT L 6 A_Scream
     FATT M 6 A_NoBlocking
+    FATT M 0 ACS_ExecuteAlways(648,0,0,0,0)
     FATT NOPQRS 6
     FATT T -1 A_BossDeath
     stop
@@ -83,8 +85,9 @@ actor Acubus : Fatso_2
   Spawn:
     POSS A 0 
     POSS A 0 Thing_SetSpecial(0,226,613,0,random(100,200))
+    POSS A 0 A_GiveInventory("XPAmount", random(100, 200))
     ALBM AB 15 A_Look
-    goto Spawn+2
+    goto Spawn+3
   See:
     ALBM AABBCCDDEEFF 4 A_Chase
     loop
@@ -416,6 +419,7 @@ actor Acubus : Fatso_2
     ALBM K 6
     ALBM L 6 A_Scream
     ALBM M 6 A_NoBlocking
+    ALBM M 0 ACS_ExecuteAlways(648,0,0,0,0)
     ALBM NOPQRS 6
     ALBM T -1 A_BossDeath
     stop
@@ -511,8 +515,9 @@ ACTOR Hectebus_2 : Fatso_2
   Spawn:
     POSS A 0 
     POSS A 0 Thing_SetSpecial(0,226,613,0,random(35,60))
+    POSS A 0 A_GiveInventory("XPAmount", random(35, 60))
     HECT AB 15 A_Look
-    goto Spawn+2
+    goto Spawn+3
   See:
     HECT AABBCCDDEEFF 4 A_Chase
     Loop
@@ -551,6 +556,7 @@ ACTOR Hectebus_2 : Fatso_2
     HECT K 6
     HECT L 6 A_Scream
     HECT M 6 A_NoBlocking
+    HECT M 0 ACS_ExecuteAlways(648,0,0,0,0)
     HECT NOPQRS 6
 	HECT S 0 A_BossDeath
     HECT T -1

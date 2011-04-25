@@ -61,3 +61,51 @@ actor ClassicDamage : PowerupGiver
     stop
   }
 }
+
+actor ArcadeXP1 : CustomInventory
+{
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  Inventory.PickupMessage "Experience!"
+  Inventory.Amount 1
+  Mass 4
+  States{
+  Spawn:
+    AXP1 AB 5 BRIGHT
+    Loop
+  Pickup:
+	AXP1 A 0 A_JumpIfInventory("Rank", 15, "FailState")
+	AXP1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
+	AXP1 A 0 A_GiveInventory("Experience",1)
+	AXP1 A 0 ACS_ExecuteAlways(616,0,0,0,0) // check if gained level
+	stop
+  FailState:
+    AXP1 A 0 
+	fail
+  }
+}
+
+actor ArcadeXP10 : CustomInventory
+{
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  Inventory.PickupMessage "Experience!"
+  Inventory.Amount 1
+  Mass 20
+  States{
+  Spawn:
+    AXP2 AB 5 BRIGHT
+    Loop
+  Pickup:
+	AXP2 A 0 A_JumpIfInventory("Rank", 15, "FailState")
+	AXP2 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
+	AXP2 A 0 A_GiveInventory("Experience",10)
+	AXP2 A 0 ACS_ExecuteAlways(616,0,0,0,0) // check if gained level
+	stop
+  FailState:
+    AXP2 A 0 
+	fail
+  }
+}

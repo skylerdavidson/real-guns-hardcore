@@ -12,6 +12,8 @@ str KillersIdArray[32];
 
 bool TacticalInsertion[32];
 
+bool arcade = false;
+
 //Server settings...
 #ifdef SKULLTAG
 script 505 OPEN
@@ -65,6 +67,10 @@ script 501 RESPAWN
 	if(CheckInventory("Classic") > 0){
 		GiveInventory("ClassicDamage", 1);
 		GiveInventory("ClassicDurability", 1);
+	}
+	
+	if(CheckInventory("Arcade") > 0){
+		arcade = true;
 	}
 	
 	Thing_ChangeTID(0,PlayerNumber()+500);
@@ -193,6 +199,10 @@ script 597 ENTER
 	if(CheckInventory("Classic") > 0){
 		GiveInventory("ClassicDamage", 1);
 		GiveInventory("ClassicDurability", 1);
+	}
+	
+	if(CheckInventory("Arcade") > 0){
+		arcade = true;
 	}
 	
 	TakeInventory("ReadyRegen",1);
@@ -1200,10 +1210,20 @@ script 613 (int XpAmount)
 {   
 	// monster's don't level up nor they call tango down
 	if (!(ClassifyActor(0) & ACTOR_MONSTER)){
-		if(CheckInventory("Rank") < 15 && CheckInventory("InLastStand") == 0) //Don't give XP at max level and in last stand
-			GiveInventory("Experience",XpAmount / 7);
+		int exp = XpAmount / 7;
+		
+		if(CheckInventory("Arcade") == 0){
+			// Don't give XP at max level and in last stand
+			// This is handled by the experience token item in arcade mode
+			if(CheckInventory("Rank") < 15 && CheckInventory("InLastStand") == 0){ 
+				GiveInventory("Experience", exp);
+				ACS_ExecuteAlways(616,0,0,0,0);
+			}
+		}
+		else { // arcade mode
+			// this is handled in actor death script
+		}			
 	
-		ACS_ExecuteAlways(616,0,0,0,0);
 		if(GetActorProperty(0,APROP_Health) > 0 && CheckInventory("Speaking") == 0)
 		{
 			GiveInventory("Speaking",1);
@@ -4656,18 +4676,21 @@ script 637 (void)
 		if(CheckInventory("MenuCursor") == 0)		//Classic
 		{
 			GiveInventory("Classic", 1);
-			TakeInventory("Arcade", 1);		
+			TakeInventory("Arcade", 1);	
+			arcade = 0;	
 		}
 		else if(CheckInventory("MenuCursor") == 1)		//Hardcore
 		{
 		    // nothing, hardcore is the default state
 		    TakeInventory("Classic", 1);
 		    TakeInventory("Arcade", 1);
+		    arcade = 0;
 		}
 		else if(CheckInventory("MenuCursor") == 2)		//Softcore
 		{
 		    GiveInventory("Classic", 1);
 		    GiveInventory("Arcade", 1);
+		    arcade = 1;
 		}
 		TakeInventory("MenuCursor",10); 
 		TakeInventory("MenuPlace",9);
@@ -5571,5 +5594,57 @@ script 647 (void) CLIENTSIDE {
 			SetFont("DAMSCRN3");
 		
         drawStretchedImage(50+PlayerNumber(), 0.5, 1.0);
+	}
+}
+
+int expTidCounter = 1000000;
+
+script 648 (void) {
+	if(arcade){
+		int exp = CheckInventory("XPAmount");
+		
+		exp = exp / 7;
+	
+		while(exp >= 10)
+		{
+			expTidCounter++;
+			
+			Spawn("ArcadeXP10", GetActorX(0), GetActorY(0), GetActorZ(0), expTidCounter);
+			ThrustThing(random(0, 255), random(0, 5), 0, expTidCounter);
+			ThrustThingZ(expTidCounter, random(0, 50), 0, 0);
+			
+			exp = exp - 10;
+		}
+		
+		while(exp >= 1)
+		{
+			expTidCounter++;
+			
+			Spawn("ArcadeXP1", GetActorX(0), GetActorY(0), GetActorZ(0), expTidCounter);
+			ThrustThing(random(0, 255), random(0, 5), 0, expTidCounter);
+			ThrustThingZ(expTidCounter, random(0, 50), 0, 1);
+			
+			exp = exp - 1;
+		}
+	}
+}
+
+script 649 (int mClassic, int mArcade) {
+	if(mClassic){
+		GiveInventory("Classic", 1);
+	}
+	else
+	{
+		TakeInventory("Classic", 1);
+	}
+	
+	if(mArcade){
+		GiveInventory("Arcade", 1);
+		arcade = true;
+	}
+	else
+	{
+		TakeInventory("Arcade", 1);
+		arcade = false;
 	}
 }

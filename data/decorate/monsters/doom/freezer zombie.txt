@@ -20,8 +20,9 @@ ACTOR FreezerZombie: RGAMonster
     Spawn:
 		FRPO A 0
 		FRPO A 0 Thing_SetSpecial(0,226,613,0,random(10,15))
+		POSS A 0 A_GiveInventory("XPAmount", random(10, 15))
         FRPO AB 10 A_Look		
-        Loop
+        goto Spawn+3
     See:
         FRPO AABBCCDD 4 A_Chase
         Loop
@@ -42,6 +43,7 @@ ACTOR FreezerZombie: RGAMonster
 		FRPO H 0 A_JumpIfHealthLower(random(-500,-110),"XDeath")
         FRPO I 5 A_Scream
         FRPO J 5 A_Fall
+        FRPO J 0 ACS_ExecuteAlways(648,0,0,0,0)
         FRPO K 5
         FRPO L -1
         Stop
@@ -49,6 +51,7 @@ ACTOR FreezerZombie: RGAMonster
         FRPO O 5
         FRPO P 5 A_XScream
         FRPO Q 5 A_Fall
+        FRPO Q 0 ACS_ExecuteAlways(648,0,0,0,0)
         FRPO RSTU 5
         FRPO V -1
         Stop
