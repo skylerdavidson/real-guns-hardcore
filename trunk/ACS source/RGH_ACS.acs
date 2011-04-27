@@ -4498,7 +4498,7 @@ script 636 (int firstTimeAfterDeath)
   		HudMessage(s:"1)    \cvSleight of Hand:      Faster reloading"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
   		HudMessage(s:"2)    \cvExtreme Conditioning: +15% running speed"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 120.0, 0.0);	
   		HudMessage(s:"3)    \cvOne Man Army:         Carry extra gun"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);	
-  		HudMessage(s:"4)    \cvScavenger:         Start with more ammo"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 60.1, 160.0, 0.0);
+  		HudMessage(s:"4)    \cvScavenger:            Start with more ammo"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 60.1, 160.0, 0.0);
   		HudMessage(s:"5)    Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 60.1, 180.0, 0.0);	
   
   		if(CheckInventory("MenuCursor") == 0)
