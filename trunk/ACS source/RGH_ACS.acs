@@ -5641,6 +5641,7 @@ script 649 (int mClassic, int mArcade) {
 		GiveInventory("Classic", 1);
 		GiveInventory("ClassicDamage", 1);
 		GiveInventory("ClassicDurability", 1);
+		GiveInventory("Crosshair", 1);
 		log(s:"Classic mode is ON");
 	}
 	else
@@ -5648,6 +5649,7 @@ script 649 (int mClassic, int mArcade) {
 		TakeInventory("Classic", 1);
 		TakeInventory("PowerClassicDamage", 99);
 		TakeInventory("PowerClassicDurability", 99);
+		GiveInventory("Crosshair", 1);
 		log(s:"Classic mode is OFF");
 	}
 	
