@@ -10,6 +10,12 @@ actor Arcade: Inventory
     inventory.maxamount 1
 }
 
+actor Crosshair: Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
 actor PowerClassicDurability : PowerProtection
 {
   damagefactor "Bullet", 0.5

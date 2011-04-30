@@ -39,9 +39,11 @@ actor "ACR" : RGUWeapon
   Select:
     ACRA A 0 A_Raise
 	ACRA A 0 ACS_ExecuteAlways(602,0,0,0,0)
+	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     loop
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
+	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     ACRB A 0 A_JumpIfInventory("Aiming",1,"FireAim")
     ACRB A 0 A_JumpIfNoAmmo("ReloadStart")
     ACRB A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
@@ -59,6 +61,7 @@ actor "ACR" : RGUWeapon
     ACRB D 1 A_ReFire
     goto Ready+13
   Hold:
+  	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     ACRB A 0 A_JumpIfInventory("Aiming",1,"HoldAim")
     ACRB A 0 A_JumpIfNoAmmo("ReloadStart")
     ACRB A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Hold_SteadyAim")

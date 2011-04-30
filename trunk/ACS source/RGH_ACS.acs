@@ -67,6 +67,7 @@ script 501 RESPAWN
 	if(CheckInventory("Classic") > 0){
 		GiveInventory("ClassicDamage", 1);
 		GiveInventory("ClassicDurability", 1);
+		GiveInventory("Crosshair", 1);
 	}
 	
 	if(CheckInventory("Arcade") > 0){
@@ -199,6 +200,7 @@ script 597 ENTER
 	if(CheckInventory("Classic") > 0){
 		GiveInventory("ClassicDamage", 1);
 		GiveInventory("ClassicDurability", 1);
+		GiveInventory("Crosshair", 1);
 	}
 	
 	if(CheckInventory("Arcade") > 0){
@@ -251,6 +253,8 @@ script 597 ENTER
 	SetAmmoCapacity("MaxWeaponsFilled",MaxGunCount);
 	
 	TakeInventory("InCombat", 5);
+	
+	ACS_ExecuteAlways(650,0,0,0,0); // crosshair
 	
 	ACS_ExecuteAlways(602,0,0,0,0); // adjust movement speed
 
@@ -4226,7 +4230,7 @@ script 636 (int firstTimeAfterDeath)
 	  		
 	  		SetFont("CONFONT");	
 	  		HudMessage(s:"                       \cjDoom-like gameplay"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 60.1, 103.0, 0.0);
-			HudMessage(s:"                       \cjGreatly increased weapon and monster damage"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 60.1, 143.0, 0.0);
+			HudMessage(s:"                       \cjGreatly increased weapon and monster damage, no crosshair"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 60.1, 143.0, 0.0);
 			HudMessage(s:"                       \cjMonsters drop experience on the ground"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 60.1, 183.0, 0.0);	
 	  		
 	  		SetFont("BIGFONT");
@@ -5027,6 +5031,7 @@ script 638 (int Which)
 	if(CheckInventory("Classic") > 0){
 		GiveInventory("ClassicDamage", 1);
 		GiveInventory("ClassicDurability", 1);
+		GiveInventory("Crosshair", 1);
 	}
 	
 	Class[PlayerNumber()+1] = Which;
@@ -5656,5 +5661,296 @@ script 649 (int mClassic, int mArcade) {
 		TakeInventory("Arcade", 1);
 		arcade = false;
 		log(s:"Arcade mode is OFF");
+	}
+}
+
+function int getCurrentWeaponSpread(bool hold){
+	int Spread = 0.0;
+
+	// Low spread handguns
+	if(
+		CheckWeapon("USP .45") || 
+		CheckWeapon("USP .45 Ex Mags") || 
+		CheckWeapon("USP .45 Akimbo") || 
+		CheckWeapon("USP .45 Tac Knife") || 
+		CheckWeapon("USP .45 LastStand") || 
+		CheckWeapon("M9") ||
+		CheckWeapon("M9 Ex Mags") ||
+		CheckWeapon(".44 Magnum") || 
+		CheckWeapon(".44 Magnum Akimbo") || 
+		CheckWeapon(".44 Magnum Tac Knife") ||		  
+		CheckWeapon("M93 Raffica") || 
+		CheckWeapon("M93 Raffica Ex Mags")
+	)
+	{
+		Spread = 10.0;
+		if(hold)
+			Spread = 20.0;
+	}
+
+	// Deagle
+	else if(
+		CheckWeapon("Desert Eagle") || 
+		CheckWeapon("Deagle Special") || 
+		CheckWeapon("Desert Eagle Akimbo") || 
+		CheckWeapon("Desert Eagle Tac Knife")
+	)
+	{
+		Spread = 15.0;
+		if(hold)
+			Spread = 30.0;
+	}
+
+	// Machine pistols
+	else if(
+	 	CheckWeapon("G18") || 
+		CheckWeapon("G18 Ex Mags") ||
+		CheckWeapon("G18 Akimbo") || 
+		CheckWeapon("PP2000") || 
+		CheckWeapon("PP2000 Ex Mags") ||
+		CheckWeapon("PP2000 Akimbo")
+	)
+	{
+		Spread = 10.0;
+		if(hold)
+			Spread = 20.0;
+	}
+
+	// Low spread shotguns
+	else if(
+		CheckWeapon("SPAS-12") || 
+		CheckWeapon("SPAS-12 Ex Mags") || 
+		CheckWeapon("SPAS-12 Grip") || 
+		CheckWeapon("M1014") ||
+		CheckWeapon("M1014 Ex Mags") ||
+		CheckWeapon("M1014 Grip") 
+	)
+	{
+		Spread = 6.0;
+	}
+
+	// Lower-medium spread shotguns
+	else if(
+		CheckWeapon("AA-12") || 
+		CheckWeapon("AA-12 Ex Mags") || 
+		CheckWeapon("AA-12 Grip") 
+	)
+	{
+		Spread = 7.0;
+	}
+
+	// Higher-medium spread shotguns
+	else if(
+		CheckWeapon("Model 1887") ||
+		CheckWeapon("Striker Grip")|| 
+		CheckWeapon("Striker") || 
+		CheckWeapon("Striker Ex Mags")
+	)
+	{
+		Spread = 8.0;
+	}
+	
+	// High spread shotguns
+	else if(
+		CheckWeapon("Ranger")
+	)
+	{
+		Spread = 10.0;
+	}
+	
+	// low recoil SMGs
+	else if(
+		CheckWeapon("Mini-UZI") ||
+		CheckWeapon("Mini-UZI Ex Mags") || 
+		CheckWeapon("Mini-UZI Akimbo")
+	)
+	{
+		Spread = 15.0;
+		if(hold)
+			Spread = 30.0;
+	}	
+
+	// low spread SMGs
+	else if(
+		CheckWeapon("Mini-UZI") ||
+		CheckWeapon("Mini-UZI Ex Mags") || 
+		CheckWeapon("Mini-UZI Akimbo") ||
+		CheckWeapon("MP5K") || 
+		CheckWeapon("MP5K Ex Mags") ||
+		CheckWeapon("MP5K Rapid Fire") ||
+		CheckWeapon("FN P90") || 
+		CheckWeapon("FN P90 Ex Mags") || 		
+		CheckWeapon("FN P90 Rapid Fire") 
+	)
+	{
+		Spread = 8.0;
+		if(hold)
+			Spread = 12.0;
+	}	
+	
+	// high spread SMGs
+	else if(
+		CheckWeapon("TDI Vector") || 
+		CheckWeapon("TDI Vector Ex Mags") ||
+		CheckWeapon("UMP45") || 
+		CheckWeapon("UMP45 Ex Mags") || 
+		CheckWeapon("UMP45 Rapid Fire")
+	)
+	{
+		Spread = 9.0;
+		if(hold)
+			Spread = 13.5;
+	}
+	
+	// low spread ARs and LMGs
+	else if(
+		CheckWeapon("FAL") || 
+		CheckWeapon("FAL Ex Mags") ||
+		CheckWeapon("ACR") || 
+		CheckWeapon("ACR Ex Mags") || 
+		CheckWeapon("SCAR-H") || 
+		CheckWeapon("SCAR-H Ex Mags") || 
+		CheckWeapon("M4A1") || 
+		CheckWeapon("M4A1 Ex Mags") || 
+		CheckWeapon("FAMAS") || 
+		CheckWeapon("FAMAS Ex Mags") ||
+        CheckWeapon("F2000") || 
+		CheckWeapon("F2000 Ex Mags") ||
+		CheckWeapon("M16A4") || 
+		CheckWeapon("M16A4 Ex Mags") ||
+		CheckWeapon("L86") || 
+		CheckWeapon("L86 Ex Mags") ||
+		CheckWeapon("L86 Grip") ||
+		CheckWeapon("AUG HBAR") ||
+		CheckWeapon("AUG HBAR Ex Mags") ||
+		CheckWeapon("AUG HBAR Grip")	
+	)
+	{
+		Spread = 7.0;
+		if(hold)
+			Spread = 10.5;
+	}
+	
+	// high spread ARs and LMGs
+	else if(
+		CheckWeapon("AK-47") || 
+		CheckWeapon("AK-47 Ex Mags") ||
+		CheckWeapon("M240") ||
+		CheckWeapon("M240 Ex Mags") ||
+		CheckWeapon("M240 Grip") ||
+		CheckWeapon("MG4") || 
+		CheckWeapon("MG4 Ex Mags") ||
+		CheckWeapon("MG4 Grip") 
+	)
+	{
+		Spread = 8.0;
+		if(hold)
+			Spread = 12.0;
+	}
+
+	// high spread ARs and LMGs
+	else if(
+		CheckWeapon("AK-47") || 
+		CheckWeapon("AK-47 Ex Mags") ||
+		CheckWeapon("M240") ||
+		CheckWeapon("M240 Ex Mags") ||
+		CheckWeapon("M240 Grip") ||
+		CheckWeapon("MG4") || 
+		CheckWeapon("MG4 Ex Mags") ||
+		CheckWeapon("MG4 Grip") 
+	)
+	{
+		Spread = 8.0;
+		if(hold)
+			Spread = 12.0;
+	}
+	
+	// high spread ARs and LMGs
+	else if(
+		CheckWeapon("Intervention") || CheckWeapon("Intervention Thermal") || CheckWeapon("Intervention Ex Mags") ||
+		CheckWeapon("Barrett 50cal") || CheckWeapon("Barrett 50cal Thermal") || CheckWeapon("Barrett 50cal Ex Mags") ||
+		CheckWeapon("WA2000") || CheckWeapon("WA2000 Thermal") || CheckWeapon("WA2000 Ex Mags") ||
+		CheckWeapon("M14 EBR") || CheckWeapon("M14 EBR Thermal") || CheckWeapon("M14 EBR Ex Mags")
+	)
+	{
+		Spread = 15.0;
+		if(hold)
+			Spread = 30.0;
+	}	
+
+	if(CheckInventory("Perk3_SteadyAim"))
+	{
+		Spread = Spread * 2 / 3;
+	}
+	
+	return Spread;
+}
+
+// crosshair drawing script
+script 650 (void) CLIENTSIDE {
+	// Bot? -> No need for crosshair
+	if(ClassifyActor(0) & ACTOR_BOT){
+		terminate;
+	}
+	
+	// No crosshair in deathmatch
+	if(GameType() == GAME_NET_DEATHMATCH){
+		terminate;
+	}
+
+	while(true){
+		log(i:CheckInventory("Crosshair"));
+		if(
+			CheckInventory("Crosshair") > 0 &&
+			CheckInventory("Aiming") == 0 &&
+			CheckInventory("ThrowingGrenade") == 0 &&
+			CheckInventory("KnifeAttack") == 0 &&
+			CheckInventory("Reloading") == 0 &&
+			GetActorProperty(0,APROP_Health) > 0			
+		){
+			// The drawing will be done at native resolution (so the crosshair sprites are never destroyed by scaling).
+			SetHudSize(GetScreenWidth(),GetScreenHeight(),1);
+			
+			// Calculate aspect-ratio inndependent width of the screen (only a 4:3 cutout will be considered - it is enough
+			// for crosshair drawing);
+			int width4to3 = GetScreenHeight() * 4 / 3;
+			
+			//log(f:(width4to3 * (getCurrentWeaponSpread(true)/ 16)));
+			
+			// Calculate sizes for crosshair in normal and hold-fore state.
+			// The size is adapted to current screen resolution.
+			// The FOV (of 4:3 cutout of the screen) is expected to be 90.
+			// The division by 16 is necessary, since the fixed point numbers have very limited capacity (1 bit for sign, 15 bits for 
+			// radix part and 16 bits for fractional part), so the calculation width4to3 * weaponSpread
+			// would overflow for high resolutions and hogh weapon spreads. Dividing the number by 16 effectively changes 
+			// bit the distribution to 1/19/12 allowing us to store 16 times higher numbers at cost of 16 times reduced accuracy (
+			// which is of course not needed for this purpose). 
+			int size = width4to3 * (getCurrentWeaponSpread(false) / 16) / 90 / (65536 / 16);
+			int holdSize = width4to3 * (getCurrentWeaponSpread(true) / 16) / 90 / (65536 / 16);
+			
+			// Use linear interpolation to get a current crosshair size.
+			size = holdSize * CheckInventory("InCombatCrosshair") / 35 + size * (35 - CheckInventory("InCombatCrosshair")) / 35; 
+			
+			if(size > 0){
+				SetFont("CROSSLFT");
+				HudMessage(s:"a"; HUDMSG_FADEOUT, 314, CR_UNTRANSLATED, 65536 * (GetScreenWidth() / 2 - size), 65536 * (GetScreenHeight() / 2), 0, 0.5);
+				SetFont("CROSSRGT");
+				HudMessage(s:"a"; HUDMSG_FADEOUT, 315, CR_UNTRANSLATED, 65536 * (GetScreenWidth() / 2 + size), 65536 * (GetScreenHeight() / 2), 0, 0.5);
+				SetFont("CROSSTOP");
+				HudMessage(s:"a"; HUDMSG_FADEOUT, 316, CR_UNTRANSLATED, 65536 * (GetScreenWidth() / 2), 65536 * (GetScreenHeight() / 2 - size), 0, 0.5);
+				SetFont("CROSSBOT");
+				HudMessage(s:"a"; HUDMSG_FADEOUT, 317, CR_UNTRANSLATED, 65536 * (GetScreenWidth() / 2), 65536 * (GetScreenHeight() / 2 + size), 0, 0.5);
+			}
+			else {
+				GiveInventory("InCombatCrosshair", 35);
+			}
+			
+			TakeInventory("InCombatCrosshair", 3);
+		}
+		else {
+			GiveInventory("InCombatCrosshair", 35);
+			//log(s:"NoCross");
+		}
+		delay(1);
 	}
 }

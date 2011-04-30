@@ -656,6 +656,14 @@ actor InCombatRegeneration : Inventory
 
 }
 
+//Counter for crosshair size
+actor InCombatCrosshair : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 35
+
+}
+
 
 actor InCombat: CustomInventory
 {
@@ -666,7 +674,7 @@ actor InCombat: CustomInventory
 		Pickup:
 			TNT1 E 0 A_JumpIfInventory("Perk3_Commando_Pro", 1, 2)
 			TNT1 F 0 A_GiveInventory("InCombatRegeneration")
-			TNT1 A 0 A_TakeInventory("PowerPerk2_ColdBloodedProEffectPower", 0)
+			TNT1 A 0 A_TakeInventory("PowerPerk2_ColdBloodedProEffectPower", 0)			
 			stop
 		Use:
 			TNT1 A 0
