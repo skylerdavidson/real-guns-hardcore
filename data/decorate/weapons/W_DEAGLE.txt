@@ -38,9 +38,11 @@ actor "Desert Eagle" : RGUWeapon
   Select:
     DEGA A 0 A_Raise
 	DEGA A 0 ACS_ExecuteAlways(602,0,0,0,0)
+	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     loop
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
+	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGA A 0 A_JumpIfInventory("Aiming",1,"FireAim")
     DEGA L 1 A_JumpIfNoAmmo("ReloadStart")
     DEGB A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
@@ -93,6 +95,7 @@ actor "Desert Eagle" : RGUWeapon
     DEGB A 0 A_ReFire
     goto Ready+12
   Hold:
+  	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGA L 3 A_JumpIfInventory("Aiming",1,"HoldAim")
     DEGA L 1 A_ReFire
     goto Ready+12
@@ -388,6 +391,7 @@ actor "Deagle Special" : "Desert Eagle"
   {
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
+	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGA A 0 A_JumpIfInventory("Aiming",1,"FireAim")
     DEGA L 1 A_JumpIfNoAmmo("ReloadStart")
     DEGB A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
@@ -644,9 +648,11 @@ actor "Desert Eagle Akimbo" : "Desert Eagle"
   Select:
     DEGG A 0 A_Raise
 	DEGG A 0 ACS_ExecuteAlways(602,0,0,0,0)
+	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     loop
   Fire: //Right
 	TNT1 A 0 A_GiveInventory("InCombat",5)
+	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGG K 1 A_JumpIfNoAmmo("ReloadStart")
     DEGI A 0 A_JumpIfInventory("FireSwitch",1,"FireLeft")
     DEGI A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
@@ -708,6 +714,7 @@ actor "Desert Eagle Akimbo" : "Desert Eagle"
     DEGG K 5
     goto Ready+12
   Hold:
+  	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGG K 3 
     DEGG K 1 A_ReFire
     goto Ready+12
@@ -934,9 +941,11 @@ actor "Desert Eagle Tac Knife" : RGUWeapon
   Select:
     DEGK A 0 A_Raise
 	DEGK A 0 ACS_ExecuteAlways(602,0,0,0,0)
+	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     loop
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
+	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGK A 0 A_JumpIfInventory("Aiming",1,"FireAim")
     DEGK L 1 A_JumpIfNoAmmo("ReloadStart")
     DEGL A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
@@ -987,6 +996,7 @@ actor "Desert Eagle Tac Knife" : RGUWeapon
     DEGL A 0 A_ReFire
     goto Ready+12
   Hold:
+  	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGK L 3 A_JumpIfInventory("Aiming",1,"HoldAim")
     DEGK L 1 A_ReFire
     goto Ready+12

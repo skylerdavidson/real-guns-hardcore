@@ -38,9 +38,11 @@ actor "Barrett 50cal" : RGUWeapon
   Select:
     B50A A 0 A_Raise
 	B50A A 0 ACS_ExecuteAlways(602,0,0,0,0)
+	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     loop
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
+	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     B50A N 0 A_JumpIfInventory("Aiming",1,"FireAim")
     B50A P 1 A_JumpIfNoAmmo("ReloadStart")
     B50B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
@@ -70,6 +72,7 @@ actor "Barrett 50cal" : RGUWeapon
     B50B A 0 A_ReFire
     goto Ready+16
   Hold:
+  	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     B50A P 3 A_JumpIfInventory("Aiming",1,"HoldAim")
     B50A P 1 A_ReFire
     goto Ready+16
