@@ -5611,15 +5611,15 @@ script 648 (void) {
 	if(arcade){
 		int exp = CheckInventory("XPAmount");
 		
-		exp = exp / 7;
+		exp = exp / 6;
 	
 		while(exp >= 10)
 		{
 			expTidCounter++;
 			
 			Spawn("ArcadeXP10", GetActorX(0), GetActorY(0), GetActorZ(0), expTidCounter);
-			ThrustThing(random(0, 255), random(0, 5), 0, expTidCounter);
-			ThrustThingZ(expTidCounter, random(0, 50), 0, 0);
+			ThrustThing(random(0, 255), random(2, 6), 0, expTidCounter);
+			ThrustThingZ(expTidCounter, random(20, 50), 0, 0);
 			
 			exp = exp - 10;
 		}
@@ -5629,8 +5629,8 @@ script 648 (void) {
 			expTidCounter++;
 			
 			Spawn("ArcadeXP1", GetActorX(0), GetActorY(0), GetActorZ(0), expTidCounter);
-			ThrustThing(random(0, 255), random(0, 5), 0, expTidCounter);
-			ThrustThingZ(expTidCounter, random(0, 50), 0, 1);
+			ThrustThing(random(0, 255), random(2, 6), 0, expTidCounter);
+			ThrustThingZ(expTidCounter, random(20, 50), 0, 1);
 			
 			exp = exp - 1;
 		}
