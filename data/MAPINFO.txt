@@ -134,10 +134,10 @@ clearskills
 skill trivial
 {
    AmmoFactor = 1
-   DamageFactor = 1.0
+   DamageFactor = 0.5
    SpawnFilter = "Hard"
    textcolor="white"
-   Name = "Trivial  6 Guns,50% DMG"
+   Name = "Trivial  6 Guns,25% DMG"
    acsreturn = 6
    autousehealth
 }
@@ -145,10 +145,10 @@ skill trivial
 skill easy
 {
    AmmoFactor = 1
-   DamageFactor = 2.0
+   DamageFactor = 1.0
    SpawnFilter = "Hard"
    textcolor="green"
-   Name = "Easy     4 Guns,100% DMG"
+   Name = "Easy     4 Guns,50% DMG"
    acsreturn = 4
    autousehealth
 }
@@ -157,10 +157,10 @@ skill easy
 skill medium
 {
    AmmoFactor = 1
-   DamageFactor = 2.5
+   DamageFactor = 1.25
    SpawnFilter = "Hard"
    textcolor="yellow"
-   Name = "Medium  3 Guns,125% DMG"
+   Name = "Medium  3 Guns,75% DMG"
    acsreturn = 3
    autousehealth
 }
@@ -168,20 +168,19 @@ skill medium
 skill hard
 {
    AmmoFactor = 1
-   DamageFactor = 3.0
+   DamageFactor = 2.5
    SpawnFilter = "Hard"
-   textcolor="orange"
-   Name = "Hard     3 Guns,150% DMG"
+   Name = "Hard     3 Guns,125% DMG"
    acsreturn = 3
    autousehealth
 }
 
-skill tactics
+skill deadly
 {
    AmmoFactor = 1
-   DamageFactor = 2.5
+   DamageFactor = 3.0
    SpawnFilter = "Hard"
-   Name = "Tactics 2 Guns,125% DMG"
+   Name = "Deadly  2 Guns,150% DMG"
    acsreturn = 2
    autousehealth
 }
@@ -196,16 +195,6 @@ skill fun
    autousehealth
 }
 
-skill deadly
-{
-   AmmoFactor = 1
-   DamageFactor = 3.0
-   SpawnFilter = "Hard"
-   Name = "Deadly  2 Guns,150% DMG"
-   acsreturn = 2
-   autousehealth
-}
-
 skill realism
 {
    AmmoFactor = 1
@@ -216,28 +205,14 @@ skill realism
    acsreturn = 2
    autousehealth
 }
-
-skill instagib
+/*
+skill ultra
 {
    AmmoFactor = 1
-   DamageFactor = 99.9
-   //monsterhealth = 0.001
+   DamageFactor = 4.0
    SpawnFilter = "Hard"
+   Name = "Ultra    1 Gun,200% DMG"
    textcolor="black"
-   Name = "INSTAGIB"
    acsreturn = 1
    autousehealth
-}
-
-skill oldschool
-{
-   AmmoFactor = 1
-   DamageFactor = 1.0
-   //monsterhealth = 0.4
-   SpawnFilter = "Hard"
-   textcolor="black"
-   Name = "OLDSCHOOL"
-   acsreturn = 9
-   autousehealth
-}
-
+} */
