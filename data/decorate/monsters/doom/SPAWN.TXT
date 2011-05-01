@@ -289,7 +289,8 @@ actor PainElemental_Spawner replaces PainElemental
   Spawn:
     TNT1 A 0 
     TNT1 A 0 A_Jump(96,"Spawn3")
-    TNT1 A 0 A_Jump(120,"Spawn4", "Spawn5")
+    TNT1 A 0 A_Jump(80,"Spawn4")
+    TNT1 A 0 A_Jump(35,"Spawn5")
     TNT1 A 0 A_Jump(96,"Spawn2")
     TNT1 A 0 A_SpawnItemEx("PainElemental_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
     TNT1 A 0 A_Die
