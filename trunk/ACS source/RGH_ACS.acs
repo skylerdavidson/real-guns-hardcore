@@ -3412,6 +3412,7 @@ script 624 (int Which)
 	{
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk3_LastStand",1);
+		GiveInventory("LastStandUrn",10000);
 		SetFont("BIGFONT");
 		HudMessage(s:"\cdLAST STAND"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
 		HudMessage(s:"Pull out your handgun before dying!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
