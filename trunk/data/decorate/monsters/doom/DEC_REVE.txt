@@ -37,9 +37,9 @@ actor Revenant_2 : RGAMonster
     goto See
   Missile:
     SKEL J 0 bright A_FaceTarget
-    SKEL J 10 bright A_FaceTarget
-    SKEL K 10 A_CustomMissile("RevenantEightballMissile",56,10)
-    SKEL K 10 A_FaceTarget
+    SKEL J 6 bright A_FaceTarget
+    SKEL K 6 A_CustomMissile("RevenantEightballMissile",56,10)
+    SKEL K 6 A_FaceTarget
     goto See
   Pain:
     SKEL L 5
@@ -184,10 +184,10 @@ actor GreenRevenant : Revenant_2
     goto See
   Missile:
     GSKL J 0 bright A_FaceTarget
-    GSKL J 10 bright A_FaceTarget
-    GSKL K 10 A_CustomMissile("ClusterMissile",56,10)
-	GSKL K 10 A_CustomMissile("ClusterMissile",56,-10)
-    GSKL K 10 A_FaceTarget
+    GSKL J 6 bright A_FaceTarget
+    GSKL K 6 A_CustomMissile("ClusterMissile",56,10)
+	GSKL K 6 A_CustomMissile("ClusterMissile",56,-10)
+    GSKL K 6 A_FaceTarget
     goto See
   Pain:
     GSKL L 5

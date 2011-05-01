@@ -17,7 +17,7 @@ actor Agathodemon : RGAMonster
   Height 64
   Health 1400
   Mass 1000
-  Speed 12
+  Speed 16
   PainChance 160
   SeeSound "caco/sight"
   PainSound "caco/pain"

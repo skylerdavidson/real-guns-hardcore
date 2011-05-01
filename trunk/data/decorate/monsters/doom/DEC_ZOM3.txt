@@ -98,6 +98,7 @@ actor DoubleChaingunGuy_2 : RGAMonster
   Decal Bulletchip
   MONSTER
   +FLOORCLIP
+  +MISSILEMORE
   Translation "112:127=[0,0,131]:[0,0,0]"
   states
   {
@@ -175,6 +176,7 @@ actor LMGGuy : RGAMonster
   Decal Bulletchip
   MONSTER
   +FLOORCLIP
+  +MISSILEMORE
   states
   {
   Spawn:
@@ -240,6 +242,7 @@ actor GrenadeGuy_2 : RGAMonster
   DropItem "HandgunAmmo" 128
   MONSTER
   +FLOORCLIP
+  +MISSILEMORE
   Translation "112:127=[131,107,75]:[0,0,0]"
   states
   {

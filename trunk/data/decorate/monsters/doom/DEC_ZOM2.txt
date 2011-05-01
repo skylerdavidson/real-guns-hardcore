@@ -2,7 +2,7 @@ actor ShotgunGuy_2 : RGAMonster
 {
   spawnid 1
   obituary "%o was shot by a sergeant."
-  health 70
+  health 40
   radius 20
   height 56
   mass 100
@@ -19,6 +19,7 @@ actor ShotgunGuy_2 : RGAMonster
   DropItem "HandgunAmmo" 128
   MONSTER
   +FLOORCLIP
+  +MISSILEMORE
   states
   {
   Spawn:
@@ -67,7 +68,7 @@ actor SuperShotgunGuy_2 : RGAMonster
 {
   spawnid 1
   obituary "%o was jacked by a super shotgunner."
-  health 90
+  health 60
   radius 20
   height 56
   mass 100
@@ -83,6 +84,7 @@ actor SuperShotgunGuy_2 : RGAMonster
   DropItem "HandgunAmmo" 128
   MONSTER
   +FLOORCLIP
+  +MISSILEMORE
   //Translation "112:127=[100,0,0]:[0,0,0]"
   States
   {
@@ -133,7 +135,7 @@ actor SuperShotgunGuy_2 : RGAMonster
 actor SpaceNazi : RGAMonster
 {
   obituary "%o met a space Nazi."
-  health 60
+  health 40
   radius 20
   height 56
   mass 100
@@ -146,6 +148,7 @@ actor SpaceNazi : RGAMonster
   activesound "wolfss/active"
   MONSTER
   +FLOORCLIP
+  +MISSILEMORE
   dropitem "AssaultRifleSpawner" 64
   dropitem "AssaultRifleAmmo" 96
   states

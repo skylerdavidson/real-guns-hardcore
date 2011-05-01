@@ -2,7 +2,7 @@ actor SpiderMastermind_2
 {
   spawnid 7
   obituary "%o stood in awe of the spider demon."
-  health 6500
+  health 5000
   radius 128
   height 100
   mass 1000
@@ -91,7 +91,7 @@ actor SpiderStepDamage
 
 actor CyberMastermind
 {
-    Health 7000
+    Health 4500
     Radius 128
     Height 100
     Speed 12

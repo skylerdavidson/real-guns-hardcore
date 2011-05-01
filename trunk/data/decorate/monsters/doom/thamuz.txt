@@ -10,7 +10,7 @@
 
 ACTOR Thamuz : Cyberdemon_2
 {
-  Health 6800
+  Health 4400
   Speed 16
   PainChance 35
   Mass 2000

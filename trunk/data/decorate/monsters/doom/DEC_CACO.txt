@@ -12,7 +12,7 @@ actor Cacodemon_2 : RGAMonster
   radius 31
   height 56
   mass 400
-  speed 8
+  speed 14
   painchance 128
   seesound "caco/sight"
   painsound "caco/pain"
@@ -67,7 +67,7 @@ actor BlueCacodemon : Cacodemon_2
 {
   obituary "%o was smitten by a bluodemon."
   hitobituary "%o got too close to a bluodemon."
-  health 800
+  health 600
   bloodcolor "Red"
   +MISSILEMORE
   states
@@ -211,7 +211,7 @@ ACTOR Abaddon_2 : Cacolantern_2
 {
   SpawnID 220
   Health 1000
-  Speed 9
+  Speed 16
   PainChance 80
   Obituary "$OB_ABADDON" // "%o was smitten by an abaddon."
   HitObituary "$OB_ABADDON_MELEE" // "%o became food for an abaddon."

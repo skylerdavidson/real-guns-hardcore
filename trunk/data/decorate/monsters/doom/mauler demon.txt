@@ -2,7 +2,7 @@ ACTOR MaulerDemon : RGAMonster
 {              
 	//$Category Monsters
  +MISSILEEVENMORE
-   Health 350
+   Health 280
    PainChance 180 
    Speed 17 
    Radius 30 

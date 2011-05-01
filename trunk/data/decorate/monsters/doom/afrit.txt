@@ -1,7 +1,7 @@
 Actor Afrit : RGAMonster
 {
   Health 2800
-  Speed 6
+  Speed 10
   Radius 24
   Height 72
   PainChance 50

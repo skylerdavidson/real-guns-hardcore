@@ -1,7 +1,7 @@
 Actor ForgottenOne : RGAMonster
 {
   Obituary "A Forgotten One rammed %o"
-  Health 40
+  Health 30
   Radius 14
   Height 30
   Mass 50

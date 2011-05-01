@@ -1,7 +1,7 @@
 ACTOR BruiserDemon : RGAMonster
 {
 	//$Category Monsters
-	Health 1500
+	Health 1100
 	Radius 24
 	Height 64
 	Mass 2000

@@ -1,7 +1,7 @@
 //The Overlord
 actor OverLord : RGAMonster
 {
-Health 6500
+Health 4800
 Radius 30 
 Height 90 
 Mass 1000 

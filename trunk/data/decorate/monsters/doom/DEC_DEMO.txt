@@ -1,6 +1,6 @@
 ACTOR Demon_2 : RGAMonster
 {
-  Health 175
+  Health 110
   PainChance 180
   Speed 20
   Radius 30
@@ -58,7 +58,7 @@ ACTOR Demon_2 : RGAMonster
 ACTOR BloodDemon_2 : Demon_2
 {
   SpawnID 156
-  Health 350
+  Health 110
   Speed 28
   Obituary "$OB_BLOODDEMON_MELEE" // "%o was chomped on by a blood demon."
   Species "Demon"
@@ -99,7 +99,7 @@ ACTOR BloodDemon_2 : Demon_2
 actor StoneDemon : RGAMonster
 {
   hitobituary "%o was crunched by a stone demon."
-  health 700
+  health 500
   painchance 5
   speed 15
   radius 30
