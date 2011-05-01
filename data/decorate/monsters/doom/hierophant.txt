@@ -38,11 +38,11 @@ Actor AcolFX2
 //Hierophant
 Actor Hierophant: RGAMonster
 {
-  Health 4000
+  Health 3000
   Radius 24
   Height 60
   Mass 1000
-  Speed 10
+  Speed 14
   PainChance 24
   Monster
   MeleeDamage 10

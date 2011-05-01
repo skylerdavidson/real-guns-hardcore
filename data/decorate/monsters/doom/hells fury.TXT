@@ -1,7 +1,7 @@
 ACTOR HellsFury : RGAMonster
 {
 	//$Category Monsters
-	Health 2300
+	Health 1900
 	Radius 24
 	Height 64
 	Speed 8
@@ -9,6 +9,7 @@ ACTOR HellsFury : RGAMonster
 	Mass 1000
 	MONSTER
 	+FLOORCLIP
+	+MISSILEMORE
 	SeeSound "baron/sight"
 	ActiveSound "baron/active"
 	PainSound "baron/pain"

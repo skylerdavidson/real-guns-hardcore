@@ -6,7 +6,7 @@ actor BaronOfHell_2 : RGAMonster
   health 1000
   radius 24
   height 64
-  mass 1000
+  mass 800
   speed 8
   painchance 50
   seesound "baron/sight"
@@ -16,6 +16,7 @@ actor BaronOfHell_2 : RGAMonster
   MONSTER
   +FLOORCLIP
   +BOSSDEATH
+  +MISSILEMORE
   Species "Goat"
   damagefactor "BaronBall", 0.0
   bloodcolor "Green"
@@ -66,7 +67,7 @@ actor Cybruiser : BaronOfHell_2
 {
   obituary "%o was blown away by a Cybruiser."
   hitobituary "%o was smashed by a Cybruiser."
-  health 2000
+  health 1400
   radius 24
   height 64
   mass 1000
@@ -226,7 +227,7 @@ actor BruiserCube
 ACTOR Belphegor_2 : HellKnight_2
 {
   SpawnID 215
-  Health 1500
+  Health 1100
   PainChance 25
   SeeSound "baron/sight"
   PainSound "baron/pain"
@@ -253,12 +254,12 @@ ACTOR Belphegor_2 : HellKnight_2
     Goto See
   Melee:
   Missile:
-    BOS3 EF 6 A_FaceTarget
-    BOS3 G 6 A_CustomComboAttack("BaronBall",32,(7*random(1,5)),"imp/melee")
-    BOS3 EF 6 A_FaceTarget
-    BOS3 G 6 A_CustomComboAttack("BaronBall",32,(7*random(1,5)),"imp/melee")
-    BOS3 EF 6 A_FaceTarget
-    BOS3 G 6 A_CustomComboAttack("BaronBall",32,(7*random(1,5)),"imp/melee")
+    BOS3 EF 4 A_FaceTarget
+    BOS3 G 4 A_CustomComboAttack("BaronBall",32,(7*random(1,5)),"imp/melee")
+    BOS3 EF 4 A_FaceTarget
+    BOS3 G 4 A_CustomComboAttack("BaronBall",32,(7*random(1,5)),"imp/melee")
+    BOS3 EF 4 A_FaceTarget
+    BOS3 G 4 A_CustomComboAttack("BaronBall",32,(7*random(1,5)),"imp/melee")
     Goto See
   Death:
     BOS3 I 8

@@ -1,6 +1,6 @@
 ACTOR LostSoul_2 : RGAMonster
 {
-  Health 100
+  Health 60
   Radius 16
   Height 56
   Mass 50
@@ -133,7 +133,7 @@ actor SpectreMiniLostSoul : MiniLostSoul
 actor KamikazeSoul : RGAMonster
 {
   obituary "%o was imploded by a lost soul."
-  health 80
+  health 60
   radius 16
   height 56
   mass 50

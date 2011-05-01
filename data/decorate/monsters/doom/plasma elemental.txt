@@ -1,7 +1,7 @@
 ACTOR PlasmaElemental : RGAMonster
 { 
-   Health 850
-   Speed 8
+   Health 750
+   Speed 13
    Radius 31
    Height 56
    PainChance 128
@@ -10,6 +10,7 @@ ACTOR PlasmaElemental : RGAMonster
    +NOGRAVITY
    +FLOAT
    +DROPOFF
+   +MISSILEEVENMORE
    SeeSound "Pain/Sight"
    PainSound "Pain/Pain"
    DeathSound "Pain/Death"

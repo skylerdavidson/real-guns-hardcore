@@ -63,7 +63,7 @@ actor FatShot_2: FatShot
 actor Acubus : Fatso_2
 {
   obituary "%o was creamed by an Acubus."
-  health 2200
+  health 1600
   radius 48
   height 64
   mass 1200

@@ -13,6 +13,7 @@ actor PainElemental_2 : RGAMonster
   MONSTER
   +FLOAT
   +NOGRAVITY
+  +MISSILEMORE
   states
   {
   Spawn:
@@ -25,8 +26,8 @@ actor PainElemental_2 : RGAMonster
     PAIN AABBCC 3 A_Chase
     loop
   Missile:
-    PAIN DE 5 A_FaceTarget
-    PAIN F 5 bright A_FaceTarget
+    PAIN DE 3 A_FaceTarget
+    PAIN F 3 bright A_FaceTarget
     PAIN F 0 bright A_Jump(128,2,3)
     PAIN F 0 bright A_PainAttack("LostSoul_2")
     goto See
@@ -77,8 +78,8 @@ actor SpectrePainElemental : PainElemental_2
     PAIN AABBCC 3 A_Chase
     loop
   Missile:
-    PAIN DE 5 A_FaceTarget
-    PAIN F 5 bright A_FaceTarget
+    PAIN DE 3 A_FaceTarget
+    PAIN F 3 bright A_FaceTarget
     PAIN F 0 bright A_PainAttack("SpectreLostSoul")
     goto See
   Pain:
@@ -118,8 +119,8 @@ actor KamikazePainElemental : PainElemental_2
     KPEL AABBCC 3 A_Chase
     loop
   Missile:
-    KPEL DE 5 A_FaceTarget
-    KPEL F 5 bright A_FaceTarget
+    KPEL DE 3 A_FaceTarget
+    KPEL F 3 bright A_FaceTarget
     KPEL F 0 bright A_PainAttack("KamikazeSoul")
     goto See
   Pain:

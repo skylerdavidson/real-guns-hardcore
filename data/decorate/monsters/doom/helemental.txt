@@ -2,11 +2,11 @@ actor Helemental : RGAMonster
 {
   obituary "%o was electrocuted by a Hades-Elemental."
   hitobituary "%o got chomped by a Hades-Elemental."
-  health 4800
+  health 3300
   radius 34
   height 64
   mass 800
-  speed 10
+  speed 16
   painchance 32
   MeleeDamage 10
   DamageType normal
@@ -19,7 +19,7 @@ actor Helemental : RGAMonster
   +FLOAT
   +NOGRAVITY
   +BOSS
-  +MISSILEMORE
+  +MISSILEEVENMORE
   +NOTARGET
   +DONTHURTSPECIES
   +NORADIUSDMG

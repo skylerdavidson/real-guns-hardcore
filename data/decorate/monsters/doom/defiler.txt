@@ -1,11 +1,11 @@
 ACTOR Defiler : RGAMonster
 {
 	//$Category monsters
-	Health 2800
+	Health 1800
 	Radius 31
 	Height 56
 	Mass 500
-	Speed 9
+	Speed 13
 	PainChance 15
 	Monster 
 	+NOGRAVITY
