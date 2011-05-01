@@ -5902,7 +5902,7 @@ script 650 (void) CLIENTSIDE {
 	}
 
 	while(true){
-		log(i:CheckInventory("Crosshair"));
+		//log(i:CheckInventory("Crosshair"));
 		if(
 			CheckInventory("Crosshair") > 0 &&
 			CheckInventory("Aiming") == 0 &&
