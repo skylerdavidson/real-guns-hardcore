@@ -34,9 +34,27 @@ actor ZombieMan_Spawner replaces ZombieMan
     TNT1 A 0 A_SpawnItemEx("ZombieMan_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
     TNT1 A 0 A_Die
     stop
-  Spawn2:  
+  Spawn2:
+  	// replace ZombieMan with a random ShotgunGuy variant, except Zombie Commando
     TNT1 A 0 
-    TNT1 A 0 A_SpawnItemEx("ShotgunGuy_Spawner",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+	TNT1 A 0 A_Jump(35,"Spawn3_2","Spawn4_2")
+    TNT1 A 0 A_Jump(96,"Spawn2_2")
+    TNT1 A 0 A_SpawnItemEx("ShotgunGuy_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn2_2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("SuperShotgunGuy_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn3_2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("ZombieSniper",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
+    TNT1 A 0 A_Die
+    stop
+  Spawn4_2:  
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("FreezerZombie",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
     TNT1 A 0 A_Die
     stop
   Death:
