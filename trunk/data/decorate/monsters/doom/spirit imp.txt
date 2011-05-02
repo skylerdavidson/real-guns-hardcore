@@ -1,54 +1,80 @@
-ACTOR SpiritImp 31179
+actor DoomImpRes : RGAMonster
 {
-  Health 150
-  Radius 20
-  Height 56
-  Mass 120
-  Speed 8
-  BloodType None
-  MONSTER
-  
-  Alpha 0.7
-  +FloorClip
-  +NoBloodDecals
+  spawnid 5
+  obituary "%o was burned by an imp's ghost."
+  hitobituary "%o was slashed by an imp's ghost."
+  health 1
+  radius 20
+  height 56
+  mass 100
+  speed 10
+  painchance 200
   SEESOUND "SpiritImp/Sight"
   DEATHSOUND "SpiritImp/Death"
   ACTIVESOUND "SpiritImp/Active"
-  HITOBITUARY "%o was chilled by the touch of a spirit imp"
-  OBITUARY "%o was chilled by a spirit imp"  
+  MONSTER
+  +FLOORCLIP
+  +NOBLOOD
+  -SOLID
+  Renderstyle Add
+  Alpha 0.0
+  dropitem "HealthBonus" 1
+  Species "Imp"
   states
   {
   Spawn:
+    SPIP A 0
+    SPIP A 0 A_GiveInventory("XPAmount", random(6, 14))
+	SPIP A 0 A_Jump(128, 2)
+	SPIP A 0 A_ChangeFlag("SHOOTABLE", 0)
+    SPIP A 0 Thing_SetSpecial(0,226,613,0,random(6,14))
+    SPIP A 0 A_JumpIfInventory("Awoken",1,"Look")
+    SPIP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2 A_FadeIn(0.025)
+    Goto Look
+  Look:
+    SPIP A 0 A_GiveInventory("Awoken",1)
     SPIP AB 10 A_Look
-    Loop
+    loop
   See:
-    SPIP A 0 A_CustomMissile("OrbitSpirit", 28, 0, 90)
-    SPIP A 0 A_CustomMissile("OrbitSpirit2", 28, 0, -90)
+	SPIP A 0 A_Jump(140, 3)
+	SPIP A 0 A_ChangeFlag("SHOOTABLE", 1)
+	SPIP A 0 A_Jump(255, 2)
+	SPIP A 0 A_ChangeFlag("SHOOTABLE", 0)	
     SPIP AABBCCDD 3 A_Chase
-    Goto See+2
+    loop
   Melee:
   Missile:
-    SPIP EFG 4 A_FaceTarget 
-    SPIP HIJK 5 A_FaceTarget
-    SPIP L 6 A_CustomMissile("SpiritImpBall", 28)
-    SPIP M 10
-    Goto See +2  
+    SPIP EF 8 A_FaceTarget
+    SPIP G 6 A_CustomMissile("SpiritImpBall",30,0,5)
+    goto See
+  Missile2:
+    SPIP EF 8 A_FaceTarget
+    SPIP G 0 A_CustomMissile("SpiritImpBall",30,0,5)
+    SPIP G 0 A_CustomMissile("SpiritImpBall",30,0,-5)
+    SPIP G 6 A_CustomMissile("SpiritImpBall",30,0,0)
+    goto See
   Pain:
     SPIP N 3
     SPIP N 3 A_Pain
-    Goto See +2
+	TNT1 N 0 A_AlertMonsters
+    Goto See
   Death:
-    SPIP O 7 A_Scream
-    SPIP PQR 7 
-    SPIP S 6 A_SpawnItemEx("SpiritImpGhost1", 0, 0, 32, 0, 0, 0, 0, 128) 
-    SPIP T 5 A_Fall 
-    SPIP U 5 A_SpawnItem("SpiritImpGhost")
-    SPIP V 5 A_NoBlocking    
+    SPIP PQR 4 
+    SPIP S 4 A_SpawnItemEx("HealthBonus",0,0,0,random(-2,2),random(-2,2),random(1,4),0,0,0)
+    SPIP T 3 A_Fall
+	SPIP T 0 A_KillChildren
+	SPIP T 0 ACS_ExecuteAlways(648,0,0,0,0)
+    SPIP U 3 
+    SPIP V 3 A_NoBlocking
+  FadeOut:
     SPIP W 3 A_FadeOut(0.015)
-    Goto Death+8
-    }
- }
-
+    loop
+  Raise:
+    SPIP ML 8
+    SPIP KJI 6
+    goto See
+  }
+}
 
 actor SpiritImpBall
 {

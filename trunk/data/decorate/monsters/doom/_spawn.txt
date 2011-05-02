@@ -330,10 +330,8 @@ actor Revenant_Spawner replaces Revenant
   {
   Spawn:
     TNT1 A 0 
-    //TNT1 A 0 A_Jump(32,"Spawn5")
     TNT1 A 0 A_Jump(34,"Spawn4")
     TNT1 A 0 A_Jump(100,"Spawn2")
-    //TNT1 A 0 A_Jump(128,"Spawn3")
     TNT1 A 0 A_SpawnItemEx("Revenant_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION,0)
     TNT1 A 0 A_Die
     stop
@@ -342,19 +340,9 @@ actor Revenant_Spawner replaces Revenant
     TNT1 A 0 A_SpawnItemEx("GreenRevenant",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION,0)
     TNT1 A 0 A_Die
     stop
-  Spawn3:  
-    TNT1 A 0 
-    TNT1 A 0 A_SpawnItemEx("SpectreRevenant",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION,0)
-    TNT1 A 0 A_Die
-    stop
   Spawn4:  
     TNT1 A 0 
     TNT1 A 0 A_SpawnItemEx("BlueRevenant",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION,0)
-    TNT1 A 0 A_Die
-    stop
-  Spawn5:  
-    TNT1 A 0 
-    TNT1 A 0 A_SpawnItemEx("SuperRevenant",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION,0)
     TNT1 A 0 A_Die
     stop
   Death:
@@ -425,11 +413,6 @@ actor Cacodemon_Spawner replaces Cacodemon
   Spawn4:  
     TNT1 A 0 
     TNT1 A 0 A_SpawnItemEx("Abaddon_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
-    TNT1 A 0 A_Die
-    stop
-  Spawn5:  
-    TNT1 A 0 
-    TNT1 A 0 A_SpawnItemEx("StoneAbaddon",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
     TNT1 A 0 A_Die
     stop
   Spawn6:  
@@ -517,8 +500,7 @@ actor Fatso_Spawner replaces Fatso
   Spawn:
     TNT1 A 0 
     TNT1 A 0 A_Jump(20,"Spawn3")
-    TNT1 A 0 A_Jump(96,"Spawn2")
-    //TNT1 A 0 A_Jump(40,"Spawn5")
+    TNT1 A 0 A_Jump(96,"Spawn2")    
     TNT1 A 0 A_SpawnItemEx("Fatso_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
     TNT1 A 0 A_Die
     stop
@@ -530,11 +512,6 @@ actor Fatso_Spawner replaces Fatso
   Spawn3:  
     TNT1 A 0 
     TNT1 A 0 A_SpawnItemEx("Acubus",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
-    TNT1 A 0 A_Die
-    stop
-  Spawn4:  
-    TNT1 A 0 
-    TNT1 A 0 A_SpawnItemEx("Juggernaut",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
     TNT1 A 0 A_Die
     stop
   Spawn5:  
@@ -556,8 +533,7 @@ actor Archvile_Spawner replaces Archvile
   states
   {
   Spawn:
-    TNT1 A 0 
-    //TNT1 A 0 A_Jump(64,"Spawn3")
+    TNT1 A 0     
     TNT1 A 0 A_Jump(130,"Spawn2","Spawn4")
     TNT1 A 0 A_SpawnItemEx("Archvile_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
     TNT1 A 0 A_Die
@@ -565,11 +541,6 @@ actor Archvile_Spawner replaces Archvile
   Spawn2:  
     TNT1 A 0 
     TNT1 A 0 A_SpawnItemEx("DarkArchvile",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
-    TNT1 A 0 A_Die
-    stop
-  Spawn3:  
-    TNT1 A 0 
-    TNT1 A 0 A_SpawnItemEx("SuperArchvile",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
     TNT1 A 0 A_Die
     stop
   Spawn4:  

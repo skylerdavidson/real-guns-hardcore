@@ -1,0 +1,100 @@
+actor StoneKnight : HellKnight_2
+{
+  spawnid 113
+  obituary "%o was destroyed by a Stone Knight."
+  hitobituary "%o was smashed up by a Stone Knight."
+  health 700
+  radius 24
+  height 64
+  mass 1000
+  speed 8
+  painchance 5
+  seesound "stoneknight/sight"
+  painsound "stoner/sight"
+  deathsound "stoner/sight1"
+  activesound "stoner/sight"
+  MONSTER
+  +FLOORCLIP
+  +MISSILEMORE
+  Species "Goat"
+  +NOBLOOD
+  +GHOST
+  DamageFactor "BaronBall", 0.0
+  states
+  {
+  Spawn:
+    POSS A 0 
+    POSS A 0 Thing_SetSpecial(0,226,613,0,random(30,50))
+    POSS A 0 A_GiveInventory("XPAmount", random(30, 50))
+    BOS9 AB 10 A_Look
+    goto Spawn+3
+  See:
+    BOS9 AABBCCDD 3 A_Chase
+    loop
+  Melee:
+    BOS9 EF 6 A_FaceTarget
+    BOS9 G 6 A_CustomComboAttack("BlueBaronBall",32,(5*random(1,5)),"skeleton/melee")
+    BOS9 PQ 6 A_FaceTarget
+    BOS9 R 6 A_CustomComboAttack("BlueBaronBall",32,(5*random(1,5)),"skeleton/melee")
+    goto See
+  Missile:    
+    BOS9 EF 4 A_FaceTarget
+    BOS9 G 4 A_CustomComboAttack("BlueBaronBall",32,(5*random(1,5)),"skeleton/melee")
+    BOS9 PQ 4 A_FaceTarget
+    BOS9 R 4 A_CustomComboAttack("BlueBaronBall",32,(5*random(1,5)),"skeleton/melee")
+    goto See
+  Pain:
+    BOS9 H 2
+    BOS9 H 2 A_Pain
+	TNT1 G 0 A_AlertMonsters
+    goto See
+  Death:
+    BOS9 I 8
+    BOS9 J 8 A_Scream
+    BOS9 K 8
+    BOS9 L 8 A_NoBlocking
+    BOS9 L 0 ACS_ExecuteAlways(648,0,0,0,0)
+    BOS9 M 8     
+    BOS9 OOOOO 2 A_SpawnItemEx("HealthBonus",0,0,0,random(-2,2),random(-2,2),random(1,4),0,0,0)
+    BOS9 O -1 
+    stop
+  Death.Telefrag:
+    BOS9 I 8
+    BOS9 J 8 A_Scream
+    BOS9 K 8
+    BOS9 L 8 A_NoBlocking
+    BOS9 M 8 
+    BOS9 N 8 A_Jump(192,7)
+    BOS9 OOOOO 2 A_SpawnItemEx("HealthBonus",0,0,0,random(-2,2),random(-2,2),random(1,4),0,0,0)
+    BOS9 O -1 
+    stop
+  Raise:
+    BOS9 ONMLKJI 8
+    goto See
+  }
+}
+
+actor BlueBaronBall
+{
+  Radius 6
+  Height 16
+  Speed 22
+  FastSpeed 20
+  Damage (20)
+  RenderStyle Add
+  Alpha 1
+  SeeSound "baron/attack"
+  DeathSound "baron/shotx"
+  Decal "BaronScorch"
+  Projectile
+  Translation "112:127=[0,0,255]:[0,0,0]"
+  states
+  {
+  Spawn:
+    BAL7 AB 4 bright
+    loop
+  Death:
+    BAL7 CDE 6 bright
+    stop
+  }
+}
