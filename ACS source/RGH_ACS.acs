@@ -259,7 +259,7 @@ script 597 ENTER
 	ACS_ExecuteAlways(602,0,0,0,0); // adjust movement speed
 
 	SetFont("BIGFONT");
-	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.11 Beta "
+	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.11 Beta 2 "
 #ifdef SKULLTAG
 		,s:"SKULLTAG"
 #else
