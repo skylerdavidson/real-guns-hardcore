@@ -105,7 +105,7 @@
 #include "decorate/monsters/doom/mancubus/mancubus.txt"
 #include "decorate/monsters/doom/mancubus/hectebus.txt"
 #include "decorate/monsters/doom/mancubus/acubus.txt"
-#include "decorate/monsters/doom/baron of hell.txt"
+#include "decorate/monsters/doom/baron of hell/baron of hell.txt"
 #include "decorate/monsters/doom/baron of hell/cyberuiser.txt"
 #include "decorate/monsters/doom/baron of hell/belphegor.txt"
 #include "decorate/monsters/doom/baron of hell/afrit.txt"
