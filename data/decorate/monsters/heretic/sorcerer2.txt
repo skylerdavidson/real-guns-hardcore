@@ -2,7 +2,7 @@ ACTOR Sorcerer2_2 : Sorcerer2 replaces Sorcerer2
 {
   Game Heretic
   SpawnID 143
-  Health 7000
+  Health 3500
   Radius 16
   Height 70
   Mass 300
@@ -18,6 +18,7 @@ ACTOR Sorcerer2_2 : Sorcerer2 replaces Sorcerer2
   +NOICEDEATH
   +FLOORCLIP
   +BOSSDEATH
+  +MISSILEEVENMORE
   SeeSound "dsparil/sight"
   AttackSound "dsparil/attack"
   PainSound "dsparil/pain"
@@ -30,6 +31,7 @@ ACTOR Sorcerer2_2 : Sorcerer2 replaces Sorcerer2
   Spawn:
   	SOR2 A 0
   	SOR2 A 0 Thing_SetSpecial(0,226,613,0,random(2000,3000))
+  	POSS A 0 A_GiveInventory("XPAmount", random(2000,3000))
     SOR2 MN 10 A_Look
     goto Spawn + 2
   Death:
