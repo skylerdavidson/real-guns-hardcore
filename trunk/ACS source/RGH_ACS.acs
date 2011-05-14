@@ -17,7 +17,7 @@ bool arcade = false;
 //Server settings...
 #ifdef SKULLTAG
 script 505 OPEN
-{
+{                                       
 	//if(GetCVAR("alwaysapplydmflags") == 0)
 	//	ConsoleCommand("alwaysapplydmflags 1");
 	
@@ -74,8 +74,7 @@ script 501 RESPAWN
 		arcade = true;
 	}
 	
-	Thing_ChangeTID(0,PlayerNumber()+500);
-        SetThingSpecial(0,226,502,0,0,0,0);
+	ACS_ExecuteAlways(500,0,0,0,0); // setup killcam and tid
 
     if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
 	{	
@@ -133,7 +132,7 @@ script 502 (void)
 	if(KillersMaxHealth == 0) KillersMaxHealth = 100;
 
 	KillersGun = "";
-
+	
 	Delay(20);
 	ACS_Execute(504,0,0,0,0);
 }
@@ -5027,7 +5026,7 @@ script 638 (int Which)
 	TakeInventory("MenuChoice10",1);
 	
 	// revert the camera from  in-menu killcam
-	ChangeCamera(0, 0, 0);
+	ChangeCamera(0, 0, 0);		
 	
 	if(CheckInventory("Classic") > 0){
 		GiveInventory("ClassicDamage", 1);
@@ -5373,6 +5372,9 @@ script 638 (int Which)
 	
 	SetAmmoCapacity("MaxWeaponsFilled",MaxGunCount);
 	TakeInventory("InCombat", 5);
+	
+	delay(1);
+	ACS_ExecuteAlways(500,0,0,0,0); // setup killcam and tid
 }
 
 script 639 (void)
