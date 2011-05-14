@@ -172,19 +172,34 @@ script 504 (void)
 	}
 
 	Delay(1);
-#ifdef SKULLTAG
 	if(GetActorProperty(0,APROP_Health) > 0 && (GameType() != GAME_NET_COOPERATIVE || GameType() != GAME_SINGLE_PLAYER))
 	{
-		if(PlayerTeam() == TEAM_RED)
-			ActivatorSound("russian/kill",127);
-		else if(PlayerTeam() == TEAM_BLUE)
-			ActivatorSound("us/kill",127);	
-		else if(PlayerTeam() == 2)
-			ActivatorSound("brazil/kill",127);
-		else if(PlayerTeam() == 3)
-			ActivatorSound("opfor/kill",127);
-	}
+#ifdef SKULLTAG
+		bool isRed = PlayerTeam() == TEAM_RED;		
+		bool isBlue = PlayerTeam() == TEAM_BLUE;
+		bool isThree = PlayerTeam() == 2;
+		bool isFour = PlayerTeam() == 3;
+#else
+		bool isRed = false;
+		bool isBlue = false;
+		bool isThree = false;
+		bool isFour = false;
 #endif
+		bool noTeam = (!(isRed || isBlue || isThree || isFour) || GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER);
+
+		if(isRed || (noTeam && CheckInventory("Voice") == 1))
+			ActivatorSound("russian/kill",127);
+		else if(isBlue || (noTeam && CheckInventory("Voice") == 0))
+			ActivatorSound("us/kill",127);	
+		else if(isThree || (noTeam && CheckInventory("Voice") == 2))
+			ActivatorSound("brazil/kill",127);
+		else if(isFour || (noTeam && CheckInventory("Voice") == 3))
+			ActivatorSound("opfor/kill",127);
+		else if(noTeam && CheckInventory("Voice") == 4)
+			ActivatorSound("seal/kill",127);
+		else if(noTeam && CheckInventory("Voice") == 5)
+			ActivatorSound("tf141/kill",127);	
+	}
 }
 
 //------------------------------------------
