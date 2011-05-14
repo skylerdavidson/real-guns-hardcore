@@ -134,6 +134,7 @@ script 502 (void)
 	KillersGun = "";
 	
 	Delay(20);
+	
 	ACS_Execute(504,0,0,0,0);
 }
 
@@ -166,7 +167,7 @@ script 503 DEATH CLIENTSIDE
 //------------------------------------------
 //------- Addition to KILLCAM, it makes the player call out "Tango down!" or something like that, dependent on team.
 script 504 (void)
-{
+{	
 	if (ClassifyActor(0) & ACTOR_MONSTER){
 	 	terminate;
 	}
@@ -224,6 +225,8 @@ script 597 ENTER
 	if(CheckInventory("Arcade") > 0){
 		arcade = true;
 	}
+	
+	TakeInventory("Speaking",1);
 	
 	TakeInventory("ReadyRegen",1);
     ACS_ExecuteAlways(606,0,0,0,0);
@@ -784,11 +787,7 @@ script 601 (void) NET
 		bool isBlue = false;
 		bool isThree = false;
 		bool isFour = false;
-#endif
-    	log(i:CheckInventory("Voice"));
-    	log(i:PlayerTeam());
-		log(b:isRed);
-    	log(b:isBlue);
+#endif    	
 	
 		bool noTeam = (!(isRed || isBlue || isThree || isFour) || GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER);
 
@@ -1249,7 +1248,7 @@ script 613 (int XpAmount)
 		}
 		else { // arcade mode
 			// this is handled in actor death script
-		}			
+		}
 	
 		if(GetActorProperty(0,APROP_Health) > 0 && CheckInventory("Speaking") == 0)
 		{
