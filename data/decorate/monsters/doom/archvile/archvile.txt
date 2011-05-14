@@ -35,11 +35,11 @@ ACTOR Archvile_2 : RGAMonster
   Missile:
     VILE G 0 
     VILE G 0 BRIGHT A_VileStart
-    VILE G 10 BRIGHT A_FaceTarget
-    VILE H 8 BRIGHT A_VileTarget
-    VILE IJKLMN 8 BRIGHT A_FaceTarget
-    VILE O 8 BRIGHT A_VileAttack
-    VILE P 20 BRIGHT
+    VILE G 5 BRIGHT A_FaceTarget
+    VILE H 5 BRIGHT A_VileTarget
+    VILE IJKLMN 5 BRIGHT A_FaceTarget
+    VILE O 5 BRIGHT A_VileAttack
+    VILE P 15 BRIGHT
     Goto See
   Missile3:
     VILE G 0 BRIGHT A_VileStart

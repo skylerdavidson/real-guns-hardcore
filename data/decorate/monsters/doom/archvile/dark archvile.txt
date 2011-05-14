@@ -33,12 +33,12 @@ actor DarkArchvile : Archvile_2
     loop
   Missile:
     DVIL G 0 bright A_PlaySound("vile/start")
-    DVIL G 10 bright A_FaceTarget
-    DVIL H 8 bright A_FaceTarget
+    DVIL G 5 bright A_FaceTarget
+    DVIL H 5 bright A_FaceTarget
     DVIL H 0 bright A_PlaySound("bfg/start")
-    DVIL IJKLMN 8 bright A_FaceTarget
-    DVIL O 8 bright A_CustomMissile("DarkArchvileBFG",48,-8)
-    DVIL P 20 bright
+    DVIL IJKLMN 5 bright A_FaceTarget
+    DVIL O 5 bright A_CustomMissile("DarkArchvileBFG",48,-8)
+    DVIL P 15 bright
     goto See
   Heal:
     DVIL H 0 bright
