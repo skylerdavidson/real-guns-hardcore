@@ -167,6 +167,10 @@ script 503 DEATH CLIENTSIDE
 //------- Addition to KILLCAM, it makes the player call out "Tango down!" or something like that, dependent on team.
 script 504 (void)
 {
+	if (ClassifyActor(0) & ACTOR_MONSTER){
+	 	terminate;
+	}
+
 	Delay(1);
 #ifdef SKULLTAG
 	if(GetActorProperty(0,APROP_Health) > 0 && (GameType() != GAME_NET_COOPERATIVE || GameType() != GAME_SINGLE_PLAYER))
