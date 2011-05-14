@@ -2,7 +2,7 @@ ACTOR Ironlich2 : Ironlich replaces Ironlich
 {
   Game Heretic
   SpawnID 20
-  Health 2000
+  Health 1500
   Radius 40
   Height 72
   Mass 325
@@ -13,6 +13,7 @@ ACTOR Ironlich2 : Ironlich replaces Ironlich
   +DONTMORPH
   +DONTSQUASH
   +BOSSDEATH
+  +MISSILEMORE
   SeeSound "ironlich/sight"
   AttackSound "ironlich/attack"
   PainSound "ironlich/pain"
