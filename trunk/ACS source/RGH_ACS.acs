@@ -128,6 +128,8 @@ script 502 (void)
 	KillersHealth = GetActorProperty(ActivatorTID(),APROP_Health);
 	KillersMaxHealth = GetActorProperty(ActivatorTID(),APROP_SpawnHealth);
 
+    drawKillIndicator();
+    
 	// GetActorProperty always returns 0 for players
 	if(KillersMaxHealth == 0) KillersMaxHealth = 100;
 
@@ -1235,7 +1237,9 @@ script 612 (int Which)
 script 613 (int XpAmount)
 {   
 	// monster's don't level up nor they call tango down
-	if (!(ClassifyActor(0) & ACTOR_MONSTER)){
+	if (!(ClassifyActor(0) & ACTOR_MONSTER)){		
+		drawKillIndicator();
+		
 		int exp = XpAmount / 7;
 		
 		if(CheckInventory("Arcade") == 0){
@@ -5990,4 +5994,12 @@ script 650 (void) CLIENTSIDE {
 		}
 		delay(1);
 	}
+}
+
+// kill indicator
+function void drawKillIndicator(void) {
+	log(s:"kill");
+	SetFont("KILINDIC");
+	SetHudSize(800,600,1);
+	HudMessage(s:"a"; HUDMSG_FADEOUT, CR_UNTRANSLATED, 0, 400.0, 300.0, 0.25, 0.01);
 }
