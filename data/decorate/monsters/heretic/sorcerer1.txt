@@ -32,7 +32,21 @@ ACTOR Sorcerer1_2 : Sorcerer1 replaces Sorcerer1
   	SRCR A 0 Thing_SetSpecial(0,226,613,0,random(1000,2000))
   	POSS A 0 A_GiveInventory("XPAmount", random(1000,2000))
     SRCR AB 10 A_Look
-    goto Spawn+2
+    goto Spawn+3
+  Death:
+    SRCR E 7
+    SRCR F 7 A_Scream
+    SRCR G 7
+    SRCR HIJK 6
+    SRCR L 25 A_PlaySoundEx("dsparil/zap", "body")
+    SRCR MN 5
+    SRCR O 4
+    SRCR L 20 A_PlaySoundEx("dsparil/zap", "body")
+    SRCR MN 5
+    SRCR N 0 ACS_ExecuteAlways(648,0,0,0,0)
+    SRCR O 4
+    SRCR L 12
+    SRCR P -1 A_SorcererRise
   }
 }
 
