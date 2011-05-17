@@ -3703,140 +3703,140 @@ script 630 (void)
 {
 	if(CheckInventory("USP .45") == 1)
 	{
-		GiveInventory("USP45Ammo",12);
-		GiveInventory("USP45Clip2",18);
+		//GiveInventory("USP45Ammo",12);
+		//GiveInventory("USP45Clip2",18);
 		MorphActor(0,"RGULastStandPlayer_USP","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("USP .45 Ex Mags") == 1)
 	{
-		GiveInventory("USP45Ammo",12);
-		GiveInventory("USP45Clip2",18);
+		//GiveInventory("USP45Ammo",12);
+		//GiveInventory("USP45Clip2",18);
 		MorphActor(0,"RGULastStandPlayer_USPEx","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("USP .45 Akimbo") == 1)
 	{
-		GiveInventory("USP45Ammo",24);
-		GiveInventory("USP45Clip3",24);
+		//GiveInventory("USP45Ammo",24);
+		//GiveInventory("USP45Clip3",24);
 		MorphActor(0,"RGULastStandPlayer_USPAkimbo","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("USP .45 Tac Knife") == 1)
 	{
-		GiveInventory("USP45Ammo",12);
-		GiveInventory("USP45Clip",12);
+		//GiveInventory("USP45Ammo",12);
+		//GiveInventory("USP45Clip",12);
 		MorphActor(0,"RGULastStandPlayer_USPKnife","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory(".44 Magnum Akimbo") == 1)
 	{
-		GiveInventory("44MagnumAmmo",6);
-		GiveInventory("44MagnumClip",12);
+		//GiveInventory("44MagnumAmmo",6);
+		//GiveInventory("44MagnumClip",12);
 		MorphActor(0,"RGULastStandPlayer_44MagnumAkimbo","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory(".44 Magnum") == 1)
 	{
-		GiveInventory("44MagnumAmmo",6);
-		GiveInventory("44MagnumClip",6);
+		//GiveInventory("44MagnumAmmo",6);
+		//GiveInventory("44MagnumClip",6);
 		MorphActor(0,"RGULastStandPlayer_44Magnum","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory(".44 Magnum Tac Knife") == 1)
 	{
-		GiveInventory("44MagnumAmmo",6);
-		GiveInventory("44MagnumClip",6);
+		//GiveInventory("44MagnumAmmo",6);
+		//GiveInventory("44MagnumClip",6);
 		MorphActor(0,"RGULastStandPlayer_44MagnumKnife","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("M9") == 1)
 	{
-		GiveInventory("M9Ammo",15);
-		GiveInventory("M9Clip",15);
+		//GiveInventory("M9Ammo",15);
+		//GiveInventory("M9Clip",15);
 		MorphActor(0,"RGULastStandPlayer_M9","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("M9 Ex Mags") == 1)
 	{
-		GiveInventory("M9Ammo",15);
-		GiveInventory("M9Clip2",25);
+		//GiveInventory("M9Ammo",15);
+		//GiveInventory("M9Clip2",25);
 		MorphActor(0,"RGULastStandPlayer_M9Ex","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("M9 Tac Knife") == 1)
 	{
-		GiveInventory("M9Ammo",15);
-		GiveInventory("M9Clip",25);
+		//GiveInventory("M9Ammo",15);
+		//GiveInventory("M9Clip",25);
 		MorphActor(0,"RGULastStandPlayer_M9Knife","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("M9 Akimbo") == 1)
 	{
-		GiveInventory("M9Ammo",15);
-		GiveInventory("M9Clip3",30);
+		//GiveInventory("M9Ammo",15);
+		//GiveInventory("M9Clip3",30);
 		MorphActor(0,"RGULastStandPlayer_M9Akimbo","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("Desert Eagle Akimbo") == 1)
 	{
-		GiveInventory("DeagleAmmo",7);
-		GiveInventory("DeagleClip2",14);
+		//GiveInventory("DeagleAmmo",7);
+		//GiveInventory("DeagleClip2",14);
 		MorphActor(0,"RGULastStandPlayer_DeagleAkimbo","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("Desert Eagle") == 1)
 	{
-		GiveInventory("DeagleAmmo",7);
-		GiveInventory("DeagleClip",7);
+		//GiveInventory("DeagleAmmo",7);
+		//GiveInventory("DeagleClip",7);
 		MorphActor(0,"RGULastStandPlayer_Deagle","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("Deagle Special") == 1)
 	{
-		GiveInventory("DeagleAmmo",7);
-		GiveInventory("DeagleClip2",14);
+		//GiveInventory("DeagleAmmo",7);
+		//GiveInventory("DeagleClip2",14);
 		MorphActor(0,"RGULastStandPlayer_DeagleEx","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("Desert Eagle Tac Knife") == 1)
 	{
-		GiveInventory("DeagleAmmo",7);
-		GiveInventory("DeagleClip2",14);
+		//GiveInventory("DeagleAmmo",7);
+		//GiveInventory("DeagleClip2",14);
 		MorphActor(0,"RGULastStandPlayer_DeagleKnife","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("G18 Akimbo") == 1)
 	{
-		GiveInventory("G18Ammo",33);
-		GiveInventory("G18Clip3",66);
+		//GiveInventory("G18Ammo",33);
+		//GiveInventory("G18Clip3",66);
 		MorphActor(0,"RGULastStandPlayer_G18Akimbo","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("G18") == 1)
 	{
-		GiveInventory("G18Ammo",33);
-		GiveInventory("G18Clip",33);
+		//GiveInventory("G18Ammo",33);
+		//GiveInventory("G18Clip",33);
 		MorphActor(0,"RGULastStandPlayer_G18","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("G18 Ex Mags") == 1)
 	{
-		GiveInventory("G18Ammo",33);
-		GiveInventory("G18Clip2",50);
+		//GiveInventory("G18Ammo",33);
+		//GiveInventory("G18Clip2",50);
 		MorphActor(0,"RGULastStandPlayer_G18Ex","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("PP2000 Akimbo") == 1)
 	{
-		GiveInventory("PP2000Ammo",20);
-		GiveInventory("PP2200Clip",30);
+		//GiveInventory("PP2000Ammo",20);
+		//GiveInventory("PP2200Clip",30);
 		MorphActor(0,"RGULastStandPlayer_PP2000Ak","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("PP2000") == 1)
 	{
-		GiveInventory("PP2000Ammo",20);
-		GiveInventory("PP2000Clip",20);
+		//GiveInventory("PP2000Ammo",20);
+		//GiveInventory("PP2000Clip",20);
 		MorphActor(0,"RGULastStandPlayer_PP2000","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("PP2000 Ex Mags") == 1)
 	{
-		GiveInventory("PP2000Ammo",20);
-		GiveInventory("PP2000Clip2",30);
+		//GiveInventory("PP2000Ammo",20);
+		//GiveInventory("PP2000Clip2",30);
 		MorphActor(0,"RGULastStandPlayer_PP2000Ex","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("M93 Raffica") == 1)
 	{
-		GiveInventory("M93RAmmo",20);
-		GiveInventory("M93RClip",20);
+		//GiveInventory("M93RAmmo",20);
+		//GiveInventory("M93RClip",20);
 		MorphActor(0,"RGULastStandPlayer_M93R","",99999,256,"NoFlash","NoFlash");
 	}
 	else if(CheckInventory("M93 Raffica Ex Mags") == 1)
 	{
-		GiveInventory("M93RAmmo",20);
-		GiveInventory("M93RClip2",30);
+		//GiveInventory("M93RAmmo",20);
+		//GiveInventory("M93RClip2",30);
 		MorphActor(0,"RGULastStandPlayer_M93REx","",99999,256,"NoFlash","NoFlash");
 	}
 	else
@@ -3847,7 +3847,7 @@ script 630 (void)
 	}
 	
 	If(CheckInventory("Perk3_LastStand_Pro") == 1){
-		GiveInventory("Health",30);
+		//GiveInventory("Health",30);
 	}
 	else {
 		// set health to 1
