@@ -1,4 +1,19 @@
-actor GripAttachment : CustomInventory
+actor AwardBase : CustomInventory
+{
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  
+  states{
+  FailState:
+  	TNT1 A 0
+  	fail
+  }	
+}
+
+actor GripAttachment : AwardBase
 {
   inventory.pickupmessage "Grip"
   inventory.pickupsound "misc/ammo_pkup"
@@ -13,11 +28,12 @@ actor GripAttachment : CustomInventory
     ATTA D -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(619,0,0,0,0)
     stop
   }
 }
-actor RapidFireAttachment : CustomInventory
+actor RapidFireAttachment : AwardBase
 {
   inventory.pickupmessage "Rapid Fire"
   inventory.pickupsound "misc/ammo_pkup"
@@ -32,12 +48,13 @@ actor RapidFireAttachment : CustomInventory
     ATTA C -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(619,0,1,0,0)
     stop
   }
 }
 
-actor ExtendedMagsAttachment : CustomInventory
+actor ExtendedMagsAttachment : AwardBase
 {
   inventory.pickupmessage "Extended Mags"
   inventory.pickupsound "misc/ammo_pkup"
@@ -52,11 +69,12 @@ actor ExtendedMagsAttachment : CustomInventory
     ATTA B -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(619,0,2,0,0)
     stop
   }
 }
-actor ThermalAttachment : CustomInventory
+actor ThermalAttachment : AwardBase
 {
   inventory.pickupmessage "Thermal Scope"
   inventory.pickupsound "misc/ammo_pkup"
@@ -71,11 +89,12 @@ actor ThermalAttachment : CustomInventory
     ATTA A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(619,0,3,0,0)
     stop
   }
 }
-actor AkimboAttachment : CustomInventory
+actor AkimboAttachment : AwardBase
 {
   inventory.pickupmessage "Akimbo"
   inventory.pickupsound "misc/ammo_pkup"
@@ -90,12 +109,13 @@ actor AkimboAttachment : CustomInventory
     ATTA E -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(619,0,4,0,0)
     stop
   }
 }
 
-actor KnifeAttachment : CustomInventory
+actor KnifeAttachment : AwardBase
 {
   inventory.pickupmessage "Tactical Knife"
   inventory.pickupsound "misc/ammo_pkup"
@@ -110,12 +130,13 @@ actor KnifeAttachment : CustomInventory
     ATTA F -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(619,0,5,0,0)
     stop
   }
 }
 
-actor Perk1_SOHAward : CustomInventory
+actor Perk1_SOHAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -130,13 +151,14 @@ actor Perk1_SOHAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,0,0,0)
     stop
   }
 }
 
 
-actor Perk1_ExtremeConditioningAward : CustomInventory
+actor Perk1_ExtremeConditioningAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -151,12 +173,13 @@ actor Perk1_ExtremeConditioningAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,1,0,0)
     stop
   }
 }
 
-actor Perk1_OMAAward : CustomInventory
+actor Perk1_OMAAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -171,12 +194,13 @@ actor Perk1_OMAAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,2,0,0)
     stop
   }
 }
 
-actor Perk2_StoppingPowerAward : CustomInventory
+actor Perk2_StoppingPowerAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -191,12 +215,13 @@ actor Perk2_StoppingPowerAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,3,0,0)
     stop
   }
 }
 
-actor Perk2_DangerCloseAward : CustomInventory
+actor Perk2_DangerCloseAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -211,12 +236,13 @@ actor Perk2_DangerCloseAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,4,0,0)
     stop
   }
 }
 
-actor Perk2_ColdBloodedAward : CustomInventory
+actor Perk2_ColdBloodedAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -231,12 +257,13 @@ actor Perk2_ColdBloodedAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,22,0,0)
     stop
   }
 }
 
-actor Perk2_ColdBlooded_ProAward : CustomInventory
+actor Perk2_ColdBlooded_ProAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -251,12 +278,13 @@ actor Perk2_ColdBlooded_ProAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,18,0,0)
     stop
   }
 }
 
-actor Perk2_JuggernautAward : CustomInventory
+actor Perk2_JuggernautAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -271,11 +299,12 @@ actor Perk2_JuggernautAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,5,0,0)
     stop
   }
 }
-actor Perk3_SteadyAimAward : CustomInventory
+actor Perk3_SteadyAimAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -290,11 +319,12 @@ actor Perk3_SteadyAimAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,6,0,0)
     stop
   }
 }
-actor Perk3_CommandoAward : CustomInventory
+actor Perk3_CommandoAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -309,12 +339,13 @@ actor Perk3_CommandoAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,7,0,0)
     stop
   }
 }
 
-actor Perk3_LastStandAward : CustomInventory
+actor Perk3_LastStandAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -329,12 +360,13 @@ actor Perk3_LastStandAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,8,0,0)
     stop
   }
 }
 
-actor Perk1_SOH_ProAward : CustomInventory
+actor Perk1_SOH_ProAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -349,12 +381,13 @@ actor Perk1_SOH_ProAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,9,0,0)
     stop
   }
 }
 
-actor Perk1_ExtremeConditioning_ProAward : CustomInventory
+actor Perk1_ExtremeConditioning_ProAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -369,12 +402,13 @@ actor Perk1_ExtremeConditioning_ProAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,10,0,0)
     stop
   }
 }
 
-actor Perk1_OMA_ProAward : CustomInventory
+actor Perk1_OMA_ProAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -389,12 +423,13 @@ actor Perk1_OMA_ProAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,11,0,0)
     stop
   }
 }
 
-actor Perk2_StoppingPower_ProAward : CustomInventory
+actor Perk2_StoppingPower_ProAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -409,12 +444,13 @@ actor Perk2_StoppingPower_ProAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,12,0,0)
     stop
   }
 }
 
-actor Perk2_DangerClose_ProAward : CustomInventory
+actor Perk2_DangerClose_ProAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -429,11 +465,12 @@ actor Perk2_DangerClose_ProAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,13,0,0)
     stop
   }
 }
-actor Perk2_Juggernaut_ProAward : CustomInventory
+actor Perk2_Juggernaut_ProAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -448,12 +485,13 @@ actor Perk2_Juggernaut_ProAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,14,0,0)
     stop
   }
 }
 
-actor Perk3_SteadyAim_ProAward : CustomInventory
+actor Perk3_SteadyAim_ProAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -468,12 +506,13 @@ actor Perk3_SteadyAim_ProAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,15,0,0)
     stop
   }
 }
 
-actor Perk3_Commando_PROAward : CustomInventory
+actor Perk3_Commando_PROAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -488,12 +527,13 @@ actor Perk3_Commando_PROAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,17,0,0)
     stop
   }
 }
 
-actor Perk3_LastStand_ProAward : CustomInventory
+actor Perk3_LastStand_ProAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -508,12 +548,13 @@ actor Perk3_LastStand_ProAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,16,0,0)
     stop
   }
 }
 
-actor Perk1_ScavengerAward : CustomInventory
+actor Perk1_ScavengerAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -528,12 +569,13 @@ actor Perk1_ScavengerAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,21,0,0)
     stop
   }
 }
 
-actor Perk1_Scavenger_ProAward : CustomInventory
+actor Perk1_Scavenger_ProAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
   inventory.pickupsound "misc/ammo_pkup"
@@ -548,6 +590,7 @@ actor Perk1_Scavenger_ProAward : CustomInventory
     TNT1 A -1
     stop
   Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
     TNT1 A 0 ACS_ExecuteAlways(624,0,20,0,0)
     stop
   }
