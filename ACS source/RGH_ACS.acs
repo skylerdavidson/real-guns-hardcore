@@ -738,6 +738,10 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 //Reload
 script 601 (void) NET
 {
+	if(GetActorProperty(0,APROP_Health) <= 0){
+		terminate;
+	}
+
 	//------------------------------------------
 	//------- Checks if weapon is true, or attachment-weapon is true, then checks if clip is not full, then checks if reserve is not 0.
 	if((((CheckWeapon("USP .45") == 1 || CheckWeapon("USP .45 Tac Knife") == 1 || CheckWeapon("USP .45 LastStand") == 1) && CheckInventory("USP45Clip") < 12 && CheckInventory("USP45Ammo") != 0)  || (CheckWeapon("USP .45 Ex Mags") == 1 && CheckInventory("USP45Clip2") < 18 && CheckInventory("USP45Ammo") != 0) || (CheckWeapon("USP .45 Akimbo") == 1 && CheckInventory("USP45Clip3") < 24 && CheckInventory("USP45Ammo") != 0)
@@ -916,7 +920,7 @@ script 602 (void)
 		MoveSpeed = FixedMul(MoveSpeed, 1.15);
 	}
 		
-	//print(f:MoveSpeed);
+	//log(f:MoveSpeed);
 	
 	SetActorProperty(0,APROP_Speed,MoveSpeed);
 }
@@ -925,6 +929,10 @@ script 602 (void)
 //------- Throw grenade.
 script 603 (void) NET
 {
+	if(GetActorProperty(0,APROP_Health) <= 0){
+		terminate;
+	}
+
 	TakeInventory("PowerLightAmp", 1);
 	
 	if(CheckInventory("FragGrenadeAmmo") != 0 && CheckInventory("ThrowingGrenade") == 0)
