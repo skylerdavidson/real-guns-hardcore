@@ -266,7 +266,7 @@ ACTOR MenuPlayer : DoomPlayer
 	PLAY A 0 A_JumpIfInventory("Perk2_ColdBlooded_DM", 1, "ColdBlooded_DM")
     Loop
   SpawnExplode:
-  	PLAY A 0 A_Explode(9999999,64)
+  	PLAY A 0 A_Explode(9999999,16)
   	goto Spawn
   ColdBlooded:	
 	PLAY A 0 A_ChangeFlag("CANTSEEK", 1)
