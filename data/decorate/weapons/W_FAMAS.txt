@@ -395,6 +395,7 @@ actor "FAMAS M203" : RGUWeapon
   Select:
     FAMF A 0
     FAMF A 0 ACS_ExecuteAlways(605,0,0,0,0)
+    FAMF A 0 ACS_ExecuteAlways(602,0,0,0,0)
     FAMA A 0 A_Raise
     goto Select+2
   Fire:
