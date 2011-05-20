@@ -27,6 +27,8 @@ script 505 OPEN
 	if(GetCVAR("sv_doubleammo") == 0)
 		ConsoleCommand("sv_doubleammo 1");
 
+    ConsoleCommand("fov 90");
+
 	if(GetCVAR("sv_respawnsuper") == 0)
 		ConsoleCommand("sv_respawnsuper 1");
 		
