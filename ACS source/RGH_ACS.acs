@@ -42,6 +42,11 @@ script 505 OPEN
 		
 	if(GetCVAR("sv_nocrouch") == 1)
 		ConsoleCommand("sv_nocrouch 0");
+		
+	if(GetCVAR("sv_weapondrop") == 1){
+		log(s:"\"Drop weapons upon death\" must be disabled");
+		ConsoleCommand("sv_weapondrop 0");
+	}
 
 	if(GetCVAR("compat_nocrosshair") == 0)
 		ConsoleCommand("compat_nocrosshair 1");
