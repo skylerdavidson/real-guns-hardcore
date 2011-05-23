@@ -1,6 +1,8 @@
 IgnoreHash(#library "RGH_ACS")
 IgnoreHash(#include "zcommon.acs")
 
+#define MINIMUM_TID 1000000
+
 int KillersID;
 int KillersHealth;
 int KillersMaxHealth;
@@ -27,7 +29,7 @@ script 505 OPEN
 	if(GetCVAR("sv_doubleammo") == 0)
 		ConsoleCommand("sv_doubleammo 1");
 
-    ConsoleCommand("fov 90");
+    //ConsoleCommand("fov 90");
 
 	if(GetCVAR("sv_respawnsuper") == 0)
 		ConsoleCommand("sv_respawnsuper 1");
@@ -56,6 +58,7 @@ script 505 OPEN
 //------- Also change Special.
 script 500 ENTER 
 {
+	log(i:PlayerNumber());
 	Thing_ChangeTID(0,PlayerNumber()+500);
         SetThingSpecial(0,226,502,0,0,0,0);
 }
@@ -5937,6 +5940,8 @@ function int getCurrentWeaponSpread(bool hold){
 	return Spread;
 }
 
+int nextTid = MINIMUM_TID;
+
 // crosshair drawing script
 script 650 (void) CLIENTSIDE {
 	// Bot? -> No need for crosshair
@@ -5945,11 +5950,16 @@ script 650 (void) CLIENTSIDE {
 	}
 	
 	// No crosshair in deathmatch
-	if(GameType() == GAME_NET_DEATHMATCH){
-		terminate;
-	}
+	//if(GameType() == GAME_NET_DEATHMATCH){
+	//	terminate;
+	//}
 
 	while(true){
+		if(CheckInventory("Menu") == 1){
+			delay(10);
+			continue;
+		}
+	
 		//log(i:CheckInventory("Crosshair"));
 		if(
 			CheckInventory("Crosshair") > 0 &&
@@ -6000,8 +6010,18 @@ script 650 (void) CLIENTSIDE {
 		}
 		else {
 			GiveInventory("InCombatCrosshair", 35);
-			//log(s:"NoCross");
 		}
+		
+		/*for (int i = MINIMUM_TID; i < nextTid; i++ ){
+			if(GetActorProperty(i,APROP_Health) <= 0){
+				hudmessage(s:" "; HUDMSG_PLAIN, 20000+ i, CR_UNTRANSLATED, 0, 0, 0);
+				continue;
+			}
+		
+			//log(s:"loop", i:i);
+			hudMessageOnActor(i, 900<<16, "SITREP1", "O", 45, 59);
+		}*/
+
 		delay(1);
 	}
 }
@@ -6012,3 +6032,56 @@ function void drawKillIndicator(void) {
 	SetHudSize(800,600,1);
 	HudMessage(s:"a"; HUDMSG_FADEOUT, CR_UNTRANSLATED, 0, 400.0, 300.0, 0.25, 0.01);
 }
+
+function void hudmessageonactor(int tid, int range, str sprite, str text, int spriteWidth, int spriteHeight)
+{
+	int dist, ang, vang, pitch, x, y;
+	int HUDX = 1400;
+	int HUDY = 800;
+	int offset = 0;
+    
+	if(sprite != -1)
+	{
+		setfont(sprite);
+		text = "A";
+		offset = 0.1;
+	}
+
+	sethudsize(HUDX, HUDY, 1);
+	x = getactorx(tid) - getactorx(0);
+	y = getactory(tid) - getactory(0); 
+
+	vang = vectorangle(x,y);
+	ang = (vang - GetActorAngle(0) + 1.0) % 1.0;
+
+	if(((vang+0.125)%0.5) > 0.25) dist = fixeddiv(y, sin(vang));
+	else dist = fixeddiv(x, cos(vang));
+
+	int distRatio = fixeddiv(dist, range >> 16);
+	
+	HUDX = HUDX * (dist >> 16) / (range >> 16);
+	HUDY = HUDY * (dist >> 16) / (range >> 16);   
+	
+	sethudsize(HUDX, HUDY, 1);
+
+	if ((ang < 0.2 || ang > 0.8) && dist < range)
+	{
+		pitch = vectorangle(dist, getactorz(tid) - (getactorz(0) + 41.0));
+		pitch = (pitch + GetActorPitch(0) + 1.0) % 1.0;
+
+		x = HUDX/2 - ((HUDX/2) * sin(ang) / cos(ang));
+		y = HUDY/2 - ((HUDX/2) * sin(pitch) / cos(pitch));
+
+		hudmessage(s:text; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, (x<<16)+offset - ((spriteWidth / 2)<<16), (y<<16)+offset - (spriteHeight<<16), 0);
+	}
+	else
+		hudmessage(s:" "; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, 0, 0, 0);
+}
+
+// assign next free tid to the thing 
+script 651 (void) {
+	//log(s:"assign", i:nextTid);
+	Thing_ChangeTID(0,nextTid);
+	nextTid = nextTid + 1;
+}
+
