@@ -166,7 +166,7 @@ script 503 DEATH CLIENTSIDE
 		HudMessage(s:"\ccHold \cf", k:"+altattack", s:"\cc while respawning to change your class"; HUDMSG_PLAIN, 2700+PlayerNumber(), CR_Green, 0.5, 0.75, 0);
 	}
     SetFont("CONFONT");
-	Delay(36);
+	Delay(5);
 	
 	if(KillersHealths > 0 && GetActorProperty(0,APROP_Health) < 1) //Don't view killers health or cam if he died at the same time you did. Or if you've respawned already.
 	{
