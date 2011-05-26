@@ -119,6 +119,7 @@ actor "Model 1887" : RGUWeapon
     W18E A 0 A_TakeInventory("Reloading",1)
     goto Ready+13
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     W18E A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     W18E A 3 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     W18E B 3 A_GiveInventory("Reloading",1)

@@ -123,6 +123,7 @@ actor "Barrett 50cal" : RGUWeapon
     B50C A 0 A_TakeInventory("Reloading",1)
     goto Ready+19
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     B50C A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     B50C A 3 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     B50C BCDEFGHIJK 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
@@ -429,6 +430,7 @@ actor "Barrett 50cal Ex Mags" : "Barrett 50cal"
     B50C A 0 A_TakeInventory("Reloading",1)
     goto Ready+19
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     B50C A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     B50C A 3 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     B50C BCDEFGHIJK 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")

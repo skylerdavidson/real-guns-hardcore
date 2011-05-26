@@ -793,32 +793,7 @@ script 601 (void) NET
 	{
 		GiveInventory("Reloading",1);
 
-#ifdef SKULLTAG
-		bool isRed = PlayerTeam() == TEAM_RED;		
-		bool isBlue = PlayerTeam() == TEAM_BLUE;
-		bool isThree = PlayerTeam() == 2;
-		bool isFour = PlayerTeam() == 3;
-#else
-		bool isRed = false;
-		bool isBlue = false;
-		bool isThree = false;
-		bool isFour = false;
-#endif    	
-	
-		bool noTeam = (!(isRed || isBlue || isThree || isFour) || GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER);
 
-		if((!noTeam && isRed) || (noTeam && CheckInventory("Voice") == 1))
-			ActivatorSound("russian/reload",127);
-		else if((!noTeam && isBlue) || (noTeam && CheckInventory("Voice") == 0))
-			ActivatorSound("us/reload",127);	
-		else if((!noTeam && isThree) || (noTeam && CheckInventory("Voice") == 2))
-			ActivatorSound("brazil/reload",127);
-		else if((!noTeam && isFour) || (noTeam && CheckInventory("Voice") == 3))
-			ActivatorSound("opfor/reload",127);
-		else if(noTeam && CheckInventory("Voice") == 4)
-			ActivatorSound("seal/reload",127);
-		else if(noTeam && CheckInventory("Voice") == 5)
-			ActivatorSound("tf141/reload",127);
 	}
 }
 
@@ -6025,9 +6000,26 @@ script 650 (void) CLIENTSIDE {
 		
 			//log(s:"loop", i:i);
 			hudMessageOnActor(i, 900<<16, "SITREP1", "O", 45, 59);
-		}*/
+		} */
+		
+		/*int r = random(0, 3);
+		
+		if(r==0){
+			SetFont("NOISE0");
+		}
+		else if(r==1){
+			SetFont("NOISE1");
+		}
+		else if(r==2){
+			SetFont("NOISE2");
+		}
+		else if(r==3){
+			SetFont("NOISE3");
+		} */
+		
+        //drawStretchedImage(10+PlayerNumber(), 0.5, 1.0);
 
-		delay(1);
+		delay(3);
 	}
 }
 
@@ -6085,8 +6077,38 @@ function void hudmessageonactor(int tid, int range, str sprite, str text, int sp
 
 // assign next free tid to the thing 
 script 651 (void) {
-	//log(s:"assign", i:nextTid);
+	log(s:"assign", i:nextTid);
 	Thing_ChangeTID(0,nextTid);
 	nextTid = nextTid + 1;
+}
+
+// Shout "Reloading!"
+script 652 (void) {
+#ifdef SKULLTAG
+	bool isRed = PlayerTeam() == TEAM_RED;		
+	bool isBlue = PlayerTeam() == TEAM_BLUE;
+	bool isThree = PlayerTeam() == 2;
+	bool isFour = PlayerTeam() == 3;
+#else
+	bool isRed = false;
+	bool isBlue = false;
+	bool isThree = false;
+	bool isFour = false;
+#endif    	
+
+	bool noTeam = (!(isRed || isBlue || isThree || isFour) || GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER);
+
+	if((!noTeam && isRed) || (noTeam && CheckInventory("Voice") == 1))
+		ActivatorSound("russian/reload",127);
+	else if((!noTeam && isBlue) || (noTeam && CheckInventory("Voice") == 0))
+		ActivatorSound("us/reload",127);	
+	else if((!noTeam && isThree) || (noTeam && CheckInventory("Voice") == 2))
+		ActivatorSound("brazil/reload",127);
+	else if((!noTeam && isFour) || (noTeam && CheckInventory("Voice") == 3))
+		ActivatorSound("opfor/reload",127);
+	else if(noTeam && CheckInventory("Voice") == 4)
+		ActivatorSound("seal/reload",127);
+	else if(noTeam && CheckInventory("Voice") == 5)
+		ActivatorSound("tf141/reload",127);
 }
 

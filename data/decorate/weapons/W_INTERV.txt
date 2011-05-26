@@ -126,6 +126,7 @@ actor "Intervention" : RGUWeapon
     INTF A 0 A_TakeInventory("Reloading",1)
     goto Ready+19
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     INTC A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     INTC A 3 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     INTC BCDE 3 A_WeaponReady(WRF_NOFIRE)
@@ -396,6 +397,7 @@ actor "Intervention Ex Mags" : "Intervention"
     INTF A 0 A_TakeInventory("Reloading",1)
     goto Ready+19
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     INTC A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     INTC A 3 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     INTC BCDE 3 A_WeaponReady(WRF_NOFIRE)

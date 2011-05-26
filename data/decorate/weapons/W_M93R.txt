@@ -136,6 +136,7 @@ actor "M93 Raffica" : RGUWeapon
     VECC A 0 A_TakeInventory("Reloading",1)
     goto Ready+11
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     M93E A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     M93E A 0 A_JumpIfInventory("M93RBolt",1,"ReloadStartBolt") 
     M93E A 0 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
@@ -380,6 +381,7 @@ actor "M93 Raffica Ex Mags" : "M93 Raffica"
     VECC A 0 A_TakeInventory("Reloading",1)
     goto Ready+11
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     M93E A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     M93E A 0 A_JumpIfInventory("M93RBolt",1,"ReloadStartBolt") 
     M93E A 0 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
