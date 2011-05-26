@@ -6024,7 +6024,7 @@ script 650 (void) CLIENTSIDE {
         //drawStretchedImage(10+PlayerNumber(), 0.5, 1.0);
 
 		//delay(3);
-		delay(3);
+		delay(1);
 	}
 }
 
