@@ -135,6 +135,7 @@ actor "Desert Eagle" : RGUWeapon
     DEGE A 0 A_TakeInventory("Reloading",1)
     goto Ready+15
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     DEGE A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     DEGE A 0 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     DEGE A 3 A_JumpIfInventory("DeagleBolt",1,"ReloadStartBolt")
@@ -475,6 +476,7 @@ actor "Deagle Special" : "Desert Eagle"
     DEGE A 0 A_TakeInventory("Reloading",1)
     goto Ready+15
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     DEGE A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     DEGE A 0 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     DEGE A 3 A_JumpIfInventory("DeagleBolt",1,"ReloadStartBolt")
@@ -723,6 +725,7 @@ actor "Desert Eagle Akimbo" : "Desert Eagle"
     DEGG A 0 A_TakeInventory("Reloading",1)
     goto Ready+15
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     DEGJ A 3 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     DEGJ BCD 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
     DEGJ E 3 A_PlaySoundEx("deagle/clipout","SoundSlot5")
@@ -1036,6 +1039,7 @@ actor "Desert Eagle Tac Knife" : RGUWeapon
     DEGO A 0 A_TakeInventory("Reloading",1)
     goto Ready+15
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     DEGO A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     DEGO A 0 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     DEGO A 3 A_JumpIfInventory("DeagleBolt",1,"ReloadStartBolt")

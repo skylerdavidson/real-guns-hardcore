@@ -176,6 +176,7 @@ actor "AA-12" : RGUWeapon
     A12C A 0 A_TakeInventory("Reloading",1)
     goto Ready+17
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     A12D A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     A12D A 0 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     A12D ABCDEFGHI 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
@@ -414,6 +415,7 @@ actor "AA-12 Ex Mags" : "AA-12"
     A12C A 0 A_TakeInventory("Reloading",1)
     goto Ready+17
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     A12D A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     A12D A 0 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     A12D ABCDEFGHI 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")

@@ -126,6 +126,7 @@ actor ".44 Magnum" : RGUWeapon
     VECC A 0 A_TakeInventory("Reloading",1)
     goto Ready+13
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     M44C A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     M44C A 2 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     M44C BCD 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
@@ -419,6 +420,7 @@ actor ".44 Magnum Akimbo" : ".44 Magnum"
     M44G A 0 A_TakeInventory("Reloading",1)
     goto Ready+15
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     M44J A 2 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     M44J BCD 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
     M44J E 2 A_PlaySoundEx("44magnum/out","SoundSlot5")
@@ -723,6 +725,7 @@ actor ".44 Magnum Tac Knife" : ".44 Magnum"
     VECC A 0 A_TakeInventory("Reloading",1)
     goto Ready+13
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     M44P A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     M44P A 2 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     M44P BCD 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")

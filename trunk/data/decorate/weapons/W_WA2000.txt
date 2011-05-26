@@ -122,6 +122,7 @@ actor "WA2000" : RGUWeapon
     W20D A 0 A_TakeInventory("Reloading",1)
     goto Ready+19
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     W20D A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     W20D A 3 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     W20D BCDEFG 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
@@ -409,6 +410,7 @@ actor "WA2000 Ex Mags" : "WA2000"
     W20D A 0 A_TakeInventory("Reloading",1)
     goto Ready+19
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     W20D A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     W20D A 3 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     W20D BCDEFG 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")

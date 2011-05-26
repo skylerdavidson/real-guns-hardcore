@@ -112,6 +112,7 @@ actor "MG4" : RGUWeapon
     MG4D A 0 A_TakeInventory("Reloading",1)
     goto Ready+18
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     MG4D A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     MG4D A 0 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     MG4D A 3 A_PlaySoundEx("mg4/reload1","SoundSlot5")
@@ -349,6 +350,7 @@ actor "MG4 Ex Mags" : "MG4"
     MG4D A 0 A_TakeInventory("Reloading",1)
     goto Ready+18
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     MG4D A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     MG4D A 0 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     MG4D A 3 A_PlaySoundEx("mg4/reload1","SoundSlot5")

@@ -129,6 +129,7 @@ actor "FN P90" : RGUWeapon
     P90C A 0 A_TakeInventory("Reloading",1)
     goto Ready+15
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     P90C A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     P90C A 2 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     P90C BCDEF 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
@@ -369,6 +370,7 @@ actor "FN P90 Ex Mags" : "FN P90"
     P90C A 0 A_TakeInventory("Reloading",1)
     goto Ready+15
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     P90C A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     P90C A 2 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     P90C BCDEF 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")

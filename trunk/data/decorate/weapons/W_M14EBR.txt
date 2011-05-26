@@ -123,6 +123,7 @@ actor "M14 EBR" : RGUWeapon
     M14D A 0 A_TakeInventory("Reloading",1)
     goto Ready+13
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     M14D A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     M14D A 3 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     M14D BCDEFGHI 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
@@ -397,6 +398,7 @@ actor "M14 EBR Ex Mags" : "M14 EBR"
     M14D A 0 A_TakeInventory("Reloading",1)
     goto Ready+13
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     M14D A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     M14D A 3 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     M14D BCDEFGHI 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")

@@ -129,6 +129,7 @@ actor "ACR" : RGUWeapon
     ACRC A 0 A_TakeInventory("Reloading",1)
     goto Ready+16
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     ACRC A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     ACRC A 2 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     ACRC BCD 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
@@ -365,6 +366,7 @@ actor "ACR Ex Mags" : "ACR"
     ACRC A 0 A_TakeInventory("Reloading",1)
     goto Ready+16
   ReloadStart:
+  	TNT1 A 0 ACS_ExecuteAlways(652,0,0,0,0) // Shout "Reloading" 
     ACRC A 0 A_JumpIfInventory("Aiming",1,"ReloadStartAim")
     ACRC A 2 A_JumpIfInventory("Perk1_SOH",1,"ReloadStart_SOH")
     ACRC BCD 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
