@@ -3256,9 +3256,7 @@ script 622 (void)
 	TakeInventory("Perk3_LastStand_ProAward",1);
 	
 	TakeInventory("Combo",25);
-	LocalAmbientSound("game/challenge",255);
-	
-	TakeInventory("RewardsToPick",1);
+	LocalAmbientSound("game/challenge",255);		
 	
 	if(CheckInventory("RewardsToPick") > 0){
 		ACS_ExecuteAlways(623,0,0,0,0); // Fill the rewards menu once more
@@ -3357,6 +3355,12 @@ script 623 (void)
 //Apply a Perk
 script 624 (int Which)
 {
+	if(CheckInventory("RewardsToPick") == 0){
+		terminate;
+	}
+	
+	TakeInventory("RewardsToPick",1);
+
 	if(Which == 0) // SLEIGHT OF HAND
 	{
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
