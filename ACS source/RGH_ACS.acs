@@ -63,7 +63,7 @@ script 505 OPEN
 //------- Also change Special.
 script 500 ENTER 
 {
-	log(i:PlayerNumber());
+	//log(i:PlayerNumber());
 	Thing_ChangeTID(0,PlayerNumber()+500);
         SetThingSpecial(0,226,502,0,0,0,0);
 }
@@ -6080,7 +6080,7 @@ function void hudmessageonactor(int tid, int range, str sprite, str text, int sp
 
 // assign next free tid to the thing 
 script 651 (void) {
-	log(s:"assign", i:nextTid);
+	//log(s:"assign", i:nextTid);
 	Thing_ChangeTID(0,nextTid);
 	nextTid = nextTid + 1;
 }
@@ -6118,6 +6118,6 @@ script 652 (void) {
 }
 
 script 653 (void) {
-	log(s:"Kill");
+	//log(s:"Kill");
 	drawKillIndicator();
 }
