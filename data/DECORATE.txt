@@ -136,6 +136,7 @@
 #include "decorate/monsters/heretic/mummy leader.txt"
 #include "decorate/monsters/heretic/knight.txt"
 #include "decorate/monsters/heretic/knight ghost.txt"
+#include "decorate/monsters/heretic/beast.txt"
 #include "decorate/monsters/heretic/wizard.txt"
 #include "decorate/monsters/heretic/clink.txt"
 #include "decorate/monsters/heretic/ironlich.txt"

@@ -1,0 +1,59 @@
+actor Beast2: Beast replaces Beast
+{
+  Game Heretic
+  Health 320
+  Radius 32
+  Height 74
+  Mass 200
+  Speed 14
+  Painchance 100
+  Monster
+  +FLOORCLIP
+  +MISSILEEVENMORE
+  SeeSound "beast/sight"
+  AttackSound "beast/attack"
+  PainSound "beast/pain"
+  DeathSound "beast/death"
+  ActiveSound "beast/active"
+  Obituary "$OB_BEAST" // "%o was charred by a beast."
+  States
+  {
+  Spawn:
+  	BEAS A 0
+  	BEAS A 0 Thing_SetSpecial(0,226,613,0,random(50,70))
+  	BEAS A 0 A_GiveInventory("XPAmount", random(50, 70))
+  	BEAS P 0 ACS_ExecuteAlways(651,0,0,0,0)
+    BEAS AB 10 A_Look
+    goto Spawn+4
+  See:
+    BEAS ABCDEF 3 A_Chase
+    loop
+  Missile:
+    BEAS H 10 A_FaceTarget
+    BEAS I 0 A_CustomComboAttack(BeastBall, 32, random[BeastAttack](1,8)*3, "beast/attack")
+    goto See
+  Pain:
+    BEAS G 3
+    BEAS G 3 A_Pain
+    goto See
+  Death:
+    BEAS R 6
+    BEAS S 6 A_Scream
+    BEAS TUV 6
+    BEAS V 0 ACS_ExecuteAlways(648,0,0,0,0)
+    BEAS W 6 A_NoBlocking
+    BEAS XY 6
+    BEAS Z -1
+    stop
+  XDeath:
+    BEAS J 5
+    BEAS K 6 A_Scream
+    BEAS L 5
+    BEAS M 6
+    BEAS N 5
+    BEAS O 6 A_NoBlocking
+    BEAS P 5
+    BEAS Q -1
+    stop
+  }
+}
