@@ -676,25 +676,25 @@ game/rank		levelup
 game/challenge		mp_chall
 game/laststand		mp_last_
 
-$random imp/sight	{ imp/sight1 imp/sight2 imp/sight3 imp/sight4 imp/sight5 imp/sight6 }
-$random imp/active	{ imp/active1 imp/active2 imp/active3 imp/active4 imp/sight1 imp/sight3}
-$random imp/pain	{ imp/pain1 imp/pain2 imp/pain3 }
-$random imp/death	{ imp/death1 imp/death2 imp/pain1 imp/pain2 imp/pain3 }
-imp/sight1		dimpsit1
-imp/sight2		dimpsit2
-imp/sight3		dimpsit3
-imp/sight4		dimpsit4
-imp/sight5		dimpsit5
-imp/sight6		dimpsit6
-imp/active1		dimpact1
-imp/active2		dimpact2
-imp/active3		dimpact3
-imp/active4		dimpact4
-imp/pain1		dimppn1
-imp/pain2		dimppn2
-imp/pain3		dimppn3
-imp/death1		dimpdth1
-imp/death2		dimpdth2
+//$random imp/sight	{ imp/sight1 imp/sight2 imp/sight3 imp/sight4 imp/sight5 imp/sight6 }
+//$random imp/active	{ imp/active1 imp/active2 imp/active3 imp/active4 imp/sight1 imp/sight3}
+//$random imp/pain	{ imp/pain1 imp/pain2 imp/pain3 }
+//$random imp/death	{ imp/death1 imp/death2 imp/pain1 imp/pain2 imp/pain3 }
+//imp/sight1		dimpsit1
+//imp/sight2		dimpsit2
+//imp/sight3		dimpsit3
+//imp/sight4		dimpsit4
+//imp/sight5		dimpsit5
+//imp/sight6		dimpsit6
+//imp/active1		dimpact1
+//imp/active2		dimpact2
+//imp/active3		dimpact3
+//imp/active4		dimpact4
+//imp/pain1		dimppn1
+//imp/pain2		dimppn2
+//imp/pain3		dimppn3
+//imp/death1		dimpdth1
+//imp/death2		dimpdth2
 
 $random juggernaut/death		    { misc/dsjudth1 misc/dsjudth2 misc/dsjudth3 misc/dsjudth4 misc/dsjudth5 }
 misc/dsjudth1           dsjudth1
