@@ -3559,6 +3559,7 @@ script 625 (void)
 	LocalAmbientSound("game/laststand",254);
 	SetFont("BIGFONT");
 	HudMessage(s:"\cdLAST STAND"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.3, 2.0, 1.0);
+	TakeInventory("Aiming", 1);
 	ACS_ExecuteAlways(630,0,0,0,0);
 	delay(1);
 	SetActorProperty(0,APROP_Invulnerable,1);
@@ -3573,6 +3574,7 @@ script 625 (void)
 		Thing_Damage(0,75,18); //Bleed out
 	else */if(GetActorProperty(0,APROP_Health) < 31 && Survival == 6 && GetActorProperty(0,APROP_Health) > 0)  //Survival rate: 1 in 6
 	{
+		TakeInventory("Aiming", 1);
 		ACS_ExecuteAlways(631,0,0,0,0);  // unmorph from last stand
 		SetFont("BIGFONT");
 		HudMessage(s:"\cdYou survived!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.3, 2.0, 1.0);
