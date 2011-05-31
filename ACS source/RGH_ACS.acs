@@ -5795,18 +5795,6 @@ function int getCurrentWeaponSpread(bool hold){
 		if(hold)
 			Spread = 20.0;
 	}
-	
-	// low recoil SMGs
-	else if(
-		CheckWeapon("Mini-UZI") ||
-		CheckWeapon("Mini-UZI Ex Mags") || 
-		CheckWeapon("Mini-UZI Akimbo")
-	)
-	{
-		Spread = 15.0;
-		if(hold)
-			Spread = 30.0;
-	}	
 
 	// low spread SMGs
 	else if(
