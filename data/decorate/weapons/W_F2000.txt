@@ -43,11 +43,11 @@ actor "F2000" : RGUWeapon
     loop
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
-	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     F2KB A 0 A_JumpIfInventory("Aiming",1,"FireAim")
     F2KB A 0 A_JumpIfNoAmmo("ReloadStart")
     F2KB A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     F2KB A 0 A_PlayWeaponSound("f2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     F2KB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     F2KB A 1 BRIGHT A_FireBullets (7.0, 7.0, -1, 22, "RiflePuff", 1, 6000)
     F2KB B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -60,11 +60,11 @@ actor "F2000" : RGUWeapon
     F2KB CD 1 A_ReFire
     goto Ready+13
   Hold:
-  	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     F2KB A 0 A_JumpIfInventory("Aiming",1,"HoldAim")
     F2KB A 0 A_JumpIfNoAmmo("ReloadStart")
     F2KB A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Hold_SteadyAim")
     F2KB A 0 A_PlayWeaponSound("f2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     F2KB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     F2KB A 1 BRIGHT A_FireBullets (10.5, 10.5, -1, 22, "RiflePuff", 1, 6000)
     F2KB B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -87,6 +87,7 @@ actor "F2000" : RGUWeapon
     goto Ready+13
   FireAim:
     F2KD A 0 A_PlayWeaponSound("f2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     F2KD A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
     F2KD A 1 BRIGHT A_FireBullets (1, 1, -1, 22, "RiflePuff", 1, 6000)
     F2KD B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -100,6 +101,7 @@ actor "F2000" : RGUWeapon
     goto Ready+13
   HoldAim:
     F2KD A 0 A_PlayWeaponSound("f2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     F2KD A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
     F2KD A 1 BRIGHT A_FireBullets (4.0, 4.0, -1, 22, "RiflePuff", 1, 6000)
     F2KD B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -222,6 +224,7 @@ actor "F2000" : RGUWeapon
     goto Ready+13 
   Fire_SteadyAim:
     F2KB A 0 A_PlayWeaponSound("f2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     F2KB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     F2KB A 1 BRIGHT A_FireBullets (4.62, 4.62, -1, 22, "RiflePuff", 1, 6000)
     F2KB B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -235,6 +238,7 @@ actor "F2000" : RGUWeapon
     goto Ready+13
   Hold_SteadyAim:
     F2KB A 0 A_PlayWeaponSound("f2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     F2KB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     F2KB A 1 BRIGHT A_FireBullets (6.93, 6.93, -1, 22, "RiflePuff", 1, 6000)
     F2KB B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)

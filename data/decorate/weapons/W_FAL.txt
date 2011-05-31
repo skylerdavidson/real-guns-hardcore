@@ -42,12 +42,12 @@ actor "FAL" : RGUWeapon
     loop
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
-	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     FALA L 0 A_JumpIfInventory("Aiming",1,"FireAim")
     FALA L 0 A_JumpIfNoAmmo("ReloadStart")
     FALB B 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     FALB A 0 A_JumpIfInventory("Firing",1,"FireHold")
     FALB A 0 A_PlayWeaponSound("fal/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     FALB A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,3)
     FALB A 2 BRIGHT A_FireBullets (7.0, 7.0, -1, 26, "SniperPuff", 1, 8000)
     FALB B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -74,6 +74,7 @@ actor "FAL" : RGUWeapon
     goto Ready+12
   FireHold:
     FALB A 0 A_PlayWeaponSound("fal/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     FALB A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,3)
     FALB A 2 BRIGHT A_FireBullets (10.5, 10.5, -1, 26, "SniperPuff", 1, 8000)
     FALB B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -89,7 +90,6 @@ actor "FAL" : RGUWeapon
     FALB A 0 A_ReFire
     goto Ready+12
   Hold:
-  	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     FALA L 1 A_JumpIfInventory("Aiming",1,"HoldAim")
     FALA L 0 A_ReFire
     goto Ready+12
@@ -100,6 +100,7 @@ actor "FAL" : RGUWeapon
   FireAim:
     FALC F 0 A_JumpIfNoAmmo("ReloadStart")
     FALC G 0 A_PlayWeaponSound("fal/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     FALC G 0 A_FireCustomMissile("WeaponSmokePuff",0,0,0,8)
     FALC G 2 BRIGHT A_FireBullets (0.5, 0.5, -1, 26, "SniperPuff", 1, 8000)
     FALC G 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -185,6 +186,7 @@ actor "FAL" : RGUWeapon
   Fire_SteadyAim:
     FALB A 0 A_JumpIfInventory("Firing",1,"FireHold_SteadyAim")
     FALB A 0 A_PlayWeaponSound("fal/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     FALB A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,3)
     FALB A 2 BRIGHT A_FireBullets (4.62, 4.62, -1, 26, "SniperPuff", 1, 8000)
     FALB B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -201,6 +203,7 @@ actor "FAL" : RGUWeapon
     goto Ready+12
   FireHold_SteadyAim:
     FALB A 0 A_PlayWeaponSound("fal/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     FALB A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,3)
     FALB A 2 BRIGHT A_FireBullets (10.0, 10.0, -1, 26, "SniperPuff", 1, 8000)
     FALB B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)

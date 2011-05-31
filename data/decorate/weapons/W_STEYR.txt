@@ -44,11 +44,11 @@ actor "AUG HBAR" : RGUWeapon
     loop
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
-	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     BARB A 0 A_JumpIfInventory("Aiming",1,"FireAim")
     BARB A 0 A_JumpIfNoAmmo("ReloadStart")
     BARB A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     BARB A 0 A_PlayWeaponSound("hbar/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     BARB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     BARB A 1 BRIGHT A_FireBullets (6.0, 6.0, -1, 10, "LMGPuff", 1, 6000)
     BARB B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -62,11 +62,11 @@ actor "AUG HBAR" : RGUWeapon
     BARB DEF 1 A_ReFire
     goto Ready+15
   Hold:
-  	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     BARB A 0 A_JumpIfInventory("Aiming",1,"HoldAim")
     BARB A 0 A_JumpIfNoAmmo("ReloadStart")
     BARB A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Hold_SteadyAim")
     BARB A 0 A_PlayWeaponSound("hbar/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     BARB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     BARB A 1 BRIGHT A_FireBullets (8.0, 8.0, -1, 10, "LMGPuff", 1, 6000)
     BARB B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -81,6 +81,7 @@ actor "AUG HBAR" : RGUWeapon
     goto Ready+15
   FireAim:
     BARD A 0 A_PlayWeaponSound("hbar/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     BARD A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
     BARD A 1 BRIGHT A_FireBullets (1.0, 1.0, -1, 10, "LMGPuff", 1, 6000)
     BARD B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -95,6 +96,7 @@ actor "AUG HBAR" : RGUWeapon
     goto Ready+21
   HoldAim:
     BARD A 0 A_PlayWeaponSound("hbar/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     BARD A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
     BARD A 1 BRIGHT A_FireBullets (2.2, 2.2, -1, 10, "LMGPuff", 1, 6000)
     BARD B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -235,6 +237,7 @@ actor "AUG HBAR" : RGUWeapon
     goto Ready+13 
   Fire_SteadyAim:
     BARB A 0 A_PlayWeaponSound("hbar/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     BARB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     BARB A 1 BRIGHT A_FireBullets (4.0, 4.0, -1, 10, "LMGPuff", 1, 6000)
     BARB B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -249,6 +252,7 @@ actor "AUG HBAR" : RGUWeapon
     goto Ready+15
   Hold_SteadyAim:
     BARB A 0 A_PlayWeaponSound("hbar/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     BARB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     BARB A 1 BRIGHT A_FireBullets (6.0, 6.0, -1, 10, "LMGPuff", 1, 6000)
     BARB B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)

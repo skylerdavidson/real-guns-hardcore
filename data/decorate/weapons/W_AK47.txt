@@ -43,11 +43,11 @@ actor "AK-47" : RGUWeapon
     loop
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
-	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     AKMB A 0 A_JumpIfInventory("Aiming",1,"FireAim")
     AKMB A 0 A_JumpIfNoAmmo("ReloadStart")
     AKMB A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     AKMB A 0 A_PlayWeaponSound("ak47/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     AKMB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     AKMB A 1 BRIGHT A_FireBullets (8.0, 8.0, -1, 26, "RiflePuff", 1, 6000)
     AKMB B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -60,11 +60,11 @@ actor "AK-47" : RGUWeapon
     AKMB CDE 1 A_ReFire
     goto Ready+13
   Hold:
-  	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     AKMB A 0 A_JumpIfInventory("Aiming",1,"HoldAim")
     AKMB A 0 A_JumpIfNoAmmo("ReloadStart")
     AKMB A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Hold_SteadyAim")
     AKMB A 0 A_PlayWeaponSound("ak47/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     AKMB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     AKMB A 1 BRIGHT A_FireBullets (12.0, 12.0, -1, 26, "RiflePuff", 1, 6000)
     AKMB B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -87,6 +87,7 @@ actor "AK-47" : RGUWeapon
     goto Ready+13
   FireAim:
     AKMD A 0 A_PlayWeaponSound("ak47/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     AKMD A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,8)
     AKMD A 1 BRIGHT A_FireBullets (1.5, 1.5, -1, 26, "RiflePuff", 1, 6000)
     AKMD B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -100,6 +101,7 @@ actor "AK-47" : RGUWeapon
     goto Ready+13
   HoldAim:
     AKMD A 0 A_PlayWeaponSound("ak47/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     AKMD A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,8)
     AKMD A 1 BRIGHT A_FireBullets (5, 5, -1, 26, "RiflePuff", 1, 6000)
     AKMD B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -196,6 +198,7 @@ actor "AK-47" : RGUWeapon
     stop
   Fire_SteadyAim:
     AKMB A 0 A_PlayWeaponSound("ak47/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     AKMB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     AKMB A 1 BRIGHT A_FireBullets (5.28, 5.28, -1, 26, "RiflePuff", 1, 6000)
     AKMB B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -209,6 +212,7 @@ actor "AK-47" : RGUWeapon
     goto Ready+13
   Hold_SteadyAim:
     AKMB A 0 A_PlayWeaponSound("ak47/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     AKMB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     AKMB A 1 BRIGHT A_FireBullets (7.92, 7.92, -1, 26, "RiflePuff", 1, 6000)
     AKMB B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)

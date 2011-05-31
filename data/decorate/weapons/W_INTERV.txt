@@ -42,11 +42,11 @@ actor "Intervention" : RGUWeapon
     loop
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
-	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     INTA N 0 A_JumpIfInventory("Aiming",1,"FireAim")
     INTA P 1 A_JumpIfNoAmmo("ReloadStart")
     INTA A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     INTB A 0 A_PlayWeaponSound("intervention/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     INTB AA 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,6,3)
     INTB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,6,3)	
     INTB A 2 BRIGHT A_FireBullets (15.0, 15.0, -1, 280, "SniperPuff", 1, 0)
@@ -74,7 +74,6 @@ actor "Intervention" : RGUWeapon
     INTA A 0 A_ReFire
     goto Ready+16
   Hold:
-  	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     INTA P 3 A_JumpIfInventory("Aiming",1,"HoldAim")
     INTA P 1 A_ReFire
     goto Ready+16
@@ -85,6 +84,7 @@ actor "Intervention" : RGUWeapon
   FireAim:
     INTF G 1 A_JumpIfNoAmmo("ReloadStart")
     INTF A 0 A_PlayWeaponSound("intervention/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     INTF AA 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,0,3)
     INTF A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
     INTF G 0 A_JumpIfInventory("Perk3_SteadyAim_Pro",1,2)
@@ -180,6 +180,7 @@ actor "Intervention" : RGUWeapon
     stop
   Fire_SteadyAim:
     INTB A 0 A_PlayWeaponSound("intervention/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     INTB AA 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,6,3)
     INTB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,6,3)
     INTB A 2 BRIGHT A_FireBullets (10.0, 10.0, -1, 280, "SniperPuff", 1, 0)
