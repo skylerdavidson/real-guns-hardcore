@@ -51,13 +51,13 @@ actor "FAMAS" : RGUWeapon
     WEAP G 15
     TNT1 A 0 A_SpawnItem("FamasPickup")
     stop
-  Fire:
-	TNT1 A 0 A_GiveInventory("InCombat",5)
+  Fire:	
     FAMB A 0 A_JumpIfInventory("Aiming",1,"FireAim")
     FAMA N 1 A_JumpIfNoAmmo("ReloadStart")
     FAMB A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     FAMF A 0 A_PlayWeaponSound("g2/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     FAMF A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,-3)
     FAMB A 1 BRIGHT A_FireBullets (7.0, 7.0, -1, 16, "RiflePuff", 1, 8000)
     FAMB A 0 ACS_ExecuteAlways(600,0,0,0,0)
@@ -65,6 +65,7 @@ actor "FAMAS" : RGUWeapon
     FAMB C 1 BRIGHT A_GunFlash
     FAMF A 0 A_PlayWeaponSound("g2/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     FAMF A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,-3)
     FAMB B 1 BRIGHT A_FireBullets (7.0, 7.0, -1, 16, "RiflePuff", 1, 8000)
     FAMB A 0 ACS_ExecuteAlways(600,0,0,0,0)
@@ -72,6 +73,7 @@ actor "FAMAS" : RGUWeapon
     FAMB D 1 BRIGHT A_GunFlash
     FAMF A 0 A_PlayWeaponSound("g2/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     FAMF A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,-3)
     FAMB A 1 BRIGHT A_FireBullets (7.0, 7.0, -1, 16, "RiflePuff", 1, 8000)
     FAMB A 0 ACS_ExecuteAlways(600,0,0,0,0)
@@ -106,6 +108,7 @@ actor "FAMAS" : RGUWeapon
     FAMF G 1 A_JumpIfNoAmmo("ReloadStart")
     FAMF A 0 A_PlayWeaponSound("g2/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     FAMF A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,0,-3)
     FAMF H 1 BRIGHT A_FireBullets (1, 1, -1, 16, "RiflePuff", 1, 8000)
     FAMF A 0 ACS_ExecuteAlways(600,0,0,0,0)
@@ -113,6 +116,7 @@ actor "FAMAS" : RGUWeapon
     FAMF J 1 BRIGHT A_GunFlash
     FAMF A 0 A_PlayWeaponSound("g2/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     FAMF A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,0,-3)
     FAMF I 1 BRIGHT A_FireBullets (1, 1, -1, 16, "RiflePuff", 1, 8000)
     FAMF A 0 ACS_ExecuteAlways(600,0,0,0,0)
@@ -120,6 +124,7 @@ actor "FAMAS" : RGUWeapon
     FAMF J 1 BRIGHT A_GunFlash
     FAMF A 0 A_PlayWeaponSound("g2/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     FAMF A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,0,-3)
     FAMF H 1 BRIGHT A_FireBullets (1, 1, -1, 16, "RiflePuff", 1, 8000)
     FAMF A 0 ACS_ExecuteAlways(600,0,0,0,0)
@@ -204,6 +209,7 @@ actor "FAMAS" : RGUWeapon
   Fire_SteadyAim:
     FAMF A 0 A_PlayWeaponSound("g2/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     FAMF A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,-3)
     FAMB A 1 BRIGHT A_FireBullets (4.62, 4.62, -1, 16, "RiflePuff", 1, 8000)
     FAMB A 0 ACS_ExecuteAlways(600,0,0,0,0)
@@ -211,6 +217,7 @@ actor "FAMAS" : RGUWeapon
     FAMB C 1 BRIGHT A_GunFlash
     FAMF A 0 A_PlayWeaponSound("g2/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     FAMF A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,-3)
     FAMB B 1 BRIGHT A_FireBullets (4.62, 4.62, -1, 16, "RiflePuff", 1, 8000)
     FAMB A 0 ACS_ExecuteAlways(600,0,0,0,0)
@@ -218,6 +225,7 @@ actor "FAMAS" : RGUWeapon
     FAMB D 1 BRIGHT A_GunFlash
     FAMF A 0 A_PlayWeaponSound("g2/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     FAMF A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,-3)
     FAMB A 1 BRIGHT A_FireBullets (4.62, 4.62, -1, 16, "RiflePuff", 1, 8000)
     FAMB A 0 ACS_ExecuteAlways(600,0,0,0,0)
@@ -406,11 +414,11 @@ actor "FAMAS M203" : RGUWeapon
     FAMF A 0 ACS_ExecuteAlways(602,0,0,0,0)
     FAMA A 0 A_Raise
     goto Select+2
-  Fire:
-	TNT1 A 0 A_GiveInventory("InCombat",5)
+  Fire:	
     FAMG J 1 A_JumpIfNoAmmo("ReloadStart")
     FAMG A 0 A_PlayWeaponSound("hk69/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     FAMG A 0 A_FireCustomMissile("WeaponSmokePuffLong",3,0,4,-4)
     FAMG A 0 A_FireCustomMissile("WeaponSmokePuffLong",0,0,8,0)
     FAMG A 0 A_FireCustomMissile("WeaponSmokePuffLong",-3,0,12,-4)

@@ -40,14 +40,14 @@ actor "SPAS-12" : RGUWeapon
 	SPSA A 0 ACS_ExecuteAlways(602,0,0,0,0)
 	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     loop
-  Fire:
-	TNT1 A 0 A_GiveInventory("InCombat",5)
+  Fire:	
     SPSA P 0 A_JumpIfInventory("Reloading",1,"ReloadEnd")
     SPSA P 0 A_JumpIfInventory("Aiming",1,"FireAim")
     SPSA P 1 A_JumpIfNoAmmo("ReloadStart")
     //SPSB B 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     SPSB A 0 A_PlayWeaponSound("spas/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",35)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     SPSB A 0 A_FireCustomMissile("WeaponSmokePuffShotgun",3,0,4,0)
     SPSB A 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,8,3)
     SPSB A 0 A_FireCustomMissile("WeaponSmokePuffShotgun",-3,0,12,0)
@@ -151,6 +151,7 @@ actor "SPAS-12" : RGUWeapon
     SPSF F 1 A_JumpIfNoAmmo("ReloadStart")
     SPSF G 0 A_PlayWeaponSound("spas/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",35)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     SPSF G 0 A_FireCustomMissile("WeaponSmokePuffShotgun",3,0,-4,0)
     SPSF G 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,0,3)
     SPSF G 0 A_FireCustomMissile("WeaponSmokePuffShotgun",-3,0,4,0)
@@ -184,6 +185,7 @@ actor "SPAS-12" : RGUWeapon
   Fire_SteadyAim:
     SPSB A 0 A_PlayWeaponSound("spas/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",35)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     SPSB A 0 A_FireCustomMissile("WeaponSmokePuffShotgun",3,0,4,0)
     SPSB A 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,8,3)
     SPSB A 0 A_FireCustomMissile("WeaponSmokePuffShotgun",-3,0,12,0)

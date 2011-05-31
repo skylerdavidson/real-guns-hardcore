@@ -41,13 +41,13 @@ actor "MP5K" : RGUWeapon
 	MP5A A 0 ACS_ExecuteAlways(602,0,0,0,0)
 	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     loop
-  Fire:	
-	TNT1 A 0 A_GiveInventory("InCombat",5)
+  Fire:		
     MP5B A 0 A_JumpIfInventory("Aiming",1,"FireAim")
     MP5B A 0 A_JumpIfNoAmmo("ReloadStart")
     MP5B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     MP5B A 0 A_PlayWeaponSound("mp5k/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     MP5B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,10,0)
     MP5B A 1 BRIGHT A_FireBullets (8.0, 8.0, -1, 8, "HHBulletPuff", 1, 6000)
     MP5B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -66,6 +66,7 @@ actor "MP5K" : RGUWeapon
     MP5B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Hold_SteadyAim")
     MP5B A 0 A_PlayWeaponSound("mp5k/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     MP5B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,10,0)
     MP5B A 1 BRIGHT A_FireBullets (12.0, 12.0, -1, 8, "HHBulletPuff", 1, 6000)
     MP5B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -90,6 +91,7 @@ actor "MP5K" : RGUWeapon
   FireAim:
     MP5D A 0 A_PlayWeaponSound("mp5k/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     MP5D A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,0,0)
     MP5D A 1 BRIGHT A_FireBullets (1.5, 1.5, -1, 8, "HHBulletPuff", 1, 6000)
     MP5D A 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -105,6 +107,7 @@ actor "MP5K" : RGUWeapon
   HoldAim:
     MP5D A 0 A_PlayWeaponSound("mp5k/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     MP5D A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,0,0)
     MP5D A 1 BRIGHT A_FireBullets (5, 5, -1, 8, "HHBulletPuff", 1, 6000)
     MP5D A 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -225,6 +228,7 @@ actor "MP5K" : RGUWeapon
   Fire_SteadyAim:
     MP5B A 0 A_PlayWeaponSound("mp5k/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     MP5B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,10,0)
     MP5B A 1 BRIGHT A_FireBullets (5.28, 5.28, -1, 8, "HHBulletPuff", 1, 6000)
     MP5B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -240,6 +244,7 @@ actor "MP5K" : RGUWeapon
   Hold_SteadyAim:
     MP5B A 0 A_PlayWeaponSound("mp5k/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     MP5B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,10,0)
     MP5B A 1 BRIGHT A_FireBullets (7.92, 7.92, -1, 8, "HHBulletPuff", 1, 6000)
     MP5B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -461,13 +466,13 @@ actor "MP5K Rapid Fire" : "MP5K"
   -NOAUTOFIRE
   states
   {
-  Fire:
-	TNT1 A 0 A_GiveInventory("InCombat",5)
+  Fire:	
     MP5B A 0 A_JumpIfInventory("Aiming",1,"FireAim")
     MP5B A 0 A_JumpIfNoAmmo("ReloadStart")
     MP5B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     MP5B A 0 A_PlayWeaponSound("mp5k/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     MP5B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,10,0)
     MP5B A 1 BRIGHT A_FireBullets (8.0, 8.0, -1, 8, "HHBulletPuff", 1, 6000)
     MP5B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -485,6 +490,7 @@ actor "MP5K Rapid Fire" : "MP5K"
     MP5B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Hold_SteadyAim")
     MP5B A 0 A_PlayWeaponSound("mp5k/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     MP5B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,10,0)
     MP5B A 1 BRIGHT A_FireBullets (12.0, 12.0, -1, 8, "HHBulletPuff", 1, 6000)
     MP5B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -499,6 +505,7 @@ actor "MP5K Rapid Fire" : "MP5K"
   FireAim:
     MP5D A 0 A_PlayWeaponSound("mp5k/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     MP5D A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,0,0)
     MP5D A 1 BRIGHT A_FireBullets (1.5, 1.5, -1, 8, "HHBulletPuff", 1, 6000)
     MP5D A 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -513,6 +520,7 @@ actor "MP5K Rapid Fire" : "MP5K"
   HoldAim:
     MP5D A 0 A_PlayWeaponSound("mp5k/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     MP5D A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,0,0)
     MP5D A 1 BRIGHT A_FireBullets (5, 5, -1, 8, "HHBulletPuff", 1, 6000)
     MP5D A 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -527,6 +535,7 @@ actor "MP5K Rapid Fire" : "MP5K"
   Fire_SteadyAim:
     MP5B A 0 A_PlayWeaponSound("mp5k/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     MP5B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,10,0)
     MP5B A 1 BRIGHT A_FireBullets (5.28, 5.28, -1, 8, "HHBulletPuff", 1, 6000)
     MP5B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -541,6 +550,7 @@ actor "MP5K Rapid Fire" : "MP5K"
   Hold_SteadyAim:
     MP5B A 0 A_PlayWeaponSound("mp5k/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     MP5B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,10,0)
     MP5B A 1 BRIGHT A_FireBullets (7.92, 7.92 , -1, 8, "HHBulletPuff", 1, 6000)
     MP5B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)

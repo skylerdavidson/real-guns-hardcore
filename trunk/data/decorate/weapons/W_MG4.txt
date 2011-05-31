@@ -42,13 +42,13 @@ actor "MG4" : RGUWeapon
 	MG4A A 0 ACS_ExecuteAlways(602,0,0,0,0)
 	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     loop
-  Fire:
-	TNT1 A 0 A_GiveInventory("InCombat",5)
+  Fire:	
     MG4B A 0 A_JumpIfInventory("Aiming",1,"FireAim")
     MG4B A 0 A_JumpIfNoAmmo("ReloadStart")
     MG4B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     MG4B A 0 A_PlayWeaponSound("mg4/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     MG4B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     MG4B A 1 BRIGHT A_FireBullets (7.0, 7.0, -1, 28, "LMGPuff", 1, 6000)
     MG4B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -67,6 +67,7 @@ actor "MG4" : RGUWeapon
     MG4B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Hold_SteadyAim")
     MG4B A 0 A_PlayWeaponSound("mg4/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     MG4B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     MG4B A 1 BRIGHT A_FireBullets (10.0, 10.0, -1, 28, "LMGPuff", 1, 6000)
     MG4B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -82,6 +83,7 @@ actor "MG4" : RGUWeapon
   FireAim:
     MG4C G 0 A_PlayWeaponSound("mg4/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     MG4C G 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
     MG4C G 1 BRIGHT A_FireBullets (0.75, 0.75, -1, 28, "LMGPuff", 1, 6000)
     MG4C G 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -97,6 +99,7 @@ actor "MG4" : RGUWeapon
   HoldAim:
     MG4C G 0 A_PlayWeaponSound("mg4/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     MG4C G 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
     MG4C G 1 BRIGHT A_FireBullets (2.0, 2.0, -1, 28, "LMGPuff", 1, 6000)
     MG4C H 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -187,6 +190,7 @@ actor "MG4" : RGUWeapon
   Fire_SteadyAim:
     MG4B A 0 A_PlayWeaponSound("mg4/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     MG4B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     MG4B A 1 BRIGHT A_FireBullets (5.0, 5.0, -1, 28, "LMGPuff", 1, 6000)
     MG4B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -202,6 +206,7 @@ actor "MG4" : RGUWeapon
   Hold_SteadyAim:
     MG4B A 0 A_PlayWeaponSound("mg4/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     MG4B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     MG4B A 1 BRIGHT A_FireBullets (8.0, 8.0, -1, 28, "LMGPuff", 1, 6000)
     MG4B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)

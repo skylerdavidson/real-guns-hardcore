@@ -40,13 +40,13 @@ actor "Barrett 50cal" : RGUWeapon
 	B50A A 0 ACS_ExecuteAlways(602,0,0,0,0)
 	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     loop
-  Fire:
-	TNT1 A 0 A_GiveInventory("InCombat",5)
+  Fire:	
     B50A N 0 A_JumpIfInventory("Aiming",1,"FireAim")
     B50A P 1 A_JumpIfNoAmmo("ReloadStart")
     B50B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     B50B A 0 A_PlayWeaponSound("barrett/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     B50B AA 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,6,3)
     B50B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,6,3)
     B50B A 1 BRIGHT A_FireBullets (15.0, 15.0, -1, 105, "SniperPuff", 1, 0)
@@ -83,6 +83,7 @@ actor "Barrett 50cal" : RGUWeapon
     INTF G 1 A_JumpIfNoAmmo("ReloadStart")
     INTF G 0 A_PlayWeaponSound("barrett/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     INTF GG 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,0,3)
     INTF G 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
     INTF G 0 A_JumpIfInventory("Perk3_SteadyAim_Pro",1,2)
@@ -185,6 +186,7 @@ actor "Barrett 50cal" : RGUWeapon
   Fire_SteadyAim:
     B50B A 0 A_PlayWeaponSound("barrett/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     B50B AA 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,6,3)
     B50B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,6,3)
     B50B A 1 BRIGHT A_FireBullets (10.0, 10.0, -1, 105, "SniperPuff", 1, 0)
