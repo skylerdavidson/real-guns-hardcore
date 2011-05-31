@@ -138,8 +138,6 @@ script 502 (void)
 	KillersHealth = GetActorProperty(ActivatorTID(),APROP_Health);
 	KillersMaxHealth = GetActorProperty(ActivatorTID(),APROP_SpawnHealth);
 
-    drawKillIndicator();
-    
 	// GetActorProperty always returns 0 for players
 	if(KillersMaxHealth == 0) KillersMaxHealth = 100;
 
@@ -6119,3 +6117,7 @@ script 652 (void) {
 		ActivatorSound("tf141/reload",127);
 }
 
+script 653 (void) {
+	log(s:"Kill");
+	drawKillIndicator();
+}
