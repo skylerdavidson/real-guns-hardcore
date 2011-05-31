@@ -40,8 +40,7 @@ actor "Model 1887" : RGUWeapon
 	W18A A 0 ACS_ExecuteAlways(602,0,0,0,0)
 	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     loop
-  Fire:
-	TNT1 A 0 A_GiveInventory("InCombat",5)
+  Fire:	
     W18A P 0 A_JumpIfInventory("Reloading",1,"ReloadEnd")
     W18A P 0 A_JumpIfInventory("Aiming",1,"FireAim")
     W18A J 1 A_JumpIfNoAmmo("ReloadStart")
@@ -57,6 +56,7 @@ actor "Model 1887" : RGUWeapon
     W18B A 1 A_JumpIfNoAmmo("FireEmpty")
     W18B A 1 BRIGHT A_PlayWeaponSound("m1887/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",35)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     W18B BCDEF 2 BRIGHT A_GunFlash
     W18B GHIJKLMNOPQRST 3
     W18B A 0 A_JumpIfInventory("M1887Ammo",1,2)
@@ -88,6 +88,7 @@ actor "Model 1887" : RGUWeapon
     W18D A 1 A_JumpIfNoAmmo("FireAimEmpty")
     W18D A 1 BRIGHT A_PlayWeaponSound("m1887/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",35)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     W18D BCDEF 2 BRIGHT A_GunFlash
     W18D GHIJKLMNOPQRST 3
     W18D A 0 A_JumpIfInventory("M1887Ammo",1,2)
@@ -220,6 +221,7 @@ actor "Model 1887" : RGUWeapon
     W18B A 1 A_JumpIfNoAmmo("FireEmpty")
     W18B A 1 BRIGHT A_PlayWeaponSound("m1887/fire")
     TNT1 F 0 A_GiveInventory("InCombatCrosshair",35)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     W18B BCDEF 2 BRIGHT A_GunFlash
     W18B GHIJKLMNOPQRST 3
     W18B A 0 A_JumpIfInventory("M1887Ammo",1,2)
