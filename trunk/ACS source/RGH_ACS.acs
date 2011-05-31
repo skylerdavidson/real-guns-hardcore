@@ -6089,6 +6089,8 @@ script 651 (void) {
 
 // Shout "Reloading!"
 script 652 (void) {
+	GiveInventory("Reloading", 1); // hide the crosshair
+
 #ifdef SKULLTAG
 	bool isRed = PlayerTeam() == TEAM_RED;		
 	bool isBlue = PlayerTeam() == TEAM_BLUE;
