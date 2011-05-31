@@ -66,6 +66,7 @@
 #include "decorate/monsters/doom/zombie/shotgun zombie.txt"
 #include "decorate/monsters/doom/zombie/super-shotgun zombie.txt"
 #include "decorate/monsters/doom/zombie/freezer zombie.txt"
+#include "decorate/monsters/doom/zombie/emp zombie.txt"
 #include "decorate/monsters/doom/zombie/zombie commando.txt"
 #include "decorate/monsters/doom/zombie/SMG zombie.txt"
 #include "decorate/monsters/doom/zombie/akimbo zombie.txt"

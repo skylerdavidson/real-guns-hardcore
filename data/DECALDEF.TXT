@@ -10,3 +10,53 @@ decal FreezeBlastMelt
 	randomflipx
 	animator BloodSmearer
 }
+
+/***** EMP Scorches ********************************************************/
+
+decal EMPScorch1
+{
+	pic BFGSCRC1
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+}
+
+decal EMPScorch2
+{
+	pic BFGSCRC2
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+}
+
+decalgroup EMPScorch
+{
+	EMPScorch1		1
+	EMPScorch2		1
+}
+
+decal EMPLightning1
+{
+	pic BFGLITE1
+	shade "80 80 ff"
+	fullbright
+	randomflipx
+	animator GoAway2
+	lowerdecal EMPScorch
+}
+
+decal EMPLightning2
+{
+	pic BFGLITE2
+	shade "80 80 ff"
+	fullbright
+	randomflipy
+	animator GoAway2
+	lowerdecal EMPScorch
+}
+
+decalgroup EMPLightning
+{
+	EMPLightning1	1
+	EMPLightning2	1
+}
