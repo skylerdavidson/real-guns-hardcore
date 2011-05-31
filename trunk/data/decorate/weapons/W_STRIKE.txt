@@ -42,12 +42,12 @@ actor "Striker" : RGUWeapon
     loop
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
-	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     STKA O 0 A_JumpIfInventory("Reloading",1,"ReloadEnd")
     STKA O 0 A_JumpIfInventory("Aiming",1,"FireAim")
     STKA O 1 A_JumpIfNoAmmo("ReloadStart")
     STKB B 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     STKB A 0 A_PlayWeaponSound("striker/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",35)
     STKB AA 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,8,3)
     STKB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     STKB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
@@ -68,6 +68,7 @@ actor "Striker" : RGUWeapon
   FireAim:
     STKC F 1 A_JumpIfNoAmmo("ReloadStart")
     STKD A 0 A_PlayWeaponSound("striker/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",35)
     STKD AA 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,0,3)
     STKD A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
     STKD G 0 BRIGHT A_FireBullets (7.0, 7.0, 4, 5, "ShotgunPuff", 0, 200)
@@ -105,7 +106,6 @@ actor "Striker" : RGUWeapon
     STKD A 0 A_ReFire
     goto Ready+16
   Hold:
-  	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     STKA O 3 A_JumpIfInventory("Aiming",1,"HoldAim")
     STKA O 1 A_ReFire
     goto Ready+16
@@ -172,6 +172,7 @@ actor "Striker" : RGUWeapon
     stop
   Fire_SteadyAim:
     STKB A 0 A_PlayWeaponSound("striker/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",35)
     STKB AA 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,8,3)
     STKB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     STKB G 0 BRIGHT A_FireBullets (7.0, 7.0, 4, 5, "ShotgunPuff", 0, 200)

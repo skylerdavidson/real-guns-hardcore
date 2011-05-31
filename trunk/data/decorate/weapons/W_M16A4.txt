@@ -42,23 +42,25 @@ actor "M16A4" : RGUWeapon
     loop
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
-	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     M16A A 0 A_JumpIfInventory("Aiming",1,"FireAim")
     M16A M 1 A_JumpIfNoAmmo("ReloadStart")
     M16B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     M16B A 0 A_PlayWeaponSound("m16/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     M16B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,3)
     M16B A 1 BRIGHT A_FireBullets (7.0, 7.0, -1, 19, "RiflePuff", 1, 6000)
     M16B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
     M16B A 0 A_JumpIfNoAmmo("FireEmpty")
     M16B B 1 BRIGHT A_GunFlash
     M16B A 0 A_PlayWeaponSound("m16/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     M16B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,3)
     M16B A 1 BRIGHT A_FireBullets (7.0, 7.0, -1, 19, "RiflePuff", 1, 6000)
     M16B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
     M16B A 0 A_JumpIfNoAmmo("FireEmpty")
     M16B B 1 BRIGHT A_GunFlash
     M16B A 0 A_PlayWeaponSound("m16/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     M16B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,3)
     M16B A 1 BRIGHT A_FireBullets (7.0, 7.0, -1, 19, "RiflePuff", 1, 6000)
     M16B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -82,7 +84,6 @@ actor "M16A4" : RGUWeapon
     M16B A 0 A_ReFire
     goto Ready+13
   Hold:
-  	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     M16A M 3 A_JumpIfInventory("Aiming",1,"HoldAim")
     M16A M 1 A_ReFire
     goto Ready+13
@@ -93,18 +94,21 @@ actor "M16A4" : RGUWeapon
   FireAim:
     M16C E 1 A_JumpIfNoAmmo("ReloadStart")
     M16D A 0 A_PlayWeaponSound("m16/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     M16D A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,0,8)
     M16D A 1 BRIGHT A_FireBullets (0.5, 0.5, -1, 19, "RiflePuff", 1, 6000)
     M16D B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
     M16D A 0 A_JumpIfNoAmmo("FireAimEmpty")
     M16D B 1 BRIGHT A_GunFlash
     M16D A 0 A_PlayWeaponSound("m16/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     M16D A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,0,8)
     M16D A 1 BRIGHT A_FireBullets (0.5, 0.5, -1, 19, "RiflePuff", 1, 6000)
     M16D B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
     M16D A 0 A_JumpIfNoAmmo("FireAimEmpty")
     M16D B 1 BRIGHT A_GunFlash
     M16D A 0 A_PlayWeaponSound("m16/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     M16D A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,0,8)
     M16D A 1 BRIGHT A_FireBullets (0.5, 0.5, -1, 19, "RiflePuff", 1, 6000)
     M16D B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -191,18 +195,21 @@ actor "M16A4" : RGUWeapon
     stop
   Fire_SteadyAim:
     M16B A 0 A_PlayWeaponSound("m16/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     M16B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,3)
     M16B A 1 BRIGHT A_FireBullets (4.62, 4.62, -1, 19, "RiflePuff", 1, 6000)
     M16B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
     M16B A 0 A_JumpIfNoAmmo("FireEmpty")
     M16B B 1 BRIGHT A_GunFlash
     M16B A 0 A_PlayWeaponSound("m16/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     M16B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,3)
     M16B A 1 BRIGHT A_FireBullets (4.62, 4.62, -1, 19, "RiflePuff", 1, 6000)
     M16B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
     M16B A 0 A_JumpIfNoAmmo("FireEmpty")
     M16B B 1 BRIGHT A_GunFlash
     M16B A 0 A_PlayWeaponSound("m16/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     M16B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,3)
     M16B A 1 BRIGHT A_FireBullets (4.62, 4.62, -1, 19, "RiflePuff", 1, 6000)
     M16B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)

@@ -43,11 +43,11 @@ actor "PP2000" : RGUWeapon
     loop
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
-	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     P20B A 0 A_JumpIfInventory("Aiming",1,"FireAim")
     P20B A 0 A_JumpIfNoAmmo("ReloadStart")
     P20B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     P20B A 0 A_PlayWeaponSound("pp2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     P20B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,9,3)
     P20B A 1 BRIGHT A_FireBullets (10.0, 10.0, -1, 11, "HHBulletPuff", 1, 6000)
     P20B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -60,11 +60,11 @@ actor "PP2000" : RGUWeapon
     P20B D 1 A_ReFire
     goto Ready+8
   Hold:
-  	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     P20B A 0 A_JumpIfInventory("Aiming",1,"HoldAim")
     P20B A 0 A_JumpIfNoAmmo("ReloadStart")
     P20B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Hold_SteadyAim")
     P20B A 0 A_PlayWeaponSound("pp2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     P20B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,9,3)
     P20B A 1 BRIGHT A_FireBullets (20.0, 20.0, -1, 11, "HHBulletPuff", 1, 6000)
     P20B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -87,6 +87,7 @@ actor "PP2000" : RGUWeapon
     goto Ready+8
   FireAim:
     P20C F 0 A_PlayWeaponSound("pp2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     P20C F 0 A_FireCustomMissile("WeaponSmokePuff",0,0,0,6)
     P20C F 1 BRIGHT A_FireBullets (3, 3, -1, 11, "HHBulletPuff", 1, 6000)
     P20C F 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -100,6 +101,7 @@ actor "PP2000" : RGUWeapon
     goto Ready+14
   HoldAim:
     P20C G 0 A_PlayWeaponSound("pp2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     P20C G 0 A_FireCustomMissile("WeaponSmokePuff",0,0,0,6)
     P20C F 1 BRIGHT A_FireBullets (9, 9, -1, 11, "HHBulletPuff", 1, 6000)
     P20C G 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -210,6 +212,7 @@ actor "PP2000" : RGUWeapon
     goto Ready+8  
   Fire_SteadyAim:
     P20B A 0 A_PlayWeaponSound("pp2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     P20B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,9,3)
     P20B A 1 BRIGHT A_FireBullets (6.6, 6.6, -1, 11, "HHBulletPuff", 1, 6000)
     P20B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -223,6 +226,7 @@ actor "PP2000" : RGUWeapon
     goto Ready+8
   Hold_SteadyAim:
     P20B A 0 A_PlayWeaponSound("pp2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     P20B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,9,3)
     P20B A 1 BRIGHT A_FireBullets (13.2, 13.2, -1, 11, "HHBulletPuff", 1, 6000)
     P20B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -367,16 +371,17 @@ actor "PP2000 Akimbo" : RGUWeapon //The akimbo version.
     loop
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
-	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
     P22B A 0 A_JumpIfNoAmmo("ReloadStart")
     P22B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     P22B A 0 A_PlayWeaponSound("pP2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     P22B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,9,3)
     P22B A 1 BRIGHT A_FireBullets (10.0, 10.0, -1, 11, "HHBulletPuff", 1, 6000)
     P22B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
     P22B A 0 A_JumpIfNoAmmo("FireEmpty")
     P22B B 1 BRIGHT A_GunFlash
     P22B C 0 A_PlayWeaponSound("pP2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     P22B C 0 A_FireCustomMissile("WeaponSmokePuff",0,0,-9,3)
     P22B C 1 BRIGHT A_FireBullets (10.0, 10.0, -1, 11, "HHBulletPuff", 1, 6000)
     P22B C 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -390,16 +395,17 @@ actor "PP2000 Akimbo" : RGUWeapon //The akimbo version.
     P22B H 1 A_ReFire
     goto Ready+9
   Hold:
-    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 17)
 	P22B E 0 A_JumpIfNoAmmo("ReloadStart")
     P22B E 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Hold_SteadyAim")
     P22B E 0 A_PlayWeaponSound("pP2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     P22B E 0 A_FireCustomMissile("WeaponSmokePuff",0,0,9,3)
     P22B E 1 BRIGHT A_FireBullets (20.0, 20.0, -1, 11, "HHBulletPuff", 1, 6000)
     P22B E 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
     P22B E 0 A_JumpIfNoAmmo("FireEmpty")
     P22B F 1 BRIGHT A_GunFlash
     P22B F 0 A_PlayWeaponSound("pP2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     P22B F 0 A_FireCustomMissile("WeaponSmokePuff",0,0,-9,3)
     P22B C 1 BRIGHT A_FireBullets (20.0, 20.0, -1, 11, "HHBulletPuff", 1, 6000)
     P22B C 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -526,12 +532,14 @@ actor "PP2000 Akimbo" : RGUWeapon //The akimbo version.
     goto Ready+9 
   Fire_SteadyAim:
     P22B A 0 A_PlayWeaponSound("pP2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     P22B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,9,3)
     P22B A 1 BRIGHT A_FireBullets (6.6, 6.6, -1, 11, "HHBulletPuff", 1, 6000)
     P22B B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
     P22B A 0 A_JumpIfNoAmmo("FireEmpty")
     P22B B 1 BRIGHT A_GunFlash
     P22B C 0 A_PlayWeaponSound("pP2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     P22B C 0 A_FireCustomMissile("WeaponSmokePuff",0,0,-9,3)
     P22B C 1 BRIGHT A_FireBullets (6.6, 6.6, -1, 11, "HHBulletPuff", 1, 6000)
     P22B C 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -546,12 +554,14 @@ actor "PP2000 Akimbo" : RGUWeapon //The akimbo version.
     goto Ready+9
   Hold_SteadyAim:
     P22B E 0 A_PlayWeaponSound("pP2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     P22B E 0 A_FireCustomMissile("WeaponSmokePuff",0,0,9,3)
     P22B E 1 BRIGHT A_FireBullets (6.6, 6.6, -1, 11, "HHBulletPuff", 1, 6000)
     P22B E 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
     P22B E 0 A_JumpIfNoAmmo("FireEmpty")
     P22B F 1 BRIGHT A_GunFlash
     P22B F 0 A_PlayWeaponSound("pP2000/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",17)
     P22B F 0 A_FireCustomMissile("WeaponSmokePuff",0,0,-9,3)
     P22B C 1 BRIGHT A_FireBullets (6.6, 6.6, -1, 11, "HHBulletPuff", 1, 6000)
     P22B C 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)

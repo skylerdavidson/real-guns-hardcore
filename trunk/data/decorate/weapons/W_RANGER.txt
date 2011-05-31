@@ -37,10 +37,10 @@ actor "Ranger" : RGUWeapon
     loop
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
-	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     RNGA K 1 A_JumpIfNoAmmo("ReloadStart")
     RNGA A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     RNGA A 0 A_PlayWeaponSound("ranger/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",35)
     RNGA A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     RNGA A 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,8,3)
     RNGA G 0 BRIGHT A_FireBullets (10.0, 10.0, 8, 5, "ShotgunPuff", 0, 200)
@@ -65,6 +65,7 @@ actor "Ranger" : RGUWeapon
     goto Reload
     RNGA A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"AltFire_SteadyAim")
     RNGA A 0 A_PlayWeaponSound("ranger/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",35)
     RNGA J 0 A_TakeInventory("RangerClip",1)
     RNGA A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     RNGA A 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,8,3)
@@ -73,6 +74,7 @@ actor "Ranger" : RGUWeapon
 	RNGA G 1 BRIGHT A_FireBullets (10.0, 10.0, 2, 2, "ShotgunPuff", 0, 500)
     RNGB B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
     RNGA A 0 A_PlayWeaponSound("ranger/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",35)
     RNGA J 0 A_TakeInventory("RangerClip",1)
     RNGA A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     RNGA A 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,8,3)
@@ -149,6 +151,7 @@ actor "Ranger" : RGUWeapon
     goto Ready+11
   Fire_SteadyAim:
     RNGA A 0 A_PlayWeaponSound("ranger/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",35)
     RNGA A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     RNGA A 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,8,3)
 	RNGA G 0 BRIGHT A_FireBullets (8.0, 8.0, 8, 5, "ShotgunPuff", 0, 200)
@@ -165,6 +168,7 @@ actor "Ranger" : RGUWeapon
     goto Ready+11
   AltFire_SteadyAim:
     RNGA A 0 A_PlayWeaponSound("ranger/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",35)
     RNGA J 0 A_TakeInventory("RangerClip",1)
     RNGA A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     RNGA A 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,8,3)
@@ -173,6 +177,7 @@ actor "Ranger" : RGUWeapon
 	RNGA G 1 BRIGHT A_FireBullets (8.0, 8.0, 2, 2, "ShotgunPuff", 0, 500)
     RNGB B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
     RNGA A 0 A_PlayWeaponSound("ranger/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair",35)
     RNGA J 0 A_TakeInventory("RangerClip",1)
     RNGA A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     RNGA A 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,8,3)

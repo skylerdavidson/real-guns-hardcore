@@ -42,12 +42,12 @@ actor "Desert Eagle" : RGUWeapon
     loop
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
-	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGA A 0 A_JumpIfInventory("Aiming",1,"FireAim")
     DEGA L 1 A_JumpIfNoAmmo("ReloadStart")
     DEGB A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     DEGB A 0 A_JumpIfInventory("Firing",1,"FireHold")
     DEGB A 0 A_PlayWeaponSound("deagle/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     DEGB A 1 BRIGHT A_FireBullets (15.0, 15.0, -1, 26, "BigPistolPuff", 1, 4000)
     DEGB B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -78,6 +78,7 @@ actor "Desert Eagle" : RGUWeapon
   FireHold:
     DEGB A 0 A_JumpIfNoAmmo("Reload")
     DEGB A 0 A_PlayWeaponSound("deagle/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     DEGB A 1 BRIGHT A_FireBullets (30.0, 30.0, -1, 26, "BigPistolPuff", 1, 4000)
     DEGB B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -95,7 +96,6 @@ actor "Desert Eagle" : RGUWeapon
     DEGB A 0 A_ReFire
     goto Ready+12
   Hold:
-  	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGA L 3 A_JumpIfInventory("Aiming",1,"HoldAim")
     DEGA L 1 A_ReFire
     goto Ready+12
@@ -106,6 +106,7 @@ actor "Desert Eagle" : RGUWeapon
   FireAim:
     DEGC F 1 A_JumpIfNoAmmo("ReloadStart")
     DEGD F 0 A_PlayWeaponSound("deagle/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGD F 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,8)
     DEGD A 1 BRIGHT A_FireBullets (3.0, 3.0, -1, 26, "HHBulletPuff", 1, 4000)
     DEGD A 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -247,6 +248,7 @@ actor "Desert Eagle" : RGUWeapon
   Fire_SteadyAim:
     DEGB A 0 A_JumpIfInventory("Firing",1,"FireHold_SteadyAim")
     DEGB A 0 A_PlayWeaponSound("deagle/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     DEGB A 1 BRIGHT A_FireBullets (10.0, 10.0, -1, 26, "BigPistolPuff", 1, 4000)
     DEGB B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -266,6 +268,7 @@ actor "Desert Eagle" : RGUWeapon
   FireHold_SteadyAim:
     DEGB A 0 A_JumpIfNoAmmo("Reload")
     DEGB A 0 A_PlayWeaponSound("deagle/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     DEGB A 1 BRIGHT A_FireBullets (20.0, 20.0, -1, 26, "BigPistolPuff", 1, 4000)
     DEGB B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -392,12 +395,12 @@ actor "Deagle Special" : "Desert Eagle"
   {
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
-	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGA A 0 A_JumpIfInventory("Aiming",1,"FireAim")
     DEGA L 1 A_JumpIfNoAmmo("ReloadStart")
     DEGB A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     DEGB A 0 A_JumpIfInventory("Firing",1,"FireHold")
     DEGB A 0 A_PlayWeaponSound("deagle/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     DEGB A 1 BRIGHT A_FireBullets (15.0, 15.0, -1, 26, "BigPistolPuff", 1, 4000)
     DEGB B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -428,6 +431,7 @@ actor "Deagle Special" : "Desert Eagle"
   FireHold:
     DEGB A 0 A_JumpIfNoAmmo("Reload")
     DEGB A 0 A_PlayWeaponSound("deagle/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     DEGB A 1 BRIGHT A_FireBullets (30.0, 30.0, -1, 26, "BigPistolPuff", 1, 4000)
     DEGB B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -447,6 +451,7 @@ actor "Deagle Special" : "Desert Eagle"
   FireAim:
     DEGC F 1 A_JumpIfNoAmmo("ReloadStart")
     DEGD F 0 A_PlayWeaponSound("deagle/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGD F 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,8)
     DEGD A 1 BRIGHT A_FireBullets (3, 3, -1, 26, "HHBulletPuff", 1, 4000)
     DEGD A 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -561,6 +566,7 @@ actor "Deagle Special" : "Desert Eagle"
   Fire_SteadyAim:
     DEGB A 0 A_JumpIfInventory("Firing",1,"FireHold_SteadyAim")
     DEGB A 0 A_PlayWeaponSound("deagle/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     DEGB A 1 BRIGHT A_FireBullets (10.0, 10.0, -1, 26, "BigPistolPuff", 1, 4000)
     DEGB B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -580,6 +586,7 @@ actor "Deagle Special" : "Desert Eagle"
   FireHold_SteadyAim:
     DEGB A 0 A_JumpIfNoAmmo("Reload")
     DEGB A 0 A_PlayWeaponSound("deagle/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGB A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     DEGB A 1 BRIGHT A_FireBullets (20.0, 20.0, -1, 26, "BigPistolPuff", 1, 4000)
     DEGB B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -654,11 +661,11 @@ actor "Desert Eagle Akimbo" : "Desert Eagle"
     loop
   Fire: //Right
 	TNT1 A 0 A_GiveInventory("InCombat",5)
-	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGG K 1 A_JumpIfNoAmmo("ReloadStart")
     DEGI A 0 A_JumpIfInventory("FireSwitch",1,"FireLeft")
     DEGI A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     DEGI A 0 A_PlayWeaponSound("deagle/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGI A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,20,0)
     DEGI A 1 BRIGHT A_FireBullets (15.0, 15.0, -1, 26, "BigPistolPuff", 1, 4000)
     DEGI B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -676,6 +683,7 @@ actor "Desert Eagle Akimbo" : "Desert Eagle"
   FireLeft:
     DEGH A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"FireLeft_SteadyAim")
     DEGH A 0 A_PlaySoundEx("deagle/fire","SoundSlot6")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGH A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,-20,0)
     DEGH A 1 BRIGHT A_FireBullets (15.0, 15.0, -1, 26, "BigPistolPuff", 1, 4000)
     DEGH B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -716,7 +724,6 @@ actor "Desert Eagle Akimbo" : "Desert Eagle"
     DEGG K 5
     goto Ready+12
   Hold:
-  	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGG K 3 
     DEGG K 1 A_ReFire
     goto Ready+12
@@ -789,6 +796,7 @@ actor "Desert Eagle Akimbo" : "Desert Eagle"
     goto Ready+12
   Fire_SteadyAim: //Right
     DEGI A 0 A_PlayWeaponSound("deagle/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGI A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,20,0)
     DEGI A 1 BRIGHT A_FireBullets (10.0, 10.0, -1, 26, "BigPistolPuff", 1, 4000)
     DEGI B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -948,12 +956,12 @@ actor "Desert Eagle Tac Knife" : RGUWeapon
     loop
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
-	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGK A 0 A_JumpIfInventory("Aiming",1,"FireAim")
     DEGK L 1 A_JumpIfNoAmmo("ReloadStart")
     DEGL A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     DEGL A 0 A_JumpIfInventory("Firing",1,"FireHold")
     DEGL A 0 A_PlayWeaponSound("deagle/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGL A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     DEGL A 1 BRIGHT A_FireBullets (15.0, 15.0, 0, 26, "BigPistolPuff", 1, 4000)
     DEGL B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -982,7 +990,6 @@ actor "Desert Eagle Tac Knife" : RGUWeapon
     goto Ready+12
   FireHold:
     DEGL A 0 A_JumpIfNoAmmo("Reload")
-    DEGL A 0 A_PlayWeaponSound("deagle/fire")
     DEGL A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     DEGL A 1 BRIGHT A_FireBullets (30.0, 30.0, -1, 26, "BigPistolPuff", 1, 4000)
     DEGL B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -1010,6 +1017,7 @@ actor "Desert Eagle Tac Knife" : RGUWeapon
   FireAim:
     DEGM F 1 A_JumpIfNoAmmo("ReloadStart")
     DEGN F 0 A_PlayWeaponSound("deagle/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGN F 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,8)
     DEGN A 1 BRIGHT A_FireBullets (3, 3, -1, 26, "HHBulletPuff", 1, 4000)
     DEGN A 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -1149,6 +1157,7 @@ actor "Desert Eagle Tac Knife" : RGUWeapon
   Fire_SteadyAim:
     DEGL A 0 A_JumpIfInventory("Firing",1,"FireHold_SteadyAim")
     DEGL A 0 A_PlayWeaponSound("deagle/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGL A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     DEGL A 1 BRIGHT A_FireBullets (10.0, 10.0, -1, 26, "BigPistolPuff", 1, 4000)
     DEGL B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -1167,6 +1176,7 @@ actor "Desert Eagle Tac Knife" : RGUWeapon
   FireHold_SteadyAim:
     DEGL A 0 A_JumpIfNoAmmo("Reload")
     DEGL A 0 A_PlayWeaponSound("deagle/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     DEGL A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
     DEGL A 1 BRIGHT A_FireBullets (20.0, 20.0, -1, 26, "BigPistolPuff", 1, 4000)
     DEGL B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)

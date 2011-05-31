@@ -42,12 +42,12 @@ actor ".44 Magnum" : RGUWeapon
     loop
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
-	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     M44B A 0 A_JumpIfInventory("Aiming",1,"FireAim")
     M44A J 1 A_JumpIfNoAmmo("ReloadStart")
     M44B A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     M44B A 0 A_JumpIfInventory("Firing",1,"FireHold")
     M44B A 0 A_PlayWeaponSound("44magnum/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     M44B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,3)
     M44B A 1 BRIGHT A_FireBullets (10.0, 10.0, -1, 17, "BigPistolPuff", 1, 4000)
     M44B B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -74,6 +74,7 @@ actor ".44 Magnum" : RGUWeapon
     goto Ready+10
   FireHold:
     M44B A 0 A_PlayWeaponSound("44magnum/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     M44B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,3)
     M44B A 1 BRIGHT A_FireBullets (20.0, 20.0, -1, 17, "BigPistolPuff", 1, 4000)
     M44B B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -89,7 +90,6 @@ actor ".44 Magnum" : RGUWeapon
     M44B A 0 A_ReFire
     goto Ready+10
   Hold:
-  	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     M44A J 3 A_JumpIfInventory("Aiming",1,"HoldAim")
     M44A J 1 A_ReFire
     goto Ready+10
@@ -100,6 +100,7 @@ actor ".44 Magnum" : RGUWeapon
   FireAim:
     M44F E 1 BRIGHT A_JumpIfNoAmmo("ReloadStart")
     M44F E 0 A_PlayWeaponSound("44magnum/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     M44F E 0 A_FireCustomMissile("WeaponSmokePuff",0,0,0,8)
     M44F F 1 BRIGHT A_FireBullets (2, 2, -1, 17, "BigPistolPuff", 1, 4000)
     M44F F 1 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -178,6 +179,7 @@ actor ".44 Magnum" : RGUWeapon
   Fire_SteadyAim:
     M44B A 0 A_JumpIfInventory("Firing",1,"FireHold_SteadyAim")
     M44B A 0 A_PlayWeaponSound("44magnum/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     M44B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,3)
     M44B A 1 BRIGHT A_FireBullets (6.6, 6.6, -1, 17, "BigPistolPuff", 1, 4000)
     M44B B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -194,6 +196,7 @@ actor ".44 Magnum" : RGUWeapon
     goto Ready+10
   FireHold_SteadyAim:
     M44B A 0 A_PlayWeaponSound("44magnum/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     M44B A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,8,3)
     M44B A 1 BRIGHT A_FireBullets (13.2, 13.2, -1, 17, "BigPistolPuff", 1, 4000)
     M44B B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -353,11 +356,11 @@ actor ".44 Magnum Akimbo" : ".44 Magnum"
     loop
   Fire: //Right
 	TNT1 A 0 A_GiveInventory("InCombat",5)
-	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     M44G K 1 A_JumpIfNoAmmo("ReloadStart")
     M44I A 0 A_JumpIfInventory("FireSwitch",1,"FireLeft")
     M44I A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     M44I A 0 A_PlayWeaponSound("44magnum/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     M44I A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,16,4)
     M44I A 1 BRIGHT A_FireBullets (10, 10, -1, 17, "BigPistolPuff", 1, 4000)
     M44I B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -375,6 +378,7 @@ actor ".44 Magnum Akimbo" : ".44 Magnum"
   FireLeft:
     M44H A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"FireLeft_SteadyAim")
     M44H A 0 A_PlaySoundEx("44magnum/fire","SoundSlot6")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     M44H A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,-16,4)
     M44H A 1 BRIGHT A_FireBullets (10.0, 10.0, -1, 17, "BigPistolPuff", 1, 4000)
     M44H B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -411,7 +415,6 @@ actor ".44 Magnum Akimbo" : ".44 Magnum"
     M44G K 5
     goto Ready+12
   Hold:
-  	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     M44G K 3 
     M44G K 1 A_ReFire
     goto Ready+12
@@ -470,6 +473,7 @@ actor ".44 Magnum Akimbo" : ".44 Magnum"
     goto Ready+10
   Fire_SteadyAim: //Right
     M44I A 0 A_PlayWeaponSound("44magnum/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     M44I A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,16,4)
     M44I A 1 BRIGHT A_FireBullets (6.6, 6.6, -1, 17, "BigPistolPuff", 1, 4000)
     M44I B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -486,6 +490,7 @@ actor ".44 Magnum Akimbo" : ".44 Magnum"
     goto Ready+12
   FireLeft_SteadyAim:
     M44H A 0 A_PlaySoundEx("44magnum/fire","SoundSlot6")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     M44H A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,-16,4)
     M44H A 1 BRIGHT A_FireBullets (6.6, 6.6, -1, 17, "BigPistolPuff", 1, 4000)
     M44H B 0 BRIGHT ACS_ExecuteAlways(600,0,120,0,0)
@@ -638,12 +643,12 @@ actor ".44 Magnum Tac Knife" : ".44 Magnum"
     loop
   Fire:
 	TNT1 A 0 A_GiveInventory("InCombat",5)
-	TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     M44L A 0 A_JumpIfInventory("Aiming",1,"FireAim")
     M44L J 1 A_JumpIfNoAmmo("ReloadStart")
     M44M A 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
     M44M A 0 A_JumpIfInventory("Firing",1,"FireHold")
     M44M A 0 A_PlayWeaponSound("44magnum/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     M44M A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,5,8)
     M44M A 1 BRIGHT A_FireBullets (10, 10, -1, 17, "BigPistolPuff", 1, 4000)
     M44M B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -670,7 +675,6 @@ actor ".44 Magnum Tac Knife" : ".44 Magnum"
     M44M A 0 A_ReFire
     goto Ready+11
   FireHold:
-    M44M A 0 A_PlayWeaponSound("44magnum/fire")
     M44M A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,6,8)
     M44M A 1 BRIGHT A_FireBullets (20.0, 20.0, -1, 17, "BigPistolPuff", 1, 4000)
     M44M B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -698,6 +702,7 @@ actor ".44 Magnum Tac Knife" : ".44 Magnum"
   FireAim:
     M44N E 1 BRIGHT A_JumpIfNoAmmo("ReloadStart")
     M44O A 0 A_PlayWeaponSound("44magnum/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     M44O A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,0,8)
     M44O A 1 BRIGHT A_FireBullets (2, 2, -1, 17, "BigPistolPuff", 1, 4000)
     M44O B 1 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -798,6 +803,7 @@ actor ".44 Magnum Tac Knife" : ".44 Magnum"
   Fire_SteadyAim:
     M44M A 0 A_JumpIfInventory("Firing",1,"FireHold_SteadyAim")
     M44M A 0 A_PlayWeaponSound("44magnum/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     M44M A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,5,8)
     M44M A 1 BRIGHT A_FireBullets (6.6, 6.6, -1, 17, "BigPistolPuff", 1, 4000)
     M44M B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
@@ -815,6 +821,7 @@ actor ".44 Magnum Tac Knife" : ".44 Magnum"
     goto Ready+11
   FireHold_SteadyAim:
     M44M A 0 A_PlayWeaponSound("44magnum/fire")
+    TNT1 F 0 A_GiveInventory("InCombatCrosshair", 35)
     M44M A 0 A_FireCustomMissile("WeaponSmokePuff",0,0,6,8)
     M44M A 1 BRIGHT A_FireBullets (13.2, 13.2, -1, 17, "BigPistolPuff", 1, 4000)
     M44M B 0 BRIGHT ACS_ExecuteAlways(600,0,0,0,0)
