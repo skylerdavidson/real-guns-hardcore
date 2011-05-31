@@ -26,8 +26,9 @@
     CPS2 A 0 
     CPS2 A 0 Thing_SetSpecial(0,226,613,0,random(12,24))
     CPS2 A 0 A_GiveInventory("XPAmount", random(12,24))
+    POSS P 0 ACS_ExecuteAlways(651,0,0,0,0)
     CPS2 AB 10 A_Look
-    goto Spawn+3
+    goto Spawn+4
   See:
     CPS2 AABBCCDD 3 A_Chase
     loop
