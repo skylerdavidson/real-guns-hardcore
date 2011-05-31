@@ -121,7 +121,7 @@ ACTOR RGUPlayer : DoomPlayer
   Spawn:  	
   	PLAY A 5 A_TakeInventory("Moving",1)
   	PLAY A 0 A_JumpIfInventory("Perk2_ColdBlooded", 1, "ColdBlooded")
-	PLAY A 0 A_JumpIfInventory("Perk2_ColdBlooded_DM", 1, "ColdBlooded_DM")
+	PLAY A 0 A_JumpIfInventory("Perk2_ColdBlooded_DM", 1, "ColdBlooded_DM")	
     Loop  
   ColdBlooded:	
 	PLAY A 0 A_ChangeFlag("CANTSEEK", 1)
@@ -201,19 +201,22 @@ ACTOR RGUPlayer : DoomPlayer
     PLAY G 4 A_Pain
 	goto Spawn
   Death:
-    PLAY H 1	
+    PLAY C 0 A_GiveToTarget("KillIndicator",1)
+  	PLAY C 0 A_GiveToTarget("HitIndicator",1)
+	PLAY H 1	
     PLAY H 0 Thing_ChangeTID(0,9999)
     PLAY H 0 A_TakeInventory("ThrowingGrenade",1)
     PLAY H 0 A_TakeInventory("KnifeAttack",1)
-    PLAY H 0 A_TakeInventory("Reloading",1)
-    PLAY H 9 A_GiveToTarget("HitIndicator",1)
+    PLAY H 9 A_TakeInventory("Reloading",1)
     PLAY I 10 A_PlayerScream
     PLAY J 10 A_NoBlocking
     PLAY KLM 10
     PLAY N -1
     Stop
   XDeath:
-    PLAY O 5
+    PLAY C 0 A_GiveToTarget("KillIndicator",1)
+  	PLAY C 0 A_GiveToTarget("HitIndicator",1)
+	PLAY O 5
     PLAY P 5 A_XScream
     PLAY Q 5 A_NoBlocking
     PLAY RSTUV 5
@@ -426,12 +429,13 @@ ACTOR RGULastStandPlayer : PlayerPawn
 	LAST A 0 A_TakeInventory("InCombat",9999)
     Goto Spawn
   Death:
-    LAST C 1 
-    LAST C 0 Thing_ChangeTID(0,9999)
+  	LAST C 0 A_GiveToTarget("KillIndicator",1)
+  	LAST C 0 A_GiveToTarget("HitIndicator",1)
+    LAST C 1
+	LAST C 0 Thing_ChangeTID(0,9999)
     LAST C 0 A_TakeInventory("ThrowingGrenade",1)
     LAST C 0 A_TakeInventory("KnifeAttack",1)
-    LAST C 0 A_TakeInventory("Reloading",1)
-    LAST C 9 A_GiveToTarget("HitIndicator",1)
+    LAST C 9 A_TakeInventory("Reloading",1)	        
     LAST D 10 A_PlayerScream
     //LAST C 0 A_CustomMissile("FragGrenadeDropped",8,0,0)
     LAST E 10 A_NoBlocking
