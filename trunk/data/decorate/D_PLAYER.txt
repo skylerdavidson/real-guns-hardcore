@@ -625,7 +625,7 @@ actor PlayerStepSmokePuff2
   +NOCLIP
   PROJECTILE
   Speed 2
-  Damage 0
+  Damage 0                     
   Scale 0.5
   Translation "112:127=96:111"
   states
@@ -665,7 +665,7 @@ actor InCombatRegeneration : Inventory
 //Counter for crosshair size
 // Given: When weapon fires, knifing, grenade, reloading and aiming
 // Affected by: Nothing
-actor InCombatCrosshair : CustomInventory
+actor InCombatCrosshair : Inventory
 {
     inventory.amount 0
     inventory.maxamount 35
