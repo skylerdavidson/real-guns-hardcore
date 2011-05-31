@@ -6117,7 +6117,8 @@ script 652 (void) {
 		ActivatorSound("tf141/reload",127);
 }
 
-script 653 (void) {
+// Called from KillIndicator inventory item
+script 653 (void) CLIENTSIDE {
 	//log(s:"Kill");
 	drawKillIndicator();
 }
