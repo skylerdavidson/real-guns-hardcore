@@ -154,8 +154,8 @@ ACTOR RGUPlayer : DoomPlayer
     PLAY E 6 BRIGHT	
 	//PLAY E 0 A_GiveInventory("InCombat",5)
 	//PLAY E 0 ACS_ExecuteAlways(640,0,0,0,0) // cold blooded invis
-	PLAY E 0 A_JumpIfInventory("Perk3_Commando_Pro", 1, "Spawn")
-	PLAY E 0 A_GiveInventory("InCombatRegeneration",5)
+	//PLAY E 0 A_JumpIfInventory("Perk3_Commando_Pro", 1, "Spawn")
+	//PLAY E 0 A_GiveInventory("InCombatRegeneration",5)
 	//PLAY E 0 A_TakeInventory("PowerPerk2_ColdBloodedProEffectPower", 0)
 	//PLAY E 0 A_JumpIfInventory("Aiming", 1, "Spawn")	
 	//PLAY E 0 A_TakeInventory("Perk2_ColdBloodedProEffect", 0)
