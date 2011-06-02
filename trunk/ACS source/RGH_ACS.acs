@@ -29,7 +29,7 @@ script 505 OPEN
 	if(GetCVAR("sv_doubleammo") == 0)
 		ConsoleCommand("sv_doubleammo 1");
 
-    //ConsoleCommand("fov 90");
+    ConsoleCommand("fov 90");
 
 	if(GetCVAR("sv_respawnsuper") == 0)
 		ConsoleCommand("sv_respawnsuper 1");
@@ -50,6 +50,8 @@ script 505 OPEN
 
 	if(GetCVAR("compat_nocrosshair") == 0)
 		ConsoleCommand("compat_nocrosshair 1");
+
+	ConsoleCommand("archivecvar rgh_hitsound");
 
 	delay(35*5);
 	restart;
@@ -1147,8 +1149,14 @@ script 607 (int Jugg)
 		SetFont("HITINDI2");
 	SetHudSize(800,600,1);
 	HudMessage(s:"a"; HUDMSG_FADEOUT, CR_UNTRANSLATED, 0, 400.0, 300.0, 0.25, 0.25);
-	LocalAmbientSound("generic/fleshhit",127);
-	LocalAmbientSound("generic/fleshhit",127);
+	
+	if(GetCVAR("rgh_hitsound") == 1){
+		log(s:"hitsound");
+		LocalAmbientSound("generic/fleshhit", 127);
+		LocalAmbientSound("generic/fleshhit", 127);
+		LocalAmbientSound("generic/fleshhit", 127);
+		LocalAmbientSound("generic/fleshhit", 127);
+	}
 }
 
 //Place TacticalInsertion
