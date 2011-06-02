@@ -31,6 +31,39 @@ actor GunAmmoSpawner : RandomSpawner
     DropItem "LMGAmmo"
 }
 
+actor CommonGunSpawner : RandomSpawner
+{
+	DropItem "CommonHandgunSpawner"
+	DropItem "CommonShotgunSpawner"
+	DropItem "CommonSMGSpawner"
+	DropItem "CommonAssaultRifleSpawner"
+	DropItem "CommonLauncherSpawner"
+	DropItem "CommonSniperRifleSpawner"
+	DropItem "CommonLMGSpawner"
+}
+
+actor UncommonGunSpawner : RandomSpawner
+{
+	DropItem "UncommonHandgunSpawner"
+	DropItem "UncommonShotgunSpawner"
+	DropItem "UncommonSMGSpawner"
+	DropItem "UncommonAssaultRifleSpawner"
+	DropItem "UncommonLauncherSpawner"
+	DropItem "UncommonSniperRifleSpawner"
+	DropItem "UncommonLMGSpawner"
+}
+
+actor RareGunSpawner : RandomSpawner
+{
+	DropItem "RareHandgunSpawner"
+	DropItem "RareShotgunSpawner"
+	DropItem "RareSMGSpawner"
+	DropItem "RareAssaultRifleSpawner"
+	DropItem "RareLauncherSpawner"
+	DropItem "RareSniperRifleSpawner"
+	DropItem "RareLMGSpawner"
+}
+
 actor HeavyAmmoSpawner : RandomSpawner
 {
     DropItem "AssaultRifleAmmo" 
@@ -109,18 +142,45 @@ actor GunSpawner : RandomSpawner
     //DropItem "TacticalInsertionPickup"
 }
 
-actor GunSpawner1 : GunSpawner replaces Chainsaw {}
-actor GunSpawner2 : GunSpawner replaces Pistol{}
-actor GunSpawner3 : GunSpawner replaces Shotgun{}
-actor GunSpawner4 : GunSpawner replaces SuperShotgun{}
-actor GunSpawner5 : GunSpawner replaces Chaingun{}
-actor GunSpawner6 : GunSpawner replaces Minigun{}
-actor GunSpawner7 : GunSpawner replaces RocketLauncher{}
-actor GunSpawner8 : GunSpawner replaces GrenadeLauncher{}
-actor GunSpawner9 : GunSpawner replaces PlasmaRifle{}
-actor GunSpawner10 : GunSpawner replaces Railgun{}
-actor GunSpawner11 : GunSpawner replaces BFG9000{}
-actor GunSpawner12 : GunSpawner replaces BFG10k{}
+
+actor GunSpawner1 : UncommonGunSpawner replaces Chainsaw {}
+actor GunSpawner2 : CommonGunSpawner replaces Pistol{}
+actor GunSpawner3 : RandomSpawner replaces Shotgun{
+	DropItem CommonGunSpawner
+	DropItem UncommonGunSpawner
+}
+actor GunSpawner4 : RandomSpawner replaces SuperShotgun
+{
+	DropItem UncommonGunSpawner
+}
+actor GunSpawner5 : CommonGunSpawner replaces Chaingun{
+	DropItem CommonGunSpawner
+	DropItem UncommonGunSpawner
+}
+actor GunSpawner6 : UncommonGunSpawner replaces Minigun{
+	DropItem CommonGunSpawner
+	DropItem UncommonGunSpawner
+}
+actor GunSpawner7 : GunSpawner replaces RocketLauncher{
+	DropItem UncommonGunSpawner
+	DropItem RareGunSpawner 
+}
+actor GunSpawner8 : GunSpawner replaces GrenadeLauncher{
+	DropItem UncommonGunSpawner
+	DropItem RareGunSpawner 
+}
+actor GunSpawner9 : GunSpawner replaces PlasmaRifle{
+	DropItem UncommonGunSpawner
+	DropItem RareGunSpawner
+	DropItem RareGunSpawner  
+}
+actor GunSpawner10 : GunSpawner replaces Railgun{
+	DropItem UncommonGunSpawner
+	DropItem RareGunSpawner
+	DropItem RareGunSpawner 
+}
+actor GunSpawner11 : RareGunSpawner replaces BFG9000{}
+actor GunSpawner12 : RareGunSpawner replaces BFG10k{}
 
 actor PowerIronFeet_ScavengerPro : PowerIronFeet
 {
@@ -554,61 +614,166 @@ ACTOR AmmoSphere2 : BackpackItem
 
 actor HandgunSpawner : RandomSpawner
 {
-    DropItem "M9Pickup" 255 4
-    DropItem "USP45Pickup" 255 4
-    DropItem "DeaglePickup" 255 1
-	DropItem "44MagnumPickup" 255 1
-	DropItem "PP2000Pickup" 255 2
-	DropItem "44MagnumPickup" 255 1
-	DropItem "G18Pickup" 255 2
-	DropItem "M93RPickup" 255 1
+    DropItem CommonHandgunSpawner 255 75
+    DropItem UncommonHandgunSpawner 255 20
+    DropItem RareHandgunSpawner 255 5
 }
 
 actor ShotgunSpawner : RandomSpawner
 {
-    DropItem "RangerPickup" 255 2
-    DropItem "SPASPickup" 255 4
-    DropItem "AA12Pickup" 255 2
-	DropItem "M1887Pickup" 255 1
-	DropItem "M1014Pickup" 255 2
-	DropItem "StrikerPickup" 255 1
+    DropItem CommonShotgunSpawner 255 75
+    DropItem UncommonShotgunSpawner 255 20
+    DropItem RareShotgunSpawner 255 5
 }
 
 actor SMGSpawner : RandomSpawner
 {    
-    DropItem "UMP45Pickup" 255 4
-    DropItem "VectorPickup" 255 2
-	DropItem "MiniUziPickup" 255 2
-	DropItem "P90Pickup" 255 1
-	DropItem "MP5Pickup" 255 4
+    DropItem CommonSMGSpawner 255 75
+    DropItem UncommonSMGSpawner 255 20
+    DropItem RareSMGSpawner 255 5
 }
 
 actor AssaultRifleSpawner : RandomSpawner
 {
-    DropItem "M4A1Pickup" 255 4
-    DropItem "AK47Pickup" 255 4
-	DropItem "M16Pickup" 255 4
-    DropItem "F2000Pickup" 255 2
-    DropItem "FAMASPickup" 255 1
-    DropItem "SCARHPickup" 255 1
-    DropItem "ACRPickup" 255 1
-	DropItem "FALPickup" 255 1
+	DropItem CommonSMGSpawner 255 75
+    DropItem UncommonSMGSpawner 255 20
+    DropItem RareSMGSpawner 255 5
 }
 
 actor LMGSpawner : RandomSpawner
 {    
-    DropItem "L86Pickup"
-    DropItem "M240Pickup"
-	DropItem "MG4Pickup"
-	DropItem "AUGHBARPickup"
+    DropItem CommonLMGSpawner 255 75
+    DropItem UncommonLMGSpawner 255 20
+    DropItem RareLMGSpawner 255 5
 }
 
 actor SniperRifleSpawner : RandomSpawner
 {    
-    DropItem "InterventionPickup" 255 4
-    DropItem "BarrettPickup" 255 1
-	DropItem "M14Pickup" 255 1
-	DropItem "WA2000Pickup" 255 1
+    DropItem CommonSniperRifleSpawner 255 75
+    DropItem UncommonSniperRifleSpawner 255 20
+    DropItem RareSniperRifleSpawner 255 5
+}
+
+actor CommonHandgunSpawner : RandomSpawner
+{
+    DropItem "M9Pickup"
+    DropItem "USP45Pickup"
+}
+
+actor CommonShotgunSpawner : RandomSpawner
+{
+    DropItem "SPASPickup"
+	DropItem "M1014Pickup"
+}
+
+actor CommonSMGSpawner : RandomSpawner
+{    
+    DropItem "UMP45Pickup"
+	DropItem "MP5Pickup"
+}
+
+actor CommonAssaultRifleSpawner : RandomSpawner
+{
+    DropItem "M4A1Pickup"
+	DropItem "M16Pickup"
+}
+
+actor CommonLMGSpawner : RandomSpawner
+{    
+    DropItem "L86Pickup"
+}
+
+actor CommonSniperRifleSpawner : RandomSpawner
+{
+	DropItem "WA2000Pickup"
+}
+
+actor CommonLauncherSpawner : RandomSpawner
+{
+	DropItem "RPGPickup"
+}
+
+
+actor UncommonHandgunSpawner : RandomSpawner
+{
+	DropItem "PP2000Pickup"
+	DropItem "G18Pickup"
+	DropItem "M93RPickup"
+}
+
+actor UncommonShotgunSpawner : RandomSpawner
+{
+    DropItem "RangerPickup"
+    DropItem "AA12Pickup"
+}
+
+actor UncommonSMGSpawner : RandomSpawner
+{    
+    DropItem "VectorPickup"
+	DropItem "MiniUziPickup"
+}
+
+actor UncommonAssaultRifleSpawner : RandomSpawner
+{
+    DropItem "F2000Pickup"
+    DropItem "FAMASPickup"
+    DropItem "ACRPickup"
+}
+
+actor UncommonLMGSpawner : RandomSpawner
+{
+	DropItem "AUGHBARPickup"
+}
+
+actor UncommonSniperRifleSpawner : RandomSpawner
+{    
+    DropItem "BarrettPickup"
+}
+
+actor UncommonLauncherSpawner : RandomSpawner
+{
+	DropItem "ThumperPickup"
+}
+
+actor RareHandgunSpawner : RandomSpawner
+{
+    DropItem "DeaglePickup"
+	DropItem "44MagnumPickup"
+}
+
+actor RareShotgunSpawner : RandomSpawner
+{    
+	DropItem "M1887Pickup"
+	DropItem "StrikerPickup"
+}
+
+actor RareSMGSpawner : RandomSpawner
+{        
+	DropItem "P90Pickup"
+}
+
+actor RareAssaultRifleSpawner : RandomSpawner
+{
+    DropItem "AK47Pickup"
+    DropItem "SCARHPickup"
+	DropItem "FALPickup"
+}
+
+actor RareLMGSpawner : RandomSpawner
+{    
+    DropItem "M240Pickup"
+	DropItem "MG4Pickup"
+}
+
+actor RareSniperRifleSpawner : RandomSpawner
+{    
+    DropItem "InterventionPickup"
+	DropItem "M14Pickup"
+}
+
+actor RareLauncherSpawner : RandomSpawner
+{
+	DropItem "AT4Pickup"
 }
 
 actor BerserkSpawner : RandomSpawner replaces Berserk
