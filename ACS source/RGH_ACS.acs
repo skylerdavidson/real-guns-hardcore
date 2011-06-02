@@ -16,10 +16,11 @@ bool TacticalInsertion[32];
 
 bool arcade = false;
 
-//Server settings...
 #ifdef SKULLTAG
 script 505 OPEN
-{                                       
+{
+	if(GetCVAR("alwaysapplydmflags"))
+                                       
 	//if(GetCVAR("alwaysapplydmflags") == 0)
 	//	ConsoleCommand("alwaysapplydmflags 1");
 	
@@ -1150,13 +1151,7 @@ script 607 (int Jugg)
 	SetHudSize(800,600,1);
 	HudMessage(s:"a"; HUDMSG_FADEOUT, CR_UNTRANSLATED, 0, 400.0, 300.0, 0.25, 0.25);
 	
-	if(GetCVAR("rgh_hitsound") == 1){
-		log(s:"hitsound");
-		LocalAmbientSound("generic/fleshhit", 127);
-		LocalAmbientSound("generic/fleshhit", 127);
-		LocalAmbientSound("generic/fleshhit", 127);
-		LocalAmbientSound("generic/fleshhit", 127);
-	}
+    ACS_ExecuteAlways(655,0,0,0,0);
 }
 
 //Place TacticalInsertion
@@ -6148,4 +6143,14 @@ script 652 (void) {
 script 653 (void) CLIENTSIDE {
 	//log(s:"Kill");
 	drawKillIndicator();
+}
+
+script 655 (void) CLIENTSIDE
+{
+	if(GetCVAR("rgh_hitsound") == 1){
+		LocalAmbientSound("generic/fleshhit", 127);
+		LocalAmbientSound("generic/fleshhit", 127);
+		LocalAmbientSound("generic/fleshhit", 127);
+		LocalAmbientSound("generic/fleshhit", 127);
+	}
 }
