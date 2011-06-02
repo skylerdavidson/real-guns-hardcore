@@ -2102,6 +2102,12 @@ script 618 (int Which)
 //------- Attachments, refer to the decorate.
 script 619 (int Which)
 {
+	if(CheckInventory("RewardsToPick") == 0){
+		terminate;
+	}
+	
+	TakeInventory("RewardsToPick",1);
+
 	if(Which == 0) //Grip
 	{
 		if(CheckWeapon("AA-12") == 1)
@@ -2205,6 +2211,8 @@ script 619 (int Which)
 			SetFont("BIGFONT");
 			HudMessage(s:"You can't attach Grip on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 			GiveInventory("GripAttachment",1);
+			
+			GiveInventory("RewardsToPick",1);
 		}
 	}
 	else if(Which == 1) //Rapid Fire
@@ -2250,6 +2258,8 @@ script 619 (int Which)
 			SetFont("BIGFONT");
 			HudMessage(s:"You can't attach Rapid Fire on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 			GiveInventory("RapidFireAttachment",1);
+			
+			GiveInventory("RewardsToPick",1);
 		}
 	}
 	else if(Which == 2) //Extended Mags
@@ -2641,6 +2651,8 @@ script 619 (int Which)
 			SetFont("BIGFONT");
 			HudMessage(s:"You can't attach Extended Mags on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 			GiveInventory("ExtendedMagsAttachment",1);
+			
+			GiveInventory("RewardsToPick",1);
 		}
 	}
 	else if(Which == 3) //Thermal 
@@ -2698,6 +2710,8 @@ script 619 (int Which)
 			SetFont("BIGFONT");
 			HudMessage(s:"You can't attach a Thermal Scope on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 			GiveInventory("ThermalAttachment",1);
+			
+			GiveInventory("RewardsToPick",1);
 		}
 	}
 	else if(Which == 4) //Akimbo 
@@ -2791,6 +2805,8 @@ script 619 (int Which)
 			SetFont("BIGFONT");
 			HudMessage(s:"You can't attach Akimbo on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 			GiveInventory("AkimboAttachment",1);
+			
+			GiveInventory("RewardsToPick",1);
 		}
 	}
 	else if(Which == 5) //Tac Knife 
@@ -2848,6 +2864,8 @@ script 619 (int Which)
 			SetFont("BIGFONT");
 			HudMessage(s:"You can't attach a Tactical Knife on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 			GiveInventory("KnifeAttachment",1);
+			
+			GiveInventory("RewardsToPick",1);
 		}
 	}
 	
@@ -5926,7 +5944,16 @@ script 650 (void) CLIENTSIDE {
 	//	terminate;
 	//}
 
+	int loopCounter = 0;
+	int noiseCounter = 0;
+
 	while(true){
+		loopCounter++;
+		noiseCounter = noiseCounter + random(0,2);
+		
+		if(loopCounter == 1000000) loopCounter = 0;
+		if(noiseCounter >= 1000000) noiseCounter = 0; 
+		
 		if(CheckInventory("Menu") == 1){
 			delay(10);
 			continue;
@@ -5992,24 +6019,26 @@ script 650 (void) CLIENTSIDE {
 		
 			//log(s:"loop", i:i);
 			hudMessageOnActor(i, 900<<16, "SITREP1", "O", 45, 59);
-		} */
+		} */				
 		
-		/*int r = random(0, 3);
+		if(loopCounter % 2 == 0 && CheckInventory("PowerEMP") > 0){
+			int r = noiseCounter % 4;
 		
-		if(r==0){
-			SetFont("NOISE0");
+			if(r == 0){
+				SetFont("NOISE0");
+			}
+			else if(r==1){
+				SetFont("NOISE1");
+			}
+			else if(r==2){
+				SetFont("NOISE2");
+			}
+			else if(r==3){
+				SetFont("NOISE3");
+			} 
+			
+	        drawStretchedImage(10+PlayerNumber(), 0.5, 1.0);
 		}
-		else if(r==1){
-			SetFont("NOISE1");
-		}
-		else if(r==2){
-			SetFont("NOISE2");
-		}
-		else if(r==3){
-			SetFont("NOISE3");
-		} */
-		
-        //drawStretchedImage(10+PlayerNumber(), 0.5, 1.0);
 
 		//delay(3);
 		delay(1);
