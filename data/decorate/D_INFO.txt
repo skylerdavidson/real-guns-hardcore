@@ -190,3 +190,9 @@ actor XPAmount: Inventory
     inventory.amount 0
     inventory.maxamount 100000
 }
+
+actor NoHudLoop : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
