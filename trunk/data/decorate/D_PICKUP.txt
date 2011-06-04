@@ -635,9 +635,9 @@ actor SMGSpawner : RandomSpawner
 
 actor AssaultRifleSpawner : RandomSpawner
 {
-	DropItem CommonSMGSpawner 255 75
-    DropItem UncommonSMGSpawner 255 20
-    DropItem RareSMGSpawner 255 5
+	DropItem CommonAssaultRifleSpawner 255 75
+    DropItem UncommonAssaultRifleSpawner 255 20
+    DropItem RareAssaultRifleSpawner 255 5
 }
 
 actor LMGSpawner : RandomSpawner
