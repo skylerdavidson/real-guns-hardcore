@@ -5946,6 +5946,10 @@ script 650 (void) CLIENTSIDE {
 	int noiseCounter = 0;
 
 	while(true){
+		if(CheckInventory("NoHudLoop") > 0){
+		    terminate;
+		}
+			
 		loopCounter++;
 		noiseCounter = noiseCounter + random(0,2);
 		
