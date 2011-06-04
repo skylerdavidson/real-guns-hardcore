@@ -137,6 +137,7 @@ script 501 RESPAWN
 //------- Set KillerID/KillerHealth to display/killcam --- RGA2: Play tango down sound
 script 502 (void)
 {
+	log(i:ActivatorTID());
 	KillersID = ActivatorTID();
 	KillersHealth = GetActorProperty(ActivatorTID(),APROP_Health);
 	KillersMaxHealth = GetActorProperty(ActivatorTID(),APROP_SpawnHealth);
@@ -153,19 +154,15 @@ script 502 (void)
 
 //------------------------------------------
 //------- Player's death, shows killer health and cam after 1 second. Might not work properly.
-script 503 DEATH CLIENTSIDE
+script 503 DEATH
 {		
 	//Preserve information just for this script; don't want it to view someone else's killer.
 	Delay(1);
 	int KillersHealths = KillersHealth;
 	int KillersMaxHealths = KillersMaxHealth;
 	int KillersIDs = KillersID;
-	str KillersGuns = KillersGun;	 
-	
-	if(GameType() == GAME_NET_DEATHMATCH){
-		SetFont("BIGFONT");		
-		HudMessage(s:"\ccHold \cf", k:"+altattack", s:"\cc while respawning to change your class"; HUDMSG_PLAIN, 2700+PlayerNumber(), CR_Green, 0.5, 0.75, 0);
-	}
+	str KillersGuns = KillersGun;
+
     SetFont("CONFONT");
 	Delay(5);
 	
@@ -6143,6 +6140,14 @@ script 652 (void) {
 script 653 (void) CLIENTSIDE {
 	//log(s:"Kill");
 	drawKillIndicator();
+}
+
+script 654 DEATH CLIENTSIDE
+{
+	if(GameType() == GAME_NET_DEATHMATCH){
+		SetFont("BIGFONT");		
+		HudMessage(s:"\ccHold \cf", k:"+altattack", s:"\cc while respawning to change your class"; HUDMSG_PLAIN, 2700+PlayerNumber(), CR_Green, 0.5, 0.75, 0);
+	}
 }
 
 script 655 (void) CLIENTSIDE
