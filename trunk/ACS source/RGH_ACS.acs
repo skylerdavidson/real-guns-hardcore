@@ -65,8 +65,7 @@ script 505 OPEN
 //------- Set ID, this will most likely break some wads.
 //------- Also change Special.
 script 500 ENTER 
-{
-	//log(i:PlayerNumber());
+{	
 	Thing_ChangeTID(0,PlayerNumber()+500);
         SetThingSpecial(0,226,502,0,0,0,0);
 }
@@ -136,8 +135,7 @@ script 501 RESPAWN
 //------------------------------------------
 //------- Set KillerID/KillerHealth to display/killcam --- RGA2: Play tango down sound
 script 502 (void)
-{
-	log(i:ActivatorTID());
+{	
 	KillersID = ActivatorTID();
 	KillersHealth = GetActorProperty(ActivatorTID(),APROP_Health);
 	KillersMaxHealth = GetActorProperty(ActivatorTID(),APROP_SpawnHealth);
@@ -5958,8 +5956,7 @@ script 650 (void) CLIENTSIDE {
 			delay(10);
 			continue;
 		}
-	
-		//log(i:CheckInventory("Crosshair"));
+			
 		if(
 			CheckInventory("Crosshair") > 0 &&
 			CheckInventory("Aiming") == 0 &&
