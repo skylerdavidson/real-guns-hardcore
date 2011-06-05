@@ -5041,8 +5041,10 @@ script 637 (void)
 		else if(CheckInventory("MenuCursor") == 6)	//Go back
 			TakeInventory("MenuPlace",1);
 
-		if(CheckInventory("MenuCursor") != 6)
+		if(CheckInventory("MenuCursor") != 6){
+			GiveInventory("RewardsToPick",1);
 			ACS_ExecuteAlways(638,0,9,0,0);
+		}
 	}
 	
 	ACS_ExecuteAlways(636,0,0,0,0);// redraw the menu
