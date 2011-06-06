@@ -4720,7 +4720,7 @@ script 636 (int firstTimeAfterDeath)
   			HudMessage(s:"4)  > \ckSit-Rep:    See enemies through walls"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 60.1, 160.0, 0.0);
 		else if(CheckInventory("MenuCursor") == 4)
   			HudMessage(s:"5)  > Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 60.1, 180.0, 0.0);
-    }	
+    }	                                      
 	
 		if(CheckInventory("MenuCursor") >= 4){
 			TakeInventory("MenuCursor",10);
@@ -4821,10 +4821,10 @@ script 637 (void)
 			ACS_ExecuteAlways(638,0,5,0,0);
 		else if(CheckInventory("MenuCursor") == 7)	//Choose Ninja class, close menu.
 			ACS_ExecuteAlways(638,0,6,0,0);
-		else if(CheckInventory("MenuCursor") == 8 && GameType() == GAME_SINGLE_PLAYER || GameType() == GAME_NET_COOPERATIVE)	//Choose Daredevil class, close menu.
+		else if(CheckInventory("MenuCursor") == 8 && (GameType() == GAME_SINGLE_PLAYER || GameType() == GAME_NET_COOPERATIVE))	//Choose Daredevil class, close menu.
 			ACS_ExecuteAlways(638,0,7,0,0);
 		else if(CheckInventory("MenuCursor") == 9 && GameType() == GAME_SINGLE_PLAYER)	//Go back
-			GiveInventory("MenuPlace",10);
+			GiveInventory("MenuPlace",9);
 	}
 	//MenuPlace 1: We're in the handguns menu.
 	else if(CheckInventory("MenuPlace") == 1)
