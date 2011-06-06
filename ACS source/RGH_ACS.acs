@@ -52,8 +52,10 @@ script 505 OPEN
 	if(GetCVAR("compat_nocrosshair") == 0)
 		ConsoleCommand("compat_nocrosshair 1");
 
-	ConsoleCommand("archivecvar rgh_hitsound");
-
+	if(GameType() == GAME_SINGLE_PLAYER){
+		ConsoleCommand("archivecvar rgh_hitsound");
+		ConsoleCommand("archivecvar rgh_vanillamonstersonly");
+	}
 	delay(35*5);
 	restart;
 }
@@ -288,7 +290,7 @@ script 597 ENTER
 	ACS_ExecuteAlways(602,0,0,0,0); // adjust movement speed
 
 	SetFont("BIGFONT");
-	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.11.1 "
+	HudMessage(s:"\ch== \cqReal Guns Hardcore 1.11.2 "
 #ifdef SKULLTAG
 		,s:"SKULLTAG"
 #else
@@ -6161,4 +6163,9 @@ script 655 (void) CLIENTSIDE
 		LocalAmbientSound("generic/fleshhit", 127);
 		LocalAmbientSound("generic/fleshhit", 127);
 	}
+}
+
+script 656 (void)
+{
+	SetResultValue(GetCVAR("rgh_vanillamonstersonly"));
 }
