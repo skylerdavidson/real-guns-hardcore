@@ -4204,9 +4204,9 @@ script 634 RESPAWN NET
 		else SetFont("P_LASTAN");
 		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 250.0, 215.0, 3.0, 1.0);		
 	}
-	if(CheckInventory("Perk3_SitRep") == 1)
+	if(CheckInventory("Perk3_SitRep") == 1 || CheckInventory("Perk3_SitRep_PRO") == 1)
 	{
-		if(CheckInventory("Perk3_SitRep_PRO") == 1)	SetFont("P_SITRP");
+		if(CheckInventory("Perk3_SitRep_PRO") == 1 && (GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER))	SetFont("P_SITRP");
 		else SetFont("P_SITR");
 		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 250.0, 215.0, 3.0, 1.0);		
 	}
@@ -5005,8 +5005,8 @@ script 637 (void)
 			  Perk1[PlayerNumber()+1] = "Perk1_Scavenger";
 			}
 			else {
-        Perk1[PlayerNumber()+1] = "Perk1_Scavenger_DM";
-      }
+				Perk1[PlayerNumber()+1] = "Perk1_Scavenger_DM";
+			}
 		}
 		else if(CheckInventory("MenuCursor") == 4)	//Go back
 			TakeInventory("MenuPlace",1);
@@ -5068,10 +5068,16 @@ script 637 (void)
 			GiveInventory("MenuPlace",1);
 			Perk3[PlayerNumber()+1] = "Perk3_LastStand";
 		}
-		else if(CheckInventory("MenuCursor") == 3)		//Last Stand
+		else if(CheckInventory("MenuCursor") == 3)		//SitRep
 		{
 			GiveInventory("MenuPlace",1);
-			Perk3[PlayerNumber()+1] = "Perk3_SitRep";
+			
+			if(GameType() == GAME_SINGLE_PLAYER || GameType() == GAME_NET_COOPERATIVE){
+				Perk3[PlayerNumber()+1] = "Perk3_SitRep";
+			}
+			else {
+				Perk3[PlayerNumber()+1] = "Perk3_SitRep_PRO";
+			}
 		}
 		else if(CheckInventory("MenuCursor") == 4)	//Go back
 			TakeInventory("MenuPlace",1);
