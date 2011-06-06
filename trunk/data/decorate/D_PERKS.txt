@@ -154,6 +154,19 @@ actor Perk3_SteadyAim_PRO : Inventory
     inventory.maxamount 1
 }
 
+actor Perk3_SitRep : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
+//SitRep
+actor Perk3_SitRep_PRO : Inventory
+{
+    inventory.amount 0
+    inventory.maxamount 1
+}
+
 //Commando: Increased melee range and damage
 actor Perk3_Commando : Inventory
 {
@@ -490,5 +503,31 @@ actor LastStandUrn : HealthPickup
   Spawn:
     SPHL A 350
     Loop
+  }
+}
+
+ACTOR Perk3_SitRepItem : MapRevealer
+{
+  inventory.maxamount 1
+  +AUTOACTIVATE
+  States
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  }
+}
+
+ACTOR Perk3_SitRepEffect : PowerupGiver
+{
+  inventory.maxamount 0
+  powerup.type "Scanner"
+  powerup.duration 9999999
+  +AUTOACTIVATE
+  States
+  {
+  Spawn:
+    TNT1 A -1
+    stop
   }
 }
