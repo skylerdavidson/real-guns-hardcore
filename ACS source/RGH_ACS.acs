@@ -4697,7 +4697,7 @@ script 636 (int firstTimeAfterDeath)
   		HudMessage(s:"1)    \cdSteady Aim: +33% hip-fire accuracy"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
   		HudMessage(s:"2)    \cdCommando:   +100% knife damage and range"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 120.0, 0.0);	
   		HudMessage(s:"3)    \cdLast Stand: Pull out your handgun before dying"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);
-		HudMessage(s:"3)    \cdSit-Rep:    See enemies through walls"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 160.0, 0.0);	
+		HudMessage(s:"3)    \cdSit-Rep:    See enemies through walls"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 60.1, 160.0, 0.0);	
   		HudMessage(s:"4)    Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 60.1, 180.0, 0.0);	
   
   		if(CheckInventory("MenuCursor") == 0)
@@ -4707,7 +4707,7 @@ script 636 (int firstTimeAfterDeath)
   		else if(CheckInventory("MenuCursor") == 2)
   			HudMessage(s:"3)  > \ckLast Stand: Pull out your handgun before dying"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 60.1, 140.0, 0.0);	
   		else if(CheckInventory("MenuCursor") == 3)
-  			HudMessage(s:"4)  > \ckSit-Rep:    See enemies through walls"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 60.1, 160.0, 0.0);
+  			HudMessage(s:"4)  > \ckSit-Rep:    See enemies through walls"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 60.1, 160.0, 0.0);
 		else if(CheckInventory("MenuCursor") == 4)
   			HudMessage(s:"5)  > Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 60.1, 180.0, 0.0);
     }	
