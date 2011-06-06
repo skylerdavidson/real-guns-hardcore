@@ -100,6 +100,10 @@ script 501 RESPAWN
 			GiveInventory("Perk2_JuggernautEffect",1);
 		if(CheckInventory("Perk3_Commando") == 1)
 			GiveInventory("Perk3_CommandoEffect",1);
+		if(CheckInventory("Perk3_SitRep") == 1){
+			GiveInventory("Perk3_SitRepItem",1);
+			GiveInventory("Perk3_SitRepEffect",1);			
+		}
 		if(CheckInventory("Perk1_OneManArmy") == 1)
 			SetAmmoCapacity("MaxWeaponsFilled_ARSMG",4);
 		
@@ -255,6 +259,10 @@ script 597 ENTER
 			GiveInventory("Perk2_JuggernautEffect",1);
 		if(CheckInventory("Perk3_Commando") == 1)
 			GiveInventory("Perk3_CommandoEffect",1);
+		if(CheckInventory("Perk3_SitRep") == 1){
+			GiveInventory("Perk3_SitRepItem",1);
+			GiveInventory("Perk3_SitRepEffect",1);			
+		}
 		if(CheckInventory("Perk1_OneManArmy") == 1)
 			SetAmmoCapacity("MaxWeaponsFilled_ARSMG",4);
 		if(CheckInventory("Perk1_OneManArmy_Pro") == 1)
@@ -3271,6 +3279,9 @@ script 622 (void)
 	TakeInventory("Perk3_LastStandAward",1);
 	TakeInventory("Perk3_LastStand_ProAward",1);
 	
+	TakeInventory("Perk3_SitRepAward",1);
+	TakeInventory("Perk3_SitRep_ProAward",1);
+	
 	TakeInventory("Combo",25);
 	LocalAmbientSound("game/challenge",255);		
 	
@@ -3295,10 +3306,12 @@ script 623 (void)
   if(
     CheckInventory("Perk3_SteadyAim") == 0 &&
     CheckInventory("Perk3_Commando") == 0 &&
-    CheckInventory("Perk3_LastStand") == 0
+    CheckInventory("Perk3_LastStand") == 0 &&
+    CheckInventory("Perk3_SitRep") == 0
   ){
+  		GiveInventory("Perk3_SitRepAward",1);
 		GiveInventory("Perk3_LastStandAward",1);
-    GiveInventory("Perk3_CommandoAward",1);
+    	GiveInventory("Perk3_CommandoAward",1);
 		GiveInventory("Perk3_SteadyAimAward",1);
 	}
 	
@@ -3311,6 +3324,9 @@ script 623 (void)
 	
 	if(CheckInventory("Perk3_LastStand") == 1 && CheckInventory("Perk3_LastStand_Pro") == 0)
 		GiveInventory("Perk3_LastStand_ProAward",1);
+		
+	if(CheckInventory("Perk3_SitRep") == 1 && CheckInventory("Perk3_SitRep_Pro") == 0)
+		GiveInventory("Perk3_SitRep_ProAward",1);
 	
 	// Red perks	
 	if(
@@ -3563,6 +3579,25 @@ script 624 (int Which)
 		HudMessage(s:"\cgCOLD BLOODED PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
 		HudMessage(s:"Invisibility to seeker missiles!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
+	if(Which == 23) // SITREP
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk3_SitRep",1);
+		GiveInventory("Perk3_SitRepItem",1);
+		GiveInventory("Perk3_SitRepEffect",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdSIT-REP"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Full automap with monsters' positions!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+	}
+	if(Which == 24) // SITREP PRO
+	{
+		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
+		GiveInventory("Perk3_SitRep_PRO",1);
+		SetFont("BIGFONT");
+		HudMessage(s:"\cdSIT-REP PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"See monsters through walls!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+	}
+	
 }
 //------------------------------------------
 //------- Last stand, for handling the last stand perk.
@@ -4169,6 +4204,12 @@ script 634 RESPAWN NET
 		else SetFont("P_LASTAN");
 		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 250.0, 215.0, 3.0, 1.0);		
 	}
+	if(CheckInventory("Perk3_SitRep") == 1)
+	{
+		if(CheckInventory("Perk3_SitRep_PRO") == 1)	SetFont("P_SITRP");
+		else SetFont("P_SITR");
+		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 250.0, 215.0, 3.0, 1.0);		
+	}
 }
 
 
@@ -4526,7 +4567,7 @@ script 636 (int firstTimeAfterDeath)
   		HudMessage(s:"1)    \cvSleight of Hand:      Faster reloading\n\n         \cjPRO\cv: Faster knifing and grenade throwing"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
   		HudMessage(s:"2)    \cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);	
   		HudMessage(s:"3)    \cvOne Man Army:         Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 180.0, 0.0);	
-  		HudMessage(s:"4)    \cvScavenger:         +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 60.1, 220.0, 0.0);
+  		HudMessage(s:"4)    \cvScavenger:         	 +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 60.1, 220.0, 0.0);
   		HudMessage(s:"5)    Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 60.1, 260.0, 0.0);	
   
   		if(CheckInventory("MenuCursor") == 0)
@@ -4636,7 +4677,8 @@ script 636 (int firstTimeAfterDeath)
   		HudMessage(s:"1)    \cdSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
   		HudMessage(s:"2)    \cdCommando:   +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);	
   		HudMessage(s:"3)    \cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Get 30 health in last stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 180.0, 0.0);	
-  		HudMessage(s:"4)    Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 60.1, 220.0, 0.0);	
+  		HudMessage(s:"4)    \cdSit-Rep:    Full automap with monsters' positions\n\n         \cjPRO\cd: See enemies through walls"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 60.1, 220.0, 0.0);	  	
+		HudMessage(s:"5)    Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 60.1, 260.0, 0.0);	
   
   		if(CheckInventory("MenuCursor") == 0)
   			HudMessage(s:"1)  > \ckSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 60.1, 100.0, 0.0);	
@@ -4645,15 +4687,18 @@ script 636 (int firstTimeAfterDeath)
   		else if(CheckInventory("MenuCursor") == 2)
   			HudMessage(s:"3)  > \ckLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Get 30 health in last stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 60.1, 180.0, 0.0);	
   		else if(CheckInventory("MenuCursor") == 3)
-  			HudMessage(s:"4)  > Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 60.1, 220.0, 0.0);
+  			HudMessage(s:"4)  > \ckSit-Rep:    Full automap with monsters' positions\n\n         \cjPRO\cd: See enemies through walls"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 60.1, 220.0, 0.0);
+		else if(CheckInventory("MenuCursor") == 4)
+  			HudMessage(s:"5)  > Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 60.1, 260.0, 0.0);
     }
     else {  
   		SetFont("CONFONT");	
   		//List menu
   		HudMessage(s:"1)    \cdSteady Aim: +33% hip-fire accuracy"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
   		HudMessage(s:"2)    \cdCommando:   +100% knife damage and range"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 120.0, 0.0);	
-  		HudMessage(s:"3)    \cdLast Stand: Pull out your handgun before dying"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);	
-  		HudMessage(s:"4)    Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 60.1, 160.0, 0.0);	
+  		HudMessage(s:"3)    \cdLast Stand: Pull out your handgun before dying"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);
+		HudMessage(s:"3)    \cdSit-Rep:    See enemies through walls"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 160.0, 0.0);	
+  		HudMessage(s:"4)    Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 60.1, 180.0, 0.0);	
   
   		if(CheckInventory("MenuCursor") == 0)
   			HudMessage(s:"1)  > \ckSteady Aim: +33% hip-fire accuracy"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_YELLOW, 60.1, 100.0, 0.0);	
@@ -4662,7 +4707,9 @@ script 636 (int firstTimeAfterDeath)
   		else if(CheckInventory("MenuCursor") == 2)
   			HudMessage(s:"3)  > \ckLast Stand: Pull out your handgun before dying"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 60.1, 140.0, 0.0);	
   		else if(CheckInventory("MenuCursor") == 3)
-  			HudMessage(s:"4)  > Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 60.1, 160.0, 0.0);
+  			HudMessage(s:"4)  > \ckSit-Rep:    See enemies through walls"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 60.1, 160.0, 0.0);
+		else if(CheckInventory("MenuCursor") == 4)
+  			HudMessage(s:"5)  > Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 60.1, 180.0, 0.0);
     }	
 	
 		if(CheckInventory("MenuCursor") >= 4){
@@ -5021,7 +5068,12 @@ script 637 (void)
 			GiveInventory("MenuPlace",1);
 			Perk3[PlayerNumber()+1] = "Perk3_LastStand";
 		}
-		else if(CheckInventory("MenuCursor") == 3)	//Go back
+		else if(CheckInventory("MenuCursor") == 3)		//Last Stand
+		{
+			GiveInventory("MenuPlace",1);
+			Perk3[PlayerNumber()+1] = "Perk3_SitRep";
+		}
+		else if(CheckInventory("MenuCursor") == 4)	//Go back
 			TakeInventory("MenuPlace",1);
 		TakeInventory("MenuCursor",15);
 	}
@@ -5349,6 +5401,12 @@ script 638 (int Which)
 			{
 				GiveInventory("Perk3_CommandoEffect",1);
 			}
+			
+			If(Perk3[PlayerNumber()+1] == "Perk3_SitRep")
+			{
+				GiveInventory("Perk3_SitRepEffect",1);
+				GiveInventory("Perk3_SitRepItem",1);
+			}
 		}
 		else {  // Deathmatch
 		    if(Perk1[PlayerNumber()+1] == "Perk1_OneManArmy")
@@ -5388,6 +5446,12 @@ script 638 (int Which)
 			If(Perk3[PlayerNumber()+1] == "Perk3_Commando")
 			{
 				GiveInventory("Perk3_CommandoEffect",1);
+			}
+			
+			If(Perk3[PlayerNumber()+1] == "Perk3_SitRep")
+			{
+				GiveInventory("Perk3_SitRepEffect",1);
+				GiveInventory("Perk3_SitRepItem",1);
 			}
 		}
 		GiveInventory(Attachment[PlayerNumber()+1],1);

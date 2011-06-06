@@ -366,6 +366,27 @@ actor Perk3_LastStandAward : AwardBase
   }
 }
 
+actor Perk3_SitRepAward : AwardBase
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_SITR"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
+    TNT1 A 0 ACS_ExecuteAlways(624,0,23,0,0)
+    stop
+  }
+}
+
 actor Perk1_SOH_ProAward : AwardBase
 {
   inventory.pickupmessage "Snagged an Item"
@@ -553,6 +574,28 @@ actor Perk3_LastStand_ProAward : AwardBase
     stop
   }
 }
+
+actor Perk3_SitRep_ProAward : AwardBase
+{
+  inventory.pickupmessage "Snagged an Item"
+  inventory.pickupsound "misc/ammo_pkup"
+  inventory.icon "P_SITRP"
+  inventory.amount 1
+  inventory.maxamount 1
+  scale 0.1
+  +INVENTORY.INVBAR
+  states
+  {
+  Spawn:
+    TNT1 A -1
+    stop
+  Use:
+  	TNT1 A 0 A_JumpIfInventory("InLastStand", 1, "FailState")
+    TNT1 A 0 ACS_ExecuteAlways(624,0,24,0,0)
+    stop
+  }
+}
+
 
 actor Perk1_ScavengerAward : AwardBase
 {
