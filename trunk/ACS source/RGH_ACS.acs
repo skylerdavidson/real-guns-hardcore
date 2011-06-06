@@ -3595,7 +3595,7 @@ script 624 (int Which)
 		GiveInventory("Perk3_SitRep_PRO",1);
 		SetFont("BIGFONT");
 		HudMessage(s:"\cdSIT-REP PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"See monsters through walls!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"See enemies through walls!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	
 }
@@ -5076,6 +5076,11 @@ script 637 (void)
 		else if(CheckInventory("MenuCursor") == 4)	//Go back
 			TakeInventory("MenuPlace",1);
 		TakeInventory("MenuCursor",15);
+		
+		if(GameType() != GAME_NET_DEATHMATCH){
+		    ACS_ExecuteAlways(638,0,9,0,0);
+		    terminate;
+		} 
 	}
 	//MenuPlace 6: We're in the Attachments menu
 	else if(CheckInventory("MenuPlace") == 6)
@@ -5407,6 +5412,10 @@ script 638 (int Which)
 				GiveInventory("Perk3_SitRepEffect",1);
 				GiveInventory("Perk3_SitRepItem",1);
 			}
+			
+			GiveInventory("RewardsToPick",1);
+						
+			ACS_ExecuteAlways(623,0,0,0,0);
 		}
 		else {  // Deathmatch
 		    if(Perk1[PlayerNumber()+1] == "Perk1_OneManArmy")
@@ -5453,8 +5462,10 @@ script 638 (int Which)
 				GiveInventory("Perk3_SitRepEffect",1);
 				GiveInventory("Perk3_SitRepItem",1);
 			}
+			
+			GiveInventory(Attachment[PlayerNumber()+1],1);
 		}
-		GiveInventory(Attachment[PlayerNumber()+1],1);
+		
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
 		delay(1);
