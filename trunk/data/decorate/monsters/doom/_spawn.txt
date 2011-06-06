@@ -29,14 +29,16 @@ actor ZombieMan_Spawner replaces ZombieMan
   states
   {
   Spawn:
-    TNT1 A 0 
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 2) 
     TNT1 A 0 A_Jump(128,"Spawn2")
     TNT1 A 0 A_SpawnItemEx("ZombieMan_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
     TNT1 A 0 A_Die
     stop
   Spawn2:
   	// replace ZombieMan with a random ShotgunGuy variant, except Zombie Commando
-    TNT1 A 0 
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 3) 
 	TNT1 A 0 A_Jump(35,"Spawn3_2","Spawn4_2")
     TNT1 A 0 A_Jump(96,"Spawn2_2")
     TNT1 A 0 A_SpawnItemEx("ShotgunGuy_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
@@ -71,7 +73,8 @@ actor ShotgunGuy_Spawner replaces ShotgunGuy
   states
   {
   Spawn:
-    TNT1 A 0 
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 4) 
 	TNT1 A 0 A_Jump(15,"Spawn5")
 	TNT1 A 0 A_Jump(35,"Spawn3","Spawn4")
     TNT1 A 0 A_Jump(96,"Spawn2")
@@ -113,7 +116,8 @@ actor ChaingunGuy_Spawner replaces ChaingunGuy
   states
   {
   Spawn:
-    TNT1 A 0 
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 5) 
     TNT1 A 0 //A_Jump(32,"Spawn4")
     TNT1 A 0 A_Jump(64,"Spawn3")
     TNT1 A 0 A_Jump(16,"Spawn5")
@@ -155,7 +159,8 @@ actor DoomImp_Spawner replaces DoomImp
   states
   {
   Spawn:
-    TNT1 A 0 
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 2) 
     TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4")
     TNT1 A 0 A_SpawnItemEx("DoomImp_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
     TNT1 A 0 A_Die
@@ -189,7 +194,8 @@ actor Demon_Spawner replaces Demon
   states
   {
   Spawn:
-    TNT1 A 0 
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 3) 
     TNT1 A 0 A_Jump(48,"Spawn3")
     TNT1 A 0 A_Jump(120,"Spawn2","Spawn4")
     TNT1 A 0 A_SpawnItemEx("Demon_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
@@ -223,7 +229,8 @@ actor Spectre_Spawner replaces Spectre
   states
   {
   Spawn:
-    TNT1 A 0 
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 3) 
     TNT1 A 0 A_Jump(96,"Spawn3")
     TNT1 A 0 A_Jump(96,"Spawn2")
     TNT1 A 0 A_SpawnItemEx("Spectre_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
@@ -253,7 +260,8 @@ actor LostSoul_Spawner replaces LostSoul
   states
   {
   Spawn:
-    TNT1 A 0 
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 2) 
     TNT1 A 0 A_Jump(190,"Spawn2","Spawn3","Spawn4")
     TNT1 A 0 A_SpawnItemEx("LostSoul_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
     TNT1 A 0 A_Die
@@ -287,7 +295,8 @@ actor PainElemental_Spawner replaces PainElemental
   states
   {
   Spawn:
-    TNT1 A 0 
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 5) 
     TNT1 A 0 A_Jump(96,"Spawn3")
     TNT1 A 0 A_Jump(80,"Spawn4")
     TNT1 A 0 A_Jump(35,"Spawn5")
@@ -329,7 +338,8 @@ actor Revenant_Spawner replaces Revenant
   states
   {
   Spawn:
-    TNT1 A 0 
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 3) 
     TNT1 A 0 A_Jump(34,"Spawn4")
     TNT1 A 0 A_Jump(100,"Spawn2")
     TNT1 A 0 A_SpawnItemEx("Revenant_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION,0)
@@ -359,7 +369,8 @@ actor HellKnight_Spawner replaces HellKnight
   states
   {
   Spawn:
-    TNT1 A 0 
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 2) 
     TNT1 A 0 A_Jump(168,"Spawn3","Spawn4","Spawn2")
     TNT1 A 0 A_SpawnItemEx("HellKnight_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
     TNT1 A 0 A_Die
@@ -393,7 +404,8 @@ actor Cacodemon_Spawner replaces Cacodemon
   states
   {
   Spawn:
-    TNT1 A 0 
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 4) 
     TNT1 A 0 A_Jump(32,"Spawn6","Spawn9")
     TNT1 A 0 A_Jump(128,"Spawn3","Spawn2")
     TNT1 A 0 A_Jump(60,"Spawn8","Spawn4")
@@ -449,7 +461,8 @@ actor BaronOfHell_Spawner replaces BaronOfHell
   states
   {
   Spawn:
-    TNT1 A 0 
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 3) 
     TNT1 A 0 A_Jump(128,"Spawn3","Spawn2")
     TNT1 A 0 A_Jump(120,"Spawn4","Spawn5","Spawn6", "Spawn7")
     TNT1 A 0 A_SpawnItemEx("BaronOfHell_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
@@ -498,7 +511,8 @@ actor Fatso_Spawner replaces Fatso
   states
   {
   Spawn:
-    TNT1 A 0 
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 3) 
     TNT1 A 0 A_Jump(20,"Spawn3")
     TNT1 A 0 A_Jump(96,"Spawn2")    
     TNT1 A 0 A_SpawnItemEx("Fatso_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
@@ -533,7 +547,8 @@ actor Archvile_Spawner replaces Archvile
   states
   {
   Spawn:
-    TNT1 A 0     
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 2)     
     TNT1 A 0 A_Jump(130,"Spawn2","Spawn4")
     TNT1 A 0 A_SpawnItemEx("Archvile_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
     TNT1 A 0 A_Die
@@ -562,7 +577,8 @@ actor Arachnotron_Spawner replaces Arachnotron
   states
   {
   Spawn:
-    TNT1 A 0 
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 3) 
     TNT1 A 0 A_Jump(40,"Spawn3")
     TNT1 A 0 A_Jump(128,"Spawn2")
     TNT1 A 0 A_SpawnItemEx("Arachnotron_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
@@ -591,7 +607,8 @@ actor Cyberdemon_Spawner replaces Cyberdemon
   states
   {
   Spawn:
-    TNT1 A 0 
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 2) 
     TNT1 A 0 A_Jump(196,"Spawn2","Spawn3","Spawn4", "Spawn5")
     TNT1 A 0 A_SpawnItemEx("Cyberdemon_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
     TNT1 A 0 A_Die
@@ -631,7 +648,8 @@ actor SpiderMastermind_Spawner replaces SpiderMastermind
   states
   {
   Spawn:
-    TNT1 A 0 
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 2) 
     TNT1 A 0 A_Jump(170,"Spawn3","Spawn2","Spawn4","Spawn5")
     TNT1 A 0 A_SpawnItemEx("SpiderMastermind_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
     TNT1 A 0 A_Die
@@ -671,7 +689,8 @@ actor WolfensteinSS_Spawner replaces WolfensteinSS
   states
   {
   Spawn:
-    TNT1 A 0 
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 2) 
     TNT1 A 0 A_Jump(128,"Spawn2")
     TNT1 A 0 A_SpawnItemEx("SpaceNazi",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
     TNT1 A 0 A_Die
