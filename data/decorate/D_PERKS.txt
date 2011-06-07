@@ -531,3 +531,43 @@ ACTOR Perk3_SitRepEffect : PowerupGiver
     stop
   }
 }
+
+actor AllPerks : CustomInventory
+{
+  +INVENTORY.AUTOACTIVATE
+  states
+  {
+  Pickup:
+  	TNT1 A 0 A_GiveInventory("Perk1_SOH", 1)
+    TNT1 A 0 A_GiveInventory("Perk1_ExtremeConditioning", 1)
+    TNT1 A 0 A_GiveInventory("Perk1_OneManArmy", 1)
+    TNT1 A 0 A_GiveInventory("Perk1_Scavenger", 1)
+    TNT1 A 0 A_GiveInventory("Perk1_SOH_PRO", 1)
+    TNT1 A 0 A_GiveInventory("Perk1_ExtremeConditioning_PRO", 1)
+    TNT1 A 0 A_GiveInventory("Perk1_OneManArmy_PRO", 1)
+    TNT1 A 0 A_GiveInventory("Perk1_Scavenger_PRO", 1)
+  	TNT1 A 0 A_GiveInventory("Perk2_StoppingPower", 1)
+  	TNT1 A 0 A_GiveInventory("Perk2_StoppingPowerEffect", 1)
+    TNT1 A 0 A_GiveInventory("Perk2_Juggernaut", 1)
+    TNT1 A 0 A_GiveInventory("Perk2_JuggernautEffect", 1)
+    TNT1 A 0 A_GiveInventory("Perk2_DangerClose", 1)
+    TNT1 A 0 A_GiveInventory("Perk2_DangerCloseEffect", 1)
+    TNT1 A 0 A_GiveInventory("Perk2_ColdBlooded", 1)
+    TNT1 A 0 A_GiveInventory("Perk2_StoppingPower_PRO", 1)
+    TNT1 A 0 A_GiveInventory("Perk2_Juggernaut_PRO", 1)
+    TNT1 A 0 A_GiveInventory("Perk2_DangerClose_PRO", 1)
+    TNT1 A 0 A_GiveInventory("Perk2_ColdBlooded_PRO", 1)
+	TNT1 A 0 A_GiveInventory("Perk3_Commando", 1)
+	TNT1 A 0 A_GiveInventory("Perk3_CommandoEffect", 1)
+    TNT1 A 0 A_GiveInventory("Perk3_SteadyAim", 1)
+    TNT1 A 0 A_GiveInventory("Perk3_LastStand", 1)
+    TNT1 A 0 A_GiveInventory("LastStandUrn", 10000)
+    TNT1 A 0 A_GiveInventory("Perk3_SitRep", 1)
+    TNT1 A 0 A_GiveInventory("Perk3_Commando_PRO", 1)
+    TNT1 A 0 A_GiveInventory("Perk3_SteadyAim_PRO", 1)
+    TNT1 A 0 A_GiveInventory("Perk3_LastStand_PRO", 1)
+    TNT1 A 0 A_GiveInventory("Perk3_SitRep_PRO", 1)
+    TNT1 A 0 ACS_ExecuteAlways(501,0,0,0,0)
+    stop
+  }
+}
