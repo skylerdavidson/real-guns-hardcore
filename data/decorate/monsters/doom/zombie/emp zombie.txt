@@ -30,10 +30,6 @@ ACTOR EMPZombie: RGAMonster
     Missile:
         RPOS E 10 A_FaceTarget
         RPOS F 6 A_MissileAttack
-        RPOS E 2 A_FaceTarget
-        RPOS F 6 A_MissileAttack
-		RPOS E 2 A_FaceTarget
-        RPOS F 6 A_MissileAttack
         Goto See
     Pain:
         RPOS G 3
@@ -95,42 +91,62 @@ actor ZombieEMPBlast
   Projectile
   +RANDOMIZE
   RenderStyle Add
+  DamageType EMP
   Alpha 0.75
-  scale 0.5
+  //scale 0.6
   SeeSound "weapons/iceshot"
   DeathSound "weapons/icehit"
-  DamageType Ice
   Decal EMPLightning
   States
   {
   Spawn:
-    FBLS A 2 bright A_SpawnItem("FreezeBlastTrail")
+    EMP1 AB 4 bright
     loop
   Death:
-    FBLS BCDE 4 bright
+    EMP1 AB 8 bright Radius_Quake(3,30,0,128,0)
+    EMP1 C 8 bright 
+    EMP1 DEF 8 bright
     stop
   }
 }
+    
+actor EMPEffect : PowerupGiver 
+{ 
+  Inventory.PickupMessage "Your electronics are out!" 
+  Inventory.MaxAmount 0 
+  Powerup.Type EMP
+  Powerup.Duration -7
+  +AutoActivate
+  +Inventory.AlwaysPickup
+  states            
+  { 
+  Spawn: 
+    TNT1 A 1
+    Fail
+  } 
+}
 
-actor FreezeEMPTrail
+Actor PowerEMP : PowerSpeed
 {
-  Radius 13
-  Height 8
-  Speed 20
-  Damage 0
-  Projectile
-  +RANDOMIZE
-  RenderStyle Add
-  Alpha 0.75
-  SeeSound "weapons/iceshot"
-  DeathSound "weapons/icehit"
-  States
-  {
-  Spawn:
-    FRTR ABC 6 bright A_FadeOut(0.2)
-    loop
-  Death:
-    FRTR ABC 4 bright
-    stop
-  }
+  Speed 1.0
+}
+
+actor EMP2Effect : PowerupGiver 
+{ 
+  Inventory.MaxAmount 0 
+  Powerup.Type EMP2
+  Powerup.Duration -1
+  +AutoActivate
+  +Inventory.AlwaysPickup
+  states            
+  { 
+  Spawn: 
+    TNT1 A 1
+    Fail
+  } 
+}
+
+Actor PowerEMP2 : PowerSpeed
+{
+  Speed 0.5
 }

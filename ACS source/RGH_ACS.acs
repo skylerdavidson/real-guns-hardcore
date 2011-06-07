@@ -44,10 +44,10 @@ script 505 OPEN
 	if(GetCVAR("sv_nocrouch") == 1)
 		ConsoleCommand("sv_nocrouch 0");
 		
-	if(GetCVAR("sv_weapondrop") == 1){
-		log(s:"\"Drop weapons upon death\" must be disabled");
-		ConsoleCommand("sv_weapondrop 0");
-	}
+	//if(GetCVAR("sv_weapondrop") == 1){
+	//	log(s:"\"Drop weapons upon death\" must be disabled");
+	//	ConsoleCommand("sv_weapondrop 0");
+	//}
 
 	if(GetCVAR("compat_nocrosshair") == 0)
 		ConsoleCommand("compat_nocrosshair 1");
@@ -75,7 +75,7 @@ script 500 ENTER
 script 501 RESPAWN
 {
 	if(CheckInventory("Spawned") == 0){
-		GiveInventory("GoToMenu",1);
+		ACS_ExecuteAlways(657,0,0,0,0); // Go to menu
 	}
 
 	if(CheckInventory("Classic") > 0){
@@ -227,7 +227,7 @@ script 597 ENTER
 	}
 
 	if(CheckInventory("Spawned") == 0){
-		GiveInventory("GoToMenu", 1);
+		ACS_ExecuteAlways(657,0,0,0,0); // Go to menu
 	}
 	
 	if(CheckInventory("Classic") > 0){
@@ -1067,9 +1067,9 @@ function bool is16to10(void){
 	return false;	
 }
 
-function void drawStretchedImage(int id, int time, int fadeTime){
-	int hudScreenWidth = 800 * 4 / 3 * 16 / 10;
-	int hudScreenHeight = 800;
+function void drawStretchedImage(int id, int imageWidth, int imageHeight, int time, int fadeTime){
+	int hudScreenWidth = imageHeight * 4 / 3 * imageWidth / imageHeight;
+	int hudScreenHeight = imageHeight;
 	
 	if(is4to3()){							
 		hudScreenWidth = hudScreenWidth / 4 * 3;
@@ -1088,6 +1088,8 @@ function void drawStretchedImage(int id, int time, int fadeTime){
 		hudScreenWidth = 1280;
 		log(s:"unknown resolution - please choose a valid resoltion from the SET VIDEO MODE menu");
 	}
+	
+	//log(i:hudScreenWidth)
 
 	SetHudSize(hudScreenWidth,hudScreenHeight,1);
 	HudMessage(s:"a"; HUDMSG_FADEOUT, id, CR_UNTRANSLATED, (hudScreenWidth/ 2)* 65536, (hudScreenHeight/ 2)* 65536, time, fadeTime);
@@ -5782,7 +5784,7 @@ script 647 (void) CLIENTSIDE {
 		else
 			SetFont("DAMSCRN3");
 		
-        drawStretchedImage(50+PlayerNumber(), 0.5, 1.0);
+        drawStretchedImage(50+PlayerNumber(), 1280, 800, 0.5, 1.0);
 	}
 }
 
@@ -6176,7 +6178,7 @@ script 650 (void) CLIENTSIDE {
 				SetFont("NOISE3");
 			} 
 			
-	        drawStretchedImage(10+PlayerNumber(), 0.5, 1.0);
+	        drawStretchedImage(10+PlayerNumber(), 1280, 800, 0.5, 1.0);
 		}
 
 		//delay(3);
@@ -6281,6 +6283,7 @@ script 653 (void) CLIENTSIDE {
 	drawKillIndicator();
 }
 
+// draws "hold X to change class" (according to client's key settings)
 script 654 DEATH CLIENTSIDE
 {
 	if(GameType() == GAME_NET_DEATHMATCH){
@@ -6289,6 +6292,7 @@ script 654 DEATH CLIENTSIDE
 	}
 }
 
+// plays hit sound, if it is ennabled on the client
 script 655 (void) CLIENTSIDE
 {
 	if(GetCVAR("rgh_hitsound") == 1){
@@ -6299,7 +6303,32 @@ script 655 (void) CLIENTSIDE
 	}
 }
 
+// returns 1 if "vanilla monsters only" mode is enabled, used in spawners
 script 656 (void)
 {
 	SetResultValue(GetCVAR("rgh_vanillamonstersonly"));
 }
+
+// enters class selection menu
+script 657 (void)
+{
+	GiveInventory("GoToMenu", 1);	
+}
+
+// Got hit by EMP
+script 658 (void)
+{
+	SetFont("FLSHSCRN");
+	drawStretchedImage(600+PlayerNumber(), 32, 32, 0.5, 2.0);
+	SetActorAngle(0,GetActorAngle(0)-random(10000, -10000));
+	SetActorPitch(0,GetActorPitch(0)-random(10000, -10000));	
+}
+
+/*script 659 (void)
+{
+	for(int i = 0; i < 32)
+	SetFont("FLSHSCRN");
+	drawStretchedImage(600+PlayerNumber(), 32, 32, 0.5, 2.0);
+	SetActorAngle(0,GetActorAngle(0)-random(10000, -10000));
+	SetActorPitch(0,GetActorPitch(0)-random(10000, -10000));	
+} */
