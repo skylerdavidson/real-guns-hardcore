@@ -6323,9 +6323,14 @@ script 657 (void)
 // Got hit by EMP
 script 658 (void)
 {
+	// ears ringing
+	LocalAmbientSound("emp/flash",255);
+	
 	// bright white flash
 	SetFont("FLSHSCRN");
 	drawStretchedImage(600+PlayerNumber(), 32, 32, 0.5, 2.0);
+	
+	LocalAmbientSound("emp/noise",255);
 	
 	// kick the view
 	SetActorAngle(0,GetActorAngle(0)-random(10000, -10000));
