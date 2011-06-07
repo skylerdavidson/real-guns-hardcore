@@ -184,6 +184,11 @@ ACTOR RGUPlayer : DoomPlayer
   Pain.curse:
     PLAY G 4 A_Jump(256,"Cursed2","Cursed3")
     Goto Spawn
+  Pain.EMP:
+    PLAY G 4 A_GiveInventory("EMPEffect",1)
+    PLAY G 4 A_GiveInventory("EMP2Effect",1)
+    PLAY G 0 ACS_ExecuteAlways(658,0,0,0,0) // flash screen with white
+    Goto Pain
   Cursed1:
     PLAY G 0 A_GiveInventory("HieroAmpDMG",1)
     Goto Pain
@@ -428,6 +433,11 @@ ACTOR RGULastStandPlayer : PlayerPawn
     LAST A 1 A_GiveInventory("Health",3)
 	LAST A 0 A_TakeInventory("InCombat",9999)
     Goto Spawn
+  Pain.EMP:
+    PLAY G 0 ACS_ExecuteAlways(658,0,0,0,0) // flash screen with white, change pitch and angle
+    PLAY G 0 A_GiveInventory("EMP2Effect",1)
+    PLAY G 0 A_GiveInventory("EMPEffect",1)    
+    Goto Pain
   Death:
   	LAST C 0 A_GiveToTarget("KillIndicator",1)
   	LAST C 0 A_GiveToTarget("HitIndicator",1)

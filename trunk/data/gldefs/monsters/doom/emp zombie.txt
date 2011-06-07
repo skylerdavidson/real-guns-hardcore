@@ -1,0 +1,52 @@
+
+// EMP
+pointlight EMPBALL
+{
+    color 0.0 0.0 1.0
+    size 80
+}
+
+flickerlight EMPBALL_X1
+{
+    color 0.2 0.2 1.0
+    size 80
+    secondarySize 88
+}
+
+flickerlight EMPBALL_X2
+{
+    color 0.3 0.3 1.0
+    size 104
+    secondarySize 112
+}
+
+flickerlight EMPBALL_X3
+{
+    color 0.5 0.5 1.0
+    size 120
+    secondarySize 128
+}
+
+flickerlight EMPBALL_X4
+{
+    color 0.2 0.2 0.7
+    size 56
+    secondarySize 64
+}
+
+flickerlight EMPBALL_X5
+{
+    color 0.1 0.1 0.2
+    size 48
+    secondarySize 56
+}
+
+object ZombieEMPBlast
+{
+    frame EMP1A { light EMPBALL }
+    frame EMP1B { light EMPBALL }
+    frame EMP1C { light EMPBALL_X3 }
+    frame EMP1D { light EMPBALL_X1 }
+    frame EMP1E { light EMPBALL_X4 }
+    frame EMP1F { light EMPBALL_X5 }
+}
