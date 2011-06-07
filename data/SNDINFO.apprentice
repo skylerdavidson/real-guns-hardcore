@@ -1,0 +1,9 @@
+aod/ghost	AODSCRM
+wizard/sight			wiz2sit
+wizard/attack			wiz2atk
+wizard/death			wiz2dth
+wizard/pain			wizp2ai
+wizard/active1			wiza2ct
+$random wizard/active 		{ wizard/sight wizard/active1 }
+fireblast/explode	DSFREXP
+superfireblast/explode	DSHELLEX

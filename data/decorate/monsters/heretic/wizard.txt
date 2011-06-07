@@ -1,4 +1,4 @@
-ACTOR Wizard2 : Wizard replaces Wizard
+ACTOR Wizard2 : Wizard
 {
   Game Heretic
   SpawnID 19
@@ -13,6 +13,7 @@ ACTOR Wizard2 : Wizard replaces Wizard
   +NOGRAVITY
   +DONTOVERLAP
   +MISSILEMORE
+  +DONTHURTSPECIES
   SeeSound "wizard/sight"
   AttackSound "wizard/attack"
   PainSound "wizard/pain"
@@ -20,6 +21,7 @@ ACTOR Wizard2 : Wizard replaces Wizard
   ActiveSound "wizard/active"
   Obituary "$OB_WIZARD" // "%o was cursed by a wizard."
   HitObituary "$OB_WIZARDHIT" // "%o was palpated by a wizard."
+  Species "Wizard"
 
   DropItem "ArtiTomeOfPower", 16, 0
 

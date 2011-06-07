@@ -1,4 +1,4 @@
-ACTOR HereticImp2: HereticImp replaces HereticImp
+ACTOR HereticImp2: HereticImp
 {
   Game Heretic
   SpawnID 5

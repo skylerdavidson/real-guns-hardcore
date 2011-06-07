@@ -1364,5 +1364,10 @@ object ArcadeXP10
 #include "gldefs/monsters/doom/plasma elemental.txt"
 #include "gldefs/monsters/doom/thamuz.txt"
 #include "gldefs/monsters/doom/zombie commando.txt"
+#include "gldefs/monsters/doom/emp zombie.txt"
 
-#include gldefs/artifacts/doom/ammosphere.txt
+#include "gldefs/monsters/heretic/acolyte.txt"
+#include "gldefs/monsters/heretic/death knight.txt"
+#include "gldefs/monsters/heretic/apprentice.txt"
+
+#include "gldefs/artifacts/doom/ammosphere.txt"
