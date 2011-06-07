@@ -54,6 +54,7 @@ actor RGUWeapon : Weapon
   decal BulletChip
   +NOAUTOFIRE
   +NOALERT
+  +INVENTORY.UNDROPPABLE
   scale 0.15
 }
 
