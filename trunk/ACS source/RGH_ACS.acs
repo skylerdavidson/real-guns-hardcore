@@ -6320,48 +6320,124 @@ script 657 (void)
 	GiveInventory("GoToMenu", 1);	
 }
 
+function int sqrt(int number)
+{
+	if(number <= 3)
+	{
+		if(number > 0)
+		{
+			return 1;
+		}
+		return 0;
+	}
+
+	int oldAns = number >> 1,                     // initial guess
+	    newAns = (oldAns + number / oldAns) >> 1; // first iteration
+
+	// main iterative method
+	while(newAns < oldAns)
+	{
+		oldAns = newAns;
+		newAns = (oldAns + number / oldAns) >> 1;
+	}
+
+	return oldAns;
+}
+
+function int distanceFromPoint (int originX, int originY, int originZ, int tid2)
+{
+	int x, y, z, d;
+	x = (originX - GetActorX(tid2)) >> 16; // Convert fixed point to integer
+	y = (originY - GetActorY(tid2)) >> 16;
+	z = (originZ - GetActorZ(tid2)) >> 16;
+	d = sqrt( x*x + y*y + z*z );
+	return d;
+}
+
+function int abs (int x)
+{
+    if (x < 0)
+        return -x;
+
+    return x;
+}
+
 // Got hit by EMP
 script 658 (void)
 {
-	// ears ringing
-	LocalAmbientSound("emp/flash",255);
+	int originX = GetActorX(0);
+	int originY = GetActorY(0);
+	int originZ = GetActorZ(0);
+
+	//log(i:originX);
+	//log(i:originY);
+	//log(i:originZ);
 	
-	// bright white flash
-	SetFont("FLSHSCRN");
-	drawStretchedImage(600+PlayerNumber(), 32, 32, 0.5, 2.0);
-	
-	LocalAmbientSound("emp/noise",255);
-	
-	// kick the view
-	SetActorAngle(0,GetActorAngle(0)-random(10000, -10000));
-	SetActorPitch(0,GetActorPitch(0)-random(10000, -10000));
-	
-	// remove powerups (powerup pickup actors make sure no new ones can be acquired)
-	delay(2);
-	TakeInventory("PowerIronFeet", 10);
-	TakeInventory("PowerIronFeet_ScavengerPro", 10);
-	TakeInventory("PowerLightAmp", 1);
-	TakeInventory("PowerLightAmp_ScavengerPro", 10);
-	TakeInventory("PowerInvisibility", 10);
-	TakeInventory("PowerInvisibility_ScavengerPro", 10);
-	TakeInventory("PowerInvisibility", 10);
-	TakeInventory("PowerInvisibility_ScavengerPro", 10);
-	TakeInventory("PowerInvulnerable", 10);
-	TakeInventory("PowerInvulnerable_ScavengerPro", 10);
-	TakeInventory("PowerPerk2_ColdBloodedProEffectPower", 10);
-	
-	// if the player is looking through thermal scope, reenable the thermal vision after EMP expires
-	delay(7*36);	
-	if(
-		CheckInventory("PowerEMP") == 0 &
-		(
-			CheckWeapon("Intervention Thermal") == 1 ||
-			CheckWeapon("WA2000 Thermal") == 1 ||
-			CheckWeapon("Barett 50cal Thermal") == 1 ||
-			CheckWeapon("M14 EBR Thermal") == 1
-		) && CheckInventory("Aiming")	
-	){
-		GiveInventory("SniperInfrared", 1);
+	for(int i = 500; i < 532; i++){
+		if(SetActivator(i) == 0){
+			continue;
+		}
+		
+		//log(i:distanceFromPoint(originX, originY, originZ, 0));
+		//log(i:distanceFromPoint(originX, originY, originZ, 0));
+		
+		if(
+			abs(originX - GetActorX(0)) > 200 << 16 ||
+			abs(originY - GetActorY(0)) > 200 << 16 ||
+			abs(originZ - GetActorZ(0)) > 200 << 16
+		)
+		{
+			continue;
+		}
+		
+		if(distanceFromPoint(originX, originY, originZ, 0) > 200){
+			continue;
+		}
+		
+		// noise effect
+		GiveInventory("EMPEffect", 1);
+		GiveInventory("EMP2Effect", 1);		
+		
+		// ears ringing
+		LocalAmbientSound("emp/flash",255);
+		
+		// bright white flash
+		SetFont("FLSHSCRN");
+		drawStretchedImage(600+PlayerNumber(), 32, 32, 0.5, 2.0);
+		
+		LocalAmbientSound("emp/noise",255);
+		
+		// kick the view
+		SetActorAngle(0,GetActorAngle(0)-random(10000, -10000));
+		SetActorPitch(0,GetActorPitch(0)-random(10000, -10000));
+		
+		// remove powerups (powerup pickup actors make sure no new ones can be acquired)
+		delay(2);
+		TakeInventory("PowerIronFeet", 10);
+		TakeInventory("PowerIronFeet_ScavengerPro", 10);
+		TakeInventory("PowerLightAmp", 1);
+		TakeInventory("PowerLightAmp_ScavengerPro", 10);
+		TakeInventory("PowerInvisibility", 10);
+		TakeInventory("PowerInvisibility_ScavengerPro", 10);
+		TakeInventory("PowerInvisibility", 10);
+		TakeInventory("PowerInvisibility_ScavengerPro", 10);
+		TakeInventory("PowerInvulnerable", 10);
+		TakeInventory("PowerInvulnerable_ScavengerPro", 10);
+		TakeInventory("PowerPerk2_ColdBloodedProEffectPower", 10);
+		
+		// if the player is looking through thermal scope, reenable the thermal vision after EMP expires
+		delay(7*36);	
+		if(
+			CheckInventory("PowerEMP") == 0 &
+			(
+				CheckWeapon("Intervention Thermal") == 1 ||
+				CheckWeapon("WA2000 Thermal") == 1 ||
+				CheckWeapon("Barett 50cal Thermal") == 1 ||
+				CheckWeapon("M14 EBR Thermal") == 1
+			) && CheckInventory("Aiming")	
+		){
+			GiveInventory("SniperInfrared", 1);
+		}	
 	}	
 }
 

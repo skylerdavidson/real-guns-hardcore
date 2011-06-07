@@ -87,7 +87,7 @@ actor ZombieEMPBlast
   Radius 13
   Height 8
   Speed 32
-  Damage 1
+  Damage 0
   Projectile
   +RANDOMIZE
   RenderStyle Add
@@ -103,8 +103,12 @@ actor ZombieEMPBlast
     EMP1 AB 4 bright
     loop
   Death:
-    EMP1 AB 8 bright Radius_Quake(3,30,0,128,0)
-    EMP1 C 8 bright 
+    EMP1 A 8 bright Radius_Quake(3,30,0,128,0)
+    EMP1 A 0 bright A_Explode(10, 200, false, true)
+    EMP1 A 0 bright ACS_ExecuteAlways(658,0,0,0,0)
+	EMP1 B 8 bright 
+    EMP1 B 0 bright
+    EMP1 C 8 bright  
     EMP1 DEF 8 bright
     stop
   }
