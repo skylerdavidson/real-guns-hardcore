@@ -130,14 +130,19 @@
 
 #include decorate/monsters/doom/_invasion.txt
 
+#include decorate/monsters/heretic/_spawn.txt
 #include "decorate/monsters/heretic/imp.txt"
 #include "decorate/monsters/heretic/imp leader.txt"
+#include "decorate/monsters/heretic/dark imp.txt"
 #include "decorate/monsters/heretic/mummy.txt"
 #include "decorate/monsters/heretic/mummy leader.txt"
 #include "decorate/monsters/heretic/knight.txt"
 #include "decorate/monsters/heretic/knight ghost.txt"
+#include "decorate/monsters/heretic/death knight.txt"
 #include "decorate/monsters/heretic/beast.txt"
 #include "decorate/monsters/heretic/wizard.txt"
+#include "decorate/monsters/heretic/acolyte.txt"
+#include "decorate/monsters/heretic/apprentice.txt"
 #include "decorate/monsters/heretic/clink.txt"
 #include "decorate/monsters/heretic/ironlich.txt"
 #include "decorate/monsters/heretic/snake.txt"

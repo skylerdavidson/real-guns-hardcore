@@ -1,4 +1,4 @@
-ACTOR KnightGhost2 : KnightGhost replaces KnightGhost
+ACTOR KnightGhost2 : KnightGhost
 {
   Game Heretic
   SpawnID 129

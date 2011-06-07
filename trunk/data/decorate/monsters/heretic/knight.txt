@@ -1,4 +1,4 @@
-ACTOR Knight2 : Knight replaces Knight
+ACTOR Knight2 : Knight
 {
   Game Heretic
   SpawnID 6

@@ -1,0 +1,110 @@
+ACTOR HereticDarkImp : HereticImp 
+{
+  Game Heretic
+  Health 100
+  Radius 16
+  Height 36
+  Mass 50
+  Speed 16
+  Painchance 50
+  scale 1.2
+  Monster
+  +FLOAT
+  +NOGRAVITY
+  +SPAWNFLOAT
+  +DONTOVERLAP
+  +MISSILEMORE
+  SeeSound "himp/sight"
+  AttackSound "himp/attack"
+  PainSound "himp/pain"
+  DeathSound "himp/death"
+  ActiveSound "himp/active"
+  Obituary "%o was burnt by a dark gargoyle."
+  HitObituary "%o was slashed by a dark gargoyle."
+  
+  States
+  {
+  Spawn:
+  	WATC A 0
+  	WATC A 0 Thing_SetSpecial(0,226,613,0,random(15,30))
+	WATC A 0 A_GiveInventory("XPAmount", random(15, 30))
+	WATC P 0 ACS_ExecuteAlways(651,0,0,0,0)
+    WATC ABCB 10 A_Look
+    goto Spawn+4
+  See:
+    WATC AABBCCBB 3 A_Chase
+    Loop
+  Melee:
+    WATC DE 4 BRIGHT A_FaceTarget
+    WATC F 4 BRIGHT A_CustomMeleeAttack(random[ImpMeAttack](7,14), "himp/attack")
+    WATC "[\]" 4 BRIGHT A_FaceTarget
+    WATC ] 0 BRIGHT A_CustomMeleeAttack(random[ImpMeAttack](7,14), "himp/attack")     
+    Goto See
+  Missile:
+    WATC DE 4 BRIGHT A_FaceTarget
+    WATC F 4
+    WATC F 0 A_PlaySound ("himp/leaderattack")
+	WATC F 0 BRIGHT A_CustomMissile("HereticDarkImpBall",25,15,-10,CMF_AIMOFFSET,0)
+	WATC F 0 BRIGHT A_CustomMissile("HereticDarkImpBall",25,15,-6,CMF_AIMOFFSET,0)
+	WATC F 0 BRIGHT A_CustomMissile("HereticDarkImpBall",25,15,-2,CMF_AIMOFFSET,0)
+	WATC F 0 BRIGHT A_CustomMissile("HereticDarkImpBall",25,15,2,CMF_AIMOFFSET,0)
+	WATC F 0 BRIGHT A_CustomMissile("HereticDarkImpBall",25,15,6,CMF_AIMOFFSET,0)
+	WATC F 0 BRIGHT A_CustomMissile("HereticDarkImpBall",25,15,10,CMF_AIMOFFSET,0)	
+    WATC "[\]" 4 BRIGHT A_FaceTarget
+	WATC F 0 A_PlaySound ("himp/leaderattack")
+	WATC ] 0 BRIGHT A_CustomMissile("HereticDarkImpBall",25,-15,-10,CMF_AIMOFFSET,0)
+	WATC ] 0 BRIGHT A_CustomMissile("HereticDarkImpBall",25,-15,-6,CMF_AIMOFFSET,0)
+	WATC ] 0 BRIGHT A_CustomMissile("HereticDarkImpBall",25,-15,-2,CMF_AIMOFFSET,0)
+	WATC ] 0 BRIGHT A_CustomMissile("HereticDarkImpBall",25,-15,2,CMF_AIMOFFSET,0)
+	WATC ] 0 BRIGHT A_CustomMissile("HereticDarkImpBall",25,-15,6,CMF_AIMOFFSET,0)
+	WATC ] 0 BRIGHT A_CustomMissile("HereticDarkImpBall",25,-15,10,CMF_AIMOFFSET,0)
+    WATC DE 4 BRIGHT A_FaceTarget
+    WATC F 4
+    WATC F 0 A_PlaySound ("himp/leaderattack")
+   	WATC F 0 BRIGHT A_CustomMissile("HereticDarkImpBall",25,15,-10,CMF_AIMOFFSET,0)
+	WATC F 0 BRIGHT A_CustomMissile("HereticDarkImpBall",25,15,-6,CMF_AIMOFFSET,0)
+	WATC F 0 BRIGHT A_CustomMissile("HereticDarkImpBall",25,15,-2,CMF_AIMOFFSET,0)
+	WATC F 0 BRIGHT A_CustomMissile("HereticDarkImpBall",25,15,2,CMF_AIMOFFSET,0)
+	WATC F 0 BRIGHT A_CustomMissile("HereticDarkImpBall",25,15,6,CMF_AIMOFFSET,0)
+	WATC F 0 BRIGHT A_CustomMissile("HereticDarkImpBall",25,15,10,CMF_AIMOFFSET,0)
+    Goto See
+  Pain:
+    WATC G 3
+    WATC G 3 A_Pain
+    Goto See
+  Death:
+    WATC G 4 A_ImpDeath
+    WATC H 5
+    Wait
+  XDeath:
+    WATC S 5 A_ImpXDeath1
+    WATC TU 5
+    WATC V 5 A_Gravity
+    WATC W 5 
+    Wait
+  Crash:
+    WATC I 7 A_ImpExplode
+    WATC J 7 A_Scream
+    WATC K 7
+    WATC L -1
+    Stop
+  XCrash:
+    WATC X 7
+    WATC Y 7
+    WATC Z -1
+    Stop
+  }
+}
+
+Actor HereticDarkImpBall : HereticImpBall
+{
+   States
+   {
+   	Spawn:
+		HIB1 ABC 6 Bright
+		Loop
+	Death:
+		HIB1 DEFG 5 Bright
+		Stop
+   }
+}
