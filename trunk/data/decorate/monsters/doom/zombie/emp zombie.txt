@@ -94,8 +94,8 @@ actor ZombieEMPBlast
   DamageType EMP
   Alpha 0.75
   //scale 0.6
-  SeeSound "weapons/iceshot"
-  DeathSound "weapons/icehit"
+  SeeSound "emp/fire"
+  DeathSound "emp/hit"
   Decal EMPLightning
   States
   {
