@@ -353,6 +353,7 @@ actor "Barrett 50cal Thermal" : "Barrett 50cal"
     INTF G 0 A_JumpIfInventory("Reloading",1,"Reload")    
     INTF G 0 A_JumpIfInventory("ThrowingGrenade",1,"FragGrenade")
     INTF G 0 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
+    INTF G 0 A_JumpIfInventory("PowerEMP", 1, 2)
     INTF G 0 A_GiveInventory("SniperInfrared",1)
     INTF G 1 A_WeaponReady
     goto Ready+22

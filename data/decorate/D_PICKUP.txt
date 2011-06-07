@@ -197,7 +197,6 @@ actor RadSuit_Pickup : CustomInventory replaces RadSuit
   Inventory.PickupMessage "$GOTSUIT" 
   +COUNTITEM
   +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
   +INVENTORY.BIGPOWERUP
   Inventory.MaxAmount 0 
 
@@ -207,12 +206,16 @@ actor RadSuit_Pickup : CustomInventory replaces RadSuit
     SUIT A -1 Bright
     stop
   Pickup:
+	SUIT A 0 Bright A_JumpIfInventory("PowerEMP", 1, "FailState")
 	SUIT A 0 Bright A_JumpIfInventory("Perk1_Scavenger_PRO", 1, "ScavengerPro")
 	SUIT A 0 Bright A_GiveInventory("RadSuit", 1)
 	stop
   ScavengerPro:
 	SUIT A 0 Bright A_GiveInventory("RadSuit_ScavengerPro", 1)
 	stop
+  FailState:
+    SUIT A 0 
+	fail
   }
 }
 
@@ -231,7 +234,6 @@ actor Infrared_Pickup : CustomInventory// replaces Infrared
   Inventory.PickupMessage "$GOTVISOR" 
   +COUNTITEM
   +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
   +INVENTORY.BIGPOWERUP
   Inventory.MaxAmount 0 
 
@@ -242,12 +244,16 @@ actor Infrared_Pickup : CustomInventory// replaces Infrared
 	PVIS B 6
     Loop
   Pickup:
+  	PVIS A 0 Bright A_JumpIfInventory("PowerEMP", 1, "FailState")
 	PVIS A 0 Bright A_JumpIfInventory("Perk1_Scavenger_PRO", 1, "ScavengerPro")
 	PVIS A 0 Bright A_GiveInventory("Infrared", 1)
 	stop
   ScavengerPro:
 	PVIS A 0 Bright A_GiveInventory("Infrared_ScavengerPro", 1)
 	stop
+  FailState:
+    SUIT A 0 
+	fail
   }
 }
 
@@ -266,7 +272,6 @@ actor BlurSphere_Pickup : CustomInventory replaces BlurSphere
   Inventory.PickupMessage "$GOTINVIS" 
   +COUNTITEM
   +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
   +INVENTORY.BIGPOWERUP
   Inventory.MaxAmount 0 
   Inventory.PickupAnnouncerEntry "partialinvisibility"
@@ -276,12 +281,16 @@ actor BlurSphere_Pickup : CustomInventory replaces BlurSphere
     PINS ABCD 6 Bright
     Loop
   Pickup:
+  	PINS A 0 Bright A_JumpIfInventory("PowerEMP", 1, "FailState")
 	PINS A 0 Bright A_JumpIfInventory("Perk1_Scavenger_PRO", 1, "ScavengerPro")
 	PINS A 0 Bright A_GiveInventory("BlurSphere", 1)
 	stop
   ScavengerPro:
 	PINS A 0 Bright A_GiveInventory("BlurSphere_ScavengerPro", 1)
 	stop
+  FailState:
+    SUIT A 0 
+	fail
   }
 }
 
@@ -306,7 +315,6 @@ actor InvulSphere_Pickup : CustomInventory replaces InvulnerabilitySphere
   Inventory.PickupMessage "$GOTINVUL" 
   +COUNTITEM
   +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
   +INVENTORY.BIGPOWERUP
   Inventory.PickupAnnouncerEntry "invulnerability"
   Inventory.MaxAmount 0 
@@ -317,12 +325,16 @@ actor InvulSphere_Pickup : CustomInventory replaces InvulnerabilitySphere
     PINV ABCD 6 Bright
     Loop
   Pickup:
+  	PINV A 0 Bright A_JumpIfInventory("PowerEMP", 1, "FailState")
 	PINV A 0 Bright A_JumpIfInventory("Perk1_Scavenger_PRO", 1, "ScavengerPro")
 	PINV A 0 Bright A_GiveInventory("InvulSphere", 1)
 	stop
   ScavengerPro:
 	PINV A 0 Bright A_GiveInventory("InvulSphere_ScavengerPro", 1)
 	stop
+  FailState:
+    SUIT A 0 
+	fail
   }
 }
 

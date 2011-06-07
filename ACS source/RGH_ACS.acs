@@ -1114,7 +1114,7 @@ script 606 (void)
 					ACS_ExecuteAlways(625,0,0,0,0);	
 				}
 			
-				if(CheckInventory("InCombatRegeneration") > 0 || (CheckInventory("InLastStand") > 0 && CheckInventory("Perk3_LastStand_Pro") == 0))
+				if(CheckInventory("InCombatRegeneration") > 0 || CheckInventory("PowerEMP") > 0 || (CheckInventory("InLastStand") > 0 && CheckInventory("Perk3_LastStand_Pro") == 0))
 				{			
 					ACS_ExecuteAlways(647,0,0,0,0);
 
@@ -1152,6 +1152,8 @@ script 606 (void)
 //Hit Indicator
 script 607 (int Jugg)
 {
+	if(CheckInventory("PowerEMP") > 0) terminate;
+	
 	SetFont("HITINDIC");
 	if(Jugg == 1)
 		SetFont("HITINDI2");
@@ -5719,7 +5721,7 @@ script 640 (void)
 
 		while(true){	
 			if(CheckInventory("Perk2_ColdBlooded_PRO") == 1){
-				if(CheckInventory("InCombat") == 0){
+				if(CheckInventory("InCombat") == 0 && CheckInventory("PowerEMP") == 0){
 					GiveInventory("Perk2_ColdBloodedProEffect", 1);
 				}
 				else {				
@@ -6107,7 +6109,8 @@ script 650 (void) CLIENTSIDE {
 			CheckInventory("ThrowingGrenade") == 0 &&
 			CheckInventory("KnifeAttack") == 0 &&
 			CheckInventory("Reloading") == 0 &&
-			GetActorProperty(0,APROP_Health) > 0			
+			GetActorProperty(0,APROP_Health) > 0 &&
+			CheckInventory("PowerEMP") == 0			
 		){
 			// The drawing will be done at native resolution (so the crosshair sprites are never destroyed by scaling).
 			SetHudSize(GetScreenWidth(),GetScreenHeight(),1);
@@ -6187,7 +6190,9 @@ script 650 (void) CLIENTSIDE {
 }
 
 // kill indicator
-function void drawKillIndicator(void) {	
+function void drawKillIndicator(void) {
+	if(CheckInventory("PowerEMP") > 0) return;
+	
 	SetFont("KILINDIC");
 	SetHudSize(800,600,1);
 	HudMessage(s:"a"; HUDMSG_FADEOUT, CR_UNTRANSLATED, 0, 400.0, 300.0, 0.25, 0.01);
@@ -6318,10 +6323,41 @@ script 657 (void)
 // Got hit by EMP
 script 658 (void)
 {
+	// bright white flash
 	SetFont("FLSHSCRN");
 	drawStretchedImage(600+PlayerNumber(), 32, 32, 0.5, 2.0);
+	
+	// kick the view
 	SetActorAngle(0,GetActorAngle(0)-random(10000, -10000));
-	SetActorPitch(0,GetActorPitch(0)-random(10000, -10000));	
+	SetActorPitch(0,GetActorPitch(0)-random(10000, -10000));
+	
+	// remove powerups (powerup pickup actors make sure no new ones can be acquired)
+	delay(2);
+	TakeInventory("PowerIronFeet", 10);
+	TakeInventory("PowerIronFeet_ScavengerPro", 10);
+	TakeInventory("PowerLightAmp", 1);
+	TakeInventory("PowerLightAmp_ScavengerPro", 10);
+	TakeInventory("PowerInvisibility", 10);
+	TakeInventory("PowerInvisibility_ScavengerPro", 10);
+	TakeInventory("PowerInvisibility", 10);
+	TakeInventory("PowerInvisibility_ScavengerPro", 10);
+	TakeInventory("PowerInvulnerable", 10);
+	TakeInventory("PowerInvulnerable_ScavengerPro", 10);
+	TakeInventory("PowerPerk2_ColdBloodedProEffectPower", 10);
+	
+	// if the player is looking through thermal scope, reenable the thermal vision after EMP expires
+	delay(7*36);	
+	if(
+		CheckInventory("PowerEMP") == 0 &
+		(
+			CheckWeapon("Intervention Thermal") == 1 ||
+			CheckWeapon("WA2000 Thermal") == 1 ||
+			CheckWeapon("Barett 50cal Thermal") == 1 ||
+			CheckWeapon("M14 EBR Thermal") == 1
+		) && CheckInventory("Aiming")	
+	){
+		GiveInventory("SniperInfrared", 1);
+	}	
 }
 
 /*script 659 (void)
