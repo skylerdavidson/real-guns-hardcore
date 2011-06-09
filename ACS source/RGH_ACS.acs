@@ -1342,7 +1342,7 @@ script 616 RESPAWN
 		ExperienceNeed[PlayerNumber()+1] = 1000;
 		LocalAmbientSound("game/rank",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"You have ranked up to level 1!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"You have ranked up to level 1!"; HUDMSG_TYPEON, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		HudMessageBold(n:0,s:" \cdranked up to level 1!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		RankedUp = True;
@@ -1356,7 +1356,7 @@ script 616 RESPAWN
 		ExperienceNeed[PlayerNumber()+1] = 1500;
 		LocalAmbientSound("game/rank",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"You have ranked up to level 2!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"You have ranked up to level 2!"; HUDMSG_TYPEON, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		HudMessageBold(n:0,s:" \cdranked up to level 2!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		RankedUp = True;
@@ -1370,7 +1370,7 @@ script 616 RESPAWN
 		ExperienceNeed[PlayerNumber()+1] = 2500;
 		LocalAmbientSound("game/rank",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"You have ranked up to level 3!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"You have ranked up to level 3!"; HUDMSG_TYPEON, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		HudMessageBold(n:0,s:" \cdranked up to level 3!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		RankedUp = True;
@@ -1384,7 +1384,7 @@ script 616 RESPAWN
 		ExperienceNeed[PlayerNumber()+1] = 3500;
 		LocalAmbientSound("game/rank",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"You have ranked up to level 4!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"You have ranked up to level 4!"; HUDMSG_TYPEON, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		HudMessageBold(n:0,s:" \cdranked up to level 4!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		RankedUp = True;
@@ -1398,7 +1398,7 @@ script 616 RESPAWN
 		ExperienceNeed[PlayerNumber()+1] = 5000;
 		LocalAmbientSound("game/rank",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"You have ranked up to level 5!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"You have ranked up to level 5!"; HUDMSG_TYPEON, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		HudMessageBold(n:0,s:" \cdranked up to level 5!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		RankedUp = True;
@@ -1412,7 +1412,7 @@ script 616 RESPAWN
 		ExperienceNeed[PlayerNumber()+1] = 6500;
 		LocalAmbientSound("game/rank",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"You have ranked up to level 6!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"You have ranked up to level 6!"; HUDMSG_TYPEON, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		HudMessageBold(n:0,s:" \cdranked up to level 6!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		RankedUp = True;
@@ -1426,7 +1426,7 @@ script 616 RESPAWN
 		ExperienceNeed[PlayerNumber()+1] = 8500;
 		LocalAmbientSound("game/rank",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"You have ranked up to level 7!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"You have ranked up to level 7!"; HUDMSG_TYPEON, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		HudMessageBold(n:0,s:" \cdranked up to level 7!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		RankedUp = True;
@@ -1440,7 +1440,7 @@ script 616 RESPAWN
 		ExperienceNeed[PlayerNumber()+1] = 11000;
 		LocalAmbientSound("game/rank",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"You have ranked up to level 8!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"You have ranked up to level 8!"; HUDMSG_TYPEON, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
 		HudMessageBold(n:0,s:" \cdranked up to level 8!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		RankedUp = True;
@@ -1454,7 +1454,7 @@ script 616 RESPAWN
 		ExperienceNeed[PlayerNumber()+1] = 14000;
 		LocalAmbientSound("game/rank",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"You have ranked up to level 9!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"You have ranked up to level 9!"; HUDMSG_TYPEON, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
 		HudMessageBold(n:0,s:" \cdranked up to level 9!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		RankedUp = True;
 		GiveInventory("Rank",1);
@@ -1467,7 +1467,7 @@ script 616 RESPAWN
 		ExperienceNeed[PlayerNumber()+1] = 18000;
 		LocalAmbientSound("game/rank",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"You have ranked up to level 10!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"You have ranked up to level 10!"; HUDMSG_TYPEON, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
 		HudMessageBold(n:0,s:" \cdranked up to level 10!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		RankedUp = True;
@@ -1481,7 +1481,7 @@ script 616 RESPAWN
 		ExperienceNeed[PlayerNumber()+1] = 22000;
 		LocalAmbientSound("game/rank",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"You have ranked up to level 11!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"You have ranked up to level 11!"; HUDMSG_TYPEON, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
 		HudMessageBold(n:0,s:" \cdranked up to level 11!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		RankedUp = True;
@@ -1495,7 +1495,7 @@ script 616 RESPAWN
 		ExperienceNeed[PlayerNumber()+1] = 26000;
 		LocalAmbientSound("game/rank",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"You have ranked up to level 12!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"You have ranked up to level 12!"; HUDMSG_TYPEON, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
 		HudMessageBold(n:0,s:" \cdranked up to level 12!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		RankedUp = True;
@@ -1509,7 +1509,7 @@ script 616 RESPAWN
 		ExperienceNeed[PlayerNumber()+1] = 31000;
 		LocalAmbientSound("game/rank",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"You have ranked up to level 13!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"You have ranked up to level 13!"; HUDMSG_TYPEON, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
 		HudMessageBold(n:0,s:" \cdranked up to level 13!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		RankedUp = True;
@@ -1523,7 +1523,7 @@ script 616 RESPAWN
 		ExperienceNeed[PlayerNumber()+1] = 36000;
 		LocalAmbientSound("game/rank",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"You have ranked up to level 14!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"You have ranked up to level 14!"; HUDMSG_TYPEON, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
 		HudMessageBold(n:0,s:" \cdranked up to level 14!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		RankedUp = True;
@@ -1537,7 +1537,7 @@ script 616 RESPAWN
 		ExperienceNeed[PlayerNumber()+1] = "xxx";
 		LocalAmbientSound("game/rank",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"You have ranked up to level 15!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
+		HudMessage(s:"You have ranked up to level 15!"; HUDMSG_TYPEON, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 0.1, 1.0);
 		HudMessageBold(n:0,s:" \cdranked up to level 15!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		HudMessage(s:"Awards available!"; HUDMSG_TYPEON, 440+PlayerNumber(), CR_Green, 0.5, 0.65, 2.0, 0.1, 1.0);
 		RankedUp = True;
@@ -2132,7 +2132,7 @@ script 619 (int Which)
 			SetWeapon("AA-12 Grip");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Grip attached to AA-12!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Grip attached to AA-12!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("SPAS-12") == 1)
 		{
@@ -2144,7 +2144,7 @@ script 619 (int Which)
 			SetWeapon("SPAS-12 Grip");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Grip attached to SPAS-12!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Grip attached to SPAS-12!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("MG4") == 1)
 		{
@@ -2156,7 +2156,7 @@ script 619 (int Which)
 			SetWeapon("MG4 Grip");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Grip attached to MG4!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Grip attached to MG4!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("Striker") == 1)
 		{
@@ -2168,7 +2168,7 @@ script 619 (int Which)
 			SetWeapon("Striker Grip");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Grip attached to Striker!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Grip attached to Striker!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("AUG HBAR") == 1)
 		{
@@ -2180,7 +2180,7 @@ script 619 (int Which)
 			SetWeapon("AUG HBAR Grip");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Grip attached to AUG HBAR!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Grip attached to AUG HBAR!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("M1014") == 1)
 		{
@@ -2192,7 +2192,7 @@ script 619 (int Which)
 			SetWeapon("M1014 Grip");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Grip attached to M1014!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Grip attached to M1014!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("M240") == 1)
 		{
@@ -2204,7 +2204,7 @@ script 619 (int Which)
 			SetWeapon("M240 Grip");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Grip attached to M240!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Grip attached to M240!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("L86") == 1)
 		{
@@ -2216,12 +2216,12 @@ script 619 (int Which)
 			SetWeapon("L86 Grip");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Grip attached to L86!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Grip attached to L86!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else
 		{
 			SetFont("BIGFONT");
-			HudMessage(s:"You can't attach Grip on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"You can't attach Grip on that!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 			GiveInventory("GripAttachment",1);
 			
 			GiveInventory("RewardsToPick",1);
@@ -2239,7 +2239,7 @@ script 619 (int Which)
 			SetWeapon("UMP45 Rapid Fire");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Rapid Fire attached to UMP45!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Rapid Fire attached to UMP45!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("FN P90") == 1)
 		{
@@ -2251,7 +2251,7 @@ script 619 (int Which)
 			SetWeapon("FN P90 Rapid Fire");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Rapid Fire attached to P90!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Rapid Fire attached to P90!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("MP5K") == 1)
 		{
@@ -2263,12 +2263,12 @@ script 619 (int Which)
 			SetWeapon("MP5K Rapid Fire");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Rapid Fire attached to MP5K!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Rapid Fire attached to MP5K!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else
 		{
 			SetFont("BIGFONT");
-			HudMessage(s:"You can't attach Rapid Fire on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"You can't attach Rapid Fire on that!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 			GiveInventory("RapidFireAttachment",1);
 			
 			GiveInventory("RewardsToPick",1);
@@ -2286,7 +2286,7 @@ script 619 (int Which)
 			SetWeapon("USP45 Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to USP .45!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to USP .45!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("PP2000") == 1)
 		{
@@ -2298,7 +2298,7 @@ script 619 (int Which)
 			SetWeapon("PP2000 Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to PP2000!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to PP2000!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("G18") == 1)
 		{
@@ -2310,7 +2310,7 @@ script 619 (int Which)
 			SetWeapon("G18 Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to G18!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to G18!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("SPAS-12") == 1)
 		{
@@ -2322,7 +2322,7 @@ script 619 (int Which)
 			SetWeapon("SPAS-12 Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to SPAS-12!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to SPAS-12!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("AA-12") == 1)
 		{
@@ -2334,7 +2334,7 @@ script 619 (int Which)
 			SetWeapon("AA-12 Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to AA-12!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to AA-12!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("UMP45") == 1)
 		{
@@ -2346,7 +2346,7 @@ script 619 (int Which)
 			SetWeapon("UMP45 Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to UMP45!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to UMP45!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("TDI Vector") == 1)
 		{
@@ -2358,7 +2358,7 @@ script 619 (int Which)
 			SetWeapon("TDI Vector Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to TDI Vector!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to TDI Vector!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("Mini-UZI") == 1)
 		{
@@ -2370,7 +2370,7 @@ script 619 (int Which)
 			SetWeapon("Mini-UZI Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to Mini-UZI!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to Mini-UZI!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("FN P90") == 1)
 		{
@@ -2382,7 +2382,7 @@ script 619 (int Which)
 			SetWeapon("FN P90 Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to FN P90!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to FN P90!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("M4A1") == 1)
 		{
@@ -2394,7 +2394,7 @@ script 619 (int Which)
 			SetWeapon("M4A1 Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to M4A1!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to M4A1!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("FAMAS") == 1 || CheckWeapon("FAMAS M203") == 1)
 		{
@@ -2406,7 +2406,7 @@ script 619 (int Which)
 			SetWeapon("FAMAS Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to FAMAS!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to FAMAS!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("SCAR-H") == 1)
 		{
@@ -2418,7 +2418,7 @@ script 619 (int Which)
 			SetWeapon("SCAR-H Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to SCAR-H!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to SCAR-H!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("FAL") == 1)
 		{
@@ -2430,7 +2430,7 @@ script 619 (int Which)
 			SetWeapon("FAL Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to FAL!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to FAL!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("ACR") == 1)
 		{
@@ -2442,7 +2442,7 @@ script 619 (int Which)
 			SetWeapon("ACR Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to ACR!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to ACR!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("F2000") == 1)
 		{
@@ -2454,7 +2454,7 @@ script 619 (int Which)
 			SetWeapon("F2000 Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to F2000!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to F2000!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("Intervention") == 1)
 		{
@@ -2466,7 +2466,7 @@ script 619 (int Which)
 			SetWeapon("Intervention Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to Intervention!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to Intervention!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("Barrett 50cal") == 1)
 		{
@@ -2478,7 +2478,7 @@ script 619 (int Which)
 			SetWeapon("Barrett 50cal Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to Barrett 50cal!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to Barrett 50cal!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("MG4") == 1)
 		{
@@ -2490,7 +2490,7 @@ script 619 (int Which)
 			SetWeapon("MG4 Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to MG4!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to MG4!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("MP5K") == 1)
 		{
@@ -2502,7 +2502,7 @@ script 619 (int Which)
 			SetWeapon("MP5K Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to MP5K!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to MP5K!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("M93 Raffica") == 1)
 		{
@@ -2514,7 +2514,7 @@ script 619 (int Which)
 			SetWeapon("M93 Raffica Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to M93 Raffica!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to M93 Raffica!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("M16A4") == 1)
 		{
@@ -2526,7 +2526,7 @@ script 619 (int Which)
 			SetWeapon("M16A4 Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to M16A4!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to M16A4!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("AK-47") == 1)
 		{
@@ -2538,7 +2538,7 @@ script 619 (int Which)
 			SetWeapon("AK-47 Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to AK-47!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to AK-47!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("Striker") == 1)
 		{
@@ -2550,7 +2550,7 @@ script 619 (int Which)
 			SetWeapon("Striker Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to Striker!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to Striker!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("AUG HBAR") == 1)
 		{
@@ -2562,7 +2562,7 @@ script 619 (int Which)
 			SetWeapon("AUG HBAR Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to AUG HBAR!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to AUG HBAR!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("WA2000") == 1)
 		{
@@ -2574,7 +2574,7 @@ script 619 (int Which)
 			SetWeapon("WA2000 Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to WA2000!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to WA2000!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("M9") == 1)
 		{
@@ -2586,7 +2586,7 @@ script 619 (int Which)
 			SetWeapon("M9 Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to M9!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to M9!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("M1014") == 1)
 		{
@@ -2598,7 +2598,7 @@ script 619 (int Which)
 			SetWeapon("M1014 Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to M1014!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to M1014!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("M240") == 1)
 		{
@@ -2610,7 +2610,7 @@ script 619 (int Which)
 			SetWeapon("M240 Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to M240!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to M240!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("Desert Eagle") == 1)
 		{
@@ -2624,13 +2624,13 @@ script 619 (int Which)
 				SetWeapon("Deagle Special");
 
 				SetFont("BIGFONT");
-				HudMessage(s:"Hidden Desert Eagle Special unlocked!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+				HudMessage(s:"Hidden Desert Eagle Special unlocked!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 			}
 			else
 			{
 				GiveInventory("Combo",1);
 				SetFont("BIGFONT");
-				HudMessage(s:"You can't attach Extended Mags on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+				HudMessage(s:"You can't attach Extended Mags on that!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 				GiveInventory("ExtendedMagsAttachment",1);
 			}
 		}
@@ -2644,7 +2644,7 @@ script 619 (int Which)
 			SetWeapon("L86 Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to L86!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to L86!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("M14 EBR") == 1)
 		{
@@ -2656,12 +2656,12 @@ script 619 (int Which)
 			SetWeapon("M14 EBR Ex Mags");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Extended Mags attached to M14 EBR!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Extended Mags attached to M14 EBR!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else
 		{
 			SetFont("BIGFONT");
-			HudMessage(s:"You can't attach Extended Mags on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"You can't attach Extended Mags on that!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 			GiveInventory("ExtendedMagsAttachment",1);
 			
 			GiveInventory("RewardsToPick",1);
@@ -2679,7 +2679,7 @@ script 619 (int Which)
 			SetWeapon("Intervention Thermal");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Thermal Scope attached to Intervention!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Thermal Scope attached to Intervention!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("Barrett 50cal") == 1)
 		{
@@ -2691,7 +2691,7 @@ script 619 (int Which)
 			SetWeapon("Barrett 50cal Thermal");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Thermal Scope attached to Barrett 50cal!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Thermal Scope attached to Barrett 50cal!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("WA2000") == 1)
 		{
@@ -2703,7 +2703,7 @@ script 619 (int Which)
 			SetWeapon("WA2000 Thermal");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Thermal Scope attached to WA2000!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Thermal Scope attached to WA2000!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("M14 EBR") == 1)
 		{
@@ -2715,12 +2715,12 @@ script 619 (int Which)
 			SetWeapon("M14 EBR Thermal");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Thermal Scope attached to M14 EBR!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Thermal Scope attached to M14 EBR!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else
 		{
 			SetFont("BIGFONT");
-			HudMessage(s:"You can't attach a Thermal Scope on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"You can't attach a Thermal Scope on that!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 			GiveInventory("ThermalAttachment",1);
 			
 			GiveInventory("RewardsToPick",1);
@@ -2738,7 +2738,7 @@ script 619 (int Which)
 			SetWeapon("USP .45 Akimbo");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Akimbo attached to USP .45!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Akimbo attached to USP .45!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("Desert Eagle") == 1)
 		{
@@ -2750,7 +2750,7 @@ script 619 (int Which)
 			SetWeapon("Desert Eagle Akimbo");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Akimbo attached to Desert Eagle!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Akimbo attached to Desert Eagle!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon(".44 Magnum") == 1)
 		{
@@ -2762,7 +2762,7 @@ script 619 (int Which)
 			SetWeapon(".44 Magnum Akimbo");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Akimbo attached to .44 Magnum!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Akimbo attached to .44 Magnum!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("G18") == 1)
 		{
@@ -2774,7 +2774,7 @@ script 619 (int Which)
 			SetWeapon("G18 Akimbo");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Akimbo attached to G18!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Akimbo attached to G18!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("PP2000") == 1)
 		{
@@ -2786,7 +2786,7 @@ script 619 (int Which)
 			SetWeapon("PP2000 Akimbo");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Akimbo attached to PP2000!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Akimbo attached to PP2000!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("M9") == 1)
 		{
@@ -2798,7 +2798,7 @@ script 619 (int Which)
 			SetWeapon("M9 Akimbo");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Akimbo attached to M9!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Akimbo attached to M9!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("Mini-UZI") == 1)
 		{
@@ -2810,12 +2810,12 @@ script 619 (int Which)
 			SetWeapon("Mini-UZI Akimbo");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Akimbo attached to Mini-UZI!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Akimbo attached to Mini-UZI!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else
 		{
 			SetFont("BIGFONT");
-			HudMessage(s:"You can't attach Akimbo on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"You can't attach Akimbo on that!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 			GiveInventory("AkimboAttachment",1);
 			
 			GiveInventory("RewardsToPick",1);
@@ -2833,7 +2833,7 @@ script 619 (int Which)
 			SetWeapon("USP .45 Tac Knife");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Tactical Knife attached to USP .45!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Tactical Knife attached to USP .45!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("Desert Eagle") == 1)
 		{
@@ -2845,7 +2845,7 @@ script 619 (int Which)
 			SetWeapon("Desert Eagle Tac Knife");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Tactical Knife attached to Desert Eagle!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Tactical Knife attached to Desert Eagle!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon(".44 Magnum") == 1)
 		{
@@ -2857,7 +2857,7 @@ script 619 (int Which)
 			SetWeapon(".44 Magnum Tac Knife");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Tactical Knife attached to .44 Magnum!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Tactical Knife attached to .44 Magnum!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else if(CheckWeapon("M9") == 1)
 		{
@@ -2869,12 +2869,12 @@ script 619 (int Which)
 			SetWeapon("M9 Tac Knife");
 
 			SetFont("BIGFONT");
-			HudMessage(s:"Tactical Knife attached to M9!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"Tactical Knife attached to M9!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 		}
 		else
 		{
 			SetFont("BIGFONT");
-			HudMessage(s:"You can't attach a Tactical Knife on that!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
+			HudMessage(s:"You can't attach a Tactical Knife on that!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.75, 2.0, 1.0);
 			GiveInventory("KnifeAttachment",1);
 			
 			GiveInventory("RewardsToPick",1);
@@ -3402,16 +3402,16 @@ script 624 (int Which)
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk1_SOH",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cvSLEIGHT OF HAND"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"Faster reloading!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cvSLEIGHT OF HAND"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Faster reloading!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 1) // EXTREME CONDITIONING
 	{
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk1_ExtremeConditioning",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cvEXTREME CONDITIONING"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"+15% movement speed!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cvEXTREME CONDITIONING"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"+15% movement speed!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 2) // ONE MAN ARMY
 	{
@@ -3419,8 +3419,8 @@ script 624 (int Which)
 		GiveInventory("Perk1_OneManArmy",1);
 		//GiveInventory("Backpack",5);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cvONE MAN ARMY"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"Carry extra ammo!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cvONE MAN ARMY"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Carry extra ammo!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 		ACS_ExecuteAlways(501,0,0,0,0);
 	}
 	if(Which == 3) // STOPPING POWER
@@ -3429,8 +3429,8 @@ script 624 (int Which)
 		GiveInventory("Perk2_StoppingPower",1);
 		GiveInventory("Perk2_StoppingPowerEffect",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cgSTOPPING POWER"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"+25% bullet damage!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cgSTOPPING POWER"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"+25% bullet damage!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 4) // DANGER CLOSE
 	{
@@ -3438,8 +3438,8 @@ script 624 (int Which)
 		GiveInventory("Perk2_DangerClose",1);
 		GiveInventory("Perk2_DangerCloseEffect",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cgDANGER CLOSE"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"+100% explosive damage!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cgDANGER CLOSE"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"+100% explosive damage!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 5) // JUGGERNAUT
 	{
@@ -3447,16 +3447,16 @@ script 624 (int Which)
 		GiveInventory("Perk2_Juggernaut",1);
 		GiveInventory("Perk2_JuggernautEffect",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cgJUGGERNAUT"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"40% damage resistance!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cgJUGGERNAUT"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"40% damage resistance!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 6) // STEADY AIM
 	{
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk3_SteadyAim",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdSTEADY AIM"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"+33% hip-fire accuracy!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cdSTEADY AIM"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"+33% hip-fire accuracy!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 7) // COMMANDO
 	{
@@ -3464,8 +3464,8 @@ script 624 (int Which)
 		GiveInventory("Perk3_Commando",1);
 		GiveInventory("Perk3_CommandoEffect",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdCOMMANDO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"+100% melee damage and range!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cdCOMMANDO"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"+100% melee damage and range!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 8) // LAST STAND
 	{
@@ -3473,24 +3473,24 @@ script 624 (int Which)
 		GiveInventory("Perk3_LastStand",1);
 		GiveInventory("LastStandUrn",10000);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdLAST STAND"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"Pull out your handgun before dying!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cdLAST STAND"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Pull out your handgun before dying!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 9) // SLEIGHT OF HAND PRO
 	{
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk1_SOH_Pro",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cvSLEIGHT OF HAND PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"Faster grenade throwing and knife recovery!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cvSLEIGHT OF HAND PRO"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Faster grenade throwing and knife recovery!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 10) // EXTREME CONDITIONING PRO
 	{
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk1_ExtremeConditioning_Pro",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cvEXTREME CONDITIONING PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"Regenerate 100% faster and 40% sooner!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cvEXTREME CONDITIONING PRO"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Regenerate 100% faster and 40% sooner!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 		ACS_ExecuteAlways(501,0,0,0,0);
 	}
 	if(Which == 11) // ONE MAN ARMY PRO
@@ -3498,8 +3498,8 @@ script 624 (int Which)
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk1_OneManArmy_Pro",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cvONE MAN ARMY PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"Carry extra weapon!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cvONE MAN ARMY PRO"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Carry extra weapon!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 		ACS_ExecuteAlways(501,0,0,0,0);
 	}
 	if(Which == 12) // STOPPING POWER PRO
@@ -3507,64 +3507,64 @@ script 624 (int Which)
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk2_StoppingPower_Pro",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cgSTOPPING POWER PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"Sniper bullets penetrate enemies!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cgSTOPPING POWER PRO"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Sniper bullets penetrate enemies!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 13) // DANGER CLOSE PRO
 	{
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk2_DangerClose_Pro",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cgDANGER CLOSE PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"+40% explosive blast radius!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cgDANGER CLOSE PRO"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"+40% explosive blast radius!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 14) // JUGGERNAUT PRO
 	{
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk2_Juggernaut_Pro",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cgJUGGERNAUT PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"+100% health and armor from pickups!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cgJUGGERNAUT PRO"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"+100% health and armor from pickups!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 15) // STEADY AIM PRO
 	{
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk3_SteadyAim_Pro",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdSTEADY AIM PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"No sniper accuracy penalty while moving!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cdSTEADY AIM PRO"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"No sniper accuracy penalty while moving!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 17) // COMMANDO PRO
 	{
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk3_Commando_Pro",1);		
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdCOMMANDO PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"Attacking doesn't block regeneration!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cdCOMMANDO PRO"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Attacking doesn't block regeneration!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 16) // LAST STAND PRO
 	{
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk3_LastStand_Pro",1);		
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdLAST STAND PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"Get 30 health in last stand!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cdLAST STAND PRO"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Get 30 health in last stand!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 18) // COLD BLOODED PRO
 	{
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk2_ColdBlooded_Pro",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cgCOLD BLOODED PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"Partial invisibility while out of combat!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cgCOLD BLOODED PRO"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Partial invisibility while out of combat!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 20) // SCAVENGER PRO
 	{
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk1_Scavenger_Pro",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cgSCAVENGER PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"+100% powerup duration!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cgSCAVENGER PRO"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"+100% powerup duration!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	
 	if(Which == 21) // SCAVENGER
@@ -3572,16 +3572,16 @@ script 624 (int Which)
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk1_Scavenger",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cgSCAVENGER"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"Carry extra gun!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cgSCAVENGER"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Carry extra gun!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 22) // COLD BLOODED
 	{
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk2_ColdBlooded",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cgCOLD BLOODED PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"Invisibility to seeker missiles!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cgCOLD BLOODED PRO"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Invisibility to seeker missiles!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 23) // SITREP
 	{
@@ -3590,16 +3590,16 @@ script 624 (int Which)
 		GiveInventory("Perk3_SitRepItem",1);
 		GiveInventory("Perk3_SitRepEffect",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdSIT-REP"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"Full automap with monsters' positions!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cdSIT-REP"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"Full automap with monsters' positions!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 24) // SITREP PRO
 	{
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk3_SitRep_PRO",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdSIT-REP PRO"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
-		HudMessage(s:"See enemies through walls!"; HUDMSG_TYPEON, 340+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
+		HudMessage(s:"\cdSIT-REP PRO"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"See enemies through walls!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	
 }
@@ -3615,7 +3615,7 @@ script 625 (void)
 	LocalAmbientSound("game/laststand",254);
 	LocalAmbientSound("game/laststand",254);
 	SetFont("BIGFONT");
-	HudMessage(s:"\cdLAST STAND"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.3, 2.0, 1.0);
+	HudMessage(s:"\cdLAST STAND"; HUDMSG_FADEOUT, 150+PlayerNumber(), CR_Green, 0.5, 0.3, 2.0, 1.0);
 	TakeInventory("Aiming", 1);
 	ACS_ExecuteAlways(630,0,0,0,0);
 	delay(1);
@@ -3634,7 +3634,7 @@ script 625 (void)
 		TakeInventory("Aiming", 1);
 		ACS_ExecuteAlways(631,0,0,0,0);  // unmorph from last stand
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdYou survived!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.3, 2.0, 1.0);
+		HudMessage(s:"\cdYou survived!"; HUDMSG_FADEOUT, 150+PlayerNumber(), CR_Green, 0.5, 0.3, 2.0, 1.0);
 		LocalAmbientSound("game/challenge",255);
 		Delay(1);
 		SetActorProperty(0,APROP_Health,100);
@@ -3648,37 +3648,37 @@ script 626 (void) NET
 	if(CheckInventory("Voice") == 0)
 	{
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdVoice changed to Russian [Spetsnaz]"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"\cdVoice changed to Russian [Spetsnaz]"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
 		GiveInventory("Voice",1);
 	}
 	else if(CheckInventory("Voice") == 1)
 	{
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdVoice changed to Brazilian [Militia]"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"\cdVoice changed to Brazilian [Militia]"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
 		GiveInventory("Voice",1);
 	}
 	else if(CheckInventory("Voice") == 2)
 	{
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdVoice changed to Arabic [OpFor]"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"\cdVoice changed to Arabic [OpFor]"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
 		GiveInventory("Voice",1);
 	}
 	else if(CheckInventory("Voice") == 3)
 	{
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdVoice changed to American [Navy Seals]"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"\cdVoice changed to American [Navy Seals]"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
 		GiveInventory("Voice",1);
 	}
 	else if(CheckInventory("Voice") == 4)
 	{
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdVoice changed to British English [TF141]"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"\cdVoice changed to British English [TF141]"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
 		GiveInventory("Voice",1);
 	}
 	else if(CheckInventory("Voice") == 5)
 	{
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdVoice changed to American [US Rangers]"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"\cdVoice changed to American [US Rangers]"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
 		TakeInventory("Voice",10);
 	}
 	
@@ -4053,7 +4053,7 @@ script 632 (void)
 	int Survival = random(1,6);
 
 	SetFont("BIGFONT");
-	HudMessage(s:"\cdYou're being revived!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.3, 2.0, 1.0);
+	HudMessage(s:"\cdYou're being revived!"; HUDMSG_FADEOUT, 150+PlayerNumber(), CR_Green, 0.5, 0.3, 2.0, 1.0);
 	delay(35*3);
 	if(GetActorProperty(0,APROP_Health) < 26 && Survival == 6 && GetActorProperty(0,APROP_Health) > 0) //Bleed out, it's a 1 in 6 chance that you won't survive a revival
 		Thing_Damage(0,75,20); 
@@ -4061,7 +4061,7 @@ script 632 (void)
 	{
 		ACS_ExecuteAlways(631,0,0,0,0);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdYou've been revived!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.3, 2.0, 1.0);
+		HudMessage(s:"\cdYou've been revived!"; HUDMSG_FADEOUT, 150+PlayerNumber(), CR_Green, 0.5, 0.3, 2.0, 1.0);
 		LocalAmbientSound("game/challenge",255);
 		Delay(1);
 		SetActorProperty(0,APROP_Health,100);
@@ -5186,7 +5186,7 @@ script 638 (int Which)
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);                                   
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdYou are Assault!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
+		HudMessage(s:"\cdYou are Assault!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
@@ -5217,7 +5217,7 @@ script 638 (int Which)
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdYou are Juggernaut!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
+		HudMessage(s:"\cdYou are Juggernaut!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
@@ -5250,7 +5250,7 @@ script 638 (int Which)
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdYou are Sniper!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
+		HudMessage(s:"\cdYou are Sniper!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
@@ -5289,7 +5289,7 @@ script 638 (int Which)
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdYou are Recon!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
+		HudMessage(s:"\cdYou are Recon!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
@@ -5331,7 +5331,7 @@ script 638 (int Which)
     	ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdYou are Demolitions!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
+		HudMessage(s:"\cdYou are Demolitions!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
@@ -5369,7 +5369,7 @@ script 638 (int Which)
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdYou are Grenadier!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
+		HudMessage(s:"\cdYou are Grenadier!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
@@ -5400,7 +5400,7 @@ script 638 (int Which)
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdYou are Ninja!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
+		HudMessage(s:"\cdYou are Ninja!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
@@ -5417,7 +5417,7 @@ script 638 (int Which)
 		ACS_ExecuteAlways(634,0,0,0,0);
 		LocalAmbientSound("game/challenge",255);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cdYou are Daredevil!"; HUDMSG_FADEOUT, 140+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
+		HudMessage(s:"\cdYou are Daredevil!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.49, 2.0, 1.0);
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
