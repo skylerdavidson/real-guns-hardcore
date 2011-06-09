@@ -1,6 +1,6 @@
 #include decorate/weapons/W_DEFAUL.txt
 #include decorate/D_PLAYER.txt
-#include decorate/D_AMMO.txt
+#include "decorate/generic ammo.txt"
 #include decorate/weapons/W_USP45.txt
 #include decorate/weapons/W_44MAGN.txt
 #include decorate/weapons/W_FAMAS.txt
@@ -40,14 +40,14 @@
 #include decorate/weapons/W_M14EBR.txt
 
 #include "decorate/game modes.txt"
-#include decorate/D_INFO.txt  //Generic information things
-#include decorate/D_PERKS.txt //Perks
-#include decorate/D_GIVE.txt 
-#include decorate/D_PICKUP.txt
+#include decorate/info.txt  //Generic information things
+#include decorate/perks.txt //Perks
+#include decorate/menus.txt 
+#include decorate/_spawn.txt
 #include decorate/D_MONSTE.txt
-#include decorate/D_TACTIC.txt
-#include decorate/D_ATTACH.txt
-#include decorate/D_DROPSP.txt
+#include "decorate/tactical insertion.txt"
+#include "decorate/awards.txt"
+#include "decorate/drop spawn.txt"
 
 #include "decorate/props/doom/explosive barrel.txt"
 
