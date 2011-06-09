@@ -4133,9 +4133,8 @@ script 634 RESPAWN NET
 	HudMessage(s:""; HUDMSG_PLAIN, 850+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
 	HudMessage(s:""; HUDMSG_PLAIN, 900+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
 	HudMessage(s:""; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 490+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);  // perk table
-	HudMessage(s:""; HUDMSG_PLAIN, 2050+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);  // click "fire"...
-	HudMessage(s:""; HUDMSG_PLAIN, 2100+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);  // click "alt-fire"...
+	HudMessage(s:""; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);  // perk table
+	HudMessage(s:""; HUDMSG_PLAIN, 2050+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);  // click "fire"...	
 	
 	SetHudSize(320,200,1);
 	if(CheckInventory("Perk1_SOH") == 1)
@@ -4227,8 +4226,7 @@ script 635 (void)
 		TakeInventory("USP .45",1);
 		SetHudSize(800,600,1);
 		SetFont("CONFONT");
-		HudMessage(s:"Press \cffire \ccto scroll      Press \cfalt-fire \ccto select"; HUDMSG_PLAIN, 2050+PlayerNumber(), CR_WHITE, 400.0, 60.0, 2.0);	
-		HudMessage(s:""; HUDMSG_PLAIN, 2100+PlayerNumber(), CR_WHITE, 400.1, 50.0, 2.0);	
+		HudMessage(s:"Press \cffire \ccto scroll      Press \cfalt-fire \ccto select"; HUDMSG_PLAIN, 2050+PlayerNumber(), CR_WHITE, 400.0, 60.0, 2.0);				
 		SetActorProperty(0,APROP_Invulnerable,1);
 		SetPlayerProperty(0,1,PROP_FROZEN);
 		delay(35);
@@ -4300,7 +4298,7 @@ script 636 (int firstTimeAfterDeath)
 	HudMessage(s:""; HUDMSG_PLAIN, 850+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0);
 	HudMessage(s:""; HUDMSG_PLAIN, 900+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0);
 	HudMessage(s:""; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 490+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0); // perk table
+	HudMessage(s:""; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0); // perk table
 	
 	
 	if(CheckWeapon("Menu") == 1 && CheckInventory("MenuPlace") == 9)
@@ -4372,35 +4370,35 @@ script 636 (int firstTimeAfterDeath)
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 1){
 	  			HudMessage(s:"2)  > Assault:       M4A1 (+Extended Mags) and USP .45\n\n                + \cvScavenger, \cgStopping Power, \cdCommando PRO"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 60.1, 140.0, 0.0);	
-	  			HudMessage(s:"\cvScavenger: +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration\n\n\cgStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies\n\n\cdCommando: +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 430.1, 500.0, 0.0);
+	  			HudMessage(s:"\cvScavenger: +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration\n\n\cgStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies\n\n\cdCommando: +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_YELLOW, 430.1, 500.0, 0.0);
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 2){
 	  			HudMessage(s:"3)  > Juggernaut:    L86 (+Grip) and Desert Eagle\n\n                + \cvSleight of Hand, \cgJuggernaut PRO, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 60.1, 180.0, 0.0);	
-	  			HudMessage(s:"\cvSleight of Hand: Faster reloading\n\n         \cjPRO\cv: Faster knifing and grenade throwing\n\n\cgJuggernaut: +40% damage resistance\n\n         \cjPRO\cg: double bonuses from health/armor pickups\n\n\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Get 30 health in last stand"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 430.1, 500.0, 0.0);
+	  			HudMessage(s:"\cvSleight of Hand: Faster reloading\n\n         \cjPRO\cv: Faster knifing and grenade throwing\n\n\cgJuggernaut: +40% damage resistance\n\n         \cjPRO\cg: double bonuses from health/armor pickups\n\n\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Get 30 health in last stand"; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_YELLOW, 430.1, 500.0, 0.0);
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 3){
 	  			HudMessage(s:"4)  > Sniper:        Barett .50 cal (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 60.1, 220.0, 0.0);	
-	  			HudMessage(s:"\cvOne Man Army: Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon\n\n\cgStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies\n\n\cdSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 430.1, 500.0, 0.0);
+	  			HudMessage(s:"\cvOne Man Army: Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon\n\n\cgStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies\n\n\cdSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_YELLOW, 430.1, 500.0, 0.0);
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 4){
 	  			HudMessage(s:"5)  > Recon:         FAL and PP2000 (+Extended Mags)\n\n                + \cvExtreme Conditioning, \cgCold Blooded, \cdSit-Rep PRO"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_YELLOW, 60.1, 260.0, 0.0);	
-	  			HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner\n\n\cgCold Blooded: Invisible to seeker missiles\n\n         \cjPRO\cg: Partial invisibility while out of combat\n\n\cdSit-Rep: Full automap with monsters' positions\n\n         \cjPRO\cd: See enemies through walls"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 430.1, 500.0, 0.0);
+	  			HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner\n\n\cgCold Blooded: Invisible to seeker missiles\n\n         \cjPRO\cg: Partial invisibility while out of combat\n\n\cdSit-Rep: Full automap with monsters' positions\n\n         \cjPRO\cd: See enemies through walls"; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_YELLOW, 430.1, 500.0, 0.0);
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 5){
 	  			HudMessage(s:"6)  > Demolitions:   RPG-7 and SPAS-12\n\n                + \cvScavenger, \cgDanger Close PRO, \cdSit-Rep"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_YELLOW, 60.1, 300.0, 0.0);
-	  			HudMessage(s:"\cvScavenger: +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration\n\n\cgDanger Close: +100% explosive damage\n\n         \cjPRO\cg: +50% explosive blast radius\n\n\cdSit-Rep: Full automap with monsters' positions\n\n         \cjPRO\cd: See enemies through walls"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 430.1, 500.0, 0.0);
+	  			HudMessage(s:"\cvScavenger: +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration\n\n\cgDanger Close: +100% explosive damage\n\n         \cjPRO\cg: +50% explosive blast radius\n\n\cdSit-Rep: Full automap with monsters' positions\n\n         \cjPRO\cd: See enemies through walls"; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_YELLOW, 430.1, 500.0, 0.0);
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 6){
 	  			HudMessage(s:"7)  > Grenadier:     FAMAS (+M203) and G18\n\n                + \cvExtreme Conditioning PRO, \cgDanger Close, \cdLast Stand"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_YELLOW, 60.1, 340.0, 0.0);
-	  			HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner\n\n\cgDanger Close: +100% explosive damage\n\n         \cjPRO\cg: +50% explosive blast radius\n\n\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Get 30 health in last stand"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 430.1, 500.0, 0.0);
+	  			HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner\n\n\cgDanger Close: +100% explosive damage\n\n         \cjPRO\cg: +50% explosive blast radius\n\n\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Get 30 health in last stand"; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_YELLOW, 430.1, 500.0, 0.0);
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 7){
 	  			HudMessage(s:"8)  > Ninja:         FN P90 and M9 (+Tac Knife)\n\n                + \cvSleight of Hand, \cgCold Blooded PRO, \cdCommando"; HUDMSG_PLAIN, 800+PlayerNumber(), CR_YELLOW, 60.1, 380.0, 0.0);	
-	  			HudMessage(s:"\cvExtreme Conditioning: Faster reloading\n\n         \cjPRO\cv: Faster knifing and grenade throwing\n\n\cgCold Blooded: Invisible to seeker missiles\n\n         \cjPRO\cg: Partial invisibility while out of combat\n\n\cdCommando: +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 430.1, 500.0, 0.0);
+	  			HudMessage(s:"\cvExtreme Conditioning: Faster reloading\n\n         \cjPRO\cv: Faster knifing and grenade throwing\n\n\cgCold Blooded: Invisible to seeker missiles\n\n         \cjPRO\cg: Partial invisibility while out of combat\n\n\cdCommando: +100% knife damage and range\n\n         \cjPRO\cd: Attacking doesn't block regeneration"; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_YELLOW, 430.1, 500.0, 0.0);
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 8){
 	  			HudMessage(s:"9)  > Daredevil:     USP .45\n\n                \cjNone (all perks and attachments have to be unlocked in-game)"; HUDMSG_PLAIN, 850+PlayerNumber(), CR_YELLOW, 60.1, 420.0, 0.0);
-	  			HudMessage(s:""; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 160.1, 500.0, 0.0);
+	  			HudMessage(s:""; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_YELLOW, 160.1, 500.0, 0.0);
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 9 && GameType() == GAME_SINGLE_PLAYER){
 			    HudMessage(s:"0)  > Back"; HUDMSG_PLAIN, 900+PlayerNumber(), CR_YELLOW, 60.1, 460.0, 0.0);
@@ -4431,31 +4429,31 @@ script 636 (int firstTimeAfterDeath)
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 1){
 	  			HudMessage(s:"2)  > Assault:       M4A1 (+Extended Mags) and USP .45\n\n                + \cvScavenger, \cgStopping Power, \cdCommando"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_YELLOW, 60.1, 140.0, 0.0);	
-	  			HudMessage(s:"\cvScavenger: More starting ammo\n\n\cgStopping Power: +25% bullet damage\n\n\cdCommando: +100% knife damage and range"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 430.1, 460.0, 0.0);
+	  			HudMessage(s:"\cvScavenger: More starting ammo\n\n\cgStopping Power: +25% bullet damage\n\n\cdCommando: +100% knife damage and range"; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_YELLOW, 430.1, 460.0, 0.0);
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 2){
 	  			HudMessage(s:"3)  > Juggernaut:    L86 (+Grip) and Desert Eagle\n\n                + \cvSleight of Hand, \cgJuggernaut, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_YELLOW, 60.1, 180.0, 0.0);	
-	  			HudMessage(s:"\cvSleight of Hand: faster reloading\n\n\cgJuggernaut: +40% damage resistance\n\n\cdLast Stand: Pull out your handgun before dying"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 430.1, 460.0, 0.0);
+	  			HudMessage(s:"\cvSleight of Hand: faster reloading\n\n\cgJuggernaut: +40% damage resistance\n\n\cdLast Stand: Pull out your handgun before dying"; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_YELLOW, 430.1, 460.0, 0.0);
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 3){
 	  			HudMessage(s:"4)  > Sniper:        Barett .50 cal (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 60.1, 220.0, 0.0);	
-	  			HudMessage(s:"\cvOne Man Army: Carry extra gun\n\n\cgStopping Power: +25% bullet damage\n\n\cdSteady Aim: +33% hip-fire accuracy"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 430.1, 460.0, 0.0);
+	  			HudMessage(s:"\cvOne Man Army: Carry extra gun\n\n\cgStopping Power: +25% bullet damage\n\n\cdSteady Aim: +33% hip-fire accuracy"; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_YELLOW, 430.1, 460.0, 0.0);
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 4){
 	  			HudMessage(s:"5)  > Recon:         FAL and PP2000 (+Extended Mags)\n\n                + \cvExtreme Conditioning, \cgCold Blooded, \cdSit-Rep"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_YELLOW, 60.1, 260.0, 0.0);	
-	  			HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n\cgCold Blooded: Partial invisibility\n\n\cdSit-Rep: See enemies through walls"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 430.1, 460.0, 0.0);
+	  			HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n\cgCold Blooded: Partial invisibility\n\n\cdSit-Rep: See enemies through walls"; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_YELLOW, 430.1, 460.0, 0.0);
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 5){
 	  			HudMessage(s:"6)  > Demolitions:   RPG-7 and SPAS-12\n\n                + \cvScavenger, \cgDanger Close, \cdSit-Rep"; HUDMSG_PLAIN, 650+PlayerNumber(), CR_YELLOW, 60.1, 300.0, 0.0);
-	  			HudMessage(s:"\cvScavenger: More starting ammo\n\n\cgDanger Close: +50% explosive blast radius\n\n\cdSit-Rep: See enemies through walls"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 430.1, 460.0, 0.0);
+	  			HudMessage(s:"\cvScavenger: More starting ammo\n\n\cgDanger Close: +50% explosive blast radius\n\n\cdSit-Rep: See enemies through walls"; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_YELLOW, 430.1, 460.0, 0.0);
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 6){
 	  			HudMessage(s:"7)  > Grenadier:     FAMAS (+M203) and G18\n\n                + \cvExtreme Conditioning, \cgDanger Close, \cdLast Stand"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_YELLOW, 60.1, 340.0, 0.0);
-	  			HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n\cgDanger Close: +50% explosive blast radius\n\n\cdLast Stand: Pull out your handgun before dying"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 430.1, 460.0, 0.0);
+	  			HudMessage(s:"\cvExtreme Conditioning: +15% running speed\n\n\cgDanger Close: +50% explosive blast radius\n\n\cdLast Stand: Pull out your handgun before dying"; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_YELLOW, 430.1, 460.0, 0.0);
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 7){
 	  			HudMessage(s:"8)  > Ninja:         FN P90 and M9 (+Tac Knife)\n\n                + \cvSleight of Hand, \cgCold Blooded, \cdCommando"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_YELLOW, 60.1, 380.0, 0.0);	
-	  			HudMessage(s:"\cvSleight of Hand: Faster reloading\n\n\cgCold Blooded: Partial invisibility\n\n\cdCommando: +100% knife damage and range"; HUDMSG_PLAIN, 490+PlayerNumber(), CR_YELLOW, 430.1, 460.0, 0.0);
+	  			HudMessage(s:"\cvSleight of Hand: Faster reloading\n\n\cgCold Blooded: Partial invisibility\n\n\cdCommando: +100% knife damage and range"; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_YELLOW, 430.1, 460.0, 0.0);
 	  		}
 	  		
 	  		if(CheckInventory("MenuCursor") >= 8){
