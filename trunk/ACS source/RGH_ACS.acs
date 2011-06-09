@@ -6401,7 +6401,7 @@ script 658 (void)
 		
 		// bright white flash
 		SetFont("FLSHSCRN");
-		drawStretchedImage(600+PlayerNumber(), 32, 32, 0.5, 2.0);
+		drawStretchedImage(2100+PlayerNumber(), 32, 32, 0.5, 2.0);
 		
 		LocalAmbientSound("emp/noise",255);
 		
