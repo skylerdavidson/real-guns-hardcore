@@ -1308,10 +1308,10 @@ Script 614 RESPAWN
 		if(CheckInventory("Rank") < 15) //Only display the "XP need" when rank is not max
 			HudMessage(s:"\cdExperience: \cf",d:CheckInventory("Experience"),s:"\cc/\cf",d:ExperienceNeed[PlayerNumber()+1], 
 			s:" XP     ", s:"\cdRank: \cf",d:CheckInventory("Rank"); 
-			HUDMSG_PLAIN, 1310+PlayerNumber(), CR_Green, 0.99, 0, 1.6);	
+			HUDMSG_PLAIN, 2000+PlayerNumber(), CR_Green, 0.99, 0, 1.6);	
 		else //Instead we draw "Current XP/XXX"
 			HudMessage(s:"\cdRank: \cf",d:CheckInventory("Rank"); 
-			HUDMSG_PLAIN, 1310+PlayerNumber(), CR_Green, 0.16, 0.8, 1.6);	
+			HUDMSG_PLAIN, 2000+PlayerNumber(), CR_Green, 0.16, 0.8, 1.6);	
 		Delay(25);
 	}
 	}
@@ -6440,12 +6440,3 @@ script 658 (void)
 		}	
 	}	
 }
-
-/*script 659 (void)
-{
-	for(int i = 0; i < 32)
-	SetFont("FLSHSCRN");
-	drawStretchedImage(600+PlayerNumber(), 32, 32, 0.5, 2.0);
-	SetActorAngle(0,GetActorAngle(0)-random(10000, -10000));
-	SetActorPitch(0,GetActorPitch(0)-random(10000, -10000));	
-} */
