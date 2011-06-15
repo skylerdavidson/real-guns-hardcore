@@ -1,5 +1,6 @@
 ACTOR Priest
-{ 
+{
+Game Heretic  
 Health 400 
 PainChance 170
 DropItem BloodAmmo
