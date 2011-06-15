@@ -5502,6 +5502,7 @@ script 638 (int Which)
 			}
 			
 			GiveInventory(Attachment[PlayerNumber()+1],1);
+			GiveInventory("RewardsToPick", 1);
 		}
 		
 		ACS_ExecuteAlways(634,0,0,0,0);
