@@ -242,6 +242,10 @@ script 597 ENTER
 		arcade = true;
 	}
 	
+	if(CheckInventory("RewardsToPick") > 0){
+		drawChooseAward();
+	}
+	
 	TakeInventory("Speaking",1);
 	
 	TakeInventory("ReadyRegen",1);
@@ -1351,7 +1355,7 @@ script 616 RESPAWN
 		GiveInventory("Rank",1);
 		GiveInventory("RewardsToPick",1);
 		
-		ACS_ExecuteAlways(623,0,0,0,0);
+		//ACS_ExecuteAlways(623,0,0,0,0);
 	}
 	if(CheckInventory("Experience") >= 1000 && CheckInventory("Rank") == 1)
 	{
@@ -1365,7 +1369,7 @@ script 616 RESPAWN
 		GiveInventory("Rank",1);
 		GiveInventory("RewardsToPick",1);
 		
-		ACS_ExecuteAlways(623,0,0,0,0);
+		//ACS_ExecuteAlways(623,0,0,0,0);
 	}
 	if(CheckInventory("Experience") >= 1500 && CheckInventory("Rank") == 2)
 	{
@@ -1393,7 +1397,7 @@ script 616 RESPAWN
 		GiveInventory("Rank",1);
 		GiveInventory("RewardsToPick",1);
 		
-		ACS_ExecuteAlways(623,0,0,0,0);
+		//ACS_ExecuteAlways(623,0,0,0,0);
 	}
 	if(CheckInventory("Experience") >= 3500 && CheckInventory("Rank") == 4)
 	{
@@ -1407,7 +1411,7 @@ script 616 RESPAWN
 		GiveInventory("Rank",1);
 		GiveInventory("RewardsToPick",1);
 
-		ACS_ExecuteAlways(623,0,0,0,0);
+		//ACS_ExecuteAlways(623,0,0,0,0);
 	}
 	if(CheckInventory("Experience") >= 5000 && CheckInventory("Rank") == 5)
 	{
@@ -1421,7 +1425,7 @@ script 616 RESPAWN
 		GiveInventory("Rank",1);
 		GiveInventory("RewardsToPick",1);
 		
-		ACS_ExecuteAlways(623,0,0,0,0);
+		//ACS_ExecuteAlways(623,0,0,0,0);
 	}
 	if(CheckInventory("Experience") >= 6500 && CheckInventory("Rank") == 6)
 	{
@@ -1435,7 +1439,7 @@ script 616 RESPAWN
 		GiveInventory("Rank",1);
 		GiveInventory("RewardsToPick",1);
 
-		ACS_ExecuteAlways(623,0,0,0,0);
+		//ACS_ExecuteAlways(623,0,0,0,0);
 	}
 	if(CheckInventory("Experience") >= 8500 && CheckInventory("Rank") == 7)
 	{
@@ -1449,7 +1453,7 @@ script 616 RESPAWN
 		GiveInventory("Rank",1);
 		GiveInventory("RewardsToPick",1);
 		
-		ACS_ExecuteAlways(623,0,0,0,0);
+		//ACS_ExecuteAlways(623,0,0,0,0);
 	}
 	if(CheckInventory("Experience") >= 11000 && CheckInventory("Rank") == 8)
 	{
@@ -1462,7 +1466,7 @@ script 616 RESPAWN
 		GiveInventory("Rank",1);
 		GiveInventory("RewardsToPick",1);
 
-		ACS_ExecuteAlways(623,0,0,0,0);
+		//ACS_ExecuteAlways(623,0,0,0,0);
 	}
 	if(CheckInventory("Experience") >= 14000 && CheckInventory("Rank") == 9)
 	{
@@ -1476,7 +1480,7 @@ script 616 RESPAWN
 		GiveInventory("Rank",1);
 		GiveInventory("RewardsToPick",1);
 		
-		ACS_ExecuteAlways(623,0,0,0,0);
+		//ACS_ExecuteAlways(623,0,0,0,0);
 	}
 	if(CheckInventory("Experience") >= 18000 && CheckInventory("Rank") == 10)
 	{
@@ -1490,7 +1494,7 @@ script 616 RESPAWN
 		GiveInventory("Rank",1);
 		GiveInventory("RewardsToPick",1);
 		
-		ACS_ExecuteAlways(623,0,0,0,0);
+		//ACS_ExecuteAlways(623,0,0,0,0);
 	}
 	if(CheckInventory("Experience") >= 22000 && CheckInventory("Rank") == 11)
 	{
@@ -1504,7 +1508,7 @@ script 616 RESPAWN
 		GiveInventory("Rank",1);
 		GiveInventory("RewardsToPick",1);
 		
-		ACS_ExecuteAlways(623,0,0,0,0);
+		//ACS_ExecuteAlways(623,0,0,0,0);
 	}
 	if(CheckInventory("Experience") >= 26000 && CheckInventory("Rank") == 12)
 	{
@@ -1518,7 +1522,7 @@ script 616 RESPAWN
 		GiveInventory("Rank",1);
 		GiveInventory("RewardsToPick",1);
 		
-		ACS_ExecuteAlways(623,0,0,0,0);
+		//ACS_ExecuteAlways(623,0,0,0,0);
 	}
 	if(CheckInventory("Experience") >= 31000 && CheckInventory("Rank") == 13)
 	{
@@ -1532,7 +1536,7 @@ script 616 RESPAWN
 		GiveInventory("Rank",1);
 		GiveInventory("RewardsToPick",1);
 		
-		ACS_ExecuteAlways(623,0,0,0,0);
+		//ACS_ExecuteAlways(623,0,0,0,0);
 	}
 	if(CheckInventory("Experience") >= 36000 && CheckInventory("Rank") == 14)
 	{
@@ -1546,12 +1550,13 @@ script 616 RESPAWN
 		GiveInventory("Rank",1);
 		GiveInventory("RewardsToPick",1);
 		
-		ACS_ExecuteAlways(623,0,0,0,0);
+		//ACS_ExecuteAlways(623,0,0,0,0);
 	}
 				
 	//Check for RANK to give awards
 	if(RankedUp == True)
-		ACS_ExecuteAlways(617,0,0,0,0);			
+		drawChooseAward();
+		//ACS_ExecuteAlways(617,0,0,0,0);			
 	}
 }
 
@@ -5446,8 +5451,9 @@ script 638 (int Which)
 			}
 			
 			GiveInventory("RewardsToPick",1);
+			drawChooseAward();
 						
-			ACS_ExecuteAlways(623,0,0,0,0);
+			//ACS_ExecuteAlways(623,0,0,0,0);
 		}
 		else {  // Deathmatch
 		    if(Perk1[PlayerNumber()+1] == "Perk1_OneManArmy")
@@ -6454,3 +6460,935 @@ function void eraseMenu(int p){
 	HudMessage(s:""; HUDMSG_PLAIN, 2150+p, CR_WHITE, 100.1, 100.0, 0.0);
 }
 
+str AwardMenuWeapon[40];
+
+// award menu
+script 659 (void) NET
+{
+	// preconditions
+	if(
+		GameType() == GAME_NET_DEATHMATCH ||
+		GetActorProperty(0,APROP_Health) <= 0 ||
+		CheckInventory("Menu") > 0 ||
+		CheckInventory("AwardMenu") > 0 ||
+		CheckInventory("PowerEMP") > 0 ||
+		CheckInventory("InLastStand") > 0
+	){
+		terminate;
+	}
+	
+	if(CheckInventory("RewardsToPick") == 0){
+		SetFont("BIGFONT");
+		HudMessage(s:"You don't have any award points!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_RED, 0.5, 0.5, 2.0, 1.0);
+		terminate;
+	}
+
+    SetPlayerProperty(0, 1, PROP_FROZEN); 
+
+    TakeInventory("MenuCursor", 20);	
+
+	AwardMenuWeapon[PlayerNumber()] = GetWeapon();
+
+    GiveInventory("AwardMenu", 1);
+	SetWeapon("AwardMenu");
+	
+	// freeze time
+	if(GameType() == GAME_SINGLE_PLAYER){
+		//GiveInventory("MenuTimeFreezer", 1);
+	} 
+}
+
+function void drawChooseAward(void){
+	SetFont("CONFONT");
+	HudMessage(s:"\ccPress \cf", k:"award", s:"\cc to choose your level-up award"; HUDMSG_PLAIN, 2300+PlayerNumber(), CR_RED, 0.5, 0.80, 0.0);
+}
+
+function void eraseChooseAward(void){	
+	HudMessage(s:""; HUDMSG_PLAIN, 2300+PlayerNumber(), CR_RED, 0.5, 0.80, 0.0);
+}
+
+function void closeAwardMenu(void)
+{
+	eraseMenu(PlayerNumber());
+	
+	SetPlayerProperty(0, 0, PROP_FROZEN);
+
+	SetWeapon(AwardMenuWeapon[PlayerNumber()]);
+	TakeInventory("AwardMenu", 1);
+	TakeInventory("PowerMenuTimeFreezer", 1);
+	GiveInventory("SetPickupPickup", 1);
+}
+
+// redraw award menu
+script 660 (void)
+{
+	eraseMenu(PlayerNumber());
+	
+	eraseChooseAward();
+		
+	SetHudSize(800,600,1);
+	
+	SetFont("BIGFONT");
+	HudMessage(s:"Choose award"; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 400.0, 30.0, 0.0);
+	
+	SetFont("CONFONT");
+	HudMessage(s:"Press \cffire \ccto scroll      Press \cfalt-fire \ccto select"; HUDMSG_PLAIN, 2050+PlayerNumber(), CR_WHITE, 400.0, 60.0, 0);	
+	
+	HudMessage(s:"  Close"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);
+	
+	if(CheckInventory("MenuCursor") == 0){
+		HudMessage(s:"> Close"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_YELLOW, 60.1, 100.0, 0.0);
+	}		
+
+	int currentVerticalCoord = 160.0;
+	int currentId = 400;
+	int currentIndex = 2;
+	
+	// add the perk headline
+	SetFont("BIGFONT");
+	HudMessage(s:"LEARN OR UPGRADE PERK"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, 135.0, 0.0);
+	currentId += 50;		
+	
+	SetFont("CONFONT");
+	
+	// Blue perks
+	if(
+		CheckInventory("Perk1_SOH") == 0 && 
+		CheckInventory("Perk1_ExtremeConditioning") == 0 &&
+		CheckInventory("Perk1_OneManArmy") == 0 &&
+		CheckInventory("Perk1_Scavenger") == 0
+	){		
+		HudMessage(s:"  \cvSleight of Hand\cc:          Faster reloading"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cvSleight of Hand\cc:          Faster reloading"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	
+		HudMessage(s:"  \cvExtreme Conditioning\cc:     +15% movement speed"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cvExtreme Conditioning\cc:     +15% movement speed"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	
+		HudMessage(s:"  \cvOne Man Army\cc:             Carry extra ammo"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	
+		if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cvOne Man Army\cc:             Carry extra ammo"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	
+		HudMessage(s:"  \cvScavenger\cc:                +100% ammo in pickups"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);
+
+        if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cvScavenger\cc:                +100% ammo in pickups"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;	
+	}
+	
+	// Blue perks PRO	
+	if(CheckInventory("Perk1_SOH") == 1 && CheckInventory("Perk1_SOH_Pro") == 0){
+	    HudMessage(s:"  \cvSleight of Hand PRO\cc:      Faster knifing and grenade throwing"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cvSleight of Hand PRO\cc:      Faster knifing and grenade throwing"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	}
+	
+	if(CheckInventory("Perk1_ExtremeConditioning") == 1 && CheckInventory("Perk1_ExtremeConditioning_Pro") == 0)
+	{
+		HudMessage(s:"  \cvExtreme Conditioning PRO\cc: Regenerate 100% faster and 40% sooner"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cvExtreme Conditioning PRO\cc: Regenerate 100% faster and 40% sooner"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	}
+
+	if(CheckInventory("Perk1_OneManArmy") == 1 && CheckInventory("Perk1_OneManArmy_Pro") == 0){
+		HudMessage(s:"  \cvOne Man Army PRO\cc:         Carry extra gun"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cvOne Man Army PRO\cc:         Carry extra gun"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	}
+	
+	if(CheckInventory("Perk1_Scavenger") == 1 && CheckInventory("Perk1_Scavenger_Pro") == 0)
+	{
+		HudMessage(s:"  \cvScavenger PRO\cc:            +100% powerup duration"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cvScavenger PRO\cc:            +100% powerup duration"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	}
+	
+	// Red perks	
+	if(
+	    CheckInventory("Perk2_StoppingPower") == 0 &&
+	    CheckInventory("Perk2_DangerClose") == 0 &&
+	    CheckInventory("Perk2_Juggernaut") == 0 &&
+	    CheckInventory("Perk2_ColdBlooded") == 0
+	) {
+		HudMessage(s:"  \cgStopping Power\cc:           +25% bullet damage"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cgStopping Power\cc:           +25% bullet damage"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+		
+		HudMessage(s:"  \cgJuggernaut\cc:               +40% damage resistance"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cgJuggernaut\cc:               +40% damage resistance"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+		
+		HudMessage(s:"  \cgDanger Close\cc:             +100% explosive damage"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cgDanger Close\cc:             +100% explosive damage"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+		
+		HudMessage(s:"  \cgCold Blooded\cc:             Invisibility to seeker missiles"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cgCold Blooded\cc:             Invisibility to seeker missiles"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	}
+	
+	// Red perks PRO
+	if(CheckInventory("Perk2_StoppingPower") == 1 && CheckInventory("Perk2_StoppingPower_Pro") == 0)
+	{
+  		HudMessage(s:"  \cgStopping Power PRO\cc:       Sniper bullets penetrate multiple enemies"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cgStopping Power PRO\cc:       Sniper bullets penetrate multiple enemies"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	}
+	
+	if(CheckInventory("Perk2_Juggernaut") == 1 && CheckInventory("Perk2_Juggernaut_Pro") == 0)
+	{
+  		HudMessage(s:"  \cgJuggernaut PRO\cc:           Double bonuses from health/armor pickups"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cgJuggernaut PRO\cc:           Double bonuses from health/armor pickups"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	}
+		
+	if(CheckInventory("Perk2_DangerClose") == 1 && CheckInventory("Perk2_DangerClose_Pro") == 0)
+	{
+  		HudMessage(s:"  \cgDanger Close PRO\cc:         +50% explosive blast radius"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cgDanger Close PRO\cc:         +50% explosive blast radius"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	}
+	
+	if(CheckInventory("Perk2_ColdBlooded") == 1 && CheckInventory("Perk2_ColdBlooded_Pro") == 0)
+	{
+  		HudMessage(s:"  \cgCold Blooded PRO\cc:         Partial invisibility while out of combat"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cgCold Blooded PRO\cc:         Partial invisibility while out of combat"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	}
+
+	// Yellow perks
+	if(
+		CheckInventory("Perk3_SteadyAim") == 0 &&
+		CheckInventory("Perk3_Commando") == 0 &&
+		CheckInventory("Perk3_LastStand") == 0 &&
+		CheckInventory("Perk3_SitRep") == 0
+	){
+  		HudMessage(s:"  \cdSteady Aim\cc:               +33% hip-fire accuracy"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cdSteady Aim\cc:               +33% hip-fire accuracy"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+		
+		HudMessage(s:"  \cdCommando\cc:                 +100% knife damage and range"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cdCommando\cc:                 +100% knife damage and range"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+		
+		HudMessage(s:"  \cdLast Stand\cc:               Pull out your handgun before dying"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cdLast Stand\cc:               Pull out your handgun before dying"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+		
+		HudMessage(s:"  \cdSit-Rep\cc:                  Full automap with monsters' positions"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cdSit-Rep\cc:                  Full automap with monsters' positions"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	}
+	
+  	// Yellow perks PRO	
+	if(CheckInventory("Perk3_SteadyAim") == 1 && CheckInventory("Perk3_SteadyAim_Pro") == 0)
+	{
+		HudMessage(s:"  \cdSteady Aim PRO\cc:           No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cdSteady Aim PRO\cc:           No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	}
+	
+	if(CheckInventory("Perk3_Commando") == 1 && CheckInventory("Perk3_Commando_Pro") == 0)
+	{
+		HudMessage(s:"  \cdCommando PRO\cc:             Attacking doesn't block regeneration"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cdCommando PRO\cc:             Attacking doesn't block regeneration"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	}
+	
+	if(CheckInventory("Perk3_LastStand") == 1 && CheckInventory("Perk3_LastStand_Pro") == 0)
+	{
+		HudMessage(s:"  \cdLast Stand PRO\cc:           Get 30 health in last stand"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cdLast Stand PRO\cc:           Get 30 health in last stand"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	}
+		
+	if(CheckInventory("Perk3_SitRep") == 1 && CheckInventory("Perk3_SitRep_Pro") == 0)
+	{
+		HudMessage(s:"  \cdSit-Rep PRO\cc:              See enemies through walls"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> \cdSit-Rep PRO\cc:              See enemies through walls"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;	
+	}
+	
+	if(currentIndex == 2){
+		HudMessage(s:"  All perks are already upgraded to maximum"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);
+		currentId += 50;
+		currentVerticalCoord += 20.0;
+	}
+		
+	// add the attachment headline
+	SetFont("BIGFONT");
+	HudMessage(s:"ADD ATTACHMENT TO \ck", s: AwardMenuWeapon[PlayerNumber()]; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord + 15.0, 0.0);
+	currentId += 50;
+	currentVerticalCoord += 40.0;	
+	
+	SetFont("CONFONT");
+	
+	if(
+		AwardMenuWeapon[PlayerNumber()] == "usp .45" ||
+		AwardMenuWeapon[PlayerNumber()] == "desert eagle" ||
+		AwardMenuWeapon[PlayerNumber()] == ".44 magnum" ||
+		AwardMenuWeapon[PlayerNumber()] == "g18" ||
+		AwardMenuWeapon[PlayerNumber()] == "pp2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "m9" ||
+		AwardMenuWeapon[PlayerNumber()] == "mini-uzi"
+	)
+	{
+	    HudMessage(s:"  Akimbo:                   Dual wield weapon"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> Akimbo:                   Dual wield weapon"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	}
+	
+	if(
+		AwardMenuWeapon[PlayerNumber()] == "usp .45" ||
+		AwardMenuWeapon[PlayerNumber()] == "m9" ||
+		AwardMenuWeapon[PlayerNumber()] == "pp2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "g18" ||
+		AwardMenuWeapon[PlayerNumber()] == "m93 raffica" ||
+		AwardMenuWeapon[PlayerNumber()] == "spas-12" ||
+		AwardMenuWeapon[PlayerNumber()] == "aa-12" ||
+		AwardMenuWeapon[PlayerNumber()] == "striker" ||
+		AwardMenuWeapon[PlayerNumber()] == "m1014" ||
+		AwardMenuWeapon[PlayerNumber()] == "mp5k" ||
+		AwardMenuWeapon[PlayerNumber()] == "ump45" ||
+		AwardMenuWeapon[PlayerNumber()] == "tdi vector" ||
+		AwardMenuWeapon[PlayerNumber()] == "mini-uzi" ||
+		AwardMenuWeapon[PlayerNumber()] == "fn p90" ||
+		AwardMenuWeapon[PlayerNumber()] == "m4a1" ||
+		AwardMenuWeapon[PlayerNumber()] == "famas" ||
+		AwardMenuWeapon[PlayerNumber()] == "scar-h" ||
+		AwardMenuWeapon[PlayerNumber()] == "fal" ||
+		AwardMenuWeapon[PlayerNumber()] == "m16a4" ||
+		AwardMenuWeapon[PlayerNumber()] == "acr" ||
+		AwardMenuWeapon[PlayerNumber()] == "f2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "ak-47" ||
+		AwardMenuWeapon[PlayerNumber()] == "intervention" ||
+		AwardMenuWeapon[PlayerNumber()] == "barett 50cal" ||
+		AwardMenuWeapon[PlayerNumber()] == "wa2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "m14 ebr" ||
+		AwardMenuWeapon[PlayerNumber()] == "l86" ||
+		AwardMenuWeapon[PlayerNumber()] == "mg4" ||
+		AwardMenuWeapon[PlayerNumber()] == "aug hbar" ||
+		AwardMenuWeapon[PlayerNumber()] == "m240"
+	)
+	{
+	    HudMessage(s:"  Extended Mags:            +50% increased magazine size"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> Extended Mags:            +50% increased magazine size"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	}
+	
+	if(
+		AwardMenuWeapon[PlayerNumber()] == "spas-12" ||
+		AwardMenuWeapon[PlayerNumber()] == "aa-12" ||
+		AwardMenuWeapon[PlayerNumber()] == "striker" ||
+		AwardMenuWeapon[PlayerNumber()] == "m1014" ||
+		AwardMenuWeapon[PlayerNumber()] == "l86" ||
+		AwardMenuWeapon[PlayerNumber()] == "mg4" ||
+		AwardMenuWeapon[PlayerNumber()] == "aug hbar" ||
+		AwardMenuWeapon[PlayerNumber()] == "m240"
+	)
+	{
+	    HudMessage(s:"  Grip:                     -50% vertical recoil"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> Grip:                     -50% vertical recoil"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	}
+	
+	if(
+		AwardMenuWeapon[PlayerNumber()] == "mp5k" ||
+		AwardMenuWeapon[PlayerNumber()] == "ump45" ||
+		AwardMenuWeapon[PlayerNumber()] == "fn p90"
+	)
+	{
+	    HudMessage(s:"  Rapid Fire:               Increased rate of fire"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> Rapid Fire:               Increased rate of fire"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;
+	}
+	
+	if(
+		AwardMenuWeapon[PlayerNumber()] == "usp .45" ||
+		AwardMenuWeapon[PlayerNumber()] == "desert eagle" ||
+		AwardMenuWeapon[PlayerNumber()] == ".44 magnum" ||
+		AwardMenuWeapon[PlayerNumber()] == "m9"
+	)
+	{
+		HudMessage(s:"  Tactical Knife:           Faster knifing"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> Tactical Knife:           Faster knifing"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;	
+	}
+	
+	if(
+		AwardMenuWeapon[PlayerNumber()] == "intervention" ||
+		AwardMenuWeapon[PlayerNumber()] == "barett 50cal" ||
+		AwardMenuWeapon[PlayerNumber()] == "wa2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "m14 ebr"
+	)
+	{
+		HudMessage(s:"  Thermal Scope:            See through scope in darkness"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
+	    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			HudMessage(s:"> Thermal Scope:            See through scope in darkness"; HUDMSG_PLAIN, currentId, CR_YELLOW, 60.1, currentVerticalCoord, 0.0);	
+		}
+	    
+		currentId += 50;
+		currentIndex += 1;
+		currentVerticalCoord += 20.0;		
+	}
+	
+	// no award are available
+	if(currentIndex == 2){
+		SetHudSize(0,0,1);
+		SetFont("BIGFONT");
+		HudMessage(s:"No upgradeable perks or attachments for \ck", s:AwardMenuWeapon[PlayerNumber()], s:" \clare available!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_RED, 0.5, 0.5, 2.0, 1.0);
+		closeAwardMenu();
+		terminate;
+	}
+	
+	if(currentIndex - 1 <= CheckInventory("MenuCursor")){
+		TakeInventory("MenuCursor", 40);
+		ACS_ExecuteAlways(660,0,0,0,0);
+	}
+}
+
+script 661 (void)
+{
+	closeAwardMenu();
+	
+	int currentIndex = 2;
+	
+	// Blue perks
+	if(
+		CheckInventory("Perk1_SOH") == 0 && 
+		CheckInventory("Perk1_ExtremeConditioning") == 0 &&
+		CheckInventory("Perk1_OneManArmy") == 0 &&
+		CheckInventory("Perk1_Scavenger") == 0
+	){	
+		// SOH	
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,0,0,0);	
+		}
+	
+		currentIndex += 1;
+	
+		// Ex Cond.
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,1,0,0);	
+		}
+	    
+		currentIndex += 1;
+	
+		// OMA
+		if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,2,0,0);	
+		}
+	
+		currentIndex += 1;
+	
+		// Scavenger
+        if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,21,0,0);	
+		}
+
+		currentIndex += 1;
+	}
+	
+	// Blue perks PRO	
+	if(CheckInventory("Perk1_SOH") == 1 && CheckInventory("Perk1_SOH_Pro") == 0){
+	    // SOH PRO
+	    if(currentIndex - 1 == CheckInventory("MenuCursor") - 1){
+			ACS_ExecuteAlways(624,0,9,0,0);	
+		}
+	    
+		currentIndex += 1;
+	}
+	
+	if(CheckInventory("Perk1_ExtremeConditioning") == 1 && CheckInventory("Perk1_ExtremeConditioning_Pro") == 0)
+	{
+		// Ex Cond PRO
+		if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,10,0,0);	
+		}
+	    
+		currentIndex += 1;
+	}
+
+	if(CheckInventory("Perk1_OneManArmy") == 1 && CheckInventory("Perk1_OneManArmy_Pro") == 0){
+		// OMA PRO
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,11,0,0);	
+		}
+	    
+		currentIndex += 1;
+	}
+	
+	if(CheckInventory("Perk1_Scavenger") == 1 && CheckInventory("Perk1_Scavenger_Pro") == 0)
+	{
+		// Scavenger PRO
+		if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,20,0,0);	
+		}
+	    
+		currentIndex += 1;
+	}
+	
+	// Red perks	
+	if(
+	    CheckInventory("Perk2_StoppingPower") == 0 &&
+	    CheckInventory("Perk2_DangerClose") == 0 &&
+	    CheckInventory("Perk2_Juggernaut") == 0 &&
+	    CheckInventory("Perk2_ColdBlooded") == 0
+	) {
+		// Stopping Power
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,3,0,0);	
+		}
+	    
+		currentIndex += 1;
+		
+		// Juggernaut
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,5,0,0);	
+		}
+	    
+		currentIndex += 1;
+		
+		// Danger Close
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,4,0,0);	
+		}
+	    
+		currentIndex += 1;
+		
+		// Cold Blooded
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,22,0,0);	
+		}
+	    
+		currentIndex += 1;
+	}
+	
+	// Red perks PRO
+	if(CheckInventory("Perk2_StoppingPower") == 1 && CheckInventory("Perk2_StoppingPower_Pro") == 0)
+	{
+  		// Stopping Power PRO
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,12,0,0);	
+		}
+	    
+		currentIndex += 1;
+	}
+	
+	if(CheckInventory("Perk2_Juggernaut") == 1 && CheckInventory("Perk2_Juggernaut_Pro") == 0)
+	{
+  		// Juggernaut PRO
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,14,0,0);	
+		}
+	    
+		currentIndex += 1;
+	}
+		
+	if(CheckInventory("Perk2_DangerClose") == 1 && CheckInventory("Perk2_DangerClose_Pro") == 0)
+	{
+        // Danger Close PRO			    
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,13,0,0);	
+		}
+	    
+		currentIndex += 1;
+	}
+	
+	if(CheckInventory("Perk2_ColdBlooded") == 1 && CheckInventory("Perk2_ColdBlooded_Pro") == 0)
+	{
+  		// Cold Blooded PRO
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,18,0,0);	
+		}
+	    
+		currentIndex += 1;		
+	}
+
+	// Yellow perks
+	if(
+		CheckInventory("Perk3_SteadyAim") == 0 &&
+		CheckInventory("Perk3_Commando") == 0 &&
+		CheckInventory("Perk3_LastStand") == 0 &&
+		CheckInventory("Perk3_SitRep") == 0
+	){
+  		// Steady Aim
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,6,0,0);	
+		}
+	    
+		currentIndex += 1;
+		
+		// Commando
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,7,0,0);	
+		}
+		
+	    currentIndex += 1;
+	    
+		// Last Stand
+		if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,8,0,0);	
+		}
+	    		
+		currentIndex += 1;
+		
+		// Sit Rep
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,23,0,0);	
+		}
+	    
+		currentIndex += 1;
+	}
+	
+  	// Yellow perks PRO	
+	if(CheckInventory("Perk3_SteadyAim") == 1 && CheckInventory("Perk3_SteadyAim_Pro") == 0)
+	{
+		// Steady Aim PRO
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,15,0,0);	
+		}
+	    
+		currentIndex += 1;
+	}
+	
+	if(CheckInventory("Perk3_Commando") == 1 && CheckInventory("Perk3_Commando_Pro") == 0)
+	{
+		// Commando PRO
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,17,0,0);	
+		}
+	    
+		currentIndex += 1;
+	}
+	
+	if(CheckInventory("Perk3_LastStand") == 1 && CheckInventory("Perk3_LastStand_Pro") == 0)
+	{
+		// Last Stand PRO
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,16,0,0);	
+		}
+	    
+		currentIndex += 1;
+	}
+		
+	if(CheckInventory("Perk3_SitRep") == 1 && CheckInventory("Perk3_SitRep_Pro") == 0)
+	{
+		// Sit Rep PRO
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(624,0,24,0,0);	
+		}
+	    
+		currentIndex += 1;	
+	}
+
+	// Attachments
+	
+	// Akimbo	
+	if(
+		AwardMenuWeapon[PlayerNumber()] == "usp .45" ||
+		AwardMenuWeapon[PlayerNumber()] == "desert eagle" ||
+		AwardMenuWeapon[PlayerNumber()] == ".44 magnum" ||
+		AwardMenuWeapon[PlayerNumber()] == "g18" ||
+		AwardMenuWeapon[PlayerNumber()] == "pp2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "m9" ||
+		AwardMenuWeapon[PlayerNumber()] == "mini-uzi"
+	)
+	{   
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(619,0,4,0,0);	
+		}
+	    
+		currentIndex += 1;
+	}
+	
+	// Ex Mags
+	if(
+		AwardMenuWeapon[PlayerNumber()] == "usp .45" ||
+		AwardMenuWeapon[PlayerNumber()] == "m9" ||
+		AwardMenuWeapon[PlayerNumber()] == "pp2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "g18" ||
+		AwardMenuWeapon[PlayerNumber()] == "m93 raffica" ||
+		AwardMenuWeapon[PlayerNumber()] == "spas-12" ||
+		AwardMenuWeapon[PlayerNumber()] == "aa-12" ||
+		AwardMenuWeapon[PlayerNumber()] == "striker" ||
+		AwardMenuWeapon[PlayerNumber()] == "m1014" ||
+		AwardMenuWeapon[PlayerNumber()] == "mp5k" ||
+		AwardMenuWeapon[PlayerNumber()] == "ump45" ||
+		AwardMenuWeapon[PlayerNumber()] == "tdi vector" ||
+		AwardMenuWeapon[PlayerNumber()] == "mini-uzi" ||
+		AwardMenuWeapon[PlayerNumber()] == "fn p90" ||
+		AwardMenuWeapon[PlayerNumber()] == "m4a1" ||
+		AwardMenuWeapon[PlayerNumber()] == "famas" ||
+		AwardMenuWeapon[PlayerNumber()] == "scar-h" ||
+		AwardMenuWeapon[PlayerNumber()] == "fal" ||
+		AwardMenuWeapon[PlayerNumber()] == "m16a4" ||
+		AwardMenuWeapon[PlayerNumber()] == "acr" ||
+		AwardMenuWeapon[PlayerNumber()] == "f2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "ak-47" ||
+		AwardMenuWeapon[PlayerNumber()] == "intervention" ||
+		AwardMenuWeapon[PlayerNumber()] == "barett 50cal" ||
+		AwardMenuWeapon[PlayerNumber()] == "wa2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "m14 ebr" ||
+		AwardMenuWeapon[PlayerNumber()] == "l86" ||
+		AwardMenuWeapon[PlayerNumber()] == "mg4" ||
+		AwardMenuWeapon[PlayerNumber()] == "aug hbar" ||
+		AwardMenuWeapon[PlayerNumber()] == "m240"
+	)
+	{
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(619,0,2,0,0);	
+		}
+	    
+		currentIndex += 1;
+	}
+	
+	// Grip
+	if(
+		AwardMenuWeapon[PlayerNumber()] == "spas-12" ||
+		AwardMenuWeapon[PlayerNumber()] == "aa-12" ||
+		AwardMenuWeapon[PlayerNumber()] == "striker" ||
+		AwardMenuWeapon[PlayerNumber()] == "m1014" ||
+		AwardMenuWeapon[PlayerNumber()] == "l86" ||
+		AwardMenuWeapon[PlayerNumber()] == "mg4" ||
+		AwardMenuWeapon[PlayerNumber()] == "aug hbar" ||
+		AwardMenuWeapon[PlayerNumber()] == "m240"
+	)
+	{
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(619,0,0,0,0);	
+		}
+	    
+		currentIndex += 1;
+	}
+	
+	// Rapid Fire
+	if(
+		AwardMenuWeapon[PlayerNumber()] == "mp5k" ||
+		AwardMenuWeapon[PlayerNumber()] == "ump45" ||
+		AwardMenuWeapon[PlayerNumber()] == "fn p90"
+	)
+	{
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(619,0,1,0,0);	
+		}
+	    
+		currentIndex += 1;
+	}
+	
+	// Tac Knife
+	if(
+		AwardMenuWeapon[PlayerNumber()] == "usp .45" ||
+		AwardMenuWeapon[PlayerNumber()] == "desert eagle" ||
+		AwardMenuWeapon[PlayerNumber()] == ".44 magnum" ||
+		AwardMenuWeapon[PlayerNumber()] == "m9"
+	)
+	{
+		if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(619,0,5,0,0);	
+		}
+	    
+		currentIndex += 1;	
+	}
+	
+	// Thermal Scope
+	if(
+		AwardMenuWeapon[PlayerNumber()] == "intervention" ||
+		AwardMenuWeapon[PlayerNumber()] == "barett 50cal" ||
+		AwardMenuWeapon[PlayerNumber()] == "wa2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "m14 ebr"
+	)
+	{
+		if(currentIndex - 1 == CheckInventory("MenuCursor")){
+			ACS_ExecuteAlways(619,0,3,0,0);	
+		}
+	                             
+		currentIndex += 1;		
+	}
+	
+	delay(1);
+	if(CheckInventory("RewardsToPick") > 0){		
+		drawChooseAward();
+	}
+	else {
+		eraseChooseAward();
+	}
+}
+	
+
+			
+ 

@@ -14,7 +14,7 @@ actor AwardBase : CustomInventory
 }
 
 actor GripAttachment : AwardBase
-{
+{   
   inventory.pickupmessage "Grip"
   inventory.pickupsound "misc/ammo_pkup"
   inventory.icon "ATTAD0"

@@ -15,6 +15,7 @@ addkeysection "Real Guns Hardcore" RealGuns
 addmenukey "Reload" reload
 addmenukey "Equipment/Grenade" grenade
 addmenukey "Knife attack" knife
+addmenukey "Choose Award" award
 addmenukey "Drop Weapon" dropcurrent
 addmenukey "Change Voice" voice
 //addmenukey "Open/Close Loadout Menu" classmenu
@@ -25,17 +26,14 @@ alias knife "puke 604"
 alias dropcurrent "puke 621"
 alias classmenu "puke 613"
 alias voice "puke 626"
+alias award "puke 659"
 
 defaultbind R reload
 defaultbind T grenade
 defaultbind G dropcurrent
 defaultbind F knife
 defaultbind Y voice
+defaultbind L award
 
 clearplayerclasses
 Addplayerclass RGUPlayer
-//Addplayerclass RGUPlayer_Random
-//Addplayerclass RGUPlayer
-//Addplayerclass RGUPlayer_Juggernaut
-//Addplayerclass RGUPlayer_Sniper
-//Addplayerclass RGUPlayer_Medic
