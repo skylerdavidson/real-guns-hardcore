@@ -6,7 +6,9 @@ mkdir temp\acs\acs
 mkdir output
 utility\mcpp "ACS source\RGH_ACS.acs" -o temp\acs\processed.acs -D SKULLTAG -D IgnoreHash(x)=x -D DEBUG -P
 echo ==============================================================
-utility\acc temp\acs\processed.acs temp\acs\acs\RGH_ACS
+utility\zmp -d data/decorate -a "temp\acs\processed.acs" -o temp\acs\zmp_processed.acs -p data/decorate.txt -m skulltag
+echo ==============================================================
+utility\acc temp\acs\zmp_processed.acs temp\acs\acs\RGH_ACS
 
 if exist "temp\acs\acs.err" goto acserror
 

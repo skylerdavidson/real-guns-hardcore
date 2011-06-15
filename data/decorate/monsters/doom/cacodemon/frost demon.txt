@@ -52,7 +52,7 @@ actor IceCacolanternBall : CacolanternBall2
 }
 
 
-actor FrostAttackPower : PowerSpeed
+actor PowerFrostAttackPower : PowerSpeed
 {
   Speed 0.3
   Powerup.Duration -8

@@ -1,5 +1,4 @@
 IgnoreHash(#library "RGH_ACS")
-IgnoreHash(#include "zcommon.acs")
 
 #define MINIMUM_TID 1000000
 
@@ -55,7 +54,8 @@ script 505 OPEN
 	if(GameType() == GAME_SINGLE_PLAYER){
 		ConsoleCommand("archivecvar rgh_hitsound");
 		ConsoleCommand("archivecvar rgh_vanillamonstersonly");
-	}
+	}	
+	
 	delay(35*5);
 	restart;
 }
@@ -145,6 +145,8 @@ script 502 (void)
 	KillersID = ActivatorTID();
 	KillersHealth = GetActorProperty(ActivatorTID(),APROP_Health);
 	KillersMaxHealth = GetActorProperty(ActivatorTID(),APROP_SpawnHealth);
+
+    log(s:GetMonsterClass(0));
 
 	// GetActorProperty always returns 0 for players
 	if(KillersMaxHealth == 0) KillersMaxHealth = 100;
@@ -756,7 +758,7 @@ script 601 (void) NET
 {
 	if(GetActorProperty(0,APROP_Health) <= 0){
 		terminate;
-	}
+	}   
 
 	//------------------------------------------
 	//------- Checks if weapon is true, or attachment-weapon is true, then checks if clip is not full, then checks if reserve is not 0.
@@ -4117,24 +4119,7 @@ script 634 RESPAWN NET
 		GiveInventory("Voice", CurrentVoice[PlayerNumber()]);
 	}
 	
-	HudMessage(s:""; HUDMSG_PLAIN, 1001, CR_WHITE, 100.1, 100.0, 1.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 1002, CR_WHITE, 100.1, 100.0, 1.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 750+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 800+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 850+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 900+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);  // perk table
-	HudMessage(s:""; HUDMSG_PLAIN, 2050+PlayerNumber(), CR_WHITE, 100.1, 100.0, 1.0);  // click "fire"...	
+	eraseMenu(PlayerNumber());
 	
 	SetHudSize(320,200,1);
 	if(CheckInventory("Perk1_SOH") == 1)
@@ -4224,9 +4209,8 @@ script 635 (void)
 	while(CheckWeapon("Menu") == 1)
 	{
 		TakeInventory("USP .45",1);
-		SetHudSize(800,600,1);
-		SetFont("CONFONT");
-		HudMessage(s:"Press \cffire \ccto scroll      Press \cfalt-fire \ccto select"; HUDMSG_PLAIN, 2050+PlayerNumber(), CR_WHITE, 400.0, 60.0, 2.0);				
+		//SetHudSize(800,600,1);
+		//SetFont("CONFONT");
 		SetActorProperty(0,APROP_Invulnerable,1);
 		SetPlayerProperty(0,1,PROP_FROZEN);
 		delay(35);
@@ -4282,24 +4266,11 @@ script 636 (int firstTimeAfterDeath)
 		terminate;
 	}
 
-
-	// force redraw of all menus
-	HudMessage(s:""; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 750+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 800+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 850+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 900+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0);
-	HudMessage(s:""; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0); // perk table
+	eraseMenu(PlayerNumber());
 	
+	SetHudSize(800,600,1);
+	SetFont("CONFONT");
+	HudMessage(s:"Press \cffire \ccto scroll      Press \cfalt-fire \ccto select"; HUDMSG_PLAIN, 2050+PlayerNumber(), CR_WHITE, 400.0, 60.0, 0.0);				
 	
 	if(CheckWeapon("Menu") == 1 && CheckInventory("MenuPlace") == 9)
 	{
@@ -6243,7 +6214,7 @@ function void hudmessageonactor(int tid, int range, str sprite, str text, int sp
 
 // assign next free tid to the thing 
 script 651 (void) {
-	//log(s:"assign", i:nextTid);
+	log(s:"assign", i:nextTid);
 	Thing_ChangeTID(0,nextTid);
 	nextTid = nextTid + 1;
 }
@@ -6438,3 +6409,48 @@ script 658 (void)
 		}	
 	}	
 }
+
+function void eraseMenu(int p){
+	// main menu item band
+	HudMessage(s:""; HUDMSG_PLAIN, 300+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 350+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 400+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 450+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 500+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 550+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 600+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 650+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 700+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 750+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 800+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 850+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 900+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 950+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1000+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1050+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1100+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1150+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1200+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1250+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1300+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1350+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1400+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1450+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1500+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1550+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1600+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1650+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1700+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1750+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1800+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1850+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1900+p, CR_WHITE, 100.1, 100.0, 0.0);
+	HudMessage(s:""; HUDMSG_PLAIN, 1950+p, CR_WHITE, 100.1, 100.0, 0.0);
+	
+	// press X to scroll...
+	HudMessage(s:""; HUDMSG_PLAIN, 2050+p, CR_WHITE, 100.1, 100.0, 0.0);
+	
+	// perk table
+	HudMessage(s:""; HUDMSG_PLAIN, 2150+p, CR_WHITE, 100.1, 100.0, 0.0);
+}
+
