@@ -771,6 +771,11 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 //Reload
 script 601 (void) NET
 {
+	if(CheckInventory("Menu") > 0 && CheckInventory("MenuPlace") == 0){		
+	    ACS_ExecuteAlways(639,0,0,0,0);	    
+		terminate;
+	}
+	
 	if(GetActorProperty(0,APROP_Health) <= 0){
 		terminate;
 	}   
@@ -4286,7 +4291,12 @@ script 636 (int firstTimeAfterDeath)
 	
 	SetHudSize(800,600,1);
 	SetFont("CONFONT");
-	HudMessage(s:"Press \cffire \ccto scroll      Press \cfalt-fire \ccto select"; HUDMSG_PLAIN, 2050+PlayerNumber(), CR_WHITE, 400.0, 60.0, 0.0);				
+	if(CheckInventory("MenuPlace") == 0){ // add the randomize option on class menu screen
+		HudMessage(s:"Press \cffire \ccto scroll      Press \cfalt-fire \ccto select      Press \cfreload \ccto randomize"; HUDMSG_PLAIN, 2050+PlayerNumber(), CR_WHITE, 400.0, 60.0, 0.0);
+	}
+	else {
+		HudMessage(s:"Press \cffire \ccto scroll      Press \cfalt-fire \ccto select"; HUDMSG_PLAIN, 2050+PlayerNumber(), CR_WHITE, 400.0, 60.0, 0.0);
+	}				
 	
 	if(CheckWeapon("Menu") == 1 && CheckInventory("MenuPlace") == 9)
 	{
@@ -5495,7 +5505,7 @@ script 638 (int Which)
 				GiveInventory(Perk2[PlayerNumber()+1],1);			    
 			}
 			
-			GiveInventory(Perk3[PlayerNumber()+1],1);
+			
 			
 			if(Perk3[PlayerNumber()+1] == "Perk3_LastStand")
 			{
@@ -5508,8 +5518,10 @@ script 638 (int Which)
 			
 			If(Perk3[PlayerNumber()+1] == "Perk3_SitRep")
 			{
-				GiveInventory("Perk3_SitRepEffect",1);
-				GiveInventory("Perk3_SitRepItem",1);
+				GiveInventory("Perk3_SitRep_PRO", 1);
+			}
+			else {
+				GiveInventory(Perk3[PlayerNumber()+1],1);
 			}
 			
 			GiveInventory(Attachment[PlayerNumber()+1],1);
@@ -5673,13 +5685,15 @@ script 639 (void)
         else if(Randomiser == 3)		//ColdBlooded
 			Perk2[PlayerNumber()+1] = "Perk2_ColdBlooded";
 
-	Randomiser = random(0,2);
+	Randomiser = random(0,3);
 		if(Randomiser == 0)			//Steady Aim
 			Perk3[PlayerNumber()+1] = "Perk3_SteadyAim";
 		else if(Randomiser == 1)		//Commando
 			Perk3[PlayerNumber()+1] = "Perk3_Commando";
 		else if(Randomiser == 2)		//Last Stand
 			Perk3[PlayerNumber()+1] = "Perk3_LastStand";
+		else if(Randomiser == 3)		//Last Stand
+			Perk3[PlayerNumber()+1] = "Perk3_SitRep";
 		TakeInventory("MenuCursor",15);
 
 	Randomiser = random(0,5);
