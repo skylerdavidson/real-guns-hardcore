@@ -1,0 +1,16 @@
+10-50 = EMP noise
+50-100 = Blood screen
+100-150 = "Drop current weapon"
+150-200 = Last stand, Tactical Insertion  
+200-250 = "All weapon slots are full"
+300-2000 = Menu items
+314-318 = Crosshair
+2000-2050 = "Experience X/X"
+2050-2100 = "Click primary to scroll, ..."
+2100-2150 = EMP flash
+2150-2200 = Perk table (in menu)
+2200-2250 = Attachment attached, Voice changed, "You are being revived", "You are class XXX", New perk added, "You have ranked up...", 
+2250-2300 = New perk description
+2300-2350 = Press X to choose your level up award
+2700-2750 = "Press X to change class"
+20000+ = hudMessageOnActor
