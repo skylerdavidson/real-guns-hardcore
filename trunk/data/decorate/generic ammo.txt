@@ -576,7 +576,7 @@ actor AK47Ammo : Ammo
 //Assault Rifle ammo pickup
 actor AssaultRifleAmmo : CustomInventory
 {
-  inventory.pickupmessage "Got Assault Rifle clips!"  
+  inventory.pickupmessage "Got Assault Rifle ammo!"  
   inventory.pickupsound "misc/ammo_pkup"
   +INVENTORY.AUTOACTIVATE
   scale 0.75
@@ -634,7 +634,7 @@ actor AssaultRifleAmmo : CustomInventory
 //SMG ammo pickup
 actor SMGAmmo : CustomInventory
 {
-  inventory.pickupmessage "Got SMG clips!"  
+  inventory.pickupmessage "Got SMG ammo!"  
   inventory.pickupsound "misc/ammo_pkup"
   +INVENTORY.AUTOACTIVATE
   scale 0.75
@@ -680,7 +680,7 @@ actor SMGAmmo : CustomInventory
 //Shell ammo pickup
 actor ShotgunAmmo : CustomInventory
 {
-  inventory.pickupmessage "Got Shotgun shells!"  
+  inventory.pickupmessage "Got Shotgun ammo!"  
   inventory.pickupsound "misc/ammo_pkup"
   +INVENTORY.AUTOACTIVATE
   scale 0.75
@@ -730,7 +730,7 @@ actor ShotgunAmmo : CustomInventory
 //Handgun ammo pickup
 actor HandgunAmmo : CustomInventory
 {
-  inventory.pickupmessage "Got Handgun clips!"
+  inventory.pickupmessage "Got Handgun ammo!"
   inventory.pickupsound "misc/ammo_pkup"
   +INVENTORY.AUTOACTIVATE
   scale 0.5
@@ -784,7 +784,7 @@ actor HandgunAmmo : CustomInventory
 //Sniper ammo pickup
 actor SniperAmmo : CustomInventory
 {
-  inventory.pickupmessage "Got Sniper clips!"  
+  inventory.pickupmessage "Got Sniper ammo!"  
   inventory.pickupsound "misc/ammo_pkup"
   +INVENTORY.AUTOACTIVATE
   scale 0.75
@@ -897,7 +897,7 @@ actor RocketAmmo_2 : CustomInventory
 //LMG ammo pickup
 actor LMGAmmo : CustomInventory
 {
-  inventory.pickupmessage "Got LMG bullets!"  
+  inventory.pickupmessage "Got LMG ammo!"  
   inventory.pickupsound "misc/ammo_pkup"
   +INVENTORY.AUTOACTIVATE
   scale 1.0
