@@ -1858,12 +1858,12 @@ script 618 (int Which)
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled",1);
 	}
-	else if((Which == 16) && CheckInventory("PP2000") == 0 && CheckInventory("PP2000 Ex Mags") == 0)
+	else if((Which == 16) && CheckInventory("PP2000") == 0 && CheckInventory("PP2000 Ex Mags") == 0 && CheckInventory("PP2000 Akimbo") == 0)
 	{
 		SetResultValue(1);
 		if(CheckInventory("PP2000ExMags") == 1)
 			GiveInventory("PP2000 Ex Mags",1);
-		if(CheckInventory("PP2000Akimbo") == 1)
+		else if(CheckInventory("PP2000Akimbo") == 1)
 			GiveInventory("PP2000 Akimbo",1);
 		else
 			GiveInventory("PP2000",1);
@@ -5237,7 +5237,7 @@ script 638 (int Which)
 		//log(s:"Take3");
 		TakeInventory("Menu",1);
 		GiveInventory("PP2000 Ex Mags",1);
-		GiveInventory("PP200ExMags",1);
+		GiveInventory("PP2000ExMags",1);
 		//GiveInventory("M9Ammo",30);
 		GiveInventory("FAL",1);
 		//GiveInventory("FALAmmo",60);
