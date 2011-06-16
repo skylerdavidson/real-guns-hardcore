@@ -7389,7 +7389,11 @@ script 661 (void)
 		eraseChooseAward();
 	}
 }
-	
 
-			
- 
+// clean up after player disconnects
+script 662 (int i) DISCONNECT
+{	
+	GotClass[i + 1] = 0;
+	ExperienceNeed[i + 1] = 500;
+	TacticalInsertion[i + 1] = 0;
+} 
