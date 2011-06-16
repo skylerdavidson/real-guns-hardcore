@@ -96,8 +96,8 @@ ACTOR RGUPlayer : DoomPlayer
   Player.StartItem "L86Clip2", 200
   Player.StartItem "RPGClip", 1
   Player.StartItem "M1887Clip", 7
-  Player.StartItem "M14Clip", 10
-  Player.StartItem "M14Clip2", 15
+  Player.StartItem "M14Clip", 20
+  Player.StartItem "M14Clip2", 30
   
   Player.SideMove 0.65
   Player.ForwardMove 0.65
