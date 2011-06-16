@@ -1,0 +1,25 @@
+clearteams
+
+Team "U.S. Rangers"
+{
+        PlayerColor "00 00 FF"
+        TextColor "BLUE"
+}
+
+Team "Spetsnaz"
+{
+        PlayerColor "FF 00 00"
+        TextColor "RED"
+}
+
+Team "OpFor"
+{
+        PlayerColor "00 FF 00"
+        TextColor "GREEN"
+}
+
+Team "Navy Seals"
+{
+        PlayerColor "00 00 00"
+        TextColor "BLACK"
+}
