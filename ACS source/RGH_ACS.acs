@@ -162,6 +162,8 @@ script 502 (void)
 //------- Player's death, shows killer health and cam after 1 second. Might not work properly.
 script 503 DEATH
 {		
+	closeAwardMenu();
+	
 	//Preserve information just for this script; don't want it to view someone else's killer.
 	Delay(1);
 	int KillersHealths = KillersHealth;
