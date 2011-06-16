@@ -795,7 +795,7 @@ script 601 (void) NET
 		 || ((CheckWeapon("L86") == 1 || CheckWeapon("L86 Grip") == 1) && CheckInventory("L86Clip") < 100 && CheckInventory("L86Ammo") != 0) || (CheckWeapon("L86 Ex Mags") == 1 && CheckInventory("L86Clip2") < 200 && CheckInventory("L86Ammo") != 0)
 		 || (CheckWeapon("Ranger") == 1 && CheckInventory("RangerClip") < 2 && CheckInventory("RangerAmmo") != 0) 
 		 || (CheckWeapon("Model 1887") == 1 && CheckInventory("M1887Clip") < 7 && CheckInventory("M1887Ammo") != 0) 
-		 || (CheckWeapon("M14 EBR Ex Mags") == 1 && CheckInventory("M14Clip2") < 15 && CheckInventory("M14Ammo") != 0) || ((CheckWeapon("M14 EBR") == 1 || CheckWeapon("M14 EBR Thermal") == 1) && CheckInventory("M14Clip") < 10 && CheckInventory("M14Ammo") != 0) 
+		 || (CheckWeapon("M14 EBR Ex Mags") == 1 && CheckInventory("M14Clip2") < 30 && CheckInventory("M14Ammo") != 0) || ((CheckWeapon("M14 EBR") == 1 || CheckWeapon("M14 EBR Thermal") == 1) && CheckInventory("M14Clip") < 20 && CheckInventory("M14Ammo") != 0) 
 		 || (CheckWeapon("Thumper") == 1 && CheckInventory("ThumperClip") < 1 && CheckInventory("ThumperAmmo") != 0)  || (CheckWeapon("AT4-HS") == 1 && CheckInventory("AT4Clip") < 1 && CheckInventory("AT4Ammo") != 0) 
 		 || (CheckWeapon("FAMAS M203") == 1 && CheckInventory("M203Clip") < 1 && CheckInventory("M203Ammo") != 0)  || (CheckWeapon("RPG-7") == 1 && CheckInventory("RPGClip") < 1 && CheckInventory("RPGAmmo") != 0) 
 		 || (CheckWeapon("F2000") == 1 && CheckInventory("F2000Clip") < 30 && CheckInventory("F2000Ammo") != 0) || (CheckWeapon("F2000 Ex Mags") == 1 && CheckInventory("F2000Clip2") < 45 && CheckInventory("F2000Ammo") != 0)
