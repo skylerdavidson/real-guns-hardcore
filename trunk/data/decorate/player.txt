@@ -378,7 +378,7 @@ ACTOR RGULastStandPlayer : PlayerPawn
   Speed 1
   Health 30
   Radius 16
-  Height 24
+  Height 56
   Mass 1000
   PainChance 255
   CameraHeight 9
