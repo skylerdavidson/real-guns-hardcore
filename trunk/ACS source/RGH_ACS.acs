@@ -15,6 +15,10 @@ bool TacticalInsertion[32];
 
 bool arcade = false;
 
+bool InvisibilityRunning[40];
+
+bool Entered[40][8];
+ 
 #ifdef SKULLTAG
 script 505 OPEN
 {
@@ -74,6 +78,13 @@ script 500 ENTER
 
 script 501 RESPAWN
 {
+#ifdef SKULLTAG   
+	if(Entered[PlayerNumber()][PlayerTeam()] == 0){
+		ACS_ExecuteAlways(597,0,0,0,0); // call the ENTER script if it was not called yet, for TDM where ENTER is not automatically called
+		terminate;
+	}
+#endif
+
 	if(CheckInventory("Spawned") == 0){
 		ACS_ExecuteAlways(657,0,0,0,0); // Go to menu
 	}
@@ -109,8 +120,6 @@ script 501 RESPAWN
 		
 		if(CheckInventory("Perk3_LastStand") == 1)
 			GiveInventory("LastStandUrn",10000);
-		
-		TakeInventory("InvisibilityRunning", 1);
 			
 		if(CheckInventory("Perk1_OneManArmy") == 1)
 			ACS_ExecuteAlways(629,0,0,0,0); // set ammo capacities
@@ -225,6 +234,10 @@ script 504 (void)
 //------- Give stuff, fix minor bugs, and so on
 script 597 ENTER
 {
+#ifdef SKULLTAG
+	Entered[PlayerNumber()][PlayerTeam()] = true;
+#endif
+   
 	// players go to the game mode menu first in single player
 	if(GameType() == GAME_SINGLE_PLAYER){
 		GiveInventory("MenuPlace", 9);
@@ -277,11 +290,7 @@ script 597 ENTER
 			ACS_ExecuteAlways(629,0,0,0,0);
 		
 		if(CheckInventory("Perk3_LastStand") == 1)
-			GiveInventory("LastStandUrn",10000);
-		
-		TakeInventory("InvisibilityRunning", 1);
-		
-		
+			GiveInventory("LastStandUrn",10000);		
 		
 		SetActorProperty(0,APROP_Invulnerable,0);		
 		ACS_ExecuteAlways(631,0,0,0,0);  // unmorph from last stand
@@ -5694,8 +5703,8 @@ script 639 (void)
 // ColdBlooded pro invisibility
 script 640 (void)
 {
-	if(CheckInventory("InvisibilityRunning") == 0){
-		GiveInventory("InvisibilityRunning", 1);
+	//if(InvisibilityRunning[PlayerNumber()] == 0){
+	//	InvisibilityRunning[PlayerNumber()] = 1;
 
 		while(true){	
 			if(CheckInventory("Perk2_ColdBlooded_PRO") == 1){
@@ -5708,8 +5717,10 @@ script 640 (void)
 			}
 
 			delay(35);
+			
+			//log(s:"invis", i: timer());
 		}
-	}
+	//}
 }
 
 // Infinite ammo for bots
@@ -7398,4 +7409,8 @@ script 662 (int i) DISCONNECT
 	GotClass[i + 1] = 0;
 	ExperienceNeed[i + 1] = 500;
 	TacticalInsertion[i + 1] = 0;
+	
+	for(int j = 0; j < 7; j++){
+		Entered[i][j] = 0;
+	}
 } 
