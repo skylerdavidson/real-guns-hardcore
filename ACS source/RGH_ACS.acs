@@ -1397,7 +1397,7 @@ script 616 RESPAWN
 		GiveInventory("Rank",1);
 		GiveInventory("RewardsToPick",1);
 
-		ACS_ExecuteAlways(623,0,0,0,0);
+		//ACS_ExecuteAlways(623,0,0,0,0);
 	}
 	if(CheckInventory("Experience") >= 2500 && CheckInventory("Rank") == 3)
 	{
