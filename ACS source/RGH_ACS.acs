@@ -154,9 +154,7 @@ script 502 (void)
 	KillersID = ActivatorTID();
 	KillersHealth = GetActorProperty(ActivatorTID(),APROP_Health);
 	KillersMaxHealth = GetActorProperty(ActivatorTID(),APROP_SpawnHealth);
-
-    log(s:GetMonsterClass(0));
-
+    
 	// GetActorProperty always returns 0 for players
 	if(KillersMaxHealth == 0) KillersMaxHealth = 100;
 
@@ -597,10 +595,10 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 		Reverse = 3000;
 		RecoilSpeed = 1000;
 		if(CheckInventory("Aiming") == 1)
-		{
-			Strength = 800;
-			Reverse = 750;
-			RecoilSpeed = 400;
+		{               
+			Strength = 300;
+			Reverse = 200;
+			RecoilSpeed = 100;			
 		}
 		EnableRandomization = true;
 	}
@@ -6248,7 +6246,6 @@ function void hudmessageonactor(int tid, int range, str sprite, str text, int sp
 
 // assign next free tid to the thing 
 script 651 (void) {
-	log(s:"assign", i:nextTid);
 	Thing_ChangeTID(0,nextTid);
 	nextTid = nextTid + 1;
 }
