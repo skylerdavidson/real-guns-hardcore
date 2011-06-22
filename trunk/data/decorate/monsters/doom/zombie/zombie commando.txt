@@ -12,6 +12,7 @@ Actor ZombieCommando : RGAMonster
   +LOOKALLAROUND
   +BOSS
   +FULLVOLACTIVE
+  +NODROPOFF
   SeeSound "ZSpecOps/Sight"
   ActiveSound "ZSpecOps/Sight"
   PainSound "ZSpecOps/Pain"
@@ -58,42 +59,42 @@ Actor ZombieCommando : RGAMonster
     ZSP2 A 0 A_ChangeFlag("MissileEvenMore", 1)
     Goto AggressiveSee
   AggressiveSee:
-    ZSP2 A 3 A_Chase("", "AggressiveMissile")
+    ZSP2 A 3 A_Chase("", "AggressiveMissile", CHF_FASTCHASE)
     ZSP2 A 0 A_JumpIfHealthLower(50, "SitRep")
     ZSP2 A 0 A_Jump(32, 2)
     ZSP2 A 0 A_JumpIfCloser(768, 1)
     Goto SitRep
-    ZSP2 A 3 A_Chase("", "AggressiveMissile")
+    ZSP2 A 3 A_Chase("", "AggressiveMissile", CHF_FASTCHASE)
     ZSP2 A 0 A_JumpIfHealthLower(50, "SitRep")
     ZSP2 A 0 A_Jump(32, 2)
     ZSP2 A 0 A_JumpIfCloser(768, 1)
     Goto SitRep
-    ZSP2 B 3 A_Chase("", "AggressiveMissile")
+    ZSP2 B 3 A_Chase("", "AggressiveMissile", CHF_FASTCHASE)
     ZSP2 B 0 A_JumpIfHealthLower(50, "SitRep")
     ZSP2 B 0 A_Jump(32, 2)
     ZSP2 B 0 A_JumpIfCloser(768, 1)
     Goto SitRep
-    ZSP2 B 3 A_Chase("", "AggressiveMissile")
+    ZSP2 B 3 A_Chase("", "AggressiveMissile", CHF_FASTCHASE)
     ZSP2 B 0 A_JumpIfHealthLower(50, "SitRep")
     ZSP2 B 0 A_Jump(32, 2)
     ZSP2 B 0 A_JumpIfCloser(768, 1)
     Goto SitRep
-    ZSP2 C 3 A_Chase("", "AggressiveMissile")
+    ZSP2 C 3 A_Chase("", "AggressiveMissile", CHF_FASTCHASE)
     ZSP2 C 0 A_JumpIfHealthLower(50, "SitRep")
     ZSP2 C 0 A_Jump(32, 2)
     ZSP2 C 0 A_JumpIfCloser(768, 1)
     Goto SitRep
-    ZSP2 C 3 A_Chase("", "AggressiveMissile")
+    ZSP2 C 3 A_Chase("", "AggressiveMissile", CHF_FASTCHASE)
     ZSP2 C 0 A_JumpIfHealthLower(50, "SitRep")
     ZSP2 C 0 A_Jump(32, 2)
     ZSP2 C 0 A_JumpIfCloser(768, 1)
     Goto SitRep
-    ZSP2 D 3 A_Chase("", "AggressiveMissile")
+    ZSP2 D 3 A_Chase("", "AggressiveMissile", CHF_FASTCHASE)
     ZSP2 D 0 A_JumpIfHealthLower(50, "SitRep")
     ZSP2 D 0 A_Jump(32, 2)
     ZSP2 D 0 A_JumpIfCloser(768, 1)
     Goto SitRep
-    ZSP2 D 3 A_Chase("", "AggressiveMissile")
+    ZSP2 D 3 A_Chase("", "AggressiveMissile", CHF_FASTCHASE)
     ZSP2 D 0 A_JumpIfHealthLower(50, "SitRep")
     ZSP2 D 0 A_Jump(32, 2)
     ZSP2 D 0 A_JumpIfCloser(768, 1)
@@ -185,7 +186,7 @@ Actor ZombieCommando : RGAMonster
   CreepSee:
     ZSP2 A 0 A_CheckSight("CreepCheck")
     ZSP2 A 0 A_JumpIfHealthLower(50, "SitRep")
-    ZSP2 AABBCCDD 5 A_Chase("", "CreepMissile", 2)
+    ZSP2 AABBCCDD 5 A_Chase("", "CreepMissile", CHF_FASTCHASE)
     Loop
   CreepCheck:
     ZSP2 A 0 A_Jump(32, "SitRep")
@@ -210,7 +211,7 @@ Actor ZombieCommando : RGAMonster
     ZSP2 A 0 A_ChangeFlag("Frightened", 1)
     Goto FleeSee
   FleeSee:
-    ZSP2 AABBCCDD 3 A_Chase("", "FleeMissile")
+    ZSP2 AABBCCDD 3 A_Chase("", "FleeMissile", CHF_FASTCHASE)
     ZSP2 A 0 A_JumpIfCloser(768, 1)
     Goto See
     ZSP2 A 0

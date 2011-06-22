@@ -5,7 +5,7 @@ actor SpaceNazi : RGAMonster
   radius 20
   height 56
   mass 100
-  speed 8
+  speed 9
   painchance 130
   seesound "space/nazi"
   attacksound "fal/fire"
@@ -27,7 +27,7 @@ actor SpaceNazi : RGAMonster
     BHEL AB 10 A_Look
     goto Spawn+4
   See:
-    BHEL AABBCCDD 3 A_Chase
+    BHEL AABBCCDD 2 A_Chase
     loop
   Missile:
     BHEL EF 10 A_FaceTarget

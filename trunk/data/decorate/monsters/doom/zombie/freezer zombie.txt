@@ -3,7 +3,7 @@ ACTOR FreezerZombie: RGAMonster
     Health 40
     Radius 20
     Height 56
-    Speed 8
+    Speed 11
     PainChance 170
     MONSTER 
     +FLOORCLIP
@@ -25,7 +25,7 @@ ACTOR FreezerZombie: RGAMonster
         FRPO AB 10 A_Look		
         goto Spawn+4
     See:
-        FRPO AABBCCDD 4 A_Chase
+        FRPO AABBCCDD 3 A_Chase
         Loop
     Missile:
         FRPO E 10 A_FaceTarget

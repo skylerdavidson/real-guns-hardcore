@@ -3,7 +3,7 @@ ACTOR EMPZombie: RGAMonster
     Health 60
     Radius 20
     Height 56
-    Speed 8
+    Speed 11
     PainChance 170
     MONSTER 
     +FLOORCLIP
@@ -25,7 +25,7 @@ ACTOR EMPZombie: RGAMonster
         RPOS AB 10 A_Look		
         goto Spawn+4
     See:
-        RPOS AABBCCDD 4 A_Chase
+        RPOS AABBCCDD 3 A_Chase
         Loop
     Missile:
         RPOS E 10 A_FaceTarget
