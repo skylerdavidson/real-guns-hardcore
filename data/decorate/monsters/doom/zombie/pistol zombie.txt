@@ -7,6 +7,7 @@ actor ZombieMan_2 : RGAMonster
   height 56
   mass 100
   speed 11
+  cameraheight 48
   painchance 200
   seesound "grunt/sight"
   attacksound "u45/fire"

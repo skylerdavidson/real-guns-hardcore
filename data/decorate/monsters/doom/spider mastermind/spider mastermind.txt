@@ -5,6 +5,7 @@ actor SpiderMastermind_2
   health 5000
   radius 128
   height 100
+  cameraheight 50
   mass 1000
   speed 12
   painchance 40

@@ -3,6 +3,7 @@ actor PainElemental_2 : RGAMonster
   health 400
   radius 31
   height 56
+  cameraheight 40
   mass 400
   speed 8
   painchance 128

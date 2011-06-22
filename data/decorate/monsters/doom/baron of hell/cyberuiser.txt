@@ -5,6 +5,7 @@ actor Cybruiser : BaronOfHell_2
   health 1400
   radius 24
   height 64
+  cameraheight 54
   mass 1000
   speed 8
   painchance 20

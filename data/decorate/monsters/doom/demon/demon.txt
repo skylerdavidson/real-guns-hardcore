@@ -5,6 +5,7 @@ ACTOR Demon_2 : RGAMonster
   Speed 20
   Radius 30
   Height 56
+  cameraheight 48
   Mass 400
   Monster
   +FLOORCLIP

@@ -5,6 +5,7 @@ actor DarkArchvile : Archvile_2
   health 1200
   radius 20
   height 56
+  cameraheight 48
   mass 500
   speed 15
   painchance 10

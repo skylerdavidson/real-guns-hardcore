@@ -5,6 +5,7 @@ actor Arachnotron_2 : RGAMonster
   health 500
   radius 64
   height 64
+  cameraheight 30
   mass 600
   speed 12
   painchance 128

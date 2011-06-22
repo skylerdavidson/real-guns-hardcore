@@ -2,6 +2,7 @@ ACTOR Belphegor_2 : BaronOfHell_2
 {
   SpawnID 215
   Health 1100
+  cameraheight 54
   PainChance 25
   SeeSound "baron/sight"
   PainSound "baron/pain"

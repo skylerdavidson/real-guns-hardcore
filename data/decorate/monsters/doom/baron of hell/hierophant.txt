@@ -41,6 +41,7 @@ Actor Hierophant: RGAMonster
   Health 3000
   Radius 24
   Height 60
+  cameraheight 48
   Mass 1000
   Speed 14
   PainChance 24

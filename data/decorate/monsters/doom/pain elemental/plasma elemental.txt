@@ -4,6 +4,7 @@ ACTOR PlasmaElemental : RGAMonster
    Speed 13
    Radius 31
    Height 56
+   cameraheight 40
    PainChance 128
    Mass 400
    MONSTER

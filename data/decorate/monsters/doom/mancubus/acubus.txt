@@ -5,6 +5,7 @@ actor Acubus : Fatso_2
   health 1600
   radius 48
   height 64
+  cameraheight 52
   mass 1200
   speed 8
   painchance 10

@@ -4,6 +4,7 @@ ACTOR Archvile_2 : RGAMonster
   Health 1300
   Radius 20
   Height 56
+  cameraheight 48
   Mass 500
   Speed 15
   PainChance 10

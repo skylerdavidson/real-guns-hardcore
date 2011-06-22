@@ -5,6 +5,7 @@ actor Fatso_2 : RGAMonster
   health 1000
   radius 48
   height 64
+  cameraheight 52
   mass 1000
   speed 8
   painchance 80

@@ -4,6 +4,7 @@ ACTOR HellsFury : RGAMonster
 	Health 1900
 	Radius 24
 	Height 64
+	cameraheight 54
 	Speed 8
 	PainChance 50
 	Mass 1000

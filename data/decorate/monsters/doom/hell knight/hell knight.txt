@@ -6,6 +6,7 @@ actor HellKnight_2 : RGAMonster
   health 500
   radius 24
   height 64
+  cameraheight 52
   mass 1000
   speed 8
   painchance 50
