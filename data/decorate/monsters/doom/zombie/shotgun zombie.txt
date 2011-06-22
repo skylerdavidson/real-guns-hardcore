@@ -6,7 +6,7 @@ actor ShotgunGuy_2 : RGAMonster
   radius 20
   height 56
   mass 100
-  speed 8
+  speed 11
   painchance 170
   seesound "shotguy/sight"
   attacksound "spas/fire"
@@ -19,7 +19,7 @@ actor ShotgunGuy_2 : RGAMonster
   DropItem "HandgunAmmo" 128
   MONSTER
   +FLOORCLIP
-  +MISSILEMORE
+  +MISSILEEVENMORE
   states
   {
   Spawn:
@@ -30,12 +30,12 @@ actor ShotgunGuy_2 : RGAMonster
     SPOS AB 10 A_Look
     Goto Spawn+4
   See:
-    SPOS AABBCCDD 3 A_Chase
+    SPOS AABBCCDD 2 A_Chase
     loop
   Missile:
-    SPOS E 10 A_FaceTarget
-    SPOS F 10 bright A_CustomBulletAttack(22.5, 0, 3, 2, "BulletPuff")
-    SPOS E 10
+    SPOS E 5 A_FaceTarget
+    SPOS F 5 bright A_CustomBulletAttack(22.5, 0, 3, 2, "BulletPuff")
+    SPOS E 5
     goto See
   Pain:
     SPOS G 3

@@ -6,7 +6,7 @@ actor ZombieMan_2 : RGAMonster
   radius 20
   height 56
   mass 100
-  speed 8
+  speed 11
   painchance 200
   seesound "grunt/sight"
   attacksound "u45/fire"
@@ -19,7 +19,7 @@ actor ZombieMan_2 : RGAMonster
   GibHealth 5
   MONSTER
   +FLOORCLIP
-  +MISSILEMORE
+  +MISSILEEVENMORE
   states
   {
   Spawn:
@@ -31,13 +31,13 @@ actor ZombieMan_2 : RGAMonster
     POSS AB 10 A_Look
     goto Spawn+5
   See:
-    POSS AABBCCDD 4 A_Chase
+    POSS AABBCCDD 3 A_Chase
     loop
   Missile:
-    POSS E 10 A_FaceTarget
+    POSS E 5 A_FaceTarget
     POSS E 0 A_Jump(20,"Grenade")
-    POSS F 8 A_CustomBulletAttack(22.5, 0, 1, 4, "BulletPuff")
-    POSS E 8
+    POSS F 4 A_CustomBulletAttack(22.5, 0, 1, 4, "BulletPuff")
+    POSS E 4
     goto See
   Grenade:
     POSS E 0 A_JumpIfCloser(512,1)

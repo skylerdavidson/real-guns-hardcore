@@ -6,7 +6,7 @@ actor ZombieSniper : RGAMonster
   radius 20
   height 56
   mass 100
-  speed 8
+  speed 11
   painchance 200
   seesound "grunt/sight"
   painsound "grunt/pain"
@@ -29,7 +29,7 @@ actor ZombieSniper : RGAMonster
     ZHRT AB 10 A_Look
     goto Spawn+4
   See:
-    ZHRT AABBCCDD 4 A_Chase
+    ZHRT AABBCCDD 3 A_Chase
     loop
   Missile:
     ZHRT E 0 A_JumpIfCloser(600,"Pistol")
