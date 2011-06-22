@@ -15,6 +15,7 @@ actor Agathodemon : RGAMonster
   +MISSILEMORE
   Radius 31
   Height 64
+  cameraheight 40
   Health 1400
   Mass 1000
   Speed 16

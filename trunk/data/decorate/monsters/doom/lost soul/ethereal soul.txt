@@ -4,6 +4,7 @@ ACTOR ESoul : RGAMonster // replaces Zombieman
   health 60
   radius 16
   height 32
+  cameraheight 26
   mass 400
   speed 10
   damage 5

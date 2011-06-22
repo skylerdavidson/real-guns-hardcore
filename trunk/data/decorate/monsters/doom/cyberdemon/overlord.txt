@@ -3,7 +3,8 @@ actor OverLord : RGAMonster
 {
 Health 4800
 Radius 30 
-Height 90 
+Height 90
+cameraheight 60 
 Mass 1000 
 Speed 13 
 PainChance 20

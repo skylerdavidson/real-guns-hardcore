@@ -4,6 +4,7 @@ actor KamikazeSoul : RGAMonster
   health 60
   radius 16
   height 56
+  cameraheight 48
   mass 50
   speed 15
   damage 3

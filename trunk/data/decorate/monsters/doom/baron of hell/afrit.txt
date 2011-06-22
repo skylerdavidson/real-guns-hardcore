@@ -4,6 +4,7 @@ Actor Afrit : RGAMonster
   Speed 10
   Radius 24
   Height 72
+  cameraheight 60
   PainChance 50
   Mass 500
   Meleedamage 10

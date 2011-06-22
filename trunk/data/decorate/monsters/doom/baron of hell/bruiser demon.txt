@@ -4,6 +4,7 @@ ACTOR BruiserDemon : RGAMonster
 	Health 1100
 	Radius 24
 	Height 64
+	cameraheight 54
 	Mass 2000
 	Speed 8
 	PainChance 15

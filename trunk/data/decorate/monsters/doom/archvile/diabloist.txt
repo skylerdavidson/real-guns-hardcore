@@ -3,7 +3,8 @@ ACTOR Diabloist : ArchVile_2
 Obituary "%o got was set ablaze by a Diabloist."
 Health 2000
 Radius 20 
-Height 56 
+Height 56
+cameraheight 48 
 Mass 500 
 Speed 15 
 PainChance 10

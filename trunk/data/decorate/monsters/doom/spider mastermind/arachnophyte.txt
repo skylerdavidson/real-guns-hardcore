@@ -4,6 +4,7 @@ ACTOR Arachnophyte : RGAMonster
     Health 5500
     Radius 64
     Height 100
+    cameraheight 50
     Speed 6
     PainChance 15
     Mass 5000

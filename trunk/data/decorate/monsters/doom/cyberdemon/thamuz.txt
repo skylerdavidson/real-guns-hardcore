@@ -13,6 +13,7 @@ ACTOR Thamuz : Cyberdemon_2
   Health 4400
   Speed 16
   PainChance 35
+  cameraheight 95
   Mass 2000
   Scale 1.1
   Bloodcolor "00 aa 00"

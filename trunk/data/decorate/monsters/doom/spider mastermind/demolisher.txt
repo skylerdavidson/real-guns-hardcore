@@ -3,7 +3,8 @@ ACTOR Demolisher : RGAMonster
 Obituary "%o felt the power of the Spider-Demolisher."
 Health 3400 
 Radius 96 
-Height 100 
+Height 100
+cameraheight 50 
 Mass 1000 
 Speed 16 
 PainChance 20 

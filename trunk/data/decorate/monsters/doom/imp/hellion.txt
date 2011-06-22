@@ -5,6 +5,7 @@ actor Hellion: RGAMonster
   health 40
   radius 20
   height 56
+  cameraheight 48
   mass 120
   speed 10
   painchance 24

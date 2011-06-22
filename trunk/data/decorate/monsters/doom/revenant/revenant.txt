@@ -5,7 +5,8 @@ actor Revenant_2 : RGAMonster
   hitobituary "%o was punched by a revenant."
   health 300
   radius 20
-  height 56
+  height 64
+  cameraheight 56
   mass 500
   speed 10
   painchance 100

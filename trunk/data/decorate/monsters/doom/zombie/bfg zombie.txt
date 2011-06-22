@@ -4,6 +4,7 @@ actor BFGGuy : RGAMonster
   health 100
   radius 20
   height 56
+  cameraheight 48
   mass 100
   speed 8
   painchance 170

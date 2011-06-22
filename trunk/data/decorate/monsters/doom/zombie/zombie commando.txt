@@ -2,6 +2,7 @@ Actor ZombieCommando : RGAMonster
 {
   Health 200
   Height 56
+  cameraheight 48
   Radius 10
   Speed 14
   PainChance 96

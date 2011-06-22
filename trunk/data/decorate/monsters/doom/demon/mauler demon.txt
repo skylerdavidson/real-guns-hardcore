@@ -6,7 +6,8 @@ ACTOR MaulerDemon : RGAMonster
    PainChance 180 
    Speed 17 
    Radius 30 
-   Height 56 
+   Height 56
+   cameraheight 48 
    Mass 400 
    Damage 2 //Horns = pain. I say no more 
    Monster 

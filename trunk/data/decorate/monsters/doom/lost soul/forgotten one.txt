@@ -4,6 +4,7 @@ Actor ForgottenOne : RGAMonster
   Health 30
   Radius 14
   Height 30
+  cameraheight 26
   Mass 50
   Speed 12
   PainChance 230

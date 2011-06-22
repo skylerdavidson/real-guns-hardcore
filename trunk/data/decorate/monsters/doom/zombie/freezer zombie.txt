@@ -3,6 +3,7 @@ ACTOR FreezerZombie: RGAMonster
     Health 40
     Radius 20
     Height 56
+    cameraheight 48
     Speed 11
     PainChance 170
     MONSTER 

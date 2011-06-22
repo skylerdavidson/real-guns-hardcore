@@ -5,6 +5,7 @@ actor ShotgunGuy_2 : RGAMonster
   health 40
   radius 20
   height 56
+  cameraheight 48
   mass 100
   speed 11
   painchance 170

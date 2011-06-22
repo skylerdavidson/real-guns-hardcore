@@ -10,6 +10,7 @@ ACTOR Cardinal : RGAMonster
    Speed 6
    Radius 24
    Height 112
+   cameraheight 95
    PainChance 50
    Mass 700
    Meleedamage 10 

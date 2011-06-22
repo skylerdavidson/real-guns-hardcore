@@ -5,6 +5,7 @@ actor Helemental : RGAMonster
   health 3300
   radius 34
   height 64
+  cameraheight 50
   mass 800
   speed 16
   painchance 32

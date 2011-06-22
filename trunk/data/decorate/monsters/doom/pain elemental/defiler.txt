@@ -4,6 +4,7 @@ ACTOR Defiler : RGAMonster
 	Health 1800
 	Radius 31
 	Height 56
+	cameraheight 40
 	Mass 500
 	Speed 13
 	PainChance 15

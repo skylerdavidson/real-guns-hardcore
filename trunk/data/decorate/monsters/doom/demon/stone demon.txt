@@ -6,6 +6,7 @@ actor StoneDemon : RGAMonster
   speed 15
   radius 30
   height 56
+  cameraheight 48
   mass 800
   seesound "stoner/sight"
   attacksound "stoner/sight"
