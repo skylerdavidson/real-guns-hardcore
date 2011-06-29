@@ -1,4 +1,4 @@
-ACTOR Clink2 : Clink replaces Clink
+ACTOR Clink2 : Clink
 {
   Game Heretic
   SpawnID 1
