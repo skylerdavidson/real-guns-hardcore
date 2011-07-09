@@ -5,6 +5,7 @@ IgnoreHash(#library "RGH_ACS")
 int KillersID;
 int KillersHealth;
 int KillersMaxHealth;
+int KillersClass;
 str KillersGun;
 str ExperienceNeed[40];
 str CurrentVoice[40];
@@ -154,6 +155,7 @@ script 502 (void)
 	KillersID = ActivatorTID();
 	KillersHealth = GetActorProperty(ActivatorTID(),APROP_Health);
 	KillersMaxHealth = GetActorProperty(ActivatorTID(),APROP_SpawnHealth);
+    KillersClass = GetActorTag(ActivatorTid());
     
 	// GetActorProperty always returns 0 for players
 	if(KillersMaxHealth == 0) KillersMaxHealth = 100;
@@ -176,17 +178,18 @@ script 503 DEATH
 	int KillersHealths = KillersHealth;
 	int KillersMaxHealths = KillersMaxHealth;
 	int KillersIDs = KillersID;
+	str KillersClasss = KillersClass;
 	str KillersGuns = KillersGun;
 
     SetFont("CONFONT");
-	Delay(5);
 	
 	if(KillersHealths > 0 && GetActorProperty(0,APROP_Health) < 1) //Don't view killers health or cam if he died at the same time you did. Or if you've respawned already.
 	{
 		SetFont("BIGFONT");		
 		ChangeCamera(KillersIDs,0,1);
 		KillersIdArray[PlayerNumber()] = KillersID;
-		HudMessage(s:"\ccKiller's Health left:\cg ", i:KillersHealths, s:"\cc of \cg", i:KillersMaxHealths, s:" \cc" ;HUDMSG_FADEOUT,0,CR_Blue,0.5,0.6,3.0,2.0);
+		HudMessage(s:"\ccKilled by:\cg ", s:KillersClasss ;HUDMSG_FADEOUT,0,CR_Blue,0.5,0.5,10.0,2.0);
+		HudMessage(s:"\ccKiller's Health left:\cg ", i:KillersHealths, s:"\cc of \cg", i:KillersMaxHealths, s:" \cc" ;HUDMSG_FADEOUT,0,CR_Blue,0.5,0.6,10.0,2.0);
 	}
 }
 //------------------------------------------
@@ -6245,8 +6248,8 @@ function void hudmessageonactor(int tid, int range, str sprite, str text, int sp
 }
 
 // assign next free tid to the thing 
-script 651 (void) {
-	Thing_ChangeTID(0,nextTid);
+script 651 (void) {		
+	Thing_ChangeTID(0,nextTid);	
 	nextTid = nextTid + 1;
 }
 
@@ -6525,7 +6528,7 @@ script 659 (void) NET
 
 function void drawChooseAward(void){
 	SetFont("CONFONT");
-	HudMessage(s:"\ccPress \cf", k:"award", s:"\cc to choose your level-up award"; HUDMSG_PLAIN, 2300+PlayerNumber(), CR_RED, 0.5, 0.80, 0.0);
+	HudMessage(s:"\ccPress \cf", k:"award", s:"\cc to choose your level-up award"; HUDMSG_PLAIN, 2300+PlayerNumber(), CR_RED, 0.5, 0.85, 0.0);
 }
 
 function void eraseChooseAward(void){	
