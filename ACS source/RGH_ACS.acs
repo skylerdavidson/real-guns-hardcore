@@ -6167,7 +6167,7 @@ script 650 (void) CLIENTSIDE {
 		
 			//log(s:"loop", i:i);
 			hudMessageOnActor(i, 900<<16, "SITREP1", "O", 45, 59);
-		} */				
+		}*/				
 		
 		if(loopCounter % 2 == 0 && CheckInventory("PowerEMP") > 0){
 			int r = noiseCounter % 4;
@@ -6202,6 +6202,40 @@ function void drawKillIndicator(void) {
 	HudMessage(s:"a"; HUDMSG_FADEOUT, CR_UNTRANSLATED, 0, 400.0, 300.0, 0.25, 0.01);
 }
 
+function int sqrt(int number)
+{
+	if(number <= 3)
+	{
+		if(number > 0)
+		{
+			return 1;
+		}
+		return 0;
+	}
+
+	int oldAns = number >> 1,                     // initial guess
+	    newAns = (oldAns + number / oldAns) >> 1; // first iteration
+
+	// main iterative method
+	while(newAns < oldAns)
+	{
+		oldAns = newAns;
+		newAns = (oldAns + number / oldAns) >> 1;
+	}
+
+	return oldAns;
+}
+
+function int distanceFromPoint (int originX, int originY, int originZ, int tid2)
+{
+	int x, y, z, d;
+	x = (originX - GetActorX(tid2)) >> 16; // Convert fixed point to integer
+	y = (originY - GetActorY(tid2)) >> 16;
+	z = (originZ - GetActorZ(tid2)) >> 16;
+	d = sqrt( x*x + y*y + z*z );
+	return d;
+}
+
 function void hudmessageonactor(int tid, int range, str sprite, str text, int spriteWidth, int spriteHeight)
 {
 	int dist, ang, vang, pitch, x, y;
@@ -6223,8 +6257,10 @@ function void hudmessageonactor(int tid, int range, str sprite, str text, int sp
 	vang = vectorangle(x,y);
 	ang = (vang - GetActorAngle(0) + 1.0) % 1.0;
 
-	if(((vang+0.125)%0.5) > 0.25) dist = fixeddiv(y, sin(vang));
-	else dist = fixeddiv(x, cos(vang));
+	//if(((vang+0.125)%0.5) > 0.25) dist = fixeddiv(y, sin(vang));
+	//else dist = distanceFromPoint(getactorx(0), getactory(0), getactorz(0),tid);
+
+    dist = distanceFromPoint(getactorx(0), getactory(0), getactorz(0),tid) << 16;
 
 	int distRatio = fixeddiv(dist, range >> 16);
 	
@@ -6321,40 +6357,6 @@ script 656 (void)
 script 657 (void)
 {
 	GiveInventory("GoToMenu", 1);	
-}
-
-function int sqrt(int number)
-{
-	if(number <= 3)
-	{
-		if(number > 0)
-		{
-			return 1;
-		}
-		return 0;
-	}
-
-	int oldAns = number >> 1,                     // initial guess
-	    newAns = (oldAns + number / oldAns) >> 1; // first iteration
-
-	// main iterative method
-	while(newAns < oldAns)
-	{
-		oldAns = newAns;
-		newAns = (oldAns + number / oldAns) >> 1;
-	}
-
-	return oldAns;
-}
-
-function int distanceFromPoint (int originX, int originY, int originZ, int tid2)
-{
-	int x, y, z, d;
-	x = (originX - GetActorX(tid2)) >> 16; // Convert fixed point to integer
-	y = (originY - GetActorY(tid2)) >> 16;
-	z = (originZ - GetActorZ(tid2)) >> 16;
-	d = sqrt( x*x + y*y + z*z );
-	return d;
 }
 
 function int abs (int x)
