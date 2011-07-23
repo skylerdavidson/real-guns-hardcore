@@ -1,5 +1,7 @@
 ACTOR Snake2 : Snake replaces Snake
 {
+	Tag "Ophidian"
+	CameraHeight 48
   Game Heretic
   SpawnID 132
   Health 300

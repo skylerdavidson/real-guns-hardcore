@@ -1,5 +1,7 @@
 ACTOR Ironlich2 : Ironlich replaces Ironlich
 {
+	Tag "Iron Lich"
+	CameraHeight 48
   Game Heretic
   SpawnID 20
   Health 1500
@@ -19,7 +21,7 @@ ACTOR Ironlich2 : Ironlich replaces Ironlich
   PainSound "ironlich/pain"
   DeathSound "ironlich/death"
   ActiveSound "ironlich/active"
-  Obituary "$OB_IRONLICH" // "%o was devastated by an ironlich."
+  Obituary "$OB_IRONLICH" // "%o was devastated by an iron lich."
   HitObituary "$OB_IRONLICHHIT" // "%o got up-close and personal with an ironlich."
 
   DropItem "ArtiEgg", 51, 0

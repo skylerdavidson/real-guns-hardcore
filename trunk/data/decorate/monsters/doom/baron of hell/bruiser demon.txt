@@ -1,5 +1,6 @@
 ACTOR BruiserDemon : RGAMonster
 {
+	Tag "Bruiser Demon"
 	//$Category Monsters
 	Health 1100
 	Radius 24
@@ -19,8 +20,8 @@ ACTOR BruiserDemon : RGAMonster
 	DeathSound "superbaron/death"
 	ActiveSound "superbaron/act"
 	MeleeSound "baron/melee"
-	Obituary "%o was slaughtered by a Bruiserdemon."
-	HitObituary "%o was cremated by a Bruiserdemon."
+	Obituary "%o was slaughtered by a Bruiser Demon."
+	HitObituary "%o was cremated by a Bruiser Demon."
 	MeleeDamage 20
 	Scale 1.00
 	DropItem "SoulSphere2" 128

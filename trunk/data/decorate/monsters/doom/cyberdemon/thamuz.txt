@@ -10,6 +10,7 @@
 
 ACTOR Thamuz : Cyberdemon_2
 {
+	Tag "Thamuz"
   Health 4400
   Speed 16
   PainChance 35

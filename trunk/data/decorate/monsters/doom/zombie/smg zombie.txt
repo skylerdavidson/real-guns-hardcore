@@ -1,5 +1,6 @@
 actor ChaingunGuy_2 : RGAMonster
 {
+	Tag "SMG Zombie"
   spawnid 2
   obituary "%o was perforated by a SMG zombie."
   health 70

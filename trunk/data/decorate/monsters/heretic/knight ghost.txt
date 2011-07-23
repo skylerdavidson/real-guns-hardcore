@@ -1,5 +1,7 @@
 ACTOR KnightGhost2 : KnightGhost
 {
+	Tag "Knight Ghost"
+	CameraHeight 48
   Game Heretic
   SpawnID 129
   +SHADOW

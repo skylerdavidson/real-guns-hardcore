@@ -1,5 +1,6 @@
 actor Fatso_2 : RGAMonster
 {
+	Tag "Mancubus"
   spawnid 112
   obituary "%o was squashed by a mancubus."
   health 1000

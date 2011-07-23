@@ -1,5 +1,6 @@
 actor SpiderMastermind_2
 {
+	Tag "Spider Mastermind"
   spawnid 7
   obituary "%o stood in awe of the spider demon."
   health 5000

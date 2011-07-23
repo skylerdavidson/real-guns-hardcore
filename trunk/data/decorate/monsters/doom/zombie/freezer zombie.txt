@@ -1,5 +1,6 @@
 ACTOR FreezerZombie: RGAMonster
 {
+	Tag "Freezer Zombie"
     Health 40
     Radius 20
     Height 56

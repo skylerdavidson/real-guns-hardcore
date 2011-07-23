@@ -1,5 +1,7 @@
 actor Beast2: Beast replaces Beast
 {
+	Tag "Weredragon"
+	CameraHeight 48
   Game Heretic
   Health 320
   Radius 32
@@ -15,7 +17,7 @@ actor Beast2: Beast replaces Beast
   PainSound "beast/pain"
   DeathSound "beast/death"
   ActiveSound "beast/active"
-  Obituary "$OB_BEAST" // "%o was charred by a beast."
+  Obituary "%o was charred by a weredragon."
   States
   {
   Spawn:

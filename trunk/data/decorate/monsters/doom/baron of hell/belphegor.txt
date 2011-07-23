@@ -1,5 +1,6 @@
 ACTOR Belphegor_2 : BaronOfHell_2
 {
+	Tag "Belphegor"
   SpawnID 215
   Health 1100
   cameraheight 54

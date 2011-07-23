@@ -1,6 +1,7 @@
 //The Overlord
 actor OverLord : RGAMonster
 {
+	Tag "Overlord"
 Health 4800
 Radius 30 
 Height 90
@@ -525,7 +526,8 @@ ACTOR StormLite2 : StormLite1
 //End of Overlord
 //Monster-Hades Sphere
 ACTOR HS: RGAmonster  30116 
-{ 
+{
+Tag "Hades Sphere" 
 Health 1
 Radius 25 
 Height 31 

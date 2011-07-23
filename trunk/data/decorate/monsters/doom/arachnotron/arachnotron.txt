@@ -1,5 +1,6 @@
 actor Arachnotron_2 : RGAMonster
 {
+	Tag "Arachnotron"
   spawnid 6
   obituary "%o let an arachnotron get %h."
   health 500

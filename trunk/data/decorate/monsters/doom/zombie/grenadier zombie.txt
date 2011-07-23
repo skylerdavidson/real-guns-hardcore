@@ -1,5 +1,6 @@
 actor GrenadeGuy_2 : RGAMonster
 {
+	Tag "Grenadier Zombie"
   spawnid 2
   obituary "%o was popped by a grenadier sergeant."
   health 70

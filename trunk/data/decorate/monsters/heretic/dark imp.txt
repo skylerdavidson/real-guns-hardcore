@@ -1,5 +1,7 @@
 ACTOR HereticDarkImp : HereticImp 
 {
+	Tag "Dark Gargoyle"
+	CameraHeight 30
   Game Heretic
   Health 100
   Radius 16

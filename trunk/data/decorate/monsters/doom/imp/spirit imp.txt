@@ -1,5 +1,6 @@
 actor DoomImpRes : RGAMonster
 {
+	Tag "Imp Ghost"
   spawnid 5
   obituary "%o was burned by an imp's ghost."
   hitobituary "%o was slashed by an imp's ghost."

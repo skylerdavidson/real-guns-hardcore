@@ -1,5 +1,6 @@
 ACTOR Abaddon_2 : Cacolantern_2
 {
+	Tag "Abaddon"
   SpawnID 220
   Health 1000
   Speed 16

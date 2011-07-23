@@ -1,5 +1,6 @@
 actor DoubleChaingunGuy_2 : RGAMonster
 {
+	Tag "Akimbo Zombie"
   spawnid 2
   obituary "%o was minced by an akimbo zombie."
   health 70

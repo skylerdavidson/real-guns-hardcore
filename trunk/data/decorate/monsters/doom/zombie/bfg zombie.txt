@@ -1,5 +1,6 @@
 actor BFGGuy : RGAMonster
 {
+	Tag "BFG Zombie"
   obituary "%o was vapourized by a zombie's BFG9000."
   health 100
   radius 20

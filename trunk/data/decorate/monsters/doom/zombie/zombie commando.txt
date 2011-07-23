@@ -1,5 +1,6 @@
 Actor ZombieCommando : RGAMonster
 {
+	Tag "Zombie Commando"
   Health 200
   Height 56
   cameraheight 48

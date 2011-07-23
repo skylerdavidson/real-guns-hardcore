@@ -1,5 +1,7 @@
 ACTOR Priest
 {
+	Tag "Acolyte of D'Sparil"
+	CameraHeight 48
 Game Heretic  
 Health 400 
 PainChance 170

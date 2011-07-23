@@ -1,5 +1,6 @@
 ACTOR HellsFury : RGAMonster
 {
+	Tag "Hell's Fury"
 	//$Category Monsters
 	Health 1900
 	Radius 24

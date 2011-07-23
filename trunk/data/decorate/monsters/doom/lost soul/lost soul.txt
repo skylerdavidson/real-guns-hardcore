@@ -1,5 +1,6 @@
 ACTOR LostSoul_2 : RGAMonster
 {
+	Tag "Lost Soul"
   Health 60
   Radius 16
   Height 56

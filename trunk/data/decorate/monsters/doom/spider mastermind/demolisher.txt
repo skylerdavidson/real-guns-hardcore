@@ -1,5 +1,6 @@
 ACTOR Demolisher : RGAMonster
 {
+	Tag "Demolisher"
 Obituary "%o felt the power of the Spider-Demolisher."
 Health 3400 
 Radius 96 

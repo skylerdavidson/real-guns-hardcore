@@ -1,7 +1,8 @@
 actor BlueCacodemon : Cacodemon_2
 {
-  obituary "%o was smitten by a bluodemon."
-  hitobituary "%o got too close to a bluodemon."
+	Tag "Frost Demon"
+  obituary "%o was smitten by a Frost Demon."
+  hitobituary "%o got too close to a Frost Demon."
   health 600
   bloodcolor "Red"
   +MISSILEMORE

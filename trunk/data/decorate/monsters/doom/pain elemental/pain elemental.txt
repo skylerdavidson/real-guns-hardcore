@@ -1,5 +1,6 @@
 actor PainElemental_2 : RGAMonster
 {
+	Tag "Pain Elemental"
   health 400
   radius 31
   height 56

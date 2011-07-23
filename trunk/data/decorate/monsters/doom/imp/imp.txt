@@ -1,5 +1,6 @@
 actor DoomImp_2 : RGAMonster
 {
+	Tag "Imp"
   spawnid 5
   obituary "%o was burned by an imp."
   hitobituary "%o was slashed by an imp."

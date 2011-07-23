@@ -9,6 +9,7 @@
 
 actor Agathodemon : RGAMonster
 {
+	Tag "Agathodemon"
   MONSTER
   +FLOAT
   +NOGRAVITY
@@ -29,8 +30,8 @@ actor Agathodemon : RGAMonster
   MeleeDamage 12
   MissileType AgathoDemonFireBall
   MissileHeight 24
-  Obituary "%o was blasted by an agathodemon."
-  HitObituary "%o got caught in an agathodemon's jaws."
+  Obituary "%o was blasted by an Agathodemon."
+  HitObituary "%o got caught in an Agathodemon's jaws."
   States
   {
   Spawn:
