@@ -1,11 +1,13 @@
 ACTOR TeleporterZombie
 {
-    Health 40
+    Tag "Teleporter Zombie"
+	Health 40
     Radius 20
     Height 56
     Speed 30
     PainChance 70
-    //Translation "192:207=112:127"
+    cameraheight 48
+    RenderStyle "Translucent"
     MONSTER 
     +FLOORCLIP
 	+MISSILEEVENMORE
@@ -27,15 +29,22 @@ ACTOR TeleporterZombie
 		KSWZ A 0 A_Jump(255, "ChaseBlink","ChaseBlink","ChaseBlink", "WanderBlink")
 	ChaseBlink:	    
 		KSWZ A 0 A_SpawnItemEx("TeleportFog")
-		KSWZ A 0 A_SetTranslucent(0.0)
-		KSWZ A 0 A_ChangeFlag("FLOAT", 1)
-		KSWZ A 0 A_ChangeFlag("NOGRAVITY", 1)
+		KSWZ A 0 A_SetTranslucent(0.0, 0)
+		KSWZ A 1 A_ChangeFlag("FLOAT", 1)
+		KSWZ A 0 A_ChangeFlag("NOGRAVITY", 1)		
 		KSWZ A 0 A_SpawnItemEx("TeleportFog")
-		KSWZ A 30
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Chase
+		KSWZ A 10
+		KSQZ A 0 A_ChangeFlag("INVULNERABLE", 1)
+		KSQZ A 0 A_ChangeFlag("SOLID", 0)
+		KSQZ A 0 A_ChangeFlag("SHOOTABLE", 0)
+		KSWZ A 20
+		KSWZ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Chase
 		KSWZ A 0 A_ChangeFlag("FLOAT", 0)
 		KSWZ A 0 A_ChangeFlag("NOGRAVITY", 0)
-		KSWZ A 0 A_SetTranslucent(1.0)		
+		KSQZ A 0 A_ChangeFlag("INVULNERABLE", 0)
+		KSQZ A 0 A_ChangeFlag("SOLID", 1)
+		KSQZ A 0 A_ChangeFlag("SHOOTABLE", 1)
+		KSWZ A 0 A_SetTranslucent(1.0, 0)		
 		KSWZ A 1 A_Chase
 		KSWZ AAAAAAAAAAAAAAAAAAAAA 0 A_Chase
 		KSWZ A 0 A_SpawnItemEx("TeleportFog")
@@ -43,15 +52,23 @@ ACTOR TeleporterZombie
 	WanderBlink:
 		KSWZ A 0 A_ChangeFlag("FRIGHTENED", 0)
 		KSWZ A 0 A_SpawnItemEx("TeleportFog")
-		KSWZ A 0 A_SetTranslucent(0.0)
-		KSWZ A 0 A_ChangeFlag("FLOAT", 1)
-		KSWZ A 0 A_ChangeFlag("NOGRAVITY", 1)
+		KSWZ A 0 A_SetTranslucent(0.0, 0)
+		KSWZ A 1 A_ChangeFlag("FLOAT", 1)
+		KSWZ A 0 A_ChangeFlag("NOGRAVITY", 1)		
+		KSQZ A 0 A_SetInvulnerable
 		KSWZ A 0 A_SpawnItemEx("TeleportFog")
-		KSWZ A 30
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+		KSWZ A 10
+		KSQZ A 0 A_ChangeFlag("INVULNERABLE", 1)
+		KSQZ A 0 A_ChangeFlag("SOLID", 0)
+		KSQZ A 0 A_ChangeFlag("SHOOTABLE", 0)
+		KSWZ A 20
+		KSWZ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 		KSWZ A 0 A_ChangeFlag("FLOAT", 0)
 		KSWZ A 0 A_ChangeFlag("NOGRAVITY", 0)
-		KSWZ A 0 A_SetTranslucent(1.0)
+		KSQZ A 0 A_ChangeFlag("INVULNERABLE", 0)
+		KSQZ A 0 A_ChangeFlag("SOLID", 1)
+		KSQZ A 0 A_ChangeFlag("SHOOTABLE", 1)
+		KSWZ A 0 A_SetTranslucent(1.0, 0)
 		KSWZ A 1 A_Chase
 		KSWZ AAAAAAAAAAAAAAAAAAAAA 0 A_Chase
 		KSWZ A 0 A_SpawnItemEx("TeleportFog")
@@ -60,7 +77,10 @@ ACTOR TeleporterZombie
 		KSWZ A 0 A_SpawnItemEx("TeleportFog")
 		KSWZ A 0 A_ChangeFlag("FLOAT", 0)
 		KSWZ A 0 A_ChangeFlag("NOGRAVITY", 0)
-		KSWZ A 0 A_SetTranslucent(1.0)
+		KSQZ A 0 A_ChangeFlag("INVULNERABLE", 0)
+		KSQZ A 0 A_ChangeFlag("SOLID", 1)
+		KSQZ A 0 A_ChangeFlag("SHOOTABLE", 1)
+		KSWZ A 0 A_SetTranslucent(1.0, 0)
 		KSWZ E 10 A_FaceTarget
 		KSWZ E 0 A_JumpIfTargetInLOS(1)
 		goto ChaseBlink
