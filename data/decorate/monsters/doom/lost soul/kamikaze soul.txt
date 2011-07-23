@@ -1,5 +1,6 @@
 actor KamikazeSoul : RGAMonster
 {
+	Tag "Kamikaze Soul"
   obituary "%o was imploded by a lost soul."
   health 60
   radius 16

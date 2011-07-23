@@ -1,5 +1,7 @@
 ACTOR Clink2 : Clink
 {
+	Tag "Sabreclaw"
+	CameraHeight 48
   Game Heretic
   SpawnID 1
   Health 130

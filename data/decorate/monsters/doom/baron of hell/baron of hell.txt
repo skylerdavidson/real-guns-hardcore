@@ -1,5 +1,6 @@
 actor BaronOfHell_2 : RGAMonster
 {
+	Tag "Baron of Hell"
   spawnid 3
   obituary "%o was bruised by a Baron of Hell."
   hitobituary "%o was ripped open by a Baron of Hell."

@@ -1,5 +1,6 @@
 actor ZombieSniper : RGAMonster
 {
+	Tag "Zombie Sniper"
   spawnid 4
   obituary "%o was sniped by a zombieman."
   health 40

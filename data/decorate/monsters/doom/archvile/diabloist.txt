@@ -1,5 +1,6 @@
 ACTOR Diabloist : ArchVile_2
 {
+	Tag "Diabloist"
 Obituary "%o got was set ablaze by a Diabloist."
 Health 2000
 Radius 20 

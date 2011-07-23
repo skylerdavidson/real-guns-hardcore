@@ -1,5 +1,6 @@
 ACTOR BloodDemon_2 : Demon_2
 {
+	Tag "Blood Demon"
   SpawnID 156
   Health 110
   Speed 28

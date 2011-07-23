@@ -1,5 +1,6 @@
 ACTOR Arachnophyte : RGAMonster
 {
+	Tag "Arachnophyte"
     //$Category monsters
     Health 5500
     Radius 64

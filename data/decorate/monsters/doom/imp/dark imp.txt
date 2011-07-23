@@ -1,5 +1,6 @@
                                                                                                actor DarkImp_2 : RGAMonster
 {
+	Tag "Dark Imp"
   spawnid 5
   obituary "%o was burned by a dark imp."
   hitobituary "%o was slashed by a dark imp."

@@ -1,5 +1,6 @@
 ACTOR Demon_2 : RGAMonster
 {
+	Tag "Demon"
   Health 110
   PainChance 180
   Speed 20

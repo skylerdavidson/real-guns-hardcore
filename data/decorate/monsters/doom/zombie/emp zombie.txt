@@ -1,5 +1,6 @@
 ACTOR EMPZombie: RGAMonster
 {
+	Tag "EMP Zombie"
     Health 60
     Radius 20
     Height 56

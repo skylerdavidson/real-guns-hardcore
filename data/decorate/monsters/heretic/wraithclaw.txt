@@ -1,5 +1,7 @@
 ACTOR Wraithclaw : Clink2
 {
+	Tag "Wraithclaw"
+	CameraHeight 48
 	Health 200
 	Obituary "%o didn't see the wraithclaw coming."
 	Translation "66:94=0:31","95:110=0:31","111:127=0:31"

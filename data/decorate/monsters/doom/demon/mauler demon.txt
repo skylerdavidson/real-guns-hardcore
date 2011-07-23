@@ -1,5 +1,6 @@
 ACTOR MaulerDemon : RGAMonster
-{              
+{
+	Tag "Mauler Demon"              
 	//$Category Monsters
  +MISSILEEVENMORE
    Health 280

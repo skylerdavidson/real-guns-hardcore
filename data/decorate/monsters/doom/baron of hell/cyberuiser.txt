@@ -1,7 +1,8 @@
 actor Cybruiser : BaronOfHell_2
 {
-  obituary "%o was blown away by a Cybruiser."
-  hitobituary "%o was smashed by a Cybruiser."
+	Tag "Cyber Bruiser"
+  obituary "%o was blown away by a Cyber Bruiser."
+  hitobituary "%o was smashed by a Cyber Bruiser."
   health 1400
   radius 24
   height 64

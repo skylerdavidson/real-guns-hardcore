@@ -1,5 +1,7 @@
 ACTOR Mummy2 : Mummy replaces Mummy
 {
+	Tag "Golem"
+	CameraHeight 48
   Game Heretic
   SpawnID 4
   Health 180

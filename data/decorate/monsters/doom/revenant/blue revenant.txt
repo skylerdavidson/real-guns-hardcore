@@ -1,5 +1,6 @@
 actor BlueRevenant : GreenRevenant
 {
+	Tag "Blue Revenant"
   obituary "%o was imploded by a blue revenant's fireball."
   hitobituary "%o's skull was shattered by a blue revenant."
   health 500

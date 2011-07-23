@@ -1,5 +1,6 @@
 actor ImpBoy : DoomImp_2
 {
+	Tag "Deep Imp"
   obituary "%o was shut down by deep imp."
   health 50
   radius 20

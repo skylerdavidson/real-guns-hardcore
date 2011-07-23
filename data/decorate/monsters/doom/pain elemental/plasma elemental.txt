@@ -1,5 +1,6 @@
 ACTOR PlasmaElemental : RGAMonster
-{ 
+{
+	Tag "Plasma Elemental" 
    Health 750
    Speed 13
    Radius 31

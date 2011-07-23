@@ -1,5 +1,7 @@
 ACTOR MummyLeader2 : MummyLeader replaces MummyLeader
 {
+	Tag "Nitrogolem"
+	CameraHeight 48
   Game Heretic
   SpawnID 2
   Health 120

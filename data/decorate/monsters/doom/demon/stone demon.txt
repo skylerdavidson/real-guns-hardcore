@@ -1,5 +1,6 @@
 actor StoneDemon : RGAMonster
 {
+	Tag "Stone Demon"
   hitobituary "%o was crunched by a stone demon."
   health 500
   painchance 5

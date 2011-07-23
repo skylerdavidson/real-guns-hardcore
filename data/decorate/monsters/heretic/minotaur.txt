@@ -1,5 +1,7 @@
 ACTOR Minotaur2 : Minotaur replaces Minotaur
 {
+	Tag "Minotaur"
+	CameraHeight 90
   Game Heretic
   Health 3000
   Radius 28

@@ -1,5 +1,6 @@
 ACTOR Archvile_2 : RGAMonster
 {
+	Tag "Arch-vile"
   SpawnID 111
   Health 1300
   Radius 20

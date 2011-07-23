@@ -1,6 +1,7 @@
 ACTOR ESoul : RGAMonster // replaces Zombieman
-{ 
-  obituary "%o was raped by a black soul."
+{
+	Tag "Ethereal Soul" 
+  obituary "%o was raped by an ethereal soul."
   health 60
   radius 16
   height 32

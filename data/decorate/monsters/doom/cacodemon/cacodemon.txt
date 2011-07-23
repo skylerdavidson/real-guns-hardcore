@@ -5,9 +5,10 @@ actor CacodemonBall_2: CacodemonBall
 
 actor Cacodemon_2 : RGAMonster
 {
+	Tag "Cacodemon"
   spawnid 19
-  obituary "%o was smitten by a cacodemon."
-  hitobituary "%o got too close to a cacodemon."
+  obituary "%o was smitten by a Cacodemon."
+  hitobituary "%o got too close to a Cacodemon."
   health 400
   radius 31
   height 56

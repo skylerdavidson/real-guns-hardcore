@@ -1,5 +1,6 @@
 actor SpaceNazi : RGAMonster
 {
+	Tag "Space Nazi"
   obituary "%o met a space Nazi."
   health 40
   radius 20

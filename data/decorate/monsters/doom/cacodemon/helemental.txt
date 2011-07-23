@@ -1,7 +1,8 @@
 actor Helemental : RGAMonster
 {
-  obituary "%o was electrocuted by a Hades-Elemental."
-  hitobituary "%o got chomped by a Hades-Elemental."
+	Tag "Hades Elemental"
+  obituary "%o was electrocuted by a Hades Elemental."
+  hitobituary "%o got chomped by a Hades Elemental."
   health 3300
   radius 34
   height 64

@@ -1,6 +1,7 @@
 //Hellion
 actor Hellion: RGAMonster
 {
+	Tag "Hellion"
   obituary "A Hellion burned %o to a crisp."
   health 40
   radius 20

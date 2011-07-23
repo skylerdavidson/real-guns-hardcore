@@ -1,5 +1,6 @@
 actor ShotgunGuy_2 : RGAMonster
 {
+	Tag "Shotgun Zombie"
   spawnid 1
   obituary "%o was shot by a sergeant."
   health 40

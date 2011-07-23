@@ -1,5 +1,6 @@
 actor ZombieMan_2 : RGAMonster
 {
+	Tag "Pistol Zombie"
   spawnid 4
   obituary "%o was killed by a zombieman."
   health 40

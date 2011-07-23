@@ -10,6 +10,7 @@
  
  ACTOR CrackoDemon : RGAMonster
 {
+	Tag "Cracko Demon"
 //$Category DECORATE
         SpawnID 175
 	Health 1200

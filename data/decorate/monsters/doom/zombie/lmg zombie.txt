@@ -1,5 +1,6 @@
                                                  actor LMGGuy : RGAMonster
 {
+	Tag "LMG Zombie"
   spawnid 2
   obituary "%o was perforated by a LMG zombie."
   health 110

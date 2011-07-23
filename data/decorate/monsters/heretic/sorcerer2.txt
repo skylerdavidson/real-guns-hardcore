@@ -1,5 +1,7 @@
 ACTOR Sorcerer2_2 : Sorcerer2 replaces Sorcerer2
 {
+	Tag "D'Sparil"
+	CameraHeight 48
   Game Heretic
   SpawnID 143
   Health 3500

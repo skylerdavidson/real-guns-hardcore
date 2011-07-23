@@ -1,5 +1,6 @@
 actor StoneKnight : HellKnight_2
 {
+	Tag "Stone Knight"
   spawnid 113
   obituary "%o was destroyed by a Stone Knight."
   hitobituary "%o was smashed up by a Stone Knight."

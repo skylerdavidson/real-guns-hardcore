@@ -1,6 +1,7 @@
 //Credit to Mr. John Pinkertin for "Albino Mancubus" sprites.
 actor Acubus : Fatso_2
 {
+	Tag "Acubus"
   obituary "%o was creamed by an Acubus."
   health 1600
   radius 48

@@ -5,7 +5,8 @@
 //=================================================
 
 ACTOR Cardinal : RGAMonster
-{ 
+{
+	Tag "Dark Cardinal" 
    Health 5000
    Speed 6
    Radius 24

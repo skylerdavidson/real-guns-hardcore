@@ -1,5 +1,7 @@
 actor Apprentice 30000
 {
+	Tag "Apprentice of D'Sparil"
+	CameraHeight 48
 	Game Heretic
     Health 300
     Radius 20

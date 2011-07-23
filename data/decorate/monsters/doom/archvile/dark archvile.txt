@@ -1,6 +1,7 @@
 //Cheers to whoever made the black Archvile from insanmons.wad
 actor DarkArchvile : Archvile_2
 {
+	Tag "Dark Arch-vile"
   obituary "%o was obliterated by a Dark archvile."
   health 1200
   radius 20

@@ -1,5 +1,6 @@
 actor CyberMastermind
 {
+	Tag "Cyber Mastermind"
     Health 4500
     Radius 128
     Height 100

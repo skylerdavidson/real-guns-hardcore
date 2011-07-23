@@ -1,5 +1,7 @@
 ACTOR Knight2 : Knight
 {
+	Tag "Knight"
+	CameraHeight 48
   Game Heretic
   SpawnID 6
   Health 150

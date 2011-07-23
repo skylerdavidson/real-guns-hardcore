@@ -1,5 +1,6 @@
 ACTOR Defiler : RGAMonster
 {
+	Tag "Defiler"
 	//$Category monsters
 	Health 1800
 	Radius 31

@@ -1,5 +1,7 @@
 ACTOR HereticImp2: HereticImp
 {
+	Tag "Gargoyle"
+	CameraHeight 30
   Game Heretic
   SpawnID 5
   Health 20

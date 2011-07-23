@@ -1,5 +1,7 @@
 ACTOR Deathknight
 {
+	Tag "Death Knight"
+	CameraHeight 48
 Game Heretic 
 Health 300
 Radius 24
@@ -15,7 +17,7 @@ MONSTER
 +MISSILEMORE
 +BOSS
 +DEFLECT
-Obituary "%o got thought he could kill a deathknight."
+Obituary "%o got thought he could kill a death knight."
 HitObituary "A deathknight hacked %o into pieces." 
 MeleeSound "monster/dknhit" 
 SeeSound "monster/dknsit" 

@@ -38,6 +38,7 @@ Actor AcolFX2
 //Hierophant
 Actor Hierophant: RGAMonster
 {
+	Tag "Hierophant"
   Health 3000
   Radius 24
   Height 60
