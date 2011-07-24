@@ -1,0 +1,74 @@
+ACTOR Trinitrogolem : Mummy
+{
+	Tag "Trinitrogolem"
+	CameraHeight 48
+  Game Heretic
+  Health 210
+  Radius 22
+  Height 62
+  Mass 75
+  Speed 17
+  Painchance 128
+  Monster
+  +FLOORCLIP
+  +MISSILEMORE
+  SeeSound "mummy/sight"
+  AttackSound "trinitrogolem/attack"
+  PainSound "mummy/pain"
+  DeathSound "mummy/death"
+  ActiveSound "mummy/active"
+  HitObituary "%o was creeped by a trinitrogolem."
+  States
+  {
+  Spawn:
+  	INFG A 0
+  	INFG A 0 Thing_SetSpecial(0,226,613,0,random(15,30))
+  	INFG A 0 A_GiveInventory("XPAmount", random(15, 30))
+  	INFG P 0 ACS_ExecuteAlways(651,0,0,0,0)
+    INFG AB 10 A_Look
+    goto Spawn + 4
+  See:
+    INFG ABCD 3 A_Chase
+    Loop
+  Missile:
+    INFG E 1 A_SkullAttack
+    INFF E 1
+    goto See
+  Melee:  	
+    INFG Y 20 A_FaceTarget
+    INFG Y 6 A_Die     
+    Goto Death
+  Pain:
+    INFG H 4
+    INFG H 4 A_Pain
+  Death:
+    INFG Y 5
+    INFG Y 5 A_Scream
+    INFG Y 0 A_CustomMissile("TrinitroExplosion",28,0,random(-180,180),2,random(-36,36))
+    INFG K 5 A_SpawnItemEx("MummySoul", 0,0,10, 0,0,1)
+    INFG L 5
+    INFG M 5 A_NoBlocking
+    INFG M 0 ACS_ExecuteAlways(648,0,0,0,0)
+    INFG NO 5
+    INFG P -1
+    Stop
+  }
+}
+
+actor TrinitroExplosion
+{
+  RenderStyle Add
+  alpha 0.9
+  +RANDOMIZE
+  +NOCLIP
+  +NOGRAVITY
+  Scale 1.0
+  states
+  {
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_Explode(70,260)
+    TNT1 A 1 A_SpawnItemEx("ExplosionMain",0,0,0)
+    stop
+  }
+}

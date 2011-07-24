@@ -1,4 +1,4 @@
-ACTOR MummyLeader2 : MummyLeader replaces MummyLeader
+ACTOR MummyLeader2 : MummyLeader
 {
 	Tag "Nitrogolem"
 	CameraHeight 48

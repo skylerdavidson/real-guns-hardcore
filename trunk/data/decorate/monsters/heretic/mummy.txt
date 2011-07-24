@@ -1,4 +1,4 @@
-ACTOR Mummy2 : Mummy replaces Mummy
+ACTOR Mummy2 : Mummy
 {
 	Tag "Golem"
 	CameraHeight 48
