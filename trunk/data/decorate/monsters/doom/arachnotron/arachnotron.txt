@@ -59,6 +59,7 @@ actor Arachnotron_2 : RGAMonster
 
 actor SpectreArachnotron : Arachnotron_2
 {
+	Tag "Spectre Arachnotron"
   +SHADOW
   RenderStyle OptFuzzy
   Alpha 0.5
