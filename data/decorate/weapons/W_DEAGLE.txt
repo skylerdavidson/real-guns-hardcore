@@ -10,6 +10,10 @@ actor "Desert Eagle" : RGUWeapon
   weapon.ammotype2 "DeagleAmmo"
   weapon.ammouse2 0
   weapon.ammogive2 0
+  
+  $MovementSpeed 1.5
+  $AimingMovementSpeed 1.2
+  
   states
   {
   Ready:
@@ -922,7 +926,7 @@ actor DeagleAkimbo : Inventory
     inventory.maxamount 1
 }
 
-actor "Desert Eagle Tac Knife" : RGUWeapon
+actor "Desert Eagle Tac Knife" : "Desert Eagle"
 {
   obituary "%k mutilated %o with the Desert Eagle."
   inventory.pickupmessage "Desert Eagle"  

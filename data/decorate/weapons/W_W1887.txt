@@ -10,6 +10,10 @@ actor "Model 1887" : RGUWeapon
   weapon.ammotype2 "M1887Ammo"
   weapon.ammouse2 0
   weapon.ammogive2 0
+  
+  $MovementSpeed 1.25
+  $AimingMovementSpeed 1.1
+  
   states
   {
   Ready:

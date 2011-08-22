@@ -10,6 +10,10 @@ actor "FAMAS" : RGUWeapon
   weapon.ammotype2 "FamasAmmo"
   weapon.ammouse2 0
   weapon.ammogive2 0
+  
+  $MovementSpeed 1.0
+  $AimingMovementSpeed 0.7
+  
   states
   {
   Ready:
@@ -378,6 +382,10 @@ actor "FAMAS M203" : RGUWeapon
   weapon.ammotype2 "M203Ammo"
   weapon.ammouse2 0
   weapon.ammogive2 0
+  
+  $MovementSpeed 1.0
+  $AimingMovementSpeed 0.7
+  
   states
   {
   Ready:

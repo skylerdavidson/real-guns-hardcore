@@ -11,6 +11,10 @@ actor "AK-47" : RGUWeapon
   weapon.ammouse2 0
   weapon.ammogive2 0
   -NOAUTOFIRE
+  
+  $MovementSpeed 1.0
+  $AimingMovementSpeed 0.7
+  
   states
   {
   Ready:

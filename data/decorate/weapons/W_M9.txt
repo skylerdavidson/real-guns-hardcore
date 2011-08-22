@@ -10,6 +10,10 @@ actor "M9" : RGUWeapon
   weapon.ammotype2 "M9Ammo"
   weapon.ammouse2 0
   weapon.ammogive2 0
+  
+  $MovementSpeed 1.5
+  $AimingMovementSpeed 1.2
+  
   states
   {
   Ready:

@@ -11,6 +11,10 @@ actor "L86" : RGUWeapon
   weapon.ammouse2 0
   weapon.ammogive2 0
   -NOAUTOFIRE
+  
+  $MovementSpeed 0.6
+  $AimingMovementSpeed 0.2
+  
   states
   {
   Ready:

@@ -10,6 +10,10 @@ actor "SPAS-12" : RGUWeapon
   weapon.ammotype2 "SPAS12Ammo"
   weapon.ammouse2 0
   weapon.ammogive2 0
+  
+  $MovementSpeed 1.25
+  $AimingMovementSpeed 1.1
+  
   states
   {
   Ready:

@@ -10,6 +10,10 @@ actor "USP .45" : RGUWeapon
   weapon.ammotype2 "USP45Ammo"
   weapon.ammouse2 0
   weapon.ammogive2 0
+  
+  $MovementSpeed 1.5
+  $AimingMovementSpeed 1.2
+  
   states
   {
   Ready:
@@ -934,7 +938,7 @@ actor FireSwitch : Inventory
     inventory.maxamount 1
 }
 
-actor "USP .45 Tac Knife" : RGUWeapon
+actor "USP .45 Tac Knife" : "USP .45"
 {
   obituary "%k capped %o with the USP .45."
   inventory.pickupmessage "USP .45"  

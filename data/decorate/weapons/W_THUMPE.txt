@@ -10,6 +10,10 @@ actor "Thumper" : RGUWeapon
   weapon.ammotype2 "ThumperAmmo"
   weapon.ammouse2 0
   weapon.ammogive2 0
+  
+  $MovementSpeed 1.0
+  $AimingMovementSpeed 0.7
+  
   states
   {
   Ready:
