@@ -2712,27 +2712,6 @@ script 620 (int Which) CLIENTSIDE
 	SetFont("CONFONT");
 	HudMessage(s:"All weapon slots are full!\n\n"; HUDMSG_FADEOUT, 200+PlayerNumber(), CR_Green, 0.5, 0.7, 0.5, 1.0);
 	HudMessage(s:"\ccPress \cf", k:"dropcurrent", s:"\cc to drop current weapon"; HUDMSG_FADEOUT, 100+PlayerNumber(), CR_Green, 0.5, 0.75, 0.5, 1.0);
-	
-	/*SetFont("CONFONT");
-	if(Which == 0)
-	{
-		if(CheckInventory("Perk1_OneManArmy") == 0)
-			HudMessage(s:"Max \cf2 AR/SMG weapons\cd. Define a button to \cgdrop"; HUDMSG_FADEOUT, 200+PlayerNumber(), CR_Green, 0.5, 0.7, 0.5, 1.0);
-		else
-			HudMessage(s:"Max \cf4 AR/SMG weapons\cd. Define a button to \cgdrop"; HUDMSG_FADEOUT, 200+PlayerNumber(), CR_Green, 0.5, 0.7, 0.5, 1.0);
-	}
-	else if(Which == 1)
-		HudMessage(s:"Max \cf1 Shotgun weapon\cd. Define a button to \cgdrop"; HUDMSG_FADEOUT, 200+PlayerNumber(), CR_Green, 0.5, 0.7, 0.5, 1.0);
-	else if(Which == 2)
-		HudMessage(s:"Max \cf1 Handgun weapon\cd. Define a button to \cgdrop"; HUDMSG_FADEOUT, 200+PlayerNumber(), CR_Green, 0.5, 0.7, 0.5, 1.0);
-	else if(Which == 3)
-		HudMessage(s:"Max \cf1 LMG/Sniper weapon\cd. Define a button to \cgdrop"; HUDMSG_FADEOUT, 200+PlayerNumber(), CR_Green, 0.5, 0.7, 0.5, 1.0);
-	else if(Which == 4)
-		HudMessage(s:"Max \cf1 Explosive weapon\cd. Define a button to \cgdrop"; HUDMSG_FADEOUT, 200+PlayerNumber(), CR_Green, 0.5, 0.7, 0.5, 1.0);
-
-	HudMessage(s:"\cdthe one in hand. \cc[Using 'drop' in console won't work]"; HUDMSG_FADEOUT, 220+PlayerNumber(), CR_Green, 0.5, 0.725, 0.5, 1.0);
-	
-	*/
 }
 
 //Drops (not destroys) current weapon.
