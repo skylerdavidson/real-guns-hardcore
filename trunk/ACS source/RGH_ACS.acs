@@ -28,7 +28,7 @@ bool Entered[40][8];
 #ifdef SKULLTAG
 script 505 OPEN
 {
-	if(GetCVAR("alwaysapplydmflags"))
+	//if(GetCVAR("alwaysapplydmflags"))
                                        
 	//if(GetCVAR("alwaysapplydmflags") == 0)
 	//	ConsoleCommand("alwaysapplydmflags 1");
