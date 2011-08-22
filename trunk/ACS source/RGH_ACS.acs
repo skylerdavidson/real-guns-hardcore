@@ -3110,9 +3110,9 @@ script 622 (void)
 	TakeInventory("Combo",25);
 	LocalAmbientSound("game/challenge",255);		
 	
-	if(CheckInventory("RewardsToPick") > 0){
-		ACS_ExecuteAlways(623,0,0,0,0); // Fill the rewards menu once more
-	}
+	//if(CheckInventory("RewardsToPick") > 0){
+	//	ACS_ExecuteAlways(623,0,0,0,0); // Fill the rewards menu once more
+	//}
 }
 
 //------------------------------------------
