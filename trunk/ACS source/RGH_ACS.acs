@@ -330,12 +330,6 @@ script 597 ENTER
 	HudMessage(s:"\ccBy \cvCommanderZ\cj and \cvVoltlocK"; HUDMSG_FADEOUT,0,CR_YELLOW,0.5,0.7,2.0,0.5);
 }
 
-//------------------------------------------
-//------- Don't know what this is for.
-script 598 OPEN
-{
-}
-
 //Knife screen
 script 599 (int Strength, int Reverse) NET CLIENTSIDE
 {
@@ -657,116 +651,6 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 			Counter += RecoilSpeed;
 			Delay(1);
 		}
-	/*
-	if(Mode == 0)
-	{
-		while(Counter < Strength)
-		{
-			SetActorAngle(0,GetActorAngle(0)-50);
-			SetActorPitch(0,GetActorPitch(0)-200);
-			Counter += 200;
-			Delay(1);
-		}
-		Counter = 0;
-		while(Counter < Reverse)
-		{
-			SetActorAngle(0,GetActorAngle(0)+50);
-			SetActorPitch(0,GetActorPitch(0)+200);
-			Counter += 200;
-			Delay(1);
-		}
-	}
-	else if(Mode == 1)
-	{
-		while(Counter < Strength)
-		{
-			SetActorAngle(0,GetActorAngle(0)-100);
-			SetActorPitch(0,GetActorPitch(0)-400);
-			Counter += 400;
-			Delay(1);
-		}
-		Counter = 0;
-		while(Counter < Reverse)
-		{
-			SetActorAngle(0,GetActorAngle(0)+100 * ReturnAngleOffsetX / 100);
-			SetActorPitch(0,GetActorPitch(0)+400 * ReturnAngleOffsetY / 100);
-			Counter += 400;
-			Delay(1);
-		}
-	}
-	else if(Mode == 2)
-	{
-		while(Counter < Strength)
-		{
-			SetActorAngle(0,GetActorAngle(0)-50);
-			SetActorPitch(0,GetActorPitch(0)-200);
-			Counter += 200;
-			Delay(1);
-		}
-		Counter = 0;
-		while(Counter < Reverse)
-		{
-			SetActorAngle(0,GetActorAngle(0)+50);
-			SetActorPitch(0,GetActorPitch(0)+100);
-			Counter += 100;
-			Delay(1);
-		}
-	}
-	else if(Mode == 3)
-	{
-		while(Counter < Strength)
-		{
-			SetActorAngle(0,GetActorAngle(0)-200);
-			SetActorPitch(0,GetActorPitch(0)-400);
-			Counter += 400;
-			Delay(1);
-		}
-		Delay(10);
-		Counter = 0;
-		while(Counter < Reverse)
-		{
-			SetActorAngle(0,GetActorAngle(0)+200);
-			SetActorPitch(0,GetActorPitch(0)+400);
-			Counter += 400;
-			Delay(1);
-		}
-	}
-	else if(Mode == 4)
-	{
-		while(Counter < Strength)
-		{
-			SetActorAngle(0,GetActorAngle(0)-100);
-			SetActorPitch(0,GetActorPitch(0)-800);
-			Counter += 800;
-			Delay(1);
-		}
-		Counter = 0;
-		while(Counter < Reverse)
-		{
-			SetActorAngle(0,GetActorAngle(0)+100);
-			SetActorPitch(0,GetActorPitch(0)+800);
-			Counter += 800;
-			Delay(1);
-		}
-	}
-	else if(Mode == 5)
-	{
-		while(Counter < Strength)
-		{
-			SetActorAngle(0,GetActorAngle(0)+1200);
-			SetActorPitch(0,GetActorPitch(0)-2000);
-			Counter += 2000;
-			Delay(1);
-		}
-		Counter = 0;
-		while(Counter < Reverse)
-		{
-			SetActorAngle(0,GetActorAngle(0)-300);
-			SetActorPitch(0,GetActorPitch(0)+400);
-			Counter += 400;
-			Delay(1);
-		}
-	}*/
 }             
 
 //Reload
