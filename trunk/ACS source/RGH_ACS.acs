@@ -2,6 +2,8 @@ IgnoreHash(#library "RGH_ACS")
 
 #define MINIMUM_TID 1000000
 
+#define NULL 0
+
 int KillersID;
 int KillersHealth;
 int KillersMaxHealth;
@@ -714,14 +716,14 @@ script 601 (void) NET
 //------- Sets player speed, affected by "ExtremeConditioning pro" perk.
 script 602 (void)
 {
-	int moveSpeed = 0;
+	int moveSpeed = NULL;
 
 	if(CheckInventory("Aiming") == 1)
 		moveSpeed = GetWeaponCustomProperty("aimingmovementspeed");
 	else
 		moveSpeed = GetWeaponCustomProperty("movementspeed");
 	
-	if(moveSpeed == 0){
+	if(moveSpeed == NULL){
 		moveSpeed = 1.5;
 	}
 	
@@ -730,8 +732,6 @@ script 602 (void)
 	{
 		moveSpeed = FixedMul(moveSpeed, 1.15);
 	}
-		
-	print(f:moveSpeed);
 	
 	SetActorProperty(0,APROP_Speed,moveSpeed);
 }
