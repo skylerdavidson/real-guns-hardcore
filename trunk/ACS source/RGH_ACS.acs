@@ -4,6 +4,9 @@ IgnoreHash(#library "RGH_ACS")
 
 #define NULL 0
 
+# define COOPERATIVE (GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
+# define COMPETITIVE (GameType() == GAME_NET_DEATHMATCH)
+
 int KillersID;
 int KillersHealth;
 int KillersMaxHealth;
@@ -104,7 +107,7 @@ script 501 RESPAWN
 	
 	ACS_ExecuteAlways(500,0,0,0,0); // setup killcam and tid
 
-    if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
+    if(COOPERATIVE)
 	{	
 		if(CheckInventory("Perk2_StoppingPower") == 1)
 			GiveInventory("Perk2_StoppingPowerEffect",1);
@@ -203,7 +206,7 @@ script 504 (void)
 	}
 
 	Delay(1);
-	if(GetActorProperty(0,APROP_Health) > 0 && (GameType() != GAME_NET_COOPERATIVE || GameType() != GAME_SINGLE_PLAYER))
+	if(GetActorProperty(0,APROP_Health) > 0 && COMPETITIVE)
 	{
 #ifdef SKULLTAG
 		bool isRed = PlayerTeam() == TEAM_RED;		
@@ -216,7 +219,7 @@ script 504 (void)
 		bool isThree = false;
 		bool isFour = false;
 #endif
-		bool noTeam = (!(isRed || isBlue || isThree || isFour) || GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER);
+		bool noTeam = (!(isRed || isBlue || isThree || isFour) || COOPERATIVE);
 
 		if((!noTeam && isRed) || (noTeam && CheckInventory("Voice") == 1))
 			ActivatorSound("russian/kill",127);
@@ -269,7 +272,7 @@ script 597 ENTER
 	TakeInventory("ReadyRegen",1);
     ACS_ExecuteAlways(606,0,0,0,0);
 
-	if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
+	if(COOPERATIVE)
 	{	
 		//if(GetActorProperty(0,APROP_HEALTH) < 100)
 			
@@ -303,7 +306,7 @@ script 597 ENTER
 	ACS_ExecuteAlways(640,0,0,0,0);
 	
 	int MaxGunCount = GameSkill();
-	if(GameType() == GAME_NET_DEATHMATCH){
+	if(COMPETITIVE){
 		MaxGunCount = 2;
 	}
 	If(CheckInventory("Perk1_OneManArmy_Pro") == 1){
@@ -763,7 +766,7 @@ script 603 (void) NET
 		bool isThree = false;
 		bool isFour = false;
 #endif
-		bool noTeam = (!(isRed || isBlue || isThree || isFour) || GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER);
+		bool noTeam = (!(isRed || isBlue || isThree || isFour) || COOPERATIVE);
 
 		if((!noTeam && isRed) || (noTeam && CheckInventory("Voice") == 1))
 			ActivatorSound("russian/grenade",127);
@@ -1002,7 +1005,7 @@ script 609 RESPAWN
 		Delay(1);
 		Thing_Remove(PlayerNumber()+600);
 		SetFont("BIGFONT");
-		if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
+		if(COOPERATIVE)
 			HudMessageBold(n:0,s:" \cdTactical Insertion!";HUDMSG_FADEOUT,0,CR_Blue,0.2,0.3,3.0,2.0);
 		TacticalInsertion[PlayerNumber()+1] = False;
 	}
@@ -1094,7 +1097,7 @@ script 613 (int XpAmount)
 			bool isThree = false;
 			bool isFour = false;
 #endif
-			bool noTeam = (!(isRed || isBlue || isThree || isFour) || GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER);
+			bool noTeam = (!(isRed || isBlue || isThree || isFour) || COOPERATIVE);
 			
 			if((!noTeam && isRed) || (noTeam && CheckInventory("Voice") == 1))
 				ActivatorSound("russian/kill",127);
@@ -1119,27 +1122,26 @@ script 613 (int XpAmount)
 //Display Experience
 Script 614 RESPAWN
 {
-	if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
-	{
-    
-	while(CheckInventory("Health") > 0)
-	{
-		SETFONT("CONFONT");
-		if(CheckInventory("Rank") < 15) //Only display the "XP need" when rank is not max
-			HudMessage(s:"\cdExperience: \cf",d:CheckInventory("Experience"),s:"\cc/\cf",d:ExperienceNeed[PlayerNumber()+1], 
-			s:" XP     ", s:"\cdRank: \cf",d:CheckInventory("Rank"); 
-			HUDMSG_PLAIN, 2000+PlayerNumber(), CR_Green, 0.99, 0, 1.6);	
-		else //Instead we draw "Current XP/XXX"
-			HudMessage(s:"\cdRank: \cf",d:CheckInventory("Rank"); 
-			HUDMSG_PLAIN, 2000+PlayerNumber(), CR_Green, 0.16, 0.8, 1.6);	
-		Delay(25);
-	}
+	if(COOPERATIVE)
+	{    
+		while(CheckInventory("Health") > 0)
+		{
+			SETFONT("CONFONT");
+			if(CheckInventory("Rank") < 15) //Only display the "XP need" when rank is not max
+				HudMessage(s:"\cdExperience: \cf",d:CheckInventory("Experience"),s:"\cc/\cf",d:ExperienceNeed[PlayerNumber()+1], 
+				s:" XP     ", s:"\cdRank: \cf",d:CheckInventory("Rank"); 
+				HUDMSG_PLAIN, 2000+PlayerNumber(), CR_Green, 0.99, 0, 1.6);	
+			else //Instead we draw "Current XP/XXX"
+				HudMessage(s:"\cdRank: \cf",d:CheckInventory("Rank"); 
+				HUDMSG_PLAIN, 2000+PlayerNumber(), CR_Green, 0.16, 0.8, 1.6);	
+			Delay(25);
+		}
 	}
 }
 
 Script 615 ENTER
 {
-	if(ExperienceNeed[PlayerNumber()+1] < 500 && (GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER))
+	if(ExperienceNeed[PlayerNumber()+1] < 500 && COOPERATIVE)
 	{
 		ExperienceNeed[PlayerNumber()+1] = 500;
 		ACS_ExecuteAlways(614,0,0,0,0);			
@@ -1154,8 +1156,9 @@ script 616 RESPAWN
 {
 	bool RankedUp;
 
-	if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
-	{
+	if(COMPETITIVE){
+		terminate;
+	}
 
 	if(CheckInventory("Experience") >= 500 && CheckInventory("Rank") == 0)
 	{
@@ -1370,8 +1373,6 @@ script 616 RESPAWN
 	//Check for RANK to give awards
 	if(RankedUp == True)
 		drawChooseAward();
-		//ACS_ExecuteAlways(617,0,0,0,0);			
-	}
 }
 
 //------------------------------------------
@@ -3885,7 +3886,7 @@ script 633 (void)
 		bool isThree = false;
 		bool isFour = false;
 #endif
-		bool noTeam = (!(isRed || isBlue || isThree || isFour) || GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER);
+		bool noTeam = (!(isRed || isBlue || isThree || isFour) || COOPERATIVE);
 
 		if((!noTeam && isRed) || (noTeam && CheckInventory("Voice") == 1))
 			ActivatorSound("russian/down",127);
@@ -3912,7 +3913,7 @@ script 634 RESPAWN NET
 		terminate; // terminate the script if we are in menu (to prevent erasing the menu)
 	}
 	
-	if(GameType() == GAME_NET_DEATHMATCH){
+	if(COMPETITIVE){
 		TakeInventory("Voice", 9);
 		GiveInventory("Voice", CurrentVoice[PlayerNumber()]);
 	}
@@ -3933,11 +3934,11 @@ script 634 RESPAWN NET
 		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 180.0, 215.0, 3.0, 1.0);		
 	}
 	if(
-    CheckInventory("Perk1_OneManArmy") == 1 ||
-    (GameType() == GAME_NET_DEATHMATCH && CheckInventory("Perk1_OneManArmy_PRO") == 1)
-  )
+		CheckInventory("Perk1_OneManArmy") == 1 ||
+		(COMPETITIVE && CheckInventory("Perk1_OneManArmy_PRO") == 1)
+	)
 	{
-		if(CheckInventory("Perk1_OneManArmy_PRO") == 1 && (GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER))	SetFont("P_OMAP");
+		if(CheckInventory("Perk1_OneManArmy_PRO") == 1 && COOPERATIVE)	SetFont("P_OMAP");
 		else SetFont("P_OMA");
 		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 180.0, 215.0, 3.0, 1.0);		
 	}
@@ -3959,16 +3960,18 @@ script 634 RESPAWN NET
 		else SetFont("P_POWER");
 		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 215.0, 215.0, 3.0, 1.0);		
 	}
-	if(CheckInventory("Perk2_DangerClose") == 1 ||
-    (GameType() == GAME_NET_DEATHMATCH && CheckInventory("Perk2_DangerClose_PRO") == 1))
+	if(
+		CheckInventory("Perk2_DangerClose") == 1 ||
+		(COMPETITIVE && CheckInventory("Perk2_DangerClose_PRO") == 1)
+	)
 	{
-		if(CheckInventory("Perk2_DangerClose_PRO") == 1 && (GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER))	SetFont("P_DANGEP");
+		if(CheckInventory("Perk2_DangerClose_PRO") == 1 && COOPERATIVE)	SetFont("P_DANGEP");
 		else SetFont("P_DANGER");
 		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 215.0, 215.0, 3.0, 1.0);		
 	}
 	if(CheckInventory("Perk2_ColdBlooded") == 1 || CheckInventory("Perk2_ColdBlooded_DM") == 1 || CheckInventory("Perk2_ColdBlooded_PRO") == 1)
 	{
-		if(CheckInventory("Perk2_ColdBlooded_PRO") == 1 && (GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER))	SetFont("P_COLDP");
+		if(CheckInventory("Perk2_ColdBlooded_PRO") == 1 && COOPERATIVE)	SetFont("P_COLDP");
 		else SetFont("P_COLD");
 		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 215.0, 215.0, 3.0, 1.0);		
 	}
@@ -3992,7 +3995,7 @@ script 634 RESPAWN NET
 	}
 	if(CheckInventory("Perk3_SitRep") == 1 || CheckInventory("Perk3_SitRep_PRO") == 1)
 	{
-		if(CheckInventory("Perk3_SitRep_PRO") == 1 && (GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER))	SetFont("P_SITRP");
+		if(CheckInventory("Perk3_SitRep_PRO") == 1 && COOPERATIVE)	SetFont("P_SITRP");
 		else SetFont("P_SITR");
 		HudMessage(s:"a"; HUDMSG_FADEOUT, 0, CR_Green, 250.0, 215.0, 3.0, 1.0);		
 	}
@@ -4054,7 +4057,7 @@ script 636 (int firstTimeAfterDeath)
 	// skip class menu if respawining in DM and RUN is not pressed                                       
 	int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
 	if(
-		(GameType() != GAME_SINGLE_PLAYER || GameType() != GAME_NET_COOPERATIVE) && 
+		COMPETITIVE && 
 		GotClass[PlayerNumber()+1] == TRUE &&
 		!(buttons & BT_ALTATTACK) &&
 		firstTimeAfterDeath == 1
@@ -4123,7 +4126,7 @@ script 636 (int firstTimeAfterDeath)
 		//HudMessage(s:"Create your loadout"; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 100.1, 100.0, 0.0);	
 		//HudMessage(s:"Presets or make your own"; HUDMSG_PLAIN, 350+PlayerNumber(), CR_WHITE, 100.1, 180.0, 0.0);	
 
-	    if(GameType() == GAME_SINGLE_PLAYER || GameType() == GAME_NET_COOPERATIVE){
+	    if(COOPERATIVE){
 	  		//List menu
 	  		HudMessage(s:"1)    Make your own!"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
 	  		HudMessage(s:"2)    Assault:       M4A1 (+Extended Mags) and USP .45\n\n                + \cvScavenger, \cgStopping Power, \cdCommando PRO"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);	
@@ -4348,7 +4351,7 @@ script 636 (int firstTimeAfterDeath)
 
 		SetFont("CONFONT");	
 
-    if(GameType() == GAME_SINGLE_PLAYER || GameType() == GAME_NET_COOPERATIVE){
+    if(COOPERATIVE){
   		//List menu
   		HudMessage(s:"1)    \cvSleight of Hand:      Faster reloading\n\n         \cjPRO\cv: Faster knifing and grenade throwing"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
   		HudMessage(s:"2)    \cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);	
@@ -4367,7 +4370,7 @@ script 636 (int firstTimeAfterDeath)
   		else if(CheckInventory("MenuCursor") == 4)
   			HudMessage(s:"5)  > Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 60.1, 260.0, 0.0);	
 	 }
-	 else {
+	 else { // competitive
     //List menu
   		HudMessage(s:"1)    \cvSleight of Hand:      Faster reloading"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
   		HudMessage(s:"2)    \cvExtreme Conditioning: +15% running speed"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 120.0, 0.0);	
@@ -4404,7 +4407,7 @@ script 636 (int firstTimeAfterDeath)
 
 		SetFont("CONFONT");	
 
-    if(GameType() == GAME_SINGLE_PLAYER || GameType() == GAME_NET_COOPERATIVE){
+    if(COOPERATIVE){
   		//List menu
   		HudMessage(s:"1)    \cgStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
   		HudMessage(s:"2)    \cgDanger Close:   +100% explosive damage\n\n         \cjPRO\cg: +50% explosive blast radius"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);	
@@ -4423,7 +4426,7 @@ script 636 (int firstTimeAfterDeath)
   		else if(CheckInventory("MenuCursor") == 4) 
   			HudMessage(s:"5)  > Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 60.1, 260.0, 0.0);	
 	  }
-    else {  
+    else {  // competitive
   		//List menu
   		HudMessage(s:"1)    \cgStopping Power: +25% bullet damage"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
   		HudMessage(s:"2)    \cgDanger Close:   +50% explosive blast radius"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 120.0, 0.0);	
@@ -4457,7 +4460,7 @@ script 636 (int firstTimeAfterDeath)
 		SetFont("BIGFONT");
 		HudMessage(s:"Choose a yellow perk"; HUDMSG_PLAIN, 300+PlayerNumber(), CR_WHITE, 400.0, 30.0, 0.0);
 
-    if(GameType() == GAME_SINGLE_PLAYER || GameType() == GAME_NET_COOPERATIVE){
+    if(COOPERATIVE){
   		SetFont("CONFONT");	
   		//List menu
   		HudMessage(s:"1)    \cdSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
@@ -4477,7 +4480,7 @@ script 636 (int firstTimeAfterDeath)
 		else if(CheckInventory("MenuCursor") == 4)
   			HudMessage(s:"5)  > Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 60.1, 260.0, 0.0);
     }
-    else {  
+    else { // competitive  
   		SetFont("CONFONT");	
   		//List menu
   		HudMessage(s:"1)    \cdSteady Aim: +33% hip-fire accuracy"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
@@ -4597,7 +4600,7 @@ script 637 (void)
 			ACS_ExecuteAlways(638,0,5,0,0);
 		else if(CheckInventory("MenuCursor") == 7)	//Choose Ninja class, close menu.
 			ACS_ExecuteAlways(638,0,6,0,0);
-		else if(CheckInventory("MenuCursor") == 8 && (GameType() == GAME_SINGLE_PLAYER || GameType() == GAME_NET_COOPERATIVE))	//Choose Daredevil class, close menu.
+		else if(CheckInventory("MenuCursor") == 8 && COOPERATIVE)	//Choose Daredevil class, close menu.
 			ACS_ExecuteAlways(638,0,7,0,0);
 		else if(CheckInventory("MenuCursor") == 9 && GameType() == GAME_SINGLE_PLAYER)	//Go back
 			GiveInventory("MenuPlace",9);
@@ -4778,7 +4781,7 @@ script 637 (void)
 		else if(CheckInventory("MenuCursor") == 2)		//One Man Army
 		{
 			GiveInventory("MenuPlace",1);
-			if(GameType() == GAME_SINGLE_PLAYER || GameType() == GAME_NET_COOPERATIVE){
+			if(COOPERATIVE){
 		    Perk1[PlayerNumber()+1] = "Perk1_OneManArmy";
 			}
 			else {
@@ -4789,7 +4792,7 @@ script 637 (void)
 		{
 			GiveInventory("MenuPlace",1);
 			
-			if(GameType() == GAME_SINGLE_PLAYER || GameType() == GAME_NET_COOPERATIVE){
+			if(COOPERATIVE){
 			  Perk1[PlayerNumber()+1] = "Perk1_Scavenger";
 			}
 			else {
@@ -4811,7 +4814,7 @@ script 637 (void)
 		else if(CheckInventory("MenuCursor") == 1)		//Danger Close
 		{
 			GiveInventory("MenuPlace",1);
-			if(GameType() == GAME_SINGLE_PLAYER || GameType() == GAME_NET_COOPERATIVE){
+			if(COOPERATIVE){
 			  Perk2[PlayerNumber()+1] = "Perk2_DangerClose";
 			}
 			else {
@@ -4827,7 +4830,7 @@ script 637 (void)
 		{
 			GiveInventory("MenuPlace",1);
 			
-      if(GameType() == GAME_SINGLE_PLAYER || GameType() == GAME_NET_COOPERATIVE){
+      if(COOPERATIVE){
         Perk2[PlayerNumber()+1] = "Perk2_ColdBlooded";
       }
       else {
@@ -4860,7 +4863,7 @@ script 637 (void)
 		{
 			GiveInventory("MenuPlace",1);
 			
-			if(GameType() == GAME_SINGLE_PLAYER || GameType() == GAME_NET_COOPERATIVE){
+			if(COOPERATIVE){
 				Perk3[PlayerNumber()+1] = "Perk3_SitRep";
 			}
 			else {
@@ -4871,7 +4874,7 @@ script 637 (void)
 			TakeInventory("MenuPlace",1);
 		TakeInventory("MenuCursor",15);
 		
-		if(GameType() != GAME_NET_DEATHMATCH){
+		if(COOPERATIVE){
 		    ACS_ExecuteAlways(638,0,9,0,0);
 		    terminate;
 		} 
@@ -4943,7 +4946,7 @@ script 638 (int Which)
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
 		GiveInventory("MaxWeaponsFilled",2);
-		if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER){
+		if(COOPERATIVE){
 			GiveInventory("Perk1_Scavenger",1);
 	      GiveInventory("Perk3_Commando_Pro",1);		
 			}
@@ -4982,7 +4985,7 @@ script 638 (int Which)
     GiveInventory("Perk1_SOH",1);
 		GiveInventory("Perk2_Juggernaut",1);
 		GiveInventory("Perk2_JuggernautEffect",1);
-		if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER){
+		if(COOPERATIVE){
       GiveInventory("Perk2_Juggernaut_Pro",1);
     }
 		GiveInventory("Perk3_LastStand",1);
@@ -5009,7 +5012,7 @@ script 638 (int Which)
 		GiveInventory("MaxWeaponsFilled_Handgun",1);
 		GiveInventory("MaxWeaponsFilled_LMG",1);
 		GiveInventory("MaxWeaponsFilled",2);
-		if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER){
+		if(COOPERATIVE){
 			GiveInventory("Perk1_OneManArmy",1);
 			GiveInventory("Perk2_StoppingPower_Pro",1);
 		}
@@ -5044,7 +5047,7 @@ script 638 (int Which)
 		GiveInventory("MaxWeaponsFilled",2);
 		GiveInventory("Perk1_ExtremeConditioning",1);
 		
-		if(GameType() == GAME_SINGLE_PLAYER || GameType() == GAME_NET_COOPERATIVE){
+		if(COOPERATIVE){
     		GiveInventory("Perk2_ColdBlooded",1);
 			
 		}
@@ -5052,7 +5055,7 @@ script 638 (int Which)
       		GiveInventory("Perk2_ColdBlooded_Pro",1);
     	}
 
-        if(GameType() == GAME_SINGLE_PLAYER || GameType() == GAME_NET_COOPERATIVE){
+        if(COOPERATIVE){
 	  		GiveInventory("Perk3_SitRep",1);
 	  		GiveInventory("Perk3_SitRepItem",1);
 	  		GiveInventory("Perk3_SitRepEffect",1);
@@ -5081,7 +5084,7 @@ script 638 (int Which)
 		GiveInventory("MaxWeaponsFilled_ARSMG",1);
 		GiveInventory("MaxWeaponsFilled",2);
     		
-		if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER){
+		if(COOPERATIVE){
 			GiveInventory("Perk1_Scavenger",1);
 			GiveInventory("Perk2_DangerClose",1);
 			GiveInventory("Perk2_DangerCloseEffect",1);
@@ -5093,7 +5096,7 @@ script 638 (int Which)
 			GiveInventory("Backpack", 1);
     	}
 		
-		if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER){
+		if(COOPERATIVE){
     		GiveInventory("Perk3_SitRep",1);
     		GiveInventory("Perk3_SitRepItem",1);
     		GiveInventory("Perk3_SitRepEffect",1);
@@ -5128,7 +5131,7 @@ script 638 (int Which)
 		
     	GiveInventory("Perk1_ExtremeConditioning",1);
 		
-    	if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER){		
+    	if(COOPERATIVE){		
 			GiveInventory("Perk1_ExtremeConditioning_Pro",1);
 			GiveInventory("Perk2_DangerClose",1);
 			GiveInventory("Perk2_DangerCloseEffect",1);			
@@ -5162,7 +5165,7 @@ script 638 (int Which)
 		GiveInventory("MaxWeaponsFilled",2);
 		GiveInventory("Perk1_SOH",1);
 		
-		if(GameType() == GAME_SINGLE_PLAYER || GameType() == GAME_NET_COOPERATIVE){
+		if(COOPERATIVE){
     		GiveInventory("Perk2_ColdBlooded",1);
 		}
 		
@@ -5213,7 +5216,7 @@ script 638 (int Which)
 			GiveInventory("FAMAS M203",1);
 			//GiveInventory("M203Ammo",1);
 		}
-		if(GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER){
+		if(COOPERATIVE){
 			GiveInventory(Perk1[PlayerNumber()+1],1);
 			/*if(Perk1[PlayerNumber()+1] == "Perk1_OneManArmy")
 				GiveInventory("Backpack",5);*/
@@ -5319,7 +5322,7 @@ script 638 (int Which)
     GiveInventory("Spawned", 1);
 	
 	int MaxGunCount = GameSkill();
-	if(GameType() == GAME_NET_DEATHMATCH){
+	if(COMPETITIVE){
 		MaxGunCount = 2;
 	}
 	
@@ -6081,7 +6084,7 @@ script 652 (void) {
 	bool isFour = false;
 #endif    	
 
-	bool noTeam = (!(isRed || isBlue || isThree || isFour) || GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER);
+	bool noTeam = (!(isRed || isBlue || isThree || isFour) || COOPERATIVE);
 
 	if((!noTeam && isRed) || (noTeam && CheckInventory("Voice") == 1))
 		ActivatorSound("russian/reload",127);
@@ -6106,7 +6109,7 @@ script 653 (void) CLIENTSIDE {
 // draws "hold X to change class" (according to client's key settings)
 script 654 DEATH CLIENTSIDE
 {
-	if(GameType() == GAME_NET_DEATHMATCH){
+	if(COMPETITIVE){
 		SetFont("BIGFONT");		
 		HudMessage(s:"\ccHold \cf", k:"+altattack", s:"\cc while respawning to change your class"; HUDMSG_PLAIN, 2700+PlayerNumber(), CR_Green, 0.5, 0.75, 0);
 	}
@@ -6273,7 +6276,7 @@ script 659 (void) NET
 {
 	// preconditions
 	if(
-		GameType() == GAME_NET_DEATHMATCH ||
+		COMPETITIVE ||
 		GetActorProperty(0,APROP_Health) <= 0 ||
 		CheckInventory("Menu") > 0 ||
 		CheckInventory("AwardMenu") > 0 ||
@@ -6297,11 +6300,6 @@ script 659 (void) NET
 
     GiveInventory("AwardMenu", 1);
 	SetWeapon("AwardMenu");
-	
-	// freeze time
-	if(GameType() == GAME_SINGLE_PLAYER){
-		//GiveInventory("MenuTimeFreezer", 1);
-	} 
 }
 
 function void drawChooseAward(void){
