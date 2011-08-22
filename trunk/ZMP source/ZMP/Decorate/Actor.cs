@@ -370,6 +370,22 @@
             }
         }
 
+        public IEnumerable<Actor> ReplacementTree
+        {
+            get
+            {
+                yield return this;
+
+                foreach (Actor replacer in this.ReplacedBy)
+                {
+                    foreach (Actor replacer2 in replacer.ReplacementTree)
+                    {
+                        yield return replacer2;
+                    }
+                }
+            }
+        }
+
         public IEnumerable<Actor> Descendants
         {
             get

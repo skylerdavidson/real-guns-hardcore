@@ -58,6 +58,18 @@
                         throw new KeyNotFoundException("Actor \"" + actorPair.Value.ParentName + "\" referenced as parent by \"" + actorPair.Key + "\" was not found.");
                     }
                 }
+
+                if (actorPair.Value.ReplacesName != string.Empty)
+                {
+                    try
+                    {
+                        actorPair.Value.Replaces = actorsByName[actorPair.Value.ReplacesName.ToLower()];
+                    }
+                    catch (KeyNotFoundException)
+                    {
+                        throw new KeyNotFoundException("Actor \"" + actorPair.Value.ReplacesName + "\" replaced by \"" + actorPair.Key + "\" was not found.");
+                    }
+                }
             }            
 
             // parse states in topological order
