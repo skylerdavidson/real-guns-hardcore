@@ -25,9 +25,6 @@ if exist "temp\acs\acs.err" (
     cd ..\temp\acs
     ..\..\utility\7z u ..\..\temp\RGH-debug-zdoom.pk3 acs\RGH_ACS -mx0
     cd ..\..
-    cd "zdoom data"
-    ..\utility\7z u ..\temp\RGH-debug-zdoom.pk3 * -xr!.svn  -mx0
-    cd ..
     zdoom temp/RGH-debug-zdoom.pk3
     exit
 )
