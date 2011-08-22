@@ -22,7 +22,6 @@ if exist "temp\acs-skulltag\acs.err" (
         move /y temp\acs-zdoom\acs.err acs_errors_zdoom.log	
         pause
     ) else (
-        if exist 
         move /y temp\acs-skulltag\acs\RGH_ACS.o temp\acs-skulltag\acs\RGH_ACS
         move /y temp\acs-zdoom\acs\RGH_ACS.o temp\acs-zdoom\acs\RGH_ACS
 
