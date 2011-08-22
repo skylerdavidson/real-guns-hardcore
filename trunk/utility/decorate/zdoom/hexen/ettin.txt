@@ -48,10 +48,7 @@ ACTOR Ettin 10030
 	XDeath:		
 		ETTB A 4
 		ETTB B 4 A_NoBlocking
-		ETTB C 4 A_SpawnItemEx("EttinMace", 0,0,8.5, 
-								random[DropMace](-128,127) * 0.03125,
-								random[DropMace](-128,127) * 0.03125,
-								10 + random[DropMace](0,255) * 0.015625, 0, SXF_ABSOLUTEVELOCITY)
+		ETTB C 4 A_SpawnItemEx("EttinMace", 0,0,8.5,random[DropMace](-128,127) * 0.03125,random[DropMace](-128,127) * 0.03125,10 + random[DropMace](0,255) * 0.015625, 0, SXF_ABSOLUTEVELOCITY)
 		ETTB D 4 A_Scream
 		ETTB E 4 A_QueueCorpse
 		ETTB FGHIJK 4
