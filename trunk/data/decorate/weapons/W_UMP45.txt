@@ -11,6 +11,10 @@ actor "UMP45" : RGUWeapon
   weapon.ammouse2 0
   weapon.ammogive2 0
   -NOAUTOFIRE
+  
+  $MovementSpeed 1.25
+  $AimingMovementSpeed 1.1
+  
   states
   {
   Ready:

@@ -10,6 +10,10 @@ actor "Barrett 50cal" : RGUWeapon
   weapon.ammotype2 "BarrettAmmo"
   weapon.ammouse2 0
   weapon.ammogive2 0
+  
+  $MovementSpeed 0.6
+  $AimingMovementSpeed 0.1
+  
   states
   {
   Ready:

@@ -11,6 +11,10 @@ actor "G18" : RGUWeapon
   weapon.ammouse2 0
   weapon.ammogive2 0
   -NOAUTOFIRE
+  
+  $MovementSpeed 1.5
+  $AimingMovementSpeed 1.2
+  
   states
   {
   Ready:
