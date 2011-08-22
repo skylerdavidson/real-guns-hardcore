@@ -188,8 +188,9 @@
                 }
 
                 string framePattern = @"
-                    ([A-Za-z0-9_\-\""#]{4,6})   # sprite name
-                    \s+([A-Za-z\[\]\\""]+)      # frame list
+                    ([A-Za-z0-9_\-""#]{4,6})    # sprite name
+                    \s+
+                    ([A-Za-z\[\]\\""#]+)         # frame list
                     \s+                         
                     (-?\d+)                     # duration
                     (\s+bright\s+)              # bright yes/no
