@@ -19,15 +19,43 @@
         }
 
         public void WriteActors(IEnumerable<Actor> actors)
-        {
-            var localActors =
+        {   
+            // the actors must be ordered by both child-parent hierarchy and by replacement hierarchy         
+            var orderedByParentHierarchy =
                 from root in actors
                 where root.Parent == null
-                from actor in root.Descendants
-                where !actor.IsFromNativeFile
+                from actor in root.DescendantsOrSelf
                 select actor;
 
-            foreach (Actor actor in localActors)
+            var orderedByReplacementHierarchy =
+                from root in actors
+                where root.Replaces == null
+                from actor in root.ReplacementTree
+                select actor;
+
+            var indicesByParentHierarchy = new Dictionary<Actor, int>();
+            foreach(var item in orderedByParentHierarchy.Select((Actor, Index) => new { Actor, Index })){
+                if (item.Actor.Parent == null)
+                {
+                    indicesByParentHierarchy.Add(item.Actor, item.Index);
+                }
+                else
+                {
+                    indicesByParentHierarchy.Add(item.Actor, indicesByParentHierarchy[item.Actor.Parent] + 1);
+                }
+            }
+
+            var indicesByReplacementHierarchy = orderedByReplacementHierarchy
+                .Select((Actor, Index) => new { Actor, Index })
+                .ToDictionary(p => p.Actor, p => p.Index);
+
+            var orderedActors = 
+                from actor in actors
+                where !actor.IsFromNativeFile
+                orderby indicesByParentHierarchy[actor], indicesByReplacementHierarchy[actor]
+                select actor;
+
+            foreach (Actor actor in orderedActors)
             {
                 this.WriteActor(actor);
             }
