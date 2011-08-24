@@ -14,6 +14,9 @@ actor "Mini-UZI" : RGUWeapon
   
   $MovementSpeed 1.25
   $AimingMovementSpeed 1.1
+  $RecoilStrength 400
+  $RecoilReverseStrength 200
+  $RecoilSpeed 100
   
   states
   {
@@ -462,7 +465,7 @@ actor MiniUziExMags : Inventory
     inventory.amount 0
     inventory.maxamount 1
 }
-actor "Mini-UZI Akimbo" : RGUWeapon
+actor "Mini-UZI Akimbo" : "Mini-UZI"
 {
   obituary "%k sprayed %o with the Mini-UZI."
   inventory.pickupmessage "Mini-UZI"  

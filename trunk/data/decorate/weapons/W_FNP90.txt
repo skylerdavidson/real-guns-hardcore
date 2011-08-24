@@ -13,7 +13,10 @@ actor "FN P90" : RGUWeapon
   -NOAUTOFIRE
   
   $MovementSpeed 1.25
-  $AimingMovementSpeed 1.1  
+  $AimingMovementSpeed 1.1
+  $RecoilStrength 400
+  $RecoilReverseStrength 200
+  $RecoilSpeed 100  
   
   states
   {

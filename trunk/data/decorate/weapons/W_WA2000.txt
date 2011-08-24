@@ -13,6 +13,13 @@ actor "WA2000" : RGUWeapon
   
   $MovementSpeed 0.6
   $AimingMovementSpeed 0.1
+  $RecoilMode "Sniper"
+  $RecoilStrength 5000
+  $RecoilReverseStrength 3000
+  $RecoilSpeed 1200
+  $AimingRecoilStrength 1600
+  $AimingRecoilReverseStrength 1600
+  $AimingRecoilSpeed 450
   
   states
   {

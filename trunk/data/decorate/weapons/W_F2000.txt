@@ -14,6 +14,9 @@ actor "F2000" : RGUWeapon
   
   $MovementSpeed 1.0
   $AimingMovementSpeed 0.7
+  $RecoilStrength 550
+  $RecoilReverseStrength 250
+  $RecoilSpeed 250
   
   states
   {

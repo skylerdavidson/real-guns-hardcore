@@ -13,6 +13,13 @@ actor "Barrett 50cal" : RGUWeapon
   
   $MovementSpeed 0.6
   $AimingMovementSpeed 0.1
+  $RecoilMode "Sniper"
+  $RecoilStrength 7000
+  $RecoilReverseStrength 6000
+  $RecoilSpeed 1600
+  $AimingRecoilStrength 2500
+  $AimingRecoilReverseStrength 2000
+  $AimingRecoilSpeed 600
   
   states
   {

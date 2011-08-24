@@ -14,6 +14,13 @@ actor "M14 EBR" : RGUWeapon
   
   $MovementSpeed 0.6
   $AimingMovementSpeed 0.1
+  $RecoilMode "Sniper"
+  $RecoilStrength 4000
+  $RecoilReverseStrength 3000
+  $RecoilSpeed 1000
+  $AimingRecoilStrength 300
+  $AimingRecoilReverseStrength 200
+  $AimingRecoilSpeed 100
   
   states
   {

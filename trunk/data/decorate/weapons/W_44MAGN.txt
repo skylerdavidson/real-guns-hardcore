@@ -13,6 +13,10 @@ actor ".44 Magnum" : RGUWeapon
   
   $MovementSpeed 1.5
   $AimingMovementSpeed 1.2
+  $RecoilStrength 800
+  $RecoilReverseStrength 600
+  $RecoilSpeed 200
+  $AimingRecoilReverseStrength 800
   
   states
   {

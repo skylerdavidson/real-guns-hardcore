@@ -13,6 +13,9 @@ actor "M93 Raffica" : RGUWeapon
   
   $MovementSpeed 1.5
   $AimingMovementSpeed 1.2
+  $RecoilStrength 550
+  $RecoilReverseStrength 250
+  $RecoilSpeed 250
   
   states
   {

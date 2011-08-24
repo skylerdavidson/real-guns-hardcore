@@ -13,6 +13,9 @@ actor "FAL" : RGUWeapon
   
   $MovementSpeed 1.0
   $AimingMovementSpeed 0.7
+  $RecoilStrength 800
+  $RecoilReverseStrength 800
+  $RecoilSpeed 400
   
   states
   {
