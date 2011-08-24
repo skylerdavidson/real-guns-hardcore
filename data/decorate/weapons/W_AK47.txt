@@ -13,7 +13,10 @@ actor "AK-47" : RGUWeapon
   -NOAUTOFIRE
   
   $MovementSpeed 1.0
-  $AimingMovementSpeed 0.7
+  $AimingMovementSpeed 0.7 
+  $RecoilStrength 920
+  $RecoilReverseStrength 400
+  $RecoilSpeed 260
   
   states
   {

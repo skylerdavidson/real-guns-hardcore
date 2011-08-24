@@ -13,6 +13,11 @@ actor "Model 1887" : RGUWeapon
   
   $MovementSpeed 1.25
   $AimingMovementSpeed 1.1
+  $RecoilStrength 3500
+  $RecoilReverseStrength 3500
+  $RecoilSpeed 900
+  $AimingRecoilStrength 1600
+  $AimingRecoilReverseStrength 1200
   
   states
   {

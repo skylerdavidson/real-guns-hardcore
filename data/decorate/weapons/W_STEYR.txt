@@ -14,6 +14,9 @@ actor "AUG HBAR" : RGUWeapon
   
   $MovementSpeed 0.6
   $AimingMovementSpeed 0.2
+  $RecoilStrength 400
+  $RecoilReverseStrength 200
+  $RecoilSpeed 100
   
   states
   {

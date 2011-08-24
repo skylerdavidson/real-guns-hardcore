@@ -13,6 +13,9 @@ actor "FAMAS" : RGUWeapon
   
   $MovementSpeed 1.0
   $AimingMovementSpeed 0.7
+  $RecoilStrength 400
+  $RecoilReverseStrength 200
+  $RecoilSpeed 100
   
   states
   {
@@ -385,6 +388,12 @@ actor "FAMAS M203" : RGUWeapon
   
   $MovementSpeed 1.0
   $AimingMovementSpeed 0.7
+  $RecoilStrength 2400
+  $RecoilReverseStrength 2000
+  $RecoilSpeed 800
+  $AimingRecoilStrength 1800
+  $AimingRecoilReverseStrength 1200
+  $AimingRecoilSpeed 400
   
   states
   {

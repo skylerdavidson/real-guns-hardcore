@@ -13,6 +13,9 @@ actor "USP .45" : RGUWeapon
   
   $MovementSpeed 1.5
   $AimingMovementSpeed 1.2
+  $RecoilStrength 600
+  $RecoilReverseStrength 600
+  $RecoilSpeed 200
   
   states
   {

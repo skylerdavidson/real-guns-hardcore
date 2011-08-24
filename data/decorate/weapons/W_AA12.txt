@@ -13,6 +13,12 @@ actor "AA-12" : RGUWeapon
   
   $MovementSpeed 1.25
   $AimingMovementSpeed 1.1
+  $RecoilStrength 2400
+  $RecoilReverseStrength 2000
+  $RecoilSpeed 800
+  $AimingRecoilStrength 1800
+  $AimingRecoilReverseStrength 1200
+  $ReverseRecoilSpeed 400
   
   states
   {

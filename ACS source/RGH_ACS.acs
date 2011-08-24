@@ -366,243 +366,41 @@ script 599 (int Strength, int Reverse) NET CLIENTSIDE
 //Kickback
 script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 {
-	int Mode = -1;
 	int RecoilSpeed = 200;
 	bool EnableRandomization = false;
 
-	// Small handguns
-	if(CheckWeapon("USP .45") || CheckWeapon("USP .45 Ex Mags") || CheckWeapon("USP .45 Akimbo") || CheckWeapon("USP .45 Tac Knife") || CheckWeapon("USP .45 LastStand") || CheckWeapon("M9") || CheckWeapon("M9 Ex Mags"))
-	{
-		Strength = 600;
-		Reverse = 600;
-		RecoilSpeed = 200;
-		//if(CheckInventory("Aiming") == 1 || CheckInventory("SteadyAim") == 1)
-		//	Strength = 600;
-	}
-
-	// Colt
-	if(CheckWeapon(".44 Magnum") || CheckWeapon(".44 Magnum Akimbo") || CheckWeapon(".44 Magnum Tac Knife"))
-	{
-		Strength = 800;
-		Reverse = 600;		
-		if(CheckInventory("Aiming") == 1)
-			Reverse = 800;
-		RecoilSpeed = 200;
-	}
-
-	// Deagle
-	if(CheckWeapon("Desert Eagle") || CheckWeapon("Deagle Special") || CheckWeapon("Desert Eagle Akimbo") || CheckWeapon("Desert Eagle Tac Knife"))
-	{
-		Strength = 2000;
-		Reverse = 1600;
-		if(CheckInventory("Aiming") == 1)
-			Reverse = 2000;
-		RecoilSpeed = 400;
-	}
-
-	// Fal
-	if(CheckWeapon("FAL") || CheckWeapon("FAL Ex Mags"))
-	{
-		Strength = 800;
-		Reverse = 800;
-		RecoilSpeed = 400;
+	// load the values from DECORATE custom properties
+	int cpStrength = GetWeaponCustomProperty("recoilstrength");
+	int cpReverseStrength = GetWeaponCustomProperty("recoilreversestrength");
+	int cpSpeed = GetWeaponCustomProperty("recoilspeed");
+	int cpAimingStrength = GetWeaponCustomProperty("aimingrecoilstrength");
+	int cpAimingReverseStrength = GetWeaponCustomProperty("aimingrecoilreversestrength");
+	int cpAimingSpeed = GetWeaponCustomProperty("aimingrecoilspeed");
+	
+	if(cpStrength != NULL){
+		Strength = cpStrength;
 	}
 	
-	// Single-shot shotguns
-	if(
-		CheckWeapon("Ranger") || 
-		CheckWeapon("SPAS-12") || 
-		CheckWeapon("SPAS-12 Ex Mags") || 
-		CheckWeapon("SPAS-12 Grip") || 
-		CheckWeapon("Model 1887")
-	){
-		Strength = 3500;
-		Reverse = 3500;
-		
-		if(CheckInventory("Aiming")){
-			Strength = 1600;
-			Reverse = 1200;
-		}
-		
-		RecoilSpeed = 900;
+	if(cpReverseStrength != NULL){
+		Reverse = cpReverseStrength;
 	}
 	
-	// Auto shotguns (except Striker), launchers
-	if(
-		// launchers
-		CheckWeapon("FAMAS M203") || 
-		CheckWeapon("Thumper") || 
-		CheckWeapon("AT4-HS") || 
-		CheckWeapon("RPG-7") || 
-		// shotties
-		CheckWeapon("M1014") ||
-		CheckWeapon("M1014 Ex Mags") ||
-		CheckWeapon("M1014 Grip") || 
-		CheckWeapon("AA-12") || 
-		CheckWeapon("AA-12 Ex Mags") || 
-		CheckWeapon("AA-12 Grip") 
-	)
-	{
-		Strength = 2400;
-		Reverse = 2000;
-		RecoilSpeed = 800;
-		
-		if(CheckInventory("Aiming") == 1)
-		{
-			Strength = 1800;
-			Reverse = 1200;
-			RecoilSpeed = 400;
+	if(cpSpeed != NULL){
+		RecoilSpeed = cpSpeed;
+	}
+	
+	if(CheckInventory("Aiming")){
+		if(cpAimingStrength != NULL){
+			Strength = cpAimingStrength;
 		}
 		
-	}
-
-	// Striker
-	if(
-		CheckWeapon("Striker Grip")|| 
-		CheckWeapon("Striker") || 
-		CheckWeapon("Striker Ex Mags")
-	)
-	{
-		Strength = 3000;
-		Reverse = 1500;
-		RecoilSpeed = 900;
-		if(CheckInventory("Aiming") == 1)
-		{
-			Strength = 2200;
-			Reverse = 1000;
-			RecoilSpeed = 500;
+		if(cpAimingReverseStrength != NULL){
+			Reverse = cpAimingReverseStrength;
 		}
-	}
-
-	// Low recoil automatic weapons
-	if(
-		CheckWeapon("Mini-UZI") ||
-		CheckWeapon("Mini-UZI Ex Mags") || 
-		CheckWeapon("Mini-UZI Akimbo") || 
-		CheckWeapon("UMP45") || 
-		CheckWeapon("UMP45 Ex Mags") || 
-		CheckWeapon("FN P90") || 
-		CheckWeapon("FN P90 Ex Mags") || 
-		CheckWeapon("ACR") || 
-		CheckWeapon("ACR Ex Mags") || 
-		CheckWeapon("SCAR-H") || 
-		CheckWeapon("SCAR-H Ex Mags") || 
-		CheckWeapon("M4A1") || 
-		CheckWeapon("M4A1 Ex Mags") || 
-		CheckWeapon("MP5K") || 
-		CheckWeapon("MP5K Ex Mags") ||
-		CheckWeapon("PP2000") || 
-		CheckWeapon("PP2000 Ex Mags") || 
-		CheckWeapon("M16A4") || 
-		CheckWeapon("M16A4 Ex Mags") ||
-		CheckWeapon("TDI Vector") || 
-		CheckWeapon("TDI Vector Ex Mags") ||
-		CheckWeapon("G18") || 
-		CheckWeapon("G18 Ex Mags") ||
-		CheckWeapon("L86") || 
-		CheckWeapon("L86 Ex Mags") ||
-		CheckWeapon("L86 Grip") ||
-		CheckWeapon("UMP45 Rapid Fire") || 
-		CheckWeapon("FN P90 Rapid Fire") || 
-		CheckWeapon("MP5K Rapid Fire") ||
-		CheckWeapon("AUG HBAR") ||
-		CheckWeapon("AUG HBAR Ex Mags") ||
-		CheckWeapon("AUG HBAR Grip") ||		
-		CheckWeapon("M240") ||
-		CheckWeapon("M240 Ex Mags") ||
-		CheckWeapon("M240 Grip") ||
-		CheckWeapon("FAMAS") || 
-		CheckWeapon("FAMAS Ex Mags")
-	)
-	{
-		Strength = 400;
-		Reverse = 200;
-		RecoilSpeed = 100;
-	}
-
-	// Medium recoil automatic weapons
-	if(		 
-		CheckWeapon("F2000") || 
-		CheckWeapon("F2000 Ex Mags") || 
-		CheckWeapon("M93 Raffica") || 
-		CheckWeapon("M93 Raffica Ex Mags")
-	)
-	{
-		Strength = 550;
-		Reverse = 250;
-		RecoilSpeed = 250;
-	}
-
-	// Very high recoil automatic weapons
-	if(
-		CheckWeapon("MG4") || 
-		CheckWeapon("MG4 Ex Mags") ||
-		CheckWeapon("MG4 Grip") || 
-		CheckWeapon("AK-47") || 
-		CheckWeapon("AK-47 Ex Mags")
-	) 
-	{
-		Strength = 920;
-		Reverse = 400;
-		RecoilSpeed = 260;
-	}
-
-	// Sniper rifles
-
-	if(CheckWeapon("Intervention") || CheckWeapon("Intervention Thermal") || CheckWeapon("Intervention Ex Mags"))
-	{
-		Strength = 7000;
-		Reverse = 6000;
-		RecoilSpeed = 1600;
-		if(CheckInventory("Aiming") == 1)
-		{
-			RecoilSpeed = 600;
-			Strength = 2500;
-			Reverse = 2000;
+		
+		if(cpAimingSpeed != NULL){
+			RecoilSpeed = cpAimingSpeed;
 		}
-		EnableRandomization = true;
-	}
-
-	if(CheckWeapon("Barrett 50cal") || CheckWeapon("Barrett 50cal Thermal") || CheckWeapon("Barrett 50cal Ex Mags"))
-	{
-		Strength = 7000;
-		Reverse = 6000;
-		RecoilSpeed = 1600;
-		if(CheckInventory("Aiming") == 1)
-		{
-			RecoilSpeed = 600;
-			Strength = 2500;
-			Reverse = 2000;
-		}
-		EnableRandomization = true;
-	}
-
-	if(CheckWeapon("WA2000") || CheckWeapon("WA2000 Thermal") || CheckWeapon("WA2000 Ex Mags"))
-	{
-		Strength = 5000;
-		Reverse = 4000;
-		RecoilSpeed = 1200;
-		if(CheckInventory("Aiming") == 1)
-		{
-			RecoilSpeed = 450;
-			Strength = 1600;
-			Reverse = 1600;
-		}
-		EnableRandomization = true;
-	}
-
-	if(CheckWeapon("M14 EBR") || CheckWeapon("M14 EBR Thermal") || CheckWeapon("M14 EBR Ex Mags"))
-	{
-		Strength = 4000;
-		Reverse = 3000;
-		RecoilSpeed = 1000;
-		if(CheckInventory("Aiming") == 1)
-		{               
-			Strength = 300;
-			Reverse = 200;
-			RecoilSpeed = 100;			
-		}
-		EnableRandomization = true;
 	}
 
 	if(Hurt == 1)

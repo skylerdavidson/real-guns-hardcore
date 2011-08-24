@@ -13,6 +13,12 @@ actor "Striker" : RGUWeapon
   
   $MovementSpeed 1.25
   $AimingMovementSpeed 1.1
+  $RecoilStrength 3000
+  $RecoilReverseStrength 1500
+  $RecoilSpeed 900
+  $AimingRecoilStrength 2200
+  $AimingRecoilReverseStrength 1000
+  $AimingRecoilSpeed 500
   
   states
   {

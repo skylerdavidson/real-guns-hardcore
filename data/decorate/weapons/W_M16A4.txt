@@ -13,6 +13,9 @@ actor "M16A4" : RGUWeapon
   
   $MovementSpeed 1.0
   $AimingMovementSpeed 0.7
+  $RecoilStrength 400
+  $RecoilReverseStrength 200
+  $RecoilSpeed 100
   
   states
   {

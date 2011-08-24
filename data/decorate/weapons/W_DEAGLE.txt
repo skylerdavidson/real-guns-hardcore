@@ -13,6 +13,10 @@ actor "Desert Eagle" : RGUWeapon
   
   $MovementSpeed 1.5
   $AimingMovementSpeed 1.2
+  $RecoilStrength 2000
+  $RecoilReverseStrength 1600
+  $RecoilSpeed 400
+  $AimingRecoilReverseStrength 2000
   
   states
   {
