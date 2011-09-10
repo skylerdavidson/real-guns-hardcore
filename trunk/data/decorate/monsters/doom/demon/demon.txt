@@ -60,6 +60,7 @@ ACTOR Demon_2 : RGAMonster
 
 actor Spectre_2 : Demon_2
 {
+	Tag "Spectre Demon"
   HitObituary "$OB_SPECTREHIT" // "%o was eaten by a spectre."
   +SHADOW
   RenderStyle OptFuzzy
