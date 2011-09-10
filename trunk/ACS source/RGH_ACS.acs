@@ -6468,14 +6468,17 @@ script 660 (void)
 	
 	SetFont("CONFONT");
 	
+	log(s:AwardMenuWeapon[PlayerNumber()]);
+	log(s:"===");
+	
 	if(
-		AwardMenuWeapon[PlayerNumber()] == "usp .45" ||
-		AwardMenuWeapon[PlayerNumber()] == "desert eagle" ||
-		AwardMenuWeapon[PlayerNumber()] == ".44 magnum" ||
-		AwardMenuWeapon[PlayerNumber()] == "g18" ||
-		AwardMenuWeapon[PlayerNumber()] == "pp2000" ||
-		AwardMenuWeapon[PlayerNumber()] == "m9" ||
-		AwardMenuWeapon[PlayerNumber()] == "mini-uzi"
+		AwardMenuWeapon[PlayerNumber()] == "USP .45" ||
+		AwardMenuWeapon[PlayerNumber()] == "Desert Eagle" ||
+		AwardMenuWeapon[PlayerNumber()] == ".44 Magnum" ||
+		AwardMenuWeapon[PlayerNumber()] == "G18" ||
+		AwardMenuWeapon[PlayerNumber()] == "PP2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "M9" ||
+		AwardMenuWeapon[PlayerNumber()] == "Mini-UZI"
 	)
 	{
 	    HudMessage(s:"  Akimbo:                   Dual wield weapon"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
@@ -6490,36 +6493,36 @@ script 660 (void)
 	}
 	
 	if(
-		AwardMenuWeapon[PlayerNumber()] == "usp .45" ||
-		AwardMenuWeapon[PlayerNumber()] == "m9" ||
-		AwardMenuWeapon[PlayerNumber()] == "pp2000" ||
-		AwardMenuWeapon[PlayerNumber()] == "g18" ||
-		AwardMenuWeapon[PlayerNumber()] == "m93 raffica" ||
-		AwardMenuWeapon[PlayerNumber()] == "spas-12" ||
-		AwardMenuWeapon[PlayerNumber()] == "aa-12" ||
-		AwardMenuWeapon[PlayerNumber()] == "striker" ||
-		AwardMenuWeapon[PlayerNumber()] == "m1014" ||
-		AwardMenuWeapon[PlayerNumber()] == "mp5k" ||
-		AwardMenuWeapon[PlayerNumber()] == "ump45" ||
-		AwardMenuWeapon[PlayerNumber()] == "tdi vector" ||
-		AwardMenuWeapon[PlayerNumber()] == "mini-uzi" ||
-		AwardMenuWeapon[PlayerNumber()] == "fn p90" ||
-		AwardMenuWeapon[PlayerNumber()] == "m4a1" ||
-		AwardMenuWeapon[PlayerNumber()] == "famas" ||
-		AwardMenuWeapon[PlayerNumber()] == "scar-h" ||
-		AwardMenuWeapon[PlayerNumber()] == "fal" ||
-		AwardMenuWeapon[PlayerNumber()] == "m16a4" ||
-		AwardMenuWeapon[PlayerNumber()] == "acr" ||
-		AwardMenuWeapon[PlayerNumber()] == "f2000" ||
-		AwardMenuWeapon[PlayerNumber()] == "ak-47" ||
-		AwardMenuWeapon[PlayerNumber()] == "intervention" ||
-		AwardMenuWeapon[PlayerNumber()] == "barett 50cal" ||
-		AwardMenuWeapon[PlayerNumber()] == "wa2000" ||
-		AwardMenuWeapon[PlayerNumber()] == "m14 ebr" ||
-		AwardMenuWeapon[PlayerNumber()] == "l86" ||
-		AwardMenuWeapon[PlayerNumber()] == "mg4" ||
-		AwardMenuWeapon[PlayerNumber()] == "aug hbar" ||
-		AwardMenuWeapon[PlayerNumber()] == "m240"
+		AwardMenuWeapon[PlayerNumber()] == "USP .45" ||
+		AwardMenuWeapon[PlayerNumber()] == "M9" ||
+		AwardMenuWeapon[PlayerNumber()] == "PP2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "G18" ||
+		AwardMenuWeapon[PlayerNumber()] == "M93 Raffica" ||
+		AwardMenuWeapon[PlayerNumber()] == "SPAS-12" ||
+		AwardMenuWeapon[PlayerNumber()] == "AA-12" ||
+		AwardMenuWeapon[PlayerNumber()] == "Striker" ||
+		AwardMenuWeapon[PlayerNumber()] == "M1014" ||
+		AwardMenuWeapon[PlayerNumber()] == "MP5k" ||
+		AwardMenuWeapon[PlayerNumber()] == "UMP45" ||
+		AwardMenuWeapon[PlayerNumber()] == "TDI Vector" ||
+		AwardMenuWeapon[PlayerNumber()] == "Mini-UZI" ||
+		AwardMenuWeapon[PlayerNumber()] == "FN P90" ||
+		AwardMenuWeapon[PlayerNumber()] == "M4A1" ||
+		AwardMenuWeapon[PlayerNumber()] == "FAMAS" ||
+		AwardMenuWeapon[PlayerNumber()] == "SCAR-H" ||
+		AwardMenuWeapon[PlayerNumber()] == "FAL" ||
+		AwardMenuWeapon[PlayerNumber()] == "M16A4" ||
+		AwardMenuWeapon[PlayerNumber()] == "ACR" ||
+		AwardMenuWeapon[PlayerNumber()] == "F2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "AK-47" ||
+		AwardMenuWeapon[PlayerNumber()] == "Intervention" ||
+		AwardMenuWeapon[PlayerNumber()] == "Barett 50cal" ||
+		AwardMenuWeapon[PlayerNumber()] == "WA2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "M14 EBR" ||
+		AwardMenuWeapon[PlayerNumber()] == "L86" ||
+		AwardMenuWeapon[PlayerNumber()] == "MG4" ||
+		AwardMenuWeapon[PlayerNumber()] == "AUG HBAR" ||
+		AwardMenuWeapon[PlayerNumber()] == "M240"
 	)
 	{
 	    HudMessage(s:"  Extended Mags:            +50% increased magazine size"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
@@ -6534,14 +6537,14 @@ script 660 (void)
 	}
 	
 	if(
-		AwardMenuWeapon[PlayerNumber()] == "spas-12" ||
-		AwardMenuWeapon[PlayerNumber()] == "aa-12" ||
-		AwardMenuWeapon[PlayerNumber()] == "striker" ||
-		AwardMenuWeapon[PlayerNumber()] == "m1014" ||
-		AwardMenuWeapon[PlayerNumber()] == "l86" ||
-		AwardMenuWeapon[PlayerNumber()] == "mg4" ||
-		AwardMenuWeapon[PlayerNumber()] == "aug hbar" ||
-		AwardMenuWeapon[PlayerNumber()] == "m240"
+		AwardMenuWeapon[PlayerNumber()] == "SPAS-12" ||
+		AwardMenuWeapon[PlayerNumber()] == "AA-12" ||
+		AwardMenuWeapon[PlayerNumber()] == "Striker" ||
+		AwardMenuWeapon[PlayerNumber()] == "M1014" ||
+		AwardMenuWeapon[PlayerNumber()] == "L86" ||
+		AwardMenuWeapon[PlayerNumber()] == "MG4" ||
+		AwardMenuWeapon[PlayerNumber()] == "AUG HBAR" ||
+		AwardMenuWeapon[PlayerNumber()] == "M240"
 	)
 	{
 	    HudMessage(s:"  Grip:                     -50% vertical recoil"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
@@ -6556,9 +6559,9 @@ script 660 (void)
 	}
 	
 	if(
-		AwardMenuWeapon[PlayerNumber()] == "mp5k" ||
-		AwardMenuWeapon[PlayerNumber()] == "ump45" ||
-		AwardMenuWeapon[PlayerNumber()] == "fn p90"
+		AwardMenuWeapon[PlayerNumber()] == "MP5K" ||
+		AwardMenuWeapon[PlayerNumber()] == "UMP45" ||
+		AwardMenuWeapon[PlayerNumber()] == "FN P90"
 	)
 	{
 	    HudMessage(s:"  Rapid Fire:               Increased rate of fire"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
@@ -6573,10 +6576,10 @@ script 660 (void)
 	}
 	
 	if(
-		AwardMenuWeapon[PlayerNumber()] == "usp .45" ||
-		AwardMenuWeapon[PlayerNumber()] == "desert eagle" ||
-		AwardMenuWeapon[PlayerNumber()] == ".44 magnum" ||
-		AwardMenuWeapon[PlayerNumber()] == "m9"
+		AwardMenuWeapon[PlayerNumber()] == "USP .45" ||
+		AwardMenuWeapon[PlayerNumber()] == "Desert Eagle" ||
+		AwardMenuWeapon[PlayerNumber()] == ".44 Magnum" ||
+		AwardMenuWeapon[PlayerNumber()] == "M9"
 	)
 	{
 		HudMessage(s:"  Tactical Knife:           Faster knifing"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
@@ -6591,10 +6594,10 @@ script 660 (void)
 	}
 	
 	if(
-		AwardMenuWeapon[PlayerNumber()] == "intervention" ||
-		AwardMenuWeapon[PlayerNumber()] == "barett 50cal" ||
-		AwardMenuWeapon[PlayerNumber()] == "wa2000" ||
-		AwardMenuWeapon[PlayerNumber()] == "m14 ebr"
+		AwardMenuWeapon[PlayerNumber()] == "Intervention" ||
+		AwardMenuWeapon[PlayerNumber()] == "Barett 50cal" ||
+		AwardMenuWeapon[PlayerNumber()] == "WA2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "M14 EBR"
 	)
 	{
 		HudMessage(s:"  Thermal Scope:            See through scope in darkness"; HUDMSG_PLAIN, currentId, CR_WHITE, 60.1, currentVerticalCoord, 0.0);	
@@ -6862,13 +6865,13 @@ script 661 (void)
 	
 	// Akimbo	
 	if(
-		AwardMenuWeapon[PlayerNumber()] == "usp .45" ||
-		AwardMenuWeapon[PlayerNumber()] == "desert eagle" ||
-		AwardMenuWeapon[PlayerNumber()] == ".44 magnum" ||
-		AwardMenuWeapon[PlayerNumber()] == "g18" ||
-		AwardMenuWeapon[PlayerNumber()] == "pp2000" ||
-		AwardMenuWeapon[PlayerNumber()] == "m9" ||
-		AwardMenuWeapon[PlayerNumber()] == "mini-uzi"
+		AwardMenuWeapon[PlayerNumber()] == "USP .45" ||
+		AwardMenuWeapon[PlayerNumber()] == "Desert Eagle" ||
+		AwardMenuWeapon[PlayerNumber()] == ".44 Magnum" ||
+		AwardMenuWeapon[PlayerNumber()] == "G18" ||
+		AwardMenuWeapon[PlayerNumber()] == "PP2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "M9" ||
+		AwardMenuWeapon[PlayerNumber()] == "Mini-UZI"
 	)
 	{   
 	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
@@ -6880,36 +6883,36 @@ script 661 (void)
 	
 	// Ex Mags
 	if(
-		AwardMenuWeapon[PlayerNumber()] == "usp .45" ||
-		AwardMenuWeapon[PlayerNumber()] == "m9" ||
-		AwardMenuWeapon[PlayerNumber()] == "pp2000" ||
-		AwardMenuWeapon[PlayerNumber()] == "g18" ||
-		AwardMenuWeapon[PlayerNumber()] == "m93 raffica" ||
-		AwardMenuWeapon[PlayerNumber()] == "spas-12" ||
-		AwardMenuWeapon[PlayerNumber()] == "aa-12" ||
-		AwardMenuWeapon[PlayerNumber()] == "striker" ||
-		AwardMenuWeapon[PlayerNumber()] == "m1014" ||
-		AwardMenuWeapon[PlayerNumber()] == "mp5k" ||
-		AwardMenuWeapon[PlayerNumber()] == "ump45" ||
-		AwardMenuWeapon[PlayerNumber()] == "tdi vector" ||
-		AwardMenuWeapon[PlayerNumber()] == "mini-uzi" ||
-		AwardMenuWeapon[PlayerNumber()] == "fn p90" ||
-		AwardMenuWeapon[PlayerNumber()] == "m4a1" ||
-		AwardMenuWeapon[PlayerNumber()] == "famas" ||
-		AwardMenuWeapon[PlayerNumber()] == "scar-h" ||
-		AwardMenuWeapon[PlayerNumber()] == "fal" ||
-		AwardMenuWeapon[PlayerNumber()] == "m16a4" ||
-		AwardMenuWeapon[PlayerNumber()] == "acr" ||
-		AwardMenuWeapon[PlayerNumber()] == "f2000" ||
-		AwardMenuWeapon[PlayerNumber()] == "ak-47" ||
-		AwardMenuWeapon[PlayerNumber()] == "intervention" ||
-		AwardMenuWeapon[PlayerNumber()] == "barett 50cal" ||
-		AwardMenuWeapon[PlayerNumber()] == "wa2000" ||
-		AwardMenuWeapon[PlayerNumber()] == "m14 ebr" ||
+		AwardMenuWeapon[PlayerNumber()] == "USP .45" ||
+		AwardMenuWeapon[PlayerNumber()] == "M9" ||
+		AwardMenuWeapon[PlayerNumber()] == "PP2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "G18" ||
+		AwardMenuWeapon[PlayerNumber()] == "M93 Raffica" ||
+		AwardMenuWeapon[PlayerNumber()] == "SPAS-12" ||
+		AwardMenuWeapon[PlayerNumber()] == "AA-12" ||
+		AwardMenuWeapon[PlayerNumber()] == "Striker" ||
+		AwardMenuWeapon[PlayerNumber()] == "M1014" ||
+		AwardMenuWeapon[PlayerNumber()] == "MP5K" ||
+		AwardMenuWeapon[PlayerNumber()] == "UMP45" ||
+		AwardMenuWeapon[PlayerNumber()] == "TDI Vector" ||
+		AwardMenuWeapon[PlayerNumber()] == "Mini-UZI" ||
+		AwardMenuWeapon[PlayerNumber()] == "FN P90" ||
+		AwardMenuWeapon[PlayerNumber()] == "M4A1" ||
+		AwardMenuWeapon[PlayerNumber()] == "FAMAS" ||
+		AwardMenuWeapon[PlayerNumber()] == "SCAR-H" ||
+		AwardMenuWeapon[PlayerNumber()] == "FAL" ||
+		AwardMenuWeapon[PlayerNumber()] == "M16A4" ||
+		AwardMenuWeapon[PlayerNumber()] == "ACR" ||
+		AwardMenuWeapon[PlayerNumber()] == "F2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "AK-47" ||
+		AwardMenuWeapon[PlayerNumber()] == "Intervention" ||
+		AwardMenuWeapon[PlayerNumber()] == "Barett 50cal" ||
+		AwardMenuWeapon[PlayerNumber()] == "WA2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "M14 EBR" ||
 		AwardMenuWeapon[PlayerNumber()] == "l86" ||
-		AwardMenuWeapon[PlayerNumber()] == "mg4" ||
-		AwardMenuWeapon[PlayerNumber()] == "aug hbar" ||
-		AwardMenuWeapon[PlayerNumber()] == "m240"
+		AwardMenuWeapon[PlayerNumber()] == "MG4" ||
+		AwardMenuWeapon[PlayerNumber()] == "AUG HBAR" ||
+		AwardMenuWeapon[PlayerNumber()] == "M240"
 	)
 	{
 	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
@@ -6921,14 +6924,14 @@ script 661 (void)
 	
 	// Grip
 	if(
-		AwardMenuWeapon[PlayerNumber()] == "spas-12" ||
-		AwardMenuWeapon[PlayerNumber()] == "aa-12" ||
-		AwardMenuWeapon[PlayerNumber()] == "striker" ||
-		AwardMenuWeapon[PlayerNumber()] == "m1014" ||
-		AwardMenuWeapon[PlayerNumber()] == "l86" ||
-		AwardMenuWeapon[PlayerNumber()] == "mg4" ||
-		AwardMenuWeapon[PlayerNumber()] == "aug hbar" ||
-		AwardMenuWeapon[PlayerNumber()] == "m240"
+		AwardMenuWeapon[PlayerNumber()] == "SPAS-12" ||
+		AwardMenuWeapon[PlayerNumber()] == "AA-12" ||
+		AwardMenuWeapon[PlayerNumber()] == "Striker" ||
+		AwardMenuWeapon[PlayerNumber()] == "M1014" ||
+		AwardMenuWeapon[PlayerNumber()] == "L86" ||
+		AwardMenuWeapon[PlayerNumber()] == "MG4" ||
+		AwardMenuWeapon[PlayerNumber()] == "AUG HBAR" ||
+		AwardMenuWeapon[PlayerNumber()] == "M240"
 	)
 	{
 	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
@@ -6940,9 +6943,9 @@ script 661 (void)
 	
 	// Rapid Fire
 	if(
-		AwardMenuWeapon[PlayerNumber()] == "mp5k" ||
-		AwardMenuWeapon[PlayerNumber()] == "ump45" ||
-		AwardMenuWeapon[PlayerNumber()] == "fn p90"
+		AwardMenuWeapon[PlayerNumber()] == "MP5K" ||
+		AwardMenuWeapon[PlayerNumber()] == "UMP45" ||
+		AwardMenuWeapon[PlayerNumber()] == "FN P90"
 	)
 	{
 	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
@@ -6954,10 +6957,10 @@ script 661 (void)
 	
 	// Tac Knife
 	if(
-		AwardMenuWeapon[PlayerNumber()] == "usp .45" ||
-		AwardMenuWeapon[PlayerNumber()] == "desert eagle" ||
-		AwardMenuWeapon[PlayerNumber()] == ".44 magnum" ||
-		AwardMenuWeapon[PlayerNumber()] == "m9"
+		AwardMenuWeapon[PlayerNumber()] == "USP .45" ||
+		AwardMenuWeapon[PlayerNumber()] == "Desert Eagle" ||
+		AwardMenuWeapon[PlayerNumber()] == ".44 Magnum" ||
+		AwardMenuWeapon[PlayerNumber()] == "M9"
 	)
 	{
 		if(currentIndex - 1 == CheckInventory("MenuCursor")){
@@ -6969,10 +6972,10 @@ script 661 (void)
 	
 	// Thermal Scope
 	if(
-		AwardMenuWeapon[PlayerNumber()] == "intervention" ||
-		AwardMenuWeapon[PlayerNumber()] == "barett 50cal" ||
-		AwardMenuWeapon[PlayerNumber()] == "wa2000" ||
-		AwardMenuWeapon[PlayerNumber()] == "m14 ebr"
+		AwardMenuWeapon[PlayerNumber()] == "Intervention" ||
+		AwardMenuWeapon[PlayerNumber()] == "Barett 50cal" ||
+		AwardMenuWeapon[PlayerNumber()] == "WA2000" ||
+		AwardMenuWeapon[PlayerNumber()] == "M14 EBR"
 	)
 	{
 		if(currentIndex - 1 == CheckInventory("MenuCursor")){
