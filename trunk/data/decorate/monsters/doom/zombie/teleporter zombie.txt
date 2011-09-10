@@ -84,19 +84,19 @@ ACTOR TeleporterZombie
 		KSWZ E 10 A_FaceTarget
 		KSWZ E 0 A_JumpIfTargetInLOS(1)
 		goto ChaseBlink
-		KSWZ E 4 bright A_BspiAttack
+		KSWZ E 4 bright A_CustomMissile("ArachnotronPlasma")
 		KSWZ E 6 A_FaceTarget
 		KSWZ E 0 A_JumpIfTargetInLOS(1)
 		goto ChaseBlink
-		KSWZ E 4 bright A_BspiAttack
+		KSWZ E 4 bright A_CustomMissile("ArachnotronPlasma")
 		KSWZ E 6 A_FaceTarget
 		KSWZ E 0 A_JumpIfTargetInLOS(1)
 		goto ChaseBlink
-		KSWZ E 4 bright A_BspiAttack
+		KSWZ E 4 bright A_CustomMissile("ArachnotronPlasma")
 		KSWZ E 6 A_FaceTarget
 		KSWZ E 0 A_JumpIfTargetInLOS(1)
 		goto ChaseBlink
-		KSWZ E 4 bright A_BspiAttack
+		KSWZ E 4 bright A_CustomMissile("ArachnotronPlasma")
 		KSWZ E 6 A_FaceTarget
 		KSWZ E 4 bright A_BspiAttack
 		goto WanderBlink
@@ -133,4 +133,8 @@ ACTOR TeleporterZombie
         KSWZ NMLKJIH 5
         Goto See
     }
+}
+
+actor TeleporterZombiePlasma: ArachnotronPlasma {
+	Damage 3
 }
