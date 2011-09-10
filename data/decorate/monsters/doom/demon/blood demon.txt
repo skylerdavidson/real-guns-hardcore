@@ -44,6 +44,7 @@ ACTOR BloodDemon_2 : Demon_2
 
 actor SpectreBlood : BloodDemon_2
 {
+	Tag "Spectre Blood Demon"
   hitobituary "%o was chomped by a spectre blood demon."
   +SHADOW
   RenderStyle OptFuzzy

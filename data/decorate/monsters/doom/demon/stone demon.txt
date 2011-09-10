@@ -57,6 +57,7 @@ actor StoneDemon : RGAMonster
 
 actor SpectreStone : StoneDemon
 {
+	Tag "Spectre Stone Demon"
   hitobituary "%o was crunched by a spectre stone demon."
   +SHADOW
   RenderStyle OptFuzzy
