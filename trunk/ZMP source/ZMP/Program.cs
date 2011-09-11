@@ -27,6 +27,7 @@
                 List<string> acsFiles = new List<string>();
                 string otputDecorateFile = "decorate.txt";
                 string otputAcsFile = "acs.txt";
+                string libraryName = "DEFAULTLIB";
                 string mode = "zdoom";
                 OptionSet options = new OptionSet()
                 {
@@ -44,6 +45,9 @@
                     },
                     {
                         "m|mode=", "Mode (ZDoom or Skulltag), ZDoom is default.", p => mode = p
+                    },
+                                        {
+                        "l|library=", "Name of the ACS library.", p => libraryName = p
                     }
                 };
 
@@ -128,7 +132,7 @@
 
                 using (var textWriter = new StreamWriter(otputAcsFile))
                 {
-                    var writer = new AcsWriter(textWriter);
+                    var writer = new AcsWriter(textWriter, libraryName);
                     writer.WriteCheckActorClass2(actors);
                     writer.WriteGetWeapon(actors);                    
                     writer.WriteGetCustomProperty(actors);
@@ -151,7 +155,7 @@
 
                 return 0;
             }
-            catch (Exception e)
+            catch (IOException e)
             {
                 Console.WriteLine(e.GetType().Name + ": " + e.Message);
                 Console.WriteLine(string.Empty);
