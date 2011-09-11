@@ -1,5 +1,3 @@
-IgnoreHash(#library "RGH_ACS")
-
 #define MINIMUM_TID 1000000
 
 #define NULL 0
@@ -376,7 +374,7 @@ script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
 	int cpAimingStrength = GetWeaponCustomProperty("aimingrecoilstrength");
 	int cpAimingReverseStrength = GetWeaponCustomProperty("aimingrecoilreversestrength");
 	int cpAimingSpeed = GetWeaponCustomProperty("aimingrecoilspeed");
-	
+
 	if(cpStrength != NULL){
 		Strength = cpStrength;
 	}
@@ -4730,7 +4728,7 @@ script 638 (int Which)
 		GiveInventory("ClassicDurability", 1);
 		GiveInventory("Crosshair", 1);
 	}
-	
+
 	Class[PlayerNumber()+1] = Which;
 	If(Which == 0)
 	{
@@ -4752,7 +4750,7 @@ script 638 (int Which)
 	      GiveInventory("Perk1_Scavenger_DM",1);
 	      GiveInventory("Backpack", 1);	
 	    }
-			
+	    
 	    GiveInventory("Perk2_StoppingPower",1);
 		GiveInventory("Perk2_StoppingPowerEffect",1);
 		GiveInventory("Perk3_Commando",1);
@@ -4765,7 +4763,7 @@ script 638 (int Which)
 		delay(1);
 		GiveInventory("SetPickupPickup",1);
 		GotClass[PlayerNumber()+1] = True;
-		SetWeapon("M4A1 Ex Mags");		
+		SetWeapon("M4A1 Ex Mags");
 	}
 	else If(Which == 1)
 	{

@@ -11,13 +11,14 @@
     {        
         private TextWriter writer;
 
-        public AcsWriter(TextWriter writer)
+        public AcsWriter(TextWriter writer, string libraryName)
         {
             this.writer = writer;
 
             this.writer.WriteLine(Program.FileHeader);
 
             this.writer.WriteLine("#include \"zcommon.acs\"");
+            this.writer.WriteLine("#library \"" + libraryName + "\"");
         }
 
         public void WriteCheckActorClass2(IEnumerable<Actor> actors)
@@ -78,6 +79,9 @@
                     if(classId > " + maxUsedId + @" || classId < 0) return " + "\"Unknown\"" + @";
                     return __actorTagTable[classId];
                 }
+                function int GetClassByClassId(int classId){
+                    return __actorClassTable[classId];
+                }
             ");
         }
 
@@ -124,6 +128,44 @@
             }
 
             this.writer.WriteLine("return 0;}");
+
+            this.writer.WriteLine("function int GetCustomPropertyByClassId(int classId, int property){");
+
+            foreach (Actor actor in actorsWithCP)
+            {
+                this.writer.WriteLine("if(classId == " + actor.ID + "){");
+
+                foreach (var property in actor.GetActualCustomProperties())
+                {
+                    foreach (string value in property)
+                    {
+                        this.writer.WriteLine("if(property == \"" + property.Key + "\") return " + value + ";");
+                    }
+                }
+
+                this.writer.WriteLine("return 0;}");
+            }
+
+            this.writer.WriteLine("return 0;}");
+
+            this.writer.WriteLine("function int GetCustomPropertyByClass(int class, int property){");               
+
+            foreach (Actor actor in actorsWithCP)
+            {
+                this.writer.WriteLine("if(class == \"" + actor.Name + "\"){");
+
+                foreach (var property in actor.GetActualCustomProperties())
+                {
+                    foreach (string value in property)
+                    {
+                        this.writer.WriteLine("if(property == \"" + property.Key + "\") return " + value + ";");
+                    }
+                }
+
+                this.writer.WriteLine("return 0;}");
+            }
+
+            this.writer.WriteLine("return 0;}");
         }
 
         public void WriteGetWeaponCustomProperty(IEnumerable<Actor> actors)
@@ -139,7 +181,7 @@
 
             foreach (Actor actor in weaponsWithCP)
             {
-                this.writer.WriteLine("if(CheckWeapon(\"" + actor.Name + "\")){");
+                this.writer.WriteLine("if(CheckWeapon(\"" + actor.Name + "\") == 1){");
 
                 foreach (var property in actor.GetActualCustomProperties())
                 {

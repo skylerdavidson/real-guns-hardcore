@@ -5,7 +5,7 @@ if not exist "temp\acs\acs" mkdir temp\acs\acs
 if not exist "output" mkdir output
 utility\mcpp "ACS source\RGH_ACS.acs" -o temp\acs\processed.acs -D ZDOOM -D IgnoreHash(x)=x -D DEBUG -P
 echo ==============================================================
-utility\zmp -d data/decorate -d "zdoom data" -a "temp\acs\processed.acs" -o temp\acs\zmp_processed.acs -p data/decorate.txt -m zdoom
+utility\zmp -d data/decorate -d "zdoom data" -a "temp\acs\processed.acs" -o temp\acs\zmp_processed.acs -p data/decorate.txt -m zdoom -l RGH_ACS
 if not errorlevel 0 (
 	pause
 	exit
