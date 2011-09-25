@@ -176,6 +176,54 @@ script 654 DEATH CLIENTSIDE
 	}
 }
 
+function void hudmessageonactor(int tid, int range, str sprite, str text, int spriteWidth, int spriteHeight)
+{
+	int dist, ang, vang, pitch, x, y;
+	int HUDX = 1400;
+	int HUDY = 800;
+	int offset = 0;
+    
+	if(sprite != -1)
+	{
+		setfont(sprite);
+		text = "A";
+		offset = 0.1;
+	}
+
+	sethudsize(HUDX, HUDY, 1);
+	x = getactorx(tid) - getactorx(0);
+	y = getactory(tid) - getactory(0); 
+
+	vang = vectorangle(x,y);
+	ang = (vang - GetActorAngle(0) + 1.0) % 1.0;
+
+	//if(((vang+0.125)%0.5) > 0.25) dist = fixeddiv(y, sin(vang));
+	//else dist = distanceFromPoint(getactorx(0), getactory(0), getactorz(0),tid);
+
+    dist = distanceFromPoint(getactorx(0), getactory(0), getactorz(0),tid) << 16;
+
+	int distRatio = fixeddiv(dist, range >> 16);
+	
+	HUDX = HUDX * (dist >> 16) / (range >> 16);
+	HUDY = HUDY * (dist >> 16) / (range >> 16);   
+	
+	sethudsize(HUDX, HUDY, 1);
+
+	if ((ang < 0.2 || ang > 0.8) && dist < range)
+	{
+		pitch = vectorangle(dist, getactorz(tid) - (getactorz(0) + 41.0));
+		pitch = (pitch + GetActorPitch(0) + 1.0) % 1.0;
+
+		x = HUDX/2 - ((HUDX/2) * sin(ang) / cos(ang));
+		y = HUDY/2 - ((HUDX/2) * sin(pitch) / cos(pitch));
+
+		hudmessage(s:text; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, (x<<16)+offset - ((spriteWidth / 2)<<16), (y<<16)+offset - (spriteHeight<<16), 0);
+	}
+	else
+		hudmessage(s:" "; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, 0, 0, 0);
+}
+
+
 // hud loop
 script 650 (void) CLIENTSIDE {
 	// Bot? -> No need for hud loop
