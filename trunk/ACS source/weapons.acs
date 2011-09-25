@@ -1,0 +1,233 @@
+//Knife screen
+script 599 (int Strength, int Reverse) NET CLIENTSIDE
+{
+	TakeInventory("PowerLightAmp", 1);
+
+	if(CheckInventory("KnifeAttack") == 1)
+	{
+		Strength = 4000;
+		Reverse = 4000;
+	}
+	int Counter;
+	while(Counter < Strength)
+	{
+		SetActorAngle(0,GetActorAngle(0)-800);
+		SetActorPitch(0,GetActorPitch(0)-200);
+		Counter += 800;
+		Delay(1);
+	}
+	Counter = 0;
+	while(Counter < Reverse)
+	{
+		SetActorAngle(0,GetActorAngle(0)+800);
+		SetActorPitch(0,GetActorPitch(0)+200);
+		Counter += 800;
+		Delay(1);
+	}
+}
+
+//Kickback
+script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
+{
+	int RecoilSpeed = 200;
+	bool EnableRandomization = false;
+
+	// load the values from DECORATE custom properties
+	int cpStrength = GetWeaponCustomProperty("recoilstrength");
+	int cpReverseStrength = GetWeaponCustomProperty("recoilreversestrength");
+	int cpSpeed = GetWeaponCustomProperty("recoilspeed");
+	int cpAimingStrength = GetWeaponCustomProperty("aimingrecoilstrength");
+	int cpAimingReverseStrength = GetWeaponCustomProperty("aimingrecoilreversestrength");
+	int cpAimingSpeed = GetWeaponCustomProperty("aimingrecoilspeed");
+
+	if(cpStrength != NULL){
+		Strength = cpStrength;
+	}
+	
+	if(cpReverseStrength != NULL){
+		Reverse = cpReverseStrength;
+	}
+	
+	if(cpSpeed != NULL){
+		RecoilSpeed = cpSpeed;
+	}
+	
+	if(CheckInventory("Aiming")){
+		if(cpAimingStrength != NULL){
+			Strength = cpAimingStrength;
+		}
+		
+		if(cpAimingReverseStrength != NULL){
+			Reverse = cpAimingReverseStrength;
+		}
+		
+		if(cpAimingSpeed != NULL){
+			RecoilSpeed = cpAimingSpeed;
+		}
+	}
+
+	if(Hurt == 1)
+	{
+		Strength = 4000;
+		Reverse = 4000;
+		RecoilSpeed = 1200;
+	}
+	
+	// Handle grips en-masse (and do it for UZI akimbo to since it has double fire rate)
+	if(
+		// Shotguns
+		CheckWeapon("SPAS-12 Grip") || 
+		CheckWeapon("Striker Grip") || 
+		CheckWeapon("M1014 Grip") || 
+		CheckWeapon("AA-12 Grip") ||
+		CheckWeapon("L86 Grip") ||
+		CheckWeapon("MG4 Grip") ||
+		CheckWeapon("M240 Grip") ||
+		CheckWeapon("AUG HBAR Grip") ||
+		CheckWeapon("Mini-UZI Akimbo")
+	)
+	{
+		Strength = Strength / 2;
+		Reverse = Reverse / 2;
+		RecoilSpeed = RecoilSpeed / 2;
+	}
+	
+	
+	int ReturnAngleOffsetX = 100;
+	int ReturnAngleOffsetY = 100;
+	
+	if(enableRandomization){
+		ReturnAngleOffsetX = random(80, 120);
+		ReturnAngleOffsetY = random(80, 120);
+	}
+
+	int Counter;
+		while(Counter < Strength)
+		{
+			SetActorAngle(0,GetActorAngle(0)-RecoilSpeed / 4 );
+			SetActorPitch(0,GetActorPitch(0)-RecoilSpeed);
+			Counter += RecoilSpeed;
+			Delay(1);
+		}
+		Counter = 0;
+		while(Counter < Reverse)
+		{
+			SetActorAngle(0,GetActorAngle(0)+RecoilSpeed/ 4 * ReturnAngleOffsetX / 100);
+			SetActorPitch(0,GetActorPitch(0)+RecoilSpeed * ReturnAngleOffsetY / 100);
+			Counter += RecoilSpeed;
+			Delay(1);
+		}
+}             
+
+//Reload
+script 601 (void) NET
+{
+	if(CheckInventory("Menu") > 0 && CheckInventory("MenuPlace") == 0){		
+	    ACS_ExecuteAlways(639,0,0,0,0);	    
+		terminate;
+	}
+	
+	if(GetActorProperty(0,APROP_Health) <= 0){
+		terminate;
+	}   
+
+	//------------------------------------------
+	//------- Checks if weapon is true, or attachment-weapon is true, then checks if clip is not full, then checks if reserve is not 0.
+	if((((CheckWeapon("USP .45") == 1 || CheckWeapon("USP .45 Tac Knife") == 1 || CheckWeapon("USP .45 LastStand") == 1) && CheckInventory("USP45Clip") < 12 && CheckInventory("USP45Ammo") != 0)  || (CheckWeapon("USP .45 Ex Mags") == 1 && CheckInventory("USP45Clip2") < 18 && CheckInventory("USP45Ammo") != 0) || (CheckWeapon("USP .45 Akimbo") == 1 && CheckInventory("USP45Clip3") < 24 && CheckInventory("USP45Ammo") != 0)
+		 || ((CheckWeapon(".44 Magnum") == 1 || CheckWeapon(".44 Magnum Tac Knife") == 1) && CheckInventory("44MagnumClip") < 6  && CheckInventory("44MagnumAmmo") != 0) || (CheckWeapon(".44 Magnum Akimbo") == 1 && CheckInventory("44MagnumClip2") < 12 && CheckInventory("44MagnumAmmo") != 0)
+		 || ((CheckWeapon("SPAS-12") == 1 || CheckWeapon("SPAS-12 Grip") == 1) && CheckInventory("SPASClip") < 8 && CheckInventory("SPAS12Ammo") != 0) || (CheckWeapon("SPAS-12 Ex Mags") == 1 && CheckInventory("SPASClip2") < 16 && CheckInventory("SPAS12Ammo") != 0) 
+		 || ((CheckWeapon("AA-12") == 1  || CheckWeapon("AA-12 Grip") == 1) && CheckInventory("AA12Clip") < 8 && CheckInventory("AA12Ammo") != 0) || (CheckWeapon("AA-12 Ex Mags") == 1 && CheckInventory("AA12Clip2") < 16 && CheckInventory("AA12Ammo") != 0)
+		 || ((CheckWeapon("UMP45") == 1 || CheckWeapon("UMP45 Rapid Fire") == 1) && CheckInventory("UMP45Clip") < 32 && CheckInventory("UMP45Ammo") != 0)  || (CheckWeapon("UMP45 Ex Mags") == 1 && CheckInventory("UMP45Clip2") < 48 && CheckInventory("UMP45Ammo") != 0) 
+		 || (CheckWeapon("TDI Vector") == 1 && CheckInventory("VectorClip") < 30 && CheckInventory("VectorAmmo") != 0) || (CheckWeapon("TDI Vector Ex Mags") == 1 && CheckInventory("VectorClip2") < 45 && CheckInventory("VectorAmmo") != 0)
+		 || (CheckWeapon("Mini-UZI") == 1 && CheckInventory("MiniUziClip") < 32 && CheckInventory("MiniUziAmmo") != 0) || (CheckWeapon("Mini-UZI Ex Mags") == 1 && CheckInventory("MiniUziClip2") < 48 && CheckInventory("MiniUziAmmo") != 0) || (CheckWeapon("Mini-UZI Akimbo") == 1 && CheckInventory("MiniUziClip3") < 64 && CheckInventory("MiniUziAmmo") != 0)
+		 || ((CheckWeapon("FN P90") == 1 || CheckWeapon("FN P90 Rapid Fire") == 1) && CheckInventory("P90Clip") < 50 && CheckInventory("P90Ammo") != 0) || (CheckWeapon("FN P90 Ex Mags") == 1 && CheckInventory("P90Clip2") < 75 && CheckInventory("P90Ammo") != 0)
+		 || (CheckWeapon("ACR") == 1 && CheckInventory("ACRClip") < 30 && CheckInventory("ACRAmmo") != 0) || (CheckWeapon("ACR Ex Mags") == 1 && CheckInventory("ACRClip2") < 45 && CheckInventory("ACRAmmo") != 0) 
+		 || ((CheckWeapon("Intervention") == 1 || CheckWeapon("Intervention Thermal") == 1) && CheckInventory("InterventionClip") < 5 && CheckInventory("InterventionAmmo") != 0) || (CheckWeapon("Intervention Ex Mags") == 1 && CheckInventory("InterventionClip2") < 10 && CheckInventory("InterventionAmmo") != 0) 
+		 || (CheckWeapon("Barrett 50cal Ex Mags") == 1 && CheckInventory("BarrettClip2") < 15 && CheckInventory("BarrettAmmo") != 0) || ((CheckWeapon("Barrett 50cal") == 1 || CheckWeapon("Barrett 50cal Thermal") == 1) && CheckInventory("BarrettClip") < 10 && CheckInventory("BarrettAmmo") != 0) 
+		 || ((CheckWeapon("MG4") == 1 || CheckWeapon("MG4 Grip") == 1) && CheckInventory("MG4Clip") < 100 && CheckInventory("MG4Ammo") != 0) || (CheckWeapon("MG4 Ex Mags") == 1 && CheckInventory("MG4Clip2") < 200 && CheckInventory("MG4Ammo") != 0)
+		 || (CheckWeapon("G18") == 1 && CheckInventory("G18Clip") < 33 && CheckInventory("G18Ammo") != 0)  || (CheckWeapon("G18 Ex Mags") == 1 && CheckInventory("G18Clip2") < 50 && CheckInventory("G18Ammo") != 0) || (CheckWeapon("G18 Akimbo") == 1 && CheckInventory("G18Clip3") < 66 && CheckInventory("G18Ammo") != 0) 
+		 || (CheckWeapon("PP2000") == 1 && CheckInventory("PP2000Clip") < 20 && CheckInventory("PP2000Ammo") != 0) || (CheckWeapon("PP2000 Ex Mags") == 1 && CheckInventory("PP2000Clip2") < 30 && CheckInventory("PP2000Ammo") != 0 ) || (CheckWeapon("PP2000 Akimbo") == 1 && CheckInventory("PP2200Clip") < 40 && CheckInventory("PP2000Ammo") != 0 )
+		 || (CheckWeapon("SCAR-H") == 1 && CheckInventory("SCARHClip") < 20 && CheckInventory("SCARHAmmo") != 0)  || (CheckWeapon("SCAR-H Ex Mags") == 1 && CheckInventory("SCARHClip2") < 30 && CheckInventory("SCARHAmmo") != 0) 
+		 || (CheckWeapon("M4A1") == 1 && CheckInventory("M4A1Clip") < 30 && CheckInventory("M4A1Ammo") != 0) || (CheckWeapon("M4A1 Ex Mags") == 1 && CheckInventory("M4A1Clip2") < 45 && CheckInventory("M4A1Ammo") != 0)
+		 || (CheckWeapon("M93 Raffica") == 1 && CheckInventory("M93RClip") < 20 && CheckInventory("M93RAmmo") != 0) || (CheckWeapon("M93 Raffica Ex Mags") == 1 && CheckInventory("M93RClip2") < 30 && CheckInventory("M93RAmmo") != 0)
+		 || (CheckWeapon("M16A4") == 1 && CheckInventory("M16Clip") < 30 && CheckInventory("M16Ammo") != 0) || (CheckWeapon("M16A4 Ex Mags") == 1 && CheckInventory("M16Clip2") < 45 && CheckInventory("M16Ammo") != 0)
+		 || (CheckWeapon("AK-47") == 1 && CheckInventory("AK47Clip") < 30 && CheckInventory("AK47Ammo") != 0) || (CheckWeapon("AK-47 Ex Mags") == 1 && CheckInventory("AK47Clip2") < 45 && CheckInventory("AK47Ammo") != 0)
+		 || ((CheckWeapon("Striker") == 1 || CheckWeapon("Striker Grip") == 1) && CheckInventory("StrikerClip") < 12 && CheckInventory("StrikerAmmo") != 0) || (CheckWeapon("Striker Ex Mags") == 1 && CheckInventory("StrikerClip2") < 18 && CheckInventory("StrikerAmmo") != 0) 
+		 || ((CheckWeapon("AUG HBAR") == 1 || CheckWeapon("AUG HBAR Grip") == 1) && CheckInventory("AUGHBARClip") < 42 && CheckInventory("AUGHBARAmmo") != 0) || (CheckWeapon("AUG HBAR Ex Mags") == 1 && CheckInventory("AUGHBARClip2") < 63 && CheckInventory("AUGHBARAmmo") != 0) 
+		 || ((CheckWeapon("WA2000") == 1 || CheckWeapon("WA2000 Thermal") == 1) && CheckInventory("WA2000Clip") < 6 && CheckInventory("WA2000Ammo") != 0) || (CheckWeapon("WA2000 Ex Mags") == 1 && CheckInventory("WA2000Clip2") < 12 && CheckInventory("WA2000Ammo") != 0) 
+		 || ((CheckWeapon("Desert Eagle") == 1 || CheckWeapon("Desert Eagle Tac Knife") == 1) && CheckInventory("DeagleClip") < 7 && CheckInventory("DeagleAmmo") != 0) || ((CheckWeapon("Deagle Special") == 1 || CheckWeapon("Desert Eagle Akimbo") == 1) && CheckInventory("DeagleClip2") < 14 && CheckInventory("DeagleAmmo") != 0)
+		 || ((CheckWeapon("M9") == 1 || CheckWeapon("M9 Tac Knife") == 1) && CheckInventory("M9Clip") < 15 && CheckInventory("M9Ammo") != 0) || (CheckWeapon("M9 Ex Mags") == 1 && CheckInventory("M9Clip2") < 25 && CheckInventory("M9Ammo") != 0) || (CheckWeapon("M9 Akimbo") == 1 && CheckInventory("M9Clip3") < 30 && CheckInventory("M9Ammo") != 0) 
+		 || ((CheckWeapon("M1014") == 1 || CheckWeapon("M1014 Grip") == 1) && CheckInventory("M1014Clip") < 4 && CheckInventory("M1014Ammo") != 0) || (CheckWeapon("M1014 Ex Mags") == 1 && CheckInventory("M1014Clip2") < 6 && CheckInventory("M1014Ammo") != 0) 
+		 || ((CheckWeapon("M240") == 1 || CheckWeapon("M240 Grip") == 1) && CheckInventory("M240Clip") < 100 && CheckInventory("M240Ammo") != 0) || (CheckWeapon("M240 Ex Mags") == 1 && CheckInventory("M240Clip2") < 200 && CheckInventory("M240Ammo") != 0)
+		 || ((CheckWeapon("L86") == 1 || CheckWeapon("L86 Grip") == 1) && CheckInventory("L86Clip") < 100 && CheckInventory("L86Ammo") != 0) || (CheckWeapon("L86 Ex Mags") == 1 && CheckInventory("L86Clip2") < 200 && CheckInventory("L86Ammo") != 0)
+		 || (CheckWeapon("Ranger") == 1 && CheckInventory("RangerClip") < 2 && CheckInventory("RangerAmmo") != 0) 
+		 || (CheckWeapon("Model 1887") == 1 && CheckInventory("M1887Clip") < 7 && CheckInventory("M1887Ammo") != 0) 
+		 || (CheckWeapon("M14 EBR Ex Mags") == 1 && CheckInventory("M14Clip2") < 30 && CheckInventory("M14Ammo") != 0) || ((CheckWeapon("M14 EBR") == 1 || CheckWeapon("M14 EBR Thermal") == 1) && CheckInventory("M14Clip") < 20 && CheckInventory("M14Ammo") != 0) 
+		 || (CheckWeapon("Thumper") == 1 && CheckInventory("ThumperClip") < 1 && CheckInventory("ThumperAmmo") != 0)  || (CheckWeapon("AT4-HS") == 1 && CheckInventory("AT4Clip") < 1 && CheckInventory("AT4Ammo") != 0) 
+		 || (CheckWeapon("FAMAS M203") == 1 && CheckInventory("M203Clip") < 1 && CheckInventory("M203Ammo") != 0)  || (CheckWeapon("RPG-7") == 1 && CheckInventory("RPGClip") < 1 && CheckInventory("RPGAmmo") != 0) 
+		 || (CheckWeapon("F2000") == 1 && CheckInventory("F2000Clip") < 30 && CheckInventory("F2000Ammo") != 0) || (CheckWeapon("F2000 Ex Mags") == 1 && CheckInventory("F2000Clip2") < 45 && CheckInventory("F2000Ammo") != 0)
+		 || ((CheckWeapon("MP5K") == 1 || CheckWeapon("MP5K Rapid Fire") == 1) && CheckInventory("MP5Clip") < 30 && CheckInventory("MP5Ammo") != 0) || (CheckWeapon("MP5K Ex Mags") == 1 && CheckInventory("MP5Clip2") < 45 && CheckInventory("MP5Ammo") != 0)
+		 || (CheckWeapon("FAMAS") == 1 && CheckInventory("FamasClip") < 30  && CheckInventory("FamasAmmo") != 0) || (CheckWeapon("FAMAS Ex Mags") == 1 && CheckInventory("FamasClip2") < 45  && CheckInventory("FamasAmmo") != 0)
+		 || (CheckWeapon("FAL") == 1 && CheckInventory("FALClip") < 20 && CheckInventory("FALAmmo") != 0) || (CheckWeapon("FAL Ex Mags") == 1 && CheckInventory("FALClip2") < 30 && CheckInventory("FALAmmo") != 0)) && CheckInventory("Reloading") == 0)
+	{
+		GiveInventory("Reloading",1);
+
+
+	}
+}
+
+//------------------------------------------
+//------- Throw grenade.
+script 603 (void) NET
+{
+	if(GetActorProperty(0,APROP_Health) <= 0){
+		terminate;
+	}
+
+	TakeInventory("PowerLightAmp", 1);
+	
+	if(CheckInventory("FragGrenadeAmmo") != 0 && CheckInventory("ThrowingGrenade") == 0)
+	{
+		GiveInventory("ThrowingGrenade",1);
+		//if(CheckInventory("Reloading") == 1)
+			GiveInventory("KnifeAttack",1);
+
+#ifdef SKULLTAG
+		bool isRed = PlayerTeam() == TEAM_RED;		
+		bool isBlue = PlayerTeam() == TEAM_BLUE;
+		bool isThree = PlayerTeam() == 2;
+		bool isFour = PlayerTeam() == 3;
+#else
+		bool isRed = false;
+		bool isBlue = false;
+		bool isThree = false;
+		bool isFour = false;
+#endif
+		bool noTeam = (!(isRed || isBlue || isThree || isFour) || COOPERATIVE);
+
+		if((!noTeam && isRed) || (noTeam && CheckInventory("Voice") == 1))
+			ActivatorSound("russian/grenade",127);
+		else if((!noTeam && isBlue) || (noTeam && CheckInventory("Voice") == 0))
+			ActivatorSound("us/grenade",127);	
+		else if((!noTeam && isThree) || (noTeam && CheckInventory("Voice") == 2))
+			ActivatorSound("brazil/grenade",127);
+		else if((!noTeam && isFour) || (noTeam && CheckInventory("Voice") == 3))
+			ActivatorSound("opfor/grenade",127);
+		else if(noTeam && CheckInventory("Voice") == 4)
+			ActivatorSound("seal/grenade",127);
+		else if(noTeam && CheckInventory("Voice") == 5)
+			ActivatorSound("tf141/grenade",127);
+	}
+	if(CheckWeapon("FAMAS") == 1 && CheckInventory("FragGrenadeAmmo") == 0 && (CheckInventory("M203Ammo") != 0 || CheckInventory("M203Clip") != 0))
+	{
+		GiveInventory("SwitchMode",1);
+	}
+}
+//------------------------------------------
+//------- Use Knife
+script 604 (void) NET
+{
+	TakeInventory("PowerLightAmp", 1);
+
+	GiveInventory("KnifeAttack",1); //Hack, refer to decorate coding.
+}

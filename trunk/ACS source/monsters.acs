@@ -1,0 +1,6 @@
+// returns 1 if "vanilla monsters only" mode is enabled, used in spawners
+script 656 (void)
+{
+	SetResultValue(GetCVAR("rgh_vanillamonstersonly"));
+}
+

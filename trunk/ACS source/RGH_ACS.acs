@@ -5,6 +5,7 @@
 # define COOPERATIVE (GameType() == GAME_NET_COOPERATIVE || GameType() == GAME_SINGLE_PLAYER)
 # define COMPETITIVE (GameType() == GAME_NET_DEATHMATCH)
 
+
 int KillersID;
 int KillersHealth;
 int KillersMaxHealth;
@@ -22,6 +23,12 @@ bool arcade = false;
 bool InvisibilityRunning[40];
 
 bool Entered[40][8];
+
+#include "math.acs"
+#include "screen.acs"
+#include "menus.acs"
+#include "weapons.acs"
+#include "monsters.acs"
  
 #ifdef SKULLTAG
 script 505 OPEN
@@ -333,183 +340,9 @@ script 597 ENTER
 	HudMessage(s:"\ccBy \cvCommanderZ\cj and \cvVoltlocK"; HUDMSG_FADEOUT,0,CR_YELLOW,0.5,0.7,2.0,0.5);
 }
 
-//Knife screen
-script 599 (int Strength, int Reverse) NET CLIENTSIDE
-{
-	TakeInventory("PowerLightAmp", 1);
-
-	if(CheckInventory("KnifeAttack") == 1)
-	{
-		Strength = 4000;
-		Reverse = 4000;
-	}
-	int Counter;
-	while(Counter < Strength)
-	{
-		SetActorAngle(0,GetActorAngle(0)-800);
-		SetActorPitch(0,GetActorPitch(0)-200);
-		Counter += 800;
-		Delay(1);
-	}
-	Counter = 0;
-	while(Counter < Reverse)
-	{
-		SetActorAngle(0,GetActorAngle(0)+800);
-		SetActorPitch(0,GetActorPitch(0)+200);
-		Counter += 800;
-		Delay(1);
-	}
-}
-
-//Kickback
-script 600 (int Strength, int Reverse, int Hurt) NET CLIENTSIDE
-{
-	int RecoilSpeed = 200;
-	bool EnableRandomization = false;
-
-	// load the values from DECORATE custom properties
-	int cpStrength = GetWeaponCustomProperty("recoilstrength");
-	int cpReverseStrength = GetWeaponCustomProperty("recoilreversestrength");
-	int cpSpeed = GetWeaponCustomProperty("recoilspeed");
-	int cpAimingStrength = GetWeaponCustomProperty("aimingrecoilstrength");
-	int cpAimingReverseStrength = GetWeaponCustomProperty("aimingrecoilreversestrength");
-	int cpAimingSpeed = GetWeaponCustomProperty("aimingrecoilspeed");
-
-	if(cpStrength != NULL){
-		Strength = cpStrength;
-	}
-	
-	if(cpReverseStrength != NULL){
-		Reverse = cpReverseStrength;
-	}
-	
-	if(cpSpeed != NULL){
-		RecoilSpeed = cpSpeed;
-	}
-	
-	if(CheckInventory("Aiming")){
-		if(cpAimingStrength != NULL){
-			Strength = cpAimingStrength;
-		}
-		
-		if(cpAimingReverseStrength != NULL){
-			Reverse = cpAimingReverseStrength;
-		}
-		
-		if(cpAimingSpeed != NULL){
-			RecoilSpeed = cpAimingSpeed;
-		}
-	}
-
-	if(Hurt == 1)
-	{
-		Strength = 4000;
-		Reverse = 4000;
-		RecoilSpeed = 1200;
-	}
-	
-	// Handle grips en-masse (and do it for UZI akimbo to since it has double fire rate)
-	if(
-		// Shotguns
-		CheckWeapon("SPAS-12 Grip") || 
-		CheckWeapon("Striker Grip") || 
-		CheckWeapon("M1014 Grip") || 
-		CheckWeapon("AA-12 Grip") ||
-		CheckWeapon("L86 Grip") ||
-		CheckWeapon("MG4 Grip") ||
-		CheckWeapon("M240 Grip") ||
-		CheckWeapon("AUG HBAR Grip") ||
-		CheckWeapon("Mini-UZI Akimbo")
-	)
-	{
-		Strength = Strength / 2;
-		Reverse = Reverse / 2;
-		RecoilSpeed = RecoilSpeed / 2;
-	}
-	
-	
-	int ReturnAngleOffsetX = 100;
-	int ReturnAngleOffsetY = 100;
-	
-	if(enableRandomization){
-		ReturnAngleOffsetX = random(80, 120);
-		ReturnAngleOffsetY = random(80, 120);
-	}
-
-	int Counter;
-		while(Counter < Strength)
-		{
-			SetActorAngle(0,GetActorAngle(0)-RecoilSpeed / 4 );
-			SetActorPitch(0,GetActorPitch(0)-RecoilSpeed);
-			Counter += RecoilSpeed;
-			Delay(1);
-		}
-		Counter = 0;
-		while(Counter < Reverse)
-		{
-			SetActorAngle(0,GetActorAngle(0)+RecoilSpeed/ 4 * ReturnAngleOffsetX / 100);
-			SetActorPitch(0,GetActorPitch(0)+RecoilSpeed * ReturnAngleOffsetY / 100);
-			Counter += RecoilSpeed;
-			Delay(1);
-		}
-}             
-
-//Reload
-script 601 (void) NET
-{
-	if(CheckInventory("Menu") > 0 && CheckInventory("MenuPlace") == 0){		
-	    ACS_ExecuteAlways(639,0,0,0,0);	    
-		terminate;
-	}
-	
-	if(GetActorProperty(0,APROP_Health) <= 0){
-		terminate;
-	}   
-
-	//------------------------------------------
-	//------- Checks if weapon is true, or attachment-weapon is true, then checks if clip is not full, then checks if reserve is not 0.
-	if((((CheckWeapon("USP .45") == 1 || CheckWeapon("USP .45 Tac Knife") == 1 || CheckWeapon("USP .45 LastStand") == 1) && CheckInventory("USP45Clip") < 12 && CheckInventory("USP45Ammo") != 0)  || (CheckWeapon("USP .45 Ex Mags") == 1 && CheckInventory("USP45Clip2") < 18 && CheckInventory("USP45Ammo") != 0) || (CheckWeapon("USP .45 Akimbo") == 1 && CheckInventory("USP45Clip3") < 24 && CheckInventory("USP45Ammo") != 0)
-		 || ((CheckWeapon(".44 Magnum") == 1 || CheckWeapon(".44 Magnum Tac Knife") == 1) && CheckInventory("44MagnumClip") < 6  && CheckInventory("44MagnumAmmo") != 0) || (CheckWeapon(".44 Magnum Akimbo") == 1 && CheckInventory("44MagnumClip2") < 12 && CheckInventory("44MagnumAmmo") != 0)
-		 || ((CheckWeapon("SPAS-12") == 1 || CheckWeapon("SPAS-12 Grip") == 1) && CheckInventory("SPASClip") < 8 && CheckInventory("SPAS12Ammo") != 0) || (CheckWeapon("SPAS-12 Ex Mags") == 1 && CheckInventory("SPASClip2") < 16 && CheckInventory("SPAS12Ammo") != 0) 
-		 || ((CheckWeapon("AA-12") == 1  || CheckWeapon("AA-12 Grip") == 1) && CheckInventory("AA12Clip") < 8 && CheckInventory("AA12Ammo") != 0) || (CheckWeapon("AA-12 Ex Mags") == 1 && CheckInventory("AA12Clip2") < 16 && CheckInventory("AA12Ammo") != 0)
-		 || ((CheckWeapon("UMP45") == 1 || CheckWeapon("UMP45 Rapid Fire") == 1) && CheckInventory("UMP45Clip") < 32 && CheckInventory("UMP45Ammo") != 0)  || (CheckWeapon("UMP45 Ex Mags") == 1 && CheckInventory("UMP45Clip2") < 48 && CheckInventory("UMP45Ammo") != 0) 
-		 || (CheckWeapon("TDI Vector") == 1 && CheckInventory("VectorClip") < 30 && CheckInventory("VectorAmmo") != 0) || (CheckWeapon("TDI Vector Ex Mags") == 1 && CheckInventory("VectorClip2") < 45 && CheckInventory("VectorAmmo") != 0)
-		 || (CheckWeapon("Mini-UZI") == 1 && CheckInventory("MiniUziClip") < 32 && CheckInventory("MiniUziAmmo") != 0) || (CheckWeapon("Mini-UZI Ex Mags") == 1 && CheckInventory("MiniUziClip2") < 48 && CheckInventory("MiniUziAmmo") != 0) || (CheckWeapon("Mini-UZI Akimbo") == 1 && CheckInventory("MiniUziClip3") < 64 && CheckInventory("MiniUziAmmo") != 0)
-		 || ((CheckWeapon("FN P90") == 1 || CheckWeapon("FN P90 Rapid Fire") == 1) && CheckInventory("P90Clip") < 50 && CheckInventory("P90Ammo") != 0) || (CheckWeapon("FN P90 Ex Mags") == 1 && CheckInventory("P90Clip2") < 75 && CheckInventory("P90Ammo") != 0)
-		 || (CheckWeapon("ACR") == 1 && CheckInventory("ACRClip") < 30 && CheckInventory("ACRAmmo") != 0) || (CheckWeapon("ACR Ex Mags") == 1 && CheckInventory("ACRClip2") < 45 && CheckInventory("ACRAmmo") != 0) 
-		 || ((CheckWeapon("Intervention") == 1 || CheckWeapon("Intervention Thermal") == 1) && CheckInventory("InterventionClip") < 5 && CheckInventory("InterventionAmmo") != 0) || (CheckWeapon("Intervention Ex Mags") == 1 && CheckInventory("InterventionClip2") < 10 && CheckInventory("InterventionAmmo") != 0) 
-		 || (CheckWeapon("Barrett 50cal Ex Mags") == 1 && CheckInventory("BarrettClip2") < 15 && CheckInventory("BarrettAmmo") != 0) || ((CheckWeapon("Barrett 50cal") == 1 || CheckWeapon("Barrett 50cal Thermal") == 1) && CheckInventory("BarrettClip") < 10 && CheckInventory("BarrettAmmo") != 0) 
-		 || ((CheckWeapon("MG4") == 1 || CheckWeapon("MG4 Grip") == 1) && CheckInventory("MG4Clip") < 100 && CheckInventory("MG4Ammo") != 0) || (CheckWeapon("MG4 Ex Mags") == 1 && CheckInventory("MG4Clip2") < 200 && CheckInventory("MG4Ammo") != 0)
-		 || (CheckWeapon("G18") == 1 && CheckInventory("G18Clip") < 33 && CheckInventory("G18Ammo") != 0)  || (CheckWeapon("G18 Ex Mags") == 1 && CheckInventory("G18Clip2") < 50 && CheckInventory("G18Ammo") != 0) || (CheckWeapon("G18 Akimbo") == 1 && CheckInventory("G18Clip3") < 66 && CheckInventory("G18Ammo") != 0) 
-		 || (CheckWeapon("PP2000") == 1 && CheckInventory("PP2000Clip") < 20 && CheckInventory("PP2000Ammo") != 0) || (CheckWeapon("PP2000 Ex Mags") == 1 && CheckInventory("PP2000Clip2") < 30 && CheckInventory("PP2000Ammo") != 0 ) || (CheckWeapon("PP2000 Akimbo") == 1 && CheckInventory("PP2200Clip") < 40 && CheckInventory("PP2000Ammo") != 0 )
-		 || (CheckWeapon("SCAR-H") == 1 && CheckInventory("SCARHClip") < 20 && CheckInventory("SCARHAmmo") != 0)  || (CheckWeapon("SCAR-H Ex Mags") == 1 && CheckInventory("SCARHClip2") < 30 && CheckInventory("SCARHAmmo") != 0) 
-		 || (CheckWeapon("M4A1") == 1 && CheckInventory("M4A1Clip") < 30 && CheckInventory("M4A1Ammo") != 0) || (CheckWeapon("M4A1 Ex Mags") == 1 && CheckInventory("M4A1Clip2") < 45 && CheckInventory("M4A1Ammo") != 0)
-		 || (CheckWeapon("M93 Raffica") == 1 && CheckInventory("M93RClip") < 20 && CheckInventory("M93RAmmo") != 0) || (CheckWeapon("M93 Raffica Ex Mags") == 1 && CheckInventory("M93RClip2") < 30 && CheckInventory("M93RAmmo") != 0)
-		 || (CheckWeapon("M16A4") == 1 && CheckInventory("M16Clip") < 30 && CheckInventory("M16Ammo") != 0) || (CheckWeapon("M16A4 Ex Mags") == 1 && CheckInventory("M16Clip2") < 45 && CheckInventory("M16Ammo") != 0)
-		 || (CheckWeapon("AK-47") == 1 && CheckInventory("AK47Clip") < 30 && CheckInventory("AK47Ammo") != 0) || (CheckWeapon("AK-47 Ex Mags") == 1 && CheckInventory("AK47Clip2") < 45 && CheckInventory("AK47Ammo") != 0)
-		 || ((CheckWeapon("Striker") == 1 || CheckWeapon("Striker Grip") == 1) && CheckInventory("StrikerClip") < 12 && CheckInventory("StrikerAmmo") != 0) || (CheckWeapon("Striker Ex Mags") == 1 && CheckInventory("StrikerClip2") < 18 && CheckInventory("StrikerAmmo") != 0) 
-		 || ((CheckWeapon("AUG HBAR") == 1 || CheckWeapon("AUG HBAR Grip") == 1) && CheckInventory("AUGHBARClip") < 42 && CheckInventory("AUGHBARAmmo") != 0) || (CheckWeapon("AUG HBAR Ex Mags") == 1 && CheckInventory("AUGHBARClip2") < 63 && CheckInventory("AUGHBARAmmo") != 0) 
-		 || ((CheckWeapon("WA2000") == 1 || CheckWeapon("WA2000 Thermal") == 1) && CheckInventory("WA2000Clip") < 6 && CheckInventory("WA2000Ammo") != 0) || (CheckWeapon("WA2000 Ex Mags") == 1 && CheckInventory("WA2000Clip2") < 12 && CheckInventory("WA2000Ammo") != 0) 
-		 || ((CheckWeapon("Desert Eagle") == 1 || CheckWeapon("Desert Eagle Tac Knife") == 1) && CheckInventory("DeagleClip") < 7 && CheckInventory("DeagleAmmo") != 0) || ((CheckWeapon("Deagle Special") == 1 || CheckWeapon("Desert Eagle Akimbo") == 1) && CheckInventory("DeagleClip2") < 14 && CheckInventory("DeagleAmmo") != 0)
-		 || ((CheckWeapon("M9") == 1 || CheckWeapon("M9 Tac Knife") == 1) && CheckInventory("M9Clip") < 15 && CheckInventory("M9Ammo") != 0) || (CheckWeapon("M9 Ex Mags") == 1 && CheckInventory("M9Clip2") < 25 && CheckInventory("M9Ammo") != 0) || (CheckWeapon("M9 Akimbo") == 1 && CheckInventory("M9Clip3") < 30 && CheckInventory("M9Ammo") != 0) 
-		 || ((CheckWeapon("M1014") == 1 || CheckWeapon("M1014 Grip") == 1) && CheckInventory("M1014Clip") < 4 && CheckInventory("M1014Ammo") != 0) || (CheckWeapon("M1014 Ex Mags") == 1 && CheckInventory("M1014Clip2") < 6 && CheckInventory("M1014Ammo") != 0) 
-		 || ((CheckWeapon("M240") == 1 || CheckWeapon("M240 Grip") == 1) && CheckInventory("M240Clip") < 100 && CheckInventory("M240Ammo") != 0) || (CheckWeapon("M240 Ex Mags") == 1 && CheckInventory("M240Clip2") < 200 && CheckInventory("M240Ammo") != 0)
-		 || ((CheckWeapon("L86") == 1 || CheckWeapon("L86 Grip") == 1) && CheckInventory("L86Clip") < 100 && CheckInventory("L86Ammo") != 0) || (CheckWeapon("L86 Ex Mags") == 1 && CheckInventory("L86Clip2") < 200 && CheckInventory("L86Ammo") != 0)
-		 || (CheckWeapon("Ranger") == 1 && CheckInventory("RangerClip") < 2 && CheckInventory("RangerAmmo") != 0) 
-		 || (CheckWeapon("Model 1887") == 1 && CheckInventory("M1887Clip") < 7 && CheckInventory("M1887Ammo") != 0) 
-		 || (CheckWeapon("M14 EBR Ex Mags") == 1 && CheckInventory("M14Clip2") < 30 && CheckInventory("M14Ammo") != 0) || ((CheckWeapon("M14 EBR") == 1 || CheckWeapon("M14 EBR Thermal") == 1) && CheckInventory("M14Clip") < 20 && CheckInventory("M14Ammo") != 0) 
-		 || (CheckWeapon("Thumper") == 1 && CheckInventory("ThumperClip") < 1 && CheckInventory("ThumperAmmo") != 0)  || (CheckWeapon("AT4-HS") == 1 && CheckInventory("AT4Clip") < 1 && CheckInventory("AT4Ammo") != 0) 
-		 || (CheckWeapon("FAMAS M203") == 1 && CheckInventory("M203Clip") < 1 && CheckInventory("M203Ammo") != 0)  || (CheckWeapon("RPG-7") == 1 && CheckInventory("RPGClip") < 1 && CheckInventory("RPGAmmo") != 0) 
-		 || (CheckWeapon("F2000") == 1 && CheckInventory("F2000Clip") < 30 && CheckInventory("F2000Ammo") != 0) || (CheckWeapon("F2000 Ex Mags") == 1 && CheckInventory("F2000Clip2") < 45 && CheckInventory("F2000Ammo") != 0)
-		 || ((CheckWeapon("MP5K") == 1 || CheckWeapon("MP5K Rapid Fire") == 1) && CheckInventory("MP5Clip") < 30 && CheckInventory("MP5Ammo") != 0) || (CheckWeapon("MP5K Ex Mags") == 1 && CheckInventory("MP5Clip2") < 45 && CheckInventory("MP5Ammo") != 0)
-		 || (CheckWeapon("FAMAS") == 1 && CheckInventory("FamasClip") < 30  && CheckInventory("FamasAmmo") != 0) || (CheckWeapon("FAMAS Ex Mags") == 1 && CheckInventory("FamasClip2") < 45  && CheckInventory("FamasAmmo") != 0)
-		 || (CheckWeapon("FAL") == 1 && CheckInventory("FALClip") < 20 && CheckInventory("FALAmmo") != 0) || (CheckWeapon("FAL Ex Mags") == 1 && CheckInventory("FALClip2") < 30 && CheckInventory("FALAmmo") != 0)) && CheckInventory("Reloading") == 0)
-	{
-		GiveInventory("Reloading",1);
 
 
-	}
-}
+
 
 //------------------------------------------
 //------- Sets player speed, affected by "ExtremeConditioning pro" perk.
@@ -535,61 +368,7 @@ script 602 (void)
 	SetActorProperty(0,APROP_Speed,moveSpeed);
 }
 
-//------------------------------------------
-//------- Throw grenade.
-script 603 (void) NET
-{
-	if(GetActorProperty(0,APROP_Health) <= 0){
-		terminate;
-	}
 
-	TakeInventory("PowerLightAmp", 1);
-	
-	if(CheckInventory("FragGrenadeAmmo") != 0 && CheckInventory("ThrowingGrenade") == 0)
-	{
-		GiveInventory("ThrowingGrenade",1);
-		//if(CheckInventory("Reloading") == 1)
-			GiveInventory("KnifeAttack",1);
-
-#ifdef SKULLTAG
-		bool isRed = PlayerTeam() == TEAM_RED;		
-		bool isBlue = PlayerTeam() == TEAM_BLUE;
-		bool isThree = PlayerTeam() == 2;
-		bool isFour = PlayerTeam() == 3;
-#else
-		bool isRed = false;
-		bool isBlue = false;
-		bool isThree = false;
-		bool isFour = false;
-#endif
-		bool noTeam = (!(isRed || isBlue || isThree || isFour) || COOPERATIVE);
-
-		if((!noTeam && isRed) || (noTeam && CheckInventory("Voice") == 1))
-			ActivatorSound("russian/grenade",127);
-		else if((!noTeam && isBlue) || (noTeam && CheckInventory("Voice") == 0))
-			ActivatorSound("us/grenade",127);	
-		else if((!noTeam && isThree) || (noTeam && CheckInventory("Voice") == 2))
-			ActivatorSound("brazil/grenade",127);
-		else if((!noTeam && isFour) || (noTeam && CheckInventory("Voice") == 3))
-			ActivatorSound("opfor/grenade",127);
-		else if(noTeam && CheckInventory("Voice") == 4)
-			ActivatorSound("seal/grenade",127);
-		else if(noTeam && CheckInventory("Voice") == 5)
-			ActivatorSound("tf141/grenade",127);
-	}
-	if(CheckWeapon("FAMAS") == 1 && CheckInventory("FragGrenadeAmmo") == 0 && (CheckInventory("M203Ammo") != 0 || CheckInventory("M203Clip") != 0))
-	{
-		GiveInventory("SwitchMode",1);
-	}
-}
-//------------------------------------------
-//------- Use Knife
-script 604 (void) NET
-{
-	TakeInventory("PowerLightAmp", 1);
-
-	GiveInventory("KnifeAttack",1); //Hack, refer to decorate coding.
-}
 
 //Draw XHairs since some weapons won't have an aim alt-fire
 script 605 (void) CLIENTSIDE
@@ -602,116 +381,6 @@ script 605 (void) CLIENTSIDE
 		//delay(1);
 		//restart;
 	}
-}
-
-function bool is4to3(void){
-	int w = GetScreenWidth();
-	int h = GetScreenHeight();
-	
-	if(
-		(w == 320 &&  h == 240) ||
-		(w == 400 &&  h == 300) ||
-		(w == 512 &&  h == 384) ||
-		(w == 576 &&  h == 432) ||
-		(w == 640 &&  h == 480) ||
-	    (w == 800 &&  h == 600) ||
-	    (w == 1024 &&  h == 768) ||
-	    (w == 1152 &&  h == 1280) ||
-	    (w == 1280 &&  h == 960) ||
-	    (w == 1400 &&  h == 1050)
-	){
-		return true;
-	}	
-	return false;	
-}
-
-function bool is5to4(void){
-	int w = GetScreenWidth();
-	int h = GetScreenHeight();
-	
-	if(
-		(w == 320 &&  h == 256) ||
-		(w == 360 &&  h == 288) ||		
-		(w == 720 &&  h == 576) ||
-	    (w == 1280 &&  h == 1024)
-	){
-		return true;
-	}	
-	return false;	
-}
-
-function bool is16to9(void){
-	int w = GetScreenWidth();
-	int h = GetScreenHeight();
-	
-	if(                    
-		(w == 1280 &&  h == 720) ||
-	    (w == 1024 &&  h == 576) ||
-	    (w == 1600 &&  h == 900) ||
-	    (w == 640 &&  h == 360) ||
-	    (w == 800 &&  h == 450) ||
-	    (w == 848 &&  h == 480) ||
-	    (w == 1024 &&  h == 576) ||
-	    (w == 1152 &&  h == 648) ||
-	    (w == 1280 &&  h == 720) ||
-	    (w == 1400 &&  h == 787) ||
-	    (w == 1769 &&  h == 992) ||
-	    (w == 1920 &&  h == 1080)
-	){
-		return true;
-	}	
-	return false;	
-}
-
-function bool is16to10(void){
-	int w = GetScreenWidth();
-	int h = GetScreenHeight();
-	
-	if(
-		(w == 360 &&  h == 240) ||
-		(w == 400 &&  h == 256) ||
-		(w == 720 &&  h == 480) ||
-	    (w == 1600 &&  h == 1024) ||
-	    (w == 1680 &&  h == 1050) ||
-	    (w == 1280 &&  h == 800) ||
-	    (w == 800 &&  h == 500) ||
-	    (w == 1024 &&  h == 640) ||
-	    (w == 1152 &&  h == 720) ||
-	    (w == 1280 &&  h == 1280) ||
-	    (w == 1400 &&  h == 875) ||
-	    (w == 1920 && h == 1200)
-	){
-		return true;
-	}	
-	return false;	
-}
-
-function void drawStretchedImage(int id, int imageWidth, int imageHeight, int time, int fadeTime){
-	int hudScreenWidth = imageHeight * 4 / 3 * imageWidth / imageHeight;
-	int hudScreenHeight = imageHeight;
-	
-	if(is4to3()){							
-		hudScreenWidth = hudScreenWidth / 4 * 3;
-	}
-	else if(is5to4()){
-		hudScreenWidth = hudScreenWidth / 4 * 3;
-		hudScreenHeight = 750; // I was too lazy to design the formula for just one res :)
-	}
-	else if(is16to9()){
-		hudScreenWidth = hudScreenWidth / 16 * 9;
-	}
-	else if(is16to10()){							
-		hudScreenWidth = hudScreenWidth / 16 * 10;
-	}
-	else {
-		hudScreenWidth = 1280;
-		log(s:"unknown resolution - please choose a valid resoltion from the SET VIDEO MODE menu");
-	}
-	
-	//log(i:hudScreenWidth)
-
-	SetHudSize(hudScreenWidth,hudScreenHeight,1);
-	HudMessage(s:"a"; HUDMSG_FADEOUT, id, CR_UNTRANSLATED, (hudScreenWidth/ 2)* 65536, (hudScreenHeight/ 2)* 65536, time, fadeTime);
 }
 
 //Regeneration
@@ -5651,212 +5320,9 @@ function int getCurrentWeaponSpread(bool hold){
 
 int nextTid = MINIMUM_TID;
 
-// crosshair drawing script
-script 650 (void) CLIENTSIDE {
-	// Bot? -> No need for crosshair
-	if(ClassifyActor(0) & ACTOR_BOT){
-		terminate;
-	}
-	
-	// No crosshair in deathmatch
-	//if(GameType() == GAME_NET_DEATHMATCH){
-	//	terminate;
-	//}
 
-	int loopCounter = 0;
-	int noiseCounter = 0;
 
-	while(true){
-		if(CheckInventory("NoHudLoop") > 0){
-		    terminate;
-		}
-			
-		loopCounter++;
-		noiseCounter = noiseCounter + random(0,2);
-		
-		if(loopCounter == 1000000) loopCounter = 0;
-		if(noiseCounter >= 1000000) noiseCounter = 0; 
-		
-		if(CheckInventory("Menu") == 1){
-			delay(10);
-			continue;
-		}
-			
-		if(
-			CheckInventory("Crosshair") > 0 &&
-			CheckInventory("Aiming") == 0 &&
-			CheckInventory("ThrowingGrenade") == 0 &&
-			CheckInventory("KnifeAttack") == 0 &&
-			CheckInventory("Reloading") == 0 &&
-			GetActorProperty(0,APROP_Health) > 0 &&
-			CheckInventory("PowerEMP") == 0			
-		){
-			// The drawing will be done at native resolution (so the crosshair sprites are never destroyed by scaling).
-			SetHudSize(GetScreenWidth(),GetScreenHeight(),1);
-			
-			// Calculate aspect-ratio inndependent width of the screen (only a 4:3 cutout will be considered - it is enough
-			// for crosshair drawing);
-			int width4to3 = GetScreenHeight() * 4 / 3;
-			
-			//log(f:(width4to3 * (getCurrentWeaponSpread(true)/ 16)));
-			
-			// Calculate sizes for crosshair in normal and hold-fore state.
-			// The size is adapted to current screen resolution.
-			// The FOV (of 4:3 cutout of the screen) is expected to be 90.
-			// The division by 16 is necessary, since the fixed point numbers have very limited capacity (1 bit for sign, 15 bits for 
-			// radix part and 16 bits for fractional part), so the calculation width4to3 * weaponSpread
-			// would overflow for high resolutions and hogh weapon spreads. Dividing the number by 16 effectively changes 
-			// bit the distribution to 1/19/12 allowing us to store 16 times higher numbers at cost of 16 times reduced accuracy (
-			// which is of course not needed for this purpose). 
-			int size = width4to3 * (getCurrentWeaponSpread(false) / 16) / 90 / (65536 / 16);
-			int holdSize = width4to3 * (getCurrentWeaponSpread(true) / 16) / 90 / (65536 / 16);
-			
-			// Use linear interpolation to get a current crosshair size.
-			size = holdSize * CheckInventory("InCombatCrosshair") / 35 + size * (35 - CheckInventory("InCombatCrosshair")) / 35; 
-			
-			if(size > 0){
-				SetFont("CROSSLFT");
-				HudMessage(s:"a"; HUDMSG_FADEOUT, 314, CR_UNTRANSLATED, 65536 * (GetScreenWidth() / 2 - size), 65536 * (GetScreenHeight() / 2), 0, 0.5);
-				SetFont("CROSSRGT");
-				HudMessage(s:"a"; HUDMSG_FADEOUT, 315, CR_UNTRANSLATED, 65536 * (GetScreenWidth() / 2 + size), 65536 * (GetScreenHeight() / 2), 0, 0.5);
-				SetFont("CROSSTOP");
-				HudMessage(s:"a"; HUDMSG_FADEOUT, 316, CR_UNTRANSLATED, 65536 * (GetScreenWidth() / 2), 65536 * (GetScreenHeight() / 2 - size), 0, 0.5);
-				SetFont("CROSSBOT");
-				HudMessage(s:"a"; HUDMSG_FADEOUT, 317, CR_UNTRANSLATED, 65536 * (GetScreenWidth() / 2), 65536 * (GetScreenHeight() / 2 + size), 0, 0.5);
-			}
-			else {
-				GiveInventory("InCombatCrosshair", 35);
-			}
-			
-			TakeInventory("InCombatCrosshair", 3);
-		}
-		else {
-			GiveInventory("InCombatCrosshair", 35);
-		}
-		
-		/*for (int i = MINIMUM_TID; i < nextTid; i++ ){
-			if(GetActorProperty(i,APROP_Health) <= 0){
-				hudmessage(s:" "; HUDMSG_PLAIN, 20000+ i, CR_UNTRANSLATED, 0, 0, 0);
-				continue;
-			}
-		
-			//log(s:"loop", i:i);
-			hudMessageOnActor(i, 900<<16, "SITREP1", "O", 45, 59);
-		}*/				
-		
-		if(loopCounter % 2 == 0 && CheckInventory("PowerEMP") > 0){
-			int r = noiseCounter % 4;
-		
-			if(r == 0){
-				SetFont("NOISE0");
-			}
-			else if(r==1){
-				SetFont("NOISE1");
-			}
-			else if(r==2){
-				SetFont("NOISE2");
-			}
-			else if(r==3){
-				SetFont("NOISE3");
-			} 
-			
-	        drawStretchedImage(10+PlayerNumber(), 1280, 800, 0.5, 1.0);
-		}
 
-		//delay(3);
-		delay(1);
-	}
-}
-
-// kill indicator
-function void drawKillIndicator(void) {
-	if(CheckInventory("PowerEMP") > 0) return;
-	
-	SetFont("KILINDIC");
-	SetHudSize(800,600,1);
-	HudMessage(s:"a"; HUDMSG_FADEOUT, CR_UNTRANSLATED, 0, 400.0, 300.0, 0.25, 0.01);
-}
-
-function int sqrt(int number)
-{
-	if(number <= 3)
-	{
-		if(number > 0)
-		{
-			return 1;
-		}
-		return 0;
-	}
-
-	int oldAns = number >> 1,                     // initial guess
-	    newAns = (oldAns + number / oldAns) >> 1; // first iteration
-
-	// main iterative method
-	while(newAns < oldAns)
-	{
-		oldAns = newAns;
-		newAns = (oldAns + number / oldAns) >> 1;
-	}
-
-	return oldAns;
-}
-
-function int distanceFromPoint (int originX, int originY, int originZ, int tid2)
-{
-	int x, y, z, d;
-	x = (originX - GetActorX(tid2)) >> 16; // Convert fixed point to integer
-	y = (originY - GetActorY(tid2)) >> 16;
-	z = (originZ - GetActorZ(tid2)) >> 16;
-	d = sqrt( x*x + y*y + z*z );
-	return d;
-}
-
-function void hudmessageonactor(int tid, int range, str sprite, str text, int spriteWidth, int spriteHeight)
-{
-	int dist, ang, vang, pitch, x, y;
-	int HUDX = 1400;
-	int HUDY = 800;
-	int offset = 0;
-    
-	if(sprite != -1)
-	{
-		setfont(sprite);
-		text = "A";
-		offset = 0.1;
-	}
-
-	sethudsize(HUDX, HUDY, 1);
-	x = getactorx(tid) - getactorx(0);
-	y = getactory(tid) - getactory(0); 
-
-	vang = vectorangle(x,y);
-	ang = (vang - GetActorAngle(0) + 1.0) % 1.0;
-
-	//if(((vang+0.125)%0.5) > 0.25) dist = fixeddiv(y, sin(vang));
-	//else dist = distanceFromPoint(getactorx(0), getactory(0), getactorz(0),tid);
-
-    dist = distanceFromPoint(getactorx(0), getactory(0), getactorz(0),tid) << 16;
-
-	int distRatio = fixeddiv(dist, range >> 16);
-	
-	HUDX = HUDX * (dist >> 16) / (range >> 16);
-	HUDY = HUDY * (dist >> 16) / (range >> 16);   
-	
-	sethudsize(HUDX, HUDY, 1);
-
-	if ((ang < 0.2 || ang > 0.8) && dist < range)
-	{
-		pitch = vectorangle(dist, getactorz(tid) - (getactorz(0) + 41.0));
-		pitch = (pitch + GetActorPitch(0) + 1.0) % 1.0;
-
-		x = HUDX/2 - ((HUDX/2) * sin(ang) / cos(ang));
-		y = HUDY/2 - ((HUDX/2) * sin(pitch) / cos(pitch));
-
-		hudmessage(s:text; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, (x<<16)+offset - ((spriteWidth / 2)<<16), (y<<16)+offset - (spriteHeight<<16), 0);
-	}
-	else
-		hudmessage(s:" "; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, 0, 0, 0);
-}
 
 // assign next free tid to the thing 
 script 651 (void) {		
@@ -5896,22 +5362,9 @@ script 652 (void) {
 		ActivatorSound("tf141/reload",127);
 }
 
-// Called from KillIndicator inventory item
-script 653 (void) CLIENTSIDE {
-	//log(s:"Kill");
-	drawKillIndicator();
-}
 
-// draws "hold X to change class" (according to client's key settings)
-script 654 DEATH CLIENTSIDE
-{
-	if(COMPETITIVE){
-		SetFont("BIGFONT");		
-		HudMessage(s:"\ccHold \cf", k:"+altattack", s:"\cc while respawning to change your class"; HUDMSG_PLAIN, 2700+PlayerNumber(), CR_Green, 0.5, 0.75, 0);
-	}
-}
 
-// plays hit sound, if it is ennabled on the client
+// plays hit sound, if it is enabled on the client
 script 655 (void) CLIENTSIDE
 {
 	if(GetCVAR("rgh_hitsound") == 1){
@@ -5920,12 +5373,6 @@ script 655 (void) CLIENTSIDE
 		LocalAmbientSound("generic/fleshhit", 127);
 		LocalAmbientSound("generic/fleshhit", 127);
 	}
-}
-
-// returns 1 if "vanilla monsters only" mode is enabled, used in spawners
-script 656 (void)
-{
-	SetResultValue(GetCVAR("rgh_vanillamonstersonly"));
 }
 
 // enters class selection menu
