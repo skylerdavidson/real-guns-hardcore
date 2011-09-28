@@ -24,6 +24,13 @@ bool InvisibilityRunning[40];
 
 bool Entered[40][8];
 
+int nextTid = MINIMUM_TID;
+// assign next free tid to the thing 
+script 651 (void) {		
+	Thing_ChangeTID(0,nextTid);	
+	nextTid = nextTid + 1;
+}
+
 #include "math.acs"
 #include "screen.acs"
 #include "menus.acs"
@@ -63,8 +70,8 @@ script 505 OPEN
 	//	ConsoleCommand("sv_weapondrop 0");
 	//}
 
-	if(GetCVAR("compat_nocrosshair") == 0)
-		ConsoleCommand("compat_nocrosshair 1");
+	if(GetCVAR("compat_nocrosshair") == 1)
+		ConsoleCommand("compat_nocrosshair 0");
 
 	if(GameType() == GAME_SINGLE_PLAYER){
 		ConsoleCommand("archivecvar rgh_hitsound");
@@ -5316,18 +5323,6 @@ function int getCurrentWeaponSpread(bool hold){
 	}
 	
 	return Spread;
-}
-
-int nextTid = MINIMUM_TID;
-
-
-
-
-
-// assign next free tid to the thing 
-script 651 (void) {		
-	Thing_ChangeTID(0,nextTid);	
-	nextTid = nextTid + 1;
 }
 
 // Shout "Reloading!"

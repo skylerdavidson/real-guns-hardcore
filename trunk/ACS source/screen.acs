@@ -80,15 +80,6 @@ function bool is16to10(void){
 	return false;	
 }
 
-int inputVector[3] = {0, 0, 0};
-int outputVector[3] = {0, 0, 0};
-int upVector[3] = {0, 0, 1.0};
-int basisA[3] = {0, 0, 0};
-int basisB[3] = {0, 0, 0};
-int basisC[3] = {0, 0, 0};
-int point[3] = {0, 0, 0};
-int eyeCoords[3] = {0, 0, 0};
-
 function void drawStretchedImage(int id, int imageWidth, int imageHeight, int time, int fadeTime){
 	int hudScreenWidth = imageHeight * 4 / 3 * imageWidth / imageHeight;
 	int hudScreenHeight = imageHeight;
@@ -122,35 +113,136 @@ function int getHorizontalFov(void){
 }
 
 function int getVerticalFov(void){
-	return 90.0;
+	return 60.0;
 }
+
+int inputVector[3] = {0, 0, 0};
+int outputVector[3] = {0, 0, 0};
+
+int upVector[3] = {0, 1.0, 0};
+int basisA[3] = {0, 0, 0};
+int basisB[3] = {0, 0, 0};
+int basisBCopy[3] = {0, 0, 0};
+int basisC[3] = {0, 0, 0};
+int point[3] = {0, 0, 0};
+int eyeCoords[3] = {0, 0, 0};
+int normCoords[3] = {0, 0, 0};
+int screenCoords[2] = {0, 0};
 
 function void worldToScreenCoords(void){
 	// Camera vector
-	int cameraTargetX =  sin(GetActorAngle(0)) * 10;
-	int cameraTargetY =  cos(GetActorAngle(0)) * 10;
-	int cameraTargetZ =  cos(GetActorPitch(0)) * 10;
 	
-	basisB[0] = cameraTargetX - GetActorX(0);
-	basisB[1] = cameraTargetY - GetActorY(0);
-	basisB[2] = cameraTargetZ - GetActorZ(0);
+  // KUWA TOHLE NENI SPRAVNE
+  /*
+  int cameraTargetX =  cos(GetActorAngle(0));
+	int cameraTargetY = -sin(GetActorPitch(0));    
+	int cameraTargetZ = sin(GetActorAngle(0));*/  
+	
+	int cameraTargetX = FixedMul(cos(GetActorAngle(0)), FixedMul(cos(GetActorPitch(0)), 1.0)); 
+	int cameraTargetY = -sin(GetActorPitch(0));      
+	int cameraTargetZ = FixedMul(sin(GetActorAngle(0)), cos(GetActorPitch(0))); 
+	    
+	//  log(s: "CAM X ", f:cameraTargetX);
+  //log(s: "CAM Y ", f:cameraTargetY);
+	//log(s: "CAM Z ", f:cameraTargetZ);
+	
+	
+	//log(s: "X", f:cameraTargetX);
+	//log(s: "Y", f:cameraTargetY);
+	//log(s: "Z", f:cameraTargetZ);
+	
+	basisB[0] = cameraTargetX;// - GetActorX(0);
+	basisB[1] = cameraTargetY;// - GetActorZ(0);
+	basisB[2] = cameraTargetZ;// - GetActorY(0); 
 	
 	NORMALIZE_VECTOR(basisB);
+	
+	/*basisBCopy[0] = basisB[2];
+	basisBCopy[1] = basisB[1];
+	basisBCopy[2] = basisB[0];
+	
+	VECTOR_CROSS_PRODUCT(basisBCopy, basisB, upVector);
+	
+	NORMALIZE_VECTOR(upVector);*/
+
+	/*  log(s: "UP X ", f:upVector[0]);
+  log(s: "UP Y ", f:upVector[1]);
+	log(s: "UP Z ", f:upVector[2]);*/
+	
+	//log(s: "X ", f:basisB[0]);
+  //log(s: "Y ", f:basisB[1]);
+	//log(s: "Z ", f:basisB[2]);
 	
 	VECTOR_CROSS_PRODUCT(upVector, basisB, basisA);
 	
 	NORMALIZE_VECTOR(basisA);
 	
-	VECTOR_CROSS_PRODUCT(basisA, basisB, basisC);
+	VECTOR_CROSS_PRODUCT(basisB, basisA, basisC);
+	
+	NORMALIZE_VECTOR(basisC);
 	
 	// Point coordinate relative to camera
 	point[0] = inputVector[0] - GetActorX(0); 
-	point[1] = inputVector[1] - GetActorY(0); 
-	point[2] = inputVector[2] - GetActorZ(0);
+	point[1] = inputVector[1] + 10.0 - GetActorZ(0) - 48.0; // height of the player actor 
+	point[2] = inputVector[2] - GetActorY(0);
 
-    eyeCoords[0] = FixedMul(point[0], basisA[0]) + FixedMul(point[1], basisA[1]) + FixedMul(point[2], basisA[2]);
-    eyeCoords[1] = FixedMul(point[0], basisB[0]) + FixedMul(point[1], basisB[1]) + FixedMul(point[2], basisB[2]);
-    eyeCoords[2] = FixedMul(point[0], basisC[0]) + FixedMul(point[1], basisC[1]) + FixedMul(point[2], basisC[2]);   
+  //log(s: "REL X ", f:point[0]);
+  //log(s: "REL Y ", f:point[1]);
+	//log(s: "REL Z ", f:point[2]);
+
+  // transform the world coordinates to eye coordinates
+  eyeCoords[0] = FixedMul(point[0], basisA[0]) + FixedMul(point[1], basisA[1]) + FixedMul(point[2], basisA[2]);
+  eyeCoords[1] = FixedMul(point[0], basisB[0]) + FixedMul(point[1], basisB[1]) + FixedMul(point[2], basisB[2]);
+  eyeCoords[2] = FixedMul(point[0], basisC[0]) + FixedMul(point[1], basisC[1]) + FixedMul(point[2], basisC[2]);
+
+  //log(s: "X ", f:eyeCoords[0]);
+  //log(s: "Y ", f:eyeCoords[1]);
+	//log(s: "Z ", f:eyeCoords[2]);
+
+  // transform eye coordinates to normalized coordinates for perspective view
+  int tanThetaHorizontal = tan(FixedDiv(FixedDiv(getHorizontalFov(), 360.0), 2.0));
+	int tanThetaVertical = tan(FixedDiv(FixedDiv(getVerticalFov(), 360.0), 2.0));
+
+    	//log(s: "H", f:tan(FixedDiv(FixedDiv(getHorizontalFov(), 360.0), 2.0)));
+  //log(s: "V", f:tan(FixedDiv(FixedDiv(getVerticalFov(), 360.0), 2.0)));
+
+  int zoom = 1.0; 
+  int d = FixedDiv(zoom, eyeCoords[1]);
+  normCoords[0] = FixedDiv(FixedMul(d, eyeCoords[0]), tanThetaHorizontal);
+  normCoords[1] = eyeCoords[1];
+  normCoords[2] = FixedDiv(FixedMul(d, eyeCoords[2]), tanThetaVertical);
+
+  if(
+    normCoords[0] < -1.0 ||
+    normCoords[0] > 1.0 ||
+    normCoords[2] < -1.0 ||
+    normCoords[2] > 1.0 ||
+    normCoords[1] < -0
+  )
+  {
+    screenCoords[0] = -1;
+    return;
+  }
+
+  //log(s: "X", f:normCoords[0]);
+  //log(s: "Y", f:normCoords[1]);
+	//log(s: "Z", f:normCoords[2]);
+  
+  //log(s:"========");
+  //log(s: "W ", f:(GetScreenWidth() / 2) << 16);
+  //log(s: "H ", f:(GetScreenHeight() / 2) << 16);    
+  //log(s: "X ", f:FixedDiv(FixedMul(GetScreenWidth() << 16, normCoords[0]), 2.0));
+  //log(s: "Y ", f:FixedDiv(FixedMul(GetScreenHeight() << 16, normCoords[2]), 2.0));
+  
+  //print(s:"X ", f:normCoords[0], s:" PITCH ", f:normCoords[2]);
+  
+  // transform normalized coordinates to screen coordinates
+  
+  screenCoords[0] = 1;
+  
+  	//log(s: "X", f:screenCoords[0]);
+  //log(s: "Y", f:screenCoords[1]);
+	//log(s: "Z", f:point[2]);   
 }
 
 // kill indicator
@@ -179,8 +271,8 @@ script 654 DEATH CLIENTSIDE
 function void hudmessageonactor(int tid, int range, str sprite, str text, int spriteWidth, int spriteHeight)
 {
 	int dist, ang, vang, pitch, x, y;
-	int HUDX = 1400;
-	int HUDY = 800;
+	int HUDX = 1750;
+	int HUDY = HUDX * 3 / 4;
 	int offset = 0;
     
 	if(sprite != -1)
@@ -190,12 +282,12 @@ function void hudmessageonactor(int tid, int range, str sprite, str text, int sp
 		offset = 0.1;
 	}
 
-	sethudsize(HUDX, HUDY, 1);
-	x = getactorx(tid) - getactorx(0);
+	sethudsize(HUDX, HUDY, 0);
+	//x = getactorx(tid) - getactorx(0);
 	y = getactory(tid) - getactory(0); 
 
-	vang = vectorangle(x,y);
-	ang = (vang - GetActorAngle(0) + 1.0) % 1.0;
+	//vang = vectorangle(x,y);
+	//ang = (vang - GetActorAngle(0) + 1.0) % 1.0;
 
 	//if(((vang+0.125)%0.5) > 0.25) dist = fixeddiv(y, sin(vang));
 	//else dist = distanceFromPoint(getactorx(0), getactory(0), getactorz(0),tid);
@@ -204,23 +296,45 @@ function void hudmessageonactor(int tid, int range, str sprite, str text, int sp
 
 	int distRatio = fixeddiv(dist, range >> 16);
 	
-	HUDX = HUDX * (dist >> 16) / (range >> 16);
-	HUDY = HUDY * (dist >> 16) / (range >> 16);   
+	HUDX = HUDX * (dist >> 16) / 1000;
+	HUDY = HUDY * (dist >> 16) / 1000;   
 	
-	sethudsize(HUDX, HUDY, 1);
+	sethudsize(HUDX, HUDY, 0);
 
-	if ((ang < 0.2 || ang > 0.8) && dist < range)
-	{
-		pitch = vectorangle(dist, getactorz(tid) - (getactorz(0) + 41.0));
-		pitch = (pitch + GetActorPitch(0) + 1.0) % 1.0;
+	if (/*(ang < 0.2 || ang > 0.8) && */dist < range){
+	//{
+	//	pitch = vectorangle(dist, getactorz(tid) - (getactorz(0) + 41.0));
+	//	pitch = (pitch + GetActorPitch(0) + 1.0) % 1.0;
 
-		x = HUDX/2 - ((HUDX/2) * sin(ang) / cos(ang));
-		y = HUDY/2 - ((HUDX/2) * sin(pitch) / cos(pitch));
+	//	x = HUDX/2 - ((HUDX/2) * sin(ang) / cos(ang));
+	//	y = HUDY/2 - ((HUDX/2) * sin(pitch) / cos(pitch));
 
-		hudmessage(s:text; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, (x<<16)+offset - ((spriteWidth / 2)<<16), (y<<16)+offset - (spriteHeight<<16), 0);
-	}
-	else
-		hudmessage(s:" "; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, 0, 0, 0);
+    inputVector[0] = GetActorX(tid);
+    inputVector[1] = GetActorZ(tid);
+    inputVector[2] = GetActorY(tid);
+
+    worldToScreenCoords();
+    
+    if(
+      screenCoords[0] != -1
+    ){
+
+      screenCoords[0] = ((HUDX / 2) << 16) + FixedDiv(FixedMul(HUDX << 16, normCoords[0]), 2.0) ;
+      screenCoords[1] = ((HUDY / 2) << 16) - FixedDiv(FixedMul(HUDY << 16, normCoords[2]), 2.0);
+
+		  hudmessage(s:text; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, (screenCoords[0] >> 16) << 16, ((screenCoords[1] >> 16) << 16) + 0.2, 0);
+		}
+		else {
+      hudmessage(s:""; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, 0, 0, 0);
+    }
+    
+    }
+    else {
+      hudmessage(s:""; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, 0, 0, 0);
+    }
+	//}
+	//else
+	//	hudmessage(s:" "; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, 0, 0, 0);
 }
 
 
@@ -249,6 +363,10 @@ script 650 (void) CLIENTSIDE {
 			delay(10);
 			continue;
 		}
+		
+					if(loopCounter % 10 == 0){
+        
+      } 
 			
 		if(
 			CheckInventory("Crosshair") > 0 &&
@@ -259,7 +377,8 @@ script 650 (void) CLIENTSIDE {
 			GetActorProperty(0,APROP_Health) > 0 &&
 			CheckInventory("PowerEMP") == 0			
 		){
-			// The drawing will be done at native resolution (so the crosshair sprites are never destroyed by scaling).
+      
+      // The drawing will be done at native resolution (so the crosshair sprites are never destroyed by scaling).
 			SetHudSize(GetScreenWidth(),GetScreenHeight(),1);
 			
 			// Calculate aspect-ratio inndependent width of the screen (only a 4:3 cutout will be considered - it is enough
@@ -300,15 +419,20 @@ script 650 (void) CLIENTSIDE {
 			GiveInventory("InCombatCrosshair", 35);
 		}
 		
-		/*for (int i = MINIMUM_TID; i < nextTid; i++ ){
+		for (int i = MINIMUM_TID; i < nextTid; i++ ){
 			if(GetActorProperty(i,APROP_Health) <= 0){
 				hudmessage(s:" "; HUDMSG_PLAIN, 20000+ i, CR_UNTRANSLATED, 0, 0, 0);
 				continue;
 			}
 		
-			//log(s:"loop", i:i);
-			hudMessageOnActor(i, 900<<16, "SITREP1", "O", 45, 59);
-		}*/				
+			
+			hudMessageOnActor(i, 900 << 16, "SITREP1", "O", 45, 59);
+			
+			//print(s:"X ", f:-eyeCoords[0], s:" Y ", f:eyeCoords[2]);				
+			
+			
+				//delay(10);
+		}				
 		
 		if(loopCounter % 2 == 0 && CheckInventory("PowerEMP") > 0){
 			int r = noiseCounter % 4;

@@ -27,7 +27,7 @@ function int sqrt_int(int number)
 	return oldAns;
 }
 
-function int sqrt2(int number) 
+function int sqrt(int number) 
 {
   if (number == 1.0) return 1.0; 
   if (number <= 0) return 0;
@@ -57,6 +57,6 @@ int vectorLength;
 	vector[2] = FixedDiv(vector[2], vectorLength);  
 
 #define VECTOR_CROSS_PRODUCT(a, b, c)\
-	c[0] = FixedMul(a[1], b[2]) + FixedMul(a[2], b[1]);\
-	c[1] = FixedMul(a[2], b[0]) + FixedMul(a[0], b[2]);\
-	c[2] = FixedMul(a[0], b[1]) + FixedMul(a[1], b[0]);
+	c[0] = FixedMul(a[1], b[2]) - FixedMul(a[2], b[1]);\
+	c[1] = FixedMul(a[2], b[0]) - FixedMul(a[0], b[2]);\
+	c[2] = FixedMul(a[0], b[1]) - FixedMul(a[1], b[0]);
