@@ -105,26 +105,40 @@
 
         public void WriteGetCustomProperty(IEnumerable<Actor> actors)
         {
+            int numActors = actors.Count();
+            var actorsByClassId = from actor in actors orderby actor.ID select actor;            
+
             var actorsWithCP =
                 from actor in actors
                 where actor.GetActualCustomProperties().Count > 0
                 select actor;
 
-            this.writer.WriteLine("function int GetCustomProperty(int tid, int property){");
+            var customProperties =
+                (from actor in actorsWithCP
+                 from customPropertyLookup in actor.GetActualCustomProperties()
+                 select customPropertyLookup.Key).Distinct();
 
-            foreach (Actor actor in actorsWithCP)
+            foreach (string customProperty in customProperties)
             {
-                this.writer.WriteLine("if(CheckActorClass(tid, \"" + actor.Name + "\")){");
-
-                foreach (var property in actor.GetActualCustomProperties())
+                this.writer.WriteLine("int __c" + customProperty + "[" + numActors + 1 + "] = {0,");
+                foreach (Actor actor in actorsByClassId)
                 {
-                    foreach (string value in property)
-                    {
-                        this.writer.WriteLine("if(property == \"" + property.Key + "\") return " + value + ";");
-                    }
-                }
+                    var customPropertyValues = actor.GetCustomPropertyValues(customProperty);
+                    string customPropertyValue = (customPropertyValues.Count() > 0 ? customPropertyValues.First() : "0");
 
-                this.writer.WriteLine("return 0;}");
+                    this.writer.WriteLine(customPropertyValue + "," + " // " + actor.OriginalName + " [" + actor.ID + "]");
+                }
+                this.writer.WriteLine("\"Last\"};");
+            }
+
+            this.writer.WriteLine("function int GetCustomProperty(int tid, int property){");
+            this.writer.WriteLine("int classId = GetActorClassId(tid);");
+
+            foreach (string customProperty in customProperties)
+            {
+                this.writer.WriteLine("if(property == \"" + customProperty + "\"){");
+                this.writer.WriteLine("return __c" + customProperty + "[classId];");
+                this.writer.WriteLine("}");
             }
 
             this.writer.WriteLine("return 0;}");
