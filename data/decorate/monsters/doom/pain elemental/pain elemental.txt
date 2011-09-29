@@ -1,6 +1,7 @@
 actor PainElemental_2 : RGAMonster
 {
 	Tag "Pain Elemental"
+	$SitRepSprite "SIT_CAC"
   health 400
   radius 31
   height 56

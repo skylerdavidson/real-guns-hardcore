@@ -1,6 +1,7 @@
 ACTOR HellsFury : RGAMonster
 {
 	Tag "Hell's Fury"
+	$SitRepSprite "SIT_BAR"
 	//$Category Monsters
 	Health 1900
 	Radius 24

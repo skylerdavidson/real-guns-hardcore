@@ -1,6 +1,7 @@
 actor Annihilator : Cyberdemon_2
 {
 	Tag "Annihilator"
+	$SitRepSprite "SIT_CYB"
   obituary "%o was imploded by an Annihilator."
   health 6000
   radius 40

@@ -1,6 +1,7 @@
 actor DoomImp_2 : RGAMonster
 {
 	Tag "Imp"
+	$SitRepSprite "SIT_ZOM"
   spawnid 5
   obituary "%o was burned by an imp."
   hitobituary "%o was slashed by an imp."

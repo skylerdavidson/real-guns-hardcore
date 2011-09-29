@@ -1,6 +1,7 @@
 actor HellKnight_2 : RGAMonster
 {
 	Tag "Hell Knight"
+	$SitRepSprite "SIT_BAR"
   spawnid 113
   obituary "%o was splayed by a Hell Knight."
   hitobituary "%o was gutted by a Hell Knight."

@@ -1,6 +1,7 @@
 ACTOR Abaddon_2 : Cacolantern_2
 {
 	Tag "Abaddon"
+	$SitRepSprite "SIT_CAC"
   SpawnID 220
   Health 1000
   Speed 16

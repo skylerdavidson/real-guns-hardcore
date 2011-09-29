@@ -1,6 +1,7 @@
                                                 ACTOR Hectebus_2 : Fatso_2
 {
 	Tag "Hectebus"
+	$SitRepSprite "SIT_FAT"
   SpawnID 158
   Health 1400
   PainChance 20

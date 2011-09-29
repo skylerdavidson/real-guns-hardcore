@@ -1,6 +1,7 @@
 ACTOR Archvile_2 : RGAMonster
 {
 	Tag "Arch-vile"
+	$SitRepSprite "SIT_ARC"
   SpawnID 111
   Health 1300
   Radius 20

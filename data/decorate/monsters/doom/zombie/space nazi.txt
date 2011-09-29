@@ -1,6 +1,7 @@
 actor SpaceNazi : RGAMonster
 {
 	Tag "Space Nazi"
+	$SitRepSprite "SIT_ZOM"
   obituary "%o met a space Nazi."
   health 40
   radius 20

@@ -39,6 +39,7 @@ Actor AcolFX2
 Actor Hierophant: RGAMonster
 {
 	Tag "Hierophant"
+	$SitRepSprite "SIT_HIE"
   Health 3000
   Radius 24
   Height 60

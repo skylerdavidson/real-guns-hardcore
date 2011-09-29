@@ -6,6 +6,7 @@ actor CacodemonBall_2: CacodemonBall
 actor Cacodemon_2 : RGAMonster
 {
 	Tag "Cacodemon"
+	$SitRepSprite "SIT_CAC"
   spawnid 19
   obituary "%o was smitten by a Cacodemon."
   hitobituary "%o got too close to a Cacodemon."

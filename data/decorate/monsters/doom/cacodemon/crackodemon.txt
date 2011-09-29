@@ -11,6 +11,7 @@
  ACTOR CrackoDemon : RGAMonster
 {
 	Tag "Cracko Demon"
+	$SitRepSprite "SIT_CAC"
 //$Category DECORATE
         SpawnID 175
 	Health 1000

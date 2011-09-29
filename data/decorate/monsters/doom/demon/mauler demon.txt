@@ -1,6 +1,7 @@
 ACTOR MaulerDemon : RGAMonster
 {
-	Tag "Mauler Demon"              
+	Tag "Mauler Demon"
+  $SitRepSprite "SIT_DEM"              
 	//$Category Monsters
  +MISSILEEVENMORE
    Health 280

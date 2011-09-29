@@ -1,6 +1,7 @@
 ACTOR Defiler : RGAMonster
 {
 	Tag "Defiler"
+	$SitRepSprite "SIT_CAC"
 	//$Category monsters
 	Health 1800
 	Radius 31

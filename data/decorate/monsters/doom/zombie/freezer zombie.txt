@@ -1,6 +1,7 @@
 ACTOR FreezerZombie: RGAMonster
 {
 	Tag "Freezer Zombie"
+	$SitRepSprite "SIT_ZOM"
     Health 40
     Radius 20
     Height 56

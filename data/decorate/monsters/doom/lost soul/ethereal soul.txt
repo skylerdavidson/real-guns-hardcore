@@ -1,6 +1,7 @@
 ACTOR ESoul : RGAMonster // replaces Zombieman
 {
-	Tag "Ethereal Soul" 
+	Tag "Ethereal Soul"
+  $SitRepSprite "SIT_SKU" 
   obituary "%o was raped by an ethereal soul."
   health 60
   radius 16

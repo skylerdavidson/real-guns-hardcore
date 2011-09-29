@@ -1,6 +1,7 @@
 actor StoneDemon : RGAMonster
 {
 	Tag "Stone Demon"
+	$SitRepSprite "SIT_DEM"
   hitobituary "%o was crunched by a stone demon."
   health 500
   painchance 5
@@ -58,6 +59,7 @@ actor StoneDemon : RGAMonster
 actor SpectreStone : StoneDemon
 {
 	Tag "Spectre Stone Demon"
+	$SitRepSprite "SIT_DEM"
   hitobituary "%o was crunched by a spectre stone demon."
   +SHADOW
   RenderStyle OptFuzzy

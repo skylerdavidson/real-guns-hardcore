@@ -2,6 +2,7 @@
 actor OverLord : RGAMonster
 {
 	Tag "Overlord"
+	$SitRepSprite "SIT_FAT"
 Health 4800
 Radius 30 
 Height 90
