@@ -24,6 +24,7 @@ actor CacolanternBall2
 ACTOR Cacolantern_2 : Cacodemon_2
 {
 	Tag "Cacolantern"
+	$SitRepSprite "SIT_CAC"
   SpawnID 159
   Health 600
   Obituary "$OB_CACOLANTERN" // "%o was smitten by a cacolantern."

@@ -1,6 +1,7 @@
 actor Arachnotron_2 : RGAMonster
 {
 	Tag "Arachnotron"
+	$SitRepSprite "SIT_ARA"
   spawnid 6
   obituary "%o let an arachnotron get %h."
   health 500

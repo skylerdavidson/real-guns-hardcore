@@ -10,6 +10,7 @@
 actor Agathodemon : RGAMonster
 {
 	Tag "Agathodemon"
+	$SitRepSprite "SIT_CAC"
   MONSTER
   +FLOAT
   +NOGRAVITY

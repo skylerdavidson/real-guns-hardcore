@@ -1,6 +1,7 @@
 actor SpiderMastermind_2
 {
 	Tag "Spider Mastermind"
+	$SitRepSprite "SIT_SPI"
   spawnid 7
   obituary "%o stood in awe of the spider demon."
   health 5000

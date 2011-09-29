@@ -1,6 +1,7 @@
 Actor ForgottenOne : RGAMonster
 {
 	Tag "Forgotten Soul"
+	$SitRepSprite "SIT_SKU"
   Obituary "A Forgotten Soul rammed %o"
   Health 30
   Radius 14

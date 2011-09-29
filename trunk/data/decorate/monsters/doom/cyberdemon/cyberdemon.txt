@@ -1,6 +1,7 @@
 actor Cyberdemon_2 : RGAMonster
 {
 	Tag "Annihilator"
+	$SitRepSprite "SIT_CYB"
   obituary "%o was splattered by a cyberdemon."
   health 6500
   radius 40

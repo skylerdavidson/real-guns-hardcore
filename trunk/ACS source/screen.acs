@@ -1,4 +1,4 @@
-function bool is4to3(void){
+function bool is4to3(void){     
 	int w = GetScreenWidth();
 	int h = GetScreenHeight();
 	
@@ -301,7 +301,15 @@ function void hudmessageonactor(int tid, int range, str sprite, str text, int sp
 	
 	sethudsize(HUDX, HUDY, 0);
 
-	if (/*(ang < 0.2 || ang > 0.8) && */dist < range){
+	if (/*(ang < 0.2 || ang > 0.8) && */
+    dist < range &&
+		GetActorProperty(0,APROP_Health) > 0 &&
+    CheckInventory("PowerEMP") == 0 &&
+    CheckInventory("InLastStand") == 0 &&
+    CheckInventory("Menu") == 0 &&
+    CheckInventory("AwardMenu") == 0 &&
+    CheckInventory("Spawned") > 0
+  ){
 	//{
 	//	pitch = vectorangle(dist, getactorz(tid) - (getactorz(0) + 41.0));
 	//	pitch = (pitch + GetActorPitch(0) + 1.0) % 1.0;
@@ -363,11 +371,7 @@ script 650 (void) CLIENTSIDE {
 			delay(10);
 			continue;
 		}
-		
-					if(loopCounter % 10 == 0){
-        
-      } 
-			
+
 		if(
 			CheckInventory("Crosshair") > 0 &&
 			CheckInventory("Aiming") == 0 &&
@@ -375,7 +379,9 @@ script 650 (void) CLIENTSIDE {
 			CheckInventory("KnifeAttack") == 0 &&
 			CheckInventory("Reloading") == 0 &&
 			GetActorProperty(0,APROP_Health) > 0 &&
-			CheckInventory("PowerEMP") == 0			
+			CheckInventory("PowerEMP") == 0	&&
+      CheckInventory("Menu") == 0 &&
+      CheckInventory("AwardMenu") == 0		
 		){
       
       // The drawing will be done at native resolution (so the crosshair sprites are never destroyed by scaling).
@@ -419,40 +425,78 @@ script 650 (void) CLIENTSIDE {
 			GiveInventory("InCombatCrosshair", 35);
 		}
 		
-		for (int i = MINIMUM_TID; i < nextTid; i++ ){
-			if(GetActorProperty(i,APROP_Health) <= 0){
-				hudmessage(s:" "; HUDMSG_PLAIN, 20000+ i, CR_UNTRANSLATED, 0, 0, 0);
-				continue;
-			}
-		
-			
-			hudMessageOnActor(i, 900 << 16, "SITREP1", "O", 45, 59);
-			
-			//print(s:"X ", f:-eyeCoords[0], s:" Y ", f:eyeCoords[2]);				
-			
-			
-				//delay(10);
-		}				
-		
-		if(loopCounter % 2 == 0 && CheckInventory("PowerEMP") > 0){
-			int r = noiseCounter % 4;
-		
-			if(r == 0){
-				SetFont("NOISE0");
-			}
-			else if(r==1){
-				SetFont("NOISE1");
-			}
-			else if(r==2){
-				SetFont("NOISE2");
-			}
-			else if(r==3){
-				SetFont("NOISE3");
-			} 
-			
-	        drawStretchedImage(10+PlayerNumber(), 1280, 800, 0.5, 1.0);
-		}
-
+		if(
+      CheckInventory("Perk3_SitRep_PRO") > 0
+    ){
+  		for (int i = MINIMUM_TID - MAX_PLAYER_COUNT; i < nextTid; i++ ){  		  
+  			if(GetActorProperty(i,APROP_Health) <= 0){
+  				hudmessage(s:" "; HUDMSG_PLAIN, 20000+ i, CR_UNTRANSLATED, 0, 0, 0);
+  				continue;
+  			}
+  		
+  		  int sitRepSprite = 0;
+  			
+  			if(ClassifyActor(i) & ACTOR_PLAYER || ClassifyActor(i) & ACTOR_BOT){
+#ifdef SKULLTAG
+          int activatorTeam = PlayerTeam();
+          int activator = ActivatorTid();
+          SetActivator(i); 
+          if(
+            COOPERATIVE ||
+            (activatorTeam == PlayerTeam() && PlayerTeam() != NO_TEAM && COMPETITIVE)            
+          ){
+            sitRepSprite = "SIT_COO";
+          }
+          else {
+            sitRepSprite = "SIT_ZOM";
+          }
+          SetActivator(activator);
+#else
+          sitRepSprite = "SIT_ZOM";
+#endif
+        }
+        else if (ClassifyActor(i) & ACTOR_MONSTER){
+      	 	sitRepSprite = GetCustomProperty(i, "sitrepsprite");
+      	}
+        else {
+          continue;
+        }
+  			
+  			//log(s:sitRepSprite);
+  			
+  			int range = 900;
+  			
+  			if(COMPETITIVE){
+          range = 500;
+        }
+  			
+  			hudMessageOnActor(i, range << 16, sitRepSprite, "O", 45, 59);
+  			
+  			//print(s:"X ", f:-eyeCoords[0], s:" Y ", f:eyeCoords[2]);				
+  			
+  			
+  				//delay(10);
+  		}				
+  		
+  		if(loopCounter % 2 == 0 && CheckInventory("PowerEMP") > 0){
+  			int r = noiseCounter % 4;
+  		
+  			if(r == 0){
+  				SetFont("NOISE0");
+  			}
+  			else if(r==1){
+  				SetFont("NOISE1");
+  			}
+  			else if(r==2){
+  				SetFont("NOISE2");
+  			}
+  			else if(r==3){
+  				SetFont("NOISE3");
+  			} 
+  			
+  	        drawStretchedImage(10+PlayerNumber(), 1280, 800, 0.5, 1.0);
+  		}
+    }
 		//delay(3);
 		delay(1);
 	}

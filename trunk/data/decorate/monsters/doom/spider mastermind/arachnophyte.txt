@@ -1,6 +1,7 @@
 ACTOR Arachnophyte : RGAMonster
 {
 	Tag "Arachnophyte"
+	$SitRepSprite "SIT_SPI"
     //$Category monsters
     Health 5500
     Radius 64

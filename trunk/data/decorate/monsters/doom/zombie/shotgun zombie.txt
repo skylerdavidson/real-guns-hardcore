@@ -1,6 +1,7 @@
 actor ShotgunGuy_2 : RGAMonster
 {
 	Tag "Shotgun Zombie"
+	$SitRepSprite "SIT_ZOM"
   spawnid 1
   obituary "%o was shot by a sergeant."
   health 40

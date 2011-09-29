@@ -1,6 +1,7 @@
 actor GreenRevenant : Revenant_2
 {
 	Tag "Green Revenant"
+	$SitRepSprite "SIT_REV"
   obituary "%o was splattered by a green revenant's cluster missile."
   hitobituary "%o's face was caved in by a green revenant."
   health 400

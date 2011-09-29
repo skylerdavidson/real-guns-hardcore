@@ -1,6 +1,7 @@
 actor Fatso_2 : RGAMonster
 {
 	Tag "Mancubus"
+	$SitRepSprite "SIT_FAT"
   spawnid 112
   obituary "%o was squashed by a mancubus."
   health 1000

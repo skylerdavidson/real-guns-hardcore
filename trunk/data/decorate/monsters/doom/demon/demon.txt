@@ -1,6 +1,7 @@
 ACTOR Demon_2 : RGAMonster
 {
 	Tag "Demon"
+	$SitRepSprite "SIT_DEM"
   Health 110
   PainChance 180
   Speed 20
@@ -61,6 +62,7 @@ ACTOR Demon_2 : RGAMonster
 actor Spectre_2 : Demon_2
 {
 	Tag "Spectre Demon"
+	$SitRepSprite "SIT_DEM"
   HitObituary "$OB_SPECTREHIT" // "%o was eaten by a spectre."
   +SHADOW
   RenderStyle OptFuzzy

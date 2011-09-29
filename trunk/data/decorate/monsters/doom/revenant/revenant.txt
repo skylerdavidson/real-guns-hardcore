@@ -1,6 +1,7 @@
 actor Revenant_2 : RGAMonster
 {
 	Tag "Revenant"
+	$SitRepSprite "SIT_REV"
   spawnid 20
   obituary "%o couldn't evade a revenant's fireball."
   hitobituary "%o was punched by a revenant."

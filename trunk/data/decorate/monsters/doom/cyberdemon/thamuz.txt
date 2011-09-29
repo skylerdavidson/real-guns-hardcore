@@ -11,6 +11,7 @@
 ACTOR Thamuz : Cyberdemon_2
 {
 	Tag "Thamuz"
+	$SitRepSprite "SIT_CYB"
   Health 4400
   Speed 16
   PainChance 35

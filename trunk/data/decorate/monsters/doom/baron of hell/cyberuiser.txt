@@ -1,6 +1,7 @@
 actor Cybruiser : BaronOfHell_2
 {
 	Tag "Cyber Bruiser"
+	$SitRepSprite "SIT_BAR"
   obituary "%o was blown away by a Cyber Bruiser."
   hitobituary "%o was smashed by a Cyber Bruiser."
   health 1400

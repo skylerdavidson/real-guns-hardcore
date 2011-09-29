@@ -1,6 +1,7 @@
 actor BFGGuy : RGAMonster
 {
 	Tag "BFG Zombie"
+	$SitRepSprite "SIT_ZOM"
   obituary "%o was vapourized by a zombie's BFG9000."
   health 100
   radius 20

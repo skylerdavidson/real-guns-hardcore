@@ -1,6 +1,7 @@
 actor SuperShotgunGuy_2 : RGAMonster
 {
 	Tag "Super-shotgun Zombie"
+	$SitRepSprite "SIT_ZOM"
   spawnid 1
   obituary "%o was jacked by a super shotgunner."
   health 60

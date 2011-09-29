@@ -1,6 +1,7 @@
 Actor Afrit : RGAMonster
 {
 	Tag "Afrit"
+	$SitRepSprite "SIT_HIE"
   Health 2800
   Speed 10
   Radius 24

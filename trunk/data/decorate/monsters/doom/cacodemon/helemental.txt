@@ -1,6 +1,7 @@
 actor Helemental : RGAMonster
 {
 	Tag "Hades Elemental"
+	$SitRepSprite "SIT_CAC"
   obituary "%o was electrocuted by a Hades Elemental."
   hitobituary "%o got chomped by a Hades Elemental."
   health 3300

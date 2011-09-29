@@ -1,6 +1,7 @@
 ACTOR PlasmaElemental : RGAMonster
 {
-	Tag "Plasma Elemental" 
+	Tag "Plasma Elemental"
+  $SitRepSprite "SIT_CAC" 
    Health 750
    Speed 13
    Radius 31

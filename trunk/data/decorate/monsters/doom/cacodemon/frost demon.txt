@@ -1,6 +1,7 @@
 actor BlueCacodemon : Cacodemon_2
 {
 	Tag "Frost Demon"
+	$SitRepSprite "SIT_CAC"
   obituary "%o was smitten by a Frost Demon."
   hitobituary "%o got too close to a Frost Demon."
   health 600

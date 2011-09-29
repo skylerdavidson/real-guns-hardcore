@@ -1,6 +1,7 @@
 actor KamikazePainElemental : PainElemental_2 
 {
 	Tag "Kamikaze Elemental"
+	$SitRepSprite "SIT_CAC"
   obituary "%o was imploded by a lost soul."
   health 500
   bloodcolor "Blue"

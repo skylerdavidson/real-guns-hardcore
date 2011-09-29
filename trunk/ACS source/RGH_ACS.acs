@@ -1,4 +1,5 @@
 #define MINIMUM_TID 1000000
+#define MAX_PLAYER_COUNT 32
 
 #define NULL 0
 
@@ -11,18 +12,18 @@ int KillersHealth;
 int KillersMaxHealth;
 int KillersClass;
 str KillersGun;
-str ExperienceNeed[40];
-str CurrentVoice[40];
+str ExperienceNeed[MAX_PLAYER_COUNT];
+str CurrentVoice[MAX_PLAYER_COUNT];
 
-str KillersIdArray[32];
+str KillersIdArray[MAX_PLAYER_COUNT];
 
-bool TacticalInsertion[32];
+bool TacticalInsertion[MAX_PLAYER_COUNT];
 
 bool arcade = false;
 
-bool InvisibilityRunning[40];
+bool InvisibilityRunning[MAX_PLAYER_COUNT];
 
-bool Entered[40][8];
+bool Entered[MAX_PLAYER_COUNT][8];
 
 int nextTid = MINIMUM_TID;
 // assign next free tid to the thing 
@@ -70,8 +71,8 @@ script 505 OPEN
 	//	ConsoleCommand("sv_weapondrop 0");
 	//}
 
-	if(GetCVAR("compat_nocrosshair") == 1)
-		ConsoleCommand("compat_nocrosshair 0");
+	if(GetCVAR("compat_nocrosshair") == 0)
+		ConsoleCommand("compat_nocrosshair 1");
 
 	if(GameType() == GAME_SINGLE_PLAYER){
 		ConsoleCommand("archivecvar rgh_hitsound");
@@ -90,7 +91,7 @@ script 505 OPEN
 //------- Also change Special.
 script 500 ENTER 
 {	
-	Thing_ChangeTID(0,PlayerNumber()+500);
+	Thing_ChangeTID(0,MINIMUM_TID - MAX_PLAYER_COUNT + PlayerNumber());
         SetThingSpecial(0,226,502,0,0,0,0);
 }
 
@@ -463,7 +464,9 @@ script 608 (void)
 {
 	if(TacticalInsertion[PlayerNumber()+1] == False)
 	{
-		SpawnSpotFacing("TacticalInsertionPlaced",PlayerNumber()+500,PlayerNumber()+600);
+	  // tactical insertions will have TIDs in range [MINIMUM_TID - MAX_PLAYER_COUNT - MAX_PLAYER_COUNT, MINIMUM_TID - MAX_PLAYER_COUNT], 
+	  // [MINIMUM_TID - MAX_PLAYER_COUNT, MINIMUM_TID] is reserved for players
+		SpawnSpotFacing("TacticalInsertionPlaced", MINIMUM_TID - MAX_PLAYER_COUNT + PlayerNumber(),MINIMUM_TID - MAX_PLAYER_COUNT - MAX_PLAYER_COUNT + PlayerNumber());
 		TacticalInsertion[PlayerNumber()+1] = True;
 	}
 }
@@ -3492,21 +3495,21 @@ script 635 (void)
 	SetActorProperty(0,APROP_Invulnerable,0);
 }
 
-str Class[32];
-str Handgun[32];
-str HandgunAmmo[32];
-int HandgunAmmoAmount[32];
-str Primary[32];
-str Primary2[32];
-str PrimaryAmmo[32];
-str PrimaryAmmo2[32];
-str PrimaryType[32];
-int PrimaryAmmoAmount[32];
-str Perk1[32];
-str Perk2[32];
-str Perk3[32];
-str Attachment[32];
-bool GotClass[32];
+str Class[MAX_PLAYER_COUNT];
+str Handgun[MAX_PLAYER_COUNT];
+str HandgunAmmo[MAX_PLAYER_COUNT];
+int HandgunAmmoAmount[MAX_PLAYER_COUNT];
+str Primary[MAX_PLAYER_COUNT];
+str Primary2[MAX_PLAYER_COUNT];
+str PrimaryAmmo[MAX_PLAYER_COUNT];
+str PrimaryAmmo2[MAX_PLAYER_COUNT];
+str PrimaryType[MAX_PLAYER_COUNT];
+int PrimaryAmmoAmount[MAX_PLAYER_COUNT];
+str Perk1[MAX_PLAYER_COUNT];
+str Perk2[MAX_PLAYER_COUNT];
+str Perk3[MAX_PLAYER_COUNT];
+str Attachment[MAX_PLAYER_COUNT];
+bool GotClass[MAX_PLAYER_COUNT];
 
 //Show menu
 script 636 (int firstTimeAfterDeath)
@@ -5395,7 +5398,7 @@ script 658 (void)
 	//log(i:originY);
 	//log(i:originZ);
 	
-	for(int i = 500; i < 532; i++){
+	for(int i = MINIMUM_TID - MAX_PLAYER_COUNT; i < MINIMUM_TID; i++){
 		if(SetActivator(i) == 0){
 			continue;
 		}

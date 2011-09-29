@@ -1,6 +1,7 @@
 actor BlueRevenant : GreenRevenant
 {
 	Tag "Blue Revenant"
+	$SitRepSprite "SIT_REV"
   obituary "%o was imploded by a blue revenant's fireball."
   hitobituary "%o's skull was shattered by a blue revenant."
   health 500

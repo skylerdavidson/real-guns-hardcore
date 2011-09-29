@@ -1,6 +1,7 @@
                                                  actor LMGGuy : RGAMonster
 {
 	Tag "LMG Zombie"
+	$SitRepSprite "SIT_ZOM"
   spawnid 2
   obituary "%o was perforated by a LMG zombie."
   health 110
