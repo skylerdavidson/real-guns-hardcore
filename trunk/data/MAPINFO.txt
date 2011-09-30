@@ -84,7 +84,7 @@ map E4M8 lookup "HUSTR_E4M8"
 	titlepatch = "WILV37"
 	next = "E5M1"
 	secretnext = "E4M9"
-	sky1 = "SKY4"
+	sky1 = "SKY3"
 	cluster = 4
 	//nointermission
 	nosoundclipping
