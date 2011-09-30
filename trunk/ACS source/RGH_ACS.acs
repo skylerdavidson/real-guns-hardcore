@@ -2193,6 +2193,10 @@ script 620 (int Which) CLIENTSIDE
 //Drops (not destroys) current weapon.
 script 621 (void) NET
 {
+  if(GetActorProperty(0,APROP_Health) <= 0){
+    terminate;
+  }
+
 	TakeInventory("PowerLightAmp", 1);
 
 	if(CheckWeapon("USP .45") == 1 || CheckWeapon("USP .45 Ex Mags") == 1 || CheckWeapon("USP .45 Akimbo") == 1 || CheckWeapon("USP .45 Tac Knife") == 1)
