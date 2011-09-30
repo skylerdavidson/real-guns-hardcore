@@ -52,7 +52,7 @@ actor DoomImp_2 : RGAMonster
     goto See
   Death:
     TROO I 8
-	TROO I 0 A_JumpIfHealthLower(random(-500,-110),"XDeath")
+	  TROO I 0 A_JumpIfHealthLower(random(-500,-110),"XDeath")
     TROO J 8 A_Scream
     TROO K 6
     TROO L 6 A_NoBlocking
@@ -61,7 +61,7 @@ actor DoomImp_2 : RGAMonster
     stop
   Res:
     TROO MM 60
-	TROO M 0 A_Jump(192, "Res")
+	  TROO M 0 A_Jump(192, "Res")
     TROO M 5 A_PlaySound("imp/sight")
     TROO M -1 A_SpawnItemEx("DoomImpRes",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
     stop
