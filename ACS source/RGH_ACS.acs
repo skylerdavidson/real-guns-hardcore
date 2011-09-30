@@ -5122,6 +5122,8 @@ function int getCurrentWeaponSpread(bool hold){
 		CheckWeapon("USP .45 LastStand") || 
 		CheckWeapon("M9") ||
 		CheckWeapon("M9 Ex Mags") ||
+		CheckWeapon("M9 Akimbo") ||
+		CheckWeapon("M9 Tac Knife") ||
 		CheckWeapon(".44 Magnum") || 
 		CheckWeapon(".44 Magnum Akimbo") || 
 		CheckWeapon(".44 Magnum Tac Knife") ||		  
