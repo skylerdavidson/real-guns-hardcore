@@ -6058,7 +6058,7 @@ script 660 (void)
 	if(currentIndex == 2){
 		SetHudSize(0,0,1);
 		SetFont("BIGFONT");
-		HudMessage(s:"No upgradeable perks or attachments for \ck", s:AwardMenuWeapon[PlayerNumber()], s:" \clare available!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_RED, 0.5, 0.5, 2.0, 1.0);
+		HudMessage(s:"No upgradeable perks or attachments for \ck", s:AwardMenuWeapon[PlayerNumber()], s:" \cgare available!"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_RED, 0.5, 0.5, 2.0, 1.0);
 		closeAwardMenu();
 		terminate;
 	}
