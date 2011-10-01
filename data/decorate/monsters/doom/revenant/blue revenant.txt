@@ -1,4 +1,4 @@
-actor PoisonRevenant :FragRevenant
+actor InversionRevenant :FragRevenant
 {
 	Tag "Inversion Revenant"
 	$SitRepSprite "SIT_REV"
@@ -7,7 +7,7 @@ actor PoisonRevenant :FragRevenant
   health 500
   speed 12
   painchance 70
-  -SOLID
+  Translation "112:127=[0,0,131]:[0,0,0]"
   states
   {
   Melee:

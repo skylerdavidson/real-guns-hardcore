@@ -20,7 +20,6 @@ actor FragRevenant : Revenant_2
   +MISSILEMORE
   GibHealth -60
   damagefactor "RevenantBall", 0.0
-  Translation "112:127=[0,0,131]:[0,0,0]"
   states
   {
   Spawn:
