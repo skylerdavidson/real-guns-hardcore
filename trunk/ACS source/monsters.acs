@@ -83,3 +83,54 @@ script 658 (void)
 	}	
 }
 
+// Got hit by Inversion Revenant
+
+int inversionRevenantTid;
+script 663 (void)
+{
+  delay(2); // wait for 664 to execute
+
+	int originX = GetActorX(0);
+	int originY = GetActorY(0);
+	int originZ = GetActorZ(0);
+
+	
+	for(int i = MINIMUM_TID - MAX_PLAYER_COUNT; i < MINIMUM_TID; i++){
+		if(SetActivator(i) == 0){
+			continue;
+		}
+
+		if(
+			abs(originX - GetActorX(0)) > 128 << 16 ||
+			abs(originY - GetActorY(0)) > 128 << 16 ||
+			abs(originZ - GetActorZ(0)) > 128 << 16
+		)
+		{
+			continue;
+		}
+		
+		if(distanceFromPoint(originX, originY, originZ, 0) > 128){
+			continue;
+		}
+
+    int playerX = GetActorX(0);
+    int playerY = GetActorY(0);
+    int playerZ = GetActorZ(0);
+    int playerAngle = GetActorAngle(0);
+      
+    SetActorAngle(0, GetActorAngle(inversionRevenantTid));
+    SetActorAngle(inversionRevenantTid, playerAngle);
+    SetActorPitch(0, 0);  
+    
+    log(b:SetActorPosition(0, GetActorX(inversionRevenantTid), GetActorY(inversionRevenantTid), GetActorZ(inversionRevenantTid), true));
+    log(b:SetActorPosition(inversionRevenantTid, playerX, playerY, playerZ, true));			
+	}
+  
+  GiveActorInventory(inversionRevenantTid,"RevenantMakeSolid", 1);	
+}
+
+script 664 (void)
+{
+  inversionRevenantTid = ActivatorTid();
+}
+

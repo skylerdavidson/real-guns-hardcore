@@ -367,12 +367,12 @@ actor Revenant_Spawner replaces Revenant
     stop
   Spawn2:  
     TNT1 A 0 
-    TNT1 A 0 A_SpawnItemEx("GreenRevenant",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION,0)
+    TNT1 A 0 A_SpawnItemEx("FragRevenant",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION,0)
     TNT1 A 0 A_Die
     stop
   Spawn4:  
     TNT1 A 0 
-    TNT1 A 0 A_SpawnItemEx("BlueRevenant",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION,0)
+    TNT1 A 0 A_SpawnItemEx("InversionRevenant",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION,0)
     TNT1 A 0 A_Die
     stop
   Death:
