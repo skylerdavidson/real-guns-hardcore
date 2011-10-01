@@ -1,9 +1,9 @@
-actor GreenRevenant : Revenant_2
+actor FragRevenant : Revenant_2
 {
-	Tag "Green Revenant"
+	Tag "Frag Revenant"
 	$SitRepSprite "SIT_REV"
-  obituary "%o was splattered by a green revenant's cluster missile."
-  hitobituary "%o's face was caved in by a green revenant."
+  obituary "%o was splattered by a frag green revenant's cluster missile."
+  hitobituary "%o's face was caved in by a frag revenant."
   health 400
   radius 20
   height 56
@@ -20,6 +20,7 @@ actor GreenRevenant : Revenant_2
   +MISSILEMORE
   GibHealth -60
   damagefactor "RevenantBall", 0.0
+  Translation "112:127=[0,0,131]:[0,0,0]"
   states
   {
   Spawn:

@@ -182,8 +182,8 @@ dropitem "Defiler" 32
 
 actor S_RevenantSpot : RevenantSpot replaces RevenantSpot
 {
-dropitem "BlueRevenant" 64
-dropitem "GreenRevenant" 128
+dropitem "InversionRevenant" 64
+dropitem "FragRevenant" 128
 dropitem "Revenant_2" 255
 }
 
