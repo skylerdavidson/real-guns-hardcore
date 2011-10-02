@@ -2219,7 +2219,7 @@ script 621 (void) NET
 		TakeInventory("USP .45 Tac Knife",1);
 		TakeInventory("MaxWeaponsFilled_Handgun",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("USP45PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("USP45PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon(".44 Magnum") == 1 || CheckWeapon(".44 Magnum Akimbo") == 1 || CheckWeapon(".44 Magnum Tac Knife") == 1)
 	{
@@ -2228,7 +2228,7 @@ script 621 (void) NET
 		TakeInventory(".44 Magnum Tac Knife",1);
 		TakeInventory("MaxWeaponsFilled_Handgun",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("44MagnumPickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("44MagnumPickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("FAMAS") == 1 || CheckWeapon("FAMAS M203") == 1 || CheckWeapon("FAMAS Ex Mags") == 1)
 	{
@@ -2237,7 +2237,7 @@ script 621 (void) NET
 		TakeInventory("FAMAS Ex Mags",1);
 		TakeInventory("MaxWeaponsFilled_ARSMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("FAMASPickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("FAMASPickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("FAL") == 1 || CheckWeapon("FAL Ex Mags") == 1)
 	{
@@ -2245,7 +2245,7 @@ script 621 (void) NET
 		TakeInventory("FAL Ex Mags",1);
 		TakeInventory("MaxWeaponsFilled_ARSMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("FALPickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("FALPickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("SPAS-12") == 1 || CheckWeapon("SPAS-12 Ex Mags") == 1 || CheckWeapon("SPAS-12 Grip") == 1)
 	{
@@ -2254,7 +2254,7 @@ script 621 (void) NET
 		TakeInventory("SPAS-12 Grip",1);
 		TakeInventory("MaxWeaponsFilled_Shotgun",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("SPASPickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("SPASPickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("AA-12") == 1 || CheckWeapon("AA-12 Ex Mags") == 1 || CheckWeapon("AA-12 Grip") == 1)
 	{
@@ -2263,7 +2263,7 @@ script 621 (void) NET
 		TakeInventory("AA-12 Grip",1);
 		TakeInventory("MaxWeaponsFilled_Shotgun",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("AA12PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("AA12PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("UMP45") == 1 || CheckWeapon("UMP45 Ex Mags") == 1 || CheckWeapon("UMP45 Rapid Fire") == 1)
 	{
@@ -2272,7 +2272,7 @@ script 621 (void) NET
 		TakeInventory("UMP45 Rapid Fire",1);
 		TakeInventory("MaxWeaponsFilled_ARSMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("UMP45PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("UMP45PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("TDI Vector") == 1 || CheckWeapon("TDI Vector Ex Mags") == 1)
 	{
@@ -2280,7 +2280,7 @@ script 621 (void) NET
 		TakeInventory("TDI Vector Ex Mags",1);
 		TakeInventory("MaxWeaponsFilled_ARSMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("VectorPickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("VectorPickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("Mini-UZI") == 1 || CheckWeapon("Mini-UZI Ex Mags") == 1 || CheckWeapon("Mini-UZI Akimbo") == 1)
 	{
@@ -2289,7 +2289,7 @@ script 621 (void) NET
 		TakeInventory("Mini-UZI Ex Mags",1);
 		TakeInventory("MaxWeaponsFilled_ARSMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("MiniUziPickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("MiniUziPickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("FN P90") == 1 || CheckWeapon("FN P90 Ex Mags") == 1 || CheckWeapon("FN P90 Rapid Fire") == 1)
 	{
@@ -2298,14 +2298,14 @@ script 621 (void) NET
 		TakeInventory("FN P90 Rapid Fire",1);
 		TakeInventory("MaxWeaponsFilled_ARSMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("P90PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("P90PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("Thumper") == 1)
 	{
 		TakeInventory("Thumper",1);
 		TakeInventory("MaxWeaponsFilled_Explosive",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("ThumperPickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("ThumperPickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("ACR") == 1 || CheckWeapon("ACR Ex Mags") == 1)
 	{
@@ -2313,14 +2313,14 @@ script 621 (void) NET
 		TakeInventory("ACR Ex Mags",1);
 		TakeInventory("MaxWeaponsFilled_ARSMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("ACRPickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("ACRPickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("AT4-HS") == 1)
 	{
 		TakeInventory("AT4-HS",1);
 		TakeInventory("MaxWeaponsFilled_Explosive",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("AT4PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("AT4PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("Intervention") == 1 || CheckWeapon("Intervention Thermal") == 1 || CheckWeapon("Intervention Ex Mags") == 1)
 	{
@@ -2329,7 +2329,7 @@ script 621 (void) NET
 		TakeInventory("Intervention",1);
 		TakeInventory("MaxWeaponsFilled_LMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("InterventionPickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("InterventionPickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("Barrett 50cal") == 1 || CheckWeapon("Barrett 50cal Thermal") == 1 || CheckWeapon("Barrett 50cal Ex Mags") == 1)
 	{
@@ -2338,7 +2338,7 @@ script 621 (void) NET
 		TakeInventory("Barrett 50cal",1);
 		TakeInventory("MaxWeaponsFilled_LMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("BarrettPickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("BarrettPickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("MG4") == 1 || CheckWeapon("MG4 Ex Mags") == 1 || CheckWeapon("MG4 Grip") == 1)
 	{
@@ -2347,7 +2347,7 @@ script 621 (void) NET
 		TakeInventory("MG4 Grip",1);
 		TakeInventory("MaxWeaponsFilled_LMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("MG4PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("MG4PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("G18") == 1 || CheckWeapon("G18 Ex Mags") == 1 || CheckWeapon("G18 Akimbo") == 1)
 	{
@@ -2356,7 +2356,7 @@ script 621 (void) NET
 		TakeInventory("G18 Akimbo",1);
 		TakeInventory("MaxWeaponsFilled_Handgun",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("G18PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("G18PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("PP2000") == 1 || CheckWeapon("PP2000 Ex Mags") == 1 || CheckWeapon("PP2000 Akimbo") == 1)
 	{
@@ -2365,7 +2365,7 @@ script 621 (void) NET
 		TakeInventory("PP2000 Akimbo",1);
 		TakeInventory("MaxWeaponsFilled_Handgun",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("PP2000PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("PP2000PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("SCAR-H") == 1 || CheckWeapon("SCAR-H Ex Mags") == 1)
 	{
@@ -2373,7 +2373,7 @@ script 621 (void) NET
 		TakeInventory("SCAR-H Ex Mags",1);
 		TakeInventory("MaxWeaponsFilled_ARSMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("SCARHPickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("SCARHPickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("M4A1") == 1 || CheckWeapon("M4A1 Ex Mags") == 1)
 	{
@@ -2381,14 +2381,14 @@ script 621 (void) NET
 		TakeInventory("M4A1 Ex Mags",1);
 		TakeInventory("MaxWeaponsFilled_ARSMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("M4A1PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("M4A1PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("Ranger") == 1)
 	{
 		TakeInventory("Ranger",1);
 		TakeInventory("MaxWeaponsFilled_Shotgun",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("RangerPickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("RangerPickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("F2000") == 1 || CheckWeapon("F2000 Ex Mags") == 1)
 	{
@@ -2396,7 +2396,7 @@ script 621 (void) NET
 		TakeInventory("F2000 Ex Mags",1);
 		TakeInventory("MaxWeaponsFilled_ARSMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("F2000PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("F2000PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("MP5K") == 1 || CheckWeapon("MP5K Ex Mags") == 1 || CheckWeapon("MP5K Rapid Fire") == 1)
 	{
@@ -2405,7 +2405,7 @@ script 621 (void) NET
 		TakeInventory("MP5K Rapid Fire",1);
 		TakeInventory("MaxWeaponsFilled_ARSMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("MP5PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("MP5PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("M93 Raffica") == 1 || CheckWeapon("M93 Raffica Ex Mags") == 1)
 	{
@@ -2413,7 +2413,7 @@ script 621 (void) NET
 		TakeInventory("M93 Raffica Ex Mags",1);
 		TakeInventory("MaxWeaponsFilled_Handgun",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("M93RPickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("M93RPickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("M16A4") == 1 || CheckWeapon("M16A4 Ex Mags") == 1)
 	{
@@ -2421,7 +2421,7 @@ script 621 (void) NET
 		TakeInventory("M16A4 Ex Mags",1);
 		TakeInventory("MaxWeaponsFilled_ARSMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("M16PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("M16PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("AK-47") == 1 || CheckWeapon("AK-47 Ex Mags") == 1)
 	{
@@ -2429,7 +2429,7 @@ script 621 (void) NET
 		TakeInventory("AK-47 Ex Mags",1);
 		TakeInventory("MaxWeaponsFilled_ARSMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("AK47PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("AK47PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("Striker") == 1 || CheckWeapon("Striker Ex Mags") == 1 || CheckWeapon("Striker Grip") == 1)
 	{
@@ -2438,7 +2438,7 @@ script 621 (void) NET
 		TakeInventory("Striker Grip",1);
 		TakeInventory("MaxWeaponsFilled_Shotgun",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("StrikerPickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("StrikerPickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("AUG HBAR") == 1 || CheckWeapon("AUG HBAR Ex Mags") == 1 || CheckWeapon("AUG HBAR Grip") == 1)
 	{
@@ -2447,7 +2447,7 @@ script 621 (void) NET
 		TakeInventory("AUG HBAR Grip",1);
 		TakeInventory("MaxWeaponsFilled_LMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("AUGHBARPickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("AUGHBARPickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("WA2000") == 1 || CheckWeapon("WA2000 Thermal") == 1 || CheckWeapon("WA2000 Ex Mags") == 1)
 	{
@@ -2456,7 +2456,7 @@ script 621 (void) NET
 		TakeInventory("WA2000",1);
 		TakeInventory("MaxWeaponsFilled_LMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("WA2000PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("WA2000PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("Desert Eagle") == 1 || CheckWeapon("Deagle Special") == 1 || CheckWeapon("Desert Eagle Akimbo") == 1 || CheckWeapon("Desert Eagle Tac Knife") == 1)
 	{
@@ -2466,7 +2466,7 @@ script 621 (void) NET
 		TakeInventory("Deagle Special",1);
 		TakeInventory("MaxWeaponsFilled_Handgun",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("DeaglePickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("DeaglePickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("M9") == 1 || CheckWeapon("M9 Ex Mags") == 1 || CheckWeapon("M9 Tac Knife") == 1 || CheckWeapon("M9 Akimbo") == 1)
 	{
@@ -2476,7 +2476,7 @@ script 621 (void) NET
 		TakeInventory("M9 Tac Knife",1);
 		TakeInventory("MaxWeaponsFilled_Handgun",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("M9PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("M9PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("M1014") == 1 || CheckWeapon("M1014 Ex Mags") == 1 || CheckWeapon("M1014 Grip") == 1)
 	{
@@ -2485,7 +2485,7 @@ script 621 (void) NET
 		TakeInventory("M1014 Grip",1);
 		TakeInventory("MaxWeaponsFilled_Shotgun",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("M1014PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("M1014PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("M240") == 1 || CheckWeapon("M240 Ex Mags") == 1 || CheckWeapon("M240 Grip") == 1)
 	{
@@ -2494,7 +2494,7 @@ script 621 (void) NET
 		TakeInventory("M240 Grip",1);
 		TakeInventory("MaxWeaponsFilled_LMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("M240PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("M240PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("L86") == 1 || CheckWeapon("L86 Ex Mags") == 1 || CheckWeapon("L86 Grip") == 1)
 	{
@@ -2503,21 +2503,21 @@ script 621 (void) NET
 		TakeInventory("L86 Grip",1);
 		TakeInventory("MaxWeaponsFilled_LMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("L86PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("L86PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("RPG-7") == 1)
 	{
 		TakeInventory("RPG-7",1);
 		TakeInventory("MaxWeaponsFilled_Explosive",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("RPGPickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("RPGPickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("Model 1887") == 1)
 	{
 		TakeInventory("Model 1887",1);
 		TakeInventory("MaxWeaponsFilled_Shotgun",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("M1887PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("M1887PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 	else if(CheckWeapon("M14 EBR") == 1 || CheckWeapon("M14 EBR Thermal") == 1 || CheckWeapon("M14 EBR Ex Mags") == 1)
 	{
@@ -2526,7 +2526,7 @@ script 621 (void) NET
 		TakeInventory("M14 EBR",1);
 		TakeInventory("MaxWeaponsFilled_LMG",1);
 		TakeInventory("MaxWeaponsFilled",1);
-		SpawnSpotFacing("M14PickupSpawn",PlayerNumber()+500,0);
+		SpawnSpotFacing("M14PickupSpawn",PlayerNumber()+MINIMUM_TID - MAX_PLAYER_COUNT,0);
 	}
 }
 
