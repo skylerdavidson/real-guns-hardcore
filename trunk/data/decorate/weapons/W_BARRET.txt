@@ -20,6 +20,7 @@ actor "Barrett 50cal" : RGUWeapon
   $AimingRecoilStrength 2500
   $AimingRecoilReverseStrength 2000
   $AimingRecoilSpeed 600
+  $Scoped 1
   
   states
   {

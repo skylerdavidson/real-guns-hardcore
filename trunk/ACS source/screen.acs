@@ -109,10 +109,16 @@ function void drawStretchedImage(int id, int imageWidth, int imageHeight, int ti
 }
 
 function int getHorizontalFov(void){
+  if(CheckInventory("Aiming") > 0){
+    return 70.0; // 90 / 1.2
+  }
 	return 90.0;
 }
 
 function int getVerticalFov(void){
+  if(CheckInventory("Aiming") > 0){
+    return 50.0; // 60 / 1.2
+  }
 	return 60.0;
 }
 
@@ -250,7 +256,8 @@ function void hudmessageonactor(int tid, int range, str sprite, str text, int sp
     CheckInventory("InLastStand") == 0 &&
     CheckInventory("Menu") == 0 &&
     CheckInventory("AwardMenu") == 0 &&
-    CheckInventory("Spawned") > 0
+    CheckInventory("Spawned") > 0 &&
+    sprite != 0
   ){
 	//{
 	//	pitch = vectorangle(dist, getactorz(tid) - (getactorz(0) + 41.0));
@@ -323,7 +330,7 @@ script 650 (void) CLIENTSIDE {
 			GetActorProperty(0,APROP_Health) > 0 &&
 			CheckInventory("PowerEMP") == 0	&&
       CheckInventory("Menu") == 0 &&
-      CheckInventory("AwardMenu") == 0		
+      CheckInventory("AwardMenu") == 0      
 		){
       
       // The drawing will be done at native resolution (so the crosshair sprites are never destroyed by scaling).
@@ -378,7 +385,11 @@ script 650 (void) CLIENTSIDE {
   		
   		  int sitRepSprite = 0;
   			
-  			if(ClassifyActor(i) & ACTOR_PLAYER || ClassifyActor(i) & ACTOR_BOT){
+  			if(CheckInventory("Aiming") == 1 && GetWeaponCustomProperty("scoped") == 1){
+  			   //don't sitrep while scoping 	
+  			   sitRepSprite = 0;
+  			}
+  			else if(ClassifyActor(i) & ACTOR_PLAYER || ClassifyActor(i) & ACTOR_BOT){
 #ifdef SKULLTAG
           int activatorTeam = PlayerTeam();
           int activator = ActivatorTid();

@@ -21,6 +21,7 @@ actor "M14 EBR" : RGUWeapon
   $AimingRecoilStrength 300
   $AimingRecoilReverseStrength 200
   $AimingRecoilSpeed 100
+  $Scoped 1
   
   states
   {
