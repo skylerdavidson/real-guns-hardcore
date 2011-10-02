@@ -430,8 +430,9 @@ script 650 (void) CLIENTSIDE {
   			
   				//delay(10);
   		}				
-  		
-  		if(loopCounter % 2 == 0 && CheckInventory("PowerEMP") > 0){
+    }
+    
+     if(loopCounter % 2 == 0 && CheckInventory("PowerEMP") > 0){
   			int r = noiseCounter % 4;
   		
   			if(r == 0){
@@ -449,7 +450,7 @@ script 650 (void) CLIENTSIDE {
   			
   	        drawStretchedImage(10+PlayerNumber(), 1280, 800, 0.5, 1.0);
   		}
-    }
+    
 		//delay(3);
 		delay(1);
 	}
