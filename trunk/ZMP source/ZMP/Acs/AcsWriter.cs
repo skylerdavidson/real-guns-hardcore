@@ -106,7 +106,7 @@
         public void WriteGetCustomProperty(IEnumerable<Actor> actors)
         {
             int numActors = actors.Count();
-            var actorsByClassId = from actor in actors orderby actor.ID select actor;            
+            var actorsByClassId = (from actor in actors orderby actor.ID select actor).ToDictionary(p => p.ID, p => p);
 
             var actorsWithCP =
                 from actor in actors
@@ -120,13 +120,24 @@
 
             foreach (string customProperty in customProperties)
             {
-                this.writer.WriteLine("int __c" + customProperty + "[" + numActors + 1 + "] = {0,");
-                foreach (Actor actor in actorsByClassId)
-                {
-                    var customPropertyValues = actor.GetCustomPropertyValues(customProperty);
-                    string customPropertyValue = (customPropertyValues.Count() > 0 ? customPropertyValues.First() : "0");
+                this.writer.WriteLine("int __c" + customProperty + "[" + (numActors + 2) + "] = {");
 
-                    this.writer.WriteLine(customPropertyValue + "," + " // " + actor.OriginalName + " [" + actor.ID + "]");
+                // there might be holes in the sequence
+                for (int i = 0; i < numActors; i++ )
+                {
+                    if (actorsByClassId.ContainsKey(i))
+                    {
+                        Actor actor = actorsByClassId[i];
+
+                        var customPropertyValues = actor.GetCustomPropertyValues(customProperty);
+                        string customPropertyValue = (customPropertyValues.Count() > 0 ? customPropertyValues.First() : "0");
+
+                        this.writer.WriteLine(customPropertyValue + "," + " // " + actor.OriginalName + " [" + actor.ID + "]");
+                    }
+                    else
+                    {
+                        this.writer.WriteLine("0,");
+                    }
                 }
                 this.writer.WriteLine("\"Last\"};");
             }
