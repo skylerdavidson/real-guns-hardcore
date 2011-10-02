@@ -1,7 +1,7 @@
 ACTOR Priest
 {
 	Tag "Acolyte of D'Sparil"
-	$SitRepSprite "SIT_ZOM"
+	$SitRepSprite "SIT_REV"
 	CameraHeight 48
 Game Heretic  
 Health 400 
