@@ -78,6 +78,7 @@ script 505 OPEN
 
 	if(GameType() == GAME_SINGLE_PLAYER){
 		ConsoleCommand("archivecvar rgh_hitsound");
+		ConsoleCommand("archivecvar rgh_xprate");
 		ConsoleCommand("archivecvar rgh_vanillamonstersonly");
 	}	
 	
@@ -543,7 +544,16 @@ script 613 (int XpAmount)
 	if (!(ClassifyActor(0) & ACTOR_MONSTER)){		
 		drawKillIndicator();
 		
-		int exp = XpAmount / 7;
+		int exp = XpAmount;
+	 
+	  if(GetCVAR("rgh_xprate") > 0){
+      exp = exp * GetCVAR("rgh_xprate");
+    }
+    else if(GetCVAR("rgh_xprate") < 0){
+      exp = exp / GetCVAR("rgh_xprate");
+    }
+		
+		exp = exp / 7;
 		
 		if(CheckInventory("Arcade") == 0){
 			// Don't give XP at max level and in last stand
@@ -2973,7 +2983,16 @@ script 626 (void) NET
 script 627 (int Amount)
 {
 	if (!(ClassifyActor(0) & ACTOR_MONSTER)){
-		GiveInventory("Experience",Amount);
+    int realAmount = Amount;
+	 
+	  if(GetCVAR("rgh_xprate") > 0){
+      realAmount = realAmount * GetCVAR("rgh_xprate");
+    }
+    else if(GetCVAR("rgh_xprate") < 0){
+      realAmount = realAmount / GetCVAR("rgh_xprate");
+    }
+	
+		GiveInventory("Experience",realAmount);
 		ACS_ExecuteAlways(616,0,0,0,0);
 	}
 }
@@ -5061,6 +5080,13 @@ script 648 (void) {
 		int exp = CheckInventory("XPAmount");
 		
 		exp = exp / 6;
+	
+	  if(GetCVAR("rgh_xprate") > 0){
+      exp = exp * GetCVAR("rgh_xprate");
+    }
+    else if(GetCVAR("rgh_xprate") < 0){
+      exp = exp / GetCVAR("rgh_xprate");
+    }
 	
 		while(exp >= 10)
 		{
