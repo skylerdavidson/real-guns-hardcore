@@ -130,48 +130,14 @@ int normCoords[3] = {0, 0, 0};
 int screenCoords[2] = {0, 0};
 
 function void worldToScreenCoords(void){
-	// Camera vector
-	
-  // KUWA TOHLE NENI SPRAVNE
-  /*
-  int cameraTargetX =  cos(GetActorAngle(0));
-	int cameraTargetY = -sin(GetActorPitch(0));    
-	int cameraTargetZ = sin(GetActorAngle(0));*/  
-	
-	int cameraTargetX = FixedMul(cos(GetActorAngle(0)), FixedMul(cos(GetActorPitch(0)), 1.0)); 
-	int cameraTargetY = -sin(GetActorPitch(0));      
-	int cameraTargetZ = FixedMul(sin(GetActorAngle(0)), cos(GetActorPitch(0))); 
-	    
-	//  log(s: "CAM X ", f:cameraTargetX);
-  //log(s: "CAM Y ", f:cameraTargetY);
-	//log(s: "CAM Z ", f:cameraTargetZ);
-	
-	
-	//log(s: "X", f:cameraTargetX);
-	//log(s: "Y", f:cameraTargetY);
-	//log(s: "Z", f:cameraTargetZ);
-	
-	basisB[0] = cameraTargetX;// - GetActorX(0);
-	basisB[1] = cameraTargetY;// - GetActorZ(0);
-	basisB[2] = cameraTargetZ;// - GetActorY(0); 
+  // first build the view matrix (the bases)
+
+  // build camera vector from the angles
+	basisB[0] = FixedMul(cos(GetActorAngle(0)), FixedMul(cos(GetActorPitch(0)), 1.0));
+	basisB[1] = -sin(GetActorPitch(0));
+	basisB[2] = FixedMul(sin(GetActorAngle(0)), cos(GetActorPitch(0))); 
 	
 	NORMALIZE_VECTOR(basisB);
-	
-	/*basisBCopy[0] = basisB[2];
-	basisBCopy[1] = basisB[1];
-	basisBCopy[2] = basisB[0];
-	
-	VECTOR_CROSS_PRODUCT(basisBCopy, basisB, upVector);
-	
-	NORMALIZE_VECTOR(upVector);*/
-
-	/*  log(s: "UP X ", f:upVector[0]);
-  log(s: "UP Y ", f:upVector[1]);
-	log(s: "UP Z ", f:upVector[2]);*/
-	
-	//log(s: "X ", f:basisB[0]);
-  //log(s: "Y ", f:basisB[1]);
-	//log(s: "Z ", f:basisB[2]);
 	
 	VECTOR_CROSS_PRODUCT(upVector, basisB, basisA);
 	
@@ -181,30 +147,19 @@ function void worldToScreenCoords(void){
 	
 	NORMALIZE_VECTOR(basisC);
 	
-	// Point coordinate relative to camera
+	// point coordinate relative to camera
 	point[0] = inputVector[0] - GetActorX(0); 
-	point[1] = inputVector[1] + 10.0 - GetActorZ(0) - 48.0; // height of the player actor 
+	point[1] = inputVector[1] + 10.0 - GetActorZ(0) - 48.0; // camera height of the player actor 
 	point[2] = inputVector[2] - GetActorY(0);
 
-  //log(s: "REL X ", f:point[0]);
-  //log(s: "REL Y ", f:point[1]);
-	//log(s: "REL Z ", f:point[2]);
-
-  // transform the world coordinates to eye coordinates
+  // transform the world coordinates to eye coordinates using the view matrix
   eyeCoords[0] = FixedMul(point[0], basisA[0]) + FixedMul(point[1], basisA[1]) + FixedMul(point[2], basisA[2]);
   eyeCoords[1] = FixedMul(point[0], basisB[0]) + FixedMul(point[1], basisB[1]) + FixedMul(point[2], basisB[2]);
   eyeCoords[2] = FixedMul(point[0], basisC[0]) + FixedMul(point[1], basisC[1]) + FixedMul(point[2], basisC[2]);
-
-  //log(s: "X ", f:eyeCoords[0]);
-  //log(s: "Y ", f:eyeCoords[1]);
-	//log(s: "Z ", f:eyeCoords[2]);
-
+  
   // transform eye coordinates to normalized coordinates for perspective view
   int tanThetaHorizontal = tan(FixedDiv(FixedDiv(getHorizontalFov(), 360.0), 2.0));
 	int tanThetaVertical = tan(FixedDiv(FixedDiv(getVerticalFov(), 360.0), 2.0));
-
-    	//log(s: "H", f:tan(FixedDiv(FixedDiv(getHorizontalFov(), 360.0), 2.0)));
-  //log(s: "V", f:tan(FixedDiv(FixedDiv(getVerticalFov(), 360.0), 2.0)));
 
   int zoom = 1.0; 
   int d = FixedDiv(zoom, eyeCoords[1]);
@@ -212,11 +167,13 @@ function void worldToScreenCoords(void){
   normCoords[1] = eyeCoords[1];
   normCoords[2] = FixedDiv(FixedMul(d, eyeCoords[2]), tanThetaVertical);
 
+  // use 1.5 instead of 1.0 because we don't want the blimps to disappear immediately after the creep leaves
+  // the screen (part of the blimp might still be visible), also for ADS (which decreases FOV).
   if(
-    normCoords[0] < -1.0 ||
-    normCoords[0] > 1.0 ||
-    normCoords[2] < -1.0 ||
-    normCoords[2] > 1.0 ||
+    normCoords[0] < -1.5 ||
+    normCoords[0] > 1.5 ||
+    normCoords[2] < -1.5 ||
+    normCoords[2] > 1.5 ||
     normCoords[1] < -0
   )
   {
@@ -224,25 +181,10 @@ function void worldToScreenCoords(void){
     return;
   }
 
-  //log(s: "X", f:normCoords[0]);
-  //log(s: "Y", f:normCoords[1]);
-	//log(s: "Z", f:normCoords[2]);
-  
-  //log(s:"========");
-  //log(s: "W ", f:(GetScreenWidth() / 2) << 16);
-  //log(s: "H ", f:(GetScreenHeight() / 2) << 16);    
-  //log(s: "X ", f:FixedDiv(FixedMul(GetScreenWidth() << 16, normCoords[0]), 2.0));
-  //log(s: "Y ", f:FixedDiv(FixedMul(GetScreenHeight() << 16, normCoords[2]), 2.0));
-  
-  //print(s:"X ", f:normCoords[0], s:" PITCH ", f:normCoords[2]);
-  
   // transform normalized coordinates to screen coordinates
+  // done in the hudMessageOnActor, because it needs to consider distance of the actor
   
-  screenCoords[0] = 1;
-  
-  	//log(s: "X", f:screenCoords[0]);
-  //log(s: "Y", f:screenCoords[1]);
-	//log(s: "Z", f:point[2]);   
+  screenCoords[0] = 1;   
 }
 
 // kill indicator
