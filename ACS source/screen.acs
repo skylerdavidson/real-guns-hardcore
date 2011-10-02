@@ -391,7 +391,7 @@ script 650 (void) CLIENTSIDE {
   			}
   			else if(ClassifyActor(i) & ACTOR_PLAYER || ClassifyActor(i) & ACTOR_BOT){
 #ifdef SKULLTAG
-          int activatorTeam = PlayerTeam();
+          /*int activatorTeam = PlayerTeam();
           int activator = ActivatorTid();
           SetActivator(i); 
           if(
@@ -403,7 +403,8 @@ script 650 (void) CLIENTSIDE {
           else {
             sitRepSprite = "SIT_ZOM";
           }
-          SetActivator(activator);
+          SetActivator(activator);*/
+          sitRepSprite = "SIT_ZOM";
 #else
           sitRepSprite = "SIT_ZOM";
 #endif
