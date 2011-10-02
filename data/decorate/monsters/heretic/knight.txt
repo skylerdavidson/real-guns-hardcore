@@ -1,6 +1,7 @@
 ACTOR Knight2 : Knight
 {
 	Tag "Knight"
+	$SitRepSprite "SIT_REV"
 	CameraHeight 48
   Game Heretic
   SpawnID 6

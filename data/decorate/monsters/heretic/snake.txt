@@ -1,6 +1,7 @@
 ACTOR Snake2 : Snake replaces Snake
 {
 	Tag "Ophidian"
+	$SitRepSprite "SIT_REV"
 	CameraHeight 48
   Game Heretic
   SpawnID 132

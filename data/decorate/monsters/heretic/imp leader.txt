@@ -1,6 +1,7 @@
 ACTOR HereticImpLeader2: HereticImpLeader
 {
 	Tag "Greater Gargoyle"
+	$SitRepSprite "SIT_IMP"
 	CameraHeight 30
   Game Heretic
   SpawnID 7

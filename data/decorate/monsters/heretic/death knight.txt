@@ -1,6 +1,7 @@
 ACTOR Deathknight
 {
 	Tag "Death Knight"
+	$SitRepSprite "SIT_REV"
 	CameraHeight 48
 Game Heretic 
 Health 300

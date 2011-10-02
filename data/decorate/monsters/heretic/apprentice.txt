@@ -1,6 +1,7 @@
 actor Apprentice 30000
 {
 	Tag "Apprentice of D'Sparil"
+	$SitRepSprite "SIT_REV"
 	CameraHeight 48
 	Game Heretic
     Health 300

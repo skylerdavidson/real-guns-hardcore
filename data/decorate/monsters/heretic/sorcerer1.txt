@@ -1,6 +1,7 @@
 ACTOR Sorcerer1_2 : Sorcerer1 replaces Sorcerer1
 {
 	Tag "D'Sparil"
+	$SitRepSprite "SIT_BAR"
 	CameraHeight 60
   Game Heretic
   SpawnID 142

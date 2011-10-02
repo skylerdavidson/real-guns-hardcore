@@ -1,6 +1,7 @@
 ACTOR Minotaur2 : Minotaur replaces Minotaur
 {
 	Tag "Minotaur"
+	$SitRepSprite "SIT_CYB"
 	CameraHeight 90
   Game Heretic
   Health 3000

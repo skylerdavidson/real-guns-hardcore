@@ -1,6 +1,7 @@
 ACTOR Mummy2 : Mummy
 {
 	Tag "Golem"
+	$SitRepSprite "SIT_ZOM"
 	CameraHeight 48
   Game Heretic
   SpawnID 4

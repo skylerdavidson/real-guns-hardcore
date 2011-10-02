@@ -1,6 +1,7 @@
 actor Beast2: Beast replaces Beast
 {
 	Tag "Weredragon"
+	$SitRepSprite "SIT_BEA"
 	CameraHeight 48
   Game Heretic
   Health 320
