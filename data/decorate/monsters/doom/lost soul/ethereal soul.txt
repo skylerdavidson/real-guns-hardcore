@@ -70,7 +70,7 @@ ACTOR ShadowBall
 {
 	Radius 6
 	Height 8
-	Speed 12
+	Speed 9
 	Damage 4
 	Projectile
 	+RANDOMIZE
