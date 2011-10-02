@@ -1,6 +1,7 @@
 ACTOR Wizard2 : Wizard
 {
 	Tag "Disciple of D'Sparil"
+	$SitRepSprite "SIT_REV"
 	CameraHeight 48
   Game Heretic
   SpawnID 19

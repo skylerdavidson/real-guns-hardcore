@@ -1,5 +1,6 @@
 ACTOR Clink2 : Clink
 {
+  $SitRepSprite "SIT_BAR"
 	Tag "Sabreclaw"
 	CameraHeight 48
   Game Heretic

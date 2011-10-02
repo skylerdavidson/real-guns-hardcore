@@ -1,6 +1,7 @@
 ACTOR KnightGhost2 : KnightGhost
 {
 	Tag "Knight Ghost"
+	$SitRepSprite "SIT_REV"
 	CameraHeight 48
   Game Heretic
   SpawnID 129

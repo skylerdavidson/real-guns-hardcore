@@ -377,8 +377,8 @@ script 650 (void) CLIENTSIDE {
 		if(
       CheckInventory("Perk3_SitRep_PRO") > 0
     ){
-  		for (int i = MINIMUM_TID - MAX_PLAYER_COUNT; i < nextTid; i++ ){  		  
-  			if(GetActorProperty(i,APROP_Health) <= 0){
+  		for (int i = MINIMUM_TID - MAX_PLAYER_COUNT; i < nextTid; i++ ){  		    			
+        if(GetActorProperty(i,APROP_Health) <= 0){
   				hudmessage(s:" "; HUDMSG_PLAIN, 20000+ i, CR_UNTRANSLATED, 0, 0, 0);
   				continue;
   			}
@@ -416,7 +416,7 @@ script 650 (void) CLIENTSIDE {
           continue;
         }
   			
-  			//log(s:sitRepSprite);
+  			
   			
   			int range = 900;
   			
@@ -451,7 +451,7 @@ script 650 (void) CLIENTSIDE {
   			
   	        drawStretchedImage(10+PlayerNumber(), 1280, 800, 0.5, 1.0);
   		}
-    
+
 		//delay(3);
 		delay(1);
 	}

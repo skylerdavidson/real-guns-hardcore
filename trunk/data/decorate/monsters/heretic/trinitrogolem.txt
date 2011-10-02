@@ -1,6 +1,7 @@
 ACTOR Trinitrogolem : Mummy
 {
 	Tag "Trinitrogolem"
+	$SitRepSprite "SIT_ZOM"
 	CameraHeight 48
   Game Heretic
   Health 210

@@ -1,6 +1,7 @@
 ACTOR Ironlich2 : Ironlich replaces Ironlich
 {
 	Tag "Iron Lich"
+	$SitRepSprite "SIT_FAT"
 	CameraHeight 48
   Game Heretic
   SpawnID 20

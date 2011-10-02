@@ -1,6 +1,7 @@
 ACTOR MummyLeader2 : MummyLeader
 {
 	Tag "Nitrogolem"
+	$SitRepSprite "SIT_ZOM"
 	CameraHeight 48
   Game Heretic
   SpawnID 2

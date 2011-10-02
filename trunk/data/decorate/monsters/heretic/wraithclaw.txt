@@ -1,6 +1,7 @@
 ACTOR Wraithclaw : Clink2
 {
 	Tag "Wraithclaw"
+	$SitRepSprite "SIT_BAR"
 	CameraHeight 48
 	Health 200
 	Obituary "%o didn't see the wraithclaw coming."
