@@ -55,6 +55,7 @@ actor RGUWeapon : Weapon
   +NOAUTOFIRE
   +NOALERT
   +INVENTORY.UNDROPPABLE
+  +SPECTRAL 
   scale 0.15
 }
 
