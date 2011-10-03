@@ -27,11 +27,11 @@ statusbar fullscreen, forcescaled
         
 	IsSelected "M14 EBR Ex Mags"
 	{
- 		drawbar "AMMO10", "AMMO10B", Ammo1, horizontal, reverse, 210, 185;
+ 		drawbar "AMMO30", "AMMO30B", Ammo1, horizontal, reverse, 210, 185;
  	}
 	IsSelected "M14 EBR", "M14 EBR Thermal"
 	{
- 		drawbar "AMMO10", "AMMO10B", Ammo1, horizontal, reverse, 210, 185;
+ 		drawbar "AMMO20", "AMMO20B", Ammo1, horizontal, reverse, 210, 185;
  	}
 	IsSelected "Model 1887"
 	{
