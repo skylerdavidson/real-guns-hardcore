@@ -428,7 +428,7 @@ actor "Intervention Ex Mags" : "Intervention"
   ReloadAmmo:
     INTD A 0 A_GiveInventory("InterventionClip2",1)
     INTD A 0 A_TakeInventory("InterventionAmmo",1)
-    INTD A 0 A_JumpIfInventory("InterventionClip2",10,"ReloadEnd")
+    INTD A 0 A_JumpIfInventory("InterventionClip2",8,"ReloadEnd")
     INTD A 0 A_JumpIfInventory("InterventionAmmo",1,"ReloadAmmo")
     goto ReloadEnd
   ReloadEnd:
@@ -451,7 +451,7 @@ actor "Intervention Ex Mags" : "Intervention"
   ReloadAmmo_SOH:
     INTD A 0 A_GiveInventory("InterventionClip2",1)
     INTD A 0 A_TakeInventory("InterventionAmmo",1)
-    INTD A 0 A_JumpIfInventory("InterventionClip2",10,"ReloadEnd")
+    INTD A 0 A_JumpIfInventory("InterventionClip2",8,"ReloadEnd")
     INTD A 0 A_JumpIfInventory("InterventionAmmo",1,"ReloadAmmo")
     goto ReloadEnd
   ReloadEnd_SOH:
@@ -473,9 +473,9 @@ actor InterventionClip2 : Ammo
 {
     inventory.icon "CLIPA0"
     inventory.amount 0
-    inventory.maxamount 10
+    inventory.maxamount 8
     ammo.backpackamount 0
-    ammo.backpackmaxamount 10
+    ammo.backpackmaxamount 8
     +IGNORESKILL
 }
 
