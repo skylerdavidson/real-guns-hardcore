@@ -12,8 +12,8 @@ actor "M14 EBR" : RGUWeapon
   weapon.ammogive2 0
   -NOAUTOFIRE
   
-  $MovementSpeed 0.6
-  $AimingMovementSpeed 0.1
+  $MovementSpeed 0.8
+  $AimingMovementSpeed 0.3
   $RecoilMode "Sniper"
   $RecoilStrength 4000
   $RecoilReverseStrength 3000
