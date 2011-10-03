@@ -359,7 +359,7 @@ actor "SPAS-12 Ex Mags" : "SPAS-12"
     SPSC HIJ 3 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
     SPSC K 3 A_PlaySoundEx("spas/insert","SoundSlot6")
     SPSC LMNO 3 A_WeaponReady
-    SPSC X 0 A_JumpIfInventory("SPASClip2",16,"ReloadEnd")
+    SPSC X 0 A_JumpIfInventory("SPASClip2",12,"ReloadEnd")
     SPSC X 0 A_JumpIfInventory("SPAS12Ammo",1,"ReloadAmmo")
     goto ReloadEnd
   ReloadEnd:
@@ -381,7 +381,7 @@ actor "SPAS-12 Ex Mags" : "SPAS-12"
     SPSC HIJ 2 A_JumpIfInventory("KnifeAttack",1,"KnifeAttack")
     SPSC K 2 A_PlaySoundEx("spas/insert","SoundSlot6")
     SPSC LMNO 2 A_WeaponReady    
-    SPSC X 0 A_JumpIfInventory("SPASClip2",16,"ReloadEnd_SOH")
+    SPSC X 0 A_JumpIfInventory("SPASClip2",12,"ReloadEnd_SOH")
     SPSC X 0 A_JumpIfInventory("SPAS12Ammo",1,"ReloadAmmo_SOH")
     goto ReloadEnd_SOH
   ReloadEnd_SOH:
@@ -405,9 +405,9 @@ actor SPASClip2 : Ammo
 {
     inventory.icon "CLIPA0"
     inventory.amount 0
-    inventory.maxamount 16
+    inventory.maxamount 12
     ammo.backpackamount 0
-    ammo.backpackmaxamount 16
+    ammo.backpackmaxamount 12
     +IGNORESKILL
 }
 

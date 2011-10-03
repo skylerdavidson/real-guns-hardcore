@@ -199,7 +199,7 @@ statusbar fullscreen, forcescaled
  	}
 	IsSelected "Intervention Ex Mags", "Barrett 50cal Ex Mags"
 	{
- 		drawbar "AMMO10", "AMMO10B", Ammo1, horizontal, reverse, 210, 185;
+ 		drawbar "AMMO8", "AMMO8B", Ammo1, horizontal, reverse, 210, 185;
  	}
 	IsSelected "Barrett 50cal", "Barrett 50cal Thermal"
 	{
