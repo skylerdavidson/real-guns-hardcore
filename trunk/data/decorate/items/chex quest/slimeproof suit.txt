@@ -1,0 +1,5 @@
+Actor SlimeProofSuit_2 : RadSuit_Pickup replaces SlimeProofSuit
+{
+  Game Chex
+  Inventory.PickupMessage
+}

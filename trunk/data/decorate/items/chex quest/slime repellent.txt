@@ -1,0 +1,5 @@
+Actor SlimeRepellent_2 : ArmorBonus2 replaces SlimeRepellent
+{
+  Game Chex
+  Inventory.PickupMessage "$GOTREPELLENT" // "Picked up slime repellent."
+}

@@ -1,0 +1,14 @@
+Actor FlemoidusBipedicus_2 : ShotgunGuy_2 replaces FlemoidusBipedicus
+{
+	Tag "Flemoidus Bipedicus"
+  Game Chex
+  DropItem ""
+  Obituary "$OB_BIPEDICUS" // "%o was slimed by a bipedicus."
+  States
+  {
+  Missile:
+    Stop
+  Melee:
+    Goto Super::Missile
+  }
+}

@@ -1,0 +1,5 @@
+Actor SuperchargeBreakfast_2 : Soulsphere2 replaces SuperchargeBreakfast 	
+{
+  Game Chex
+  Inventory.PickupMessage "$GOTBREAKFAST" // "Supercharge Breakfast!"
+}

@@ -1,0 +1,5 @@
+Actor Zorchpack_2 : Backpack replaces Zorchpack
+{
+  Game Chex
+  Inventory.PickupMessage "$GOTZORCHPACK" // "Picked up a Zorchpak!"
+}

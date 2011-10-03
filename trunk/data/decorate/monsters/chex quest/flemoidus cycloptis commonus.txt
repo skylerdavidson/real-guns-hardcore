@@ -1,0 +1,6 @@
+Actor FlemoidusCycloptisCommonus_2 : Demon_2 replaces FlemoidusCycloptisCommonus
+{
+	Tag "Flemoidus Cycloptis Commonus"
+  Game Chex
+  Obituary "$OB_CYCLOPTIS" // "%o was slimed by a cycloptis."
+}

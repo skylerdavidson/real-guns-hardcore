@@ -1,0 +1,6 @@
+Actor ChexSoul_2 : LostSoul_2 replaces ChexSoul
+{
+	Tag "Slime Soul"
+  Game Chex
+  Height 0
+}

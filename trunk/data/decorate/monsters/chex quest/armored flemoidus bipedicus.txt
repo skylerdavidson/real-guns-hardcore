@@ -1,0 +1,7 @@
+Actor ArmoredFlemoidusBipedicus_2 : DoomImp_2 replaces ArmoredFlemoidusBipedicus
+{
+	Tag "Armored Flemoidus Bipedicus"
+  Game Chex
+  Obituary "$OB_BIPEDICUS2" // "%o was slimed by an armored bipedicus."
+  HitObituary "$OB_BIPEDICUS2"// "%o was slimed by an armored bipedicus."
+}

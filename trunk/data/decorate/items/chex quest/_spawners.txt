@@ -1,0 +1,25 @@
+actor GunAmmoSpawnerCQ1 : GunAmmoSpawner replaces LargeZorchPack {}
+actor GunAmmoSpawnerCQ2 : GunAmmoSpawner replaces LargeZorchRecharge {}
+actor GunAmmoSpawnerCQ3 : GunAmmoSpawner replaces MiniZorchPack {}
+actor GunAmmoSpawnerCQ4 : GunAmmoSpawner replaces MiniZorchRecharge {}
+actor GunAmmoSpawnerCQ5 : GunAmmoSpawner replaces PhasingZorch {}
+actor GunAmmoSpawnerCQ6 : GunAmmoSpawner replaces PhasingZorchPack {}
+actor GunAmmoSpawnerCQ7 : GunAmmoSpawner replaces PropulsorZorch {}
+actor GunAmmoSpawnerCQ8 : GunAmmoSpawner replaces PropulsorZorchPack {}
+actor GunAmmoSpawnerCQ9 : GunAmmoSpawner replaces BowlOfFruit {}
+actor GunAmmoSpawnerCQ10 : GunAmmoSpawner replaces BowlOfVegetables {}
+
+actor GunSpawnerCQ1 : CommonGunSpawner replaces LargeZorcher {}
+actor GunSpawnerCQ2 : CommonGunSpawner replaces MiniZorcher	{}
+actor GunSpawnerCQ3 : CommonGunSpawner replaces RapidZorcher{}
+actor GunSpawnerCQ4 : RandomSpawner replaces SuperLargeZorcher{	
+	DropItem CommonGunSpawner
+	DropItem UncommonGunSpawner
+}
+actor GunSpawnerCQ5 : RandomSpawner replaces SuperBootspork{	
+	DropItem UncommonGunSpawner
+	DropItem RareGunSpawner
+}
+actor GunSpawnerCQ6 : UncommonGunSpawner replaces PhasingZorcher{}
+actor GunSpawnerCQ7 : UncommonGunSpawner replaces ZorchPropulsor{}
+actor GunSpawnerCQ8 : RareGunSpawner replaces LAZDevice{}
