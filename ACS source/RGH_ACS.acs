@@ -3631,7 +3631,7 @@ script 636 (int firstTimeAfterDeath)
 	  		HudMessage(s:"1)    Make your own!"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
 	  		HudMessage(s:"2)    Assault:       M4A1 (+Extended Mags) and USP .45\n\n                + \cvScavenger, \cgStopping Power, \cdCommando PRO"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);	
 	  		HudMessage(s:"3)    Juggernaut:    L86 (+Grip) and Desert Eagle\n\n                + \cvSleight of Hand, \cgJuggernaut PRO, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 180.0, 0.0);	
-	  		HudMessage(s:"4)    Sniper:        Barett .50 cal (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 60.1, 220.0, 0.0);	
+	  		HudMessage(s:"4)    Sniper:        Barrett .50 cal (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 60.1, 220.0, 0.0);	
 	  		HudMessage(s:"5)    Recon:         FAL and PP2000 (+Extended Mags)\n\n                + \cvExtreme Conditioning, \cgCold Blooded, \cdSit-Rep PRO"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 60.1, 260.0, 0.0);		
 	  		HudMessage(s:"6)    Demolitions:   RPG-7 and SPAS-12\n\n                + \cvScavenger, \cgDanger Close PRO, \cdSit-Rep"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 60.1, 300.0, 0.0);		
 	  		HudMessage(s:"7)    Grenadier:     FAMAS (+M203) and G18\n\n                + \cvExtreme Conditioning PRO, \cgDanger Close, \cdLast Stand"; HUDMSG_PLAIN, 750+PlayerNumber(), CR_WHITE, 60.1, 340.0, 0.0);
@@ -3654,7 +3654,7 @@ script 636 (int firstTimeAfterDeath)
 	  			HudMessage(s:"\cvSleight of Hand: Faster reloading\n\n         \cjPRO\cv: Faster knifing and grenade throwing\n\n\cgJuggernaut: +40% damage resistance\n\n         \cjPRO\cg: double bonuses from health/armor pickups\n\n\cdLast Stand: Pull out your handgun before dying\n\n         \cjPRO\cd: Get 30 health in last stand"; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_YELLOW, 430.1, 500.0, 0.0);
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 3){
-	  			HudMessage(s:"4)  > Sniper:        Barett .50 cal (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 60.1, 220.0, 0.0);	
+	  			HudMessage(s:"4)  > Sniper:        Barrett .50 cal (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power PRO, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 60.1, 220.0, 0.0);	
 	  			HudMessage(s:"\cvOne Man Army: Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon\n\n\cgStopping Power: +25% bullet damage\n\n         \cjPRO\cg: Sniper bullets penetrate multiple enemies\n\n\cdSteady Aim: +33% hip-fire accuracy\n\n         \cjPRO\cd: No sniper rifle accuracy penalty while moving"; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_YELLOW, 430.1, 500.0, 0.0);
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 4){
@@ -3694,7 +3694,7 @@ script 636 (int firstTimeAfterDeath)
 	  		HudMessage(s:"1)    Make your own!"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
 	  		HudMessage(s:"2)    Assault:       M4A1 (+Extended Mags) and USP .45\n\n                + \cvScavenger, \cgStopping Power, \cdCommando"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);	
 	  		HudMessage(s:"3)    Juggernaut:    L86 (+Grip) and Desert Eagle\n\n                + \cvSleight of Hand, \cgJuggernaut, \cdLast Stand"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 180.0, 0.0);	
-	  		HudMessage(s:"4)    Sniper:        Barett .50 cal (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 60.1, 220.0, 0.0);	
+	  		HudMessage(s:"4)    Sniper:        Barrett .50 cal (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 60.1, 220.0, 0.0);	
 	  		HudMessage(s:"5)    Recon:         FAL and PP2000 (+Extended Mags)\n\n                + \cvExtreme Conditioning, \cgCold Blooded, \cdSit-Rep"; HUDMSG_PLAIN, 600+PlayerNumber(), CR_WHITE, 60.1, 260.0, 0.0);		
 	  		HudMessage(s:"6)    Demolitions:   RPG-7 and SPAS-12\n\n                + \cvScavenger, \cgDanger Close, \cdSit-Rep "; HUDMSG_PLAIN, 650+PlayerNumber(), CR_WHITE, 60.1, 300.0, 0.0);		
 	  		HudMessage(s:"7)    Grenadier:     FAMAS (+M203) and G18\n\n                + \cvExtreme Conditioning, \cgDanger Close, \cdLast Stand"; HUDMSG_PLAIN, 700+PlayerNumber(), CR_WHITE, 60.1, 340.0, 0.0);
@@ -3713,7 +3713,7 @@ script 636 (int firstTimeAfterDeath)
 	  			HudMessage(s:"\cvSleight of Hand: faster reloading\n\n\cgJuggernaut: +40% damage resistance\n\n\cdLast Stand: Pull out your handgun before dying"; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_YELLOW, 430.1, 460.0, 0.0);
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 3){
-	  			HudMessage(s:"4)  > Sniper:        Barett .50 cal (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 60.1, 220.0, 0.0);	
+	  			HudMessage(s:"4)  > Sniper:        Barrett .50 cal (+Thermal Scope) and M93 Raffica\n\n                + \cvOne Man Army, \cgStopping Power, \cdSteady Aim"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_YELLOW, 60.1, 220.0, 0.0);	
 	  			HudMessage(s:"\cvOne Man Army: Carry extra gun\n\n\cgStopping Power: +25% bullet damage\n\n\cdSteady Aim: +33% hip-fire accuracy"; HUDMSG_PLAIN, 2150+PlayerNumber(), CR_YELLOW, 430.1, 460.0, 0.0);
 	  		}
 	  		else if(CheckInventory("MenuCursor") == 4){
@@ -5914,7 +5914,7 @@ script 660 (void)
 		AwardMenuWeapon[PlayerNumber()] == "F2000" ||
 		AwardMenuWeapon[PlayerNumber()] == "AK-47" ||
 		AwardMenuWeapon[PlayerNumber()] == "Intervention" ||
-		AwardMenuWeapon[PlayerNumber()] == "Barett 50cal" ||
+		AwardMenuWeapon[PlayerNumber()] == "Barrett 50cal" ||
 		AwardMenuWeapon[PlayerNumber()] == "WA2000" ||
 		AwardMenuWeapon[PlayerNumber()] == "M14 EBR" ||
 		AwardMenuWeapon[PlayerNumber()] == "L86" ||
@@ -5993,7 +5993,7 @@ script 660 (void)
 	
 	if(
 		AwardMenuWeapon[PlayerNumber()] == "Intervention" ||
-		AwardMenuWeapon[PlayerNumber()] == "Barett 50cal" ||
+		AwardMenuWeapon[PlayerNumber()] == "Barrett 50cal" ||
 		AwardMenuWeapon[PlayerNumber()] == "WA2000" ||
 		AwardMenuWeapon[PlayerNumber()] == "M14 EBR"
 	)
@@ -6304,7 +6304,7 @@ script 661 (void)
 		AwardMenuWeapon[PlayerNumber()] == "F2000" ||
 		AwardMenuWeapon[PlayerNumber()] == "AK-47" ||
 		AwardMenuWeapon[PlayerNumber()] == "Intervention" ||
-		AwardMenuWeapon[PlayerNumber()] == "Barett 50cal" ||
+		AwardMenuWeapon[PlayerNumber()] == "Barrett 50cal" ||
 		AwardMenuWeapon[PlayerNumber()] == "WA2000" ||
 		AwardMenuWeapon[PlayerNumber()] == "M14 EBR" ||
 		AwardMenuWeapon[PlayerNumber()] == "l86" ||
@@ -6371,7 +6371,7 @@ script 661 (void)
 	// Thermal Scope
 	if(
 		AwardMenuWeapon[PlayerNumber()] == "Intervention" ||
-		AwardMenuWeapon[PlayerNumber()] == "Barett 50cal" ||
+		AwardMenuWeapon[PlayerNumber()] == "Barrett 50cal" ||
 		AwardMenuWeapon[PlayerNumber()] == "WA2000" ||
 		AwardMenuWeapon[PlayerNumber()] == "M14 EBR"
 	)
