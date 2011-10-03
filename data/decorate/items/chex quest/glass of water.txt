@@ -1,0 +1,5 @@
+Actor GlassOfWater_2 : HealthBonus2 replaces GlassOfWater
+{
+  Game Chex
+  Inventory.PickupMessage "$GOTWATER" // "Picked up a glass of water."
+}

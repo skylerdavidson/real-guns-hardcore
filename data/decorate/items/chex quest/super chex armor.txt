@@ -1,0 +1,5 @@
+Actor SuperChexArmor_2 : BlueArmor2 replaces SuperChexArmor
+{
+  Game Chex
+  Inventory.PickupMessage "$GOTSUPERCHEXARMOR" // "Picked up the Super Chex(R) Armor!"
+}

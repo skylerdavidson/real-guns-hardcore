@@ -1,0 +1,14 @@
+Actor FlemoidusCommonus_2 : ZombieMan_2 replaces FlemoidusCommonus
+{
+	Tag "Flemoidus Commonus"
+  Game Chex
+  DropItem ""
+  Obituary "$OB_COMMONUS" // "%o was slimed by a flemoid."
+  States
+  {
+  Missile:
+    Stop
+  Melee:
+    Goto Super::Missile
+  }
+}
