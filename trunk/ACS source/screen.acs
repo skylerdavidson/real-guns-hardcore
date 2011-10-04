@@ -8,11 +8,11 @@ function bool is4to3(void){
 		(w == 512 &&  h == 384) ||
 		(w == 576 &&  h == 432) ||
 		(w == 640 &&  h == 480) ||
-	    (w == 800 &&  h == 600) ||
-	    (w == 1024 &&  h == 768) ||
-	    (w == 1152 &&  h == 1280) ||
-	    (w == 1280 &&  h == 960) ||
-	    (w == 1400 &&  h == 1050)
+		(w == 800 &&  h == 600) ||
+		(w == 1024 &&  h == 768) ||
+		(w == 1152 &&  h == 1280) ||
+		(w == 1280 &&  h == 960) ||
+		(w == 1400 &&  h == 1050)
 	){
 		return true;
 	}	
@@ -27,7 +27,7 @@ function bool is5to4(void){
 		(w == 320 &&  h == 256) ||
 		(w == 360 &&  h == 288) ||		
 		(w == 720 &&  h == 576) ||
-	    (w == 1280 &&  h == 1024)
+		(w == 1280 &&  h == 1024)
 	){
 		return true;
 	}	
@@ -40,17 +40,17 @@ function bool is16to9(void){
 	
 	if(                    
 		(w == 1280 &&  h == 720) ||
-	    (w == 1024 &&  h == 576) ||
-	    (w == 1600 &&  h == 900) ||
-	    (w == 640 &&  h == 360) ||
-	    (w == 800 &&  h == 450) ||
-	    (w == 848 &&  h == 480) ||
-	    (w == 1024 &&  h == 576) ||
-	    (w == 1152 &&  h == 648) ||
-	    (w == 1280 &&  h == 720) ||
-	    (w == 1400 &&  h == 787) ||
-	    (w == 1769 &&  h == 992) ||
-	    (w == 1920 &&  h == 1080)
+		(w == 1024 &&  h == 576) ||
+		(w == 1600 &&  h == 900) ||
+		(w == 640 &&  h == 360) ||
+		(w == 800 &&  h == 450) ||
+		(w == 848 &&  h == 480) ||
+		(w == 1024 &&  h == 576) ||
+		(w == 1152 &&  h == 648) ||
+		(w == 1280 &&  h == 720) ||
+		(w == 1400 &&  h == 787) ||
+		(w == 1769 &&  h == 992) ||
+		(w == 1920 &&  h == 1080)
 	){
 		return true;
 	}	
@@ -65,15 +65,15 @@ function bool is16to10(void){
 		(w == 360 &&  h == 240) ||
 		(w == 400 &&  h == 256) ||
 		(w == 720 &&  h == 480) ||
-	    (w == 1600 &&  h == 1024) ||
-	    (w == 1680 &&  h == 1050) ||
-	    (w == 1280 &&  h == 800) ||
-	    (w == 800 &&  h == 500) ||
-	    (w == 1024 &&  h == 640) ||
-	    (w == 1152 &&  h == 720) ||
-	    (w == 1280 &&  h == 1280) ||
-	    (w == 1400 &&  h == 875) ||
-	    (w == 1920 && h == 1200)
+		(w == 1600 &&  h == 1024) ||
+		(w == 1680 &&  h == 1050) ||
+		(w == 1280 &&  h == 800) ||
+		(w == 800 &&  h == 500) ||
+		(w == 1024 &&  h == 640) ||
+		(w == 1152 &&  h == 720) ||
+		(w == 1280 &&  h == 1280) ||
+		(w == 1400 &&  h == 875) ||
+		(w == 1920 && h == 1200)
 	){
 		return true;
 	}	
@@ -84,7 +84,7 @@ function void drawStretchedImage(int id, int imageWidth, int imageHeight, int ti
 	int hudScreenWidth = imageHeight * 4 / 3 * imageWidth / imageHeight;
 	int hudScreenHeight = imageHeight;
 	
-	if(is4to3()){							
+	if(is4to3()){
 		hudScreenWidth = hudScreenWidth / 4 * 3;
 	}
 	else if(is5to4()){
@@ -94,51 +94,46 @@ function void drawStretchedImage(int id, int imageWidth, int imageHeight, int ti
 	else if(is16to9()){
 		hudScreenWidth = hudScreenWidth / 16 * 9;
 	}
-	else if(is16to10()){							
+	else if(is16to10()){
 		hudScreenWidth = hudScreenWidth / 16 * 10;
 	}
 	else {
 		hudScreenWidth = 1280;
 		log(s:"unknown resolution - please choose a valid resoltion from the SET VIDEO MODE menu");
 	}
-	
-	//log(i:hudScreenWidth)
 
 	SetHudSize(hudScreenWidth,hudScreenHeight,1);
 	HudMessage(s:"a"; HUDMSG_FADEOUT, id, CR_UNTRANSLATED, (hudScreenWidth/ 2)* 65536, (hudScreenHeight/ 2)* 65536, time, fadeTime);
 }
 
 function int getHorizontalFov(void){
-  if(CheckInventory("Aiming") > 0){
-    return 70.0; // 90 / 1.2
-  }
+	if(CheckInventory("Aiming") > 0){
+		return 70.0; // 90 / 1.2
+	}
 	return 90.0;
 }
 
 function int getVerticalFov(void){
-  if(CheckInventory("Aiming") > 0){
-    return 50.0; // 60 / 1.2
-  }
+	if(CheckInventory("Aiming") > 0){
+		return 50.0; // 60 / 1.2
+	}
 	return 60.0;
 }
 
 int inputVector[3] = {0, 0, 0};
-int outputVector[3] = {0, 0, 0};
-
 int upVector[3] = {0, 1.0, 0};
 int basisA[3] = {0, 0, 0};
 int basisB[3] = {0, 0, 0};
-int basisBCopy[3] = {0, 0, 0};
 int basisC[3] = {0, 0, 0};
 int point[3] = {0, 0, 0};
 int eyeCoords[3] = {0, 0, 0};
 int normCoords[3] = {0, 0, 0};
 int screenCoords[2] = {0, 0};
+int tanThetaHorizontal;
+int tanThetaVertical;
 
-function void worldToScreenCoords(void){
-  // first build the view matrix (the bases)
-
-  // build camera vector from the angles
+function void prepareCamera(void){
+    // build camera vector from the angles
 	basisB[0] = FixedMul(cos(GetActorAngle(0)), FixedMul(cos(GetActorPitch(0)), 1.0));
 	basisB[1] = -sin(GetActorPitch(0));
 	basisB[2] = FixedMul(sin(GetActorAngle(0)), cos(GetActorPitch(0))); 
@@ -153,44 +148,46 @@ function void worldToScreenCoords(void){
 	
 	NORMALIZE_VECTOR(basisC);
 	
+	tanThetaHorizontal = tan(FixedDiv(FixedDiv(getHorizontalFov(), 360.0), 2.0));
+	tanThetaVertical = tan(FixedDiv(FixedDiv(getVerticalFov(), 360.0), 2.0));
+}
+
+function void worldToScreenCoords(void){
 	// point coordinate relative to camera
 	point[0] = inputVector[0] - GetActorX(0); 
 	point[1] = inputVector[1] + 10.0 - GetActorZ(0) - 48.0; // camera height of the player actor 
 	point[2] = inputVector[2] - GetActorY(0);
 
-  // transform the world coordinates to eye coordinates using the view matrix
-  eyeCoords[0] = FixedMul(point[0], basisA[0]) + FixedMul(point[1], basisA[1]) + FixedMul(point[2], basisA[2]);
-  eyeCoords[1] = FixedMul(point[0], basisB[0]) + FixedMul(point[1], basisB[1]) + FixedMul(point[2], basisB[2]);
-  eyeCoords[2] = FixedMul(point[0], basisC[0]) + FixedMul(point[1], basisC[1]) + FixedMul(point[2], basisC[2]);
-  
-  // transform eye coordinates to normalized coordinates for perspective view
-  int tanThetaHorizontal = tan(FixedDiv(FixedDiv(getHorizontalFov(), 360.0), 2.0));
-	int tanThetaVertical = tan(FixedDiv(FixedDiv(getVerticalFov(), 360.0), 2.0));
+	// transform the world coordinates to eye coordinates using the view matrix
+	eyeCoords[0] = FixedMul(point[0], basisA[0]) + FixedMul(point[1], basisA[1]) + FixedMul(point[2], basisA[2]);
+	eyeCoords[1] = FixedMul(point[0], basisB[0]) + FixedMul(point[1], basisB[1]) + FixedMul(point[2], basisB[2]);
+	eyeCoords[2] = FixedMul(point[0], basisC[0]) + FixedMul(point[1], basisC[1]) + FixedMul(point[2], basisC[2]);
 
-  int zoom = 1.0; 
-  int d = FixedDiv(zoom, eyeCoords[1]);
-  normCoords[0] = FixedDiv(FixedMul(d, eyeCoords[0]), tanThetaHorizontal);
-  normCoords[1] = eyeCoords[1];
-  normCoords[2] = FixedDiv(FixedMul(d, eyeCoords[2]), tanThetaVertical);
+	// transform eye coordinates to normalized coordinates for perspective view
+	int zoom = 1.0; 
+	int d = FixedDiv(zoom, eyeCoords[1]);
+	normCoords[0] = FixedDiv(FixedMul(d, eyeCoords[0]), tanThetaHorizontal);
+	normCoords[1] = eyeCoords[1];
+	normCoords[2] = FixedDiv(FixedMul(d, eyeCoords[2]), tanThetaVertical);
 
-  // use 1.5 instead of 1.0 because we don't want the blimps to disappear immediately after the creep leaves
-  // the screen (part of the blimp might still be visible), also for ADS (which decreases FOV).
-  if(
-    normCoords[0] < -1.5 ||
-    normCoords[0] > 1.5 ||
-    normCoords[2] < -1.5 ||
-    normCoords[2] > 1.5 ||
-    normCoords[1] < -0
-  )
-  {
-    screenCoords[0] = -1;
-    return;
-  }
+	// use 1.5 instead of 1.0 because we don't want the blimps to disappear immediately after the creep leaves
+	// the screen (part of the blimp might still be visible), also for ADS (which decreases FOV).
+	if(
+		normCoords[0] < -1.5 ||
+		normCoords[0] > 1.5 ||
+		normCoords[2] < -1.5 ||
+		normCoords[2] > 1.5 ||
+		normCoords[1] < -0
+	)
+	{
+		screenCoords[0] = -1;
+		return;
+	}
 
-  // transform normalized coordinates to screen coordinates
-  // done in the hudMessageOnActor, because it needs to consider distance of the actor
-  
-  screenCoords[0] = 1;   
+	// transform normalized coordinates to screen coordinates
+	// done in the hudMessageOnActor, because it needs to consider distance of the actor
+
+	screenCoords[0] = 1;
 }
 
 // kill indicator
@@ -216,93 +213,82 @@ script 654 DEATH CLIENTSIDE
 	}
 }
 
-function void hudmessageonactor(int tid, int range, str sprite, str text, int spriteWidth, int spriteHeight)
+#define SITREP_RANGE 10000
+int hasSitRepBlimp[SITREP_RANGE];
+function void hudMessageOnActor(int tid, int range, str sprite, str text)
 {
-	int dist, ang, vang, pitch, x, y;
-	int HUDX = 1750;
-	int HUDY = HUDX * 3 / 4;
-	int offset = 0;
-    
-    // skip actors that are clearly too far away
-    if(
+	// limited tid range is necessary to keep the "has" array 
+	if(tid - MINIMUM_TID - MAX_PLAYER_COUNT > SITREP_RANGE){
+		return;		
+	}
+
+	// skip actors that are clearly too far away
+	if(
 		abs(GetActorX(tid) - GetActorX(0)) > 900 << 16 ||
 		abs(GetActorY(tid) - GetActorY(0)) > 900 << 16 ||
 		abs(GetActorZ(tid) - GetActorZ(0)) > 900 << 16
 	)
 	{
-		hudmessage(s:""; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, 0, 0, 0);
+		removeBlimp(tid);
 		return;		
 	}
-    
+	
 	if(sprite != -1)
 	{
-		setfont(sprite);
-		text = "A";
-		offset = 0.1;
+		SetFont(sprite);
+		text = "A";		
 	}
 
-	sethudsize(HUDX, HUDY, 0);
-	//x = getactorx(tid) - getactorx(0);
-	y = getactory(tid) - getactory(0); 
+	// scale sprite size with distance
+	int dist = distanceFromPoint(getactorx(0), getactory(0), getactorz(0),tid) << 16;
+	int hudX = 1750; // these determine default size
+	int hudY = HUDX * 3 / 4; // hudmessage doesn't consider aspect ratio
+	hudX = hudX * (dist >> 16) / 1000;
+	hudY = hudY * (dist >> 16) / 1000;   
+	SetHudSize(HUDX, HUDY, 0);
 
-	//vang = vectorangle(x,y);
-	//ang = (vang - GetActorAngle(0) + 1.0) % 1.0;
-
-	//if(((vang+0.125)%0.5) > 0.25) dist = fixeddiv(y, sin(vang));
-	//else dist = distanceFromPoint(getactorx(0), getactory(0), getactorz(0),tid);
-
-    dist = distanceFromPoint(getactorx(0), getactory(0), getactorz(0),tid) << 16;
-
-	int distRatio = fixeddiv(dist, range >> 16);
-	
-	HUDX = HUDX * (dist >> 16) / 1000;
-	HUDY = HUDY * (dist >> 16) / 1000;   
-	
-	sethudsize(HUDX, HUDY, 0);
-
-	if (/*(ang < 0.2 || ang > 0.8) && */
-    dist < range &&
+	if (
+		dist < range &&
 		GetActorProperty(0,APROP_Health) > 0 &&
-    CheckInventory("PowerEMP") == 0 &&
-    CheckInventory("InLastStand") == 0 &&
-    CheckInventory("Menu") == 0 &&
-    CheckInventory("AwardMenu") == 0 &&
-    CheckInventory("Spawned") > 0 &&
-    sprite != 0
-  ){
-	//{
-	//	pitch = vectorangle(dist, getactorz(tid) - (getactorz(0) + 41.0));
-	//	pitch = (pitch + GetActorPitch(0) + 1.0) % 1.0;
+		CheckInventory("PowerEMP") == 0 &&
+		CheckInventory("InLastStand") == 0 &&
+		CheckInventory("Menu") == 0 &&
+		CheckInventory("AwardMenu") == 0 &&
+		CheckInventory("Spawned") > 0 &&
+		sprite != 0
+	){
+	
+		// feed the data into worldToScreenCoords()
+		inputVector[0] = GetActorX(tid);
+		inputVector[1] = GetActorZ(tid);
+		inputVector[2] = GetActorY(tid);
 
-	//	x = HUDX/2 - ((HUDX/2) * sin(ang) / cos(ang));
-	//	y = HUDY/2 - ((HUDX/2) * sin(pitch) / cos(pitch));
+		// this method fills the normCoords array or returns -1 in screenCoords array
+		worldToScreenCoords();
+	
+		// failure is indicated by -1 in the X coordinate 
+		if(screenCoords[0] != -1){
+			// convert the normalized coordinates into screen coordinates
+			screenCoords[0] = ((hudX / 2) << 16) + FixedDiv(FixedMul(hudX << 16, normCoords[0]), 2.0);
+			screenCoords[1] = ((hudY / 2) << 16) - FixedDiv(FixedMul(hudY << 16, normCoords[2]), 2.0);
 
-    inputVector[0] = GetActorX(tid);
-    inputVector[1] = GetActorZ(tid);
-    inputVector[2] = GetActorY(tid);
-
-    worldToScreenCoords();
-    
-    if(
-      screenCoords[0] != -1
-    ){
-
-      screenCoords[0] = ((HUDX / 2) << 16) + FixedDiv(FixedMul(HUDX << 16, normCoords[0]), 2.0) ;
-      screenCoords[1] = ((HUDY / 2) << 16) - FixedDiv(FixedMul(HUDY << 16, normCoords[2]), 2.0);
-
-		  hudmessage(s:text; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, (screenCoords[0] >> 16) << 16, ((screenCoords[1] >> 16) << 16) + 0.2, 0);
+			HudMessage(s:text; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, (screenCoords[0] >> 16) << 16, ((screenCoords[1] >> 16) << 16) + 0.2, 0);
+			hasSitRepBlimp[tid - MINIMUM_TID + MAX_PLAYER_COUNT] = true;
 		}
 		else {
-      hudmessage(s:""; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, 0, 0, 0);
-    }
-    
-    }
-    else {
-      hudmessage(s:""; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, 0, 0, 0);
-    }
-	//}
-	//else
-	//	hudmessage(s:" "; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, 0, 0, 0);
+			removeBlimp(tid);
+		}	
+	}
+	else {
+		removeBlimp(tid);
+	}
+}
+
+function void removeBlimp(int tid){
+	if(hasSitRepBlimp[tid - MINIMUM_TID + MAX_PLAYER_COUNT] == true){
+		hudmessage(s:""; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, 0, 0, 0);
+		hasSitRepBlimp[tid - MINIMUM_TID + MAX_PLAYER_COUNT] = false;
+	}
 }
 
 
@@ -318,7 +304,7 @@ script 650 (void) CLIENTSIDE {
 
 	while(true){
 		if(CheckInventory("NoHudLoop") > 0){
-		    terminate;
+			terminate;
 		}
 			
 		loopCounter++;
@@ -332,6 +318,7 @@ script 650 (void) CLIENTSIDE {
 			continue;
 		}
 
+		// Crosshair
 		if(
 			CheckInventory("Crosshair") > 0 &&
 			CheckInventory("Aiming") == 0 &&
@@ -340,11 +327,11 @@ script 650 (void) CLIENTSIDE {
 			CheckInventory("Reloading") == 0 &&
 			GetActorProperty(0,APROP_Health) > 0 &&
 			CheckInventory("PowerEMP") == 0	&&
-      CheckInventory("Menu") == 0 &&
-      CheckInventory("AwardMenu") == 0      
+			CheckInventory("Menu") == 0 &&
+			CheckInventory("AwardMenu") == 0      
 		){
-      
-      // The drawing will be done at native resolution (so the crosshair sprites are never destroyed by scaling).
+
+			// The drawing will be done at native resolution (so the crosshair sprites are never destroyed by scaling).
 			SetHudSize(GetScreenWidth(),GetScreenHeight(),1);
 			
 			// Calculate aspect-ratio inndependent width of the screen (only a 4:3 cutout will be considered - it is enough
@@ -385,85 +372,83 @@ script 650 (void) CLIENTSIDE {
 			GiveInventory("InCombatCrosshair", 35);
 		}
 		
+		// Sit-Rep
 		if(
-      CheckInventory("Perk3_SitRep_PRO") > 0
-    ){
-  		for (int i = MINIMUM_TID - MAX_PLAYER_COUNT; i < nextTid; i++ ){  		    			
-        if(GetActorProperty(i,APROP_Health) <= 0){
-  				hudmessage(s:" "; HUDMSG_PLAIN, 20000+ i, CR_UNTRANSLATED, 0, 0, 0);
-  				continue;
-  			}
-  		
-  		  int sitRepSprite = 0;
-  			
-  			if(CheckInventory("Aiming") == 1 && GetWeaponCustomProperty("scoped") == 1){
-  			   //don't sitrep while scoping 	
-  			   sitRepSprite = 0;
-  			}
-  			else if(ClassifyActor(i) & ACTOR_PLAYER || ClassifyActor(i) & ACTOR_BOT){
+			CheckInventory("Perk3_SitRep_PRO") > 0
+		){
+			// build the view matrix (the same is used for all the actors)
+			prepareCamera();
+		
+			// for all monsters and players...
+			for (int i = MINIMUM_TID - MAX_PLAYER_COUNT; i < nextTid; i++ ){
+				if(GetActorProperty(i,APROP_Health) <= 0){
+					removeBlimp(i);
+					continue;
+				}
+		
+				int sitRepSprite = 0;
+			
+				if(CheckInventory("Aiming") == 1 && GetWeaponCustomProperty("scoped") == 1){
+					//don't sitrep while scoping 	
+					sitRepSprite = 0;
+				}
+				else if(ClassifyActor(i) & ACTOR_PLAYER || ClassifyActor(i) & ACTOR_BOT){
 #ifdef SKULLTAG
-          /*int activatorTeam = PlayerTeam();
-          int activator = ActivatorTid();
-          SetActivator(i); 
-          if(
-            COOPERATIVE ||
-            (activatorTeam == PlayerTeam() && PlayerTeam() != NO_TEAM && COMPETITIVE)            
-          ){
-            sitRepSprite = "SIT_COO";
-          }
-          else {
-            sitRepSprite = "SIT_ZOM";
-          }
-          SetActivator(activator);*/
-          sitRepSprite = "SIT_ZOM";
+					/*int activatorTeam = PlayerTeam();
+					int activator = ActivatorTid();
+					SetActivator(i); 
+					if(
+						COOPERATIVE ||
+						(activatorTeam == PlayerTeam() && PlayerTeam() != NO_TEAM && COMPETITIVE)            
+					){
+						sitRepSprite = "SIT_COO";
+					}
+					else {
+						sitRepSprite = "SIT_ZOM";
+					}
+					SetActivator(activator);*/
+					sitRepSprite = "SIT_ZOM";
 #else
-          sitRepSprite = "SIT_ZOM";
+					sitRepSprite = "SIT_ZOM";
 #endif
-        }
-        else if (ClassifyActor(i) & ACTOR_MONSTER){
-      	 	sitRepSprite = GetCustomProperty(i, "sitrepsprite");
-      	}
-        else {
-          continue;
-        }
-  			
-  			
-  			
-  			int range = 900;
-  			
-  			if(COMPETITIVE){
-          range = 500;
-        }
-  			
-  			hudMessageOnActor(i, range << 16, sitRepSprite, "O", 45, 59);
-  			
-  			//print(s:"X ", f:-eyeCoords[0], s:" Y ", f:eyeCoords[2]);				
-  			
-  			
-  				//delay(10);
-  		}				
-    }
-    
-     if(loopCounter % 2 == 0 && CheckInventory("PowerEMP") > 0){
-  			int r = noiseCounter % 4;
-  		
-  			if(r == 0){
-  				SetFont("NOISE0");
-  			}
-  			else if(r==1){
-  				SetFont("NOISE1");
-  			}
-  			else if(r==2){
-  				SetFont("NOISE2");
-  			}
-  			else if(r==3){
-  				SetFont("NOISE3");
-  			} 
-  			
-  	        drawStretchedImage(10+PlayerNumber(), 1280, 800, 0.5, 1.0);
-  		}
+				}
+				else if (ClassifyActor(i) & ACTOR_MONSTER){
+					sitRepSprite = GetCustomProperty(i, "sitrepsprite");
+				}
+				else {
+					continue;
+				}
 
-		//delay(3);
+				int range = 900;
+			
+				if(COMPETITIVE){
+					range = 500;
+				}
+			
+				hudMessageOnActor(i, range << 16, sitRepSprite, "O");
+			}
+		}
+	
+		if(loopCounter % 2 == 0 && CheckInventory("PowerEMP") > 0){
+			// cycle through the four frames of noise animation
+			int r = noiseCounter % 4;
+		
+			if(r == 0){
+				SetFont("NOISE0");
+			}
+			else if(r==1){
+				SetFont("NOISE1");
+			}
+			else if(r==2){
+				SetFont("NOISE2");
+			}
+			else if(r==3){
+				SetFont("NOISE3");
+			} 
+			
+			drawStretchedImage(10+PlayerNumber(), 1280, 800, 0.5, 1.0);
+		}
+
 		delay(1);
 	}
 }
