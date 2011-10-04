@@ -181,7 +181,7 @@ script 502 (void)
 	// GetActorProperty always returns 0 for players
 	if(KillersMaxHealth == 0) KillersMaxHealth = 100;
 
-	KillersGun = "";
+	KillersGun = GetWeapon();
 	
 	Delay(20);
 	
@@ -209,9 +209,18 @@ script 503 DEATH
 		SetFont("BIGFONT");		
 		ChangeCamera(KillersIDs,0,1);
 		KillersIdArray[PlayerNumber()] = KillersID;
-		HudMessage(s:"\ccKilled by:\cg ", s:KillersClasss ;HUDMSG_FADEOUT,0,CR_Blue,0.5,0.5,10.0,2.0);
+		if(ClassifyActor(KillersIDs) & ACTOR_PLAYER || ClassifyActor(KillersIDs) & ACTOR_BOT){
+			if(KillersGun != ""){
+				HudMessage(s:"\ccKilled by:\cg ", s:KillersGuns ;HUDMSG_FADEOUT,0,CR_Blue,0.5,0.5,10.0,2.0);
+			}			
+		}
+		else {
+			HudMessage(s:"\ccKilled by:\cg ", s:KillersClasss ;HUDMSG_FADEOUT,0,CR_Blue,0.5,0.5,10.0,2.0);
+		}		
 		HudMessage(s:"\ccKiller's Health left:\cg ", i:KillersHealths, s:"\cc of \cg", i:KillersMaxHealths, s:" \cc" ;HUDMSG_FADEOUT,0,CR_Blue,0.5,0.6,10.0,2.0);
 	}
+	
+	KillersGun = "";
 }
 //------------------------------------------
 //------- Addition to KILLCAM, it makes the player call out "Tango down!" or something like that, dependent on team.
