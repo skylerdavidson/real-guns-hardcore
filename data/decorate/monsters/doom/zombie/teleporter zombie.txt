@@ -27,7 +27,7 @@ ACTOR TeleporterZombie
         KSWZ AB 10 A_Look        
         goto Spawn+4
     See:
-		KSWZ A 0 A_Jump(255, "ChaseBlink","ChaseBlink","ChaseBlink", "WanderBlink")
+		KSWZ A 0 A_Jump(255, "ChaseBlink","WanderBlink")
 	ChaseBlink:	    
 		KSWZ A 0 A_SpawnItemEx("TeleportFog")
 		KSWZ A 0 A_SetTranslucent(0.0, 0)
@@ -39,7 +39,17 @@ ACTOR TeleporterZombie
 		KSQZ A 0 A_ChangeFlag("SOLID", 0)
 		KSQZ A 0 A_ChangeFlag("SHOOTABLE", 0)
 		KSWZ A 20
+		KSWZ A 0 A_Jump(256, "ShortChaseJump", "MediumChaseJump", "LongChaseJump")
+	ShortChaseJump:
+		KSWZ AAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Chase
+		goto AfterChaseJump
+	MediumChaseJump:
 		KSWZ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Chase
+		goto AfterChaseJump
+	LongChaseJump:
+		KSWZ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Chase
+		goto AfterChaseJump
+	AfterChaseJump:
 		KSWZ A 0 A_ChangeFlag("FLOAT", 0)
 		KSWZ A 0 A_ChangeFlag("NOGRAVITY", 0)
 		KSQZ A 0 A_ChangeFlag("INVULNERABLE", 0)
@@ -47,9 +57,10 @@ ACTOR TeleporterZombie
 		KSQZ A 0 A_ChangeFlag("SHOOTABLE", 1)
 		KSWZ A 0 A_SetTranslucent(1.0, 0)		
 		KSWZ A 1 A_Chase
-		KSWZ AAAAAAAAAAAAAAAAAAAAA 0 A_Chase
+		KSWZ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Chase
 		KSWZ A 0 A_SpawnItemEx("TeleportFog")
-        Loop
+		KSWZ A 0 A_Jump(32, "WanderBlink")
+        goto ChaseBlink
 	WanderBlink:
 		KSWZ A 0 A_ChangeFlag("FRIGHTENED", 0)
 		KSWZ A 0 A_SpawnItemEx("TeleportFog")
@@ -63,7 +74,17 @@ ACTOR TeleporterZombie
 		KSQZ A 0 A_ChangeFlag("SOLID", 0)
 		KSQZ A 0 A_ChangeFlag("SHOOTABLE", 0)
 		KSWZ A 20
-		KSWZ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+		KSWZ A 0 A_Jump(256, "ShortChaseJump", "MediumWanderJump", "LongWanderJump")
+	ShortWanderJump:
+		KSWZ AAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+		goto AfterWanderJump
+	MediumWanderJump:
+		KSWZ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+		goto AfterWanderJump
+	LongWanderJump:
+		KSWZ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+		goto AfterWanderJump
+	AfterWanderJump:
 		KSWZ A 0 A_ChangeFlag("FLOAT", 0)
 		KSWZ A 0 A_ChangeFlag("NOGRAVITY", 0)
 		KSQZ A 0 A_ChangeFlag("INVULNERABLE", 0)
@@ -73,7 +94,8 @@ ACTOR TeleporterZombie
 		KSWZ A 1 A_Chase
 		KSWZ AAAAAAAAAAAAAAAAAAAAA 0 A_Chase
 		KSWZ A 0 A_SpawnItemEx("TeleportFog")
-        Loop
+		KSWZ A 0 A_Jump(96, "ChaseBlink")
+        goto WanderBlink
     Missile:
 		KSWZ A 0 A_SpawnItemEx("TeleportFog")
 		KSWZ A 0 A_ChangeFlag("FLOAT", 0)
