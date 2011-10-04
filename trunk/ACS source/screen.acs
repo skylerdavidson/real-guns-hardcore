@@ -223,6 +223,17 @@ function void hudmessageonactor(int tid, int range, str sprite, str text, int sp
 	int HUDY = HUDX * 3 / 4;
 	int offset = 0;
     
+    // skip actors that are clearly too far away
+    if(
+		abs(GetActorX(tid) - GetActorX(0)) > 900 << 16 ||
+		abs(GetActorY(tid) - GetActorY(0)) > 900 << 16 ||
+		abs(GetActorZ(tid) - GetActorZ(0)) > 900 << 16
+	)
+	{
+		hudmessage(s:""; HUDMSG_PLAIN, 20000+ tid, CR_UNTRANSLATED, 0, 0, 0);
+		return;		
+	}
+    
 	if(sprite != -1)
 	{
 		setfont(sprite);
