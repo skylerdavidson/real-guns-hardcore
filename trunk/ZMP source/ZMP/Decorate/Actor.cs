@@ -529,19 +529,23 @@
 
         public bool HasProperty(string property)
         {
-            return this.properties.Contains(property) || (this.Parent != null && this.Parent.HasProperty(property));
+            string propertyLower = property.ToLower();
+
+            return this.properties.Contains(propertyLower) || (this.Parent != null && this.Parent.HasProperty(propertyLower));
         }
 
         public string GetPropertyValue(string property)
         {
+            string propertyLower = property.ToLower();
+            
             // inherit the value from parent if it is not present in this actor
-            if (this.HasProperty(property))
+            if (this.properties.Contains(propertyLower))
             {
-                return this.Properties[property].First();
+                return this.Properties[propertyLower].First();
             }
             else if (this.Parent != null)
             {
-                return this.Parent.GetPropertyValue(property);
+                return this.Parent.GetPropertyValue(propertyLower);
             }
             else
             {
@@ -551,14 +555,16 @@
 
         public IEnumerable<string> GetPropertyValues(string property)
         {
+            string propertyLower = property.ToLower();
+
             // inherit the value from parent if it is not present in this actor
-            if (this.HasProperty(property))
+            if (this.properties.Contains(propertyLower))
             {
-                return this.Properties[property];
+                return this.Properties[propertyLower];
             }
             else if (this.Parent != null)
             {
-                return this.Parent.GetPropertyValues(property);
+                return this.Parent.GetPropertyValues(propertyLower);
             }
             else
             {
@@ -589,19 +595,23 @@
 
         public bool HasCustomProperty(string property)
         {
-            return this.customProperties.Contains(property) || (this.Parent != null && this.Parent.HasCustomProperty(property));
+            string propertyLower = property.ToLower();
+
+            return this.customProperties.Contains(propertyLower) || (this.Parent != null && this.Parent.HasCustomProperty(propertyLower));
         }
 
         public string GetCustomPropertyValue(string property)
         {
+            string propertyLower = property.ToLower();
+            
             // inherit the value from parent if it is not present in this actor
-            if (this.HasCustomProperty(property))
+            if (this.customProperties.Contains(propertyLower))
             {
-                return this.Properties[property].First();
+                return this.Properties[propertyLower].First();
             }
             else if (this.Parent != null)
             {
-                return this.Parent.GetCustomPropertyValue(property);
+                return this.Parent.GetCustomPropertyValue(propertyLower);
             }
             else
             {
@@ -611,14 +621,16 @@
 
         public IEnumerable<string> GetCustomPropertyValues(string property)
         {
+            string propertyLower = property.ToLower();
+
             // inherit the value from parent if it is not present in this actor
-            if (this.HasCustomProperty(property))
+            if (this.customProperties.Contains(propertyLower))
             {
-                return this.CustomProperties[property];
+                return this.CustomProperties[propertyLower];
             }
             else if (this.Parent != null)
             {
-                return this.Parent.GetCustomPropertyValues(property);
+                return this.Parent.GetCustomPropertyValues(propertyLower);
             }
             else
             {
@@ -645,6 +657,48 @@
                 select new KeyValuePair<string, string>(property.Key, value);
 
             return keyValPairs.Union(parentKeyValPairs).ToLookup(p => p.Key, p => p.Value);
+        }
+
+        public void EvaluateCustomProperties()
+        {
+            this.customProperties = this.customProperties.Map((key, val) => this.EvaluateCustomPropertiesForString(val));
+            this.properties = this.properties.Map((key, val) => this.EvaluateCustomPropertiesForString(val));
+
+            this.statesText = this.EvaluateCustomPropertiesForString(this.statesText);
+            this.stateMachine = new StateMachine();
+        }
+
+        private string EvaluateCustomPropertiesForString(string str)
+        {
+            return Regex.Replace(
+                input: str,
+                pattern: @"\$(PARENT::)?([a-z_]+)",
+                options: RegexOptions.IgnoreCase,
+                evaluator: delegate(Match match)
+                {
+                    // use parent if PARENT:: was present
+                    Actor actor;
+                    if (match.Groups[1].Value != string.Empty())
+                    {
+                        actor = this.Parent;
+                    }
+                    else
+                    {
+                        actor = this;
+                    }
+
+                    var propertyValues = actor.GetCustomPropertyValues(match.Groups[2].Value);
+
+                    if (propertyValues.Any())
+                    {
+                        return propertyValues.First();
+                    }
+                    else
+                    {
+                        // ingore the property if there is no suitable replacement
+                        return match.Value;
+                    }
+                });
         }
 
         private IEnumerable<string> GetFlagsFromCombos()

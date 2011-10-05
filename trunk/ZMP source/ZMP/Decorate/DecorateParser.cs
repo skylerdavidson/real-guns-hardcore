@@ -70,7 +70,7 @@
                         throw new KeyNotFoundException("Actor \"" + actorPair.Value.ReplacesName + "\" replaced by \"" + actorPair.Key + "\" was not found.");
                     }
                 }
-            }            
+            }
 
             // parse states in topological order
             var actors = 
@@ -81,6 +81,7 @@
 
             foreach (var actor in actors)
             {
+                actor.EvaluateCustomProperties();
                 actor.StateMachine = this.ParseStateMachine(actor);
             }
 

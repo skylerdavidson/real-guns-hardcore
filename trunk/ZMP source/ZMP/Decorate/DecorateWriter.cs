@@ -34,7 +34,8 @@
                 select actor;
 
             var indicesByParentHierarchy = new Dictionary<Actor, int>();
-            foreach(var item in orderedByParentHierarchy.Select((Actor, Index) => new { Actor, Index })){
+            foreach (var item in orderedByParentHierarchy.Select((Actor, Index) => new { Actor, Index }))
+            {
                 if (item.Actor.Parent == null)
                 {
                     indicesByParentHierarchy.Add(item.Actor, item.Index);
