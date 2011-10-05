@@ -16,5 +16,17 @@
 
             return mergedEnumerable.ToLookup(p => p.Key, p => p.Value);
         }
+
+        public static ILookup<TKey, TValue> Map<TKey, TValue>(this ILookup<TKey, TValue> original, Func<TKey, TValue, TValue> func)
+        {
+            var keyValPairs =
+                from keyValues in original
+                from value in keyValues
+                select new KeyValuePair<TKey, TValue>(
+                    keyValues.Key,
+                    func(keyValues.Key, value));
+
+            return keyValPairs.ToLookup(p => p.Key, p => p.Value);
+        }
     }
 }

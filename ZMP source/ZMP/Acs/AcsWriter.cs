@@ -123,22 +123,26 @@
                 this.writer.WriteLine("int __c" + customProperty + "[" + (numActors + 2) + "] = {");
 
                 // there might be holes in the sequence
-                for (int i = 0; i < numActors; i++ )
+                for (int i = 0; i < numActors; i++)
                 {
                     if (actorsByClassId.ContainsKey(i))
                     {
                         Actor actor = actorsByClassId[i];
 
                         var customPropertyValues = actor.GetCustomPropertyValues(customProperty);
-                        string customPropertyValue = (customPropertyValues.Count() > 0 ? customPropertyValues.First() : "0");
+
+                        // 0 is always default value
+                        string customPropertyValue = customPropertyValues.Count() > 0 ? customPropertyValues.First() : "0";
 
                         this.writer.WriteLine(customPropertyValue + "," + " // " + actor.OriginalName + " [" + actor.ID + "]");
                     }
                     else
                     {
+                        // fill holes in the ID sequence with zeros
                         this.writer.WriteLine("0,");
                     }
                 }
+
                 this.writer.WriteLine("\"Last\"};");
             }
 
