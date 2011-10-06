@@ -678,7 +678,7 @@
                 {
                     // use parent if PARENT:: was present
                     Actor actor;
-                    if (match.Groups[1].Value != string.Empty())
+                    if (match.Groups[1].Value != string.Empty)
                     {
                         actor = this.Parent;
                     }
