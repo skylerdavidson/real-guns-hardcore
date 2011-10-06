@@ -61,6 +61,7 @@ actor HellKnight_2 : RGAMonster
 
 actor SpectreHellKnight : HellKnight_2
 {
+	Tag "Spectre Hell Knight"
   renderstyle OptFuzzy
   alpha 0.2
   +SHADOW

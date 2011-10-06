@@ -57,6 +57,7 @@ ACTOR LostSoul_2 : RGAMonster
 
 actor SpectreLostSoul : LostSoul_2
 {
+	Tag "Spectre Lost Soul"
   health 50
   renderstyle OptFuzzy
   alpha 0.2

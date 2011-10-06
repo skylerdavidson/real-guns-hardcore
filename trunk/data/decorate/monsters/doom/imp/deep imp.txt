@@ -76,6 +76,8 @@ actor ImpBoy : DoomImp_2
 }
 ACTOR UziGuy
 {
+	Tag "UZI Guy"
+	$SitRepSprite "SIT_ZOM"
   Health 40
   PainChance 200
   Speed 8

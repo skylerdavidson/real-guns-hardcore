@@ -75,7 +75,7 @@ actor KamikazeExplosion
   Spawn:
     TNT1 A 0
     TNT1 A 0 A_Explode(40,150)
-    TNT1 A 1 A_SpawnItemEx("ExplosionMain",0,0,0)
+    TNT1 A 1 A_SpawnItemEx("SimpleExplosionMain",0,0,0)
     stop
   }
 }
