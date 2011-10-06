@@ -93,7 +93,7 @@ actor BlueRevenantEightballMissile
     TNT1 A 0 A_Explode(5,128)
     TNT1 A 0 A_GiveToTarget ("RevenantIndicator") // mark the revenant's TID
     TNT1 A 0 ACS_ExecuteAlways(663,0,0,0,0) // teleport the victim
-    TNT1 A 5 A_SpawnItemEx("ExplosionMain", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 A 5 A_SpawnItemEx("SimpleExplosionMain", 0, 0, 0, 0, 0, 0, 0, 128, 0)
 	  TNT1 G 0 A_AlertMonsters
     stop
   }
