@@ -4016,7 +4016,7 @@ script 636 (int firstTimeAfterDeath)
   			HudMessage(s:"5)  > Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_YELLOW, 60.1, 180.0, 0.0);
     }	                                      
 	
-		if(CheckInventory("MenuCursor") >= 4){
+		if(CheckInventory("MenuCursor") >= 5){
 			TakeInventory("MenuCursor",10);
 			ACS_ExecuteAlways(636,0,0,0,0); // redraw the menu
 		}
@@ -4385,14 +4385,15 @@ script 637 (void)
 				Perk3[PlayerNumber()+1] = "Perk3_SitRep_PRO";
 			}
 		}
-		else if(CheckInventory("MenuCursor") == 4)	//Go back
+		if(CheckInventory("MenuCursor") == 4){	//Go back
 			TakeInventory("MenuPlace",1);
-		TakeInventory("MenuCursor",15);
-		
-		if(COOPERATIVE){
+		}else if(COOPERATIVE){
 		    ACS_ExecuteAlways(638,0,9,0,0);
 		    terminate;
-		} 
+		}
+		
+		TakeInventory("MenuCursor",15);
+		
 	}
 	//MenuPlace 6: We're in the Attachments menu
 	else if(CheckInventory("MenuPlace") == 6)
