@@ -6084,7 +6084,7 @@ script 661 (void)
 	// Blue perks PRO	
 	if(CheckInventory("Perk1_SOH") == 1 && CheckInventory("Perk1_SOH_Pro") == 0){
 	    // SOH PRO
-	    if(currentIndex - 1 == CheckInventory("MenuCursor") - 1){
+	    if(currentIndex - 1 == CheckInventory("MenuCursor")){
 			ACS_ExecuteAlways(624,0,9,0,0);	
 		}
 	    
