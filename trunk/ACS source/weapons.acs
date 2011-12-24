@@ -228,8 +228,10 @@ script 603 (void) NET
 script 604 (void) NET
 {
 	TakeInventory("PowerLightAmp", 1);
-
-  GiveInventory("InCombat", 1); // TODO: do this properly (when the knife actually strikes)
-
+	
+	if(COMPETITIVE){
+		GiveInventory("InCombat", 1); // TODO: do this properly (when the knife actually strikes)
+	}
+	
 	GiveInventory("KnifeAttack",1); //Hack, refer to decorate coding.
 }
