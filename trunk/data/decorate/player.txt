@@ -78,7 +78,7 @@ ACTOR RGUPlayer : DoomPlayer
   Player.StartItem "AK47Clip", 30
   Player.StartItem "AK47Clip2", 45
   Player.StartItem "StrikerClip", 12
-  Player.StartItem "StrikerClip", 18
+  Player.StartItem "StrikerClip2", 18
   Player.StartItem "AUGHBARClip", 42
   Player.StartItem "AUGHBARClip2", 63
   Player.StartItem "WA2000Clip", 6
