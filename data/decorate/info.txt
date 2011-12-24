@@ -151,7 +151,7 @@ actor Rank : Inventory
 actor Voice : Inventory
 {
     inventory.amount 0
-    inventory.maxamount 5
+    inventory.maxamount 6
 }
 
 actor Speaking : Inventory

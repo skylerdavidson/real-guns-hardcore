@@ -2985,9 +2985,16 @@ script 626 (void) NET
 	else if(CheckInventory("Voice") == 5)
 	{
 		SetFont("BIGFONT");
+		HudMessage(s:"\cdVoice changed to NONE"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		GiveInventory("Voice",1);
+	}
+	else if(CheckInventory("Voice") == 6)
+	{
+		SetFont("BIGFONT");
 		HudMessage(s:"\cdVoice changed to American [US Rangers]"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
 		TakeInventory("Voice",10);
 	}
+	
 	
 	CurrentVoice[PlayerNumber()] = CheckInventory("Voice");
 }
