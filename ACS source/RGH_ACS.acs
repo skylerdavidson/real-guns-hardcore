@@ -3871,7 +3871,7 @@ script 636 (int firstTimeAfterDeath)
   		HudMessage(s:"1)    \cvSleight of Hand:      Faster reloading\n\n         \cjPRO\cv: Faster knifing and grenade throwing"; HUDMSG_PLAIN, 400+PlayerNumber(), CR_WHITE, 60.1, 100.0, 0.0);	
   		HudMessage(s:"2)    \cvExtreme Conditioning: +15% running speed\n\n         \cjPRO\cv: Regenerate 100% faster and 40% sooner"; HUDMSG_PLAIN, 450+PlayerNumber(), CR_WHITE, 60.1, 140.0, 0.0);	
   		HudMessage(s:"3)    \cvOne Man Army:         Carry extra ammo\n\n         \cjPRO\cv: Carry extra weapon"; HUDMSG_PLAIN, 500+PlayerNumber(), CR_WHITE, 60.1, 180.0, 0.0);	
-  		HudMessage(s:"4)    \cvScavenger:         	 +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 60.1, 220.0, 0.0);
+  		HudMessage(s:"4)    \cvScavenger:         	  +100% ammo in pickups\n\n         \cjPRO\cv: +100% powerup duration"; HUDMSG_PLAIN, 550+PlayerNumber(), CR_WHITE, 60.1, 220.0, 0.0);
   		HudMessage(s:"5)    Back"; HUDMSG_PLAIN, 950+PlayerNumber(), CR_WHITE, 60.1, 260.0, 0.0);	
   
   		if(CheckInventory("MenuCursor") == 0)
