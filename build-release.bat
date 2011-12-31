@@ -12,13 +12,13 @@ echo ==============================================================
 utility\mcpp "ACS source\RGH_ACS.acs" -o temp\acs-skulltag\processed.acs -D SKULLTAG -D IgnoreHash(x)=x -P
 utility\mcpp "ACS source\RGH_ACS.acs" -o temp\acs-zdoom\processed.acs -D ZDOOM -D IgnoreHash(x)=x -P
 echo ==============================================================
-utility\zmp -d data/decorate -a "temp\acs-skulltag\processed.acs" -o temp\acs-skulltag\zmp_processed.acs -p temp/decorate-skulltag/decorate.txt -m skulltag -l RGH_ACS
+utility\zmp -d decorate -a "temp\acs-skulltag\processed.acs" -o temp\acs-skulltag\zmp_processed.acs -p temp/decorate-skulltag/decorate.txt -m skulltag -l RGH_ACS
 if not errorlevel 0 (
 	pause
 	exit
 )
 echo ==============================================================
-utility\zmp -d data/decorate -d "zdoom data" -a "temp\acs-zdoom\processed.acs" -o temp\acs-zdoom\zmp_processed.acs -p temp/decorate-zdoom/decorate.txt -m zdoom -l RGH_ACS
+utility\zmp -d decorate -d "zdoom data" -a "temp\acs-zdoom\processed.acs" -o temp\acs-zdoom\zmp_processed.acs -p temp/decorate-zdoom/decorate.txt -m zdoom -l RGH_ACS
 if not errorlevel 0 (
 	pause
 	exit
