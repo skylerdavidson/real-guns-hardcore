@@ -2924,10 +2924,11 @@ script 625 (void)
 	SetFont("BIGFONT");
 	HudMessage(s:"\cdLAST STAND"; HUDMSG_FADEOUT, 150+PlayerNumber(), CR_Green, 0.5, 0.3, 2.0, 1.0);
 	TakeInventory("Aiming", 1);
-	ACS_ExecuteAlways(630,0,0,0,0);
+	ACS_ExecuteAlways(630,0,0,0,0);	
 	delay(1);
 	SetActorProperty(0,APROP_Invulnerable,1);
 	delay(10);
+	ACS_ExecuteAlways(500,0,0,0,0); // reset TID and and death special
 	SetActorProperty(0,APROP_Invulnerable,0);
 	delay(35*2);
 	ACS_ExecuteAlways(633,0,0,0,0);	
@@ -2940,11 +2941,12 @@ script 625 (void)
 	{
 		TakeInventory("Aiming", 1);
 		ACS_ExecuteAlways(631,0,0,0,0);  // unmorph from last stand
+		ACS_ExecuteAlways(500,0,0,0,0); // reset TID and and death special
 		SetFont("BIGFONT");
 		HudMessage(s:"\cdYou survived!"; HUDMSG_FADEOUT, 150+PlayerNumber(), CR_Green, 0.5, 0.3, 2.0, 1.0);
 		LocalAmbientSound("game/challenge",90);
 		Delay(1);
-		SetActorProperty(0,APROP_Health,100);
+		SetActorProperty(0,APROP_Health,100);		
 	}
 }
 
