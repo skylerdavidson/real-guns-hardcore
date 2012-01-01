@@ -4,7 +4,7 @@ actor Acubus : Fatso_2
 	Tag "Acubus"
 	$SitRepSprite "SIT_FAT"
   obituary "%o was creamed by an Acubus."
-  health 1600
+  health 2800
   radius 48
   height 64
   cameraheight 52
