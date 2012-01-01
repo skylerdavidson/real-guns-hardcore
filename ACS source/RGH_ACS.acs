@@ -3362,6 +3362,7 @@ script 631 ENTER
 	else //Just give a USP if none of the above are found.
 	{
 		UnMorphActor(0);
+		TakeInventory("USP .45 LastStand", 1);
 	}
 	TakeInventory("InLastStand", 1);
 	
