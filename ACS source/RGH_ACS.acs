@@ -204,7 +204,9 @@ script 503 DEATH
 
     SetFont("CONFONT");
 	
-	if(GetActorProperty(0,APROP_Health) < 1) //Don't view killers health or cam if he died at the same time you did. Or if you've respawned already.
+	log(i:KillersIDs);
+	
+	if(GetActorProperty(0,APROP_Health) < 1 && KillersIDs != 0) //Don't view if you've respawned already.
 	{
 		SetFont("BIGFONT");		
 		ChangeCamera(KillersIDs,0,1);
@@ -225,7 +227,7 @@ script 503 DEATH
 			HudMessage(s:"\ccKiller's Health left:\cg dead\cc" ;HUDMSG_FADEOUT,0,CR_Blue,0.5,0.6,10.0,2.0);
 		}
 	}
-	
+	KillersIDs = 0;
 	KillersGun = "";
 }
 //------------------------------------------
