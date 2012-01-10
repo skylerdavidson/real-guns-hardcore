@@ -88,18 +88,20 @@ script 658 (void)
 int inversionRevenantTid;
 script 663 (void)
 {
-  delay(2); // wait for 664 to execute
+	delay(2); // wait for 664 to execute
 
 	int originX = GetActorX(0);
 	int originY = GetActorY(0);
 	int originZ = GetActorZ(0);
 
 	
+	
 	for(int i = MINIMUM_TID - MAX_PLAYER_COUNT; i < MINIMUM_TID; i++){
 		if(SetActivator(i) == 0){
 			continue;
 		}
 
+		// outside blast radius (bounding box)
 		if(
 			abs(originX - GetActorX(0)) > 128 << 16 ||
 			abs(originY - GetActorY(0)) > 128 << 16 ||
@@ -109,10 +111,16 @@ script 663 (void)
 			continue;
 		}
 		
+		// outside blast radius (radial distance)
 		if(distanceFromPoint(originX, originY, originZ, 0) > 128){
 			continue;
 		}
 
+		// do not swap if the revenant is too close (there is risk of the player getting stuck)
+		if(distanceFromPoint(GetActorX(inversionRevenantTid), GetActorY(inversionRevenantTid), GetActorZ(inversionRevenantTid), 0) < 128){
+			continue;
+		}
+		
 		int playerX = GetActorX(0);
 		int playerY = GetActorY(0);
 		int playerZ = GetActorZ(0);
@@ -126,7 +134,7 @@ script 663 (void)
 		SetActorPosition(inversionRevenantTid, playerX, playerY, playerZ, true);			
 	}
   
-  GiveActorInventory(inversionRevenantTid,"RevenantMakeSolid", 1);	
+	GiveActorInventory(inversionRevenantTid,"RevenantMakeSolid", 1);	
 }
 
 script 664 (void)
