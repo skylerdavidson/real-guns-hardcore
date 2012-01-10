@@ -2,8 +2,8 @@ actor InversionRevenant :FragRevenant
 {
 	Tag "Inversion Revenant"
 	$SitRepSprite "SIT_REV"
-  obituary "%o was intoxicated by a Poison Revenant."
-  hitobituary "%o's skull was shattered by a poison revenant."
+  obituary "%o's brain was swapped out by Inversion Revenant."
+  hitobituary "%o's brain was swapped out by Inversion Revenant."
   health 500
   speed 12
   painchance 70
