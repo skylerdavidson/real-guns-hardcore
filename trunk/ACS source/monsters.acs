@@ -113,17 +113,17 @@ script 663 (void)
 			continue;
 		}
 
-    int playerX = GetActorX(0);
-    int playerY = GetActorY(0);
-    int playerZ = GetActorZ(0);
-    int playerAngle = GetActorAngle(0);
-      
-    SetActorAngle(0, GetActorAngle(inversionRevenantTid));
-    SetActorAngle(inversionRevenantTid, playerAngle);
-    SetActorPitch(0, 0);  
-    
-    log(b:SetActorPosition(0, GetActorX(inversionRevenantTid), GetActorY(inversionRevenantTid), GetActorZ(inversionRevenantTid), true));
-    log(b:SetActorPosition(inversionRevenantTid, playerX, playerY, playerZ, true));			
+		int playerX = GetActorX(0);
+		int playerY = GetActorY(0);
+		int playerZ = GetActorZ(0);
+		int playerAngle = GetActorAngle(0);
+		  
+		SetActorAngle(0, GetActorAngle(inversionRevenantTid));
+		SetActorAngle(inversionRevenantTid, playerAngle);
+		SetActorPitch(0, 0);  
+		
+		SetActorPosition(0, GetActorX(inversionRevenantTid), GetActorY(inversionRevenantTid), GetActorZ(inversionRevenantTid), true);
+		SetActorPosition(inversionRevenantTid, playerX, playerY, playerZ, true);			
 	}
   
   GiveActorInventory(inversionRevenantTid,"RevenantMakeSolid", 1);	
