@@ -9,7 +9,7 @@ actor ShotgunGuy_2 : RGAMonster
   height 56
   cameraheight 48
   mass 100
-  speed 11
+  speed 10
   painchance 170
   seesound "shotguy/sight"
   attacksound "spas/fire"
@@ -36,9 +36,9 @@ actor ShotgunGuy_2 : RGAMonster
     SPOS AABBCCDD 2 A_Chase
     loop
   Missile:
-    SPOS E 5 A_FaceTarget
-    SPOS F 5 bright A_CustomBulletAttack(22.5, 0, 3, 2, "BulletPuff")
-    SPOS E 5
+    SPOS E 6 A_FaceTarget
+    SPOS F 6 bright A_CustomBulletAttack(22.5, 0, 3, 2, "BulletPuff")
+    SPOS E 6
     goto See
   Pain:
     SPOS G 3
