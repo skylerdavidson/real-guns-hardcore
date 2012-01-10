@@ -40,7 +40,7 @@ actor DoubleChaingunGuy_2 : RGAMonster
     loop
   Missile:
     CZM2 E 10 A_FaceTarget
-    CZM2 FE 1 bright A_CustomBulletAttack(22.5, 0, 2, 1, "BulletPuff")
+    CZM2 FE 1 bright A_CustomBulletAttack(22.5, 0, 1, random(1, 4), "BulletPuff")
     CZM2 F 1 A_CPosRefire
     goto Missile+1
   Pain:
