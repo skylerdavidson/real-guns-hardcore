@@ -644,35 +644,35 @@ actor SMGAmmo : CustomInventory
     AMMO B -1
     stop
   Pickup:
-    BKPK A 0 A_GiveInventory("MP5Ammo",15)
-    BKPK A 0 A_GiveInventory("MiniUziAmmo",16)
-    BKPK A 0 A_GiveInventory("UMP45Ammo",16)
-    BKPK A 0 A_GiveInventory("VectorAmmo",15)
-    BKPK A 0 A_GiveInventory("P90Ammo",25)
+    BKPK A 0 A_GiveInventory("MP5Ammo",30)
+    BKPK A 0 A_GiveInventory("MiniUziAmmo",32)
+    BKPK A 0 A_GiveInventory("UMP45Ammo",32)
+    BKPK A 0 A_GiveInventory("VectorAmmo",30)
+    BKPK A 0 A_GiveInventory("P90Ammo",50)
 	BKPK A 0 A_JumpIfInventory("Perk1_Scavenger", 1, "Scavenger")
 	BKPK A 0 A_JumpIfInventory("Classic", 1, "Classic")
     stop
   Classic:
-	BKPK A 0 A_GiveInventory("MP5Ammo",15)
-    BKPK A 0 A_GiveInventory("MiniUziAmmo",16)
-    BKPK A 0 A_GiveInventory("UMP45Ammo",16)
-    BKPK A 0 A_GiveInventory("VectorAmmo",15)
-    BKPK A 0 A_GiveInventory("P90Ammo",25)
-	stop
-  Scavenger: // Scavenger bonus ammo
-	BKPK A 0 A_GiveInventory("MP5Ammo",15)
-    BKPK A 0 A_GiveInventory("MiniUziAmmo",16)
-    BKPK A 0 A_GiveInventory("UMP45Ammo",16)
-    BKPK A 0 A_GiveInventory("VectorAmmo",15)
-    BKPK A 0 A_GiveInventory("P90Ammo",25)
-    BKPK A 0 A_JumpIfInventory("Classic", 1, "ClassicScavenger")
-	stop
-  ClassicScavenger:
 	BKPK A 0 A_GiveInventory("MP5Ammo",30)
     BKPK A 0 A_GiveInventory("MiniUziAmmo",32)
     BKPK A 0 A_GiveInventory("UMP45Ammo",32)
     BKPK A 0 A_GiveInventory("VectorAmmo",30)
     BKPK A 0 A_GiveInventory("P90Ammo",50)
+	stop
+  Scavenger: // Scavenger bonus ammo
+	BKPK A 0 A_GiveInventory("MP5Ammo",30)
+    BKPK A 0 A_GiveInventory("MiniUziAmmo",32)
+    BKPK A 0 A_GiveInventory("UMP45Ammo",32)
+    BKPK A 0 A_GiveInventory("VectorAmmo",30)
+    BKPK A 0 A_GiveInventory("P90Ammo",50)
+    BKPK A 0 A_JumpIfInventory("Classic", 1, "ClassicScavenger")
+	stop
+  ClassicScavenger:
+	BKPK A 0 A_GiveInventory("MP5Ammo",60)
+    BKPK A 0 A_GiveInventory("MiniUziAmmo",64)
+    BKPK A 0 A_GiveInventory("UMP45Ammo",64)
+    BKPK A 0 A_GiveInventory("VectorAmmo",60)
+    BKPK A 0 A_GiveInventory("P90Ammo",100)
 	stop
   }
 }
