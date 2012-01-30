@@ -2889,7 +2889,7 @@ script 624 (int Which)
 		ACS_ExecuteAlways(622,0,0,0,0); //Remove other options
 		GiveInventory("Perk2_ColdBlooded",1);
 		SetFont("BIGFONT");
-		HudMessage(s:"\cgCOLD BLOODED PRO"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
+		HudMessage(s:"\cgCOLD BLOODED"; HUDMSG_FADEOUT, 2200+PlayerNumber(), CR_Green, 0.5, 0.59, 2.0, 1.0);
 		HudMessage(s:"Invisibility to seeker missiles!"; HUDMSG_TYPEON, 2250+PlayerNumber(), CR_Green, 0.5, 0.66, 2.0, 0.07, 1.0);
 	}
 	if(Which == 23) // SITREP
