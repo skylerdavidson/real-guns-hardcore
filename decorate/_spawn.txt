@@ -64,27 +64,6 @@ actor RareGunSpawner : RandomSpawner
 	DropItem "RareLMGSpawner"
 }
 
-actor HeavyAmmoSpawner : RandomSpawner
-{
-    DropItem "AssaultRifleAmmo" 
-    DropItem "SMGAmmo" 
-    DropItem "ShotgunAmmo" 
-    DropItem "SniperAmmo" 
-}
-
-actor RareAmmoSpawner : RandomSpawner
-{
-    DropItem "AssaultRifleAmmo" 
-    DropItem "AssaultRifleAmmo" 
-    DropItem "LMGAmmo"
-    DropItem "ExplosiveAmmo"
-    DropItem "RocketAmmo_2"
-    DropItem "HandgunAmmo"
-    DropItem "HandgunAmmo"
-    DropItem "SniperAmmo" 
-    DropItem "SniperAmmo" 
-}
-
 actor VoidSpawner : RandomSpawner
 { 
 }
