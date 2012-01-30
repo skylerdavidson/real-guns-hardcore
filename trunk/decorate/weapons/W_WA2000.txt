@@ -17,9 +17,9 @@ actor "WA2000" : RGUWeapon
   $RecoilStrength 5000
   $RecoilReverseStrength 3000
   $RecoilSpeed 1200
-  $AimingRecoilStrength 1600
-  $AimingRecoilReverseStrength 1600
-  $AimingRecoilSpeed 450
+  $AimingRecoilStrength 400
+  $AimingRecoilReverseStrength 400
+  $AimingRecoilSpeed 200
   $Scoped 1
   
   states
