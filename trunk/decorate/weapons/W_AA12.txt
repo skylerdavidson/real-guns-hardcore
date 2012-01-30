@@ -110,9 +110,9 @@ actor "AA-12" : RGUWeapon
   Hold:
     A12A N 0 A_JumpIfInventory("Aiming",1,"HoldAim")
     A12A N 0 A_JumpIfNoAmmo("ReloadStart")
+    A12B B 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Hold_SteadyAim")
     TNT1 A 0 A_GiveInventory("InCombatCrosshair",35)
     TNT1 F 0 A_GiveInventory("InCombat", 5)
-    A12B B 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Hold_SteadyAim")
     A12B A 0 A_PlayWeaponSound("aa12/fire")
     A12B AA 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,8,3)
     A12B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
@@ -134,6 +134,8 @@ actor "AA-12" : RGUWeapon
     goto Ready+14
   HoldAim:
     A12C F 0 A_JumpIfNoAmmo("ReloadStart")
+    TNT1 A 0 A_GiveInventory("InCombatCrosshair",35)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     A12C G 0 A_PlayWeaponSound("aa12/fire")
     A12C GG 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,0,3)
     A12C A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
@@ -155,6 +157,8 @@ actor "AA-12" : RGUWeapon
     goto Ready+20
   FireAim:
     A12C F 1 A_JumpIfNoAmmo("ReloadStart")
+    TNT1 A 0 A_GiveInventory("InCombatCrosshair",35)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     A12C G 0 A_PlayWeaponSound("aa12/fire")
     A12C GG 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,0,3)
     A12C A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
@@ -532,6 +536,8 @@ actor "AA-12 Grip" : "AA-12"
     A12A N 0 A_JumpIfInventory("Aiming",1,"FireAim")
     A12A N 1 A_JumpIfNoAmmo("ReloadStart")
     A12B B 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Fire_SteadyAim")
+    TNT1 A 0 A_GiveInventory("InCombatCrosshair",35)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     A12B A 0 A_PlayWeaponSound("aa12/fire")
     A12B AA 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,8,3)
     A12B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
@@ -554,6 +560,8 @@ actor "AA-12 Grip" : "AA-12"
     A12A N 0 A_JumpIfInventory("Aiming",1,"HoldAim")
     A12A N 0 A_JumpIfNoAmmo("ReloadStart")
     A12B B 0 A_JumpIfInventory("Perk3_SteadyAim",1,"Hold_SteadyAim")
+    TNT1 A 0 A_GiveInventory("InCombatCrosshair",35)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     A12B A 0 A_PlayWeaponSound("aa12/fire")
     A12B AA 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,8,3)
     A12B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
@@ -574,6 +582,8 @@ actor "AA-12 Grip" : "AA-12"
     goto Ready+14
   HoldAim:
     A12C F 0 A_JumpIfNoAmmo("ReloadStart")
+    TNT1 A 0 A_GiveInventory("InCombatCrosshair",35)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     A12C G 0 A_PlayWeaponSound("aa12/fire")
     A12C GG 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,0,3)
     A12C A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
@@ -594,6 +604,8 @@ actor "AA-12 Grip" : "AA-12"
     goto Ready+20
   FireAim:
     A12C F 1 A_JumpIfNoAmmo("ReloadStart")
+    TNT1 A 0 A_GiveInventory("InCombatCrosshair",35)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     A12C G 0 A_PlayWeaponSound("aa12/fire")
     A12C GG 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,0,3)
     A12C A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,0,3)
@@ -613,6 +625,8 @@ actor "AA-12 Grip" : "AA-12"
     A12C A 0 A_ReFire
     goto Ready+20
   Fire_SteadyAim:
+    TNT1 A 0 A_GiveInventory("InCombatCrosshair",35)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     A12B A 0 A_PlayWeaponSound("aa12/fire")
     A12B AA 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,8,3)
     A12B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
@@ -632,6 +646,8 @@ actor "AA-12 Grip" : "AA-12"
     A12B A 0 A_ReFire
     goto Ready+14
   Hold_SteadyAim:
+    TNT1 A 0 A_GiveInventory("InCombatCrosshair",35)
+    TNT1 F 0 A_GiveInventory("InCombat", 5)
     A12B A 0 A_PlayWeaponSound("aa12/fire")
     A12B AA 0 A_FireCustomMissile("WeaponSmokePuffShotgun",0,0,8,3)
     A12B A 0 A_FireCustomMissile("WeaponSmokePuff_BigMuzzle",0,0,8,3)
