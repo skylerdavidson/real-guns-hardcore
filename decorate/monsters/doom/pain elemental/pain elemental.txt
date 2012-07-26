@@ -32,6 +32,7 @@ actor PainElemental_2 : RGAMonster
   Missile:
     PAIN DE 3 A_FaceTarget
     PAIN F 3 bright A_FaceTarget
+    TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 2) 
     PAIN F 0 bright A_Jump(128,2,3)
     PAIN F 0 bright A_PainAttack("LostSoul_2")
     goto See
@@ -49,6 +50,7 @@ actor PainElemental_2 : RGAMonster
     PAIN I 8 bright A_Scream
     PAIN JK 8 bright
     PAIN K 0 ACS_ExecuteAlways(648,0,0,0,0)
+    TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 2)
     PAIN F 0 bright A_Jump(128,3,4)
     PAIN L 8 bright A_PainDie("LostSoul_2")       // See LostSoul
     PAIN M 8 bright A_NoBlocking
