@@ -520,7 +520,7 @@ script 611 (void)
 //------- This is for the monsters wad, refer to MAPINFO
 script 612 (int Which)
 {
-	// Doom2 Map07
+  // Doom2 Map07
 	if(Which == 0 && (ThingCountName("Arachnotron_2", 0) == 0 && ThingCountName("SpectreArachnotron", 0) == 0 && ThingCountName("Arachnobaron", 0) == 0))
 	{
 		Floor_RaiseByValue(667,16, 16);
@@ -551,6 +551,11 @@ script 612 (int Which)
 	{
 		Floor_LowerToNearest(666,16);
 	}
+  // Ultimate Doom E4M6
+  else if(Which == 5 && (ThingCountName("Cyberdemon_2", 0) == 0 && ThingCountName("Annihilator", 0) == 0 && ThingCountName("Thamuz", 0) == 0 && ThingCountName("Cardinal", 0) == 0 && ThingCountName("Overlord", 0) == 0))
+	{
+    Door_Open(666,16, 0);
+  }
 }
 
 //------------------------------------------

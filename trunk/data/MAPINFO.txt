@@ -78,6 +78,22 @@ map E3M8 lookup "HUSTR_E3M8"
 	exitpic = "PFUB2"
 }
 
+map E4M6 lookup "HUSTR_E4M6"
+{
+	levelnum = 36
+	titlepatch = "WILV35"
+	next = "E4M7"
+	secretnext = "E4M9"
+	sky1 = "SKY4"
+	cluster = 4
+	specialaction = "Cyberdemon_2", "ACS_ExecuteAlways", 612, 0, 5
+	specialaction = "Annihilator", "ACS_ExecuteAlways", 612, 0, 5
+	specialaction = "Thamuz", "ACS_ExecuteAlways", 612, 0, 5
+	specialaction = "Cardinal", "ACS_ExecuteAlways", 612, 0, 5
+	specialaction = "Overlord", "ACS_ExecuteAlways", 612, 0, 5
+	music = "$MUSIC_E2M4"
+}
+
 map E4M8 lookup "HUSTR_E4M8"
 {
 	levelnum = 38
