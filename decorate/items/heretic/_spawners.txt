@@ -35,6 +35,7 @@ actor HereticArtifactSpawner : RandomSpawner {
 	DropItem "ArtiTeleport"
 	DropItem "ArtiFly"
 	DropItem "ArtiTorch"
+  DropItem "FlameblastOrb"
 }
 
 actor ArtiTomeOfPower2 : HereticArtifactSpawner replaces ArtiTomeOfPower {}
