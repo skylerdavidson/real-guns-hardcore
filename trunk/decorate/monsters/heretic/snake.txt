@@ -1,4 +1,4 @@
-ACTOR Snake2 : Snake replaces Snake
+ACTOR Snake2 : Snake
 {
 	Tag "Ophidian"
 	$SitRepSprite "SIT_REV"
