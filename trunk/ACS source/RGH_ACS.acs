@@ -5928,7 +5928,7 @@ script 660 (void)
 		AwardMenuWeapon[PlayerNumber()] == "AA-12" ||
 		AwardMenuWeapon[PlayerNumber()] == "Striker" ||
 		AwardMenuWeapon[PlayerNumber()] == "M1014" ||
-		AwardMenuWeapon[PlayerNumber()] == "MP5k" ||
+		AwardMenuWeapon[PlayerNumber()] == "MP5K" ||
 		AwardMenuWeapon[PlayerNumber()] == "UMP45" ||
 		AwardMenuWeapon[PlayerNumber()] == "TDI Vector" ||
 		AwardMenuWeapon[PlayerNumber()] == "Mini-UZI" ||
@@ -6335,7 +6335,7 @@ script 661 (void)
 		AwardMenuWeapon[PlayerNumber()] == "Barrett 50cal" ||
 		AwardMenuWeapon[PlayerNumber()] == "WA2000" ||
 		AwardMenuWeapon[PlayerNumber()] == "M14 EBR" ||
-		AwardMenuWeapon[PlayerNumber()] == "l86" ||
+		AwardMenuWeapon[PlayerNumber()] == "L86" ||
 		AwardMenuWeapon[PlayerNumber()] == "MG4" ||
 		AwardMenuWeapon[PlayerNumber()] == "AUG HBAR" ||
 		AwardMenuWeapon[PlayerNumber()] == "M240"
