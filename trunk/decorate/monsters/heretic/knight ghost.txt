@@ -10,6 +10,7 @@ ACTOR KnightGhost2 : KnightGhost
   RenderStyle Translucent
   Alpha 0.4
   Health 150
+  Painchance 0
   States
   {  
   Spawn:
