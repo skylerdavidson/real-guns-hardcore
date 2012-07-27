@@ -1,0 +1,11 @@
+ACTOR MummyGhost2 : Mummy2 replaces MummyGhost
+{
+  Tag "Ghost Golem"
+  Game Heretic
+  SpawnID 8
+  +SHADOW
+  +GHOST
+  RenderStyle Translucent
+  Alpha 0.4
+  Painchance 0
+}
