@@ -414,15 +414,24 @@ script 605 (void) CLIENTSIDE
 //Regeneration
 script 606 (void)
 {
-	int i = 0;
-	//print(i:CheckInventory("ReadyRegen"));
+	int regenRate = 16;
+	if(GetCVAR("sv_regenrate") > 0){
+		regenRate = GetCVAR("sv_regenrate");
+	}
+	
+	int regenDelayMultiplier = 1;
+	if(GetCVAR("sv_regendelaymultiplier") >= 0){
+		regenDelayMultiplier = GetCVAR("sv_regendelaymultiplier");
+	}	
+	
+	int i = 0;	
+	int regenDelayCounter = 0;
+	
 	if(CheckInventory("ReadyRegen") == 0)
 	{
 		GiveInventory("ReadyRegen",1);
 		while(true){
 			i++;
-
-
 
 			While(GetActorProperty(0,APROP_Health) < 100 && GetActorProperty(0,APROP_Health) > 0)
 			{
@@ -430,20 +439,23 @@ script 606 (void)
 					ACS_ExecuteAlways(625,0,0,0,0);	
 				}
 			
-				if(CheckInventory("InCombatRegeneration") > 0 || CheckInventory("PowerEMP") > 0 || (CheckInventory("InLastStand") > 0 && CheckInventory("Perk3_LastStand_Pro") == 0))
+				if(regenDelayMultiplier > 0 && (CheckInventory("InCombatRegeneration") > 0 || CheckInventory("PowerEMP") > 0 || (CheckInventory("InLastStand") > 0 && CheckInventory("Perk3_LastStand_Pro") == 0)))
 				{			
 					ACS_ExecuteAlways(647,0,0,0,0);
 
 					Delay(25);
 					
-					if(CheckInventory("Perk1_ExtremeConditioning_PRO") == 1 && CheckInventory("InCombatRegeneration") == 2)
-					{
-						TakeInventory("InCombatRegeneration",2);
+					regenDelayCounter = regenDelayCounter + 1;
+					if(regenDelayCounter == regenDelayMultiplier){											
+						regenDelayCounter = 0;
+						
+						if(CheckInventory("Perk1_ExtremeConditioning_PRO") == 1 && CheckInventory("InCombatRegeneration") == 2)
+						{
+							TakeInventory("InCombatRegeneration",2);
+						}
+						
+						TakeInventory("InCombatRegeneration",1);
 					}
-					
-					TakeInventory("InCombatRegeneration",1);
-					
-					
 				}
 				else {
 					if(GetActorProperty(0,APROP_Health) < 100 && GetActorProperty(0,APROP_Health) > 0)
@@ -451,9 +463,9 @@ script 606 (void)
 						ACS_ExecuteAlways(647,0,0,0,0);
 						
 						if(CheckInventory("Perk1_ExtremeConditioning_PRO") == 1)
-							GiveInventory("Health",32);
+							GiveInventory("Health",regenRate * 2);
 						else
-							GiveInventory("Health",16);
+							GiveInventory("Health",regenRate);
 						
 						Delay(18);
 					}   
