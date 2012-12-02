@@ -415,14 +415,20 @@ script 605 (void) CLIENTSIDE
 script 606 (void)
 {
 	int regenRate = 16;
-	if(GetCVAR("sv_regenrate") > 0){
-		regenRate = GetCVAR("sv_regenrate");
+	if(GetCVAR("rgh_regenrate") > 0){
+		regenRate = GetCVAR("rgh_regenrate");
 	}
 	
 	int regenDelayMultiplier = 1;
-	if(GetCVAR("sv_regendelaymultiplier") >= 0){
-		regenDelayMultiplier = GetCVAR("sv_regendelaymultiplier");
+	if(GetCVAR("rgh_regendelaymultiplier") > 0){
+		regenDelayMultiplier = GetCVAR("rgh_regendelaymultiplier");
 	}	
+	
+	int disableRegenDelay = 0;
+	if(GetCVAR("rgh_disableregendelay") > 0){
+		disableRegenDelay = 1;
+	}	
+	
 	
 	int i = 0;	
 	int regenDelayCounter = 0;
@@ -439,7 +445,7 @@ script 606 (void)
 					ACS_ExecuteAlways(625,0,0,0,0);	
 				}
 			
-				if(regenDelayMultiplier > 0 && (CheckInventory("InCombatRegeneration") > 0 || CheckInventory("PowerEMP") > 0 || (CheckInventory("InLastStand") > 0 && CheckInventory("Perk3_LastStand_Pro") == 0)))
+				if(disableRegenDelay == 0 && (CheckInventory("InCombatRegeneration") > 0 || CheckInventory("PowerEMP") > 0 || (CheckInventory("InLastStand") > 0 && CheckInventory("Perk3_LastStand_Pro") == 0)))
 				{			
 					ACS_ExecuteAlways(647,0,0,0,0);
 
