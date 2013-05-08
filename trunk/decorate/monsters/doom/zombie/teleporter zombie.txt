@@ -160,4 +160,5 @@ ACTOR TeleporterZombie
 
 actor TeleporterZombiePlasma: ArachnotronPlasma {
 	Damage 3
+	Speed 20
 }
