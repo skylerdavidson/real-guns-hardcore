@@ -225,7 +225,7 @@ actor FlameblastProxy {
 ACTOR FlameblastBall : FastProjectile
 {
 Damage 3
-Speed 30
+Speed 40
 Alpha 0.80
 DamageType fire
 +THRUGHOST
@@ -246,7 +246,7 @@ DeathSound "Monster/hlnexp"
 ACTOR FlameblastBall2 : CacodemonBall
 {
 Damage 30
-Speed 10
+Speed 60
 Alpha 0.80
 DamageType flameblast
 +THRUGHOST
@@ -256,7 +256,8 @@ DeathSound "Monster/hlnexp"
  states
   {
   Spawn:
-    HLBL AB 3 bright
+	HLBL A 0 
+    HLBL AB 3 bright	
     HLBL AB 3 bright
     HLBL AB 3 bright
   Main:
