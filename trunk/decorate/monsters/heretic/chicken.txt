@@ -1,0 +1,56 @@
+ACTOR Chicken_2 : Chicken replaces Chicken
+{
+	Tag "Chicken"
+	$SitRepSprite "SIT_SKU"
+	CameraHeight 15
+
+  Game Heretic
+  SpawnID 122
+  Health 10
+  Radius 9
+  Height 22
+  Mass 40
+  Speed 4
+  PainChance 200
+  Monster
+  -COUNTKILL
+  +WINDTHRUST
+  +DONTMORPH
+  +FLOORCLIP
+  SeeSound "chicken/pain"
+  AttackSound "chicken/attack"
+  PainSound "chicken/pain"
+  DeathSound "chicken/death"
+  ActiveSound "chicken/active"
+  Obituary "$OB_CHICKEN"
+  States
+  {
+  Spawn:
+	CHKN A 0
+  	CHKN A 0 Thing_SetSpecial(0,226,613,0,random(15,30))
+  	CHKN A 0 A_GiveInventory("XPAmount", random(15,30))
+  	CHKN P 0 ACS_ExecuteAlways(651,0,0,0,0)
+    CHKN AB 10 A_Look
+    Loop
+  See:
+    CHKN AB 3 A_Chase
+    Loop
+  Pain:
+    CHKN D 5 A_Feathers
+    CHKN C 5 A_Pain
+    Goto See
+  Melee:
+    CHKN A 8 A_FaceTarget
+    CHKN C 10 A_CustomMeleeAttack(random[ChicAttack](1,2))
+    Goto See
+  Death:
+   	CHKN X 0 ACS_ExecuteAlways(648,0,0,0,0)
+    CHKN E 6 A_Scream
+    CHKN F 6 A_Feathers
+    CHKN G 6
+    CHKN H 6 A_NoBlocking
+    CHKN IJK 6
+    CHKN L -1
+    Stop
+  }
+}
