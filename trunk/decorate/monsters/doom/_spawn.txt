@@ -85,7 +85,7 @@ actor ShotgunGuy_Spawner replaces ShotgunGuy
   Spawn:
     TNT1 A 0
 	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(656,0,0,0) == 1, 4) 
-	TNT1 A 0 A_Jump(15,"Spawn6")
+	TNT1 A 0 A_Jump(10,"Spawn6")
 	TNT1 A 0 A_Jump(25,"Spawn3","Spawn4","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7")
     TNT1 A 0 A_Jump(96,"Spawn2")
     TNT1 A 0 A_SpawnItemEx("ShotgunGuy_2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION ,0)
