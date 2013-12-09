@@ -14,16 +14,32 @@ actor GunAmmoSpawnerH13 : GunAmmoSpawner replaces CrystalVial {}
 
 actor GunSpawnerH1 : UncommonGunSpawner replaces Gauntlets {}
 actor GunSpawnerH2 : CommonGunSpawner replaces GoldWand{}
-actor GunSpawnerH3 : CommonGunSpawner replaces Crossbow{}
+actor GunSpawnerH3 : RandomSpawner replaces Crossbow{	
+	DropItem CommomGunSpawner
+	DropItem CommomGunSpawner
+	DropItem CommomGunSpawner
+	DropItem CommomGunSpawner
+	DropItem UncommomGunSpawner
+	DropItem UncommomGunSpawner
+	DropItem RareGunSpawner
+}
 actor GunSpawnerH4 : RandomSpawner replaces Blaster{	
-	DropItem CommonGunSpawner
-	DropItem UncommonGunSpawner
+	DropItem CommomGunSpawner
+	DropItem CommomGunSpawner
+	DropItem CommomGunSpawner
+	DropItem UncommomGunSpawner
+	DropItem UncommomGunSpawner
+	DropItem UncommomGunSpawner
+	DropItem RareGunSpawner
 }
 actor GunSpawnerH5 : RandomSpawner replaces Mace{	
 	DropItem UncommonGunSpawner
 	DropItem RareGunSpawner
 }
-actor GunSpawnerH6 : UncommonGunSpawner replaces SkullRod{}
+actor GunSpawnerH6 : RandomSpawner replaces SkullRod{	
+	DropItem UncommonGunSpawner
+	DropItem RareGunSpawner
+}
 actor GunSpawnerH7 : CommonGunSpawner replaces Staff{}
 actor GunSpawnerH8 : RareGunSpawner replaces PhoenixRod{}
 
