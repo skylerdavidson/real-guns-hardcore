@@ -1,6 +1,6 @@
 ACTOR Minotaur2 : Minotaur replaces Minotaur
 {
-	Tag "Minotaur"
+	Tag Maulotaur
 	$SitRepSprite "SIT_CYB"
 	CameraHeight 90
   Game Heretic
