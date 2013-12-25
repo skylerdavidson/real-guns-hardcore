@@ -6,7 +6,6 @@ actor FlameblastOrb : CustomInventory
 	+INVENTORY.PICKUPFLASH
 	+INVENTORY.INVBAR
 	-INVENTORY.AUTOACTIVATE
-	+INVENTORY.INTERHUBSTRIP
   //+WEAPON.NOAUTOAIM 
  	Inventory.Amount 1
 	Inventory.MaxAmount 99 
