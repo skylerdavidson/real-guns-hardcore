@@ -205,6 +205,7 @@ Actor Hierophant: RGAMonster
     HIER S 6 A_NoBlocking
 	HIER S 0 ACS_ExecuteAlways(648,0,0,0,0) 
     HIER TUVW 6
+    HIER X 0 A_BossDeath
     HIER X -1 A_SetFloorClip 
     Stop
     } 
