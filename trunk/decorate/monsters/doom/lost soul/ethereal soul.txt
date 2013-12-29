@@ -9,7 +9,7 @@ ACTOR ESoul : RGAMonster // replaces Zombieman
   cameraheight 26
   mass 400
   speed 10
-  damage 5
+  damage 4
   painchance 128
   renderstyle Add
   Alpha 0.4
@@ -71,7 +71,7 @@ ACTOR ShadowBall
 	Radius 6
 	Height 8
 	Speed 9
-	Damage 4
+	Damage 3
 	Projectile
 	+RANDOMIZE
 	RenderStyle "ADD"
