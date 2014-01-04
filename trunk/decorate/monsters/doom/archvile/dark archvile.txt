@@ -57,7 +57,6 @@ actor DarkArchvile : Archvile_2
     DVIL Q 20 A_NoBlocking
     DVIL Q 0 ACS_ExecuteAlways(648,0,0,0,0)
     DVIL R 0 A_CustomMissile("KamikazeExplosion",16,0,random(-180,180),2,random(-36,36))
-    DVIL S 0 A_SpawnItemEx("Archvile_2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TELEFRAG,0)
     TNT1 A -1
     stop
   Raise:
